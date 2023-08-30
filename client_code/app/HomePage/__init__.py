@@ -2,15 +2,15 @@ import anvil.users
 from ._anvil_designer import AdminHomeTemplate
 from anvil.js.window import jQuery, ej
 from AnvilFusion.tools.utils import AppEnv, init_user_session
-from V3.app import models as v3_models
+from .app import models
 from ... import Forms
 from ... import Views
 from ... import Pages
 import navigation as nav
 
 
-AppEnv.APP_ID = 'PayLog'
-AppEnv.data_models = v3_models
+AppEnv.APP_ID = 'PayLogs'
+AppEnv.data_models = models
 AppEnv.forms = Forms
 AppEnv.views = Views
 AppEnv.pages = Pages

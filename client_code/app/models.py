@@ -42,21 +42,39 @@ class AppGridView:
 
 
 @model_type
-class AppUploadsCache:
-    model_type = types.ModelTypes.SYSTEM
+class AppUploadsCahce:
+    _model_type = types.ModelTypes.SYSTEM
+    _singular_name = 'AppUploadsCahce'
+    _plural_name = 'AppUploadsCahce'
+    _table_name = 'app_uploads_cache'
+    _title = 'name'
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mime_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     size = Attribute(field_type=types.FieldTypes.NUMBER)
     meta_info = Attribute(field_type=types.FieldTypes.OBJECT)
-    content = Attribute(field_type=types.FieldTypes.MEDIA)
-    case_uid = Attribute(field_type=types.FieldTypes.UID)
     link_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     link_uid = Attribute(field_type=types.FieldTypes.UID)
+    content = Attribute(field_type=types.FieldTypes.MEDIA)
+
+
+@model_type
+class Upload:
+    _title = 'name'
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    mime_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    size = Attribute(field_type=types.FieldTypes.NUMBER)
+    meta_info = Attribute(field_type=types.FieldTypes.OBJECT)
+    link_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    link_uid = Attribute(field_type=types.FieldTypes.UID)
+    location = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
 class File:
     model_type = types.ModelTypes.SYSTEM
+    path = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    file = Attribute(field_type=types.FieldTypes.MEDIA)
+    file_version = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
 
 
 @model_type
@@ -81,11 +99,6 @@ class User:
 class UserProfile:
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-
-
-@model_type
-class Upload:
-    model_type = types.ModelTypes.SYSTEM
 
 
 # -------------------------
