@@ -91,3 +91,25 @@ class Upload:
 # -------------------------
 # Data object model classes
 # -------------------------
+@model_type
+class Employee:
+    _title = 'full_name'
+
+    first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    
+    address_schema = {
+        'address_line_1': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'address_line_2': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'city_district': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'state_province': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'postal_code': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+    }
+    address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
+
+    @staticmethod
+    def get_full_name(args):
+        return f"{args['first_name']} {args['last_name']}"
+    full_name = Computed(('first_name', 'last_name'), 'get_full_name')
+

@@ -9,7 +9,7 @@ from ... import Pages
 import navigation as nav
 
 
-AppEnv.APP_ID = 'v3_admin'
+AppEnv.APP_ID = 'PayLog'
 AppEnv.data_models = v3_models
 AppEnv.forms = Forms
 AppEnv.views = Views
