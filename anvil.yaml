@@ -1,5 +1,18 @@
 allow_embedding: false
-package_name: Custom_HTML_1
-name: Custom HTML 1
-runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
-services: []
+package_name: V3_Timesheets___Payroll
+name: V3 Timesheets & Payroll
+startup_form: Form1
+runtime_options:
+  version: 2
+  client_version: '3'
+  server_version: python3-full
+  server_spec: {base: python310-minimal}
+dependencies:
+- dep_id: dep_y2k31zwzum5dd8
+  version: {dev: false}
+  resolution_hints: {app_id: RKPNSNWS3GPPJAO7, name: AnvilFusion, package_name: AnvilFusion}
+metadata: {title: V3 Timesheets & Payroll}
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
