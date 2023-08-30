@@ -27,6 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
+startup: {type: form, module: app.HomePage}
 package_name: V3_Payroll
 allow_embedding: false
 name: V3 Payroll
@@ -36,8 +37,38 @@ runtime_options:
   server_version: python3-full
   server_spec: {base: python310-minimal}
 metadata: {title: V3 Payroll}
-startup_form: Form1
+startup_form: null
+native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css\"\
+    \ rel=\"stylesheet\" type=\"text/css\"/>\n<link href=\"https://fonts.googleapis.com/css2?family=Lora&display=swap\"\
+    \ rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap\"\
+    \ rel=\"stylesheet\">\n\n<!--Fontawsome library -->\n<script src=\"https://kit.fontawesome.com/1466988a10.js\"\
+    \ crossorigin=\"anonymous\"></script>\n\n<!-- Essential JS 2 styles and scripts\
+    \ -->\n<link href=\"https://cdn.syncfusion.com/ej2/22.1.34/material3.css\" rel=\"\
+    stylesheet\">\n<script src=\"https://cdn.syncfusion.com/ej2/22.1.34/dist/ej2.min.js\"\
+    \ type=\"text/javascript\"></script>\n<link href=\"_/theme/home-page.css\" rel=\"\
+    stylesheet\">\n\n<!-- Packages -->\n<script>\n  ej.base.registerLicense('ORg4AjUWIQA/Gnt2V1hhQlJAfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5VdE1iXHtecHNRT2Ff');\n\
+    \  ej.schedule.Schedule.inject(ej.schedule.DragAndDrop, ej.schedule.Resize)\n\
+    </script>\n\n<!-- UnoCSS -->\n<script src=\"https://cdn.jsdelivr.net/npm/@unocss/runtime\"\
+    ></script>\n<script>\n// pass unocss options\nwindow.__unocss = {\n  rules: [\n\
+    \    // custom rules...\n  ],\n  presets: [\n    presetUno(),\n    presetAttributify(),\n\
+    \    presetTagify(),\n    presetIcons(),\n    presetWebFonts(),\n    presetTypography(),\n\
+    \  ],\n  // ...\n}\n</script>"}
 db_schema:
+  app_uploads_cahce:
+    client: none
+    server: full
+    columns: []
+    title: App Uploads Cahce
+  app_error_log:
+    client: none
+    server: full
+    columns: []
+    title: App Error Log
+  employees:
+    client: none
+    server: full
+    columns: []
+    title: Employees
   files:
     client: none
     server: full
@@ -52,6 +83,11 @@ db_schema:
       type: string
       admin_ui: {order: 2, width: 200}
     title: Files
+  uploads:
+    client: none
+    server: full
+    columns: []
+    title: Uploads
   users:
     client: none
     server: full
@@ -81,4 +117,24 @@ db_schema:
       type: datetime
       admin_ui: {order: 7, width: 200}
     title: Users
+  timesheets:
+    client: none
+    server: full
+    columns: []
+    title: Timesheets
+  app_audit_log:
+    client: none
+    server: full
+    columns: []
+    title: App Audit Log
+  tenants:
+    client: none
+    server: full
+    columns: []
+    title: Tenants
+  app_grid_views:
+    client: none
+    server: full
+    columns: []
+    title: App Grid Views
 uplink_visible: true
