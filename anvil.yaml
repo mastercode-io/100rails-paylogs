@@ -69,6 +69,11 @@ db_schema:
     server: full
     columns: []
     title: Employees
+  awards:
+    client: none
+    server: full
+    columns: []
+    title: Awards
   files:
     client: none
     server: full

@@ -1,0 +1,93 @@
+from AnvilFusion.datamodel.particles import model_type, Attribute, Relationship, Computed
+from AnvilFusion.datamodel import types
+
+
+# Model list for enumerations
+ENUM_MODEL_LIST = {
+    # 'Activity': {'model': 'Activity', 'name_field': 'name'},
+}
+
+
+# ------------------------------
+# Framework object model classes
+# ------------------------------
+@model_type
+class AppAuditLog:
+    model_type = types.ModelTypes.SYSTEM
+    table_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    record_uid = Attribute(field_type=types.FieldTypes.UID)
+    action_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    action_time = Attribute(field_type=types.FieldTypes.DATETIME)
+    action_by = Attribute(field_type=types.FieldTypes.UID)
+    previous_state = Attribute(field_type=types.FieldTypes.OBJECT)
+    new_state = Attribute(field_type=types.FieldTypes.OBJECT)
+
+
+@model_type
+class AppErrorLog:
+    model_type = types.ModelTypes.SYSTEM
+    component = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    action = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    error_message = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    error_time = Attribute(field_type=types.FieldTypes.DATETIME)
+    user_uid = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+
+
+@model_type
+class AppGridView:
+    model_type = types.ModelTypes.SYSTEM
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    config = Attribute(field_type=types.FieldTypes.OBJECT)
+    permissions = Attribute(field_type=types.FieldTypes.OBJECT)
+
+
+@model_type
+class AppUploadsCache:
+    model_type = types.ModelTypes.SYSTEM
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    mime_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    size = Attribute(field_type=types.FieldTypes.NUMBER)
+    meta_info = Attribute(field_type=types.FieldTypes.OBJECT)
+    content = Attribute(field_type=types.FieldTypes.MEDIA)
+    case_uid = Attribute(field_type=types.FieldTypes.UID)
+    link_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    link_uid = Attribute(field_type=types.FieldTypes.UID)
+
+
+@model_type
+class File:
+    model_type = types.ModelTypes.SYSTEM
+
+
+@model_type
+class Tenant:
+    model_type = types.ModelTypes.SYSTEM
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+
+
+@model_type
+class User:
+    model_type = types.ModelTypes.SYSTEM
+    email = Attribute(field_type=types.FieldTypes.EMAIL)
+    enabled = Attribute(field_type=types.FieldTypes.BOOLEAN)
+    last_login = Attribute(field_type=types.FieldTypes.DATETIME)
+    password_hash = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    n_password_failures = Attribute(field_type=types.FieldTypes.NUMBER)
+    confirmed_email = Attribute(field_type=types.FieldTypes.BOOLEAN)
+    signed_up = Attribute(field_type=types.FieldTypes.DATETIME)
+
+
+@model_type
+class UserProfile:
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+
+
+@model_type
+class Upload:
+    model_type = types.ModelTypes.SYSTEM
+
+
+# -------------------------
+# Data object model classes
+# -------------------------
