@@ -36,45 +36,45 @@ AppEnv.grid_settings  = {
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
         AppEnv.logged_user = init_user_session()
-        AppEnv.add_enumerations(model_list=v3_models.ENUM_MODEL_LIST)
+        AppEnv.add_enumerations(model_list=models.ENUM_MODEL_LIST)
 
-        self.content_id = 'va-content'
+        self.content_id = 'pl-content'
         self.content_control = None
 
         # Appbar configuration
         self.appbar = ej.navigations.AppBar({'colorMode': 'Primary', 'isSticky': True})
         self.appbar_logo = ej.buttons.Button({'cssClass': 'e-inherit'})
         self.appbar_sidebar_toggle = ej.buttons.Button(
-            {'cssClass': 'e-inherit', 'iconCss': 'fa-solid fa-bars va-appbar-menu-icon'})
+            {'cssClass': 'e-inherit', 'iconCss': 'fa-solid fa-bars pl-appbar-menu-icon'})
         self.appbar_notification_list = ej.splitbuttons.DropDownButton({
-            'cssClass': 'e-inherit e-caret-hide va-menu-font',
-            'iconCss': 'fa-solid fa-bell va-appbar-menu-icon',
+            'cssClass': 'e-inherit e-caret-hide pl-menu-font',
+            'iconCss': 'fa-solid fa-bell pl-appbar-menu-icon',
             'items': [{'text': 'No new notifications', 'disabled': True}],
             'open': self.appbar_menu_popup_open
         })
         appbar_user_menu_items = [
-            {'text': 'Admin<br>admin@100rails.com', 'disabled': True, 'id': 'va-appbar-user-account-name'},
-            {'text': 'Account', 'iconCss': 'fa-regular fa-user-gear', 'id': 'va-appbar-user-settings'},
-            {'text': 'Sign Out', 'iconCss': 'fa-regular fa-arrow-right-from-bracket', 'id': 'va-appbar-sign-out'},
+            {'text': 'Admin<br>admin@100rails.com', 'disabled': True, 'id': 'pl-appbar-user-account-name'},
+            {'text': 'Account', 'iconCss': 'fa-regular fa-user-gear', 'id': 'pl-appbar-user-settings'},
+            {'text': 'Sign Out', 'iconCss': 'fa-regular fa-arrow-right-from-bracket', 'id': 'pl-appbar-sign-out'},
         ]
         self.appbar_user_menu = ej.splitbuttons.DropDownButton({
-            'cssClass': 'e-inherit e-caret-hide va-menu-font',
-            'iconCss': 'fa-solid fa-user va-appbar-menu-icon',
+            'cssClass': 'e-inherit e-caret-hide pl-menu-font',
+            'iconCss': 'fa-solid fa-user pl-appbar-menu-icon',
             'items': appbar_user_menu_items,
             'open': self.appbar_menu_popup_open
         })
 
-        self.sidebar = nav.Sidebar(target_el='.va-page-container', container_el='va-sidebar',
+        self.sidebar = nav.Sidebar(target_el='.pl-page-container', container_el='pl-sidebar',
                                    content_id=self.content_id)
-        self.appbar_menu = nav.AppbarMenu(container_el='va-appbar-menu', sidebar=self.sidebar,
+        self.appbar_menu = nav.AppbarMenu(container_el='pl-appbar-menu', sidebar=self.sidebar,
                                           menu_items=nav.VA_APPBAR_MENU)
 
     def form_show(self, **event_args):
         # Append appbar controls to elements
-        self.appbar.appendTo(jQuery('#va-appbar')[0])
-        self.appbar_notification_list.appendTo(jQuery('#va-appbar-notification-list')[0])
-        self.appbar_user_menu.appendTo(jQuery('#va-appbar-user-menu')[0])
-        self.appbar_sidebar_toggle.appendTo(jQuery('#va-appbar-sidebar-toggle')[0])
+        self.appbar.appendTo(jQuery('#pl-appbar')[0])
+        self.appbar_notification_list.appendTo(jQuery('#pl-appbar-notification-list')[0])
+        self.appbar_user_menu.appendTo(jQuery('#pl-appbar-user-menu')[0])
+        self.appbar_sidebar_toggle.appendTo(jQuery('#pl-appbar-sidebar-toggle')[0])
         self.appbar_sidebar_toggle.element.addEventListener('click', self.sidebar.toggle)
         self.appbar_menu.show()
 

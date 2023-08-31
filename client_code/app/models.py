@@ -111,6 +111,7 @@ class Employee:
     first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    role = Relationship('EmployeeRole', with_many=True)
     
     address_schema = {
         'address_line_1': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
@@ -126,3 +127,10 @@ class Employee:
         return f"{args['first_name']} {args['last_name']}"
     full_name = Computed(('first_name', 'last_name'), 'get_full_name')
 
+
+@model_type
+class EmployeeRole:
+    _title = 'name'
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)

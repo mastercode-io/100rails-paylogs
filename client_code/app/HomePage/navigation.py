@@ -73,9 +73,9 @@ class AppbarMenu:
 
     def menu_select(self, args):
         if self.selected_el is not None:
-            self.selected_el.classList.remove('va-appbar-menu-selected')
+            self.selected_el.classList.remove('pl-appbar-menu-selected')
         self.selected_el = args.element
-        self.selected_el.classList.add('va-appbar-menu-selected')
+        self.selected_el.classList.add('pl-appbar-menu-selected')
         menu_id = args.item.properties.id
         print(menu_id)
         self.sidebar.show_menu(menu_id)
