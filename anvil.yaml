@@ -54,11 +54,6 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \    presetTagify(),\n    presetIcons(),\n    presetWebFonts(),\n    presetTypography(),\n\
     \  ],\n  // ...\n}\n</script>"}
 db_schema:
-  app_uploads_cahce:
-    client: none
-    server: full
-    columns: []
-    title: App Uploads Cahce
   employees:
     client: none
     server: full
@@ -82,11 +77,30 @@ db_schema:
     - name: file_version
       type: string
       admin_ui: {order: 2, width: 200}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
     title: Files
   uploads:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: size, admin_ui: null, type: number}
+    - {name: name, admin_ui: null, type: string}
+    - {name: mime_type, admin_ui: null, type: string}
+    - {name: meta_info, admin_ui: null, type: simpleObject}
+    - {name: location, admin_ui: null, type: simpleObject}
+    - {name: link_uid, admin_ui: null, type: string}
+    - {name: link_name, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: created_by, admin_ui: null, type: string}
     title: Uploads
   users:
     client: none
@@ -126,7 +140,16 @@ db_schema:
     - name: timezone
       type: string
       admin_ui: {width: 200, order: -0.375}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Users
+  app_uploads_cache:
+    client: none
+    server: full
+    columns: []
+    title: App Uploads Cache
   timesheets:
     client: none
     server: full
@@ -142,20 +165,64 @@ db_schema:
     - name: uid
       type: string
       admin_ui: {width: 200, order: 1}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Tenants
+  user_profiles: {title: User Profiles}
   app_audit_logs:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: action_by, admin_ui: null, type: string}
+    - {name: action_time, admin_ui: null, type: datetime}
+    - {name: action_type, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: new_state, admin_ui: null, type: simpleObject}
+    - {name: previous_state, admin_ui: null, type: simpleObject}
+    - {name: record_uid, admin_ui: null, type: string}
+    - {name: table_name, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: App Audit Logs
   app_grid_views:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: permissions, admin_ui: null, type: simpleObject}
+    - {name: name, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: config, admin_ui: null, type: simpleObject}
     title: App Grid Views
   app_error_logs:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: user_uid, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: error_time, admin_ui: null, type: datetime}
+    - {name: error_message, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: component, admin_ui: null, type: string}
+    - {name: action, admin_ui: null, type: string}
     title: App Error Logs
+  employee_roles:
+    title: Employee Roles
+    client: none
+    server: full
+    columns: []
 uplink_visible: true
