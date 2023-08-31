@@ -57,7 +57,18 @@ db_schema:
   employees:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: address, admin_ui: null, type: simpleObject}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: email, admin_ui: null, type: string}
+    - {name: first_name, admin_ui: null, type: string}
+    - {name: last_name, admin_ui: null, type: string}
+    - {name: role, admin_ui: null, type: link_multiple, target: employee_roles}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Employees
   awards:
     client: none
@@ -148,7 +159,20 @@ db_schema:
   app_uploads_cache:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: content, admin_ui: null, type: media}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: link_name, admin_ui: null, type: string}
+    - {name: link_uid, admin_ui: null, type: string}
+    - {name: meta_info, admin_ui: null, type: simpleObject}
+    - {name: mime_type, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: size, admin_ui: null, type: number}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: App Uploads Cache
   timesheets:
     client: none
@@ -224,5 +248,13 @@ db_schema:
     title: Employee Roles
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: name, admin_ui: null, type: string}
+    - {name: pay_rate, admin_ui: null, type: number}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
 uplink_visible: true
