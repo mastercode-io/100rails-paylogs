@@ -1,6 +1,5 @@
 # Application navigation
 from anvil.js.window import jQuery, ej
-import sys
 import time
 from AnvilFusion.tools.utils import AppEnv
 from AnvilFusion.components.GridView import GridView
@@ -48,7 +47,7 @@ VA_SIDEBAR_MENUS = {
 # Navigation items/actions
 VA_NAV_ITEMS = {
     # 'case_agenda': {'model': '', 'type': 'page|view|form', 'action': 'open|popup', 'props': {}},
-    'views_default': {'model': 'appGridViews', 'type': 'view', 'action': 'open', 'props': {}},
+    'views_default': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
 }
 
 
