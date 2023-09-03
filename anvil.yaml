@@ -223,7 +223,6 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: permissions, admin_ui: null, type: simpleObject}
-    - {name: name, admin_ui: null, type: string}
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: created_by, admin_ui: null, type: string}
     - {name: config, admin_ui: null, type: simpleObject}
