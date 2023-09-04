@@ -105,8 +105,8 @@ class User:
 
 @model_type
 class UserProfile:
-    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    _title = 'user'
+    user = Relationship('User')
 
 
 # -------------------------

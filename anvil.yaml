@@ -195,7 +195,18 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: Tenants
-  user_profiles: {title: User Profiles}
+  user_profiles:
+    client: none
+    server: full
+    columns:
+    - {name: uid, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: user, admin_ui: null, type: link_single, target: users}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    title: User Profiles
   app_audit_logs:
     client: none
     server: full
