@@ -28,15 +28,15 @@ services:
   client_config: {}
   server_config: {}
 startup: {type: form, module: app.HomePage}
-package_name: V3_PayLogs
+package_name: PayLogs
 allow_embedding: false
-name: V3 PayLogs
+name: PayLogs
 runtime_options:
   version: 2
   client_version: '3'
   server_version: python3-full
   server_spec: {base: python310-minimal}
-metadata: {title: V3 PayLogs, description: Payroll Timesheet Pre-Processor}
+metadata: {title: PayLogs, description: Payroll Timesheet Pre-Processor}
 startup_form: null
 native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css\"\
     \ rel=\"stylesheet\" type=\"text/css\"/>\n<link href=\"https://fonts.googleapis.com/css2?family=Lora&display=swap\"\
