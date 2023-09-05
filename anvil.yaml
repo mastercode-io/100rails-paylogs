@@ -240,6 +240,9 @@ db_schema:
     - {name: columns, admin_ui: null, type: simpleObject}
     - {name: model, admin_ui: null, type: string}
     - {name: owner, admin_ui: null, type: string}
+    - name: name
+      admin_ui: {width: 200}
+      type: string
     title: App Grid Views
   app_error_logs:
     client: none
