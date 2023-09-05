@@ -109,12 +109,33 @@ class UserProfile:
 # Data object model classes
 # -------------------------
 @model_type
+class Business:
+    _title = 'name'
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    address_schema = {
+        'address_line_1': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'address_line_2': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'city_district': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'state_province': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'country': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'postal_code': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+    }
+    address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
+    phone = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    website = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    logo = Attribute(field_type=types.FieldTypes.MEDIA)
+
+
+@model_type
 class Employee:
     _title = 'full_name'
 
     first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     role = Relationship('EmployeeRole', with_many=True)
     
     address_schema = {
@@ -122,6 +143,7 @@ class Employee:
         'address_line_2': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         'city_district': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         'state_province': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'country': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         'postal_code': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
@@ -138,3 +160,72 @@ class EmployeeRole:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    
+
+@model_type
+class Job:
+    _title = 'name'
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    job_type = Relationship('JobType')
+    location = Relationship('Location')
+    
+    
+@model_type
+class JobType:
+    _title = 'name'
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    pay_rate_template = Relationship('PayRateTemplate')
+
+
+@model_type
+class Location:
+    _title = 'name'
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    address_schema = {
+        'address_line_1': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'address_line_2': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'city_district': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'state_province': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'country': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        'postal_code': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+    }
+    address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
+
+
+@model_type
+class PayCategory:
+    _title = 'name'
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    pay_rate_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
+
+
+@model_type
+class PayRateTemplate:
+    
+
+
+@model_type
+class Timesheet:
+    _title = 'employee'
+
+    employee = Relationship('Employee')
+    job = Relationship('Job')
+    start_time = Attribute(field_type=types.FieldTypes.DATETIME)
+    end_time = Attribute(field_type=types.FieldTypes.DATETIME)
+    total_hours = Attribute(field_type=types.FieldTypes.NUMBER)
+    total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
+    status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    timesheet_line = Relationship('TimesheetLine', with_many=True)
+
+
