@@ -66,7 +66,7 @@ class HomePage(HomePageTemplate):
         self.sidebar = nav.Sidebar(target_el='.pl-page-container', container_el='pl-sidebar',
                                    content_id=self.content_id)
         self.appbar_menu = nav.AppbarMenu(container_el='pl-appbar-menu', sidebar=self.sidebar,
-                                          menu_items=nav.VA_APPBAR_MENU)
+                                          menu_items=nav.PL_APPBAR_MENU)
 
     def form_show(self, **event_args):
         # Append appbar controls to elements

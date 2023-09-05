@@ -7,13 +7,13 @@ from AnvilFusion.components.FormBase import FormBase
 
 
 # Sidebar control CSS
-VA_SIDEBAR_CSS = 'e-inherit e-caret-hide pm-sidebar-menu'
-VA_SIDEBAR_WIDTH = 200
-VA_SIDEBAR_POPUP_OFFSET = 1
+PL_SIDEBAR_CSS = 'e-inherit e-caret-hide pm-sidebar-menu'
+PL_SIDEBAR_WIDTH = 200
+PL_SIDEBAR_POPUP_OFFSET = 1
 
 
 # Appbar menu item list
-VA_APPBAR_MENU = [
+PL_APPBAR_MENU = [
     {'id': 'tenant_menu', 'text': 'Tenants', 'items': []},
     {'id': 'views_menu', 'text': 'Views', 'items': []},
     {'id': 'tools_menu', 'text': 'Tools', 'items': []},
@@ -21,7 +21,7 @@ VA_APPBAR_MENU = [
 
 
 # Sidebar menu item list
-VA_SIDEBAR_MENUS = {
+PL_SIDEBAR_MENUS = {
     'tenant_menu': [
         {'nodeId': 'tenant_info', 'nodeText': 'Account Info', 'nodeChild': []},
         {'nodeId': 'tenant_users', 'nodeText': 'Users', 'nodeChild': []},
@@ -45,7 +45,7 @@ VA_SIDEBAR_MENUS = {
 
 
 # Navigation items/actions
-VA_NAV_ITEMS = {
+PL_NAV_ITEMS = {
     # 'case_agenda': {'model': '', 'type': 'page|view|form', 'action': 'open|popup', 'props': {}},
     'views_default': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
 }
@@ -86,9 +86,9 @@ class Sidebar:
                  target_el,
                  container_el,
                  content_id,
-                 sidebar_width=VA_SIDEBAR_WIDTH,
-                 sections=VA_SIDEBAR_MENUS,
-                 nav_items=VA_NAV_ITEMS,
+                 sidebar_width=PL_SIDEBAR_WIDTH,
+                 sections=PL_SIDEBAR_MENUS,
+                 nav_items=PL_NAV_ITEMS,
                  **properties):
 
         self.target_el = target_el
@@ -109,7 +109,7 @@ class Sidebar:
 
         self.menu = ej.navigations.TreeView({
             'fields': {
-                'cssClass': VA_SIDEBAR_CSS,
+                'cssClass': PL_SIDEBAR_CSS,
                 'dataSource': '',
                 'id': 'nodeId',
                 'text': 'nodeText',
@@ -133,7 +133,7 @@ class Sidebar:
 
 
     def show_menu(self, menu_id):
-        self.menu.fields.dataSource = VA_SIDEBAR_MENUS[menu_id]
+        self.menu.fields.dataSource = PL_SIDEBAR_MENUS[menu_id]
 
 
     def menu_select(self, args, subcomponent=None):
@@ -146,9 +146,9 @@ class Sidebar:
 
             menu_item_id = args.nodeData.id
             print(menu_item_id)
-            component = VA_NAV_ITEMS[menu_item_id] if menu_item_id in VA_NAV_ITEMS else None
+            component = PL_NAV_ITEMS[menu_item_id] if menu_item_id in PL_NAV_ITEMS else None
         else:
-            component = VA_NAV_ITEMS[subcomponent]
+            component = PL_NAV_ITEMS[subcomponent]
         if component is None:
             return
 
