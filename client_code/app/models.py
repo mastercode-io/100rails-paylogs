@@ -35,18 +35,14 @@ class AppErrorLog:
 
 @model_type
 class AppGridView:
-    _title = 'view_name'
+    _title = 'name'
     model_type = types.ModelTypes.SYSTEM
-    owner = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     columns = Attribute(field_type=types.FieldTypes.OBJECT)
     config = Attribute(field_type=types.FieldTypes.OBJECT)
     permissions = Attribute(field_type=types.FieldTypes.OBJECT)
-    
-    @staticmethod
-    def get_view_name(args):
-        return f"{args['model']} ({args['owner']})"
-    view_name = Computed(('model', 'owner'), 'get_view_name')
+    owner = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
 
 
 @model_type
