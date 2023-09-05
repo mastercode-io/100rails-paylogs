@@ -212,7 +212,7 @@ class PayCategory:
 
 @model_type
 class PayRateTemplate:
-    
+    pass
 
 
 @model_type
