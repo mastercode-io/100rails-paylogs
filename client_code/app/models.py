@@ -194,7 +194,6 @@ class JobType:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    pay_rate_template = Relationship("PayRateTemplate")
 
 
 @model_type
