@@ -65,7 +65,7 @@ class AppUploadsCache:
     link_uid = Attribute(field_type=types.FieldTypes.UID)
     content = Attribute(field_type=types.FieldTypes.MEDIA)
 
-
+@model_type
 class AppCustomFieldsSchema:
     _model_type = types.ModelTypes.SYSTEM
     _title = "name"
