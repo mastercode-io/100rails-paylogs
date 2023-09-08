@@ -220,12 +220,27 @@ class Timesheet:
     _title = 'employee'
 
     employee = Relationship('Employee')
+    timesheet_type = Relationship('TimesheetType')
     job = Relationship('Job')
+    date = Attribute(field_type=types.FieldTypes.DATE)
     start_time = Attribute(field_type=types.FieldTypes.DATETIME)
     end_time = Attribute(field_type=types.FieldTypes.DATETIME)
-    total_hours = Attribute(field_type=types.FieldTypes.NUMBER)
     total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
     status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    timesheet_line = Relationship('TimesheetLine', with_many=True)
+    approved_by = Relationship('Employee')
+    notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
 
+    @staticmethod
+    def calculate_total_hours(args):
+        return (args['end_time'] - args['start_time']).total_seconds() / 3600
+    total_hours = Computed(('start_time', 'end_time'), 'calculate_total_hours')
+
+
+@model_type
+class TimesheetType:
+    _title = 'name'
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    pay_rate_template = Relationship('PayRateTemplate')
 

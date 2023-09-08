@@ -13,22 +13,22 @@ AppEnv.data_models = models
 AppEnv.forms = Forms
 AppEnv.views = Views
 AppEnv.pages = Pages
-AppEnv.grid_settings  = {
-#   'modes': ['Sort', 'Filter', 'InfiniteScroll', 'Edit', 'ForeignKey', 'Toolbar'],
-#   'toolbar_items': [
-#     {'text': 'Add', 'prefixIcon': 'e-add', 'cssClass': '', 'style': 'background-color:#87CEEB; color:white;'},
-#     {'text': 'Edit', 'prefixIcon': 'e-edit', 'cssClass': '', 'style': 'background-color:#98FB98; color:white;'},
-#     {'text': 'Delete', 'prefixIcon': 'e-delete', 'cssClass': '', 'style': 'background-color:#FF6347; color:white;'},
-#     {'text': 'Search'},
-#     {'text': '', 'prefixIcon': 'e-add', 'align': 'Right'},
-#     {'text': '', 'prefixIcon': 'e-search', 'align': 'Right'},
-#   ],
-#   'commands': [
-#
-#   ],
-#   'command_column': {'headerText': '', 'width': 80, 'visible': True},
-#   'top_indent': 25,
-#   'column_width': 150,
+AppEnv.grid_settings = {
+    #   'modes': ['Sort', 'Filter', 'InfiniteScroll', 'Edit', 'ForeignKey', 'Toolbar'],
+    #   'toolbar_items': [
+    #     {'text': 'Add', 'prefixIcon': 'e-add', 'cssClass': '', 'style': 'background-color:#87CEEB; color:white;'},
+    #     {'text': 'Edit', 'prefixIcon': 'e-edit', 'cssClass': '', 'style': 'background-color:#98FB98; color:white;'},
+    #     {'text': 'Delete', 'prefixIcon': 'e-delete', 'cssClass': '', 'style': 'background-color:#FF6347; color:white;'},
+    #     {'text': 'Search'},
+    #     {'text': '', 'prefixIcon': 'e-add', 'align': 'Right'},
+    #     {'text': '', 'prefixIcon': 'e-search', 'align': 'Right'},
+    #   ],
+    #   'commands': [
+    #
+    #   ],
+    #   'command_column': {'headerText': '', 'width': 80, 'visible': True},
+    #   'top_indent': 25,
+    #   'column_width': 150,
 }
 
 
