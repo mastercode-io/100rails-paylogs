@@ -87,10 +87,14 @@ class Sidebar:
                  container_el,
                  content_id,
                  sidebar_width=PL_SIDEBAR_WIDTH,
-                 sections=PL_SIDEBAR_MENUS,
-                 nav_items=PL_NAV_ITEMS,
+                 sections=None,
+                 nav_items=None,
                  **properties):
 
+        if sections is None:
+            sections = PL_SIDEBAR_MENUS
+        if nav_items is None:
+            nav_items = PL_NAV_ITEMS
         self.target_el = target_el
         self.container_el = container_el
         self.content_id = content_id

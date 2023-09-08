@@ -51,7 +51,7 @@ class AppGridView:
 
 
 @model_type
-class AppUploadsCahce:
+class AppUploadsCache:
     _model_type = types.ModelTypes.SYSTEM
     _singular_name = "AppUploadsCache"
     _plural_name = "AppUploadsCache"
@@ -64,6 +64,14 @@ class AppUploadsCahce:
     link_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     link_uid = Attribute(field_type=types.FieldTypes.UID)
     content = Attribute(field_type=types.FieldTypes.MEDIA)
+
+
+class AppCustomFieldsSchema:
+    _model_type = types.ModelTypes.SYSTEM
+    _title = "name"
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    schema = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
@@ -177,17 +185,7 @@ class Job:
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-
-    custom_fields_schema = [
-        {
-            "name": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-            "type": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
-            "value": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        }
-    ]
-    custom_fields = Attribute(
-        field_type=types.FieldTypes.OBJECT, schema=custom_fields_schema
-    )
+    custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type

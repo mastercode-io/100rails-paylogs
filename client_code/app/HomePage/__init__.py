@@ -1,5 +1,5 @@
 from ._anvil_designer import HomePageTemplate
-from anvil.js.window import jQuery, ej
+from anvil.js.window import ej, jQuery
 from AnvilFusion.tools.utils import AppEnv, init_user_session
 from .. import models
 from ... import Forms
@@ -8,7 +8,7 @@ from ... import Pages
 import navigation as nav
 
 
-AppEnv.APP_ID = 'PayLogs'
+AppEnv.APP_ID = "PayLogs"
 AppEnv.data_models = models
 AppEnv.forms = Forms
 AppEnv.views = Views
@@ -37,48 +37,75 @@ class HomePage(HomePageTemplate):
         AppEnv.logged_user = init_user_session()
         AppEnv.add_enumerations(model_list=models.ENUM_MODEL_LIST)
 
-        self.content_id = 'pl-content'
+        self.content_id = "pl-content"
         self.content_control = None
 
         # Appbar configuration
-        self.appbar = ej.navigations.AppBar({'colorMode': 'Primary', 'isSticky': True})
-        self.appbar_logo = ej.buttons.Button({'cssClass': 'e-inherit'})
+        self.appbar = ej.navigations.AppBar({"colorMode": "Primary", "isSticky": True})
+        self.appbar_logo = ej.buttons.Button({"cssClass": "e-inherit"})
         self.appbar_sidebar_toggle = ej.buttons.Button(
-            {'cssClass': 'e-inherit', 'iconCss': 'fa-solid fa-bars pl-appbar-menu-icon'})
-        self.appbar_notification_list = ej.splitbuttons.DropDownButton({
-            'cssClass': 'e-inherit e-caret-hide pl-menu-font',
-            'iconCss': 'fa-solid fa-bell pl-appbar-menu-icon',
-            'items': [{'text': 'No new notifications', 'disabled': True}],
-            'open': self.appbar_menu_popup_open
-        })
+            {"cssClass": "e-inherit", "iconCss": "fa-solid fa-bars pl-appbar-menu-icon"}
+        )
+        self.appbar_notification_list = ej.splitbuttons.DropDownButton(
+            {
+                "cssClass": "e-inherit e-caret-hide pl-menu-font",
+                "iconCss": "fa-solid fa-bell pl-appbar-menu-icon",
+                "items": [{"text": "No new notifications", "disabled": True}],
+                "open": self.appbar_menu_popup_open,
+            }
+        )
         appbar_user_menu_items = [
-            {'text': 'Admin<br>admin@100rails.com', 'disabled': True, 'id': 'pl-appbar-user-account-name'},
-            {'text': 'Account', 'iconCss': 'fa-regular fa-user-gear', 'id': 'pl-appbar-user-settings'},
-            {'text': 'Sign Out', 'iconCss': 'fa-regular fa-arrow-right-from-bracket', 'id': 'pl-appbar-sign-out'},
+            {
+                "text": "Admin<br>admin@100rails.com",
+                "disabled": True,
+                "id": "pl-appbar-user-account-name",
+            },
+            {
+                "text": "Account",
+                "iconCss": "fa-regular fa-user-gear",
+                "id": "pl-appbar-user-settings",
+            },
+            {
+                "text": "Sign Out",
+                "iconCss": "fa-regular fa-arrow-right-from-bracket",
+                "id": "pl-appbar-sign-out",
+            },
         ]
-        self.appbar_user_menu = ej.splitbuttons.DropDownButton({
-            'cssClass': 'e-inherit e-caret-hide pl-menu-font',
-            'iconCss': 'fa-solid fa-user pl-appbar-menu-icon',
-            'items': appbar_user_menu_items,
-            'open': self.appbar_menu_popup_open
-        })
+        self.appbar_user_menu = ej.splitbuttons.DropDownButton(
+            {
+                "cssClass": "e-inherit e-caret-hide pl-menu-font",
+                "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
+                "items": appbar_user_menu_items,
+                "open": self.appbar_menu_popup_open,
+            }
+        )
 
-        self.sidebar = nav.Sidebar(target_el='.pl-page-container', container_el='pl-sidebar',
-                                   content_id=self.content_id)
-        self.appbar_menu = nav.AppbarMenu(container_el='pl-appbar-menu', sidebar=self.sidebar,
-                                          menu_items=nav.PL_APPBAR_MENU)
+        self.sidebar = nav.Sidebar(
+            target_el=".pl-page-container",
+            container_el="pl-sidebar",
+            content_id=self.content_id,
+        )
+        self.appbar_menu = nav.AppbarMenu(
+            container_el="pl-appbar-menu",
+            sidebar=self.sidebar,
+            menu_items=nav.PL_APPBAR_MENU,
+        )
 
     def form_show(self, **event_args):
         # Append appbar controls to elements
-        self.appbar.appendTo(jQuery('#pl-appbar')[0])
-        self.appbar_notification_list.appendTo(jQuery('#pl-appbar-notification-list')[0])
-        self.appbar_user_menu.appendTo(jQuery('#pl-appbar-user-menu')[0])
-        self.appbar_sidebar_toggle.appendTo(jQuery('#pl-appbar-sidebar-toggle')[0])
-        self.appbar_sidebar_toggle.element.addEventListener('click', self.sidebar.toggle)
+        self.appbar.appendTo(jQuery("#pl-appbar")[0])
+        self.appbar_notification_list.appendTo(
+            jQuery("#pl-appbar-notification-list")[0]
+        )
+        self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
+        self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
+        self.appbar_sidebar_toggle.element.addEventListener(
+            "click", self.sidebar.toggle
+        )
         self.appbar_menu.show()
 
         # Show sidebar menu
-        self.sidebar.show('tenant_menu')
+        self.sidebar.show("tenant_menu")
 
         # Show start page
 
@@ -89,15 +116,19 @@ class HomePage(HomePageTemplate):
     # Appbar menu popup window position adjustment
     @staticmethod
     def appbar_menu_popup_open(args):
-        args.element.parentElement.style.top = str(float(args.element.parentElement.style.top[:-2]) + 10) + 'px'
+        args.element.parentElement.style.top = (
+            str(float(args.element.parentElement.style.top[:-2]) + 10) + "px"
+        )
 
     # Sidebar menu popup window position adjustment
     @staticmethod
     def sidebar_menu_popup_open(args):
-        args.element.parentElement.style.top = str(
-            args.element.getBoundingClientRect().top - args.element.parentElement.offsetHeight + 44) + 'px'
-        args.element.parentElement.style.left = '100px'
-
-
-    def appbar_add_item_select(self, args):
-        nav.add_item_select(args, self.content_id)
+        args.element.parentElement.style.top = (
+            str(
+                args.element.getBoundingClientRect().top
+                - args.element.parentElement.offsetHeight
+                + 44
+            )
+            + "px"
+        )
+        args.element.parentElement.style.left = "100px"
