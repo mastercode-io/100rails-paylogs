@@ -70,7 +70,25 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: mobile, admin_ui: null, type: string}
     title: Employees
+  pay_runs:
+    title: Pay Runs
+    client: none
+    server: full
+    columns:
+    - {name: notes, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: pay_date, admin_ui: null, type: date}
+    - {name: pay_run_type, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: pay_period_end, admin_ui: null, type: date}
+    - {name: pay_period_start, admin_ui: null, type: date}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
   awards:
     client: none
     server: full
@@ -157,6 +175,37 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: Users
+  businesses:
+    title: Businesses
+    client: none
+    server: full
+    columns:
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: website, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: address, admin_ui: null, type: simpleObject}
+    - {name: email, admin_ui: null, type: string}
+    - {name: logo, admin_ui: null, type: media}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: phone, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+  locations:
+    title: Locations
+    client: none
+    server: full
+    columns:
+    - {name: address, admin_ui: null, type: simpleObject}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: description, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: uid, admin_ui: null, type: string}
   app_uploads_cache:
     client: none
     server: full
@@ -178,8 +227,41 @@ db_schema:
   timesheets:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: approved_by, admin_ui: null, type: link_single, target: employees}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: date, admin_ui: null, type: date}
+    - {name: employee, admin_ui: null, type: link_single, target: employees}
+    - {name: end_time, admin_ui: null, type: datetime}
+    - {name: job, admin_ui: null, type: link_single, target: jobs}
+    - {name: notes, admin_ui: null, type: string}
+    - {name: start_time, admin_ui: null, type: datetime}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: timesheet_type, admin_ui: null, type: link_single, target: timesheet_types}
+    - {name: total_pay, admin_ui: null, type: number}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Timesheets
+  jobs:
+    title: Jobs
+    client: none
+    server: full
+    columns:
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: job_type, admin_ui: null, type: link_single, target: job_types}
+    - {name: custom_fields, admin_ui: null, type: simpleObject}
+    - {name: name, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: location, admin_ui: null, type: link_single, target: locations}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
   tenants:
     client: none
     server: full
@@ -226,6 +308,41 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: App Audit Logs
+  timesheet_types:
+    title: Timesheet Types
+    client: none
+    server: full
+    columns:
+    - {name: configuration, admin_ui: null, type: simpleObject}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: notes, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: name, admin_ui: null, type: string}
+    - {name: short_code, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+  job_types:
+    title: Job Types
+    client: none
+    server: full
+    columns:
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
+    - {name: description, admin_ui: null, type: string}
+  app_custom_fields_schemas:
+    client: none
+    server: full
+    columns: []
+    title: App Custom Fields Schemas
   app_grid_views:
     client: none
     server: full
@@ -261,6 +378,33 @@ db_schema:
     - {name: component, admin_ui: null, type: string}
     - {name: action, admin_ui: null, type: string}
     title: App Error Logs
+  pay_categories:
+    title: Pay Categories
+    client: none
+    server: full
+    columns:
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: pay_rate_type, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: pay_rate_multiplier, admin_ui: null, type: number}
+    - {name: pay_rate, admin_ui: null, type: number}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: description, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+  pay_rate_templates:
+    title: Pay Rate Templates
+    client: none
+    server: full
+    columns:
+    - {name: uid, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
   employee_roles:
     title: Employee Roles
     client: none
