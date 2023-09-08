@@ -338,6 +338,11 @@ db_schema:
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: description, admin_ui: null, type: string}
+  app_custom_fields_schemas:
+    client: none
+    server: full
+    columns: []
+    title: App Custom Fields Schemas
   app_grid_views:
     client: none
     server: full
