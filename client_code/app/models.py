@@ -1,4 +1,9 @@
-from AnvilFusion.datamodel.particles import model_type, Attribute, Relationship, Computed
+from AnvilFusion.datamodel.particles import (
+    model_type,
+    Attribute,
+    Relationship,
+    Computed,
+)
 from AnvilFusion.datamodel import types
 
 
@@ -35,7 +40,7 @@ class AppErrorLog:
 
 @model_type
 class AppGridView:
-    _title = 'name'
+    _title = "name"
     model_type = types.ModelTypes.SYSTEM
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
@@ -48,10 +53,10 @@ class AppGridView:
 @model_type
 class AppUploadsCahce:
     _model_type = types.ModelTypes.SYSTEM
-    _singular_name = 'AppUploadsCahce'
-    _plural_name = 'AppUploadsCahce'
-    _table_name = 'app_uploads_cache'
-    _title = 'name'
+    _singular_name = "AppUploadsCache"
+    _plural_name = "AppUploadsCache"
+    _table_name = "app_uploads_cache"
+    _title = "name"
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mime_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     size = Attribute(field_type=types.FieldTypes.NUMBER)
@@ -63,7 +68,7 @@ class AppUploadsCahce:
 
 @model_type
 class Upload:
-    _title = 'name'
+    _title = "name"
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mime_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     size = Attribute(field_type=types.FieldTypes.NUMBER)
@@ -101,8 +106,8 @@ class User:
 
 @model_type
 class UserProfile:
-    _title = 'user'
-    user = Relationship('User')
+    _title = "user"
+    user = Relationship("User")
 
 
 # -------------------------
@@ -110,16 +115,16 @@ class UserProfile:
 # -------------------------
 @model_type
 class Business:
-    _title = 'name'
+    _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     address_schema = {
-        'address_line_1': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'address_line_2': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'city_district': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'state_province': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'country': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'postal_code': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "city_district": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "state_province": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "country": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
     phone = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
@@ -130,78 +135,90 @@ class Business:
 
 @model_type
 class Employee:
-    _title = 'full_name'
+    _title = "full_name"
 
     first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    role = Relationship('EmployeeRole', with_many=True)
-    
+    role = Relationship("EmployeeRole", with_many=True)
+
     address_schema = {
-        'address_line_1': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'address_line_2': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'city_district': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'state_province': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'country': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'postal_code': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "city_district": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "state_province": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "country": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
 
     @staticmethod
     def get_full_name(args):
         return f"{args['first_name']} {args['last_name']}"
-    full_name = Computed(('first_name', 'last_name'), 'get_full_name')
+
+    full_name = Computed(("first_name", "last_name"), "get_full_name")
 
 
 @model_type
 class EmployeeRole:
-    _title = 'name'
+    _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-    
+
 
 @model_type
 class Job:
-    _title = 'name'
+    _title = "name"
 
+    job_type = Relationship("JobType")
+    location = Relationship("Location")
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    job_type = Relationship('JobType')
-    location = Relationship('Location')
-    
-    
+
+    custom_fields_schema = [
+        {
+            "name": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+            "type": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
+            "value": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        }
+    ]
+    custom_fields = Attribute(
+        field_type=types.FieldTypes.OBJECT, schema=custom_fields_schema
+    )
+
+
 @model_type
 class JobType:
-    _title = 'name'
+    _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    pay_rate_template = Relationship('PayRateTemplate')
+    pay_rate_template = Relationship("PayRateTemplate")
 
 
 @model_type
 class Location:
-    _title = 'name'
+    _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     address_schema = {
-        'address_line_1': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'address_line_2': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'city_district': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'state_province': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'country': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        'postal_code': Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "city_district": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "state_province": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "country": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
 
 
 @model_type
 class PayCategory:
-    _title = 'name'
+    _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
@@ -212,35 +229,72 @@ class PayCategory:
 
 @model_type
 class PayRateTemplate:
-    _title = 'name'
+    _title = "name"
+
+
+@model_type
+class PayRun:
+    _title = "reference"
+
+    pay_run_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_period_start = Attribute(field_type=types.FieldTypes.DATE)
+    pay_period_end = Attribute(field_type=types.FieldTypes.DATE)
+    pay_date = Attribute(field_type=types.FieldTypes.DATE)
+    status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+
+    @staticmethod
+    def get_payrun_reference(args):
+        return f"{args['pay_run_type']}: ({args['pay_period_start']} - {args['pay_period_end']})"
+
+    reference = Computed(
+        ("pay_run_type", "pay_period_start", "pay_period_end"), "get_payrun_reference"
+    )
 
 
 @model_type
 class Timesheet:
-    _title = 'employee'
+    _title = "employee"
 
-    employee = Relationship('Employee')
-    timesheet_type = Relationship('TimesheetType')
-    job = Relationship('Job')
+    employee = Relationship("Employee")
+    timesheet_type = Relationship("TimesheetType")
+    job = Relationship("Job")
     date = Attribute(field_type=types.FieldTypes.DATE)
     start_time = Attribute(field_type=types.FieldTypes.DATETIME)
     end_time = Attribute(field_type=types.FieldTypes.DATETIME)
     total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
     status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    approved_by = Relationship('Employee')
+    approved_by = Relationship("Employee")
     notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
 
     @staticmethod
     def calculate_total_hours(args):
-        return (args['end_time'] - args['start_time']).total_seconds() / 3600
-    total_hours = Computed(('start_time', 'end_time'), 'calculate_total_hours')
+        return (args["end_time"] - args["start_time"]).total_seconds() / 3600
+
+    total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
 
 
 @model_type
 class TimesheetType:
-    _title = 'name'
+    _title = "short_code"
 
+    short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    pay_rate_template = Relationship('PayRateTemplate')
+    notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
 
+    configuration_schema = {
+        "job_required": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "paid_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "paid_breaks": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "break_length": Attribute(field_type=types.FieldTypes.NUMBER),
+        "work_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "break_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "sick_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "annual_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "unpaid_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "other": Attribute(field_type=types.FieldTypes.BOOLEAN),
+    }
+    configuration = Attribute(
+        field_type=types.FieldTypes.OBJECT, schema=configuration_schema
+    )
