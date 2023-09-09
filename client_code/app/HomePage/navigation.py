@@ -52,6 +52,7 @@ PL_SIDEBAR_MENUS = {
 PL_NAV_ITEMS = {
     # 'case_agenda': {'model': '', 'type': 'page|view|form', 'action': 'open|popup', 'props': {}},
     'views_default': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
 }
 
 
