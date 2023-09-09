@@ -46,6 +46,25 @@ class HomePage(HomePageTemplate):
         self.appbar_sidebar_toggle = ej.buttons.Button(
             {"cssClass": "e-inherit", "iconCss": "fa-solid fa-bars pl-appbar-menu-icon"}
         )
+
+        self.sidebar = nav.Sidebar(
+            target_el=".pl-page-container",
+            container_el="pl-sidebar",
+            content_id=self.content_id,
+        )
+        self.appbar_menu = nav.AppbarMenu(
+            container_el="pl-appbar-menu",
+            sidebar=self.sidebar,
+            menu_items=nav.PL_APPBAR_MENU,
+        )
+
+        self.appbar_settings_button = ej.buttons.Button(
+            {
+                "cssClass": "e-inherit",
+                "iconCss": "fa-solid fa-cog pl-appbar-menu-icon",
+                "click": self.sidebar.show_menu("settings_menu"),
+            }
+        )
         self.appbar_notification_list = ej.splitbuttons.DropDownButton(
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
@@ -80,16 +99,6 @@ class HomePage(HomePageTemplate):
             }
         )
 
-        self.sidebar = nav.Sidebar(
-            target_el=".pl-page-container",
-            container_el="pl-sidebar",
-            content_id=self.content_id,
-        )
-        self.appbar_menu = nav.AppbarMenu(
-            container_el="pl-appbar-menu",
-            sidebar=self.sidebar,
-            menu_items=nav.PL_APPBAR_MENU,
-        )
 
     def form_show(self, **event_args):
         # Append appbar controls to elements
@@ -97,6 +106,7 @@ class HomePage(HomePageTemplate):
         self.appbar_notification_list.appendTo(
             jQuery("#pl-appbar-notification-list")[0]
         )
+        self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
         self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
         self.appbar_sidebar_toggle.element.addEventListener(
