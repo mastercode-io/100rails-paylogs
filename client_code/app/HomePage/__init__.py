@@ -117,7 +117,7 @@ class HomePage(HomePageTemplate):
         self.sidebar.show("tenant_menu")
 
 
-    def settings_click(self):
+    def settings_click(self, args):
         print('settings menu')
         self.sidebar.show_menu("settings_menu")
 
