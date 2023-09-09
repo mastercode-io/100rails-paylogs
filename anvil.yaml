@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: module, module: '@migrate'}
+startup: {type: form, module: app.HomePage}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -341,7 +341,16 @@ db_schema:
   app_custom_fields_schemas:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: model, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: schema, admin_ui: null, type: simpleObject}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: App Custom Fields Schemas
   app_grid_views:
     client: none
