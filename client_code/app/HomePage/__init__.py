@@ -62,7 +62,8 @@ class HomePage(HomePageTemplate):
             {
                 "cssClass": "e-inherit",
                 "iconCss": "fa-solid fa-cog pl-appbar-menu-icon",
-                "click": self.sidebar.show_menu("settings_menu"),
+                "click": self.settings_click(),
+                # "click": self.sidebar.show_menu("settings_menu"),
             }
         )
         self.appbar_notification_list = ej.splitbuttons.DropDownButton(
@@ -117,7 +118,10 @@ class HomePage(HomePageTemplate):
         # Show sidebar menu
         self.sidebar.show("tenant_menu")
 
-        # Show start page
+
+    def settings_click(self):
+        print('settings button')
+        self.sidebar.show_menu("settings_menu")
 
     # Sidebar toggle event handler
     def sidebar_toggle(self, args):
