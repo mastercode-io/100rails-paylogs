@@ -58,11 +58,11 @@ class HomePage(HomePageTemplate):
             menu_items=nav.PL_APPBAR_MENU,
         )
 
-        self.appbar_settings_button = ej.buttons.Button(
+        self.appbar_settings_menu = ej.buttons.Button(
             {
                 "cssClass": "e-inherit",
                 "iconCss": "fa-solid fa-cog pl-appbar-menu-icon",
-                "click": self.settings_click(),
+                "click": self.settings_click,
                 # "click": self.sidebar.show_menu("settings_menu"),
             }
         )
@@ -107,7 +107,10 @@ class HomePage(HomePageTemplate):
         self.appbar_notification_list.appendTo(
             jQuery("#pl-appbar-notification-list")[0]
         )
-        self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
+        self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
+        # self.appbar_settings_menu.element.addEventListener(
+        #     "click", self.settings_click
+        # )
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
         self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
         self.appbar_sidebar_toggle.element.addEventListener(
@@ -120,12 +123,12 @@ class HomePage(HomePageTemplate):
 
 
     def settings_click(self):
-        print('settings button')
+        print('settings menu')
         self.sidebar.show_menu("settings_menu")
 
     # Sidebar toggle event handler
     def sidebar_toggle(self, args):
-        self.sidebar.toggle()
+        self.sidebar.toggle(args)
 
     # Appbar menu popup window position adjustment
     @staticmethod

@@ -42,9 +42,7 @@ PL_SIDEBAR_MENUS = {
         # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
     ],
     'settings_menu': [
-        {'nodeId': 'tools_logs', 'nodeText': 'System Logs', 'nodeChild': []},
-        {'nodeId': 'tools_app_model', 'nodeText': 'Application Model', 'nodeChild': []},
-        {'nodeId': 'tools_migrate_db', 'nodeText': 'Migrate DB', 'nodeChild': []},
+        {'nodeId': 'settings_timesheet_types', 'nodeText': 'Timesheet Types', 'nodeChild': []},
         # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
     ],
 }
