@@ -59,12 +59,7 @@ class HomePage(HomePageTemplate):
         )
 
         self.appbar_settings_menu = ej.buttons.Button(
-            {
-                "cssClass": "e-inherit",
-                "iconCss": "fa-solid fa-cog pl-appbar-menu-icon",
-                "click": self.settings_click,
-                # "click": self.sidebar.show_menu("settings_menu"),
-            }
+            {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
         )
         self.appbar_notification_list = ej.splitbuttons.DropDownButton(
             {
@@ -108,9 +103,9 @@ class HomePage(HomePageTemplate):
             jQuery("#pl-appbar-notification-list")[0]
         )
         self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
-        # self.appbar_settings_menu.element.addEventListener(
-        #     "click", self.settings_click
-        # )
+        self.appbar_settings_menu.element.addEventListener(
+            "click", self.settings_click
+        )
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
         self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
         self.appbar_sidebar_toggle.element.addEventListener(
