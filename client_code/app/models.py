@@ -286,15 +286,15 @@ class TimesheetType:
 
     configuration_schema = {
         "job_required": Attribute(field_type=types.FieldTypes.BOOLEAN),
-        "paid_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
-        "paid_breaks": Attribute(field_type=types.FieldTypes.BOOLEAN),
-        "break_length": Attribute(field_type=types.FieldTypes.NUMBER),
-        "work_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
-        "break_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "sick_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "paid_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "annual_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "paid_breaks": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "unpaid_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "work_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "other": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "break_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "break_length": Attribute(field_type=types.FieldTypes.NUMBER),
     }
     configuration = Attribute(
         field_type=types.FieldTypes.OBJECT, schema=configuration_schema
