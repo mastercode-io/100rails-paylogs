@@ -22,7 +22,7 @@ PL_APPBAR_MENU = [
 
 # Sidebar menu item list
 PL_SIDEBAR_MENUS = {
-    'tenant_menu': [
+    'timesheet_menu': [
         {'nodeId': 'tenant_info', 'nodeText': 'Account Info', 'nodeChild': []},
         {'nodeId': 'tenant_users', 'nodeText': 'Users', 'nodeChild': []},
         {'nodeId': 'tenant_settings', 'nodeText': 'Settings', 'nodeChild': []},
@@ -30,15 +30,15 @@ PL_SIDEBAR_MENUS = {
         {'nodeId': 'tenant_integrations', 'nodeText': 'Integrations', 'nodeChild': []},
         {'nodeId': 'tenant_billing', 'nodeText': 'Billing', 'nodeChild': []},
     ],
-    'views_menu': [
+    'payroll_menu': [
         {'nodeId': 'views_default', 'nodeText': 'Default Views', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
     ],
-    'tools_menu': [
-        {'nodeId': 'tools_logs', 'nodeText': 'System Logs', 'nodeChild': []},
-        {'nodeId': 'tools_app_model', 'nodeText': 'Application Model', 'nodeChild': []},
-        {'nodeId': 'tools_migrate_db', 'nodeText': 'Migrate DB', 'nodeChild': []},
+    'business_menu': [
+        {'nodeId': 'business_company', 'nodeText': 'Company Info', 'nodeChild': []},
+        {'nodeId': 'business_locations', 'nodeText': 'Locations', 'nodeChild': []},
+        {'nodeId': 'business_employees', 'nodeText': 'Employees', 'nodeChild': []},
         # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
     ],
     'settings_menu': [
@@ -56,6 +56,10 @@ PL_SIDEBAR_MENUS = {
 PL_NAV_ITEMS = {
     # 'case_agenda': {'model': '', 'type': 'page|view|form', 'action': 'open|popup', 'props': {}},
     'views_default': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
+
+    'business_company': {'model': 'Business', 'type': 'form', 'action': 'open', 'props': {}},
+    'business_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
+    'business_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
 
     'settings_job_types': {'model': 'JobType', 'type': 'view', 'action': 'open', 'props': {}},
     # 'settings_job_settings': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
