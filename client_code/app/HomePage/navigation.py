@@ -42,6 +42,10 @@ PL_SIDEBAR_MENUS = {
         # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
     ],
     'settings_menu': [
+        {'nodeId': 'settings_job_types', 'nodeText': 'Job Types', 'nodeChild': []},
+        {'nodeId': 'settings_job_settings', 'nodeText': 'Job Settings', 'nodeChild': []},
+        {'nodeId': 'settings_employee_roles', 'nodeText': 'Employee Roles', 'nodeChild': []},
+        {'nodeId': 'settings_pay_categories', 'nodeText': 'Pay Categories', 'nodeChild': []},
         {'nodeId': 'settings_timesheet_types', 'nodeText': 'Timesheet Types', 'nodeChild': []},
         # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
     ],
@@ -52,6 +56,11 @@ PL_SIDEBAR_MENUS = {
 PL_NAV_ITEMS = {
     # 'case_agenda': {'model': '', 'type': 'page|view|form', 'action': 'open|popup', 'props': {}},
     'views_default': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
+
+    'settings_job_types': {'model': 'JobType', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'settings_job_settings': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_employee_roles': {'model': 'EmployeeRole', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
 }
 
