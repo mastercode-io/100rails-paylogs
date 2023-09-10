@@ -155,7 +155,7 @@ class Sidebar:
 
 
     def show_menu(self, menu_id):
-        self.menu.fields.dataSource = PL_SIDEBAR_MENUS[menu_id]
+        self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, PL_SIDEBAR_MENUS.keys()[0])
 
 
     def menu_select(self, args, subcomponent=None):

@@ -30,6 +30,7 @@ AppEnv.grid_settings = {
     #   'top_indent': 25,
     #   'column_width': 150,
 }
+AppEnv.start_menu = "timesheet_menu"
 
 
 class HomePage(HomePageTemplate):
@@ -114,7 +115,7 @@ class HomePage(HomePageTemplate):
         self.appbar_menu.show()
 
         # Show sidebar menu
-        self.sidebar.show("tenant_menu")
+        self.sidebar.show(AppEnv.start_menu)
 
 
     def settings_click(self, args):
