@@ -269,7 +269,7 @@ class Timesheet:
     def calculate_total_hours(args):
         return (args["end_time"] - args["start_time"]).total_seconds() / 3600
 
-    total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
+    # total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
 
 
 @model_type
