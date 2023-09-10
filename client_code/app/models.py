@@ -5,6 +5,7 @@ from AnvilFusion.datamodel.particles import (
     Computed,
 )
 from AnvilFusion.datamodel import types
+from datetime import datetime
 
 
 # Model list for enumerations
@@ -267,9 +268,11 @@ class Timesheet:
 
     @staticmethod
     def calculate_total_hours(args):
+        if args["start_time"] is None or args["end_time"] is None:
+            return 0
         return (args["end_time"] - args["start_time"]).total_seconds() / 3600
 
-    # total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
+    total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
 
 
 @model_type
