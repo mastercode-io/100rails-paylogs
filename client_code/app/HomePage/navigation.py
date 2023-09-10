@@ -49,9 +49,9 @@ PL_SIDEBAR_MENUS = {
 
 # Navigation items/actions
 PL_NAV_ITEMS = {
-    'timesheet_list': {'model': 'Timesheet', 'type': 'form', 'action': 'open', 'props': {}},
+    'timesheet_list': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
 
-    'payroll_payrun_report': {'model': 'Payrun', 'type': 'form', 'action': 'open', 'props': {}},
+    'payroll_payrun_report': {'model': 'Payrun', 'view': 'form', 'action': 'open', 'props': {}},
 
     'business_company': {'model': 'Business', 'type': 'form', 'action': 'open', 'props': {}},
     'business_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
