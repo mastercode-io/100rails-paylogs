@@ -51,7 +51,7 @@ PL_SIDEBAR_MENUS = {
 PL_NAV_ITEMS = {
     'timesheet_list': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
 
-    'payroll_payrun_report': {'model': 'PayRun', 'view': 'form', 'action': 'open', 'props': {}},
+    'payroll_payrun_report': {'model': 'PayRun', 'type': 'view', 'action': 'open', 'props': {}},
 
     'business_company': {'model': 'Business', 'type': 'form', 'action': 'open', 'props': {}},
     'business_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
