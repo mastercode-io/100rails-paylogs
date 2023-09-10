@@ -17,8 +17,13 @@ class BusinessForm(FormBase):
 
         sections = [
             {
+              'name': '_', 'rows': [
+                {self.name, self.logo}
+            ]
+            },
+            {
                 'name': '_', 'cols': [
-                [self.name, self.phone, self.email, self.website],
+                [self.phone, self.email, self.website],
                 [self.address],
             ]
             }
