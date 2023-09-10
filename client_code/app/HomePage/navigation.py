@@ -14,24 +14,19 @@ PL_SIDEBAR_POPUP_OFFSET = 1
 
 # Appbar menu item list
 PL_APPBAR_MENU = [
-    {'id': 'tenant_menu', 'text': 'Tenants', 'items': []},
-    {'id': 'views_menu', 'text': 'Views', 'items': []},
-    {'id': 'tools_menu', 'text': 'Tools', 'items': []},
+    {'id': 'timesheet_menu', 'text': 'Timesheets', 'items': []},
+    {'id': 'payroll_menu', 'text': 'Payroll', 'items': []},
+    {'id': 'business_menu', 'text': 'Business', 'items': []},
 ]
 
 
 # Sidebar menu item list
 PL_SIDEBAR_MENUS = {
     'timesheet_menu': [
-        {'nodeId': 'tenant_info', 'nodeText': 'Account Info', 'nodeChild': []},
-        {'nodeId': 'tenant_users', 'nodeText': 'Users', 'nodeChild': []},
-        {'nodeId': 'tenant_settings', 'nodeText': 'Settings', 'nodeChild': []},
-        {'nodeId': 'tenant_customisations', 'nodeText': 'Customisations', 'nodeChild': []},
-        {'nodeId': 'tenant_integrations', 'nodeText': 'Integrations', 'nodeChild': []},
-        {'nodeId': 'tenant_billing', 'nodeText': 'Billing', 'nodeChild': []},
+        {'nodeId': 'timesheet_list', 'nodeText': 'Timesheet List', 'nodeChild': []},
     ],
     'payroll_menu': [
-        {'nodeId': 'views_default', 'nodeText': 'Default Views', 'nodeChild': []},
+        {'nodeId': 'payroll_payrun_report', 'nodeText': 'Payrun Report', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
     ],
@@ -54,8 +49,9 @@ PL_SIDEBAR_MENUS = {
 
 # Navigation items/actions
 PL_NAV_ITEMS = {
-    # 'case_agenda': {'model': '', 'type': 'page|view|form', 'action': 'open|popup', 'props': {}},
-    'views_default': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
+    'timesheet_list': {'model': 'Timesheet', 'type': 'form', 'action': 'open', 'props': {}},
+
+    'payroll_payrun_report': {'model': 'Payrun', 'type': 'form', 'action': 'open', 'props': {}},
 
     'business_company': {'model': 'Business', 'type': 'form', 'action': 'open', 'props': {}},
     'business_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
