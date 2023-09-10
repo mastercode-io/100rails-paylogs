@@ -25,4 +25,3 @@ class TimesheetTypeForm(FormBase):
         ]
 
         super().__init__(sections=sections, width=POPUP_WIDTH_COL3, **kwargs)
-        self.fullscreen = True
