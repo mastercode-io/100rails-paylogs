@@ -291,7 +291,7 @@ class TimesheetType:
         "annual_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "paid_breaks": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "unpaid_leave": Attribute(field_type=types.FieldTypes.BOOLEAN),
-        "work_work": Attribute(field_type=types.FieldTypes.BOOLEAN),
+        "worked_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "other": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "break_time": Attribute(field_type=types.FieldTypes.BOOLEAN),
         "break_length": Attribute(field_type=types.FieldTypes.NUMBER),
