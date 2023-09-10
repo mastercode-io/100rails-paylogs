@@ -5,8 +5,8 @@ from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 
 class TimesheetTypeForm(FormBase):
     def __init__(self, **kwargs):
-        print('BusinessForm')
-        kwargs['model'] = 'Business'
+        print('TimesheetTypeForm')
+        kwargs['model'] = 'TimesheetType'
 
         self.name = TextInput(name='name', label='Name')
         self.short_code = TextInput(name='short_code', label='Short Code')
