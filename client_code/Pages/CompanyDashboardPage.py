@@ -19,12 +19,12 @@ class CompanyDashboardPage(DashboardPage):
                     'id': 'employees', 'header': 'Employees',
                 },
                 {
-                    'sizeX': 1, 'sizeY': 1, 'row': 3, 'col': 0,
-                    'id': 'last_payrun', 'header': 'Last Payrun',
-                },
-                {
                     'sizeX': 1, 'sizeY': 1, 'row': 1, 'col': 1,
                     'id': 'labour_cost', 'header': 'Labour Cost',
+                },
+                {
+                    'sizeX': 1, 'sizeY': 1, 'row': 2, 'col': 1,
+                    'id': 'last_payrun', 'header': 'Last Payrun',
                 },
             ],
         }
