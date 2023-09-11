@@ -39,5 +39,6 @@ class CompanyDashboardPage(DashboardPage):
         super().__init__(
             layout=layout,
             container_id=container_id,
+            page_title='Company Dashboard',
             **kwargs
         )
