@@ -6,7 +6,6 @@ from ... import Forms
 from ... import Views
 from ... import Pages
 import navigation as nav
-import boto3
 
 
 AppEnv.APP_ID = "PayLogs"
