@@ -200,7 +200,7 @@ class Sidebar:
 
         elif component['type'] == 'page':
             try:
-                page_class = getattr(AppEnv.pages, f"{component['model']}Page")
+                page_class = getattr(AppEnv.pages, f"{component['name']}")
                 self.content_control = page_class(container_id=nav_container_id)
             except Exception as e:
                 print(e.args)
