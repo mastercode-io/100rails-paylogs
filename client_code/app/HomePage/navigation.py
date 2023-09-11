@@ -53,7 +53,7 @@ PL_NAV_ITEMS = {
 
     'payroll_payrun_report': {'model': 'PayRun', 'type': 'view', 'action': 'open', 'props': {}},
 
-    'business_company': {'model': 'Business', 'type': 'form', 'action': 'open', 'props': {}},
+    'business_company': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
     'business_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
     'business_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
 
