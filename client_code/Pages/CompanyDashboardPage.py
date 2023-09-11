@@ -20,11 +20,11 @@ class CompanyDashboardPage(DashboardPage):
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 1, 'col': 1,
-                    'id': 'labour_cost', 'header': 'Labour Cost',
+                    'id': 'last_payrun', 'header': 'Last Payrun',
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 2, 'col': 1,
-                    'id': 'last_payrun', 'header': 'Last Payrun',
+                    'id': 'labour_cost', 'header': 'Labour Cost',
                 },
             ],
         }
