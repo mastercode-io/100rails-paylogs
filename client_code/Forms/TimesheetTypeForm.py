@@ -12,7 +12,7 @@ class TimesheetTypeForm(FormBase):
         self.short_code = TextInput(name='short_code', label='Short Code')
         self.description = MultiLineInput(name='description', label='Description')
         self.notes = MultiLineInput(name='notes', label='Notes')
-        self.configuration= MultiFieldInput(name='configuration', model='TimesheetType', cols=2)
+        self.configuration= MultiFieldInput(name='configuration', model='TimesheetType',cols=2)
 
         sections = [
             {

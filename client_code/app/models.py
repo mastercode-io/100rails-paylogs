@@ -245,10 +245,14 @@ class PayRun:
     @staticmethod
     def get_payrun_reference(args):
         return f"{args['pay_run_type']}: ({args['pay_period_start']} - {args['pay_period_end']})"
-
     reference = Computed(
         ("pay_run_type", "pay_period_start", "pay_period_end"), "get_payrun_reference"
     )
+
+    @staticmethod
+    def get_payrun_week(args):
+        return  f"{args['pay_period_end'].year} - WK{args['pay_period_end'].isocalendar()[1]}"
+    payrun_week = Computed("pay_period_end", "get_payrun_week")
 
 
 @model_type
