@@ -10,9 +10,9 @@ class UserLoginForm(FormBase):
 
         self.login = TextInput(name='login', label='User Login (email)', input_type='email', save=False)
         self.password = TextInput(name='password', label='Password', input_type='password', save=False)
-        self.message = InlineMessage(name='message', label='Message', type='info')
+        self.error = InlineMessage(name='message', label='', type='')
 
-        fields = [self.login, self.password, self.message]
+        fields = [self.login, self.password, self.error]
 
         validation = {
             'rules': {
@@ -32,6 +32,6 @@ class UserLoginForm(FormBase):
             self.form_cancel(args)
         except Exception as e:
             print('Login error', e)
-            self.message.message = f'Invalid login details: {e}'
-            self.message.type = 'e-error'
+            self.error.message = f'Invalid login details: {e}'
+            self.error.type = 'e-error'
             return
