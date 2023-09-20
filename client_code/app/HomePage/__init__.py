@@ -150,8 +150,9 @@ class HomePage(HomePageTemplate):
         print('appbar_user_menu_select', args.item.id)
         if args.item.id == 'pl-appbar-sign-out':
             anvil.users.logout()
-            self.content_control.destroy()
-            self.content_control = None
+            if self.content_control:
+                self.content_control.destroy()
+                self.content_control = None
             self.sidebar.show_menu(AppEnv.start_menu)
             self.appbar_user_menu.items[0].text = 'Sign In'
             self.appbar_user_menu.items[0].iconCss = 'fa-solid fa-sign-in'
