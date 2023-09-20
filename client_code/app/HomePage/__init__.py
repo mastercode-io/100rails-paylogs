@@ -94,7 +94,7 @@ class HomePage(HomePageTemplate):
                 "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
                 "items": appbar_user_menu_items,
                 "open": self.appbar_menu_popup_open,
-                "select": self.appbar_menu.menu_select,
+                # "select": self.appbar_menu.menu_select,
             }
         )
 
