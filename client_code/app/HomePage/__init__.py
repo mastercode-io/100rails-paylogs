@@ -102,9 +102,7 @@ class HomePage(HomePageTemplate):
     def form_show(self, **event_args):
         # Append appbar controls to elements
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
-        self.appbar_notification_list.appendTo(
-            jQuery("#pl-appbar-notification-list")[0]
-        )
+        self.appbar_notification_list.appendTo(jQuery("#pl-appbar-notification-list")[0])
         self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
         self.appbar_settings_menu.element.addEventListener(
             "click", self.settings_click
@@ -149,8 +147,8 @@ class HomePage(HomePageTemplate):
         args.element.parentElement.style.left = "100px"
 
     def appbar_user_menu_select(self, args):
-        print('appbar_user_menu_select')
-        print(args.item.id)
+        print('appbar_user_menu_select', args.item.id)
+        pass
         if args.item.id == 'pl-appbar-sign-out':
             anvil.users.logout()
             self.content_control.destroy()
