@@ -12,9 +12,10 @@ class UserLoginForm(FormBase):
 
         self.login = TextInput(name='login', label='User Login (email)', input_type='email', save=False)
         self.password = TextInput(name='password', label='Password', input_type='password', save=False)
+        self.remember = CheckboxInput(name='remember', label='Remember Me', value=True, save=False)
         self.error = InlineMessage(name='message', label='', type='')
 
-        fields = [self.login, self.password, self.error]
+        fields = [self.login, self.password, self.remember, self.error]
 
         validation = {
             'rules': {
@@ -29,7 +30,7 @@ class UserLoginForm(FormBase):
     def form_save(self, args):
         print('Logging user...', args)
         try:
-            user = anvil.users.login_with_email(self.login.value, self.password.value)
+            user = anvil.users.login_with_email(self.login.value, self.password.value, remember=self.remember.value)
             print('Logged in user', user)
             AppEnv.logged_user = init_user_session()
             self.form_cancel(args)
