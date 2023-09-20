@@ -1,5 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.tools.utils import AppEnv, init_user_session
 import anvil.users
 
 
@@ -30,6 +31,7 @@ class UserLoginForm(FormBase):
         try:
             user = anvil.users.login_with_email(self.login.value, self.password.value)
             print('Logged in user', user)
+            AppEnv.logged_user = init_user_session()
             self.form_cancel(args)
         except Exception as e:
             print('Login error', e)
