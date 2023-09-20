@@ -35,7 +35,7 @@ AppEnv.start_menu = "timesheet_menu"
 
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
-        AppEnv.logged_user = init_user_session()
+        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
 
         self.content_id = "pl-content"
