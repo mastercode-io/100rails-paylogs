@@ -1,5 +1,6 @@
 from ._anvil_designer import HomePageTemplate
 from anvil.js.window import ej, jQuery
+import anvil.users
 from AnvilFusion.tools.utils import AppEnv, init_user_session
 from .. import models
 from ... import Forms
@@ -93,6 +94,7 @@ class HomePage(HomePageTemplate):
                 "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
                 "items": appbar_user_menu_items,
                 "open": self.appbar_menu_popup_open,
+                "select": self.appbar_menu.menu_select,
             }
         )
 
@@ -145,3 +147,19 @@ class HomePage(HomePageTemplate):
             + "px"
         )
         args.element.parentElement.style.left = "100px"
+
+    def appbar_user_menu_select(self, args):
+        print('appbar_user_menu_select')
+        print(args.item.properties.id)
+        if args.item.properties.id == 'pl-appbar-sign-out':
+            anvil.users.logout()
+            self.content_control.destroy()
+            self.content_control = None
+            self.sidebar.show_menu(AppEnv.start_menu)
+            self.appbar_user_menu.items[0].text = 'Sign In'
+            self.appbar_user_menu.items[0].iconCss = 'fa-solid fa-sign-in'
+            self.appbar_user_menu.items[0].id = 'pl-appbar-sign-in'
+        elif args.item.properties.id == 'pl-appbar-sign-in':
+            AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
+            self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
+            self.appbar_user_menu.items[0].diabled = True
