@@ -150,8 +150,8 @@ class HomePage(HomePageTemplate):
 
     def appbar_user_menu_select(self, args):
         print('appbar_user_menu_select')
-        print(args.item.properties.id)
-        if args.item.properties.id == 'pl-appbar-sign-out':
+        print(args.item.id)
+        if args.item.id == 'pl-appbar-sign-out':
             anvil.users.logout()
             self.content_control.destroy()
             self.content_control = None
@@ -159,7 +159,7 @@ class HomePage(HomePageTemplate):
             self.appbar_user_menu.items[0].text = 'Sign In'
             self.appbar_user_menu.items[0].iconCss = 'fa-solid fa-sign-in'
             self.appbar_user_menu.items[0].id = 'pl-appbar-sign-in'
-        elif args.item.properties.id == 'pl-appbar-sign-in':
+        elif args.item.id == 'pl-appbar-sign-in':
             AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
             self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
             self.appbar_user_menu.items[0].diabled = True
