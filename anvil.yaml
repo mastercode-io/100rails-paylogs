@@ -46,6 +46,7 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \ crossorigin=\"anonymous\"></script>\n\n<!-- Essential JS 2 styles and scripts\
     \ -->\n<link href=\"https://cdn.syncfusion.com/ej2/23.1.36/material3.css\" rel=\"\
     stylesheet\">\n<script src=\"https://cdn.syncfusion.com/ej2/23.1.36/dist/ej2.min.js\"\
+    \ type=\"text/javascript\"></script>\n<script src=\"_/theme/aws-sdk-v3-bundle.js\"\
     \ type=\"text/javascript\"></script>\n<link href=\"_/theme/home-page.css\" rel=\"\
     stylesheet\">\n\n<!-- Packages -->\n<script>\n  ej.base.registerLicense('ORg4AjUWIQA/Gnt2VlhhQlJCfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5ad01iX35acXdQQmlc');\n\
     \  ej.schedule.Schedule.inject(ej.schedule.DragAndDrop, ej.schedule.Resize)\n\
