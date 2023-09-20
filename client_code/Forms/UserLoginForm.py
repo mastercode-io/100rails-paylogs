@@ -12,7 +12,7 @@ class UserLoginForm(FormBase):
         self.password = TextInput(name='password', label='Password', type='password', save=False)
         self.message = InlineMessage(name='message', label='Message', type='info', text='Please enter your login details')
 
-        fields = [self.login, self.password]
+        fields = [self.login, self.password, self.message]
 
         validation = {
             'rules': {
