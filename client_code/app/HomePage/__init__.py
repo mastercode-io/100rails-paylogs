@@ -102,7 +102,7 @@ class HomePage(HomePageTemplate):
 
 
     def login_user(self):
-        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.login_user)
+        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
         if AppEnv.logged_user:
             self.after_login()
 
