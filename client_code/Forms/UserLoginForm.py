@@ -5,9 +5,10 @@ import anvil.users
 
 
 class UserLoginForm(FormBase):
-    def __init__(self, **kwargs):
+    def __init__(self, after_login=None, **kwargs):
         print('UserLoginForm')
         kwargs['model'] = 'User'
+        self.after_login = after_login
         # anvil.users.signup_with_email('alex@100email.co', '!X!SnRGgr8Gzk56')
 
         self.login = TextInput(name='login', label='User Login (email)', input_type='email', save=False)
@@ -45,7 +46,7 @@ class UserLoginForm(FormBase):
         try:
             user = anvil.users.login_with_email(self.login.value, self.password.value, remember=self.remember.value)
             print('Logged in user', user)
-            AppEnv.logged_user = init_user_session()
+            AppEnv.logged_user = init_user_session(after_login=self.after_login)
             self.form_cancel(args)
         except Exception as e:
             print('Login error', e)

@@ -102,7 +102,12 @@ class HomePage(HomePageTemplate):
 
 
     def login_user(self):
-        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
+        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.login_user)
+        if AppEnv.logged_user:
+            self.after_login()
+
+
+    def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
 
