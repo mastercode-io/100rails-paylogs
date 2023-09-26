@@ -46,7 +46,9 @@ class UserLoginForm(FormBase):
         try:
             user = anvil.users.login_with_email(self.login.value, self.password.value, remember=self.remember.value)
             print('Logged in user', user)
-            AppEnv.logged_user = init_user_session(after_login=self.after_login)
+            AppEnv.logged_user = init_user_session()
+            if self.after_login:
+                self.after_login()
             self.form_cancel(args)
         except Exception as e:
             print('Login error', e)
