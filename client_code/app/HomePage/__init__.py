@@ -98,7 +98,7 @@ class HomePage(HomePageTemplate):
             }
         )
 
-        self.login_user()
+        # self.login_user()
 
 
     def login_user(self):
@@ -120,10 +120,11 @@ class HomePage(HomePageTemplate):
         self.appbar_sidebar_toggle.element.addEventListener(
             "click", self.sidebar.toggle
         )
-        self.appbar_menu.show()
 
-        # Show sidebar menu
+        self.appbar_menu.show()
+        self.login_user()
         self.sidebar.show(AppEnv.start_menu)
+
 
 
     def settings_click(self, args):
