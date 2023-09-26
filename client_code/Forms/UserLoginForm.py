@@ -25,7 +25,7 @@ class UserLoginForm(FormBase):
         }
 
         buttons = [
-            {'buttonModel': {'isPrimary': True, 'content': 'LOGIN'}, 'click': self.login_user},
+            {'buttonModel': {'isPrimary': True, 'content': 'SIGN IN'}, 'click': self.login_user},
             {'buttonModel': {'content': 'Forgot Password'}, 'click': self.forgot_password},
         ]
 
@@ -51,12 +51,14 @@ class UserLoginForm(FormBase):
             print('Login error', e)
             self.error.message = f'Invalid login details: {e}'
             self.error.type = 'e-error'
-            return
 
 
     def forgot_password(self, args):
         print('Forgot password', args)
-        anvil.users.send_password_reset_email(self.login.value)
-        self.error.message = f'Password reset email sent to {self.login.value}'
-        self.error.type = 'e-info'
-        return
+        if self.login.value:
+            anvil.users.send_password_reset_email(self.login.value)
+            self.error.message = f'Password reset email sent to {self.login.value}'
+            self.error.type = 'e-info'
+        else:
+            self.error.message = 'Please enter your email address'
+            self.error.type = 'e-error'
