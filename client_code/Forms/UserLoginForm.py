@@ -24,18 +24,20 @@ class UserLoginForm(FormBase):
             }
         }
 
+        buttons = [
+            {'buttonModel': {'isPrimary': True, 'content': 'LOGIN'}, 'click': self.login_user},
+            {'buttonModel': {'content': 'Forgot Password'}, 'click': self.forgot_password},
+        ]
+
         super().__init__(
             fields=fields,
             validation=validation,
-            header='Login',
+            header='Sign In',
             modal=True,
+            buttons=buttons,
             **kwargs
         )
         self.form.showCloseIcon = False
-        self.form.buttons = [
-            {'buttonModel': {'isPrimary': True, 'content': 'LOGIN'}, 'click': self.login_user},
-            {'buttonModel': {'content': 'Forgot Password'}, 'click': self.forgot_password},
-        ],
 
 
     def login_user(self, args):
