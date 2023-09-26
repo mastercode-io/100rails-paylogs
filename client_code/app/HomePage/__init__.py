@@ -36,8 +36,8 @@ AppEnv.start_menu = "timesheet_menu"
 
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
-        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
-        AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
+        # AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
+        # AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
 
         self.content_id = "pl-content"
         self.content_control = None
@@ -98,6 +98,14 @@ class HomePage(HomePageTemplate):
             }
         )
 
+        self.login_user()
+
+
+    def login_user(self):
+        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
+        AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
+        self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
+
 
     def form_show(self, **event_args):
         # Append appbar controls to elements
@@ -154,10 +162,11 @@ class HomePage(HomePageTemplate):
                 self.content_control.destroy()
                 self.content_control = None
             self.sidebar.show_menu(AppEnv.start_menu)
-            self.appbar_user_menu.items[0].text = 'Sign In'
-            self.appbar_user_menu.items[0].iconCss = 'fa-solid fa-sign-in'
-            self.appbar_user_menu.items[0].id = 'pl-appbar-sign-in'
-        elif args.item.id == 'pl-appbar-sign-in':
-            AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
-            self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
-            self.appbar_user_menu.items[0].diabled = True
+            self.login_user()
+            # self.appbar_user_menu.items[0].text = 'Sign In'
+            # self.appbar_user_menu.items[0].iconCss = 'fa-solid fa-sign-in'
+            # self.appbar_user_menu.items[0].id = 'pl-appbar-sign-in'
+        # elif args.item.id == 'pl-appbar-sign-in':
+        #     AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
+        #     self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
+        #     self.appbar_user_menu.items[0].disabled = True
