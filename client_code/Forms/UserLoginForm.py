@@ -20,7 +20,7 @@ class UserLoginForm(FormBase):
         validation = {
             'rules': {
                 self.login.el_id: {'required': True},
-                self.password.el_id: {'required': True},
+                # self.password.el_id: {'required': True},
             }
         }
 
