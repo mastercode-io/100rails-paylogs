@@ -126,10 +126,9 @@ class HomePage(HomePageTemplate):
             "click", self.sidebar.toggle
         )
 
-        self.appbar_menu.show()
         self.login_user()
+        self.appbar_menu.show()
         self.sidebar.show(AppEnv.start_menu)
-
 
 
     def settings_click(self, args):
