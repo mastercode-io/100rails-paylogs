@@ -110,6 +110,7 @@ class HomePage(HomePageTemplate):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         print('after_login', AppEnv.logged_user)
         self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
+        self.sidebar.show(AppEnv.start_menu)
 
 
     def form_show(self, **event_args):
@@ -128,7 +129,7 @@ class HomePage(HomePageTemplate):
 
         self.login_user()
         self.appbar_menu.show()
-        self.sidebar.show(AppEnv.start_menu)
+        self.sidebar.show(None)
 
 
     def settings_click(self, args):

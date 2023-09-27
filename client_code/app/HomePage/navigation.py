@@ -159,8 +159,9 @@ class Sidebar:
 
     def show_menu(self, menu_id):
         # self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, list(PL_SIDEBAR_MENUS.keys())[0])
-        self.menu.fields.dataSource = PL_SIDEBAR_MENUS[menu_id]
-        self.menu_select(None, subcomponent=PL_DEFAULT_NAV_ITEMS[menu_id])
+        if menu_id in PL_SIDEBAR_MENUS:
+            self.menu.fields.dataSource = PL_SIDEBAR_MENUS[menu_id]
+            self.menu_select(None, subcomponent=PL_DEFAULT_NAV_ITEMS[menu_id])
 
 
     def menu_select(self, args, subcomponent=None):
