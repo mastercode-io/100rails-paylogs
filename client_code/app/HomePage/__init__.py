@@ -1,5 +1,6 @@
 from ._anvil_designer import HomePageTemplate
 from anvil.js.window import ej, jQuery
+from anvil import get_url_hash
 import anvil.users
 from AnvilFusion.tools.utils import AppEnv, init_user_session
 from .. import models
@@ -36,8 +37,7 @@ AppEnv.start_menu = "timesheet_menu"
 
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
-        # AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
-        # AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
+        print(anvil.get_url_hash())
 
         self.content_id = "pl-content"
         self.content_control = None
