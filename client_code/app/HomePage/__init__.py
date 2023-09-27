@@ -37,7 +37,6 @@ AppEnv.start_menu = "timesheet_menu"
 
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
-        print('URL HASH', anvil.get_url_hash())
 
         self.content_id = "pl-content"
         self.content_control = None
@@ -102,7 +101,6 @@ class HomePage(HomePageTemplate):
 
 
     def login_user(self):
-        print('URL HASH', anvil.get_url_hash())
         AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
         if AppEnv.logged_user:
             self.after_login()

@@ -64,6 +64,13 @@ PL_NAV_ITEMS = {
     'settings_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
 }
 
+PL_DEFAULT_NAV_ITEMS = {
+    'timesheet_menu': 'timesheet_list',
+    'payroll_menu': 'payroll_payrun_report',
+    'business_menu': 'business_company',
+    'settings_menu': 'settings_job_types',
+}
+
 
 # Appbar navigation class
 class AppbarMenu:
@@ -151,7 +158,9 @@ class Sidebar:
 
 
     def show_menu(self, menu_id):
-        self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, list(PL_SIDEBAR_MENUS.keys())[0])
+        # self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, list(PL_SIDEBAR_MENUS.keys())[0])
+        self.menu.fields.dataSource = PL_SIDEBAR_MENUS[menu_id]
+        self.menu_select(None, subcomponent=PL_DEFAULT_NAV_ITEMS[menu_id])
 
 
     def menu_select(self, args, subcomponent=None):
