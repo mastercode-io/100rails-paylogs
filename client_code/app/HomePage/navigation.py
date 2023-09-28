@@ -17,6 +17,8 @@ PL_APPBAR_MENU = [
     {'id': 'timesheet_menu', 'text': 'Timesheets', 'items': []},
     {'id': 'payroll_menu', 'text': 'Payroll', 'items': []},
     {'id': 'business_menu', 'text': 'Business', 'items': []},
+    {'separator': True},
+    {'id': 'admin_menu', 'text': 'Admin', 'items': []},
 ]
 
 
@@ -43,6 +45,14 @@ PL_SIDEBAR_MENUS = {
         {'nodeId': 'settings_pay_categories', 'nodeText': 'Pay Categories', 'nodeChild': []},
         {'nodeId': 'settings_timesheet_types', 'nodeText': 'Timesheet Types', 'nodeChild': []},
         # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
+    ],
+    'admin_menu': [
+        {'nodeId': 'admin_tenants', 'nodeText': 'Users', 'nodeChild': []},
+        {'nodeId': 'admin_users', 'nodeText': 'Users', 'nodeChild': []},
+        {'nodeId': 'admin_user_roles', 'nodeText': 'User Roles', 'nodeChild': []},
+        {'nodeId': 'admin_permissions', 'nodeText': 'Permissions', 'nodeChild': []},
+        {'nodeId': 'admin_settings', 'nodeText': 'Settings', 'nodeChild': []},
+
     ],
 }
 
