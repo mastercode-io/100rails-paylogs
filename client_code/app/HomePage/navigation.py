@@ -195,7 +195,7 @@ class Sidebar:
             print(menu_item_id)
             component = PL_NAV_ITEMS[menu_item_id] if menu_item_id in PL_NAV_ITEMS else None
         else:
-            component = PL_NAV_ITEMS[subcomponent]
+            component = PL_NAV_ITEMS.get(subcomponent)
         if component is None:
             return
 
