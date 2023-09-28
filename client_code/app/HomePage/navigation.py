@@ -47,7 +47,7 @@ PL_SIDEBAR_MENUS = {
         # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
     ],
     'admin_menu': [
-        {'nodeId': 'admin_tenants', 'nodeText': 'Users', 'nodeChild': []},
+        {'nodeId': 'admin_tenants', 'nodeText': 'Tenants', 'nodeChild': []},
         {'nodeId': 'admin_users', 'nodeText': 'Users', 'nodeChild': []},
         {'nodeId': 'admin_user_roles', 'nodeText': 'User Roles', 'nodeChild': []},
         {'nodeId': 'admin_permissions', 'nodeText': 'Permissions', 'nodeChild': []},
@@ -79,6 +79,7 @@ PL_DEFAULT_NAV_ITEMS = {
     'payroll_menu': 'payroll_payrun_report',
     'business_menu': 'business_company',
     'settings_menu': 'settings_job_types',
+    'admin_menu': 'admin_tenants',
 }
 
 
@@ -170,8 +171,16 @@ class Sidebar:
     def show_menu(self, menu_id):
         # self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, list(PL_SIDEBAR_MENUS.keys())[0])
         if menu_id in PL_SIDEBAR_MENUS:
-            self.menu.fields.dataSource = PL_SIDEBAR_MENUS[menu_id]
-            self.menu_select(None, subcomponent=PL_DEFAULT_NAV_ITEMS[menu_id])
+            subcomponent = PL_DEFAULT_NAV_ITEMS.get(menu_id)
+            if subcomponent:
+                subcomponent = PL_SIDEBAR_MENUS[menu_id][0]['nodeId']
+            menu_items = PL_SIDEBAR_MENUS[menu_id]
+            for item in menu_items:
+                if item['nodeId'] == subcomponent:
+                    item['selected'] = True
+                    item['expanded'] = True
+            self.menu.fields.dataSource = menu_items
+            self.menu_select(None, subcomponent=subcomponent)
 
 
     def menu_select(self, args, subcomponent=None):
