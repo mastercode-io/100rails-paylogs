@@ -160,6 +160,7 @@ class Sidebar:
 
     # Show sidebar menu
     def show(self, menu_id):
+        print('show', menu_id)
         self.menu.appendTo(jQuery(f"#{self.container_el}-menu")[0])
         self.control.appendTo(jQuery(f"#{self.container_el}")[0])
         self.show_menu(menu_id)
