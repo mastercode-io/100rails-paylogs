@@ -181,6 +181,7 @@ class Sidebar:
                     item['expanded'] = True
             self.menu.fields.dataSource = menu_items
             print('sidebar menu items', menu_items)
+            print(self.menu.fields.dataSource)
             self.menu_select(None, subcomponent=subcomponent)
 
 
