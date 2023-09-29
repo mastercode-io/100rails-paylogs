@@ -60,8 +60,8 @@ PL_SIDEBAR_MENUS = {
 
 # Navigation items/actions
 PL_NAV_ITEMS = {
-    # 'timesheet_manage': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
-    # 'timesheet_payroll': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
+    'timesheet_manage': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
+    'timesheet_payroll': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
 
     'payroll_payrun_report': {'model': 'PayRun', 'type': 'view', 'action': 'open', 'props': {}},
 
@@ -177,7 +177,9 @@ class Sidebar:
             if subcomponent:
                 subcomponent = PL_SIDEBAR_MENUS[menu_id][0]['nodeId']
             menu_items = PL_SIDEBAR_MENUS[menu_id]
+            print('show_menu', menu_items)
             for item in menu_items:
+                print('item', item)
                 if item['nodeId'] == subcomponent:
                     item['selected'] = True
                     item['expanded'] = True
