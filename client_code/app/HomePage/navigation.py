@@ -254,4 +254,4 @@ class Sidebar:
             time.sleep(0.5)
             self.menu_select(None, subcomponent=component['subcomponent'])
 
-        print('menu_select', self.menu.dataSource)
+        # print('menu_select', self.menu.dataSource)
