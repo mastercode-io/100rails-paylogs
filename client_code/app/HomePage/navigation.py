@@ -14,7 +14,7 @@ PL_SIDEBAR_POPUP_OFFSET = 1
 
 # Appbar menu item list
 PL_APPBAR_MENU = [
-    {'id': 'timesheet_menu', 'text': 'Timesheets', 'items': []},
+    {'id': 'timesheet_menu', 'text': 'Timesheet', 'items': []},
     {'id': 'payroll_menu', 'text': 'Payroll', 'items': []},
     {'id': 'business_menu', 'text': 'Business', 'items': []},
     {'separator': True},
@@ -25,7 +25,8 @@ PL_APPBAR_MENU = [
 # Sidebar menu item list
 PL_SIDEBAR_MENUS = {
     'timesheet_menu': [
-        {'nodeId': 'timesheet_list', 'nodeText': 'Timesheet List', 'nodeChild': []},
+        {'nodeId': 'timesheet_manage', 'nodeText': 'Manage Timesheet', 'nodeChild': []},
+        {'nodeId': 'timesheet_payroll', 'nodeText': 'Payroll Timesheet', 'nodeChild': []},
     ],
     'payroll_menu': [
         {'nodeId': 'payroll_payrun_report', 'nodeText': 'Payrun Report', 'nodeChild': []},
@@ -75,7 +76,7 @@ PL_NAV_ITEMS = {
 }
 
 PL_DEFAULT_NAV_ITEMS = {
-    'timesheet_menu': 'timesheet_list',
+    'timesheet_menu': 'timesheet_manage',
     'payroll_menu': 'payroll_payrun_report',
     'business_menu': 'business_company',
     'settings_menu': 'settings_job_types',
