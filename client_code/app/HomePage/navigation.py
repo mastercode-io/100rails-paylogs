@@ -255,5 +255,3 @@ class Sidebar:
         if 'subcomponent' in component:
             time.sleep(0.5)
             self.menu_select(None, subcomponent=component['subcomponent'])
-
-        print('menu_select', self.menu.dataSource)
