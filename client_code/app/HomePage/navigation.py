@@ -101,6 +101,7 @@ class AppbarMenu:
 
 
     def show(self):
+        print('AppBar Show')
         self.menu.appendTo(jQuery(f"#{self.container_el}")[0])
 
 
