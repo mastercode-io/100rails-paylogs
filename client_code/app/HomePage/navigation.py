@@ -179,9 +179,7 @@ class Sidebar:
             if subcomponent:
                 subcomponent = PL_SIDEBAR_MENUS[menu_id][0]['nodeId']
             menu_items = PL_SIDEBAR_MENUS[menu_id]
-            print('show_menu', menu_items)
             for item in menu_items:
-                print('item', item)
                 if item['nodeId'] == subcomponent:
                     item['selected'] = True
                     item['expanded'] = True
@@ -198,7 +196,6 @@ class Sidebar:
                 self.nav_target_id = None
 
             menu_item_id = args.nodeData.id
-            print(menu_item_id)
             component = PL_NAV_ITEMS[menu_item_id] if menu_item_id in PL_NAV_ITEMS else None
         else:
             component = PL_NAV_ITEMS.get(subcomponent)
