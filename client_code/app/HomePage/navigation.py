@@ -74,6 +74,12 @@ PL_NAV_ITEMS = {
     'settings_employee_roles': {'model': 'EmployeeRole', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
+
+    'admin_tenants': {'model': 'Business', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'admin_settings': {'model': 'Setting', 'type': 'view', 'action': 'open', 'props': {}},
 }
 
 PL_DEFAULT_NAV_ITEMS = {
@@ -190,7 +196,7 @@ class Sidebar:
     def menu_select(self, args, subcomponent=None):
         if subcomponent is None:
             if 'e-level-1' in list(args.node.classList):
-                print('Accordion')
+                # print('Accordion')
                 self.menu.collapseAll()
                 self.menu.expandAll([args.node])
                 self.nav_target_id = None
