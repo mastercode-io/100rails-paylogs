@@ -122,16 +122,16 @@ class AppbarMenu:
         self.sidebar = sidebar
         self.menu_items = menu_items
         self.selected_el = None
+        self.menu = None
 
+
+    def show(self):
+        print('AppBar Show')
         self.menu = ej.navigations.Menu({
             'cssClass': 'e-inherit',
             'items': self.menu_items,
             'select': self.menu_select
         })
-
-
-    def show(self):
-        print('AppBar Show')
         self.menu.appendTo(jQuery(f"#{self.container_el}")[0])
 
 
