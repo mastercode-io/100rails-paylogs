@@ -77,7 +77,7 @@ PL_NAV_ITEMS = {
 
     'admin_tenants': {'model': 'Business', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
-    'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_settings': {'model': 'Setting', 'type': 'view', 'action': 'open', 'props': {}},
 }
