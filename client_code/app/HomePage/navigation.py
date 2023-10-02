@@ -19,6 +19,7 @@ PL_APPBAR_MENU = [
     {'id': 'business_menu', 'text': 'Business', 'items': []},
     {'separator': True},
     {'id': 'admin_menu', 'text': 'Admin', 'items': []},
+    {'id': 'developer_menu', 'text': 'Developer', 'items': []},
 ]
 
 
@@ -55,6 +56,13 @@ PL_SIDEBAR_MENUS = {
         {'nodeId': 'admin_settings', 'nodeText': 'Settings', 'nodeChild': []},
 
     ],
+    'developer_menu': [
+        {'nodeId': 'developer_views', 'nodeText': 'Views', 'nodeChild': []},
+        {'nodeId': 'developer_pages', 'nodeText': 'Pages', 'nodeChild': []},
+        {'nodeId': 'developer_forms', 'nodeText': 'Forms', 'nodeChild': []},
+        {'nodeId': 'developer_models', 'nodeText': 'Models', 'nodeChild': []},
+        {'nodeId': 'developer_migrate', 'nodeText': 'Migrate DB', 'nodeChild': []},
+    ]
 }
 
 
@@ -80,6 +88,12 @@ PL_NAV_ITEMS = {
     # 'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_settings': {'model': 'Setting', 'type': 'view', 'action': 'open', 'props': {}},
+
+    'developer_views': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'developer_pages': {'model': 'Page', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'developer_forms': {'model': 'Form', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'developer_migrate': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
 }
 
 PL_DEFAULT_NAV_ITEMS = {
@@ -88,6 +102,7 @@ PL_DEFAULT_NAV_ITEMS = {
     'business_menu': 'business_company',
     'settings_menu': 'settings_job_types',
     'admin_menu': 'admin_tenants',
+    'developer_menu': 'developer_views',
 }
 
 
