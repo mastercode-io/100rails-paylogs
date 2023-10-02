@@ -57,11 +57,19 @@ PL_SIDEBAR_MENUS = {
 
     ],
     'developer_menu': [
-        {'nodeId': 'developer_views', 'nodeText': 'Views', 'nodeChild': []},
-        {'nodeId': 'developer_pages', 'nodeText': 'Pages', 'nodeChild': []},
-        {'nodeId': 'developer_forms', 'nodeText': 'Forms', 'nodeChild': []},
-        {'nodeId': 'developer_models', 'nodeText': 'Models', 'nodeChild': []},
-        {'nodeId': 'developer_migrate', 'nodeText': 'Migrate DB', 'nodeChild': []},
+        {'nodeId': 'developer_components', 'nodeText': 'Components', 'nodeChild': [
+            {'nodeId': 'developer_views', 'nodeText': 'Views', 'nodeChild': []},
+            {'nodeId': 'developer_pages', 'nodeText': 'Pages', 'nodeChild': []},
+            {'nodeId': 'developer_forms', 'nodeText': 'Forms', 'nodeChild': []},
+        ]},
+        {'nodeId': 'developer_schema', 'nodeText': 'App Schema', 'nodeChild': [
+            {'nodeId': 'developer_models', 'nodeText': 'Models', 'nodeChild': []},
+            {'nodeId': 'developer_migrate', 'nodeText': 'Migrate DB', 'nodeChild': []},
+        ]},
+        {'nodeId': 'developer_tools', 'nodeText': 'Tools', 'nodeChild': [
+            {'nodeId': 'developer_import', 'nodeText': 'Import Data', 'nodeChild': []},
+            {'nodeId': 'developer_export', 'nodeText': 'Export Data', 'nodeChild': []},
+        ]},
     ]
 }
 
