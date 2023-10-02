@@ -119,7 +119,7 @@
 .pl-sidebar-menu .e-list-item .e-icons {
     visibility: hidden;
 }
-
+/*
 .pl-sidebar-menu .e-list-item>.e-list-parent {
     border: 1px solid !important;
     border-radius: 20px !important;
@@ -132,7 +132,7 @@
 li.e-list-item.e-level-1.e-hover {
     border-radius: 20px !important;
 }
-
+*/
 .pl-sidebar-menu .e-list-item .e-level-2 {
     width: 100%;
 }
