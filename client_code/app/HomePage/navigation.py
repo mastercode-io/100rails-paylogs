@@ -274,6 +274,7 @@ class Sidebar:
                     func_name(**component.get('props', {}))
             except Exception as e:
                 print(e.args)
+            return
 
         if hasattr(self.content_control, 'target_id'):
             self.nav_target_id = self.content_control.target_id
