@@ -175,6 +175,9 @@ db_schema:
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - name: permissions
+      type: simpleObject
+      admin_ui: {width: 200, order: -2}
     title: Users
   businesses:
     title: Businesses
