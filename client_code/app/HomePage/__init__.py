@@ -110,6 +110,8 @@ class HomePage(HomePageTemplate):
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         print('after_login', AppEnv.logged_user)
+        if AppEnv.logged_user['permissions'].get('super_admin', False):
+            self.appbar_menu.menu_items.update(nav.PL_APPBAR_MENU_ADMIN)
         self.appbar_menu.show()
         self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
         self.sidebar.show(AppEnv.start_menu)
