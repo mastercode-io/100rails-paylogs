@@ -2,6 +2,7 @@
 from anvil.js.window import jQuery, ej
 import time
 from AnvilFusion.tools.utils import AppEnv
+from AnvilFusion.datamodel import migrate
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.components.FormBase import FormBase
 
@@ -101,7 +102,7 @@ PL_NAV_ITEMS = {
     # 'developer_pages': {'model': 'Page', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_forms': {'model': 'Form', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
-    # 'developer_migrate': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
+    'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
 }
 
 PL_DEFAULT_NAV_ITEMS = {
@@ -266,6 +267,13 @@ class Sidebar:
             except Exception as e:
                 print(e.args)
                 # self.content_control = Pages.BaseForm(model=component['model'], target=self.content_id)
+        elif component['type'] == 'function':
+            try:
+                func_name = component['function']
+                if callable(func_name):
+                    func_name(**component.get('props', {}))
+            except Exception as e:
+                print(e.args)
 
         if hasattr(self.content_control, 'target_id'):
             self.nav_target_id = self.content_control.target_id
