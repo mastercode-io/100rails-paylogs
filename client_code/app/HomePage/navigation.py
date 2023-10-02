@@ -205,7 +205,7 @@ class Sidebar:
         # self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, list(PL_SIDEBAR_MENUS.keys())[0])
         if menu_id in PL_SIDEBAR_MENUS:
             subcomponent = PL_DEFAULT_NAV_ITEMS.get(menu_id)
-            if subcomponent:
+            if not subcomponent:
                 subcomponent = PL_SIDEBAR_MENUS[menu_id][0]['nodeId']
             menu_items = PL_SIDEBAR_MENUS[menu_id]
             for item in menu_items:
