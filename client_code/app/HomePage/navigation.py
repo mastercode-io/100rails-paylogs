@@ -106,7 +106,7 @@ PL_NAV_ITEMS = {
     # 'developer_forms': {'model': 'Form', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
-    'developer_migrate': {'type': 'page', 'name': 'MigratePage', 'globals': True, 'props': {}},
+    'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
 }
 
 PL_DEFAULT_NAV_ITEMS = {
@@ -266,15 +266,12 @@ class Sidebar:
 
         elif component['type'] == 'page':
             print('page', component)
-            print('globals', globals())
             try:
-                if component.get('globals', False):
-                    # page_class = globals()[component['name']]
-                    page_class = locals()['MigratePage']
-                    print('globals', page_class)
+                if component.get('page', None):
+                    page_class = component['page']
                 else:
                     page_class = getattr(AppEnv.pages, f"{component['name']}")
-                self.content_control = page_class(container_id=nav_container_id)
+                self.content_control = page_class(container_id=nav_container_id, **component.get('props', {}))
             except Exception as e:
                 print('Exception', e.args)
                 # self.content_control = Pages.BaseForm(model=component['model'], target=self.content_id)
