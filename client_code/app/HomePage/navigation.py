@@ -268,6 +268,7 @@ class Sidebar:
             try:
                 if component.get('globals', False):
                     page_class = globals()[component['name']]
+                    print('globals', page_class)
                 else:
                     page_class = getattr(AppEnv.pages, f"{component['name']}")
                 self.content_control = page_class(container_id=nav_container_id)
