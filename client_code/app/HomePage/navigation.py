@@ -266,6 +266,7 @@ class Sidebar:
 
         elif component['type'] == 'page':
             print('page', component)
+            print('globals', globals())
             try:
                 if component.get('globals', False):
                     # page_class = globals()[component['name']]
