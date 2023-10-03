@@ -94,7 +94,7 @@ PL_NAV_ITEMS = {
     'settings_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
 
-    'admin_tenants': {'model': 'Business', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_tenants': {'model': 'Tenant', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
