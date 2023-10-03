@@ -268,7 +268,8 @@ class Sidebar:
             print('page', component)
             try:
                 if component.get('globals', False):
-                    page_class = globals()[component['name']]
+                    # page_class = globals()[component['name']]
+                    page_class = globals()['MigratePage']
                     print('globals', page_class)
                 else:
                     page_class = getattr(AppEnv.pages, f"{component['name']}")
