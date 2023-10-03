@@ -165,6 +165,7 @@ li.e-list-item.e-level-1.e-hover {
     text-align: justify;
     padding-bottom: 1.8em;
     padding-top: 1em;
+    overflow: none;
 }
 
 #pl-footer {
