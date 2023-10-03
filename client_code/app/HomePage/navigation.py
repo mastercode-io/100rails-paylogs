@@ -265,6 +265,7 @@ class Sidebar:
                 self.content_control = FormBase(model=component['model'], target=nav_container_id)
 
         elif component['type'] == 'page':
+            print('page', component)
             try:
                 if component.get('globals', False):
                     page_class = globals()[component['name']]
