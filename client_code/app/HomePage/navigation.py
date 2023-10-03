@@ -274,7 +274,7 @@ class Sidebar:
                     page_class = getattr(AppEnv.pages, f"{component['name']}")
                 self.content_control = page_class(container_id=nav_container_id)
             except Exception as e:
-                print(e.args)
+                print('Exception', e.args)
                 # self.content_control = Pages.BaseForm(model=component['model'], target=self.content_id)
         elif component['type'] == 'function':
             try:
