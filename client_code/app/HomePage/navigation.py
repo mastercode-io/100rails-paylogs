@@ -5,6 +5,7 @@ from AnvilFusion.tools.utils import AppEnv
 from AnvilFusion.datamodel import migrate
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.components.FormBase import FormBase
+from AnvilFusion.features.developer.MigratePage import MigratePage
 
 
 # Sidebar control CSS
@@ -104,7 +105,8 @@ PL_NAV_ITEMS = {
     # 'developer_pages': {'model': 'Page', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_forms': {'model': 'Form', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
-    'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
+    # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
+    'developer_migrate': {'type': 'page', 'name': 'MigratePage', 'globals': True, 'props': {}},
 }
 
 PL_DEFAULT_NAV_ITEMS = {
@@ -264,7 +266,10 @@ class Sidebar:
 
         elif component['type'] == 'page':
             try:
-                page_class = getattr(AppEnv.pages, f"{component['name']}")
+                if component.get('globals', False):
+                    page_class = globals()[component['name']]
+                else:
+                    page_class = getattr(AppEnv.pages, f"{component['name']}")
                 self.content_control = page_class(container_id=nav_container_id)
             except Exception as e:
                 print(e.args)
