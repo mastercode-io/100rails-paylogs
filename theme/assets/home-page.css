@@ -156,6 +156,7 @@ li.e-list-item.e-level-1.e-hover {
     grid-area: content;
     padding-top: 11px;
     height: 100%;
+    overflow: visible;
 }
 
 #pl-content {
@@ -165,13 +166,13 @@ li.e-list-item.e-level-1.e-hover {
     text-align: justify;
     padding-bottom: 1.8em;
     padding-top: 1em;
-    overflow: none;
+    overflow: visible;
 }
 
 #pl-footer {
     grid-area: footer;
     /* background-color: #272D83; */
-    display: none
+    display: none;
 }
 
 /* Grid Customization */
