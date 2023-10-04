@@ -153,7 +153,7 @@ class Employee:
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     role = Relationship("EmployeeRole", with_many=True)
-
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     address_schema = {
         "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
@@ -163,6 +163,7 @@ class Employee:
         "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
+    custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
 
     @staticmethod
     def get_full_name(args):
@@ -177,6 +178,7 @@ class EmployeeRole:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type
@@ -221,15 +223,35 @@ class PayCategory:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_category_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-    pay_rate_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_rate_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+@model_type
+class PayRateRule:
+    _title = "name"
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    pay_rate_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
+    pay_category = Relationship("PayCategory")
+    calculation_settings = Attribute(field_type=types.FieldTypes.OBJECT)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type
 class PayRateTemplate:
     _title = "name"
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    pay_rate_rules = Relationship("PayRateRule", with_many=True)
 
 
 @model_type
@@ -260,23 +282,23 @@ class PayRun:
 class Timesheet:
     _title = "employee"
 
-    employee = Relationship("Employee")
     timesheet_type = Relationship("TimesheetType")
+    employee = Relationship("Employee")
+    payrun = Relationship("PayRun")
     job = Relationship("Job")
     date = Attribute(field_type=types.FieldTypes.DATE)
     start_time = Attribute(field_type=types.FieldTypes.DATETIME)
     end_time = Attribute(field_type=types.FieldTypes.DATETIME)
-    total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
-    status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     approved_by = Relationship("Employee")
     notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
 
     @staticmethod
     def calculate_total_hours(args):
         if args["start_time"] is None or args["end_time"] is None:
             return 0
         return (args["end_time"] - args["start_time"]).total_seconds() / 3600
-
     total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
 
 
@@ -287,7 +309,7 @@ class TimesheetType:
     short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
     configuration_schema = {
         "job_required": Attribute(field_type=types.FieldTypes.BOOLEAN),
