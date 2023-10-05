@@ -74,6 +74,11 @@ PL_SIDEBAR_MENUS = {
             {'nodeId': 'developer_import', 'nodeText': 'Import Data', 'nodeChild': []},
             {'nodeId': 'developer_export', 'nodeText': 'Export Data', 'nodeChild': []},
         ]},
+        {'nodeId': 'developer_preview', 'nodeText': 'Developer Preview', 'nodeChild': [
+            {'nodeId': 'developer_form_preview', 'nodeText': 'Form Prview', 'nodeChild': []},
+            {'nodeId': 'developer_grid_preview', 'nodeText': 'Grid View Preview', 'nodeChild': []},
+            {'nodeId': 'developer_page_preview', 'nodeText': 'Page Preview', 'nodeChild': []},
+        ]},
     ]
 }
 
@@ -107,6 +112,9 @@ PL_NAV_ITEMS = {
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
+    'developer_form_preview': {'type': 'custom', 'type': 'form', 'class': 'CreateTenantForm', 'props': {}},
+    # 'developer_grid_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
+    # 'developer_page_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
 }
 
 PL_DEFAULT_NAV_ITEMS = {
