@@ -265,6 +265,7 @@ class Sidebar:
                 self.content_control = GridView(model=component['model'], container_id=nav_container_id)
 
         elif component['type'] == 'form':
+            print('form', component)
             try:
                 form_class = getattr(AppEnv.forms, component.get('class', f"{component['model']}Form"))
                 self.content_control = form_class(target=nav_container_id)
