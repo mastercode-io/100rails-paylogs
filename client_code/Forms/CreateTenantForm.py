@@ -14,7 +14,7 @@ class CreateTenantForm(FormBase):
         self.email = TextInput(name='email', label='Email')
         self.website = TextInput(name='website', label='Website')
         self.logo = InlineMessage(name='logo', label='Logo')
-        self.subscription = MultiFieldInput(name='subscription', model='Business', cols=2)
+        self.subscription = MultiFieldInput(name='subscription', model='Business', label='_', cols=2)
 
         tabs = [
             {
