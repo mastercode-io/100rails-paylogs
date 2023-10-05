@@ -231,7 +231,6 @@ db_schema:
     - {name: phone, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
     - {name: subscription, admin_ui: null, type: simpleObject}
-    - {name: status, admin_ui: null, type: string}
   locations:
     title: Locations
     client: none
