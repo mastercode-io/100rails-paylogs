@@ -103,6 +103,16 @@ class Tenant:
 
 
 @model_type
+class SubscriptionPlan:
+    model_type = types.ModelTypes.SYSTEM
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    price = Attribute(field_type=types.FieldTypes.CURRENCY)
+    features = Attribute(field_type=types.FieldTypes.OBJECT)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
 class User:
     model_type = types.ModelTypes.SYSTEM
     email = Attribute(field_type=types.FieldTypes.EMAIL)
@@ -142,6 +152,18 @@ class Business:
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     website = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     logo = Attribute(field_type=types.FieldTypes.MEDIA)
+    subscription_schema = {
+        "plan": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "status": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
+        "start_date": Attribute(field_type=types.FieldTypes.DATE),
+        "end_date": Attribute(field_type=types.FieldTypes.DATE),
+        "trial_start": Attribute(field_type=types.FieldTypes.DATE),
+        "trial_end": Attribute(field_type=types.FieldTypes.DATE),
+        "current_period_start": Attribute(field_type=types.FieldTypes.DATE),
+        "current_period_end": Attribute(field_type=types.FieldTypes.DATE),
+    }
+    subscription = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_schema)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type
@@ -178,6 +200,7 @@ class EmployeeRole:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
@@ -189,16 +212,18 @@ class Job:
     location = Relationship("Location")
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
 class JobType:
-    _title = "name"
+    _title = "shot_code"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    shot_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    pay_rate_template = Relationship("PayRateTemplate")
 
 
 @model_type
@@ -216,6 +241,8 @@ class Location:
         "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
+    pay_rate_template = Relationship("PayRateTemplate")
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type
@@ -231,7 +258,6 @@ class PayCategory:
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
-@model_type
 @model_type
 class PayRateRule:
     _title = "name"
@@ -252,6 +278,7 @@ class PayRateTemplate:
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     pay_rate_rules = Relationship("PayRateRule", with_many=True)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type
