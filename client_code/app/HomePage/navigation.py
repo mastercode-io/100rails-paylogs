@@ -266,6 +266,7 @@ class Sidebar:
 
         elif component['type'] == 'form':
             print('form', component)
+            print(getattr(AppEnv.forms, component.get('class')))
             try:
                 form_class = getattr(AppEnv.forms, component.get('class', f"{component['model']}Form"))
                 self.content_control = form_class(target=nav_container_id)
