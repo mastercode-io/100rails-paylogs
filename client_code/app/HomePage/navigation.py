@@ -266,13 +266,13 @@ class Sidebar:
 
         elif component['type'] == 'form':
             print('form', component)
-            print(getattr(AppEnv.forms, component.get('class')))
-            try:
-                form_class = getattr(AppEnv.forms, component.get('class', f"{component['model']}Form"))
-                self.content_control = form_class(target=nav_container_id)
-            except Exception as e:
-                print(e.args)
-                self.content_control = FormBase(model=component['model'], target=nav_container_id)
+            # try:
+            form_class = getattr(AppEnv.forms, component.get('class', f"{component['model']}Form"))
+            print('form_class', form_class)
+            self.content_control = form_class(target=nav_container_id)
+            # except Exception as e:
+            #     print(e.args)
+            #     self.content_control = FormBase(model=component['model'], target=nav_container_id)
 
         elif component['type'] == 'page':
             print('page', component)
