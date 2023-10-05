@@ -18,7 +18,7 @@ class CreateTenantForm(FormBase):
 
         tabs = [
             {
-                'name':'account', 'label': 'Account Details', 'sections': [
+                'name':'account', 'label': 'Account Information', 'sections': [
                 {
                     'name': '_', 'rows': [
                     {self.name, None}
@@ -35,7 +35,7 @@ class CreateTenantForm(FormBase):
             {
                 'name':'subscription', 'label': 'Subscription Details', 'sections': [
                 {
-                    'name': '_', 'label': 'Subscription Details', 'rows': [
+                    'name': '_', 'rows': [
                     [self.subscription]
                 ]
                 }
