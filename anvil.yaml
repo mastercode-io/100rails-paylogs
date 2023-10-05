@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: module, module: '@migrate'}
+startup: {type: form, module: app.HomePage}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -113,11 +113,6 @@ db_schema:
     - {name: pay_period_start, admin_ui: null, type: date}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
-  awards:
-    client: none
-    server: full
-    columns: []
-    title: Awards
   files:
     client: none
     server: full
@@ -291,6 +286,7 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: payrun, admin_ui: null, type: link_single, target: pay_runs}
     title: Timesheets
   jobs:
     title: Jobs
@@ -362,7 +358,6 @@ db_schema:
     columns:
     - {name: configuration, admin_ui: null, type: simpleObject}
     - {name: uid, admin_ui: null, type: string}
-    - {name: notes, admin_ui: null, type: string}
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: description, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
