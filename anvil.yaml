@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: app.HomePage}
+startup: {type: module, module: '@migrate'}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -56,6 +56,14 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \    presetTagify(),\n    presetIcons(),\n    presetWebFonts(),\n    presetTypography(),\n\
     \  ],\n  // ...\n}\n</script>"}
 db_schema:
+  pay_rate_rules:
+    title: Pay Rate Rules
+    client: none
+    server: full
+    columns:
+    - name: uid
+      admin_ui: {width: 200, order: 0}
+      type: string
   employees:
     client: none
     server: full
@@ -72,6 +80,8 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: mobile, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: custom_fields, admin_ui: null, type: simpleObject}
     title: Employees
   pay_runs:
     title: Pay Runs
@@ -179,6 +189,11 @@ db_schema:
       type: simpleObject
       admin_ui: {width: 200, order: -2}
     title: Users
+  subscription_plans:
+    title: Subscription Plans
+    client: none
+    server: full
+    columns: []
   businesses:
     title: Businesses
     client: none
@@ -196,6 +211,8 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: phone, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
+    - {name: subscription, admin_ui: null, type: simpleObject}
+    - {name: status, admin_ui: null, type: string}
   locations:
     title: Locations
     client: none
@@ -328,6 +345,7 @@ db_schema:
     - {name: name, admin_ui: null, type: string}
     - {name: short_code, admin_ui: null, type: string}
     - {name: created_by, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
   job_types:
     title: Job Types
     client: none
@@ -407,6 +425,8 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: description, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: status, admin_ui: null, type: string}
+    - {name: pay_category_type, admin_ui: null, type: string}
   pay_rate_templates:
     title: Pay Rate Templates
     client: none
@@ -431,4 +451,5 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: status, admin_ui: null, type: string}
 uplink_visible: true
