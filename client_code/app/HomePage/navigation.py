@@ -112,7 +112,7 @@ PL_NAV_ITEMS = {
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
-    'developer_form_preview': {'type': 'custom', 'type': 'form', 'class': 'CreateTenantForm', 'props': {}},
+    'developer_form_preview': {'type': 'form', 'class': 'CreateTenantForm', 'props': {}},
     # 'developer_grid_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
     # 'developer_page_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
 }
@@ -266,7 +266,7 @@ class Sidebar:
 
         elif component['type'] == 'form':
             try:
-                form_class = getattr(AppEnv.forms, f"{component['model']}Form")
+                form_class = getattr(AppEnv.forms, component.get('class', f"{component['model']}Form"))
                 self.content_control = form_class(target=nav_container_id)
             except Exception as e:
                 print(e.args)
