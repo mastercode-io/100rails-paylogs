@@ -302,7 +302,7 @@ class PayRun:
     @staticmethod
     def get_payrun_week(args):
         return  f"{args['pay_period_end'].year} - WK{args['pay_period_end'].isocalendar()[1]}"
-    payrun_week = Computed(("pay_period_end"), "get_payrun_week")
+    payrun_week = Computed(["pay_period_end"], "get_payrun_week")
 
 
 @model_type
