@@ -19,7 +19,7 @@ class CreateTenantForm(FormBase):
         sections = [
             {
               'name': '_', 'rows': [
-                {self.mame, None}
+                {self.name, None}
             ]
             },
             {
