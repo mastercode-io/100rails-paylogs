@@ -16,24 +16,32 @@ class CreateTenantForm(FormBase):
         self.logo = InlineMessage(name='logo', label='Logo')
         self.subscription = MultiFieldInput(name='subscription', model='Business', cols=2)
 
-        sections = [
+        tabs = [
             {
-              'name': '_', 'rows': [
-                {self.name, None}
-            ]
-            },
-            {
-                'name': '_', 'label': 'Company Details', 'cols': [
+                'name':'account', 'label': 'Account Details', 'sections': [
+                {
+                    'name': '_', 'rows': [
+                    {self.name, None}
+                ]
+                },
+                {
+                    'name': '_', 'label': 'Company Details', 'cols': [
                     [self.name, self.phone, self.email, self.website],
                     [self.address],
                 ]
+                },
+            ],
             },
             {
-                'name': '_', 'label': 'Subscription Details', 'rows': [
+                'name':'subscription', 'label': 'Subscription Details', 'sections': [
+                {
+                    'name': '_', 'label': 'Subscription Details', 'rows': [
                     [self.subscription]
                 ]
-            }
+                }
+            ],
+            },
         ]
 
-        super().__init__(sections=sections, width=POPUP_WIDTH_COL2, **kwargs)
+        super().__init__(tabs=tabs, header='Create Account', width=POPUP_WIDTH_COL2, **kwargs)
         self.fullscreen = True
