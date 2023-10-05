@@ -100,6 +100,7 @@ class File:
 class Tenant:
     model_type = types.ModelTypes.SYSTEM
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type
@@ -163,7 +164,6 @@ class Business:
         "current_period_end": Attribute(field_type=types.FieldTypes.DATE),
     }
     subscription = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_schema)
-    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type
