@@ -171,7 +171,7 @@ li.e-list-item.e-level-1.e-hover {
 
 #pl-footer {
     grid-area: footer;
-    background-color: #EADFFF;
+    /*background-color: #EADFFF;*/
     display: none;
 }
 
