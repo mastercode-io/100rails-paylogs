@@ -47,8 +47,8 @@ PL_SIDEBAR_MENUS = {
     'settings_menu': [
         {'nodeId': 'settings_users', 'nodeText': 'Users', 'nodeChild': []},
         {'nodeId': 'settings_employee_roles', 'nodeText': 'Employee Roles', 'nodeChild': []},
-        {'nodeId': 'settings_timesheet_types', 'nodeText': 'Timesheet Types', 'nodeChild': []},
         {'nodeId': 'settings_job_types', 'nodeText': 'Job Types', 'nodeChild': []},
+        {'nodeId': 'settings_timesheet_types', 'nodeText': 'Timesheet Types', 'nodeChild': []},
         {'nodeId': 'settings_pay_categories', 'nodeText': 'Pay Categories', 'nodeChild': []},
         {'nodeId': 'settings_pay_rate_rules', 'nodeText': 'Pay Rate Rules', 'nodeChild': []},
         {'nodeId': 'settings_pay_rate_templates', 'nodeText': 'Pay Rate Templates', 'nodeChild': []},
@@ -94,11 +94,13 @@ PL_NAV_ITEMS = {
     'business_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
     'business_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
 
-    'settings_job_types': {'model': 'JobType', 'type': 'view', 'action': 'open', 'props': {}},
-    # 'settings_job_settings': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_employee_roles': {'model': 'EmployeeRole', 'type': 'view', 'action': 'open', 'props': {}},
-    'settings_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_job_types': {'model': 'JobType', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_pay_rate_rules': {'model': 'PayRateRule', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
 
     'admin_tenants': {'model': 'Tenant', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
