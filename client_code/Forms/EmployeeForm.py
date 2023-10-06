@@ -39,7 +39,7 @@ class EmployeeForm(FormBase):
         sections = [
             {
                 'name': '_', 'cols': [
-                    [None, self.first_name, self.last_name, self.email, self.mobile, self.role, self.status],
+                    [' ', self.first_name, self.last_name, self.email, self.mobile, self.role, self.status],
                     [self.address],
                 ]
             }
