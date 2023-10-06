@@ -123,7 +123,7 @@ PL_DEFAULT_NAV_ITEMS = {
     'timesheet_menu': 'timesheet_manage',
     'payroll_menu': 'payroll_payrun_report',
     'business_menu': 'business_company',
-    'settings_menu': 'settings_job_types',
+    'settings_menu': 'settings_users',
     'admin_menu': 'admin_tenants',
     'developer_menu': 'developer_views',
 }
