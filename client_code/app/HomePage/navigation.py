@@ -75,7 +75,7 @@ PL_SIDEBAR_MENUS = {
             {'nodeId': 'developer_export', 'nodeText': 'Export Data', 'nodeChild': []},
         ]},
         {'nodeId': 'developer_preview', 'nodeText': 'Developer Preview', 'nodeChild': [
-            {'nodeId': 'developer_form_preview', 'nodeText': 'Form Prview', 'nodeChild': []},
+            {'nodeId': 'developer_form_preview', 'nodeText': 'Form Preview', 'nodeChild': []},
             {'nodeId': 'developer_grid_preview', 'nodeText': 'Grid View Preview', 'nodeChild': []},
             {'nodeId': 'developer_page_preview', 'nodeText': 'Page Preview', 'nodeChild': []},
         ]},
