@@ -471,14 +471,33 @@ db_schema:
     client: none
     server: full
     columns:
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: name, admin_ui: null, type: string}
-    - {name: pay_rate, admin_ui: null, type: number}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: updated_by, admin_ui: null, type: string}
+    - name: created_by
+      admin_ui: {order: -0.03125}
+      type: string
+    - name: created_time
+      admin_ui: {order: -0.0625}
+      type: datetime
+    - name: name
+      admin_ui: {order: -1}
+      type: string
+    - name: pay_rate
+      admin_ui: {order: -0.5}
+      type: number
+    - name: tenant_uid
+      admin_ui: {order: -0.09375}
+      type: string
+    - name: uid
+      admin_ui: {order: -0.125}
+      type: string
+    - name: updated_by
+      admin_ui: {order: 0}
+      type: string
     - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: status, admin_ui: null, type: string}
-    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
+    - name: status
+      admin_ui: {order: -0.25}
+      type: string
+    - name: pay_rate_template
+      admin_ui: {order: -0.375}
+      type: link_single
+      target: pay_rate_templates
 uplink_visible: true
