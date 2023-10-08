@@ -12,13 +12,12 @@ class TimesheetTypeForm(FormBase):
         self.short_code = TextInput(name='short_code', label='Short Code')
         self.description = MultiLineInput(name='description', label='Description')
         self.configuration= MultiFieldInput(name='configuration', model='TimesheetType',cols=2)
-        self.test = TextInput(name='test', label='Test', save=False)
 
         sections = [
             {
               'name': '_', 'rows': [
                 {self.name, self.short_code},
-                {self.description, self.test},
+                {self.description},
                 {self.configuration}
             ]
             },
