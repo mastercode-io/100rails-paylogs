@@ -8,25 +8,6 @@ class EmployeeForm(FormBase):
         print('EmployeeForm')
         kwargs['model'] = 'Employee'
 
-        # create input fields based on Employee model:
-        '''
-    first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    role = Relationship("EmployeeRole", with_many=True)
-    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    address_schema = {
-        "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        "city_district": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        "state_province": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        "country": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-    }
-    address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
-    custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
-        '''
         self.first_name = TextInput(name='first_name', label='First Name')
         self.last_name = TextInput(name='last_name', label='Last Name')
         self.email = TextInput(name='email', label='Email')

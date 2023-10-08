@@ -11,6 +11,7 @@ import navigation as nav
 
 
 AppEnv.APP_ID = "PayLogs"
+AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
 AppEnv.data_models = models
 AppEnv.forms = Forms
 AppEnv.views = Views
