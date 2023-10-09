@@ -59,5 +59,5 @@ class ImportRecordsPage(PageBase):
     def file_selected(self, args):
         print('file_selected', self.upload_file.value)
         uploaded = self.upload_file.value
-        file_content = json.loads(uploaded.value.rawFile.read())
+        file_content = json.loads(uploaded.rawFile.read())
         print(uploaded.name, file_content.keys())
