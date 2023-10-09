@@ -4,7 +4,6 @@ from .app import models
 from . import Forms
 from . import Views
 from . import Pages
-from icecream import ic
 
 AppEnv.APP_ID = "PayLogs"
 AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
@@ -25,7 +24,6 @@ columns = [
 model = 'EmployeeRole'
 grid_view = AppEnv.data_models.AppGridView(model=model, columns=columns).save()
 print(grid_view)
-ic(grid_view)
 # view_obj = AppEnv.data_models.AppGridView.get_by('model', model)
 # view_config = view_obj['config'] or {}
 # view_config['model'] = model
