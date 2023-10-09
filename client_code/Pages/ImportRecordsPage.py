@@ -12,8 +12,8 @@ MODELS_LIST = [
     'Timesheet'
 ]
 EMPLOYEE_FIELDS = {
-    'first_name': lambda x: x.split(' ')[0],
-    'last_name': lambda x: x.split(' ')[-1],
+    'first_name': lambda x: x['Full_Name'].split(' ')[0],
+    'last_name': lambda x: x['Full_Name'].split(' ')[-1],
     'email': 'Work_Email',
     'mobile': 'Work_Phone',
     # 'role': 'Position_or_Title',
@@ -78,9 +78,9 @@ class ImportRecordsPage(PageBase):
         for record in file_content['Employees']:
             employee_data = {}
             for k, v in EMPLOYEE_FIELDS.items():
-                print(k, v, record[v])
+                print(k, v, record)
                 if callable(v):
-                    employee_data[k] = v(record[v])
+                    employee_data[k] = v(record)
                 else:
                     employee_data[k] = record[v]
             # employee_data = {k: v(record[v]) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
