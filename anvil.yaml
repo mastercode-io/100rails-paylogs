@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: module, module: '@migrate'}
+startup: {type: form, module: app.HomePage}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
