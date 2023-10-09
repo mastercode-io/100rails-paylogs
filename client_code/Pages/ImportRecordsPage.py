@@ -16,7 +16,7 @@ class ImportRecordsPage(PageBase):
         print('ImportRecordsPage')
         title = 'Import Records'
         self.select_model = DropdownInput(name='select_model', label='Select Model', options=MODELS_LIST)
-        self.upload_file = FileUploadInput(name='upload_file', label='Upload File')
+        self.upload_file = FileUploadInput(name='upload_file', label='Upload File', on_change=self.file_selected)
         self.import_button = ej.buttons.Button({
             'content': 'Import Records',
             'isPrimary': True,
@@ -53,3 +53,7 @@ class ImportRecordsPage(PageBase):
 
     def log_message(self, message):
         self.execution_log.message += str(message) + '<br>'
+
+
+    def file_selected(self):
+        print('file_selected', self.upload_file.value)
