@@ -16,22 +16,20 @@ init_user_session()
 # migrate.migrate_db_schema()
 
 columns = [
-    {"name": "short_code", "label": "Short Code"},
     {"name": "name", "label": "Name"},
     {"name": "description", "label": "Description"},
-    {"name": "configuration.paid_time", "label": "Paid Time"},
-    {"name": "configuration.paid_breaks", "label": "Paid Breaks"},
-    {"name": "configuration.sick_leave", "label": "Sick Leave"},
-    {"name": "configuration.annual_leave", "label": "Annual Leave"},
+    {"name": "address", "label": "Address"},
+    {"name": "pay_rate_template.name", "label": "Pay Rate Template"},
     {"name": "status", "label": "Status"},
 ]
 model = 'TimesheetType'
-view_obj = AppEnv.data_models.AppGridView.get_by('model', model)
-view_config = view_obj['config'] or {}
-view_config['model'] = model
-view_config['columns'] = view_obj['columns'] or []
-grid_data = AppEnv.data_models.TimesheetType.get_grid_view(view_config,
-                                                           search_queries=None,
-                                                           filters=None,
-                                                           include_rows=False)
-print(grid_data)
+AppEnv.data_models.AppGridView(model=model, columns=columns).save()
+# view_obj = AppEnv.data_models.AppGridView.get_by('model', model)
+# view_config = view_obj['config'] or {}
+# view_config['model'] = model
+# view_config['columns'] = view_obj['columns'] or []
+# grid_data = AppEnv.data_models.TimesheetType.get_grid_view(view_config,
+#                                                            search_queries=None,
+#                                                            filters=None,
+#                                                            include_rows=False)
+# print(grid_data)
