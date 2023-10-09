@@ -246,9 +246,14 @@ class Location:
 
     @staticmethod
     def get_address_oneline(args):
-        return (f"{args['address']['address_line_1']}, {args['address']['address_line_2']}, "
-                f"{args['address']['city_district']}, {args['address']['state_province']}, "
-                f"{args['address']['country']}, {args['address']['postal_code']}")
+        address_online = ''
+        address_online += f'{args["address"]["address_line_1"]}, ' if args["address"]["address_line_1"] else ''
+        address_online += f'{args["address"]["address_line_2"]}, ' if args["address"]["address_line_2"] else ''
+        address_online += f'{args["address"]["city_district"]}, ' if args["address"]["city_district"] else ''
+        address_online += f'{args["address"]["state_province"]}, ' if args["address"]["state_province"] else ''
+        address_online += f'{args["address"]["country"]}, ' if args["address"]["country"] else ''
+        address_online += f'{args["address"]["postal_code"]}' if args["address"]["postal_code"] else ''
+        return address_online
     address_oneline = Computed(["address"], "get_address_oneline")
 
 
