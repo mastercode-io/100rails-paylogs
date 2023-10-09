@@ -2,6 +2,7 @@ from AnvilFusion.components.PageBase import PageBase
 from AnvilFusion.components.FormInputs import *
 from anvil.js.window import ej
 import uuid
+import json
 
 
 MODELS_LIST = [
@@ -57,3 +58,6 @@ class ImportRecordsPage(PageBase):
 
     def file_selected(self, args):
         print('file_selected', self.upload_file.value)
+        uploaded = self.upload_file.value
+        file_content = json.loads(uploaded.value.rawFile.read())
+        print(uploaded.name, file_content.keys())
