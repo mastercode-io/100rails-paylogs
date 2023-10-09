@@ -16,8 +16,8 @@ init_user_session()
 # migrate.migrate_db_schema()
 
 columns = [
-    {"name": "full name", "label": "Name"},
-    {"name": "role", "label": "Role"},
+    {"name": "full_name", "label": "Name"},
+    {"name": "role.name", "label": "Role"},
     {"name": "email", "label": "Email"},
     {"name": "mobile", "label": "Mobile"},
     {"name": "status", "label": "Status"},
