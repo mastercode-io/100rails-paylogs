@@ -7,20 +7,24 @@ class EmployeeRoleForm(FormBase):
         print('EmployeeRoleForm')
         kwargs['model'] = 'EmployeeRole'
 
+        self.name = TextInput(name='name', label='Name')
+        self.pay_rate = NumberInput(name='pay_rate', label='Pay Rate')
+        self.pay_rate_template = LookupInput(
+            name='pay_rate_template',
+            label='Pay Rate Template',
+            model='PayRateTemplate'
+        )
+        self.status = RadioButtonInput(
+            name='status',
+            label='Status',
+            options=['Active', 'Inactive']
+        )
 
-        sections = [
-            {
-              'name': '_', 'rows': [
-                {}
-            ]
-            },
-            {
-                'name': '_', 'cols': [
-                    [],
-                    [],
-                ]
-            }
+        fields = [
+            self.name,
+            self.pay_rate,
+            self.pay_rate_template,
+            self.status
         ]
 
-        super().__init__(sections=sections, **kwargs)
-        # self.fullscreen = True
+        super().__init__(fields=fields, **kwargs)

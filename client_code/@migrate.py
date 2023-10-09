@@ -17,12 +17,11 @@ init_user_session()
 
 columns = [
     {"name": "name", "label": "Name"},
-    {"name": "description", "label": "Description"},
-    {"name": "address", "label": "Address"},
+    {"name": "pay_rare", "label": "Pay Rate"},
     {"name": "pay_rate_template.name", "label": "Pay Rate Template"},
     {"name": "status", "label": "Status"},
 ]
-model = 'TimesheetType'
+model = 'EmployeeRole'
 AppEnv.data_models.AppGridView(model=model, columns=columns).save()
 # view_obj = AppEnv.data_models.AppGridView.get_by('model', model)
 # view_config = view_obj['config'] or {}

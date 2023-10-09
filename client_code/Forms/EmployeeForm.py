@@ -14,7 +14,7 @@ class EmployeeForm(FormBase):
         self.mobile = TextInput(name='mobile', label='Mobile')
         self.role = LookupInput(name='role', label='Role', model='EmployeeRole')
         self.status = DropdownInput(name='status', label='Status', options=['Active', 'Inactive'])
-        self.address = MultiFieldInput(name='address', label='Address', model='Employee')
+        self.address = MultiFieldInput(name='address', label='_', model='Employee')
         # self.custom_fields = MultiFieldInput(name='custom_fields', label='Custom Fields', model='Employee')
 
         sections = [
