@@ -249,7 +249,7 @@ class Location:
         return (f"{args['address']['address_line_1']}, {args['address']['address_line_2']}, "
                 f"{args['address']['city_district']}, {args['address']['state_province']}, "
                 f"{args['address']['country']}, {args['address']['postal_code']}")
-    address_oneline = Computed(["address"], "get_full_address")
+    address_oneline = Computed(["address"], "get_address_oneline")
 
 
 @model_type
