@@ -26,6 +26,7 @@ class ImportRecordsPage(PageBase):
         self.execution_log = InlineMessage(name='execution_log')
 
         self.content = f'<br><div id="{self.select_model.container_id}"></div><br><br>'
+        self.content += f'<div id="{self.upload_file.container_id}"></div><br><br>'
         self.content += f'<br><div id="{self.import_button_id}"></div><br><br>'
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
 
