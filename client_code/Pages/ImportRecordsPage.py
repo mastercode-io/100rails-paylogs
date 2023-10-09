@@ -25,8 +25,8 @@ class ImportRecordsPage(PageBase):
         self.import_button_id = f'migrate-button-{uuid.uuid4()}'
         self.execution_log = InlineMessage(name='execution_log')
 
-        self.content = f'<br><div id="{self.select_model.container_id}" style="width:200px;"></div>'
-        self.content += f'<div id="{self.upload_file.container_id}" style="width:200px;"></div>'
+        self.content = f'<br><div id="{self.select_model.container_id}" style="width:300px;"></div>'
+        self.content += f'<div id="{self.upload_file.container_id}" style="width:300px;"></div>'
         self.content += f'<br><div id="{self.import_button_id}"></div><br><br>'
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
 
