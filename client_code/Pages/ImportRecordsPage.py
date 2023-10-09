@@ -62,5 +62,6 @@ class ImportRecordsPage(PageBase):
         for k in dir(uploaded.rawFile):
             print(k, getattr(uploaded.rawFile, k))
         reader = FileReader()
-        file_content = json.loads(reader.readAsText(uploaded.rawFile))
+        # file_content = json.loads(reader.readAsText(uploaded.rawFile))
+        file_content = json.loads(uploaded.rawFile.text)
         print(uploaded.name, file_content.keys())
