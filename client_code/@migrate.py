@@ -16,12 +16,13 @@ init_user_session()
 # migrate.migrate_db_schema()
 
 columns = [
-    {"name": "name", "label": "Name"},
-    {"name": "pay_rare", "label": "Pay Rate"},
-    {"name": "pay_rate_template.name", "label": "Pay Rate Template"},
+    {"name": "full name", "label": "Name"},
+    {"name": "role", "label": "Role"},
+    {"name": "email", "label": "Email"},
+    {"name": "mobile", "label": "Mobile"},
     {"name": "status", "label": "Status"},
 ]
-model = 'EmployeeRole'
+model = 'Employee'
 grid_view = AppEnv.data_models.AppGridView(model=model, columns=columns).save()
 print(grid_view)
 # view_obj = AppEnv.data_models.AppGridView.get_by('model', model)
