@@ -50,7 +50,7 @@ class ImportRecordsPage(PageBase):
         self.import_button.appendTo(f'#{self.import_button_id}')
         self.import_button.element.onclick = self.import_button_action
         self.execution_log.show()
-        self.execution_log.message = 'Click <b>Import Records</b> to start import'
+        self.execution_log.message = 'Click <b>Import Records</b> to start import<br><br>'
 
 
     def import_button_action(self, args):
@@ -76,6 +76,13 @@ class ImportRecordsPage(PageBase):
         print('import_employees')
         self.log_message(f'Importing {len(file_content["Employees"])} employees')
         for record in file_content['Employees']:
-            employee_data = {k: v(record[v]) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
+            employee_data = {}
+            for k, v in EMPLOYEE_FIELDS.items():
+                print(k, v, record[v])
+                if callable(v):
+                    employee_data[k] = v(record[v])
+                else:
+                    employee_data[k] = record[v]
+            # employee_data = {k: v(record[v]) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
             employee = Employee(**employee_data).save()
             self.log_message(f'Imported {employee.first_name} {employee.last_name}')
