@@ -55,5 +55,5 @@ class ImportRecordsPage(PageBase):
         self.execution_log.message += str(message) + '<br>'
 
 
-    def file_selected(self):
+    def file_selected(self, args):
         print('file_selected', self.upload_file.value)
