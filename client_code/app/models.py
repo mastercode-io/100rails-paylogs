@@ -244,6 +244,13 @@ class Location:
     pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
+    @staticmethod
+    def get_address_oneline(args):
+        return (f"{args['address']['address_line_1']}, {args['address']['address_line_2']}, "
+                f"{args['address']['city_district']}, {args['address']['state_province']}, "
+                f"{args['address']['country']}, {args['address']['postal_code']}")
+    address_oneline = Computed(["address"], "get_full_address")
+
 
 @model_type
 class PayCategory:
