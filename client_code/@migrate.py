@@ -16,13 +16,12 @@ init_user_session()
 # migrate.migrate_db_schema()
 
 columns = [
-    {"name": "full_name", "label": "Name"},
-    {"name": "role.name", "label": "Role"},
     {"name": "email", "label": "Email"},
-    {"name": "mobile", "label": "Mobile"},
-    {"name": "status", "label": "Status"},
+    {"name": "enabled", "label": "Enabled"},
+    {"name": "last_login", "label": "Las Login"},
+    {"name": "permissions", "label": "Permissions"}
 ]
-model = 'Employee'
+model = 'User'
 grid_view = AppEnv.data_models.AppGridView(model=model, columns=columns).save()
 print(grid_view)
 # view_obj = AppEnv.data_models.AppGridView.get_by('model', model)
