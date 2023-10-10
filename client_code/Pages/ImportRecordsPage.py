@@ -61,7 +61,10 @@ class ImportRecordsPage(PageBase):
 
     def import_button_action(self, args):
         print('import_button_action')
+
         self.execution_log.message = f'Importing {self.select_model.value} records<br><br>'
+        if self.select_model.value == 'Employee':
+            self.import_employees(self.file_content)
 
         self.execution_log.message += '<br>Import complete.'
 
@@ -73,9 +76,9 @@ class ImportRecordsPage(PageBase):
     def file_selected(self, args):
         print('file_selected', self.upload_file.value)
         file_obj = self.upload_file.value
-        file_content = json.loads(file_obj.rawFile.text())
+        self.file_content = json.loads(file_obj.rawFile.text())
         if self.select_model.value == 'Employee':
-            self.import_employees(file_content)
+            self.log_message(f'Uploaded {len(self.file_content["Employees"])} employee records')
 
 
     def import_employees(self, file_content):
