@@ -98,5 +98,6 @@ class ImportRecordsPage(PageBase):
         for record in file_content['Employees']:
             employee_data = {k: v(record, self.employee_roles) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
             employee_data['status'] = 'Active'
+            print('employee_data', employee_data)
             employee = Employee(**employee_data).save()
             self.log_message(f'imported record: {employee.first_name} {employee.last_name}')
