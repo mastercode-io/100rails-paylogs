@@ -139,9 +139,12 @@ class ImportRecordsPage(PageBase):
 
         # import job types
         locations = {location.name: location for location in Location.search()}
+        jobs = [job.number for job in Job.search()]
 
         count = 0
         for record in file_content['Jobs']:
+            if record['Quote_Job_Number'] in jobs:
+                continue
             job_data = {k: v(record, locations) if callable(v) else record[v] for k, v in JOB_FIELDS.items()}
             job_data['status'] = 'Active'
             job = Job(**job_data).save()
