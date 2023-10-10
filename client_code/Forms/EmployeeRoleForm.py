@@ -14,10 +14,10 @@ class EmployeeRoleForm(FormBase):
             label='Pay Rate Template',
             model='PayRateTemplate'
         )
-        self.status = RadioButtonInput(
+        self.status = DropdownInput(
             name='status',
             label='Status',
-            options=['Active', 'Inactive']
+            options=['Active', 'Inactive', 'Draft']
         )
 
         fields = [

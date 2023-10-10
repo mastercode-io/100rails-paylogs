@@ -6,6 +6,7 @@ import uuid
 import json
 
 
+employee_roles = {}
 MODELS_LIST = [
     'Employee',
     'Job',
@@ -16,7 +17,7 @@ EMPLOYEE_FIELDS = {
     'last_name': lambda x: x['Full_Name'].split(' ')[-1],
     'email': 'Work_Email',
     'mobile': 'Work_Phone',
-    # 'role': 'Position_or_Title',
+    'role': lambda x: employee_roles[x['Position_or_Title']],
 }
 
 
@@ -73,16 +74,21 @@ class ImportRecordsPage(PageBase):
 
 
     def import_employees(self, file_content):
+        global employee_roles
         print('import_employees')
         self.log_message(f'Importing {len(file_content["Employees"])} employees')
+
+        # import employee roles
+        uploaded_employee_roles = set([record['Position_or_Title'] for record in file_content['Employees']])
+        existing_employee_roles = set([role.name for role in EmployeeRole.search()])
+        new_employee_roles = uploaded_employee_roles - existing_employee_roles
+        for role in new_employee_roles:
+            EmployeeRole(name=role, status='Draft').save()
+            self.log_message(f'Imported {role}')
+        employee_roles = {role.name: role for role in EmployeeRole.search()}
+
         for record in file_content['Employees']:
-            employee_data = {}
-            for k, v in EMPLOYEE_FIELDS.items():
-                print(k, v, record)
-                if callable(v):
-                    employee_data[k] = v(record)
-                else:
-                    employee_data[k] = record[v]
-            # employee_data = {k: v(record[v]) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
+            employee_data = {k: v(record) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
+            employee_data['status'] = 'Active'
             employee = Employee(**employee_data).save()
             self.log_message(f'Imported {employee.first_name} {employee.last_name}')
