@@ -6,18 +6,17 @@ import uuid
 import json
 
 
-employee_roles = {}
 MODELS_LIST = [
     'Employee',
     'Job',
     'Timesheet'
 ]
 EMPLOYEE_FIELDS = {
-    'first_name': lambda x: x['Full_Name'].split(' ')[0],
-    'last_name': lambda x: x['Full_Name'].split(' ')[-1],
+    'first_name': lambda rec: rec['Full_Name'].strip().split(' ')[0],
+    'last_name': lambda rec: rec['Full_Name'].strip().split(' ')[-1],
     'email': 'Work_Email',
     'mobile': 'Work_Phone',
-    'role': lambda x: employee_roles[x['Position_or_Title']],
+    'role': lambda rec, roles: roles.get(rec['Position_or_Title'].strip(), None),
 }
 
 
@@ -41,6 +40,12 @@ class ImportRecordsPage(PageBase):
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
+
+        self.file_content = None
+        self.employee_roles = {}
+        self.timesheet_types = {}
+        self.job_types = {}
+        self.jobs = {}
 
 
     def form_show(self, **args):
@@ -74,21 +79,21 @@ class ImportRecordsPage(PageBase):
 
 
     def import_employees(self, file_content):
-        global employee_roles
         print('import_employees')
         self.log_message(f'Importing {len(file_content["Employees"])} employees')
 
         # import employee roles
-        uploaded_employee_roles = set([record['Position_or_Title'] for record in file_content['Employees']])
+        uploaded_employee_roles = set(record['Position_or_Title'].strip() for record in file_content['Employees']
+                                      if record['Position_or_Title'].strip())
         existing_employee_roles = set([role.name for role in EmployeeRole.search()])
         new_employee_roles = uploaded_employee_roles - existing_employee_roles
-        for role in new_employee_roles:
-            EmployeeRole(name=role, status='Draft').save()
-            self.log_message(f'Imported {role}')
-        employee_roles = {role.name: role for role in EmployeeRole.search()}
+        for role_name in new_employee_roles:
+            EmployeeRole(name=role_name, status='Draft').save()
+            self.log_message(f'Imported {role_name}')
+        self.employee_roles = {role.name: role for role in EmployeeRole.search()}
 
         for record in file_content['Employees']:
-            employee_data = {k: v(record) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
+            employee_data = {k: v(record, self.employee_roles) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
             employee_data['status'] = 'Active'
             employee = Employee(**employee_data).save()
             self.log_message(f'Imported {employee.first_name} {employee.last_name}')
