@@ -12,8 +12,8 @@ MODELS_LIST = [
     'Timesheet'
 ]
 EMPLOYEE_FIELDS = {
-    'first_name': lambda rec: rec['Full_Name'].strip().split(' ')[0],
-    'last_name': lambda rec: rec['Full_Name'].strip().split(' ')[-1],
+    'first_name': lambda rec, _: rec['Full_Name'].strip().split(' ')[0],
+    'last_name': lambda rec, _: rec['Full_Name'].strip().split(' ')[-1],
     'email': 'Work_Email',
     'mobile': 'Work_Phone',
     'role': lambda rec, roles: roles.get(rec['Position_or_Title'].strip(), None),
@@ -74,7 +74,7 @@ class ImportRecordsPage(PageBase):
 
 
     def file_selected(self, args):
-        print('file_selected', self.upload_file.value)
+        # print('file_selected', self.upload_file.value)
         file_obj = self.upload_file.value
         self.file_content = json.loads(file_obj.rawFile.text())
         if self.select_model.value == 'Employee':
@@ -90,13 +90,13 @@ class ImportRecordsPage(PageBase):
                                       if record['Position_or_Title'].strip())
         existing_employee_roles = set([role.name for role in EmployeeRole.search()])
         new_employee_roles = uploaded_employee_roles - existing_employee_roles
+        self.log_message(f'Adding {len(new_employee_roles)} employee roles')
         for role_name in new_employee_roles:
             EmployeeRole(name=role_name, status='Draft').save()
-            self.log_message(f'Imported {role_name}')
         self.employee_roles = {role.name: role for role in EmployeeRole.search()}
 
         for record in file_content['Employees']:
             employee_data = {k: v(record, self.employee_roles) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
             employee_data['status'] = 'Active'
             employee = Employee(**employee_data).save()
-            self.log_message(f'Imported {employee.first_name} {employee.last_name}')
+            self.log_message(f'imported record: {employee.first_name} {employee.last_name}')
