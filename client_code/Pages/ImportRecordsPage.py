@@ -16,7 +16,7 @@ EMPLOYEE_FIELDS = {
     'last_name': lambda rec, _: rec['Full_Name'].strip().split(' ')[-1],
     'email': 'Work_Email',
     'mobile': 'Work_Phone',
-    'role': lambda rec, roles: roles.get(rec['Position_or_Title'].strip(), None),
+    'role': lambda rec, roles: [roles[rec['Position_or_Title'].strip()]] if rec.get('Position_or_Title').strip() else None,
 }
 
 
