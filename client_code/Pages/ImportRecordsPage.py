@@ -165,8 +165,28 @@ class ImportRecordsPage(PageBase):
             for timesheet_type_name in new_timesheet_types:
                 TimesheetType(name=timesheet_type_name, status='Draft').save()
         timesheet_types = {timesheet_type.name: timesheet_type for timesheet_type in TimesheetType.search()}
-        employees = {employee.full_name: employee for employee in Employee.search()}
+
+        uploaded_jobs = set(record['Related_Job.Quote_Job_Number'] for record in file_content['Timesheets'])
+        existing_jobs = set([job.number for job in Job.search()])
+        new_jobs = uploaded_jobs - existing_jobs
+        if new_jobs:
+            self.log_message(f'Adding {len(new_jobs)} jobs')
+            for job_number in new_jobs:
+                Job(number=job_number, status='Draft').save()
         jobs = {job.number: job for job in Job.search()}
+
+        uploaded_employees = set(record['Related_Staff.Full_Name'] for record in file_content['Timesheets'])
+        existing_employees = set([employee.full_name for employee in Employee.search()])
+        new_employees = uploaded_employees - existing_employees
+        if new_employees:
+            self.log_message(f'Adding {len(new_employees)} employees')
+            for employee_name in new_employees:
+                Employee(
+                    first_name=employee_name.split(' ')[0],
+                    last_name=employee_name.split(' ')[-1],
+                    status='Draft'
+                ).save()
+        employees = {employee.full_name: employee for employee in Employee.search()}
 
         count = 0
         for record in file_content['Timesheets']:
