@@ -79,6 +79,7 @@ class ImportRecordsPage(PageBase):
         self.import_button.element.onclick = self.import_button_action
         self.execution_log.show()
         self.execution_log.message = 'Click <b>Import Records</b> to start import<br><br>'
+        self.record_count.show()
 
 
     def import_button_action(self, args):
