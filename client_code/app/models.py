@@ -211,6 +211,7 @@ class Job:
     job_type = Relationship("JobType")
     location = Relationship("Location")
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    number = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
