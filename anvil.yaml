@@ -59,7 +59,17 @@ db_schema:
   user_roles:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: permissions, admin_ui: null, type: simpleObject}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: User Roles
   pay_rate_rules:
     title: Pay Rate Rules
@@ -207,6 +217,7 @@ db_schema:
     - name: last_name
       admin_ui: {width: 200, order: -2.5}
       type: string
+    - {name: user_roles, admin_ui: null, type: link_multiple, target: user_roles}
     title: Users
   subscription_plans:
     title: Subscription Plans
