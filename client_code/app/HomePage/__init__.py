@@ -112,7 +112,7 @@ class HomePage(HomePageTemplate):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         print('after_login', AppEnv.logged_user)
         if (AppEnv.logged_user.permissions.super_admin
-                or AppEnv.logged_user.permissions.tenant_admin
+                or AppEnv.logged_user.permissions.administrator
                 or AppEnv.logged_user.permissions.developer):
             self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
             self.appbar_settings_menu.element.addEventListener(

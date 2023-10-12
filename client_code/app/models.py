@@ -127,12 +127,31 @@ class User:
     n_password_failures = Attribute(field_type=types.FieldTypes.NUMBER)
     confirmed_email = Attribute(field_type=types.FieldTypes.BOOLEAN)
     signed_up = Attribute(field_type=types.FieldTypes.DATETIME)
-    permissions = Attribute(field_type=types.FieldTypes.OBJECT)
+    user_roles = Relationship("UserRole", with_many=True)
+
+    permissions_schema = {
+        "administrator": Attribute(field_type=types.FieldTypes.BOOLEAN),
+    }
+    permissions = Attribute(field_type=types.FieldTypes.OBJECT, schema=permissions_schema)
 
     @staticmethod
     def get_full_name(args):
         return f"{args['first_name']} {args['last_name']}"
     full_name = Computed(("first_name", "last_name"), "get_full_name")
+
+
+@model_type
+class UserRole:
+    _title = "name"
+
+    model_type = types.ModelTypes.SYSTEM
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    permissions_schema = {
+        "administrator": Attribute(field_type=types.FieldTypes.BOOLEAN),
+    }
+    permissions = Attribute(field_type=types.FieldTypes.OBJECT, schema=permissions_schema)
 
 
 @model_type

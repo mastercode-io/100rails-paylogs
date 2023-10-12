@@ -1,7 +1,7 @@
 from .CreateTenantForm import CreateTenantForm
 
 from .UserLoginForm import UserLoginForm
-# from .UserForm import UserForm
+from .UserForm import UserForm
 from .BusinessForm import BusinessForm
 from .EmployeeForm import EmployeeForm
 from .EmployeeRoleForm import EmployeeRoleForm
