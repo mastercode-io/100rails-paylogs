@@ -18,6 +18,7 @@ class UserForm(FormBase):
         self.last_name = TextInput(name='last_name', label='Last Name', required=True)
         self.email = TextInput(name='email', label='Login (email)', required=True)
         self.password = TextInput(name='password', label='Password', input_type='password', required=True, save=False)
+        self.confirm_pwd = TextInput(name='confirm_password', label='Confirm Password', input_type='password', required=True, save=False)
         self.enabled = CheckboxInput(name='enabled', label='Enabled')
         self.user_roles = LookupInput(name='user_roles', label='Roles', model='UserRole', multiple=True)
         self.permissions = MultiFieldInput(name='permissions', model='User', label='Permissions')
@@ -38,11 +39,27 @@ class UserForm(FormBase):
         ]
 
         super().__init__(
+            action=action,
             header=f"{FORM_ACTION_HEADER[action]} User",
             fields=fields,
             buttons=buttons,
             **kwargs
         )
+
+
+    def form_show(self, get_data=True, **args):
+        super().form_show(**args)
+        if self.action == 'edit':
+            self.password.hide()
+            self.confirm_pwd.hide()
+
+
+    def form_validate(self):
+        if self.action == 'add':
+            if self.password.value != self.confirm_pwd.value:
+                return False
+            else:
+                return super().form_validate()
 
 
     def save_user(self, args):
