@@ -56,6 +56,11 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \    presetTagify(),\n    presetIcons(),\n    presetWebFonts(),\n    presetTypography(),\n\
     \  ],\n  // ...\n}\n</script>"}
 db_schema:
+  user_roles:
+    client: none
+    server: full
+    columns: []
+    title: User Roles
   pay_rate_rules:
     title: Pay Rate Rules
     client: none
