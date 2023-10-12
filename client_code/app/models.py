@@ -115,7 +115,11 @@ class SubscriptionPlan:
 
 @model_type
 class User:
+    _title = "full_name"
+
     model_type = types.ModelTypes.SYSTEM
+    first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     email = Attribute(field_type=types.FieldTypes.EMAIL)
     enabled = Attribute(field_type=types.FieldTypes.BOOLEAN)
     last_login = Attribute(field_type=types.FieldTypes.DATETIME)
@@ -124,6 +128,11 @@ class User:
     confirmed_email = Attribute(field_type=types.FieldTypes.BOOLEAN)
     signed_up = Attribute(field_type=types.FieldTypes.DATETIME)
     permissions = Attribute(field_type=types.FieldTypes.OBJECT)
+
+    @staticmethod
+    def get_full_name(args):
+        return f"{args['first_name']} {args['last_name']}"
+    full_name = Computed(("first_name", "last_name"), "get_full_name")
 
 
 @model_type
