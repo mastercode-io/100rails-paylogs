@@ -47,8 +47,8 @@ class UserForm(FormBase):
         )
 
 
-    def form_show(self, get_data=True, **args):
-        super().form_show(**args)
+    def form_open(self, args):
+        super().form_open(args)
         print('UserForm.form_show', self.action)
         if self.action == 'edit':
             self.password.hide()
