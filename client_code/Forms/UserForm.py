@@ -39,7 +39,6 @@ class UserForm(FormBase):
         ]
 
         super().__init__(
-            action=action,
             header=f"{FORM_ACTION_HEADER[action]} User",
             fields=fields,
             buttons=buttons,
