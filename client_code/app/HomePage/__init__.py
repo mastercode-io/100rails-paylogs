@@ -111,6 +111,11 @@ class HomePage(HomePageTemplate):
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         print('after_login', AppEnv.logged_user)
+        if AppEnv.logged_user.super_admin or AppEnv.logged_user.tenant_admin or AppEnv.logged_user.developer:
+            self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
+            self.appbar_settings_menu.element.addEventListener(
+                "click", self.settings_click
+            )
         if AppEnv.logged_user.super_admin or AppEnv.logged_user.developer:
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_ADMIN)
         if AppEnv.logged_user.developer:
@@ -129,11 +134,6 @@ class HomePage(HomePageTemplate):
         self.appbar_sidebar_toggle.element.addEventListener(
             "click", self.sidebar.toggle
         )
-        if AppEnv.logged_user.super_admin or AppEnv.logged_user.tenant_admin or AppEnv.logged_user.developer:
-            self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
-            self.appbar_settings_menu.element.addEventListener(
-                "click", self.settings_click
-            )
 
         self.login_user()
         # self.appbar_menu.show()
