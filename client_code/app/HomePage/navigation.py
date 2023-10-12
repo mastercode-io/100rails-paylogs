@@ -23,6 +23,9 @@ PL_APPBAR_MENU = [
 PL_APPBAR_MENU_ADMIN = [
     {'separator': True},
     {'id': 'admin_menu', 'text': 'Admin', 'items': []},
+]
+PL_APPBAR_MENU_DEVELOPER = [
+    {'separator': True},
     {'id': 'developer_menu', 'text': 'Developer', 'items': []},
 ]
 
