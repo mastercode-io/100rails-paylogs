@@ -31,6 +31,7 @@ class UserForm(FormBase):
         fields = [
             self.email,
             self.password,
+            self.confirm_pwd,
             self.first_name,
             self.last_name,
             self.enabled,
@@ -48,6 +49,7 @@ class UserForm(FormBase):
 
     def form_show(self, get_data=True, **args):
         super().form_show(**args)
+        print('UserForm.form_show', self.action)
         if self.action == 'edit':
             self.password.hide()
             self.confirm_pwd.hide()
