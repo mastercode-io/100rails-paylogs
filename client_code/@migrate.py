@@ -13,17 +13,17 @@ AppEnv.views = Views
 AppEnv.pages = Pages
 
 init_user_session()
-# migrate.migrate_db_schema()
+migrate.migrate_db_schema()
 
-columns = [
-    {"name": "email", "label": "Email"},
-    {"name": "enabled", "label": "Enabled"},
-    {"name": "last_login", "label": "Las Login"},
-    {"name": "permissions", "label": "Permissions"}
-]
-model = 'User'
-grid_view = AppEnv.data_models.AppGridView(model=model, columns=columns).save()
-print(grid_view)
+# columns = [
+#     {"name": "email", "label": "Email"},
+#     {"name": "enabled", "label": "Enabled"},
+#     {"name": "last_login", "label": "Las Login"},
+#     {"name": "permissions", "label": "Permissions"}
+# ]
+# model = 'User'
+# grid_view = AppEnv.data_models.AppGridView(model=model, columns=columns).save()
+# print(grid_view)
 # view_obj = AppEnv.data_models.AppGridView.get_by('model', model)
 # view_config = view_obj['config'] or {}
 # view_config['model'] = model
