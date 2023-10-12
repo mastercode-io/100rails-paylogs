@@ -196,6 +196,12 @@ db_schema:
     - name: permissions
       type: simpleObject
       admin_ui: {width: 200, order: -2}
+    - name: first_name
+      admin_ui: {width: 200, order: -3}
+      type: string
+    - name: last_name
+      admin_ui: {width: 200, order: -2.5}
+      type: string
     title: Users
   subscription_plans:
     title: Subscription Plans
