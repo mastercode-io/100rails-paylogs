@@ -124,7 +124,7 @@ class HomePage(HomePageTemplate):
         if AppEnv.logged_user.permissions.developer:
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         self.appbar_menu.show()
-        self.appbar_user_menu.items[0].text = AppEnv.logged_user.email + '<br>' + AppEnv.logged_user.user_name
+        self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         self.sidebar.show(AppEnv.start_menu)
 
 
