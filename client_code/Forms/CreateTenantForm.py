@@ -76,7 +76,10 @@ class CreateTenantForm(FormBase):
     def form_open(self, args):
         super().form_open(args)
         print('CreateTenantForm.form_open')
+        for button in self.form.buttons:
+            print(button.content, button.id, button.cssClass)
         if self.data.uid is None:
-            self.form.header = 'Update Business Account'
             for i in range(1, 4):
                 self.tabs.enableTab(i, False)
+        else:
+            self.form.header = 'Update Business Account'
