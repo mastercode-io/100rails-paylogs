@@ -77,5 +77,6 @@ class CreateTenantForm(FormBase):
         super().form_open(args)
         print('CreateTenantForm.form_open')
         if self.data.uid is None:
+            self.form.header = 'Update Business Account'
             for i in range(1, 4):
                 self.tabs.enableTab(i, False)
