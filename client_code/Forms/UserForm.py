@@ -19,7 +19,7 @@ class UserForm(FormBase):
         self.email = TextInput(name='email', label='Login (email)', required=True)
         self.password = TextInput(name='password', label='Password', input_type='password', required=True, save=False)
         self.confirm_pwd = TextInput(name='confirm_password', label='Confirm Password', input_type='password', required=True, save=False)
-        self.enabled = CheckboxInput(name='enabled', label='Enabled')
+        self.enabled = CheckboxInput(name='enabled', label='Enabled', value=True)
         self.user_roles = LookupInput(name='user_roles', label='Roles', model='UserRole', multiple=True)
         self.permissions = MultiFieldInput(name='permissions', model='User', label='Permissions')
 
