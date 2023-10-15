@@ -80,7 +80,7 @@ class CreateTenantForm(FormBase):
             if 'cssClass' in button.buttonModel and button.buttonModel['cssClass'] == 'da-save-button':
                 print('save button', button.buttonModel['content'])
                 button.buttonModel['content'] = 'Create Account'
-                button.refresh()
+                # button.refresh()
                 button.buttonModel.refresh()
         if self.data.uid is None:
             for i in range(1, 4):
