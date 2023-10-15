@@ -78,10 +78,10 @@ class CreateTenantForm(FormBase):
         print('CreateTenantForm.form_open')
         for button in self.form.buttons:
             if 'cssClass' in button.buttonModel and button.buttonModel['cssClass'] == 'da-save-button':
-                print('save button', button.buttonModel['content'])
+                print('save button', button.element)
                 button.buttonModel['content'] = 'Create Account'
-                for k in button.buttonModel.keys():
-                    print(k, button.buttonModel[k])
+                for k in button.keys():
+                    print(k, button[k])
                 # button.callChildDataBind()
         if self.data.uid is None:
             for i in range(1, 4):
