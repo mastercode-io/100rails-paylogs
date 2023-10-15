@@ -9,6 +9,7 @@ class CreateTenantForm(FormBase):
         kwargs['model'] = 'Business'
 
         self.name = TextInput(name='name', label='Account Name', required=True)
+        self.business_name = TextInput(name='business_name', label='Business Name', required=True)
         self.address= MultiFieldInput(name='address', model='Business')
         self.phone = TextInput(name='phone', label='Phone')
         self.email = TextInput(name='email', label='Email')
@@ -26,7 +27,7 @@ class CreateTenantForm(FormBase):
                 },
                 {
                     'name': '_', 'cols': [
-                    ['Company Information', self.name, self.phone, self.email, self.website],
+                    ['Company Information', self.business_name, self.phone, self.email, self.website],
                     [self.address],
                 ]
                 },
