@@ -78,6 +78,9 @@ class CreateTenantForm(FormBase):
         print('CreateTenantForm.form_open')
         buttons = self.form.getButtons()
         print('buttons', buttons)
+        for button in buttons:
+            for k in button.keys():
+                print(k, button[k])
             # if 'cssClass' in button.buttonModel and button.buttonModel['cssClass'] == 'da-save-button':
             #     print('save button')
             #     button.buttonModel['content'] = 'Create Account'
