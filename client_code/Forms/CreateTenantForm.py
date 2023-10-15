@@ -82,6 +82,7 @@ class CreateTenantForm(FormBase):
                 button.buttonModel['content'] = 'Create Account'
                 for k in button.keys():
                     print(k, button[k])
+                button.finalUpdate()
         if self.data.uid is None:
             for i in range(1, 4):
                 self.tabs.enableTab(i, False)
