@@ -76,8 +76,9 @@ class CreateTenantForm(FormBase):
     def form_open(self, args):
         super().form_open(args)
         print('CreateTenantForm.form_open')
+        print(self.form.buttons)
         for button in self.form.buttons:
-            print(button.content, button.id, button.cssClass)
+            print(button.buttonModel.content, button.buttonModel.id, button.buttonModel.cssClass)
         if self.data.uid is None:
             for i in range(1, 4):
                 self.tabs.enableTab(i, False)
