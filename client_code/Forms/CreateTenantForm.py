@@ -1,6 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL2
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
+from AnvilFusion.components.SubformGrid import SubformGrid
 
 
 class CreateTenantForm(FormBase):
@@ -17,9 +18,15 @@ class CreateTenantForm(FormBase):
         self.logo = InlineMessage(name='logo', label='Logo')
         self.subscription = MultiFieldInput(name='subscription', model='Business', label='_', cols=2)
 
+        self.users = SubformGrid(name='users', label='User List', model='User',
+                                 # link_model='Tenant', link_field='case_workflow',
+                                 form_container_id=kwargs.get('target'),
+                                 # view_config=workflow_items_view,
+                                 )
+
         tabs = [
             {
-                'name':'account', 'label': 'Account Details', 'sections': [
+                'name':'account', 'label': 'Account', 'sections': [
                 {
                     'name': '_', 'rows': [
                     {self.name, None}
@@ -43,7 +50,7 @@ class CreateTenantForm(FormBase):
             ],
             },
             {
-                'name':'billing', 'label': 'Billing Details', 'sections': [
+                'name':'billing', 'label': 'Billing', 'sections': [
                 {
                     'name': '_', 'rows': [
                     # []
@@ -55,7 +62,7 @@ class CreateTenantForm(FormBase):
                 'name':'users', 'label': 'Users', 'sections': [
                 {
                     'name': '_', 'rows': [
-                    # []
+                    [self.users]
                 ]
                 }
             ],
