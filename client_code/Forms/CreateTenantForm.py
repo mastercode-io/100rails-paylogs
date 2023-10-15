@@ -75,4 +75,7 @@ class CreateTenantForm(FormBase):
 
     def form_open(self, args):
         super().form_open(args)
-        print('CreateTenantForm.form_open', self.form.header, self.tabs)
+        print('CreateTenantForm.form_open')
+        if self.data.uid is None:
+            for i in range(1, 4):
+                self.tabs.enableTab(i, False)
