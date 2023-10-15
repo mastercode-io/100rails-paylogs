@@ -76,10 +76,9 @@ class CreateTenantForm(FormBase):
     def form_open(self, args):
         super().form_open(args)
         print('CreateTenantForm.form_open')
-        print(self.form.buttons)
         for button in self.form.buttons:
-            for k in button.keys():
-                print(k, button[k])
+            if button.buttonModel.get('cssClass') == 'da-save-button':
+                button.buttonModel.content = 'Create Account'
         if self.data.uid is None:
             for i in range(1, 4):
                 self.tabs.enableTab(i, False)
