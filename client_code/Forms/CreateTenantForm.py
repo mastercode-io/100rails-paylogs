@@ -79,11 +79,11 @@ class CreateTenantForm(FormBase):
         buttons = self.form.getButtons()
         print('buttons', buttons)
         for button in buttons:
-            for k in button.keys():
-                print(k, button[k])
-            # if 'cssClass' in button.buttonModel and button.buttonModel['cssClass'] == 'da-save-button':
-            #     print('save button')
-            #     button.buttonModel['content'] = 'Create Account'
+            # for k in button.keys():
+            #     print(k, button[k])
+            if button.cssClass == 'da-save-button':
+                print('save button')
+                button.content = 'Create Account'
             #     for k in button.keys():
             #         print(k, button[k])
                 # button.callChildDataBind()
