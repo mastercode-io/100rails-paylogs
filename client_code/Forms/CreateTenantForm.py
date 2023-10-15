@@ -26,8 +26,8 @@ class CreateTenantForm(FormBase):
                 ]
                 },
                 {
-                    'name': '_', 'cols': [
-                    ['Company Information', self.business_name, self.phone, self.email, self.website],
+                    'name': '_', 'label': 'Company Information', 'cols': [
+                    [self.business_name, self.phone, self.email, self.website],
                     [self.address],
                 ]
                 },
@@ -42,7 +42,25 @@ class CreateTenantForm(FormBase):
                 }
             ],
             },
+            {
+                'name':'billing', 'label': 'Billing Details', 'sections': [
+                {
+                    'name': '_', 'rows': [
+                    []
+                ]
+                }
+            ],
+            },
+            {
+                'name':'users', 'label': 'Users', 'sections': [
+                {
+                    'name': '_', 'rows': [
+                    []
+                ]
+                }
+            ],
+            },
         ]
 
-        super().__init__(tabs=tabs, header='Create Account', width=POPUP_WIDTH_COL2, **kwargs)
+        super().__init__(tabs=tabs, header='Create Business Account', **kwargs)
         self.fullscreen = True
