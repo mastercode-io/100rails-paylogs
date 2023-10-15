@@ -55,7 +55,7 @@ class CreateTenantForm(FormBase):
                 'name':'users', 'label': 'Users', 'sections': [
                 {
                     'name': '_', 'rows': [
-                    []
+
                 ]
                 }
             ],
