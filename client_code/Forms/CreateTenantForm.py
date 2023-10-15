@@ -46,7 +46,7 @@ class CreateTenantForm(FormBase):
                 'name':'billing', 'label': 'Billing Details', 'sections': [
                 {
                     'name': '_', 'rows': [
-                    []
+
                 ]
                 }
             ],
