@@ -71,3 +71,8 @@ class CreateTenantForm(FormBase):
 
         super().__init__(tabs=tabs, header='Create Business Account', **kwargs)
         self.fullscreen = True
+
+
+    def form_open(self, args):
+        super().form_open(args)
+        print('CreateTenantForm.form_open', self.form.header, self.tabs)
