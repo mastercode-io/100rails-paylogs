@@ -8,10 +8,10 @@ from ..app.models import Tenant, Business, User
 
 class TenantForm(FormBase):
     def __init__(self, **kwargs):
-        print('CreateTenantForm')
+        print('TenantForm')
         kwargs['model'] = 'Business'
 
-        self.tenant = TextInput(name='name', label='Account Name', required=True)
+        self.tenant = TextInput(name='tenant', label='Account Name', required=True)
         self.business_name = TextInput(name='name', label='Business Name', required=True)
         self.address= MultiFieldInput(name='address', model='Business')
         self.phone = TextInput(name='phone', label='Phone')
@@ -78,15 +78,11 @@ class TenantForm(FormBase):
     def form_open(self, args):
         super().form_open(args)
         print('TenantForm.form_open')
-        print(dir(self.data), self.data.uid)
+        print(self.data.uid, self.data.tenant_uid)
         if self.data.uid:
-            AppEnv.set_tenant(tenant_uid=self.data.uid)
-            business = Business.search()
-            self.business_name.value = business.name
-            self.phone.value = business.phone
-            self.email.value = business.email
-            self.website.value = business.website
-            self.address.value = business.address
+            AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
+            tenant = Tenant.get(self.data.tenant_uid)
+            self.tenant.value = tenant.name
         else:
             self.form.header = 'Create Business Account'
             buttons = self.form.getButtons()
@@ -103,9 +99,16 @@ class TenantForm(FormBase):
 
 
     def form_save(self, args):
-        if not self.data or not hasattr(self.data, 'uid'):
-            self.data = Tenant(name=self.tenant.value).save()
-            AppEnv.set_tenant(tenant_uid=self.data.uid)
+        if not self.data.tenant_uid:
+            tenant = Tenant(name=self.tenant.value).save()
+            AppEnv.set_tenant(tenant_uid=tenant.uid)
+            business = Business(
+                name=self.business_name.value,
+                phone=self.phone.value,
+                email=self.email.value,
+                website=self.website.value,
+                address=self.address.value,
+            ).save()
             self.form.header = 'Update Business Account'
             buttons = self.form.getButtons()
             for button in buttons:
