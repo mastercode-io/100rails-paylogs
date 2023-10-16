@@ -11,7 +11,9 @@ class TenantForm(FormBase):
         print('TenantForm')
         kwargs['model'] = 'Business'
 
-        self.tenant = TextInput(name='tenant', label='Account Name', required=True)
+        self.tenant_instance = None
+
+        self.tenant_name = TextInput(name='tenant', label='Account Name', required=True)
         self.business_name = TextInput(name='name', label='Business Name', required=True)
         self.address= MultiFieldInput(name='address', model='Business')
         self.phone = TextInput(name='phone', label='Phone')
@@ -81,8 +83,8 @@ class TenantForm(FormBase):
         print(self.data.uid, self.data.tenant_uid)
         if self.data.uid:
             AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
-            tenant = Tenant.get(self.data.tenant_uid)
-            self.tenant.value = tenant.name
+            self.tenant_instance = Tenant.get(self.data.tenant_uid)
+            self.tenant_name.value = self.tenant_instance.name
         else:
             self.form.header = 'Create Business Account'
             buttons = self.form.getButtons()
