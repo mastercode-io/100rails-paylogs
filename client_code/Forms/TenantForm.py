@@ -22,7 +22,7 @@ class TenantForm(FormBase):
         self.logo = InlineMessage(name='logo', label='Logo')
         self.subscription = MultiFieldInput(name='subscription', model='Business', label='_', cols=2)
 
-        self.users = SubformGrid(name='users', label='User List', model='User',
+        self.users = SubformGrid(name='users', label='User List', model='User', is_dependent=True,
                                  # link_model='Tenant', link_field='case_workflow',
                                  form_container_id=kwargs.get('target'),
                                  # view_config=workflow_items_view,
@@ -85,7 +85,7 @@ class TenantForm(FormBase):
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             self.tenant_instance = Tenant.get(self.data.tenant_uid)
             self.tenant_name.value = self.tenant_instance.name
-            self.users.search_queries = {'tenant_uid': self.tenant_instance.uid}
+            self.users.filters = {'tenant_uid': self.tenant_instance.uid}
             self.users.value = self.data
         else:
             self.form.header = 'Create Business Account'
