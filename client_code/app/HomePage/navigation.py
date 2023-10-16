@@ -118,7 +118,7 @@ PL_NAV_ITEMS = {
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
-    'developer_form_preview': {'type': 'form', 'class': 'CreateTenantForm', 'props': {}},
+    'developer_form_preview': {'type': 'form', 'class': 'TenantForm', 'props': {}},
     # 'developer_grid_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
     # 'developer_page_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
 }
