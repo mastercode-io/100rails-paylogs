@@ -78,6 +78,7 @@ class TenantForm(FormBase):
     def form_open(self, args):
         super().form_open(args)
         print('TenantForm.form_open')
+        print(self.data)
         if self.data and hasattr(self.data, 'uid'):
             AppEnv.set_tenant(tenant_uid=self.data.uid)
             business = Business.search()
