@@ -1,5 +1,4 @@
-from .CreateTenantForm import CreateTenantForm
-
+from .TenantForm import TenantForm
 from .UserLoginForm import UserLoginForm
 from .UserForm import UserForm
 from .BusinessForm import BusinessForm

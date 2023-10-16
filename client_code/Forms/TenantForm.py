@@ -1,16 +1,18 @@
-from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL2
+from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 from AnvilFusion.components.SubformGrid import SubformGrid
+from AnvilFusion.tools.utils import AppEnv
+from ..app.models import Tenant, Business, User
 
 
-class CreateTenantForm(FormBase):
+class TenantForm(FormBase):
     def __init__(self, **kwargs):
         print('CreateTenantForm')
         kwargs['model'] = 'Business'
 
-        self.name = TextInput(name='name', label='Account Name', required=True)
-        self.business_name = TextInput(name='business_name', label='Business Name', required=True)
+        self.tenant = TextInput(name='name', label='Account Name', required=True)
+        self.business_name = TextInput(name='name', label='Business Name', required=True)
         self.address= MultiFieldInput(name='address', model='Business')
         self.phone = TextInput(name='phone', label='Phone')
         self.email = TextInput(name='email', label='Email')
@@ -29,7 +31,7 @@ class CreateTenantForm(FormBase):
                 'name':'account', 'label': 'Account', 'sections': [
                 {
                     'name': '_', 'rows': [
-                    {self.name, None}
+                    {self.tenant, None}
                 ]
                 },
                 {
@@ -69,19 +71,44 @@ class CreateTenantForm(FormBase):
             },
         ]
 
-        super().__init__(tabs=tabs, header='Create Business Account', **kwargs)
+        super().__init__(tabs=tabs, header='Update Business Account', **kwargs)
         self.fullscreen = True
 
 
     def form_open(self, args):
         super().form_open(args)
-        print('CreateTenantForm.form_open')
-        buttons = self.form.getButtons()
-        for button in buttons:
-            if button.cssClass == 'da-save-button':
-                button.content = 'Create Account'
-        if self.data.uid is None:
-            for i in range(1, 4):
-                self.tabs.enableTab(i, False)
+        print('TenantForm.form_open')
+        if self.data and hasattr(self.data, 'uid'):
+            AppEnv.set_tenant(tenant_uid=self.data.uid)
+            business = Business.search()
+            self.business_name.value = business.name
+            self.phone.value = business.phone
+            self.email.value = business.email
+            self.website.value = business.website
+            self.address.value = business.address
         else:
+            self.form.header = 'Create Business Account'
+            buttons = self.form.getButtons()
+            for button in buttons:
+                if button.cssClass == 'da-save-button':
+                    button.content = 'Create Account'
+                for i in range(1, 3):
+                    self.tabs.enableTab(i, False)
+
+
+    def form_cancel(self, args):
+        AppEnv.reset_tenant()
+        super().form_cancel(args)
+
+
+    def form_save(self, args):
+        if not self.data or not hasattr(self.data, 'uid'):
+            self.data = Tenant(name=self.tenant.value).save()
+            AppEnv.set_tenant(tenant_uid=self.data.uid)
             self.form.header = 'Update Business Account'
+            buttons = self.form.getButtons()
+            for button in buttons:
+                if button.cssClass == 'da-save-button':
+                    button.content = 'Save'
+                for i in range(1, 3):
+                    self.tabs.enableTab(i, True)
