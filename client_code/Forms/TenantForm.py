@@ -33,7 +33,7 @@ class TenantForm(FormBase):
                 'name':'account', 'label': 'Account', 'sections': [
                 {
                     'name': '_', 'rows': [
-                    {self.tenant, None}
+                    {self.tenant_name, None}
                 ]
                 },
                 {
