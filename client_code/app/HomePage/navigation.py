@@ -263,12 +263,17 @@ class Sidebar:
 
         if component['type'] == 'view':
             if 'config' in component:
-                self.content_control = GridView(view_name=component['config'], container_id=nav_container_id)
+                self.content_control = GridView(view_name=component['config'],
+                                                container_id=nav_container_id,
+                                                **component.get('props', {}))
             elif hasattr(AppEnv.views, f"{component['model']}View"):
                 view_class = getattr(AppEnv.views, f"{component['model']}View")
-                self.content_control = view_class(container_id=nav_container_id)
+                self.content_control = view_class(container_id=nav_container_id,
+                                                  **component.get('props', {}))
             else:
-                self.content_control = GridView(model=component['model'], container_id=nav_container_id)
+                self.content_control = GridView(model=component['model'],
+                                                container_id=nav_container_id,
+                                                **component.get('props', {}))
 
         elif component['type'] == 'form':
             print('form', component)

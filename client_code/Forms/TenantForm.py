@@ -102,7 +102,7 @@ class TenantForm(FormBase):
 
     def form_save(self, args):
         if not self.data.tenant_uid:
-            tenant = Tenant(name=self.tenant.value).save()
+            tenant = Tenant(name=self.tenant_name.value).save()
             AppEnv.set_tenant(tenant_uid=tenant.uid)
             business = Business(
                 name=self.business_name.value,
