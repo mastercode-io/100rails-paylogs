@@ -82,9 +82,11 @@ class TenantForm(FormBase):
         print('TenantForm.form_open')
         print(self.data.uid, self.data.tenant_uid)
         if self.data.uid:
-            AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
+            # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             self.tenant_instance = Tenant.get(self.data.tenant_uid)
             self.tenant_name.value = self.tenant_instance.name
+            self.users.search_queries = {'tenant_uid': self.tenant_instance.uid}
+            self.users.value = self.data
         else:
             self.form.header = 'Create Business Account'
             buttons = self.form.getButtons()
@@ -103,8 +105,9 @@ class TenantForm(FormBase):
     def form_save(self, args):
         if not self.data.tenant_uid:
             tenant = Tenant(name=self.tenant_name.value).save()
-            AppEnv.set_tenant(tenant_uid=tenant.uid)
-            business = Business(
+            # AppEnv.set_tenant(tenant_uid=tenant.uid)
+            self.data = Business(
+                tenant_uid=tenant.uid,
                 name=self.business_name.value,
                 phone=self.phone.value,
                 email=self.email.value,
@@ -116,5 +119,14 @@ class TenantForm(FormBase):
             for button in buttons:
                 if button.cssClass == 'da-save-button':
                     button.content = 'Save'
-                for i in range(1, 3):
+                for i in range(1, 4):
                     self.tabs.enableTab(i, True)
+
+        else:
+            self.data.name = self.business_name.value
+            self.data.phone = self.phone.value
+            self.data.email = self.email.value
+            self.data.website = self.website.value
+            self.data.address = self.address.value
+            self.data.subscription = self.subscription.value
+            self.data.save()
