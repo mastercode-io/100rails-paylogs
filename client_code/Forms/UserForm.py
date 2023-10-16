@@ -1,6 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
+import anvil.users
 
 FORM_ACTION_HEADER = {
     'add': 'Signup',
@@ -64,7 +65,10 @@ class UserForm(FormBase):
 
 
     def save_user(self, args):
-        pass
+        if self.form_validate():
+            if not self.data.uid:
+                user_instance = anvil.users.signup_with_email(self.email.value, self.password.value)
+                print('user_instance', user_instance, dir(user_instance))
 
 
     def form_cancel(self, args):
