@@ -99,7 +99,8 @@ class UserForm(FormBase):
 
             else:
                 super().form_save(args)
-                super().form_cancel(args)
+
+            super().form_cancel(args)
 
 
     def form_cancel(self, args):
