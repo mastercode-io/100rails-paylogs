@@ -73,7 +73,10 @@ class TenantForm(FormBase):
             },
         ]
 
-        super().__init__(tabs=tabs, header='Update Business Account', **kwargs)
+        super().__init__(tabs=tabs,
+                         header='Update Business Account',
+                         button_cancel_label='Close',
+                         **kwargs)
         self.fullscreen = True
 
 
@@ -91,7 +94,7 @@ class TenantForm(FormBase):
             self.website.value = self.business_instance['website']
             self.address.value = self.business_instance['address']
             self.subscription.value = self.business_instance['subscription']
-            self.users.filters = {'tenant_uid': self.data.uid}
+            self.users.filters = {'tenant_uid': self.data['uid']}
             self.users.value = self.data
         else:
             self.form.header = 'Create Business Account'
