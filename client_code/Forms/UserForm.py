@@ -71,6 +71,7 @@ class UserForm(FormBase):
 
 
     def save_user(self, args):
+        self.alert.hide()
         if self.form_validate():
             if not self.data.uid:
                 try:
@@ -78,6 +79,7 @@ class UserForm(FormBase):
                     print('user_instance', user_instance, dir(user_instance))
                 except Exception as e:
                     print('error', e)
+                    self.alert.show()
                     self.alert.message = str(e)
 
 
