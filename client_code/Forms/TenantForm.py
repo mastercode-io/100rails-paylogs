@@ -79,8 +79,8 @@ class TenantForm(FormBase):
 
     def form_open(self, args):
         print('TenantForm.form_open')
-        print(self.data.uid, self.data.tenant_uid)
-        if self.data.uid:
+        print(self.data['uid'], self.data['tenant_uid'])
+        if self.data['uid']:
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             self.business_instance = Business.get_by('tenant_uid', self.data.uid)
             print('business', self.business_instance)
@@ -109,14 +109,14 @@ class TenantForm(FormBase):
 
 
     def form_save(self, args):
-        if not self.data.tenant_uid:
+        if not self.data['uid']:
             tenant = Tenant(name=self.tenant_name.value).save()
             print('a) tenant', tenant['uid'], tenant['tenant_uid'])
             tenant['tenant_uid'] = tenant['uid']
             tenant.save()
             print('b) tenant', tenant['uid'], tenant['tenant_uid'])
             # AppEnv.set_tenant(tenant_uid=tenant.uid)
-            self.data = Business(
+            self.business_instance = Business(
                 tenant_uid=tenant['uid'],
                 name=self.business_name.value,
                 phone=self.phone.value,
@@ -135,10 +135,10 @@ class TenantForm(FormBase):
             self.users.value = self.data
 
         else:
-            self.data['name'] = self.business_name.value
-            self.data['phone'] = self.phone.value
-            self.data['email'] = self.email.value
-            self.data['website'] = self.website.value
-            self.data['address'] = self.address.value
-            self.data['subscription'] = self.subscription.value
-            self.data.save()
+            self.business_instance['name'] = self.business_name.value
+            self.business_instance['phone'] = self.phone.value
+            self.business_instance['email'] = self.email.value
+            self.business_instance['website'] = self.website.value
+            self.business_instance['address'] = self.address.value
+            self.business_instance['subscription'] = self.subscription.value
+            self.business_instance.save()
