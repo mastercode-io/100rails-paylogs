@@ -23,6 +23,7 @@ class UserForm(FormBase):
         self.enabled = CheckboxInput(name='enabled', label='Enabled', value=True)
         self.user_roles = LookupInput(name='user_roles', label='Roles', model='UserRole', multiple=True)
         self.permissions = MultiFieldInput(name='permissions', model='User', label='Permissions')
+        self.alert = InlineMessage(name='message')
 
         buttons = [
             {'buttonModel': {'isPrimary': True, 'content': FORM_ACTION_HEADER[action]}, 'click': self.save_user},
@@ -72,8 +73,12 @@ class UserForm(FormBase):
     def save_user(self, args):
         if self.form_validate():
             if not self.data.uid:
-                user_instance = anvil.users.signup_with_email(self.email.value, self.password.value)
-                print('user_instance', user_instance, dir(user_instance))
+                try:
+                    user_instance = anvil.users.signup_with_email(self.email.value, self.password.value)
+                    print('user_instance', user_instance, dir(user_instance))
+                except Exception as e:
+                    print('error', e)
+                    self.alert.message = str(e)
 
 
     def form_cancel(self, args):
