@@ -1,6 +1,7 @@
 from ._anvil_designer import HomePageTemplate
+import anvil.js
 from anvil.js.window import ej, jQuery
-from anvil import get_url_hash
+# from anvil import get_url_hash
 import anvil.users
 from AnvilFusion.tools.utils import AppEnv, DotDict, init_user_session
 from .. import models
@@ -125,6 +126,7 @@ class HomePage(HomePageTemplate):
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         self.appbar_menu.show()
         self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
+        anvil.js.window.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
         self.sidebar.show(AppEnv.start_menu)
 
 
