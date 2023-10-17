@@ -11,10 +11,10 @@ class TenantForm(FormBase):
         print('TenantForm')
         kwargs['model'] = 'Business'
 
-        self.tenant_instance = None
+        self.business = None
 
-        self.tenant_name = TextInput(name='tenant', label='Account Name', required=True)
-        self.business_name = TextInput(name='name', label='Business Name', required=True)
+        self.tenant_name = TextInput(name='name', label='Account Name', required=True)
+        self.business_name = TextInput(name='business_name', label='Business Name', required=True)
         self.address= MultiFieldInput(name='address', model='Business')
         self.phone = TextInput(name='phone', label='Phone')
         self.email = TextInput(name='email', label='Email')
@@ -82,9 +82,14 @@ class TenantForm(FormBase):
         print(self.data.uid, self.data.tenant_uid)
         if self.data.uid:
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
-            self.tenant_instance = Tenant.get(self.data.tenant_uid)
-            self.tenant_name.value = self.tenant_instance.name
-            self.users.filters = {'tenant_uid': self.tenant_instance.uid}
+            self.business = Business.get_by('tenant_uid', self.data.uid)
+            self.business_name.value = self.business.name
+            self.phone.value = self.business.phone
+            self.email.value = self.business.email
+            self.website.value = self.business.website
+            self.address.value = self.business.address
+            self.subscription.value = self.business.subscription
+            self.users.filters = {'tenant_uid': self.data.uid}
             self.users.value = self.data
         else:
             self.form.header = 'Create Business Account'
