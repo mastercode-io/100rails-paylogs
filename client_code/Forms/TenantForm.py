@@ -82,7 +82,7 @@ class TenantForm(FormBase):
 
     def form_open(self, args):
         print('TenantForm.form_open')
-        super().form_open(args)
+        # super().form_open(args)
         print(self.data)
         if self.data['uid']:
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
@@ -97,7 +97,9 @@ class TenantForm(FormBase):
             self.subscription.value = self.business_instance['subscription']
             self.users.filters = {'tenant_uid': self.data['uid']}
             self.users.value = self.data
+            super().form_open(args)
         else:
+            super().form_open(args)
             self.form.header = 'Create Business Account'
             buttons = self.form.getButtons()
             for button in buttons:
