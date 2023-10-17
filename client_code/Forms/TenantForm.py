@@ -45,19 +45,19 @@ class TenantForm(FormBase):
             ],
             },
             {
-                'name':'subscription', 'label': 'Subscription', 'sections': [
+                'name':'billing', 'label': 'Billing', 'sections': [
                 {
-                    'name': '_', 'cols': [
-                    [self.subscription]
+                    'name': '_', 'rows': [
+                    # []
                 ]
                 }
             ],
             },
             {
-                'name':'billing', 'label': 'Billing', 'sections': [
+                'name':'subscription', 'label': 'Subscription', 'sections': [
                 {
-                    'name': '_', 'rows': [
-                    # []
+                    'name': '_', 'cols': [
+                    [self.subscription]
                 ]
                 }
             ],
