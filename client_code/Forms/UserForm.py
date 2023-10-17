@@ -74,33 +74,32 @@ class UserForm(FormBase):
 
     def save_user(self, args):
         self.alert.hide()
-        if self.form_validate():
-
-            if not self.data.uid:
-                # user_instance = User()
-                signup_result = anvil.server.call('signup_user',
-                                                  self.email.value,
-                                                    self.password.value,
-                                                  self.source.value['tenant_uid'])
-                if signup_result['status'] == 'success':
-                    user_instance = User.get(signup_result['uid'])
-                    user_instance['first_name'] = self.first_name.value
-                    user_instance['last_name'] = self.last_name.value
-                    user_instance['enabled'] = self.enabled.value
-                    user_instance['user_roles'] = self.user_roles.value
-                    user_instance['permissions'] = self.permissions.value
-                    user_instance.save()
-                    self.update_source(user_instance, True)
-                else:
-                    self.alert.show()
-                    self.alert.message = signup_result['error']
-                    self.alert.type = 'e-error'
-                    return
-
+        if not self.data['uid'] and self.form_validate():
+            # user_instance = User()
+            signup_result = anvil.server.call('signup_user',
+                                              self.email.value,
+                                                self.password.value,
+                                              self.source.value['tenant_uid'])
+            if signup_result['status'] == 'success':
+                user_instance = User.get(signup_result['uid'])
+                user_instance['first_name'] = self.first_name.value
+                user_instance['last_name'] = self.last_name.value
+                user_instance['enabled'] = self.enabled.value
+                user_instance['user_roles'] = self.user_roles.value
+                user_instance['permissions'] = self.permissions.value
+                user_instance.save()
+                self.update_source(user_instance, True)
             else:
-                super().form_save(args)
+                self.alert.show()
+                self.alert.message = signup_result['error']
+                self.alert.type = 'e-error'
+                return
 
-            super().form_cancel(args)
+        else:
+            print('update user')
+            super().form_save(args)
+
+        super().form_cancel(args)
 
 
     def form_cancel(self, args):
