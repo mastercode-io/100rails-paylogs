@@ -52,7 +52,7 @@ class UserForm(FormBase):
         super().form_open(args)
         print('UserForm.form_show', self.action)
         print('source', self.source)
-        print('source value', self.source.get('value'))
+        print('source value', self.source.getattr('value'))
         if self.action == 'edit':
             self.password.hide()
             self.confirm_pwd.hide()
