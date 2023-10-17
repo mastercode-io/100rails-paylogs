@@ -115,6 +115,7 @@ class TenantForm(FormBase):
     def form_save(self, args):
 
         if not self.data['uid']:
+            add_new = True
             tenant = Tenant(name=self.tenant_name.value).save()
             print('a) tenant', tenant['uid'], tenant['tenant_uid'])
             tenant['tenant_uid'] = tenant['uid']
@@ -141,6 +142,7 @@ class TenantForm(FormBase):
             self.data = tenant
 
         else:
+            add_new = False
             self.business_instance['name'] = self.business_name.value
             self.business_instance['phone'] = self.phone.value
             self.business_instance['email'] = self.email.value
@@ -148,3 +150,5 @@ class TenantForm(FormBase):
             self.business_instance['address'] = self.address.value
             self.business_instance['subscription'] = self.subscription.value
             self.business_instance.save()
+
+        self.update_source(self.data, add_new)
