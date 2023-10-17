@@ -79,10 +79,11 @@ class TenantForm(FormBase):
 
     def form_open(self, args):
         print('TenantForm.form_open')
-        print(self.data['uid'], self.data['tenant_uid'])
-        if self.data['uid']:
+        # print(self.data['uid'], self.data['tenant_uid'])
+        if getattr(self.data, 'uid') and self.data['uid']:
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
-            self.business_instance = Business.get_by('tenant_uid', self.data.uid)
+            print(self.data['uid'], self.data['tenant_uid'])
+            self.business_instance = Business.get_by('tenant_uid', self.data['uid'])
             print('business', self.business_instance)
             self.business_name.value = self.business_instance['name']
             self.phone.value = self.business_instance['phone']
