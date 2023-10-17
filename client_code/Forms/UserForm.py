@@ -49,6 +49,7 @@ class UserForm(FormBase):
             buttons=buttons,
             **kwargs
         )
+        self.persist = True
 
 
     def form_open(self, args):
@@ -88,6 +89,7 @@ class UserForm(FormBase):
                 return
             else:
                 self.data = User.get(signup_result['uid'])
+                self.action = 'edit'
                 # user_instance = User.get(signup_result['uid'])
                 # user_instance['first_name'] = self.first_name.value
                 # user_instance['last_name'] = self.last_name.value
