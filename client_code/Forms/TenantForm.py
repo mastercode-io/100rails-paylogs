@@ -45,19 +45,19 @@ class TenantForm(FormBase):
             ],
             },
             {
-                'name':'billing', 'label': 'Billing', 'sections': [
+                'name':'subscription', 'label': 'Subscription', 'sections': [
                 {
-                    'name': '_', 'rows': [
-                    # []
+                    'name': '_', 'cols': [
+                    [self.subscription]
                 ]
                 }
             ],
             },
             {
-                'name':'subscription', 'label': 'Subscription', 'sections': [
+                'name':'billing', 'label': 'Billing', 'sections': [
                 {
-                    'name': '_', 'cols': [
-                    [self.subscription]
+                    'name': '_', 'rows': [
+                    # []
                 ]
                 }
             ],
@@ -82,6 +82,7 @@ class TenantForm(FormBase):
 
     def form_open(self, args):
         print('TenantForm.form_open')
+        super().form_open(args)
         print(self.data)
         if self.data['uid']:
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
@@ -104,7 +105,7 @@ class TenantForm(FormBase):
                     button.content = 'Create Account'
                 for i in range(1, 4):
                     self.tabs.enableTab(i, False)
-        super().form_open(args)
+        # super().form_open(args)
 
 
     def form_cancel(self, args):
