@@ -82,7 +82,7 @@ class TenantForm(FormBase):
 
     def form_open(self, args):
         print('TenantForm.form_open')
-        # print(self.data['uid'], self.data['tenant_uid'])
+        print(self.data)
         if getattr(self.data, 'uid') and self.data['uid']:
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             print(self.data['uid'], self.data['tenant_uid'])
