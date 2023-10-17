@@ -65,11 +65,12 @@ class UserForm(FormBase):
 
 
     def form_validate(self):
-        if self.action == 'add':
-            if self.password.value != self.confirm_pwd.value:
-                return False
-            else:
-                return super().form_validate()
+        return super().form_validate()
+        # if self.action == 'add':
+        #     if self.password.value != self.confirm_pwd.value:
+        #         return False
+        #     else:
+        #         return super().form_validate()
 
 
     def save_user(self, args):
@@ -89,6 +90,7 @@ class UserForm(FormBase):
                 user_instance['permissions'] = self.permissions.value
                 user_instance.save()
                 self.update_source(user_instance, True)
+                super().form_cancel(args)
             else:
                 self.alert.show()
                 self.alert.message = signup_result['error']
@@ -98,8 +100,6 @@ class UserForm(FormBase):
         else:
             print('update user')
             super().form_save(args)
-
-        super().form_cancel(args)
 
 
     def form_cancel(self, args):
