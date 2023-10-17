@@ -39,6 +39,7 @@ class UserForm(FormBase):
             self.enabled,
             self.user_roles,
             self.permissions,
+            self.alert,
         ]
 
         super().__init__(
