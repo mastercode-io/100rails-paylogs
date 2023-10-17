@@ -105,12 +105,12 @@ class TenantForm(FormBase):
     def form_save(self, args):
         if not self.data.tenant_uid:
             tenant = Tenant(name=self.tenant_name.value).save()
-            tenant.tenant_uid = tenant.uid
+            tenant['tenant_uid'] = tenant['uid']
             tenant.save()
             print('tenant', tenant.uid)
             # AppEnv.set_tenant(tenant_uid=tenant.uid)
             self.data = Business(
-                tenant_uid=tenant.uid,
+                tenant_uid=tenant['uid'],
                 name=self.business_name.value,
                 phone=self.phone.value,
                 email=self.email.value,
@@ -126,10 +126,10 @@ class TenantForm(FormBase):
                     self.tabs.enableTab(i, True)
 
         else:
-            self.data.name = self.business_name.value
-            self.data.phone = self.phone.value
-            self.data.email = self.email.value
-            self.data.website = self.website.value
-            self.data.address = self.address.value
-            self.data.subscription = self.subscription.value
+            self.data['name'] = self.business_name.value
+            self.data['phone'] = self.phone.value
+            self.data['email'] = self.email.value
+            self.data['website'] = self.website.value
+            self.data['address'] = self.address.value
+            self.data['subscription'] = self.subscription.value
             self.data.save()
