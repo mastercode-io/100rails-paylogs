@@ -2,6 +2,7 @@ from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 import anvil.users
+from ..app.models import User
 
 FORM_ACTION_HEADER = {
     'add': 'Signup',
@@ -74,15 +75,31 @@ class UserForm(FormBase):
     def save_user(self, args):
         self.alert.hide()
         if self.form_validate():
+
             if not self.data.uid:
-                try:
-                    user_instance = anvil.users.signup_with_email(self.email.value, self.password.value)
-                    print('user_instance', user_instance, dir(user_instance))
-                except Exception as e:
-                    print('error', e)
+                # user_instance = User()
+                signup_result = anvil.server.call('signup_user',
+                                                  self.email.value,
+                                                    self.password.value,
+                                                  self.source.value['tenant_uid'])
+                if signup_result['status'] == 'success':
+                    user_instance = User.get(signup_result['uid'])
+                    user_instance['first_name'] = self.first_name.value
+                    user_instance['last_name'] = self.last_name.value
+                    user_instance['enabled'] = self.enabled.value
+                    user_instance['user_roles'] = self.user_roles.value
+                    user_instance['permissions'] = self.permissions.value
+                    user_instance.save()
+                    self.update_source(user_instance, True)
+                else:
                     self.alert.show()
-                    self.alert.message = str(e)
+                    self.alert.message = signup_result['error']
                     self.alert.type = 'e-error'
+                    return
+
+            else:
+                super().form_save(args)
+                super().form_cancel(args)
 
 
     def form_cancel(self, args):
