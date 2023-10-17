@@ -125,6 +125,8 @@ class TenantForm(FormBase):
                     button.content = 'Save'
                 for i in range(1, 4):
                     self.tabs.enableTab(i, True)
+            self.users.filters = {'tenant_uid': tenant.uid}
+            self.users.value = self.data
 
         else:
             self.data['name'] = self.business_name.value
