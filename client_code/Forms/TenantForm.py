@@ -113,6 +113,7 @@ class TenantForm(FormBase):
 
 
     def form_save(self, args):
+
         if not self.data['uid']:
             tenant = Tenant(name=self.tenant_name.value).save()
             print('a) tenant', tenant['uid'], tenant['tenant_uid'])
@@ -135,8 +136,9 @@ class TenantForm(FormBase):
                     button.content = 'Save'
                 for i in range(1, 4):
                     self.tabs.enableTab(i, True)
-            self.users.filters = {'tenant_uid': tenant.uid}
-            self.users.value = self.data
+            self.users.filters = {'tenant_uid': tenant['uid']}
+            self.users.value = tenant
+            self.data = tenant
 
         else:
             self.business_instance['name'] = self.business_name.value
