@@ -82,6 +82,7 @@ class UserForm(FormBase):
                     print('error', e)
                     self.alert.show()
                     self.alert.message = str(e)
+                    self.alert.type = 'e-error'
 
 
     def form_cancel(self, args):
