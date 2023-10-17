@@ -47,7 +47,7 @@ class TenantForm(FormBase):
             {
                 'name':'subscription', 'label': 'Subscription', 'sections': [
                 {
-                    'name': '_', 'rows': [
+                    'name': '_', 'cols': [
                     [self.subscription]
                 ]
                 }
