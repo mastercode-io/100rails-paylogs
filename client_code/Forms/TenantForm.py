@@ -98,7 +98,7 @@ class TenantForm(FormBase):
 
 
     def form_cancel(self, args):
-        AppEnv.reset_tenant()
+        # AppEnv.reset_tenant()
         super().form_cancel(args)
 
 
