@@ -56,8 +56,3 @@ class Timesheet:
             return 0
         return (args["end_time"] - args["start_time"]).total_seconds() / 3600
     total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
-
-
-# Module name correction for imports
-TimesheetType.__module__ = __name__[:__name__.rfind(".")]
-Timesheet.__module__ = __name__[:__name__.rfind(".")]
