@@ -5,7 +5,7 @@ from AnvilFusion.datamodel.particles import (
     Computed,
 )
 from AnvilFusion.datamodel import types
-from . import Employee, Job, PayRun
+# from . import Employee, Job, PayRun
 
 
 @model_type
