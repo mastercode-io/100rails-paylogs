@@ -112,8 +112,6 @@ class HomePage(HomePageTemplate):
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         print('after_login', AppEnv.logged_user)
-        print(models.TimesheetType.__module__)
-        print(models.Timesheet.__module__)
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.administrator
                 or AppEnv.logged_user.permissions.developer):

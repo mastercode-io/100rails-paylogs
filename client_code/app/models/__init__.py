@@ -11,8 +11,6 @@ from .timesheet import TimesheetType, Timesheet
 
 TimesheetType.__module__ = __name__
 Timesheet.__module__ = __name__
-print(TimesheetType.__module__)
-print(Timesheet.__module__)
 
 # Model list for enumerations
 ENUM_MODEL_LIST = {
