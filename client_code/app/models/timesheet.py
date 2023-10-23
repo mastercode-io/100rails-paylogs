@@ -35,25 +35,25 @@ class TimesheetType:
     )
 
 
-@model_type
-class Timesheet:
-    _title = "employee"
-
-    timesheet_type = Relationship("TimesheetType")
-    employee = Relationship("Employee")
-    payrun = Relationship("PayRun")
-    job = Relationship("Job")
-    date = Attribute(field_type=types.FieldTypes.DATE)
-    start_time = Attribute(field_type=types.FieldTypes.DATETIME)
-    end_time = Attribute(field_type=types.FieldTypes.DATETIME)
-    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    approved_by = Relationship("Employee")
-    notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
-
-    @staticmethod
-    def calculate_total_hours(args):
-        if args["start_time"] is None or args["end_time"] is None:
-            return 0
-        return (args["end_time"] - args["start_time"]).total_seconds() / 3600
-    total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
+# @model_type
+# class Timesheet:
+#     _title = "employee"
+#
+#     timesheet_type = Relationship("TimesheetType")
+#     employee = Relationship("Employee")
+#     payrun = Relationship("PayRun")
+#     job = Relationship("Job")
+#     date = Attribute(field_type=types.FieldTypes.DATE)
+#     start_time = Attribute(field_type=types.FieldTypes.DATETIME)
+#     end_time = Attribute(field_type=types.FieldTypes.DATETIME)
+#     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+#     approved_by = Relationship("Employee")
+#     notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+#     total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
+#
+#     @staticmethod
+#     def calculate_total_hours(args):
+#         if args["start_time"] is None or args["end_time"] is None:
+#             return 0
+#         return (args["end_time"] - args["start_time"]).total_seconds() / 3600
+#     total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
