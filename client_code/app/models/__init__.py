@@ -7,7 +7,7 @@ from AnvilFusion.datamodel.particles import (
 from AnvilFusion.datamodel import types
 from datetime import datetime
 
-from timesheet import TimesheetType, Timesheet
+from .timesheet import TimesheetType, Timesheet
 
 # Model list for enumerations
 ENUM_MODEL_LIST = {
