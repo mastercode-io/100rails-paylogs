@@ -26,8 +26,8 @@ unique_ids:
     Forms.LocationForm: FFC6DNQJ6F2V3TANV3OUBZRI5WORXA5Z
   server_modules:
     payroll: QZBKODWEDQO6RDEANBDL5OBJFOXMTVSF
-    payroll.rate_rules: IIK3G6VYQR3BINVNAFPXCB7B3HEA4F3W
-    payroll.rate_templates: YP4HLFRZDS453CQB22I77GVHSA5HSAUR
+    payroll.pay_rate_rules: BFPNIMLZQX5WAUBQ4NV5WCX2RNHBJ5YK
+    payroll.pay_rate_templates: LIOBTQMU2IGEGT3C3KNQ7VZVTIWEYJAR
   assets:
     aws-sdk-v3-bundle.js: CLW6UZVI4OGZX2LX3NNPOAENXJW72EGS
     home-page.css: '1693409651605488723872.3910725'
