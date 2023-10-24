@@ -114,16 +114,16 @@ class HomePage(HomePageTemplate):
 
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.administrator
-                or AppEnv.logged_user.permissions.developer
-                and self.appbar_settings_menu is None):
-            print('settings menu', self.appbar_settings_menu)
-            self.appbar_settings_menu = ej.buttons.Button(
-                {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
-            )
-            self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
-            self.appbar_settings_menu.element.addEventListener(
-                "click", self.settings_click
-            )
+                or AppEnv.logged_user.permissions.developer):
+            if self.appbar_settings_menu is None:
+                print('settings menu', self.appbar_settings_menu)
+                self.appbar_settings_menu = ej.buttons.Button(
+                    {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
+                )
+                self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
+                self.appbar_settings_menu.element.addEventListener(
+                    "click", self.settings_click
+                )
 
         self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
         if (AppEnv.logged_user.permissions.super_admin
