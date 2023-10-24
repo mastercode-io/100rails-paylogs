@@ -120,7 +120,7 @@ class HomePage(HomePageTemplate):
             self.appbar_settings_menu.element.addEventListener(
                 "click", self.settings_click
             )
-        self.appbar_menu.menu_items = nav.PL_APPBAR_MENU
+        self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.developer):
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_ADMIN)
