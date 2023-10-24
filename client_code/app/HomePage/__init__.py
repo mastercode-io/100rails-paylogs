@@ -49,6 +49,7 @@ class HomePage(HomePageTemplate):
         self.appbar_sidebar_toggle = ej.buttons.Button(
             {"cssClass": "e-inherit", "iconCss": "fa-solid fa-bars pl-appbar-menu-icon"}
         )
+        self.appbar_settings_menu = None
 
         self.sidebar = nav.Sidebar(
             target_el=".pl-page-container",
@@ -61,9 +62,6 @@ class HomePage(HomePageTemplate):
             menu_items=nav.PL_APPBAR_MENU,
         )
 
-        self.appbar_settings_menu = ej.buttons.Button(
-            {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
-        )
         self.appbar_notification_list = ej.splitbuttons.DropDownButton(
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
@@ -113,13 +111,19 @@ class HomePage(HomePageTemplate):
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         print('after_login', AppEnv.logged_user)
+
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.administrator
-                or AppEnv.logged_user.permissions.developer):
+                or AppEnv.logged_user.permissions.developer
+                and not self.appbar_settings_menu):
+            self.appbar_settings_menu = ej.buttons.Button(
+                {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
+            )
             self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
             self.appbar_settings_menu.element.addEventListener(
                 "click", self.settings_click
             )
+
         self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.developer):
@@ -127,8 +131,10 @@ class HomePage(HomePageTemplate):
         if AppEnv.logged_user.permissions.developer:
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         self.appbar_menu.show()
+
         self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
+
         self.sidebar.show(AppEnv.start_menu)
 
 
