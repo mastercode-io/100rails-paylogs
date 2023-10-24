@@ -110,7 +110,6 @@ class HomePage(HomePageTemplate):
 
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
-        print('after_login', AppEnv.logged_user)
 
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.administrator
@@ -150,8 +149,6 @@ class HomePage(HomePageTemplate):
         )
 
         self.login_user()
-        # self.appbar_menu.show()
-        # self.sidebar.show(None)
 
 
     def settings_click(self, args):

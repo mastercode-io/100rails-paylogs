@@ -2,6 +2,16 @@ from AnvilFusion.components.GridView import GridView
 from AnvilFusion.tools.utils import AppEnv
 
 
+def lock_dataset(args):
+    # print('lock_dataset', args.rowInfo.rowData.uid)
+    AppEnv.set_tenant(tenant_uid=args.rowInfo.rowData.uid, reload_func=AppEnv.after_login)
+
+
+def reset_dataset(args):
+    # print('reset_dataset', args.rowInfo.rowData.uid)
+    AppEnv.reset_tenant(reload_func=AppEnv.after_login)
+
+
 class TenantsView(GridView):
     def __init__(self, **kwargs):
         print('TenantsView')
@@ -15,8 +25,8 @@ class TenantsView(GridView):
         }
 
         context_menu_items = [
-            {'id': 'select_tenant', 'label': 'Lock Dataset', 'action': self.lock_datset},
-            {'id': 'reset_tenant', 'label': 'Reset Dataset', 'action': self.reset_dataset},
+            {'id': 'select_tenant', 'label': 'Lock Dataset', 'action': lock_dataset},
+            {'id': 'reset_tenant', 'label': 'Reset Dataset', 'action': reset_dataset},
         ]
 
         super().__init__(
@@ -24,13 +34,3 @@ class TenantsView(GridView):
             view_config=view_config,
             context_menu_items=context_menu_items,
             **kwargs)
-
-
-    def lock_datset(self, args):
-        print('lock_dataset', args.rowInfo.rowData.uid)
-        AppEnv.set_tenant(tenant_uid=args.rowInfo.rowData.uid, reload_func=AppEnv.after_login)
-
-
-    def reset_dataset(self, args):
-        print('reset_dataset', args.rowInfo.rowData.uid)
-        AppEnv.reset_tenant(reload_func=AppEnv.after_login)
