@@ -56,6 +56,23 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \    presetTagify(),\n    presetIcons(),\n    presetWebFonts(),\n    presetTypography(),\n\
     \  ],\n  // ...\n}\n</script>"}
 db_schema:
+  pay_rate_template_items:
+    client: none
+    server: full
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: pay_rate, admin_ui: null, type: number}
+    - {name: pay_rate_multiplier, admin_ui: null, type: number}
+    - {name: pay_rate_rule, admin_ui: null, type: link_single, target: pay_rate_rules}
+    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
+    - {name: pay_rate_title, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    title: Pay Rate Template Items
   user_roles:
     client: none
     server: full
@@ -166,6 +183,20 @@ db_schema:
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: created_by, admin_ui: null, type: string}
     title: Uploads
+  scopes:
+    client: none
+    server: full
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    title: Scopes
   users:
     client: none
     server: full
@@ -491,8 +522,8 @@ db_schema:
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: description, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
-    - {name: pay_rate_rules, admin_ui: null, type: link_multiple, target: pay_rate_rules}
     - {name: status, admin_ui: null, type: string}
+    - {name: scope, admin_ui: null, type: link_single, target: scopes}
   employee_roles:
     title: Employee Roles
     client: none
