@@ -33,4 +33,4 @@ class TenantsView(GridView):
 
     def reset_dataset(self, args):
         print('reset_dataset', args.rowData.uid)
-        AppEnv.reset_tenant()
+        AppEnv.reset_tenant(reload_func=AppEnv.after_login)
