@@ -72,7 +72,7 @@ class HomePage(HomePageTemplate):
                 "open": self.appbar_menu_popup_open,
             }
         )
-        appbar_user_menu_items = [
+        self.appbar_user_menu_items = [
             {
                 "text": "Admin<br>admin@100rails.com",
                 "disabled": True,
@@ -93,7 +93,7 @@ class HomePage(HomePageTemplate):
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
                 "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
-                "items": appbar_user_menu_items,
+                "items": self.appbar_user_menu_items,
                 "open": self.appbar_menu_popup_open,
                 "select": self.appbar_user_menu_select,
             }
@@ -120,6 +120,7 @@ class HomePage(HomePageTemplate):
             self.appbar_settings_menu.element.addEventListener(
                 "click", self.settings_click
             )
+        self.appbar_menu.menu_items = nav.PL_APPBAR_MENU
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.developer):
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_ADMIN)

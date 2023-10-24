@@ -145,12 +145,15 @@ class AppbarMenu:
 
     def show(self):
         print('AppBar Show')
-        self.menu = ej.navigations.Menu({
-            'cssClass': 'e-inherit',
-            'items': self.menu_items,
-            'select': self.menu_select
-        })
-        self.menu.appendTo(jQuery(f"#{self.container_el}")[0])
+        if self.menu:
+            self.menu.items = self.menu_items
+        else:
+            self.menu = ej.navigations.Menu({
+                'cssClass': 'e-inherit',
+                'items': self.menu_items,
+                'select': self.menu_select
+            })
+            self.menu.appendTo(jQuery(f"#{self.container_el}")[0])
 
 
     def menu_select(self, args):
@@ -210,8 +213,10 @@ class Sidebar:
     # Show sidebar menu
     def show(self, menu_id):
         print('show', menu_id)
-        self.menu.appendTo(jQuery(f"#{self.container_el}-menu")[0])
-        self.control.appendTo(jQuery(f"#{self.container_el}")[0])
+        if not self.menu:
+            self.menu.appendTo(jQuery(f"#{self.container_el}-menu")[0])
+        if not self.control:
+            self.control.appendTo(jQuery(f"#{self.container_el}")[0])
         self.show_menu(menu_id)
 
 
