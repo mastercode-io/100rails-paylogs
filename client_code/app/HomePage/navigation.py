@@ -185,38 +185,40 @@ class Sidebar:
         self.container_el = container_el
         self.content_id = content_id
         self.nav_target_id = None
+        self.sidebar_width = sidebar_width
         self.content_control = None
         self.nav_items = nav_items
-
-        # Init sidebar menu controls
-        self.control = self.sidebar = ej.navigations.Sidebar({
-            'width': sidebar_width,
-            'target': self.target_el,
-            'mediaQuery': '(min-width: 600px)',
-            'isOpen': True,
-            'animate': False,
-        })
-
-        self.menu = ej.navigations.TreeView({
-            'fields': {
-                'cssClass': PL_SIDEBAR_CSS,
-                'dataSource': '',
-                'id': 'nodeId',
-                'text': 'nodeText',
-                'child': 'nodeChild'
-            },
-            'expandOn': 'Click',
-            'nodeSelected': self.menu_select,
-        })
+        self.control = None
+        self.menu = None
 
 
     # Show sidebar menu
     def show(self, menu_id):
         print('show', menu_id)
         if not self.menu:
+            self.menu = ej.navigations.TreeView({
+                'fields': {
+                    'cssClass': PL_SIDEBAR_CSS,
+                    'dataSource': '',
+                    'id': 'nodeId',
+                    'text': 'nodeText',
+                    'child': 'nodeChild'
+                },
+                'expandOn': 'Click',
+                'nodeSelected': self.menu_select,
+            })
             self.menu.appendTo(jQuery(f"#{self.container_el}-menu")[0])
+
         if not self.control:
+            self.control = ej.navigations.Sidebar({
+                'width': self.sidebar_width,
+                'target': self.target_el,
+                'mediaQuery': '(min-width: 600px)',
+                'isOpen': True,
+                'animate': False,
+            })
             self.control.appendTo(jQuery(f"#{self.container_el}")[0])
+
         self.show_menu(menu_id)
 
 
