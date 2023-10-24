@@ -116,6 +116,7 @@ class HomePage(HomePageTemplate):
                 or AppEnv.logged_user.permissions.administrator
                 or AppEnv.logged_user.permissions.developer
                 and self.appbar_settings_menu is None):
+            print('settings menu', self.appbar_settings_menu)
             self.appbar_settings_menu = ej.buttons.Button(
                 {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
             )
