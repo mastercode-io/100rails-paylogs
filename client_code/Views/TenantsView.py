@@ -27,10 +27,10 @@ class TenantsView(GridView):
 
 
     def lock_datset(self, args):
-        print('lock_dataset', args.item.rowData.uid)
-        AppEnv.set_tenant(tenant_uid=args.item.rowData.uid, reload_func=AppEnv.after_login)
+        print('lock_dataset', args.rowInfo.rowData.uid)
+        AppEnv.set_tenant(tenant_uid=args.rowInfo.rowData.uid, reload_func=AppEnv.after_login)
 
 
     def reset_dataset(self, args):
-        print('reset_dataset', args.item.rowData.uid)
+        print('reset_dataset', args.rowInfo.rowData.uid)
         AppEnv.reset_tenant(reload_func=AppEnv.after_login)
