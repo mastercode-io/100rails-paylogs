@@ -99,7 +99,8 @@ class HomePage(HomePageTemplate):
             }
         )
 
-        # self.login_user()
+        AppEnv.login_user = self.login_user
+        AppEnv.after_login = self.after_login
 
 
     def login_user(self):

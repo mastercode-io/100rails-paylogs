@@ -1,4 +1,5 @@
 from AnvilFusion.components.GridView import GridView
+from AnvilFusion.tools.utils import AppEnv
 
 
 class TenantsView(GridView):
@@ -14,8 +15,8 @@ class TenantsView(GridView):
         }
 
         context_menu_items = [
-            {'id': 'select_tenant', 'label': 'Select Tenant', 'action': self.select_tenant},
-            {'id': 'reset_tenant', 'label': 'Reset Tenant', 'action': self.reset_tenant},
+            {'id': 'select_tenant', 'label': 'Lock Dataset', 'action': self.lock_datset},
+            {'id': 'reset_tenant', 'label': 'Reset Dataset', 'action': self.reset_dataset},
         ]
 
         super().__init__(
@@ -25,11 +26,11 @@ class TenantsView(GridView):
             **kwargs)
 
 
-    def select_tenant(self, args):
-        print('select_tenant', args)
-        pass
+    def lock_datset(self, args):
+        print('lock_dataset', args.rowData.uid)
+        AppEnv.set_tenant(tenant_uid=args.rowData.uid, reload_func=AppEnv.after_login)
 
 
-    def reset_tenant(self, args):
-        print('reset_tenant', args)
-        pass
+    def reset_dataset(self, args):
+        print('reset_dataset', args.rowData.uid)
+        AppEnv.reset_tenant()
