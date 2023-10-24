@@ -106,7 +106,7 @@ PL_NAV_ITEMS = {
     'settings_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_import_records': {'type': 'page', 'name': 'ImportRecordsPage', 'action': 'open', 'props': {}},
 
-    'admin_tenants': {'model': 'Tenant', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
@@ -257,7 +257,7 @@ class Sidebar:
         if component['type'] == 'custom':
             try:
                 view_class = getattr(AppEnv.views, component['class'])
-                self.content_control = view_class(container_id=nav_container_id)
+                self.content_control = view_class(container_id=nav_container_id,**component.get('props', {}))
             except Exception as e:
                 print(e)
 
