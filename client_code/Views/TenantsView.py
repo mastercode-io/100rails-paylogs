@@ -9,7 +9,7 @@ class TenantsView(GridView):
             'columns': [
                 {'name': 'name', 'label': 'Account Name'},
                 {'name': 'status', 'label': 'Status'},
-                {'name': '_spacer'},
+                {'name': '_spacer', 'no_data': True},
             ],
         }
 
