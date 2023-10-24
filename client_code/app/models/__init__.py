@@ -322,7 +322,18 @@ class PayRateTemplate:
     _title = "name"
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    pay_rate_rules = Relationship("PayRateRule", with_many=True)
+    scope = Relationship("Scope")
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+class PayRateTemplateItem:
+    _title = "pay_rate_rule.name"
+    pay_rate_template = Relationship("PayRateTemplate")
+    pay_rate_rule = Relationship("PayRateRule")
+    pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
+    pay_rate_title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
@@ -348,3 +359,12 @@ class PayRun:
     def get_payrun_week(args):
         return  f"{args['pay_period_end'].year} - WK{args['pay_period_end'].isocalendar()[1]}"
     payrun_week = Computed(["pay_period_end"], "get_payrun_week")
+
+
+@model_type
+class Scope:
+    _title = "name"
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
