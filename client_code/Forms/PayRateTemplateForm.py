@@ -9,7 +9,7 @@ class PayRateTemplateForm(FormBase):
         kwargs['model'] = 'PayRateTemplate'
 
         self.name = TextInput(name='name', label='Name')
-        self.description = MultiLineInput(name='description', label='Description', rows=5)
+        self.description = MultiLineInput(name='description', label='Description')
         self.scope = LookupInput(name='scope', label='Scope', model='Scope')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'])
 
@@ -32,8 +32,8 @@ class PayRateTemplateForm(FormBase):
         sections = [
             {
                 'name': '_', 'cols': [
-                    [None, self.name, self.scope],
-                    [self.status, self.description],
+                    [self.name, self.scope],
+                    [self.description, self.status],
             ]
             },
             {
