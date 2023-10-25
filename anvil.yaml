@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: app.HomePage}
+startup: {type: module, module: '@migrate'}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -362,6 +362,11 @@ db_schema:
     - name: number
       admin_ui: {order: 0, width: 200}
       type: string
+  pay_run_configs:
+    client: none
+    server: full
+    columns: []
+    title: Pay Run Configs
   tenants:
     client: none
     server: full
@@ -381,6 +386,11 @@ db_schema:
       admin_ui: {width: 200, order: 0}
       type: string
     title: Tenants
+  scope_types:
+    client: none
+    server: full
+    columns: []
+    title: Scope Types
   user_profiles:
     client: none
     server: full
@@ -456,6 +466,11 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: App Custom Fields Schemas
+  calendars:
+    client: none
+    server: full
+    columns: []
+    title: Calendars
   app_grid_views:
     client: none
     server: full
@@ -491,6 +506,11 @@ db_schema:
     - {name: component, admin_ui: null, type: string}
     - {name: action, admin_ui: null, type: string}
     title: App Error Logs
+  pay_run_items:
+    client: none
+    server: full
+    columns: []
+    title: Pay Run Items
   pay_categories:
     title: Pay Categories
     client: none
