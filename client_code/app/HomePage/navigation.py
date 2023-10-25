@@ -97,6 +97,8 @@ PL_NAV_ITEMS = {
     'timesheet_payroll': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
 
     'payroll_payrun_report': {'model': 'PayRun', 'type': 'view', 'action': 'open', 'props': {}},
+    'payroll_payrun_list': {'model': 'PayRun', 'type': 'view', 'action': 'open', 'props': {}},
+    'payroll_payrun_config': {'model': 'PayRun', 'type': 'form', 'action': 'open', 'props': {}},
 
     'business_company': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
     'business_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
