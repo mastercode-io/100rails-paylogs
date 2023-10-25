@@ -32,11 +32,13 @@ PL_APPBAR_MENU_DEVELOPER = [
 # Sidebar menu item list
 PL_SIDEBAR_MENUS = {
     'timesheet_menu': [
-        {'nodeId': 'timesheet_manage', 'nodeText': 'Manage Timesheet', 'nodeChild': []},
-        {'nodeId': 'timesheet_payroll', 'nodeText': 'Payroll Timesheet', 'nodeChild': []},
+        {'nodeId': 'timesheet_manage', 'nodeText': 'Manage Timesheets', 'nodeChild': []},
+        {'nodeId': 'timesheet_payroll', 'nodeText': 'Payroll Timesheets', 'nodeChild': []},
     ],
     'payroll_menu': [
         {'nodeId': 'payroll_payrun_report', 'nodeText': 'Payrun Report', 'nodeChild': []},
+        {'nodeId': 'payroll_payrun_list', 'nodeText': 'Payruns', 'nodeChild': []},
+        {'nodeId': 'payroll_payrun_config', 'nodeText': 'Payrun Config', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
     ],
@@ -54,13 +56,16 @@ PL_SIDEBAR_MENUS = {
         {'nodeId': 'settings_pay_categories', 'nodeText': 'Pay Categories', 'nodeChild': []},
         {'nodeId': 'settings_pay_rate_rules', 'nodeText': 'Pay Rate Rules', 'nodeChild': []},
         {'nodeId': 'settings_pay_rate_templates', 'nodeText': 'Pay Rate Templates', 'nodeChild': []},
+        {'nodeId': 'settings_calendar', 'nodeText': 'Calendar', 'nodeChild': []},
         {'nodeId': 'settings_import_records', 'nodeText': 'Import Records', 'nodeChild': []},
     ],
     'admin_menu': [
         {'nodeId': 'admin_tenants', 'nodeText': 'Tenants', 'nodeChild': []},
         {'nodeId': 'admin_user_roles', 'nodeText': 'User Roles', 'nodeChild': []},
         {'nodeId': 'admin_permissions', 'nodeText': 'Permissions', 'nodeChild': []},
-        {'nodeId': 'admin_settings', 'nodeText': 'Settings', 'nodeChild': []},
+        {'nodeId': 'admin_settings', 'nodeText': 'Settings', 'nodeChild': [
+            {'nodeId': 'admin_settings_scope_types', 'nodeText': 'Scope Types', 'nodeChild': []},
+        ]},
 
     ],
     'developer_menu': [
@@ -104,10 +109,12 @@ PL_NAV_ITEMS = {
     'settings_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_pay_rate_rules': {'model': 'PayRateRule', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
+    'settings_calendar': {'type': 'page', 'name': 'CalendarPage', 'action': 'open', 'props': {}},
     'settings_import_records': {'type': 'page', 'name': 'ImportRecordsPage', 'action': 'open', 'props': {}},
 
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_settings_scope_types': {'model': 'ScopeType', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_settings': {'model': 'Setting', 'type': 'view', 'action': 'open', 'props': {}},
