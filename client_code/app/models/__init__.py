@@ -371,7 +371,10 @@ class PayRun:
 
     @staticmethod
     def get_payrun_week(args):
-        return  f"{args['pay_period_end'].year} - WK{args['pay_period_end'].isocalendar()[1]}"
+        if args['pay_period_end']:
+            return  f"{args['pay_period_end'].year} - WK{args['pay_period_end'].isocalendar()[1]}"
+        else:
+            return ''
     payrun_week = Computed(["pay_period_end"], "get_payrun_week")
 
 
