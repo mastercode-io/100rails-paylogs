@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: module, module: '@migrate'}
+startup: {type: form, module: app.HomePage}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -196,6 +196,8 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: type, admin_ui: null, type: link_single, target: scope_types}
+    - {name: custom_fields, admin_ui: null, type: simpleObject}
     title: Scopes
   users:
     client: none
@@ -365,7 +367,20 @@ db_schema:
   pay_run_configs:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: name, admin_ui: null, type: string}
+    - {name: pay_day, admin_ui: null, type: string}
+    - {name: pay_period_end_day, admin_ui: null, type: string}
+    - {name: pay_period_start_day, admin_ui: null, type: string}
+    - {name: scopes, admin_ui: null, type: link_multiple, target: scopes}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: type, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Pay Run Configs
   tenants:
     client: none
@@ -389,7 +404,17 @@ db_schema:
   scope_types:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Scope Types
   user_profiles:
     client: none
@@ -469,7 +494,21 @@ db_schema:
   calendars:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: public_holidays, admin_ui: null, type: simpleObject}
+    - {name: special_holidays, admin_ui: null, type: simpleObject}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: week_start, admin_ui: null, type: string}
+    - {name: weekend, admin_ui: null, type: simpleObject}
+    - {name: workdays, admin_ui: null, type: simpleObject}
     title: Calendars
   app_grid_views:
     client: none
@@ -509,7 +548,22 @@ db_schema:
   pay_run_items:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: amount, admin_ui: null, type: number}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: employee, admin_ui: null, type: link_single, target: employees}
+    - {name: pay_category, admin_ui: null, type: link_single, target: pay_categories}
+    - {name: pay_rate, admin_ui: null, type: number}
+    - {name: pay_run, admin_ui: null, type: link_single, target: pay_runs}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: timesheet, admin_ui: null, type: link_single, target: timesheets}
+    - {name: title, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: units, admin_ui: null, type: number}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Pay Run Items
   pay_categories:
     title: Pay Categories
