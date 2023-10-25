@@ -199,6 +199,20 @@ class Business:
 
 
 @model_type
+class Calendar:
+    _title = "name"
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    week_start = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    workdays = Attribute(field_type=types.FieldTypes.ENUM_MULTI)
+    weekend = Attribute(field_type=types.FieldTypes.ENUM_MULTI)
+    public_holidays = Attribute(field_type=types.FieldTypes.OBJECT)
+    special_holidays = Attribute(field_type=types.FieldTypes.OBJECT)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
 class Employee:
     _title = "full_name"
 
@@ -362,9 +376,49 @@ class PayRun:
 
 
 @model_type
+class PayRunConfig:
+    _title = "name"
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    pay_period_start_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    pay_period_end_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    pay_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    scopes = Relationship("Scope", with_many=True)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+class PayRunItem:
+    _title = "title"
+
+    pay_run = Relationship("PayRun")
+    employee = Relationship("Employee")
+    timesheet = Relationship("Timesheet")
+    pay_category = Relationship("PayCategory")
+    title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    units = Attribute(field_type=types.FieldTypes.NUMBER)
+    amount = Attribute(field_type=types.FieldTypes.CURRENCY)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
 class Scope:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    type = Relationship("ScopeType")
+    custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+class ScopeType:
+    _title = "name"
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
