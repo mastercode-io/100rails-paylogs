@@ -19,6 +19,7 @@ class CalendarPage(PageBase):
         self.select_period_button_id = f'select-period-{uuid.uuid4()}'
         self.calendar = ej.calendars.Calendar({
             'value': datetime.now().date(),
+            'weekNumber': True,
             # 'change': self.calendar_change,
         })
         self.calendar_id = f'calendar-{uuid.uuid4()}'
