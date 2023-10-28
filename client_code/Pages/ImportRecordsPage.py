@@ -190,11 +190,20 @@ class ImportRecordsPage(PageBase):
 
         count = 0
         for record in file_content['Timesheets']:
+            ts_date = datetime.strptime(record['Timesheet_Date'], '%d-%b-%Y').date()
+            ts_start_time = datetime(ts_date.year, ts_date.month, ts_date.day,
+                                     int(record['Start_Time'].split(':')[0]),
+                                     int(record['Start_Time'].split(':')[1]))
+            ts_end_time = datetime(ts_date.year, ts_date.month, ts_date.day,
+                                   int(record['End_Time'].split(':')[0]),
+                                   int(record['End_Time'].split(':')[1]))
             timesheet_data = {
                 'timesheet_type': timesheet_types[record['Related_Time_Type']],
                 'employee': employees[record['Related_Staff.Full_Name']],
                 'job': jobs[record['Related_Job.Quote_Job_Number']],
-                'date': datetime.strptime(record['Timesheet_Date'], '%d-%b-%Y').date(),
+                'date': ts_date,
+                'start_time': ts_start_time,
+                'end_time': ts_end_time,
                 'status': 'Approved',
             }
             timesheet = Timesheet(**timesheet_data).save()
