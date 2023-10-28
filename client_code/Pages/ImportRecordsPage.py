@@ -190,7 +190,7 @@ class ImportRecordsPage(PageBase):
 
         count = 0
         for record in file_content['Timesheets']:
-            # print('record', record)
+            print('record', record)
             ts_date = datetime.strptime(record['Timesheet_Date'], '%d-%b-%Y').date()
             ts_start_time = datetime(ts_date.year, ts_date.month, ts_date.day,
                                      int(record['Start_Time'].split(':')[0]),
