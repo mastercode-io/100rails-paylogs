@@ -188,17 +188,11 @@ class ImportRecordsPage(PageBase):
         if new_employees:
             self.log_message(f'Adding {len(new_employees)} employees')
             self.import_employees([{
-                'Full_Name': timesheet['Related_Staff.Full_Name'],
+                'Full_Name': timesheet['Related_Staff.Full_Name'].strip(),
                 'Position_or_Title': timesheet['Related_Staff.Position_or_Title'],
                 'Status': 'Active',
             }
                 for timesheet in timesheets if timesheet['Related_Staff.Full_Name'] in new_employees])
-            for employee_name in new_employees:
-                Employee(
-                    first_name=employee_name.split(' ')[0],
-                    last_name=employee_name.split(' ')[-1],
-                    status='Active'
-                ).save()
         employees = {employee['full_name']: employee for employee in Employee.search()}
 
         self.log_message(f'Importing {len(timesheets)} timesheets')
