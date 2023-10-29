@@ -115,7 +115,7 @@ class ImportRecordsPage(PageBase):
         # import employee roles
         uploaded_employee_roles = set(record['Position_or_Title'].strip() for record in employees
                                       if record.get('Position_or_Title', None))
-        existing_employee_roles = set([role.name for role in EmployeeRole.search()])
+        existing_employee_roles = set([role['name'] for role in EmployeeRole.search()])
         new_employee_roles = uploaded_employee_roles - existing_employee_roles
         if new_employee_roles:
             self.log_message(f'Adding {len(new_employee_roles)} employee roles')
@@ -127,7 +127,7 @@ class ImportRecordsPage(PageBase):
         for record in employees:
             employee_data = {k: v(record, employee_roles) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
             employee_data['status'] = 'Active'
-            employee = Employee.search(first_name=employee_data['first_name'], last_name=employee_data['last_name'])
+            employee = next(Employee.search(first_name=employee_data['first_name'], last_name=employee_data['last_name']), None)
             if employee:
                 employee.update(**employee_data)
             else:
@@ -160,13 +160,13 @@ class ImportRecordsPage(PageBase):
 
         # import timesheet types
         uploaded_timesheet_types = set(record['Related_Time_Type'] for record in timesheets)
-        existing_timesheet_types = set([timesheet_type.name for timesheet_type in TimesheetType.search()])
+        existing_timesheet_types = set([timesheet_type['name'] for timesheet_type in TimesheetType.search()])
         new_timesheet_types = uploaded_timesheet_types - existing_timesheet_types
         if new_timesheet_types:
             self.log_message(f'Adding {len(new_timesheet_types)} timesheet types')
             for timesheet_type_name in new_timesheet_types:
                 TimesheetType(name=timesheet_type_name, status='Active').save()
-        timesheet_types = {timesheet_type.name: timesheet_type for timesheet_type in TimesheetType.search()}
+        timesheet_types = {timesheet_type['name']: timesheet_type for timesheet_type in TimesheetType.search()}
 
         uploaded_jobs = set(record['Related_Job.Quote_Job_Number'] for record in timesheets)
         existing_jobs = set([job['number'] for job in Job.search()])
