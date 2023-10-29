@@ -127,7 +127,7 @@ class ImportRecordsPage(PageBase):
         for record in employees:
             employee_data = {k: v(record, employee_roles) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
             employee_data['status'] = 'Active'
-            employee = next(Employee.search(first_name=employee_data['first_name'], last_name=employee_data['last_name']), None)
+            employee = next(iter(Employee.search(first_name=employee_data['first_name'], last_name=employee_data['last_name'])), None)
             if employee:
                 employee.update(**employee_data)
             else:
