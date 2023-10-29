@@ -142,7 +142,7 @@ class ImportRecordsPage(PageBase):
         self.log_message(f'Importing {len(jobs)} jobs')
 
         # import job types
-        locations = {location.name: location for location in Location.search(status='Active')}
+        locations = {location['name']: location for location in Location.search(status='Active')}
         existing_jobs = [job['number'] for job in Job.search()]
 
         count = 0
