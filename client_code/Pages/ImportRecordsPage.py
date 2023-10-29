@@ -129,7 +129,7 @@ class ImportRecordsPage(PageBase):
             employee_data['status'] = 'Active'
             employee = next(iter(Employee.search(first_name=employee_data['first_name'], last_name=employee_data['last_name'])), None)
             if employee:
-                employee.update(**employee_data)
+                employee.update(employee_data)
             else:
                 employee = Employee(**employee_data)
             employee.save()
