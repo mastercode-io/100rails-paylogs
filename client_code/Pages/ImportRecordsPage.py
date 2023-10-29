@@ -214,7 +214,7 @@ class ImportRecordsPage(PageBase):
                                    int(record['End_Time'].split(':')[1]))
             timesheet_data = {
                 'timesheet_type': timesheet_types[record['Related_Time_Type']],
-                'employee': employees[record['Related_Staff.Full_Name']],
+                'employee': employees[record['Related_Staff.Full_Name'].strip()],
                 'job': jobs[record['Related_Job.Quote_Job_Number']],
                 'date': ts_date,
                 'start_time': ts_start_time,
