@@ -100,7 +100,6 @@ class PayRateRuleForm(FormBase):
 
 
     def toggle_time_limits(self, args):
-        print('toggle_time_limits', args)
         if self.time_limits.value:
             self.start_time.show()
             self.end_time.show()
