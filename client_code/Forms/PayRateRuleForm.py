@@ -40,7 +40,7 @@ class PayRateRuleForm(FormBase):
         self.scope = LookupInput(name='scope', label='Scope', model='Scope')
         self.time_scope = DropdownInput(name='time_scope', label='Time Scope',
                                         options=TIME_SCOPE_OPTIONS, value='Weekday')
-        self.any_time = CheckboxInput(name='any_time', label='Any Time')
+        self.time_limits = CheckboxInput(name='any_time', label='Time Limits', value=True, on_change=self.toggle_time_limits)
         self.start_time = TimeInput(name='start_time', label='Start Time')
         self.end_time = TimeInput(name='end_time', label='End Time')
         self.max_time = NumberInput(name='max_time', label='Max Time')
@@ -92,3 +92,20 @@ class PayRateRuleForm(FormBase):
 
         super().__init__(sections=sections, width=POPUP_WIDTH_COL2, **kwargs)
         # self.fullscreen = True
+
+
+    def form_open(self, args):
+        super().form_open(args)
+        self.toggle_time_limits(args)
+
+
+    def toggle_time_limits(self, args):
+        print('toggle_time_limits', args)
+        if self.time_limits.value:
+            self.start_time.show()
+            self.end_time.show()
+            self.max_time.show()
+        else:
+            self.start_time.hide()
+            self.end_time.hide()
+            self.max_time.hide()

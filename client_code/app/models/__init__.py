@@ -325,7 +325,7 @@ class PayRateRule:
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     scope = Relationship("Scope")
     time_scope = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    any_time = Attribute(field_type=types.FieldTypes.BOOLEAN)
+    time_limits = Attribute(field_type=types.FieldTypes.BOOLEAN)
     start_time = Attribute(field_type=types.FieldTypes.TIME)
     end_time = Attribute(field_type=types.FieldTypes.TIME)
     max_time = Attribute(field_type=types.FieldTypes.NUMBER)
