@@ -81,7 +81,7 @@ class PayRateRuleForm(FormBase):
                         self.pay_rate_multiplier,
                     ],
                     [
-                        self.any_time,
+                        self.time_limits,
                         self.start_time,
                         self.end_time,
                         self.max_time,
