@@ -323,12 +323,25 @@ class PayRateRule:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    scope = Relationship("Scope")
+    time_scope = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    any_time = Attribute(field_type=types.FieldTypes.BOOLEAN)
+    start_time = Attribute(field_type=types.FieldTypes.TIME)
+    end_time = Attribute(field_type=types.FieldTypes.TIME)
+    max_time = Attribute(field_type=types.FieldTypes.NUMBER)
+    unit_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    earnings_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
     pay_rate_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
     pay_category = Relationship("PayCategory")
-    calculation_settings = Attribute(field_type=types.FieldTypes.OBJECT)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+    calculation_settings_schema = {
+        "exclude_break_time": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
+        "exclude_week_overtime": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
+    }
+    calculation_settings = Attribute(field_type=types.FieldTypes.OBJECT, schema=calculation_settings_schema)
 
 
 @model_type
