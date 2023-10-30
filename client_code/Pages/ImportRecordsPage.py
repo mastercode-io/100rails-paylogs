@@ -110,7 +110,7 @@ class ImportRecordsPage(PageBase):
 
     def import_employees(self, employees):
         print('import_employees')
-        self.log_message(f'Importing {len(employees)} employees')
+        self.log_message(f'Importing/updating {len(employees)} employees')
 
         # import employee roles
         uploaded_employee_roles = set(record['Position_or_Title'].strip() for record in employees
@@ -123,18 +123,24 @@ class ImportRecordsPage(PageBase):
                 EmployeeRole(name=role_name, status='Draft').save()
         employee_roles = {role.name: role for role in EmployeeRole.search()}
 
-        count = 0
+        count_new = 0
+        count_updated = 0
+        new_employees = []
         for record in employees:
             employee_data = {k: v(record, employee_roles) if callable(v) else record[v] for k, v in EMPLOYEE_FIELDS.items()}
             employee_data['status'] = 'Active'
             employee = next(iter(Employee.search(first_name=employee_data['first_name'], last_name=employee_data['last_name'])), None)
             if employee:
                 employee.update(employee_data)
+                employee.save()
+                count_updated += 1
             else:
                 employee = Employee(**employee_data)
-            employee.save()
-            count += 1
-            self.record_count.message = f'Imported {count} employee records'
+                employee.save()
+                new_employees.append(employee)
+                count_new += 1
+            self.record_count.message = f'Imported {count_new} employee records\nUpdated {count_updated} employee records'
+        return new_employees
 
 
     def import_jobs(self, jobs):
@@ -144,15 +150,19 @@ class ImportRecordsPage(PageBase):
         # import job types
         locations = {location['name']: location for location in Location.search(status='Active')}
         existing_jobs = [job['number'] for job in Job.search()]
+        print('existing_jobs:', len(existing_jobs))
+        print(existing_jobs)
 
         count = 0
+        new_jobs = []
         for record in jobs:
             if record['Quote_Job_Number'] not in existing_jobs:
                 job_data = {k: v(record, locations) if callable(v) else record[v] for k, v in JOB_FIELDS.items()}
                 job_data['status'] = 'Active'
-                Job(**job_data).save()
+                new_jobs.append(Job(**job_data).save())
                 count += 1
                 self.record_count.message = f'Imported {count} job records'
+        return new_jobs
 
 
     def import_timesheets(self, timesheets):
@@ -168,37 +178,59 @@ class ImportRecordsPage(PageBase):
                 TimesheetType(name=timesheet_type_name, status='Active').save()
         timesheet_types = {timesheet_type['name']: timesheet_type for timesheet_type in TimesheetType.search()}
 
-        uploaded_jobs = set(record['Related_Job.Quote_Job_Number'] for record in timesheets)
-        existing_jobs = set([job['number'] for job in Job.search()])
-        new_jobs = uploaded_jobs - existing_jobs
-        if new_jobs:
-            self.log_message(f'Adding {len(new_jobs)} jobs')
-            self.import_jobs([{
-                'Quote_Job_Number': timesheet['Related_Job.Quote_Job_Number'],
-                'Job_Reference': timesheet['Related_Job.Job_Reference'],
-                'Service_Location': timesheet['Related_Job.Service_Location'],
-                'Status': 'Active',
-            }
-                for timesheet in timesheets if timesheet['Related_Job.Quote_Job_Number'] in new_jobs])
+        # uploaded_jobs = set(record['Related_Job.Quote_Job_Number'] for record in timesheets)
+        # existing_jobs = set([job['number'] for job in Job.search()])
+        # new_jobs = uploaded_jobs - existing_jobs
+        # print('uploaded_jobs:', len(uploaded_jobs))
+        # print('existing_jobs:', len(existing_jobs))
+        # print('new_jobs:', len(new_jobs))
+        # if new_jobs:
+        #     self.log_message(f'Adding {len(new_jobs)} jobs')
+        #     self.import_jobs([{
+        #         'Quote_Job_Number': timesheet['Related_Job.Quote_Job_Number'],
+        #         'Job_Reference': timesheet['Related_Job.Job_Reference'],
+        #         'Service_Location': timesheet['Related_Job.Service_Location'],
+        #         'Status': 'Active',
+        #     }
+        #         for timesheet in timesheets if timesheet['Related_Job.Quote_Job_Number'] in new_jobs])
         jobs = {job['number']: job for job in Job.search()}
 
-        uploaded_employees = set(record['Related_Staff.Full_Name'] for record in timesheets)
-        existing_employees = set([employee['full_name'] for employee in Employee.search()])
-        new_employees = uploaded_employees - existing_employees
-        if new_employees:
-            self.log_message(f'Adding {len(new_employees)} employees')
-            self.import_employees([{
-                'Full_Name': timesheet['Related_Staff.Full_Name'].strip(),
-                'Position_or_Title': timesheet['Related_Staff.Position_or_Title'],
-                'Status': 'Active',
-            }
-                for timesheet in timesheets if timesheet['Related_Staff.Full_Name'] in new_employees])
+        # uploaded_employees = set(record['Related_Staff.Full_Name'] for record in timesheets)
+        # existing_employees = set([employee['full_name'] for employee in Employee.search()])
+        # new_employees = uploaded_employees - existing_employees
+        # if new_employees:
+        #     self.log_message(f'Adding {len(new_employees)} employees')
+        #     self.import_employees([{
+        #         'Full_Name': timesheet['Related_Staff.Full_Name'].strip(),
+        #         'Position_or_Title': timesheet['Related_Staff.Position_or_Title'],
+        #         'Status': 'Active',
+        #     }
+        #         for timesheet in timesheets if timesheet['Related_Staff.Full_Name'] in new_employees])
         employees = {employee['full_name']: employee for employee in Employee.search()}
 
         self.log_message(f'Importing {len(timesheets)} timesheets')
         count = 0
         for record in timesheets:
-            # print('record', record)
+
+            # add job if not exists
+            if record['Related_Job.Quote_Job_Number'] not in jobs:
+                new_jobs = self.import_jobs([{
+                    'Quote_Job_Number': record['Related_Job.Quote_Job_Number'],
+                    'Job_Reference': record['Related_Job.Job_Reference'],
+                    'Service_Location': record['Related_Job.Service_Location'],
+                    'Status': 'Active',
+                }])
+                jobs[record['Related_Job.Quote_Job_Number']] = new_jobs[0]
+
+            # add employee if not exists
+            if record['Related_Staff.Full_Name'].strip() not in employees:
+                new_employees = self.import_employees([{
+                    'Full_Name': record['Related_Staff.Full_Name'].strip(),
+                    'Position_or_Title': record['Related_Staff.Position_or_Title'],
+                    'Status': 'Active',
+                }])
+                employees[record['Related_Staff.Full_Name'].strip()] = new_employees[0]
+
             ts_date = datetime.strptime(record['Timesheet_Date'], '%d-%b-%Y').date()
             ts_start_time = datetime(ts_date.year, ts_date.month, ts_date.day,
                                      int(record['Start_Time'].split(':')[0]),
