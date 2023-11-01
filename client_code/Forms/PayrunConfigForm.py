@@ -9,7 +9,7 @@ WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
 class PayrunConfigForm(FormBase):
     def __init__(self, **kwargs):
         print('PayrunConfigForm')
-        kwargs['model'] = 'PayRunConfig'
+        kwargs['model'] = 'PayrunConfig'
 
         self.name = TextInput(name='name', label='Name')
         self.type = DropdownInput(name='type', label='Type', options=PAYRUN_CONFIG_TYPE, value='Weekly')

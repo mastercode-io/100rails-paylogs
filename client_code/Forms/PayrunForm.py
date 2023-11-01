@@ -6,20 +6,8 @@ from AnvilFusion.components.SubformGrid import SubformGrid
 class PayrunForm(FormBase):
     def __init__(self, **kwargs):
         print('PayrunForm')
-        kwargs['model'] = 'PayRun'
+        kwargs['model'] = 'Payrun'
 
-        # pay_period_start = Attribute(field_type=types.FieldTypes.DATE)
-        # pay_period_end = Attribute(field_type=types.FieldTypes.DATE)
-        # pay_date = Attribute(field_type=types.FieldTypes.DATE)
-        # status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-        # notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-        #
-        # @staticmethod
-        # def get_payrun_reference(args):
-        #     return f"{args['pay_run_type']}: ({args['pay_period_start']} - {args['pay_period_end']})"
-        # reference = Computed(
-        #     ("pay_run_type", "pay_period_start", "pay_period_end"), "get_payrun_reference"
-        # )
         self.pay_period_start = DateInput(name='pay_period_start', label='Pay Period Start')
         self.pay_period_end = DateInput(name='pay_period_end', label='Pay Period End')
         self.pay_date = DateInput(name='pay_date', label='Pay Date')
