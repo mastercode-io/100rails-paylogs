@@ -1,5 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.components.SubformGrid import SubformGrid
 
 
 class PayrunForm(FormBase):
@@ -7,7 +8,6 @@ class PayrunForm(FormBase):
         print('PayrunForm')
         kwargs['model'] = 'PayRun'
 
-        # pay_run_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
         # pay_period_start = Attribute(field_type=types.FieldTypes.DATE)
         # pay_period_end = Attribute(field_type=types.FieldTypes.DATE)
         # pay_date = Attribute(field_type=types.FieldTypes.DATE)
@@ -20,28 +20,40 @@ class PayrunForm(FormBase):
         # reference = Computed(
         #     ("pay_run_type", "pay_period_start", "pay_period_end"), "get_payrun_reference"
         # )
+        self.pay_period_start = DateInput(name='pay_period_start', label='Pay Period Start')
+        self.pay_period_end = DateInput(name='pay_period_end', label='Pay Period End')
+        self.pay_date = DateInput(name='pay_date', label='Pay Date')
+        self.status = RadioButtonInput(name='status', label='Status', options=['Draft', 'Posted'], value='Draft')
+        self.notes = MultiLineInput(name='notes', label='Notes', rows=4)
 
-
-        # pay_run = Relationship("PayRun")
-        # employee = Relationship("Employee")
-        # timesheet = Relationship("Timesheet")
-        # pay_category = Relationship("PayCategory")
-        # title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-        # pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-        # units = Attribute(field_type=types.FieldTypes.NUMBER)
-        # amount = Attribute(field_type=types.FieldTypes.CURRENCY)
-        # status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+        payrun_items_view = {
+            'model': 'PayrunItem',
+            'columns': [
+                {'name': 'employee.full_name', 'label': 'Employee'},
+                {'name': 'timesheet.date', 'label': 'Timesheet Date'},
+                {'name': 'pay_category.name', 'label': 'Category'},
+                {'name': 'pay_rate', 'label': 'Rate'},
+                {'name': 'units', 'label': 'Units'},
+                {'name': 'amount', 'label': 'Amount'},
+                {'name': 'status', 'label': 'Status'},
+            ],
+        }
+        self.payrun_items = SubformGrid(name='payrun_items', label='Payrun Items', model='PayrunItem',
+                                        link_model='PayRun', link_field='pay_run',
+                                        form_container_id=kwargs.get('target'),
+                                        view_config=payrun_items_view,
+                                        )
 
         sections = [
             {
-              'name': '_', 'rows': [
-                {}
-            ]
+                'name': '_', 'cols': [
+                    [self.pay_period_start, self.pay_period_end, self.pay_date],
+                    [self.notes, self.status],
+                ]
             },
             {
-                'name': '_', 'cols': [
-                    [],
-                    [],
+                'name': '_', 'rows': [
+                    [self.payrun_items],
                 ]
             }
         ]

@@ -365,10 +365,9 @@ class PayRateTemplateItem:
 
 
 @model_type
-class PayRun:
+class Payrun:
     _title = "reference"
 
-    pay_run_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_period_start = Attribute(field_type=types.FieldTypes.DATE)
     pay_period_end = Attribute(field_type=types.FieldTypes.DATE)
     pay_date = Attribute(field_type=types.FieldTypes.DATE)
@@ -392,7 +391,7 @@ class PayRun:
 
 
 @model_type
-class PayRunConfig:
+class PayrunConfig:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
@@ -405,10 +404,10 @@ class PayRunConfig:
 
 
 @model_type
-class PayRunItem:
+class PayrunItem:
     _title = "title"
 
-    pay_run = Relationship("PayRun")
+    pay_run = Relationship("Payrun")
     employee = Relationship("Employee")
     timesheet = Relationship("Timesheet")
     pay_category = Relationship("PayCategory")

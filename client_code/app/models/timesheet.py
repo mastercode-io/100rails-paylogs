@@ -40,7 +40,7 @@ class Timesheet:
 
     timesheet_type = Relationship("TimesheetType")
     employee = Relationship("Employee")
-    payrun = Relationship("PayRun")
+    payrun = Relationship("Payrun")
     job = Relationship("Job")
     date = Attribute(field_type=types.FieldTypes.DATE)
     start_time = Attribute(field_type=types.FieldTypes.DATETIME)
