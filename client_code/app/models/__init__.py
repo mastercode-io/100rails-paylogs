@@ -376,7 +376,7 @@ class Payrun:
 
     @staticmethod
     def get_payrun_reference(args):
-      #example.  "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"  
+      #example. "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"  
       return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
     reference = Computed(
         ("pay_period_start", "pay_period_end"), "get_payrun_reference")
