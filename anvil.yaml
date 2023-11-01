@@ -136,23 +136,24 @@ db_schema:
     - {name: status, admin_ui: null, type: string}
     - {name: custom_fields, admin_ui: null, type: simpleObject}
     title: Employees
-  pay_runs:
-    title: Pay Runs
+  payrun_configs:
     client: none
     server: full
     columns:
-    - {name: notes, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: pay_date, admin_ui: null, type: date}
-    - {name: pay_run_type, admin_ui: null, type: string}
     - {name: created_by, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: name, admin_ui: null, type: string}
+    - {name: pay_day, admin_ui: null, type: string}
+    - {name: pay_period_end_day, admin_ui: null, type: string}
+    - {name: pay_period_start_day, admin_ui: null, type: string}
+    - {name: scopes, admin_ui: null, type: link_multiple, target: scopes}
     - {name: status, admin_ui: null, type: string}
-    - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: pay_period_end, admin_ui: null, type: date}
-    - {name: pay_period_start, admin_ui: null, type: date}
     - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: type, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    title: Payrun Configs
   files:
     client: none
     server: full
@@ -348,7 +349,7 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: payrun, admin_ui: null, type: link_single, target: pay_runs}
+    - {name: payrun, admin_ui: null, type: link_single, target: payruns}
     title: Timesheets
   jobs:
     title: Jobs
@@ -372,24 +373,6 @@ db_schema:
     - name: number
       admin_ui: {order: 0, width: 200}
       type: string
-  pay_run_configs:
-    client: none
-    server: full
-    columns:
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: name, admin_ui: null, type: string}
-    - {name: pay_day, admin_ui: null, type: string}
-    - {name: pay_period_end_day, admin_ui: null, type: string}
-    - {name: pay_period_start_day, admin_ui: null, type: string}
-    - {name: scopes, admin_ui: null, type: link_multiple, target: scopes}
-    - {name: status, admin_ui: null, type: string}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: type, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: updated_time, admin_ui: null, type: datetime}
-    title: Pay Run Configs
   tenants:
     client: none
     server: full
@@ -485,6 +468,22 @@ db_schema:
     - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: description, admin_ui: null, type: string}
     - {name: shot_code, admin_ui: null, type: string}
+  payruns:
+    title: Payruns
+    client: none
+    server: full
+    columns:
+    - {name: notes, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: pay_date, admin_ui: null, type: date}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: pay_period_end, admin_ui: null, type: date}
+    - {name: pay_period_start, admin_ui: null, type: date}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
   app_custom_fields_schemas:
     client: none
     server: full
@@ -553,26 +552,6 @@ db_schema:
     - {name: component, admin_ui: null, type: string}
     - {name: action, admin_ui: null, type: string}
     title: App Error Logs
-  pay_run_items:
-    client: none
-    server: full
-    columns:
-    - {name: amount, admin_ui: null, type: number}
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: employee, admin_ui: null, type: link_single, target: employees}
-    - {name: pay_category, admin_ui: null, type: link_single, target: pay_categories}
-    - {name: pay_rate, admin_ui: null, type: number}
-    - {name: pay_run, admin_ui: null, type: link_single, target: pay_runs}
-    - {name: status, admin_ui: null, type: string}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: timesheet, admin_ui: null, type: link_single, target: timesheets}
-    - {name: title, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: units, admin_ui: null, type: number}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: updated_time, admin_ui: null, type: datetime}
-    title: Pay Run Items
   pay_categories:
     title: Pay Categories
     client: none
@@ -606,6 +585,26 @@ db_schema:
     - {name: name, admin_ui: null, type: string}
     - {name: status, admin_ui: null, type: string}
     - {name: scope, admin_ui: null, type: link_single, target: scopes}
+  payrun_items:
+    client: none
+    server: full
+    columns:
+    - {name: amount, admin_ui: null, type: number}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: employee, admin_ui: null, type: link_single, target: employees}
+    - {name: pay_category, admin_ui: null, type: link_single, target: pay_categories}
+    - {name: pay_rate, admin_ui: null, type: number}
+    - {name: pay_run, admin_ui: null, type: link_single, target: payruns}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: timesheet, admin_ui: null, type: link_single, target: timesheets}
+    - {name: title, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: units, admin_ui: null, type: number}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    title: Payrun Items
   employee_roles:
     title: Employee Roles
     client: none
