@@ -1,21 +1,23 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 
 
-class ScopeTypeForm(FormBase):
+class ScopeForm(FormBase):
     def __init__(self, **kwargs):
-        print('ScopeTypeForm')
-        kwargs['model'] = 'ScopeType'
+        print('ScopeForm')
+        kwargs['model'] = 'Scope'
 
         self.name = TextInput(name='name', label='Name')
         self.description = MultiLineInput(name='description', label='Description', rows=4)
-        self.pay_rate_template = LookupInput(name='pay_rate_template', label='Pay Rate Template', model='PayRateTemplate')
+        self.type = LookupInput(name='type', label='Scope Type', model='ScopeType')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
+        # self.custom_fields = MultiFieldInput(name='custom_fields', label='Custom Fields', model='Scope', cols=2)
 
         fields = [
             self.name,
             self.description,
-            self.pay_rate_template,
+            self.type,
             self.status,
         ]
 

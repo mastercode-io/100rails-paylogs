@@ -34,7 +34,7 @@ AppEnv.grid_settings = {
     #   'top_indent': 25,
     #   'column_width': 150,
 }
-AppEnv.start_menu = "timesheet_menu"
+AppEnv.start_menu = "business_menu"
 
 
 class HomePage(HomePageTemplate):
