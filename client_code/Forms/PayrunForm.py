@@ -2,9 +2,9 @@ from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 
 
-class PayRunForm(FormBase):
+class PayrunForm(FormBase):
     def __init__(self, **kwargs):
-        print('PayRunForm')
+        print('PayrunForm')
         kwargs['model'] = 'PayRun'
 
         # pay_run_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)

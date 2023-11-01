@@ -9,7 +9,8 @@ from .LocationForm import LocationForm
 # from .PayCategoryForm import PayCategoryForm
 from .PayRateTemplateForm import PayRateTemplateForm
 from .PayRateRuleForm import PayRateRuleForm
-from .PayRunForm import PayRunForm
+from .PayrunForm import PayRrunForm
+from .PayrunConfigForm import PayrunConfigForm
 from .TimesheetTypeForm import TimesheetTypeForm
 # from .TimesheetForm import TimesheetForm
 from .ScopeForm import ScopeForm
