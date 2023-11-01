@@ -376,9 +376,9 @@ class Payrun:
 
     @staticmethod
     def get_payrun_reference(args):
-        return f"{args['pay_run_type']}: ({args['pay_period_start']} - {args['pay_period_end']})"
+        return f"{({args['pay_period_start']} - {args['pay_period_end']})"
     reference = Computed(
-        ("pay_run_type", "pay_period_start", "pay_period_end"), "get_payrun_reference"
+        ("pay_period_start", "pay_period_end"), "get_payrun_reference"
     )
 
     @staticmethod
