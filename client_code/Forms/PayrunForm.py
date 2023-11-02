@@ -47,4 +47,4 @@ class PayrunForm(FormBase):
         ]
 
         super().__init__(sections=sections, **kwargs)
-        # self.fullscreen = True
+        self.fullscreen = True
