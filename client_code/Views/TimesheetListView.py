@@ -25,7 +25,7 @@ class TimesheetListView(GridView):
                 {'name': 'date', 'label': 'Date'},
                 {'name': 'start_time', 'label': 'Start Time'},
                 {'name': 'end_time', 'label': 'End Time'},
-                {'name': 'total_hours', 'label': 'Total Hours'},
+                {'name': 'total_hours_view', 'label': 'Total Hours'},
                 {'name': 'total_pay', 'label': 'Total Pay'},
                 {'name': 'status', 'label': 'Status'},
                 {'name': 'job.name', 'label': 'Job Name'},
