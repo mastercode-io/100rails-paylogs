@@ -20,8 +20,8 @@ class TimesheetForm(FormBase):
         # approved_by = Relationship("Employee")
         # notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
         # total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
-        approved_by_roles = EmployeeRole.search(name=q.any_of(q.ilike('%manager%'), q.ilike('%supervisor%')))
-        # print('approved_by_roles', len([*approved_by_roles]))
+        approved_by_roles = [*EmployeeRole.search(name=q.any_of(q.ilike('%manager%'), q.ilike('%supervisor%')))]
+        print('approved_by_roles', len(approved_by_roles), approved_by_roles)
         approved_by_filters = {
             'employee_role': q.any_of(*approved_by_roles),
         }
