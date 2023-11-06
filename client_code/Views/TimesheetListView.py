@@ -50,7 +50,7 @@ class TimesheetListView(GridView):
             'columns': ['employee__full_name'],
             'showDropArea': False,
             # 'captionTemplate': '<div>${key} - ${data}</div>',
-            # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+            'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
         }
         self.grid.allowSorting = True
         self.grid.sortSettings = {
@@ -71,7 +71,7 @@ class TimesheetListView(GridView):
     def grouping_caption(self, args):
         # print('due_date_caption', args)
         # caption_color = 'color:#a63333;' if args['key'] == -100 else ''
-        caption_color = ''
+        caption_color = 'color:#a63333;'
         return (f'<div class="template" style="font-size:14px;font-weight:bold;{caption_color}">'
-                f'{args.items[0].employee_full_name}</div>')
+                f'{args.items[0].employee__full_name}</div>')
         # return args['due_date']
