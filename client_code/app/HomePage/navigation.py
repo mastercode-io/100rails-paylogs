@@ -94,7 +94,7 @@ PL_SIDEBAR_MENUS = {
 
 # Navigation items/actions
 PL_NAV_ITEMS = {
-    'timesheet_manage': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
+    'timesheet_manage': {'class': 'TimesheetListView', 'type': 'custom', 'action': 'open', 'props': {}},
     'timesheet_payroll': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
 
     'payroll_payrun_report': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
