@@ -20,10 +20,9 @@ class TimesheetForm(FormBase):
         # approved_by = Relationship("Employee")
         # notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
         # total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
-        role_uids = [role['uid'] for role in EmployeeRole.search(name=q.any_of(q.ilike('%manager%'), q.ilike('%supervisor%')))]
-        print('approved_by_roles', len(role_uids), role_uids)
+        roles = [*EmployeeRole.search(name=q.any_of(q.ilike('%manager%'), q.ilike('%supervisor%')))]
         approved_by_filters = {
-            'role': q.any_of(*role_uids),
+            'role': q.any_of(*roles),
         }
 
         self.employee = LookupInput(name='employee', label='Employee', model='Employee', text_field='full_name')
