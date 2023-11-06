@@ -71,7 +71,7 @@ class TimesheetListView(GridView):
     def grouping_caption(self, args):
         # print('due_date_caption', args)
         # caption_color = 'color:#a63333;' if args['key'] == -100 else ''
-        caption_color = 'color:#9400FF;'
+        caption_color = 'color:#675040;'
         return (f'<div class="template" style="{caption_color}">'
                 f'{args.items[0].employee__full_name}</div>')
         # return args['due_date']
