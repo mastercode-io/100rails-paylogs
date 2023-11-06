@@ -52,12 +52,12 @@ class TimesheetListView(GridView):
             # 'captionTemplate': '<div>${key} - ${data}</div>',
             # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
         }
-        # self.grid.allowSorting = True
-        # self.grid.sortSettings = {
-        #     'columns': [
-        #         {'field': 'date', 'direction': 'Ascending'},
-        #     ]
-        # }
+        self.grid.allowSorting = True
+        self.grid.sortSettings = {
+            'columns': [
+                {'field': 'employee__full_name', 'direction': 'Ascending'},
+            ]
+        }
         # self.grid.editSettings = {
         #     'allowEditing': True,
         #     'allowAdding': False,
