@@ -22,7 +22,7 @@ class TimesheetForm(FormBase):
         # total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
         roles = [*EmployeeRole.search(name=q.any_of(q.ilike('%manager%'), q.ilike('%supervisor%')))]
         approved_by_filters = {
-            'role': q.any_of(*roles),
+            'role': roles,
         }
 
         self.employee = LookupInput(name='employee', label='Employee', model='Employee', text_field='full_name')
