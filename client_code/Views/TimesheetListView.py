@@ -56,6 +56,7 @@ class TimesheetListView(GridView):
         self.grid.sortSettings = {
             'columns': [
                 {'field': 'employee__full_name', 'direction': 'Ascending'},
+                {'field': 'date', 'direction': 'Ascending'}
             ]
         }
         # self.grid.editSettings = {
