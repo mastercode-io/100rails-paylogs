@@ -47,7 +47,7 @@ class TimesheetListView(GridView):
         anvil.js.window['captionTimesheetListView'] = self.grouping_caption
         self.grid.allowGrouping = True
         self.grid.groupSettings = {
-            'columns': ['employee__full_name'],
+            'columns': ['date'],
             'showDropArea': False,
             # 'captionTemplate': '<div>${key} - ${data}</div>',
             'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
@@ -55,7 +55,7 @@ class TimesheetListView(GridView):
         self.grid.allowSorting = True
         self.grid.sortSettings = {
             'columns': [
-                {'field': 'employee__full_name', 'direction': 'Ascending'},
+                {'field': 'date', 'direction': 'Ascending'},
             ]
         }
         # self.grid.editSettings = {
