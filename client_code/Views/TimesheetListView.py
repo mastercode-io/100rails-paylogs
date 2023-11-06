@@ -29,7 +29,7 @@ class TimesheetListView(GridView):
                 {'name': 'total_pay', 'label': 'Total Pay'},
                 {'name': 'status', 'label': 'Status'},
                 {'name': 'job.name', 'label': 'Job'},
-                {'name': 'timesheet_type', 'label': 'Type'},
+                {'name': 'timesheet_type.name', 'label': 'Type'},
             ],
         }
 
