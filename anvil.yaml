@@ -400,7 +400,6 @@ db_schema:
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: description, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
-    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: status, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: uid, admin_ui: null, type: string}
