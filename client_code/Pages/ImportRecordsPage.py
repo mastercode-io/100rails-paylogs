@@ -19,7 +19,7 @@ EMPLOYEE_FIELDS = {
     'email': lambda rec, _: rec.get('Work_Email', '').strip(),
     'mobile': lambda rec, _: rec.get('Work_Phone', '').strip(),
     'pay_rate': lambda rec, _: float(rec['Pay_Rate'].strip()) if rec.get('Pay_Rate', None) else None,
-    'role': lambda rec, roles: [roles[rec['Default_Payroll_Role'].strip()]] if rec.get('Position_or_Title', None) else None,
+    'role': lambda rec, roles: [roles[rec['Default_Payroll_Role'].strip()]] if rec.get('Default_Payroll_Role', None) else None,
 }
 
 JOB_FIELDS = {
@@ -227,7 +227,7 @@ class ImportRecordsPage(PageBase):
             if record['Related_Staff.Full_Name'].strip() not in employees:
                 new_employees = self.import_employees([{
                     'Full_Name': record['Related_Staff.Full_Name'].strip(),
-                    'Position_or_Title': record['Related_Staff.Position_or_Title'],
+                    'Default_Payroll_Role': record['Related_Staff.Default_Payroll_Role'],
                     'Status': 'Active',
                 }])
                 employees[record['Related_Staff.Full_Name'].strip()] = new_employees[0]
