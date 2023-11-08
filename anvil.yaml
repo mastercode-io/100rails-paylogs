@@ -135,6 +135,9 @@ db_schema:
     - {name: mobile, admin_ui: null, type: string}
     - {name: status, admin_ui: null, type: string}
     - {name: custom_fields, admin_ui: null, type: simpleObject}
+    - name: pay_rate
+      admin_ui: {width: 200, order: 0}
+      type: number
     title: Employees
   payrun_configs:
     client: none
