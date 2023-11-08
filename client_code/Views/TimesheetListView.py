@@ -23,8 +23,8 @@ class TimesheetListView(GridView):
             'columns': [
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
                 {'name': 'date', 'label': 'Date'},
-                {'name': 'start_time', 'label': 'Start Time'},
-                {'name': 'end_time', 'label': 'End Time'},
+                {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
+                {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
                 {'name': 'total_hours_view', 'label': 'Total Hours'},
                 {'name': 'total_pay', 'label': 'Total Pay'},
                 {'name': 'status', 'label': 'Status'},
