@@ -16,8 +16,8 @@ MODELS_LIST = [
 EMPLOYEE_FIELDS = {
     'first_name': lambda rec, _: rec['Full_Name'].strip().split(' ', 1)[0],
     'last_name': lambda rec, _: rec['Full_Name'].strip().split(' ', 1)[1] if ' ' in rec['Full_Name'].strip() else None,
-    'email': lambda rec, _: rec.get('Email', '').strip(),
-    'mobile': lambda rec, _: rec.get('Mobile', '').strip(),
+    'email': lambda rec, _: rec.get('Work_Email', '').strip(),
+    'mobile': lambda rec, _: rec.get('Work_Phone', '').strip(),
     'pay_rate': lambda rec, _: float(rec['Pay_Rate'].strip()) if rec.get('Pay_Rate', None) else None,
     'role': lambda rec, roles: [roles[rec['Default_Payroll_Role'].strip()]] if rec.get('Position_or_Title', None) else None,
 }
