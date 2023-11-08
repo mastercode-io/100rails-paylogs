@@ -13,6 +13,7 @@ class EmployeeForm(FormBase):
         self.email = TextInput(name='email', label='Email')
         self.mobile = TextInput(name='mobile', label='Mobile')
         self.role = LookupInput(name='role', label='Role', model='EmployeeRole', select='multi')
+        self.pay_rate = NumberInput(name='pay_rate', label='Pay Rate', number_format='c2')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'])
         self.address = MultiFieldInput(name='address', label='_', model='Employee')
         # self.custom_fields = MultiFieldInput(name='custom_fields', label='Custom Fields', model='Employee')
@@ -20,7 +21,14 @@ class EmployeeForm(FormBase):
         sections = [
             {
                 'name': '_', 'cols': [
-                    [' ', self.first_name, self.last_name, self.email, self.mobile, self.role, self.status],
+                    [' ',
+                     self.first_name,
+                     self.last_name,
+                     self.email,
+                     self.mobile,
+                     self.role,
+                     self.pay_rate,
+                     self.status],
                     [self.address],
                 ]
             }
