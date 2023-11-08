@@ -21,7 +21,7 @@ class TimesheetListView(GridView):
         view_config = {
             'model': 'Timesheet',
             'columns': [
-                {'name': 'employee.full_name', 'label': 'Employee Name'},
+                # {'name': 'employee.full_name', 'label': 'Employee Name'},
                 {'name': 'date', 'label': 'Date'},
                 {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
                 {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
