@@ -121,7 +121,7 @@ class ImportRecordsPage(PageBase):
         if new_employee_roles:
             self.log_message(f'Adding {len(new_employee_roles)} employee roles')
             for role_name in new_employee_roles:
-                EmployeeRole(name=role_name, status='Draft').save()
+                EmployeeRole(name=role_name, status='Active').save()
         employee_roles = {role.name: role for role in EmployeeRole.search()}
 
         count_new = 0
