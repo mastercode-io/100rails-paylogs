@@ -56,3 +56,13 @@ class Timesheet:
             return 0
         return (args["end_time"] - args["start_time"]).total_seconds() / 3600
     total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
+
+    @staticmethod
+    def calculate_total_hours_view(args):
+        if args["start_time"] is None or args["end_time"] is None:
+            return 0
+        total_hours = (args["end_time"] - args["start_time"]).total_seconds() / 3600
+        hours = int(total_hours)
+        minutes = int((total_hours - hours) * 60)
+        return f"{hours}:{minutes:02d}"
+    total_hours_view = Computed(("start_time", "end_time"), "calculate_total_hours_view")

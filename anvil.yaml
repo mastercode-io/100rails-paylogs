@@ -44,7 +44,7 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \ rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap\"\
     \ rel=\"stylesheet\">\n\n<!--Fontawsome library -->\n<script src=\"https://kit.fontawesome.com/1466988a10.js\"\
     \ crossorigin=\"anonymous\"></script>\n\n<!-- Essential JS 2 styles and scripts\
-    \ -->\n<link href=\"https://cdn.syncfusion.com/ej2/23.1.36/material3.css\" rel=\"\
+    \ -->\n<link href=\"https://cdn.syncfusion.com/ej2/23.1.36/tailwind.css\" rel=\"\
     stylesheet\">\n<script src=\"https://cdn.syncfusion.com/ej2/23.1.36/dist/ej2.min.js\"\
     \ type=\"text/javascript\"></script>\n<script src=\"_/theme/aws-sdk-v3-bundle.js\"\
     \ type=\"text/javascript\"></script>\n<link href=\"_/theme/home-page.css\" rel=\"\
@@ -135,6 +135,9 @@ db_schema:
     - {name: mobile, admin_ui: null, type: string}
     - {name: status, admin_ui: null, type: string}
     - {name: custom_fields, admin_ui: null, type: simpleObject}
+    - name: pay_rate
+      admin_ui: {width: 200, order: 0}
+      type: number
     title: Employees
   payrun_configs:
     client: none
@@ -400,7 +403,6 @@ db_schema:
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: description, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
-    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: status, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: uid, admin_ui: null, type: string}

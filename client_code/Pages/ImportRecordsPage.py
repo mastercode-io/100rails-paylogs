@@ -16,9 +16,10 @@ MODELS_LIST = [
 EMPLOYEE_FIELDS = {
     'first_name': lambda rec, _: rec['Full_Name'].strip().split(' ', 1)[0],
     'last_name': lambda rec, _: rec['Full_Name'].strip().split(' ', 1)[1] if ' ' in rec['Full_Name'].strip() else None,
-    'email': lambda rec, _: rec.get('Email', '').strip(),
-    'mobile': lambda rec, _: rec.get('Mobile', '').strip(),
-    'role': lambda rec, roles: [roles[rec['Position_or_Title'].strip()]] if rec.get('Position_or_Title', None) else None,
+    'email': lambda rec, _: rec.get('Work_Email', '').strip(),
+    'mobile': lambda rec, _: rec.get('Work_Phone', '').strip(),
+    'pay_rate': lambda rec, _: float(rec['Pay_Rate'].strip()) if rec.get('Pay_Rate', None) else None,
+    'role': lambda rec, roles: [roles[rec['Default_Payroll_Role'].strip()]] if rec.get('Default_Payroll_Role', None) else None,
 }
 
 JOB_FIELDS = {
@@ -113,14 +114,14 @@ class ImportRecordsPage(PageBase):
         self.log_message(f'Importing/updating {len(employees)} employees')
 
         # import employee roles
-        uploaded_employee_roles = set(record['Position_or_Title'].strip() for record in employees
-                                      if record.get('Position_or_Title', None))
+        uploaded_employee_roles = set(record['Default_Payroll_Role'].strip() for record in employees
+                                      if record.get('Default_Payroll_Role', None))
         existing_employee_roles = set([role['name'] for role in EmployeeRole.search()])
         new_employee_roles = uploaded_employee_roles - existing_employee_roles
         if new_employee_roles:
             self.log_message(f'Adding {len(new_employee_roles)} employee roles')
             for role_name in new_employee_roles:
-                EmployeeRole(name=role_name, status='Draft').save()
+                EmployeeRole(name=role_name, status='Active').save()
         employee_roles = {role.name: role for role in EmployeeRole.search()}
 
         count_new = 0
@@ -226,7 +227,7 @@ class ImportRecordsPage(PageBase):
             if record['Related_Staff.Full_Name'].strip() not in employees:
                 new_employees = self.import_employees([{
                     'Full_Name': record['Related_Staff.Full_Name'].strip(),
-                    'Position_or_Title': record['Related_Staff.Position_or_Title'],
+                    'Default_Payroll_Role': record['Related_Staff.Default_Payroll_Role'],
                     'Status': 'Active',
                 }])
                 employees[record['Related_Staff.Full_Name'].strip()] = new_employees[0]
