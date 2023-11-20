@@ -99,7 +99,7 @@ class HomePage(HomePageTemplate):
         self.appbar_assistant_button = ej.buttons.Button({
             'cssClass': 'e-inherit e-caret-hide pl-menu-font',
             'iconCss': 'fa-solid fa-question pl-appbar-menu-icon',
-            'click': self.appbar_assistant_button_click
+            # 'click': self.appbar_assistant_button_click
         })
 
         AppEnv.login_user = self.login_user
