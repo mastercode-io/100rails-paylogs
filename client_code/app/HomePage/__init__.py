@@ -96,6 +96,11 @@ class HomePage(HomePageTemplate):
                 "select": self.appbar_user_menu_select,
             }
         )
+        self.appbar_assistant_button = ej.buttons.Button({
+            'cssClass': 'e-inherit e-caret-hide pl-menu-font',
+            'iconCss': 'fa-solid fa-question pl-appbar-menu-icon',
+            'click': self.appbar_assistant_button_click
+        })
 
         AppEnv.login_user = self.login_user
         AppEnv.after_login = self.after_login
@@ -143,6 +148,7 @@ class HomePage(HomePageTemplate):
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
         self.appbar_notification_list.appendTo(jQuery("#pl-appbar-notification-list")[0])
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
+        self.appbar_assistant_button.appendTo(jQuery('#pl-appbar-help-menu')[0])
         self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
         self.appbar_sidebar_toggle.element.addEventListener(
             "click", self.sidebar.toggle
