@@ -377,15 +377,15 @@ class Payrun:
 
     @staticmethod
     def get_payrun_reference(args):
-        return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
+      #example. "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"  
+      return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
     reference = Computed(
-        ("pay_period_start", "pay_period_end"), "get_payrun_reference"
-    )
+        ("pay_period_start", "pay_period_end"), "get_payrun_reference")
 
     @staticmethod
     def get_payrun_week(args):
         if args['pay_period_end']:
-            return  f"{args['pay_period_end'].year} - WK{args['pay_period_end'].isocalendar()[1]}"
+            return  f"{args['pay_period_end'].year} - wk{args['pay_period_end'].isocalendar()[1]}"
         else:
             return ''
     payrun_week = Computed(["pay_period_end"], "get_payrun_week")
