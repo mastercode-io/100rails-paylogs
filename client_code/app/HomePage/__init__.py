@@ -147,8 +147,8 @@ class HomePage(HomePageTemplate):
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
         self.appbar_notification_list.appendTo(jQuery("#pl-appbar-notification-list")[0])
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
-        self.appbar_assistant_button.element.addEventListener('click', self.appbar_assistant_button_click)
         self.appbar_assistant_button.appendTo(jQuery('#pl-appbar-help-menu')[0])
+        self.appbar_assistant_button.element.addEventListener('click', self.appbar_assistant_button_click)
         self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
         self.appbar_sidebar_toggle.element.addEventListener(
             "click", self.sidebar.toggle
