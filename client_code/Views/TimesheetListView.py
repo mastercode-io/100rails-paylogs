@@ -23,7 +23,7 @@ class TimesheetListView(GridView):
         }
 
         context_menu_items = [
-            {'id': 'calculate_awards', 'label': 'Lock Dataset', 'action': self.calculate_awards},
+            {'id': 'calculate_awards', 'label': 'Calculate Pay Awards', 'action': self.calculate_awards},
         ]
 
         super().__init__(
