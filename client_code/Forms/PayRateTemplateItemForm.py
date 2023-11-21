@@ -1,5 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
+from ..app.models import PayRateRule
 
 
 class PayRateTemplateItemForm(FormBase):
@@ -33,6 +34,7 @@ class PayRateTemplateItemForm(FormBase):
             self.pay_rate.value = None
             self.pay_rate_multiplier.value = None
         else:
-            self.pay_rate.value = self.pay_rate_rule.value['pay_rate']
-            self.pay_rate_multiplier.value = self.pay_rate_rule.value['pay_rate_multiplier']
-            self.pay_rate_title.value = self.pay_rate_rule.value['name']
+            pay_rate_rule = PayRateRule.get(self.pay_rate_rule.value['uid'])
+            self.pay_rate.value = pay_rate_rule['pay_rate']
+            self.pay_rate_multiplier.value = pay_rate_rule['pay_rate_multiplier']
+            self.pay_rate_title.value = pay_rate_rule['name']
