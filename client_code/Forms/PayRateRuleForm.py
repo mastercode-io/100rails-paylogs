@@ -51,7 +51,8 @@ class PayRateRuleForm(FormBase):
         self.pay_rate_type = DropdownInput(name='pay_rate_type', label='Pay Rate Type',
                                            options=PAY_RATE_TYPE_OPTIONS, value='Rate Per Unit')
         self.pay_rate_multiplier = NumberInput(name='pay_rate_multiplier', label='Pay Rate Multiplier')
-        self.pay_category = LookupInput(name='pay_category', label='Pay Category', model='PayCategory')
+        self.pay_category = LookupInput(name='pay_category', label='Pay Category', model='PayCategory',
+                                        on_change=self.pay_category_selected)
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
         self.calculation_settings = MultiFieldInput(name='calculation_settings', label='Calculation Settings',
                                                     model='PayRateRule', cols=2)
@@ -108,3 +109,8 @@ class PayRateRuleForm(FormBase):
             self.start_time.hide()
             self.end_time.hide()
             self.max_time.hide()
+
+
+    def pay_category_selected(self, args):
+        if self.pay_category.value and self.name.value is None:
+            self.name.value = self.pay_category.value['name']
