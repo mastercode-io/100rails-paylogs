@@ -16,11 +16,11 @@ class PayRateTemplateItemForm(FormBase):
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
         fields = [
-            self.order_number,
-            self.pay_rate_title,
             self.pay_rate_rule,
+            self.pay_rate_title,
             self.pay_rate,
             self.pay_rate_multiplier,
+            self.order_number,
             self.status,
         ]
 
@@ -28,6 +28,7 @@ class PayRateTemplateItemForm(FormBase):
 
 
     def pay_rate_rule_selected(self, args):
+        print('pay_rate_rule_selected', self.pay_rate_rule.value, args)
         if self.pay_rate_rule.value is None or args.get('value', None) is None:
             self.pay_rate.value = None
             self.pay_rate_multiplier.value = None
