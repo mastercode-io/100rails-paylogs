@@ -32,6 +32,6 @@ class PayRateTemplateItemForm(FormBase):
             self.pay_rate.value = None
             self.pay_rate_multiplier.value = None
         else:
-            self.pay_rate.value = self.pay_rate_rule.value.pay_rate
-            self.pay_rate_multiplier.value = self.pay_rate_rule.value.pay_rate_multiplier
+            self.pay_rate.value = self.pay_rate_rule.value['pay_rate']
+            self.pay_rate_multiplier.value = self.pay_rate_rule.value['pay_rate_multiplier']
             self.pay_rate_title.value = self.pay_rate_rule.value['name']
