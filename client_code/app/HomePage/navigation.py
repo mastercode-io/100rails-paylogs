@@ -45,7 +45,7 @@ PL_SIDEBAR_MENUS = {
     'business_menu': [
         {'nodeId': 'business_company', 'nodeText': 'Company Info', 'nodeChild': []},
         {'nodeId': 'business_employees', 'nodeText': 'Employees', 'nodeChild': []},
-        # {'nodeId': 'tools_', 'nodeText': '', 'nodeChild': []},
+        {'nodeId': 'business_jobs', 'nodeText': 'Jobs', 'nodeChild': []},
     ],
     'settings_menu': [
         {'nodeId': 'settings_users', 'nodeText': 'Users', 'nodeChild': []},
@@ -103,6 +103,7 @@ PL_NAV_ITEMS = {
 
     'business_company': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
     'business_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
+    'business_jobs': {'model': 'Job', 'type': 'view', 'action': 'open', 'props': {}},
 
     'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
