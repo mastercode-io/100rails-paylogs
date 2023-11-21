@@ -16,6 +16,7 @@ class PayRateTemplateForm(FormBase):
         pay_rate_template_items_view = {
             'model': 'PayRateTemplateItem',
             'columns': [
+                {'name': 'order_number', 'label': 'Order'},
                 {'name': 'pay_rate_title', 'label': 'Title'},
                 {'name': 'pay_rate_rule.name', 'label': 'Rule'},
                 {'name': 'pay_rate', 'label': 'Rate'},
