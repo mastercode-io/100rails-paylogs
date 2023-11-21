@@ -44,6 +44,7 @@ class PayRateRuleForm(FormBase):
         self.start_time = TimeInput(name='start_time', label='Start Time')
         self.end_time = TimeInput(name='end_time', label='End Time')
         self.max_time = NumberInput(name='max_time', label='Max Time')
+        self.overtime_limit = NumberInput(name='overtime_limit', label='Overtime Limit')
         self.unit_type = DropdownInput(name='unit_type', label='Unit Type', options=UNIT_TYPE_OPTIONS, value='Hours')
         self.earnings_type = DropdownInput(name='earnings_type', label='Earnings Type',
                                            options=EARNINGS_TYPE_OPTIONS, value='Ordinary Earnings')
@@ -86,6 +87,7 @@ class PayRateRuleForm(FormBase):
                         self.start_time,
                         self.end_time,
                         self.max_time,
+                        self.overtime_limit,
                     ],
                 ]
             }
@@ -98,6 +100,7 @@ class PayRateRuleForm(FormBase):
     def form_open(self, args):
         super().form_open(args)
         self.toggle_time_limits(args)
+        self.time_scope_selected(args)
 
 
     def toggle_time_limits(self, args):
@@ -105,10 +108,22 @@ class PayRateRuleForm(FormBase):
             self.start_time.show()
             self.end_time.show()
             self.max_time.show()
+            # self.overtime_limit.show()
         else:
             self.start_time.hide()
             self.end_time.hide()
             self.max_time.hide()
+            # self.overtime_limit.hide()
+
+
+    def time_scope_selected(self, args):
+        if args.get('value') == 'Week':
+            self.time_limits.value = False
+            self.toggle_time_limits(args)
+            self.overtime_limit.show()
+        else:
+            self.overtime_limit.hide()
+            self.overtime_limit.value = None
 
 
     def pay_category_selected(self, args):
