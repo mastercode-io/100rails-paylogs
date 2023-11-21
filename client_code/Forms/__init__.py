@@ -8,6 +8,7 @@ from .EmployeeRoleForm import EmployeeRoleForm
 from .LocationForm import LocationForm
 # from .PayCategoryForm import PayCategoryForm
 from .PayRateTemplateForm import PayRateTemplateForm
+from .PayRateTemplateItemForm import PayRateTemplateItemForm
 from .PayRateRuleForm import PayRateRuleForm
 from .PayrunForm import PayrunForm
 from .PayrunConfigForm import PayrunConfigForm

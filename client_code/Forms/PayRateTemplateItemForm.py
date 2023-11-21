@@ -14,18 +14,6 @@ class PayRateTemplateItemForm(FormBase):
         self.pay_rate_multiplier = NumberInput(name='pay_rate_multiplier', label='Multiplier', format='p2')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
-        pay_rate_template_items_view = {
-            'model': 'PayRateTemplateItem',
-            'columns': [
-                {'name': 'order_number', 'label': 'Order'},
-                {'name': 'pay_rate_rule.name', 'label': 'Rule'},
-                {'name': 'pay_rate_title', 'label': 'Title'},
-                {'name': 'pay_rate', 'label': 'Rate'},
-                {'name': 'pay_rate_multiplier', 'label': 'Multiplier'},
-                {'name': 'status', 'label': 'Status'},
-            ],
-        }
-
         fields = [
             self.order_number,
             self.pay_rate_title,

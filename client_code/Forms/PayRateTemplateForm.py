@@ -26,6 +26,7 @@ class PayRateTemplateForm(FormBase):
         }
         self.items = SubformGrid(name='items', label='Pay Rate Rules', model='PayRateTemplateItem',
                                  link_model='PayRateTemplate', link_field='pay_rate_template',
+                                 add_edit_form='PayRateTemplateItemForm',
                                  form_container_id=kwargs.get('target'),
                                  view_config=pay_rate_template_items_view,
                                  )
