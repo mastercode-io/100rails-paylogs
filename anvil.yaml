@@ -72,8 +72,8 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
-    - name: order number
-      admin_ui: {width: 200, order: 0}
+    - name: order_number
+      admin_ui: {order: 0, width: 200}
       type: number
     title: Pay Rate Template Items
   user_roles:
