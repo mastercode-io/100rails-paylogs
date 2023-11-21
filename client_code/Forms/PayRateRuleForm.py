@@ -39,7 +39,8 @@ class PayRateRuleForm(FormBase):
         self.description = MultiLineInput(name='description', label='Description', rows=4)
         self.scope = LookupInput(name='scope', label='Scope', model='Scope')
         self.time_scope = DropdownInput(name='time_scope', label='Time Scope',
-                                        options=TIME_SCOPE_OPTIONS, value='Weekday')
+                                        options=TIME_SCOPE_OPTIONS, value='Weekday',
+                                        on_change=self.time_scope_selected)
         self.time_limits = CheckboxInput(name='time_limits', label='Time Limits', value=True, on_change=self.toggle_time_limits)
         self.start_time = TimeInput(name='start_time', label='Start Time')
         self.end_time = TimeInput(name='end_time', label='End Time')
