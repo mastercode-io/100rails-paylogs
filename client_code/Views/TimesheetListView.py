@@ -29,7 +29,7 @@ class TimesheetListView(GridView):
         super().__init__(
             model='Timesheet',
             view_config=view_config,
-            # context_menu_items=context_menu_items,
+            context_menu_items=context_menu_items,
             **kwargs)
 
         anvil.js.window['captionTimesheetListView'] = self.grouping_caption
