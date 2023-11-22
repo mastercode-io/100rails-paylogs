@@ -61,8 +61,9 @@ class AssistantForm:
         print('show assistant form')
         self.form.show()
         self.chat_el = anvil.js.window.document.getElementById(self.chat_id)
-        self.chat_el.style.height = self.container_el.style['max-height']
-        self.form.element.style.height = self.container_el.style['max-height']
+        max_height = int(self.container_el.style['max-height'])
+        self.chat_el.style.height = f'{max_height - 50}px'
+        self.form.element.style.height = f'{max_height}px'
         # if view_mode:
         #     container_el_height = int(self.container_el.style['max-height'][0:-2]) - DIALOG_FULLSCREEN_HEIGHT_OFFSET
         #     self.container_el.style.top = f"{DIALOG_FULLSCREEN_HEIGHT_OFFSET}px"
