@@ -1,6 +1,10 @@
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.tools.utils import AppEnv
 import anvil.js
+import anvil.tables as tables
+import anvil.tables.query as q
+from ..app.models import Employee, Timesheet
+import datetime
 
 
 class TimesheetListView(GridView):
@@ -61,3 +65,17 @@ class TimesheetListView(GridView):
 
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
+        ts = Timesheet.get(args.rowInfo.rowData['id'])
+        ts_date = ts['date']
+        # get start and end of week
+        start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
+        end_of_week = start_of_week + datetime.timedelta(days=6)
+        print('week dates', start_of_week, end_of_week)
+        # get all timesheets for the week
+        timesheets = Timesheet.search(
+            date=q.all_of(q.greater_than_or_equal_to(start_of_week), q.less_than_or_equal_to(end_of_week)),
+            employee=ts['employee'],
+            search_query=tables.order_by('date', ascending=True)
+        )
+        print('timesheets', [t['date'] for t in timesheets])
+
