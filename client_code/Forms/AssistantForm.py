@@ -42,7 +42,7 @@ class AssistantForm:
             'target': self.target_el,
             'isModal': False,
             'width': '500px',
-            'height': '99%',
+            # 'height': '99%',
             'visible': True,
             'position': {'X': 'right', 'Y': '15'},
             'animationSettings': {'effect': 'Zoom'},
@@ -62,6 +62,7 @@ class AssistantForm:
         self.form.show()
         self.chat_el = anvil.js.window.document.getElementById(self.chat_id)
         self.chat_el.style.height = self.container_el.style['max-height']
+        self.form.element.style.height = self.container_el.style['max-height']
         # if view_mode:
         #     container_el_height = int(self.container_el.style['max-height'][0:-2]) - DIALOG_FULLSCREEN_HEIGHT_OFFSET
         #     self.container_el.style.top = f"{DIALOG_FULLSCREEN_HEIGHT_OFFSET}px"
