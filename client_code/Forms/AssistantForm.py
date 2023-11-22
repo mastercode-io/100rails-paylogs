@@ -29,9 +29,9 @@ class AssistantForm:
             self.user_message,
         ]
         self.form_content = f'<div id="{self.chat_id}" style="display: flex; flex-direction: column; height: 100vh;">'
-        self.form_content += f'<div style="flex-grow: 1; overflow: auto;" ><div id="{self.thread.container_id}"></div></div>'
+        self.form_content += f'<div style="flex-grow: 1; overflow: auto;" ><div id="{self.thread.container_id}"></div></div></div>'
         self.form_content += f'<div><div id="{self.user_message.container_id}"></div></div>'
-        self.form_content += '</div>'
+        # self.form_content += '</div>'
 
         self.form_content = f'<form id="{self.form_id}" style="padding-top:1em;!important">' + self.form_content + '</form>'
 
