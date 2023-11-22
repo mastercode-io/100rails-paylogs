@@ -65,7 +65,7 @@ class TimesheetListView(GridView):
 
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
-        ts = Timesheet.get(args.rowInfo.rowData['id'])
+        ts = Timesheet.get(args.rowInfo.rowData['uid'])
         ts_date = ts['date']
         # get start and end of week
         start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
