@@ -60,4 +60,4 @@ class TimesheetListView(GridView):
 
 
     def calculate_awards(self, args):
-        print('calculate_awards', args)
+        print('calculate_awards', args.rowData)
