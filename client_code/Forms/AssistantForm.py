@@ -30,8 +30,9 @@ class AssistantForm:
             self.thread,
             self.user_message,
         ]
-        self.form_content = f'<div id="{self.chat_id}" style="display: flex; flex-direction: column;">'
-        self.form_content += f'<div style="flex-grow: 1; overflow: auto;" ><div id="{self.thread.container_id}"></div></div></div>'
+        self.form_content = f'<div id="{self.chat_id}""></div>'
+        # self.form_content = f'<div id="{self.chat_id}" style="display: flex; flex-direction: column;">'
+        # self.form_content += f'<div style="flex-grow: 1; overflow: auto;" ><div id="{self.thread.container_id}"></div></div></div>'
         # self.form_content += f'<div><div id="{self.user_message.container_id}"></div></div>'
         # self.form_content += '</div>'
 
@@ -64,8 +65,8 @@ class AssistantForm:
         self.form.show()
         self.chat_el = anvil.js.window.document.getElementById(self.chat_id)
         max_height = int(self.container_el.style['max-height'][0:-2])
-        self.chat_el.style.height = f'{max_height - 50}px'
-        self.form.element.style.height = f'{max_height}px'
+        # self.chat_el.style.height = f'{max_height - 50}px'
+        self.form.element.style.height = f'{max_height - 50}px'
         self.chat = jQuery(f"#{self.thread.container_id}").kendoChat({
             'user': {
                 'name': 'User',
