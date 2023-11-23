@@ -202,7 +202,7 @@ class AssistantForm:
             'post': self.chat_post,
             'height': '95%',
         }).data('kendoChat')
-        self.chat_el.style.height = f'{max_height - 50}px'
+        self.chat_el.style.height = f'{max_height - 100}px'
 
         print('kendo chat', self.chat)
 
