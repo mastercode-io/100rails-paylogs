@@ -180,7 +180,7 @@ class AssistantForm:
                 'maxFileSize': 3145728
             },
             'width': '100%',
-            'height': '90%',
+            'height': '95%',
             'scrollToBottomOnFocus': True,
             'autoFocus': True,
             'typingIndicatorOffset': 0,
