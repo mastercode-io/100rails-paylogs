@@ -168,8 +168,9 @@ class HomePage(HomePageTemplate):
 
     def appbar_assistant_button_click(self, args):
         print('appbar_assistant_button_click')
-        form_control = Forms.AssistantForm(target=self.content_id)
-        form_control.form_show()
+        if AppEnv.assistant is None:
+            AppEnv.assistant = Forms.AssistantForm(target=self.content_id)
+        AppEnv.assistant.form_show()
 
 
     # Appbar menu popup window position adjustment
