@@ -43,7 +43,7 @@ class AssistantForm:
             'content': self.form_content,
             'showCloseIcon': True,
             'target': self.target_el,
-            'isModal': False,
+            'isModal': True,
             'width': '500px',
             # 'height': '99%',
             'visible': True,
