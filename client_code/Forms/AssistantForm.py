@@ -66,7 +66,7 @@ class AssistantForm:
         self.chat_el = anvil.js.window.document.getElementById(self.chat_id)
         max_height = int(self.container_el.style['max-height'][0:-2])
         # self.chat_el.style.height = f'{max_height - 50}px'
-        self.form.element.style.height = f'{max_height - 20}px'
+        self.form.element.style.height = f'{max_height - 15}px'
         # self.chat = jQuery(f"#{self.chat_id}").kendoChat({
         #     'user': {
         #         'name': 'User',
@@ -200,6 +200,7 @@ class AssistantForm:
 
         self.chat = jQuery(f"#{self.chat_id}").kendoChat({
             'post': self.chat_post,
+            'height': '100%',
         }).data('kendoChat')
         print('kendo chat', self.chat)
 
