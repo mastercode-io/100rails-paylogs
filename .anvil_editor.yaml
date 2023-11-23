@@ -39,6 +39,7 @@ unique_ids:
     payroll.pay_rate_rules: BFPNIMLZQX5WAUBQ4NV5WCX2RNHBJ5YK
     payroll.pay_rate_templates: LIOBTQMU2IGEGT3C3KNQ7VZVTIWEYJAR
   assets:
+    kendo-ui-license.js: '1700745835433607238952870.1808'
     aws-sdk-v3-bundle.js: CLW6UZVI4OGZX2LX3NNPOAENXJW72EGS
     home-page.css: '1693409651605488723872.3910725'
     home-page.html: 7EQK4ASFM2RGCKAZFRBJA35HWQKVTWOS
