@@ -57,15 +57,10 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     ></script>\n<script>\n// pass unocss options\nwindow.__unocss = {\n  rules: [\n\
     \    // custom rules...\n  ],\n  presets: [\n    presetUno(),\n    presetAttributify(),\n\
     \    presetTagify(),\n    presetIcons(),\n    presetWebFonts(),\n    presetTypography(),\n\
-    \  ],\n  // ...\n}\n</script>\n<script>!(function () {\n  let e = document.createElement(\"\
-    script\"),\n    t = document.head || document.getElementsByTagName(\"head\")[0];\n\
-    \  (e.src =\n    \"https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js\"\
-    ),\n    // Replace 1.x.x with the version that you want\n    (e.async = !0),\n\
-    \    (e.onload = () => {\n      window.WebChat.default(\n        {\n         \
-    \ customData: { language: \"en\" },\n          socketUrl: \"https://bf-botfront.development.agents.botfront.cloud\"\
-    ,\n          embedded: true\n          // add other props here\n        },\n \
-    \       null\n      );\n    }),\n    t.insertBefore(e, t.firstChild);\n})();\n\
-    </script>"}
+    \  ],\n  // ...\n}\n</script>\n<script type=\"text/javascript\">window.$crisp=[];window.CRISP_WEBSITE_ID=\"\
+    f2bc1390-bef1-4f8b-ac8e-abdea469f776\";(function(){d=document;s=d.createElement(\"\
+    script\");s.src=\"https://client.crisp.chat/l.js\";s.async=1;d.getElementsByTagName(\"\
+    head\")[0].appendChild(s);})();</script>"}
 db_schema:
   pay_rate_template_items:
     client: none
