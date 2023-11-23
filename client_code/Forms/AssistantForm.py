@@ -196,13 +196,13 @@ class AssistantForm:
             'messageTemplate': '<div class="k-message"><div class="k-message-wrapper"><div class="k-message-avatar"><img src="#= user.iconUrl #" alt="#= user.name # avatar" /></div><div class="k-message-content"><div class="k-message-author">#: user.name #</div><div class="k-message-text">#: text #</div></div></div></div>',
             'systemMessageTemplate': '<div class="k-message"><div class="k-message-wrapper"><div class="k-message-content"><div class="k-message-text">#: text #</div></div></div></div>',
         }).data('kendoChat')
-        print(self.chat)
+        print('kendo chat', self.chat)
 
 
     def form_open(self, args):
         print('form_open')
-        for field in self.fields:
-            field.show()
+        # for field in self.fields:
+        #     field.show()
 
 
     def chat_post(self, args):
