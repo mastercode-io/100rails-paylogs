@@ -35,7 +35,7 @@ class AssistantForm:
             'animationSettings': {'effect': 'Zoom'},
             'cssClass': 'e-fixed py-dialog',
             'open': self.form_open,
-            # 'close': self.form_cancel,
+            'close': self.form_close,
             # 'beforeOpen': self.before_open,
             # 'created': self.form_created,
         })
@@ -59,14 +59,15 @@ class AssistantForm:
         #         'height': '95%',
         #     }).data('kendoChat')
         self.chat_el.style.height = f'{max_height - 100}px'
-
         print('kendo chat', self.chat)
 
 
     def form_open(self, args):
         print('form_open')
-        # for field in self.fields:
-        #     field.show()
+
+
+    def form_close(self, args):
+        print('form_close')
 
 
     def chat_post(self, args):
