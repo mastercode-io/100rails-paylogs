@@ -67,7 +67,7 @@ class AssistantForm:
         max_height = int(self.container_el.style['max-height'][0:-2])
         # self.chat_el.style.height = f'{max_height - 50}px'
         self.form.element.style.height = f'{max_height - 50}px'
-        self.chat = jQuery(f"#{self.thread.container_id}").kendoChat({
+        self.chat = jQuery(f"#{self.chat_id}").kendoChat({
             'user': {
                 'name': 'User',
                 'iconUrl': 'https://demos.telerik.com/kendo-ui/content/chat/agent-01.png'
