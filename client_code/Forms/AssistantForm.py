@@ -197,6 +197,9 @@ class AssistantForm:
             'messageTemplate': '<div class="k-message"><div class="k-message-wrapper"><div class="k-message-avatar"><img src="#= user.iconUrl #" alt="#= user.name # avatar" /></div><div class="k-message-content"><div class="k-message-author">#: user.name #</div><div class="k-message-text">#: text #</div></div></div></div>',
             'systemMessageTemplate': '<div class="k-message"><div class="k-message-wrapper"><div class="k-message-content"><div class="k-message-text">#: text #</div></div></div></div>',
         }).data('kendoChat')
+        self.chat = jQuery(f"#{self.chat_id}").kendoChat({
+            'post': self.chat_post,
+        }).data('kendoChat')
         print('kendo chat', self.chat)
 
 
