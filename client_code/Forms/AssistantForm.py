@@ -49,9 +49,9 @@ class AssistantForm:
 
 
     def form_show(self):
-        print('show assistant form')
+        print('show assistant form', self.chat, self.chat_el)
         self.form.show()
-        self.chat_el = anvil.js.window.document.getElementById(self.chat_id)
+        # self.chat_el = anvil.js.window.document.getElementById(self.chat_id)
         max_height = int(self.container_el.style['max-height'][0:-2])
         self.form.element.style.height = f'{max_height - 15}px'
         # if self.chat is None:
