@@ -207,7 +207,7 @@ class Assistant:
                 'isOpen': True,
                 'animate': False,
                 'position': 'Right',
-                'type': 'Push',
+                'type': 'Over',
             })
             self.control.appendTo(f"#{self.container_el}")
 
