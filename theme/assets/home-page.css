@@ -71,6 +71,18 @@
     line-height: 1 !important;
 }
 
+#pl-assistant-panel {
+    overflow: auto;
+    width: 220px !important;
+    padding-top: 11px;
+    transition: all 0.5s !important;
+    z-index: 999 !important;
+    position: fixed;
+    left: 0;
+    top: 35px;
+    padding-inline: 16px !important;
+}
+
 #pl-sidebar {
     overflow: auto;
     width: 220px !important;
