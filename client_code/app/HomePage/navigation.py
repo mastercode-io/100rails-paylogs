@@ -267,7 +267,6 @@ class Sidebar:
                 'mediaQuery': '(min-width: 600px)',
                 'isOpen': True,
                 'animate': False,
-                'position': 'Right',
                 # 'type': 'Push',
             })
             self.control.appendTo(f"#{self.container_el}")
