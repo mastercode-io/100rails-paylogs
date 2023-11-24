@@ -206,6 +206,7 @@ class Assistant:
                 'mediaQuery': '(min-width: 600px)',
                 'isOpen': False,
                 'animate': False,
+                'position': 'Right',
             })
             self.control.appendTo(jQuery(f"#{self.container_el}")[0])
 
