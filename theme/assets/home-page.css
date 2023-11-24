@@ -95,6 +95,18 @@
     padding-inline: 16px !important;
 }
 
+#pl-assistant {
+    overflow: auto;
+    width: 300px !important;
+    padding-top: 11px;
+    transition: all 0.5s !important;
+    z-index: 999 !important;
+    position: fixed;
+    right: 0;
+    top: 35px;
+    padding-inline: 16px !important;
+}
+
 .e-sidebar {}
 
 .e-list-item {
