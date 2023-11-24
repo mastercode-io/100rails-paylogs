@@ -202,14 +202,14 @@ class Assistant:
         if not self.control:
             self.control = ej.navigations.Sidebar({
                 'width': self.sidebar_width,
-                # 'target': self.target_el,
+                'target': self.target_el,
                 'mediaQuery': '(min-width: 600px)',
                 'isOpen': False,
                 'animate': False,
                 'position': 'Right',
                 'type': 'Push',
             })
-            self.control.appendTo(jQuery(f"#{self.container_el}")[0])
+            self.control.appendTo(f"#{self.container_el}")
 
 
     # Sidebar toggle
@@ -263,14 +263,14 @@ class Sidebar:
         if not self.control:
             self.control = ej.navigations.Sidebar({
                 'width': self.sidebar_width,
-                # 'target': self.target_el,
+                'target': self.target_el,
                 'mediaQuery': '(min-width: 600px)',
                 'isOpen': True,
                 'animate': False,
                 'position': 'Left',
                 'type': 'Push',
             })
-            self.control.appendTo(jQuery(f"#{self.container_el}")[0])
+            self.control.appendTo(f"#{self.container_el}")
 
         self.show_menu(menu_id)
 
