@@ -209,7 +209,7 @@ class Assistant:
                 'position': 'Right',
                 'type': 'Push',
             })
-            self.control.appendTo(f"#{self.container_el}")
+            # self.control.appendTo(f"#{self.container_el}")
 
 
     # Sidebar toggle
