@@ -197,8 +197,8 @@ class Assistant:
 
 
     # Show sidebar menu
-    def show(self, menu_id):
-        print('show', menu_id)
+    def show(self):
+        print('show assistant')
         if not self.control:
             self.control = ej.navigations.Sidebar({
                 'width': self.sidebar_width,
