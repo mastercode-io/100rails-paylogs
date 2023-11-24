@@ -55,7 +55,7 @@ class HomePage(HomePageTemplate):
         )
 
         self.sidebar = nav.Sidebar(
-            target_el=".pl-page-container",
+            target_el=".pl-content",
             container_el="pl-sidebar",
             content_id=self.content_id,
         )
@@ -65,8 +65,8 @@ class HomePage(HomePageTemplate):
             menu_items=nav.PL_APPBAR_MENU,
         )
         self.assistant = nav.Assistant(
-            target_el=".pl-page-container",
-            container_el="pl-assistant-panel",
+            target_el=".pl-content",
+            container_el="pl-assistant",
             content_id=self.content_id,
         )
 
