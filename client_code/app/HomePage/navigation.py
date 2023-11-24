@@ -12,6 +12,7 @@ from AnvilFusion.features.developer.MigratePage import MigratePage
 PL_SIDEBAR_CSS = 'e-inherit e-caret-hide pm-sidebar-menu'
 PL_SIDEBAR_WIDTH = 200
 PL_SIDEBAR_POPUP_OFFSET = 1
+PL_ASSISTANT_WIDTH = 300
 
 
 # Appbar menu item list
@@ -176,6 +177,42 @@ class AppbarMenu:
         menu_id = args.item.properties.id
         print(menu_id)
         self.sidebar.show_menu(menu_id)
+
+
+class Assistant:
+    def __init__(self,
+                 target_el,
+                 container_el,
+                 content_id,
+                 sidebar_width=PL_ASSISTANT_WIDTH,
+                 **properties):
+
+        self.target_el = target_el
+        self.container_el = container_el
+        self.content_id = content_id
+        self.nav_target_id = None
+        self.sidebar_width = sidebar_width
+        self.content_control = None
+        self.control = None
+
+
+    # Show sidebar menu
+    def show(self, menu_id):
+        print('show', menu_id)
+        if not self.control:
+            self.control = ej.navigations.Sidebar({
+                'width': self.sidebar_width,
+                'target': self.target_el,
+                'mediaQuery': '(min-width: 600px)',
+                'isOpen': False,
+                'animate': False,
+            })
+            self.control.appendTo(jQuery(f"#{self.container_el}")[0])
+
+
+    # Sidebar toggle
+    def toggle(self, args):
+        self.control.toggle()
 
 
 # Sidebar navigation class

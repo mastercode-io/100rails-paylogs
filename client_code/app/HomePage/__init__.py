@@ -50,6 +50,9 @@ class HomePage(HomePageTemplate):
             {"cssClass": "e-inherit", "iconCss": "fa-solid fa-bars pl-appbar-menu-icon"}
         )
         self.appbar_settings_menu = None
+        self.appbar_assistant_toggle = ej.buttons.Button(
+            {"cssClass": "e-inherit", "iconCss": "fa-solid fa-comments pl-appbar-menu-icon"}
+        )
 
         self.sidebar = nav.Sidebar(
             target_el=".pl-page-container",
@@ -60,6 +63,11 @@ class HomePage(HomePageTemplate):
             container_el="pl-appbar-menu",
             sidebar=self.sidebar,
             menu_items=nav.PL_APPBAR_MENU,
+        )
+        self.assistant = nav.Assistant(
+            target_el=".pl-page-container",
+            container_el="pl-assistant-panel",
+            content_id=self.content_id,
         )
 
         self.appbar_notification_list = ej.splitbuttons.DropDownButton(
@@ -147,11 +155,15 @@ class HomePage(HomePageTemplate):
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
         self.appbar_notification_list.appendTo(jQuery("#pl-appbar-notification-list")[0])
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
-        self.appbar_assistant_button.appendTo(jQuery('#pl-appbar-help-menu')[0])
-        self.appbar_assistant_button.element.addEventListener('click', self.appbar_assistant_button_click)
+        # self.appbar_assistant_button.appendTo(jQuery('#pl-appbar-help-menu')[0])
+        # self.appbar_assistant_button.element.addEventListener('click', self.appbar_assistant_button_click)
         self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
         self.appbar_sidebar_toggle.element.addEventListener(
             "click", self.sidebar.toggle
+        )
+        self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
+        self.appbar_assistant_toggle.element.addEventListener(
+            "click", self.assistant.toggle
         )
 
         self.login_user()

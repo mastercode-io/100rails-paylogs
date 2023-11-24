@@ -73,7 +73,7 @@
 
 #pl-assistant-panel {
     overflow: auto;
-    width: 220px !important;
+    width: 320px !important;
     padding-top: 11px;
     transition: all 0.5s !important;
     z-index: 999 !important;
