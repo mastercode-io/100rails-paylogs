@@ -55,7 +55,7 @@ class HomePage(HomePageTemplate):
         )
 
         self.sidebar = nav.Sidebar(
-            target_el=".pl-content",
+            target_el=".pl-page-container",
             container_el="pl-sidebar",
             content_id=self.content_id,
         )
