@@ -65,6 +65,7 @@ class ImportRecordsPage(PageBase):
         self.content += f'<br><div id="{self.import_button_id}"></div><br><br>'
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
         self.content += f'<div id="{self.record_count.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
+        self.content += '<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
