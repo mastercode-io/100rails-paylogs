@@ -263,7 +263,7 @@ class Sidebar:
         if not self.control:
             self.control = ej.navigations.Sidebar({
                 'width': self.sidebar_width,
-                # 'target': self.target_el,
+                'target': self.target_el,
                 'mediaQuery': '(min-width: 600px)',
                 'isOpen': True,
                 'animate': False,
