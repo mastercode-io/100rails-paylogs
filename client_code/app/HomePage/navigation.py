@@ -207,6 +207,7 @@ class Assistant:
                 'isOpen': False,
                 'animate': False,
                 'position': 'Right',
+                'type': 'Push',
             })
             self.control.appendTo(jQuery(f"#{self.container_el}")[0])
 
@@ -267,6 +268,7 @@ class Sidebar:
                 'isOpen': True,
                 'animate': False,
                 'position': 'Left',
+                'type': 'Push',
             })
             self.control.appendTo(jQuery(f"#{self.container_el}")[0])
 
