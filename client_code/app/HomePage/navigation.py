@@ -204,7 +204,7 @@ class Assistant:
                 'width': self.sidebar_width,
                 'target': self.target_el,
                 'mediaQuery': '(min-width: 600px)',
-                'isOpen': False,
+                'isOpen': True,
                 'animate': False,
                 'position': 'Right',
                 # 'type': 'Push',
