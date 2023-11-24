@@ -54,6 +54,11 @@ class HomePage(HomePageTemplate):
             {"cssClass": "e-inherit", "iconCss": "fa-solid fa-comments pl-appbar-menu-icon"}
         )
 
+        self.assistant = nav.Assistant(
+            target_el=".pl-page-container",
+            container_el="pl-assistant",
+            content_id=self.content_id,
+        )
         self.sidebar = nav.Sidebar(
             target_el=".pl-page-container",
             container_el="pl-sidebar",
@@ -63,11 +68,6 @@ class HomePage(HomePageTemplate):
             container_el="pl-appbar-menu",
             sidebar=self.sidebar,
             menu_items=nav.PL_APPBAR_MENU,
-        )
-        self.assistant = nav.Assistant(
-            target_el=".pl-page-container",
-            container_el="pl-assistant",
-            content_id=self.content_id,
         )
 
         self.appbar_notification_list = ej.splitbuttons.DropDownButton(
@@ -147,8 +147,8 @@ class HomePage(HomePageTemplate):
         self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
 
-        self.sidebar.show(AppEnv.start_menu)
         self.assistant.show()
+        self.sidebar.show(AppEnv.start_menu)
 
 
     def form_show(self, **event_args):
