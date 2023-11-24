@@ -148,6 +148,7 @@ class HomePage(HomePageTemplate):
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
 
         self.sidebar.show(AppEnv.start_menu)
+        self.assistant.show()
 
 
     def form_show(self, **event_args):
