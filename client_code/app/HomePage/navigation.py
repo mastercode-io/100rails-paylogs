@@ -281,7 +281,8 @@ class Sidebar:
     # Sidebar toggle
     def toggle(self, args):
         self.control.toggle()
-        # resize_event = anvil.js.
+        resize_event = anvil.js.new(Event, 'resize')
+        anvil.js.window.dispatchEvent(resize_event)
 
 
     def show_menu(self, menu_id):
