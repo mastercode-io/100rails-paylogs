@@ -213,6 +213,7 @@ class Assistant:
                 'change': self.sidebar_event
             })
             self.control.appendTo(f"#{self.container_el}")
+            self.control.hide()
 
 
     # Sidebar toggle
