@@ -218,9 +218,9 @@ class Assistant:
     def toggle(self, args):
         print('toggle assistant')
         self.control.toggle()
-        time.sleep(0.5)
-        resize_event = anvil.js.new(Event, 'resize')
-        anvil.js.window.dispatchEvent(resize_event)
+        # time.sleep(0.5)
+        # resize_event = anvil.js.new(Event, 'resize')
+        # anvil.js.window.dispatchEvent(resize_event)
         # self.control.toggle()
 
 
@@ -288,9 +288,9 @@ class Sidebar:
     # Sidebar toggle
     def toggle(self, args):
         self.control.toggle()
-        time.sleep(0.5)
-        resize_event = anvil.js.new(Event, 'resize')
-        anvil.js.window.dispatchEvent(resize_event)
+        # time.sleep(0.5)
+        # resize_event = anvil.js.new(Event, 'resize')
+        # anvil.js.window.dispatchEvent(resize_event)
 
 
     def show_menu(self, menu_id):
