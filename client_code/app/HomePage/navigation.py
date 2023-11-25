@@ -229,11 +229,11 @@ class Assistant:
             self.control.show()
             self.open = True
         # AppEnv.navigation.refresh_content()
-        time.sleep(0.5)
-        resize_event = anvil.js.new(Event, 'resize')
-        anvil.js.window.dispatchEvent(resize_event)
-        if not self.open:
-            self.control.hide()
+        # time.sleep(0.5)
+        # resize_event = anvil.js.new(Event, 'resize')
+        # anvil.js.window.dispatchEvent(resize_event)
+        # if not self.open:
+        #     self.control.hide()
 
 
     def sidebar_event(self, args):
