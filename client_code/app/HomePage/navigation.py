@@ -312,11 +312,11 @@ class Sidebar:
     # Sidebar toggle
     def toggle(self, args):
         if self.open:
-            self.control.hide()
             self.open = False
+            self.control.hide()
         else:
-            self.control.show()
             self.open = True
+            self.control.show()
         # self.refresh_content()
         # time.sleep(0.5)
         # resize_event = anvil.js.new(Event, 'resize')
