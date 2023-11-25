@@ -210,7 +210,7 @@ class Assistant:
                 'animate': False,
                 'position': 'Right',
                 'type': 'Push',
-                'change': self.sidebar_event
+                # 'change': self.sidebar_event
             })
             self.control.appendTo(f"#{self.container_el}")
             self.control.hide()
@@ -261,6 +261,7 @@ class Sidebar:
         self.nav_items = nav_items
         self.control = None
         self.menu = None
+        self.open = True
 
 
     # Show sidebar menu
@@ -296,10 +297,17 @@ class Sidebar:
 
     # Sidebar toggle
     def toggle(self, args):
-        self.control.toggle()
-        # time.sleep(0.5)
-        # resize_event = anvil.js.new(Event, 'resize')
-        # anvil.js.window.dispatchEvent(resize_event)
+        if self.open:
+            self.control.hide()
+            self.open = False
+        else:
+            self.control.show()
+            self.open = True
+        time.sleep(0.5)
+        resize_event = anvil.js.new(Event, 'resize')
+        anvil.js.window.dispatchEvent(resize_event)
+        if not self.open:
+            self.control.hide()
 
 
     def show_menu(self, menu_id):
