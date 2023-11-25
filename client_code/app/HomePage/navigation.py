@@ -236,10 +236,10 @@ class Assistant:
 
     def sidebar_event(self, args):
         print('sidebar_event', args)
-        # if self.open:
-        #     self.control.hide()
-        # else:
-        #     self.control.show()
+        if self.open:
+            self.control.hide()
+        else:
+            self.control.show()
 
 
 # Sidebar navigation class
