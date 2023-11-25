@@ -205,7 +205,7 @@ class Assistant:
                 'width': self.sidebar_width,
                 'target': self.target_el,
                 'mediaQuery': '(min-width: 600px)',
-                'isOpen': True,
+                'isOpen': False,
                 'animate': False,
                 'position': 'Right',
                 'type': 'Push',
@@ -215,6 +215,7 @@ class Assistant:
 
     # Sidebar toggle
     def toggle(self, args):
+        print('toggle assistant')
         self.control.toggle()
         resize_event = anvil.js.new(Event, 'resize')
         anvil.js.window.dispatchEvent(resize_event)
