@@ -1,5 +1,6 @@
 # Application navigation
-from anvil.js.window import jQuery, ej
+from anvil.js.window import jQuery, ej, Event
+import anvil.js
 import time
 from AnvilFusion.tools.utils import AppEnv
 from AnvilFusion.datamodel import migrate
@@ -215,6 +216,8 @@ class Assistant:
     # Sidebar toggle
     def toggle(self, args):
         self.control.toggle()
+        resize_event = anvil.js.new(Event, 'resize')
+        anvil.js.window.dispatchEvent(resize_event)
 
 
 # Sidebar navigation class
@@ -277,6 +280,7 @@ class Sidebar:
     # Sidebar toggle
     def toggle(self, args):
         self.control.toggle()
+        # resize_event = anvil.js.
 
 
     def show_menu(self, menu_id):
