@@ -195,6 +195,7 @@ class Assistant:
         self.sidebar_width = sidebar_width
         self.content_control = None
         self.control = None
+        self.chat = None
         self.open = False
         self.toggled = False
 
@@ -216,6 +217,11 @@ class Assistant:
             })
             self.control.appendTo(f"#{self.container_el}")
             self.control.hide()
+            self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
+                'post': self.chat_post,
+                # 'height': '95%',
+            }).data('kendoChat')
+
 
 
     # Sidebar toggle
@@ -247,6 +253,11 @@ class Assistant:
         #     self.control.show()
         # else:
         #     self.control.hide()
+
+
+    def chat_post(self, args):
+        print('chat_post', args)
+
 
 
 # Sidebar navigation class
