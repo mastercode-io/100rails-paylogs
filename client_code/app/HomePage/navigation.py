@@ -301,8 +301,8 @@ class Sidebar:
                 'isOpen': True,
                 'animate': False,
                 'type': 'Push',
-                'open': self.sidebar_event,
-                'close': self.sidebar_event,
+                # 'open': self.sidebar_event,
+                # 'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_el}")
 
