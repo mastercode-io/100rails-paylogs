@@ -238,10 +238,12 @@ class Assistant:
 
 
     def sidebar_event(self, args):
-        print('sidebar_event', args)
         if self.toggled:
             self.toggled = False
             args.cancel = True
+            print('assistant toggled', args)
+        else:
+            print('assistant event', args)
         # if self.open:
         #     self.control.show()
         # else:
