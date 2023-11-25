@@ -52,10 +52,10 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \  ej.schedule.Schedule.inject(ej.schedule.DragAndDrop, ej.schedule.Resize)\n\
     </script>\n\n<!-- Kendo UI for jQuery -->\n<!--  <link rel=\"stylesheet\" href=\"\
     https://kendo.cdn.telerik.com/2023.3.1114/styles/kendo.common.min.css\"> -->\n\
-    <!-- <link rel=\"stylesheet\" href=\"https://kendo.cdn.telerik.com/themes/7.0.2/default/default-main.css\"\
+    <link rel=\"stylesheet\" href=\"https://kendo.cdn.telerik.com/themes/7.0.2/default/default-main.css\"\
     \ />\n<link rel=\"stylesheet\" href=\"https://kendo.cdn.telerik.com/2023.3.1114/styles/kendo.uniform.min.css\"\
     \ />\n<script src=\"https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.all.min.js\"\
-    ></script>\n -->"}
+    ></script>\n"}
 db_schema:
   pay_rate_template_items:
     client: none
