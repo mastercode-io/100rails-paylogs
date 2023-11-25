@@ -122,6 +122,8 @@ class HomePage(HomePageTemplate):
 
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
+        AppEnv.navigation = self.sidebar
+        AppEnv.assistant = self.assistant
 
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.administrator
@@ -147,7 +149,7 @@ class HomePage(HomePageTemplate):
         self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
 
-        self.assistant.show()
+        # self.assistant.show()
         self.sidebar.show(AppEnv.start_menu)
 
 

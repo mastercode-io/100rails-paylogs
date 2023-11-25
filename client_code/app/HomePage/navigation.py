@@ -210,7 +210,7 @@ class Assistant:
                 'animate': False,
                 'position': 'Right',
                 'type': 'Push',
-                'change': self.sidebar_event
+                # 'change': self.sidebar_event
             })
             self.control.appendTo(f"#{self.container_el}")
             self.control.hide()
@@ -225,11 +225,12 @@ class Assistant:
         else:
             self.control.show()
             self.open = True
-        time.sleep(0.5)
-        resize_event = anvil.js.new(Event, 'resize')
-        anvil.js.window.dispatchEvent(resize_event)
-        if not self.open:
-            self.control.hide()
+        AppEnv.navigation.refresh_content()
+        # time.sleep(0.5)
+        # resize_event = anvil.js.new(Event, 'resize')
+        # anvil.js.window.dispatchEvent(resize_event)
+        # if not self.open:
+        #     self.control.hide()
         # self.control.toggle()
 
 
@@ -307,11 +308,12 @@ class Sidebar:
         else:
             self.control.show()
             self.open = True
-        time.sleep(0.5)
-        resize_event = anvil.js.new(Event, 'resize')
-        anvil.js.window.dispatchEvent(resize_event)
-        if not self.open:
-            self.control.hide()
+        self.refresh_content()
+        # time.sleep(0.5)
+        # resize_event = anvil.js.new(Event, 'resize')
+        # anvil.js.window.dispatchEvent(resize_event)
+        # if not self.open:
+        #     self.control.hide()
 
 
     def show_menu(self, menu_id):
@@ -412,3 +414,11 @@ class Sidebar:
         if 'subcomponent' in component:
             time.sleep(0.5)
             self.menu_select(None, subcomponent=component['subcomponent'])
+
+
+    def refresh_content(self):
+        if self.content_control:
+            try:
+                self.content_control.refresh()
+            except Exception as e:
+                pass
