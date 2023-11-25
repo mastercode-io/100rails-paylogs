@@ -211,8 +211,8 @@ class Assistant:
                 'animate': False,
                 'position': 'Right',
                 'type': 'Push',
-                'open': self.sidebar_event,
-                'close': self.sidebar_event,
+                # 'open': self.sidebar_event,
+                # 'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_el}")
             self.control.hide()
@@ -228,13 +228,12 @@ class Assistant:
         else:
             self.control.show()
             self.open = True
-        AppEnv.navigation.refresh_content()
-        # time.sleep(0.5)
-        # resize_event = anvil.js.new(Event, 'resize')
-        # anvil.js.window.dispatchEvent(resize_event)
-        # if not self.open:
-        #     self.control.hide()
-        # self.control.toggle()
+        # AppEnv.navigation.refresh_content()
+        time.sleep(0.5)
+        resize_event = anvil.js.new(Event, 'resize')
+        anvil.js.window.dispatchEvent(resize_event)
+        if not self.open:
+            self.control.hide()
 
 
     def sidebar_event(self, args):
@@ -316,7 +315,7 @@ class Sidebar:
         else:
             self.control.show()
             self.open = True
-        self.refresh_content()
+        # self.refresh_content()
         # time.sleep(0.5)
         # resize_event = anvil.js.new(Event, 'resize')
         # anvil.js.window.dispatchEvent(resize_event)
