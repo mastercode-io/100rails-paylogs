@@ -221,7 +221,7 @@ class Assistant:
         time.sleep(0.5)
         resize_event = anvil.js.new(Event, 'resize')
         anvil.js.window.dispatchEvent(resize_event)
-        self.control.toggle()
+        # self.control.toggle()
 
 
     def sidebar_event(self, args):
