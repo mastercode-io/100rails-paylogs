@@ -301,6 +301,8 @@ class Sidebar:
                 'isOpen': True,
                 'animate': False,
                 'type': 'Push',
+                'open': self.sidebar_event,
+                'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_el}")
 
@@ -321,6 +323,14 @@ class Sidebar:
         # anvil.js.window.dispatchEvent(resize_event)
         # if not self.open:
         #     self.control.hide()
+
+
+    def sidebar_event(self, args):
+        print('sidebar event', args)
+        if args.name == 'open' and self.open:
+            args.cancel = True
+        elif args.name == 'close' and not self.open:
+            args.cancel = True
 
 
     def show_menu(self, menu_id):
