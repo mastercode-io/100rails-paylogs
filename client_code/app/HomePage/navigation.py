@@ -225,7 +225,7 @@ class Assistant:
         else:
             self.control.show()
             self.open = True
-        time.sleep(0.1)
+        time.sleep(0.5)
         resize_event = anvil.js.new(Event, 'resize')
         anvil.js.window.dispatchEvent(resize_event)
         if not self.open:
