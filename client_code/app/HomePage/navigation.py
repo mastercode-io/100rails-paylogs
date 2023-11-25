@@ -221,6 +221,7 @@ class Assistant:
     # Sidebar toggle
     def toggle(self, args):
         print('toggle assistant')
+        self.toggled = True
         if self.open:
             self.control.hide()
             self.open = False
