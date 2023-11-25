@@ -196,6 +196,7 @@ class Assistant:
         self.content_control = None
         self.control = None
         self.open = False
+        self.toggled = False
 
 
     # Show sidebar menu
@@ -210,7 +211,8 @@ class Assistant:
                 'animate': False,
                 'position': 'Right',
                 'type': 'Push',
-                'change': self.sidebar_event
+                'open': self.sidebar_event,
+                'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_el}")
             self.control.hide()
@@ -236,10 +238,13 @@ class Assistant:
 
     def sidebar_event(self, args):
         print('sidebar_event', args)
-        if self.open:
-            self.control.show()
-        else:
-            self.control.hide()
+        if self.toggled:
+            self.toggled = False
+            args.cancel = True
+        # if self.open:
+        #     self.control.show()
+        # else:
+        #     self.control.hide()
 
 
 # Sidebar navigation class
