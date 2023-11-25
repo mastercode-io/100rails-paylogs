@@ -195,6 +195,7 @@ class Assistant:
         self.sidebar_width = sidebar_width
         self.content_control = None
         self.control = None
+        self.open = False
 
 
     # Show sidebar menu
@@ -217,7 +218,12 @@ class Assistant:
     # Sidebar toggle
     def toggle(self, args):
         print('toggle assistant')
-        self.control.toggle()
+        if self.open:
+            self.control.hide()
+            self.open = False
+        else:
+            self.control.show()
+            self.open = True
         # time.sleep(0.5)
         # resize_event = anvil.js.new(Event, 'resize')
         # anvil.js.window.dispatchEvent(resize_event)
