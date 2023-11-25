@@ -209,6 +209,7 @@ class Assistant:
                 'animate': False,
                 'position': 'Right',
                 'type': 'Push',
+                'change': self.sidebar_event
             })
             self.control.appendTo(f"#{self.container_el}")
 
@@ -221,6 +222,10 @@ class Assistant:
         resize_event = anvil.js.new(Event, 'resize')
         anvil.js.window.dispatchEvent(resize_event)
         self.control.toggle()
+
+
+    def sidebar_event(self, args):
+        print('sidebar_event', args)
 
 
 # Sidebar navigation class
