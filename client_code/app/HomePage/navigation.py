@@ -217,7 +217,7 @@ class Assistant:
                 # 'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_id}")
-            self.chat = AssistantChat(container_id=self.container_id)
+            # self.chat = AssistantChat(container_id=self.container_id)
             # container_el = anvil.js.window.document.getElementById(self.container_id)
             # container_el.innerHTML = f'''
             #     <div id="pl-assistant-container" style="margin: 5px; height: 100%;">
