@@ -1,5 +1,6 @@
 from AnvilFusion.components.PageBase import PageBase
 from AnvilFusion.components.FormInputs import MultiLineInput
+import anvil.js
 import uuid
 
 
@@ -29,3 +30,13 @@ class AssistantChat(PageBase):
             content=content,
             **kwargs
         )
+
+
+    def show(self):
+        print('AssistantChat.show')
+        super().show()
+        pl_assistant_el = anvil.js.window.document.getElementById('pl-assistant')
+        content_el = anvil.js.window.document.getElementById(f'{self.page_el_id}-content')
+        content_el.style.height = f'{pl_assistant_el.offsetHeight - 50}px'
+        # max_height = int(self.container_el.style['max-height'][0:-2])
+        # page_content_el.style.height = f'{max_height - 50}px'
