@@ -219,9 +219,9 @@ class Assistant:
             self.control.appendTo(f"#{self.container_id}")
             container_el = anvil.js.window.document.getElementById(self.container_id)
             container_el.innerHTML = f'''
-                <div id="pl-assistant-container" style="margin: 5px;">
+                <div id="pl-assistant-container" style="margin: 5px; height: 100%;">
                     <h5 id="pl-assistant-header" style="margin-top: 15px;">PayLogs Assistant</h5>
-                    <div id="pl-assistant-chat"><div>
+                    <div id="pl-assistant-chat" style="height: 100%;"><div>
                 </div>
             '''
             self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
