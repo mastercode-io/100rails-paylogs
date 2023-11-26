@@ -15,7 +15,7 @@ class AssistantChat(PageBase):
         content = f'''\
             <div id="{el_id_prefix}-assistant-container" style="display: flex; flex-direction: column; height: 100%;">
                 <div id="{el_id_prefix}-assistant-thread" tabindex="1" 
-                    style="flex-grow: 1; overflow-y: auto; padding: 10px; border: 1px solid #ccc;"
+                    style="flex-grow: 1; overflow-y: auto; padding: 10px; border-bottom: 1px solid #ccc;"
                 ></div>
                 <div style="width: 100%;margin: 0 auto;">
                     {self.user_message.html}
