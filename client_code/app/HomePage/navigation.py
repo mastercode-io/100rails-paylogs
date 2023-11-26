@@ -184,13 +184,13 @@ class AppbarMenu:
 class Assistant:
     def __init__(self,
                  target_el,
-                 container_el,
+                 container_id,
                  content_id,
                  sidebar_width=PL_ASSISTANT_WIDTH,
                  **properties):
 
         self.target_el = target_el
-        self.container_el = container_el
+        self.container_id = container_id
         self.content_id = content_id
         self.nav_target_id = None
         self.sidebar_width = sidebar_width
@@ -216,14 +216,21 @@ class Assistant:
                 # 'open': self.sidebar_event,
                 # 'close': self.sidebar_event,
             })
-            self.control.appendTo(f"#{self.container_el}")
-            # self.chat = AssistantChat(container_id='pl-assistant-chat')
-            # self.chat.form_show()
-            self.control.hide()
+            self.control.appendTo(f"#{self.container_id}")
+            container_el = anvil.js.window.getElementById(self.container_id)
+            container_el.innerHTML = f'''
+                <div id="pl-assistant-container" style="margin: 5px;">
+                    <h5 id="pl-assistant-header" style="margin-top: 15px;">PayLogs Assistant</h5>
+                    <div id="pl-assistant-chat"><div>
+                </div>
+            '''
             self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
                 'post': self.chat_post,
                 'height': '90%',
             }).data('kendoChat')
+            # self.chat = AssistantChat(container_id='pl-assistant-chat')
+            # self.chat.form_show()
+            self.control.hide()
 
 
 
@@ -267,7 +274,7 @@ class Assistant:
 class Sidebar:
     def __init__(self,
                  target_el,
-                 container_el,
+                 container_id,
                  content_id,
                  sidebar_width=PL_SIDEBAR_WIDTH,
                  sections=None,
@@ -279,7 +286,7 @@ class Sidebar:
         if nav_items is None:
             nav_items = PL_NAV_ITEMS
         self.target_el = target_el
-        self.container_el = container_el
+        self.container_id = container_id
         self.content_id = content_id
         self.nav_target_id = None
         self.sidebar_width = sidebar_width
@@ -305,7 +312,7 @@ class Sidebar:
                 'expandOn': 'Click',
                 'nodeSelected': self.menu_select,
             })
-            self.menu.appendTo(jQuery(f"#{self.container_el}-menu")[0])
+            self.menu.appendTo(jQuery(f"#{self.container_id}-menu")[0])
 
         if not self.control:
             self.control = ej.navigations.Sidebar({
@@ -318,7 +325,7 @@ class Sidebar:
                 # 'open': self.sidebar_event,
                 # 'close': self.sidebar_event,
             })
-            self.control.appendTo(f"#{self.container_el}")
+            self.control.appendTo(f"#{self.container_id}")
 
         self.show_menu(menu_id)
 
