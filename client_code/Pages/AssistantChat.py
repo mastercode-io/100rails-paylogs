@@ -26,8 +26,8 @@ class AssistantChat(PageBase):
         super().__init__(
             container_id=container_id,
             page_title=title,
-            page_title_class='h4',
-            page_title_style='margin-top: 30px;',
+            page_title_class='h5',
+            page_title_style='margin-top: 25px;',
             content=content,
             **kwargs
         )
