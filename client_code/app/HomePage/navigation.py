@@ -217,17 +217,18 @@ class Assistant:
                 # 'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_id}")
-            container_el = anvil.js.window.document.getElementById(self.container_id)
-            container_el.innerHTML = f'''
-                <div id="pl-assistant-container" style="margin: 5px; height: 100%;">
-                    <h5 id="pl-assistant-header" style="margin-top: 15px;">PayLogs Assistant</h5>
-                    <div id="pl-assistant-chat" style="height: 90%;"><div>
-                </div>
-            '''
-            self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
-                'post': self.chat_post,
-                'height': '85%',
-            }).data('kendoChat')
+            self.chat = AssistantChat(container_id=self.container_id)
+            # container_el = anvil.js.window.document.getElementById(self.container_id)
+            # container_el.innerHTML = f'''
+            #     <div id="pl-assistant-container" style="margin: 5px; height: 100%;">
+            #         <h5 id="pl-assistant-header" style="margin-top: 15px;">PayLogs Assistant</h5>
+            #         <div id="pl-assistant-chat" style="height: 90%;"><div>
+            #     </div>
+            # '''
+            # self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
+            #     'post': self.chat_post,
+            #     'height': '85%',
+            # }).data('kendoChat')
             # self.chat = AssistantChat(container_id='pl-assistant-chat')
             # self.chat.form_show()
             self.control.hide()
@@ -263,10 +264,6 @@ class Assistant:
         #     self.control.show()
         # else:
         #     self.control.hide()
-
-
-    def chat_post(self, args):
-        print('chat_post', args)
 
 
 
