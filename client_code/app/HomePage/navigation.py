@@ -217,13 +217,13 @@ class Assistant:
                 # 'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_el}")
-            self.chat = AssistantChat(container_id='pl-assistant-chat')
-            self.chat.form_show()
+            # self.chat = AssistantChat(container_id='pl-assistant-chat')
+            # self.chat.form_show()
             self.control.hide()
-            # self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
-            #     'post': self.chat_post,
-            #     # 'height': '95%',
-            # }).data('kendoChat')
+            self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
+                'post': self.chat_post,
+                'height': '95%',
+            }).data('kendoChat')
 
 
 
