@@ -208,7 +208,7 @@ class Assistant:
             self.control = ej.navigations.Sidebar({
                 'width': self.sidebar_width,
                 'target': self.target_el,
-                'mediaQuery': '(min-width: 600px)',
+                # 'mediaQuery': '(min-width: 600px)',
                 'isOpen': False,
                 'animate': False,
                 'position': 'Right',
@@ -311,7 +311,7 @@ class Sidebar:
             self.control = ej.navigations.Sidebar({
                 'width': self.sidebar_width,
                 'target': self.target_el,
-                'mediaQuery': '(min-width: 600px)',
+                # 'mediaQuery': '(min-width: 600px)',
                 'isOpen': True,
                 'animate': False,
                 'type': 'Push',
