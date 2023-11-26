@@ -56,12 +56,12 @@ class HomePage(HomePageTemplate):
 
         self.assistant = nav.Assistant(
             target_el=".pl-page-container",
-            container_el="pl-assistant",
+            container_id="pl-assistant",
             content_id=self.content_id,
         )
         self.sidebar = nav.Sidebar(
             target_el=".pl-page-container",
-            container_el="pl-sidebar",
+            container_id="pl-sidebar",
             content_id=self.content_id,
         )
         self.appbar_menu = nav.AppbarMenu(
