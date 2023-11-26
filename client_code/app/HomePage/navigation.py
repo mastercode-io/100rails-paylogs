@@ -226,7 +226,7 @@ class Assistant:
             '''
             self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
                 'post': self.chat_post,
-                'height': '95%',
+                'height': '85%',
             }).data('kendoChat')
             # self.chat = AssistantChat(container_id='pl-assistant-chat')
             # self.chat.form_show()
