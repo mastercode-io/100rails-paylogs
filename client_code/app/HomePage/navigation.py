@@ -222,7 +222,7 @@ class Assistant:
             self.control.hide()
             self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
                 'post': self.chat_post,
-                'height': '95%',
+                'height': '90%',
             }).data('kendoChat')
 
 
