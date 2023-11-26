@@ -221,7 +221,7 @@ class Assistant:
             container_el.innerHTML = f'''
                 <div id="pl-assistant-container" style="margin: 5px; height: 100%;">
                     <h5 id="pl-assistant-header" style="margin-top: 15px;">PayLogs Assistant</h5>
-                    <div id="pl-assistant-chat" style="height: 100%;"><div>
+                    <div id="pl-assistant-chat" style="height: 90%;"><div>
                 </div>
             '''
             self.chat = jQuery(f"#pl-assistant-chat").kendoChat({
