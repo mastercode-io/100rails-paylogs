@@ -27,7 +27,7 @@ class AssistantChat(PageBase):
             container_id=container_id,
             page_title=title,
             page_title_class='h4',
-            page_title_style='margin-top: 10px;',
+            page_title_style='margin-top: 30px;',
             content=content,
             **kwargs
         )
