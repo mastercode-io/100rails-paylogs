@@ -217,7 +217,7 @@ class Assistant:
                 # 'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_id}")
-            container_el = anvil.js.window.getElementById(self.container_id)
+            container_el = anvil.js.window.document.getElementById(self.container_id)
             container_el.innerHTML = f'''
                 <div id="pl-assistant-container" style="margin: 5px;">
                     <h5 id="pl-assistant-header" style="margin-top: 15px;">PayLogs Assistant</h5>
