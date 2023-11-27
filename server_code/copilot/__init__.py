@@ -2,9 +2,16 @@ import anvil.server
 from openai import OpenAI
 
 
+@anvil.server.serializable_type
+class OpenAIClient:
+    def __init__(self, api_key):
+        self.api_key = api_key
+        self.client = OpenAI(api_key=api_key)
+
+
 @anvil.server.callable
 def get_openai_client(api_key=None):
-    client = OpenAI(api_key=api_key)
+    client = OpenAIClient(api_key=api_key)
     return client
 
 
