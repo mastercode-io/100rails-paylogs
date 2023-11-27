@@ -5,8 +5,8 @@ import openai
 @anvil.server.callable
 def get_openai_client(api_key=None):
     pass
-    # client = OpenAI(api_key=api_key)
-    # return client
+    client = openai.OpenAI(api_key=api_key)
+    return client
 
 
 @anvil.server.callable
