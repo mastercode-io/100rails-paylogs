@@ -2,14 +2,17 @@
 # from AnvilFusion.components.FormInputs import MultiLineInput
 import anvil.js
 from anvil.js.window import jQuery
+from ..app.copilot import Copilot
 import uuid
+import json
 
 
-class AssistantChat:
+class CopilotChat:
 
     def __init__(self, container_id, **kwargs):
         print('PayLogs Copilot')
 
+        self.copilot = Copilot()
         header = 'PayLogs Copilot'
         self.el_id_prefix = uuid.uuid4()
         self.container_id = container_id
@@ -28,6 +31,22 @@ class AssistantChat:
 
     def chat_post(self, args):
         print('chat_post', args)
+        # response = self.copilot.send_message(args.text)
+        # assistant_messages = []
+        # for message in response['data']:
+        #     if message['role'] == 'user':
+        #         break
+        #     if message['content']['type'] == 'text':
+        #         assistant_messages.append(message['content']['text']['value'])
+        #     elif message['content']['type'] == 'image_file':
+        #         assistant_messages.append(message['content']['image_file']['file_id'])
+        # for message in assistant_messages:
+        #     self.chat.renderMessage({
+        #         'type': 'text',
+        #         'text': message,
+        #         'timestamp': 'now',
+        #         'user': {'id': 'assistant'},
+        #     })
 
 
         # self.user_message = MultiLineInput(name='user_message', label='Message', rows=2)

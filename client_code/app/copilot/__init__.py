@@ -1,5 +1,5 @@
 import anvil.server
-from AnvilFusion.tools.utils import AppEnv
+import json
 
 
 OPENAI_API_KEY = "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"
@@ -15,9 +15,10 @@ class Copilot:
 
 
     def send_message(self, question):
-        return anvil.server.call(
+        response =  anvil.server.call(
             'openai_send_message',
             question,
              assistant_id=self.assistant_id,
              thread_id=self.thread_id,
         )
+        return json.loads(response)

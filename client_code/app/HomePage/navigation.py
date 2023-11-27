@@ -7,7 +7,7 @@ from AnvilFusion.datamodel import migrate
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.features.developer.MigratePage import MigratePage
-from ...Pages.AssistantChat import AssistantChat
+from ...Pages.CopilotChat import AssistantChat
 
 
 # Sidebar control CSS
@@ -217,7 +217,7 @@ class Assistant:
                 # 'close': self.sidebar_event,
             })
             self.control.appendTo(f"#{self.container_id}")
-            self.chat = AssistantChat(container_id=self.container_id)
+            self.chat = CopilotChat(container_id=self.container_id)
             # container_el = anvil.js.window.document.getElementById(self.container_id)
             # container_el.innerHTML = f'''
             #     <div id="pl-assistant-container" style="margin: 5px; height: 100%;">
@@ -237,7 +237,7 @@ class Assistant:
 
     # Sidebar toggle
     def toggle(self, args):
-        print('toggle assistant')
+        # print('toggle assistant')
         self.toggled = True
         if self.open:
             self.control.hide()
