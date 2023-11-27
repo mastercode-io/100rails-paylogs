@@ -1,12 +1,11 @@
 import anvil.server
-import openai
+from openai import OpenAI
 
 
 @anvil.server.callable
 def get_openai_client(api_key=None):
     pass
-    client = openai.OpenAI(api_key=api_key)
-    return client
+    return OpenAI(api_key=api_key)
 
 
 @anvil.server.callable
