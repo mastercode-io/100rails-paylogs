@@ -1,5 +1,7 @@
 import anvil.server
 from AnvilFusion.tools.utils import AppEnv
+from ...copilot import OpenAIClient
+
 
 OPENAI_API_KEY = "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"
 COPILOT_ASSISTANT_ID = "asst_Sy84Rcs6K3GsD2WnNqKnDwE3"
