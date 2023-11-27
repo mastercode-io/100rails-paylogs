@@ -2,19 +2,16 @@ import anvil.server
 from openai import OpenAI
 
 
-@anvil.server.portable_class
-class OpenAIClient:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.client = OpenAI(api_key=api_key)
+openai_client = None
 
 
 @anvil.server.callable
-def get_openai_client(api_key=None):
-    client = OpenAIClient(api_key=api_key)
-    return client
+def init_openai_client(api_key=None):
+    global openai_client
+    openai_client = OpenAI(api_key=api_key)
+    if not anvil.server.session.get('openai_thread_id'):
+        thread = openai_client.beta.threads.create()
+        print(thread)
+        anvil.server.session['openai_thread_id'] = thread['id']
+    return anvil.server.session['openai_thread_id']
 
-
-@anvil.server.callable
-def get_current_thread_id():
-    return anvil.server.session.get('current_thread_id', None)
