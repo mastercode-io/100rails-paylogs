@@ -154,6 +154,7 @@ class HomePage(HomePageTemplate):
         self.sidebar.show(AppEnv.start_menu)
 
         copilot = Copilot()
+        copilot.send_message('what are you?')
 
 
     def form_show(self, **event_args):

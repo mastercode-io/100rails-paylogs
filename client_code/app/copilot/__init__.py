@@ -11,5 +11,13 @@ class Copilot:
     def __init__(self, api_key=None, assistant_id=None):
         self.api_key = api_key or OPENAI_API_KEY
         self.assistant_id = assistant_id or COPILOT_ASSISTANT_ID
-        self.thread_id = anvil.server.call('init_openai_client', api_key=self.api_key)
+        self.thread_id = anvil.server.call('openai_init_client', api_key=self.api_key)
 
+
+    def send_message(self, question):
+        return anvil.server.call(
+            'openai_send_message',
+            question,
+             assistant_id=self.assistant_id,
+             thread_id=self.thread_id,
+        )
