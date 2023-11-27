@@ -40,7 +40,5 @@ def openai_send_message(question, assistant_id=None, thread_id=None):
         )
         time.sleep(0.5)
     messages = openai_client.beta.threads.messages.list(thread_id=thread_id)
-    print('openai_ask_question', time.time() - start)
-    print('question', question)
-    print('messages', messages)
+    print('openai_ask_question run time', time.time() - start)
     return json.loads(messages.model_dump_json())

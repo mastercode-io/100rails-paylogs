@@ -1,7 +1,6 @@
 from ._anvil_designer import HomePageTemplate
 import anvil.js
 from anvil.js.window import ej, jQuery
-# from anvil import get_url_hash
 import anvil.users
 from AnvilFusion.tools.utils import AppEnv, DotDict, init_user_session
 from .. import models
@@ -10,6 +9,7 @@ from ... import Views
 from ... import Pages
 import navigation as nav
 from ..copilot import Copilot
+import json
 
 
 AppEnv.APP_ID = "PayLogs"
@@ -154,7 +154,10 @@ class HomePage(HomePageTemplate):
         self.sidebar.show(AppEnv.start_menu)
 
         copilot = Copilot()
-        copilot.send_message('what are you?')
+        message = 'what are you?'
+        thread = copilot.send_message(message)
+        print('copilot', message)
+        print(thread)
 
 
     def form_show(self, **event_args):
