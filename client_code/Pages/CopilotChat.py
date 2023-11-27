@@ -39,12 +39,16 @@ class CopilotChat:
             assistant_messages.extend({m['text']['value'] for m in message['content'] if m['type'] == 'text'})
             assistant_messages.extend({m['image_file']['file_id'] for m in message['content'] if m['type'] == 'image_file'})
         for message in assistant_messages:
-            self.chat.renderMessage({
-                'type': 'text',
-                'text': message,
-                # 'timestamp': 'now',
-                'name': 'assistant',
-            })
+            self.chat.renderMessage(
+                {
+                    'type': 'text',
+                    'text': message,
+                    # 'timestamp': 'now',
+                },
+                {
+                    'name': 'assistant',
+                }
+            )
 
 
         # self.user_message = MultiLineInput(name='user_message', label='Message', rows=2)
