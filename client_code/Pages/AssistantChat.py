@@ -8,9 +8,9 @@ import uuid
 class AssistantChat:
 
     def __init__(self, container_id, **kwargs):
-        print('AssistantChat')
+        print('PayLogs Copilot')
 
-        header = 'PayLogs Assistant'
+        header = 'PayLogs Copilot'
         self.el_id_prefix = uuid.uuid4()
         self.container_id = container_id
         container_el = anvil.js.window.document.getElementById(self.container_id)
