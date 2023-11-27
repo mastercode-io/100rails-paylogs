@@ -31,22 +31,22 @@ class CopilotChat:
 
     def chat_post(self, args):
         print('chat_post', args)
-        # response = self.copilot.send_message(args.text)
-        # assistant_messages = []
-        # for message in response['data']:
-        #     if message['role'] == 'user':
-        #         break
-        #     if message['content']['type'] == 'text':
-        #         assistant_messages.append(message['content']['text']['value'])
-        #     elif message['content']['type'] == 'image_file':
-        #         assistant_messages.append(message['content']['image_file']['file_id'])
-        # for message in assistant_messages:
-        #     self.chat.renderMessage({
-        #         'type': 'text',
-        #         'text': message,
-        #         'timestamp': 'now',
-        #         'user': {'id': 'assistant'},
-        #     })
+        response = self.copilot.send_message(args.text)
+        assistant_messages = []
+        for message in response['data']:
+            if message['role'] == 'user':
+                break
+            if message['content']['type'] == 'text':
+                assistant_messages.append(message['content']['text']['value'])
+            elif message['content']['type'] == 'image_file':
+                assistant_messages.append(message['content']['image_file']['file_id'])
+        for message in assistant_messages:
+            self.chat.renderMessage({
+                'type': 'text',
+                'text': message,
+                'timestamp': 'now',
+                'user': {'id': 'assistant'},
+            })
 
 
         # self.user_message = MultiLineInput(name='user_message', label='Message', rows=2)
