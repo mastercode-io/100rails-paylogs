@@ -12,6 +12,5 @@ def init_openai_client(api_key=None):
     if not anvil.server.session.get('openai_thread_id'):
         thread = openai_client.beta.threads.create()
         print(thread)
-        anvil.server.session['openai_thread_id'] = thread['id']
+        anvil.server.session['openai_thread_id'] = thread.id
     return anvil.server.session['openai_thread_id']
-
