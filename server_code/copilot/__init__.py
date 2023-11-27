@@ -1,6 +1,7 @@
 import anvil.server
 from openai import OpenAI
 import time
+import json
 
 
 openai_client = None
@@ -42,4 +43,4 @@ def openai_send_message(question, assistant_id=None, thread_id=None):
     print('openai_ask_question', time.time() - start)
     print('question', question)
     print('messages', messages)
-    return messages
+    return json.loads(messages.model_dump_json())
