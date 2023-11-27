@@ -30,8 +30,8 @@ class CopilotChat:
 
 
     def chat_post(self, args):
-        print('chat_post', args)
-        self.chat.renderUserTypingIndicator({'name': 'assistant'})
+        # print('chat_post', args)
+        self.chat.renderUserTypingIndicator(self.chat.getUser())
         response = self.copilot.send_message(args.text)
         assistant_messages = []
         for message in response['data']:
@@ -39,6 +39,7 @@ class CopilotChat:
                 break
             assistant_messages.extend({m['text']['value'] for m in message['content'] if m['type'] == 'text'})
             assistant_messages.extend({m['image_file']['file_id'] for m in message['content'] if m['type'] == 'image_file'})
+        self.chat.removeTypingIndicator(self.chat.getUser())
         for message in assistant_messages:
             self.chat.renderMessage(
                 {
