@@ -36,10 +36,8 @@ class CopilotChat:
         for message in response['data']:
             if message['role'] == 'user':
                 break
-            if message['content']['type'] == 'text':
-                assistant_messages.append(message['content']['text']['value'])
-            elif message['content']['type'] == 'image_file':
-                assistant_messages.append(message['content']['image_file']['file_id'])
+            assistant_messages.extend({m['text']['value'] for m in message['content'] if m['type'] == 'text'})
+            assistant_messages.extend({m['image_file']['file_id'] for m in message['content'] if m['type'] == 'image_file'})
         for message in assistant_messages:
             self.chat.renderMessage({
                 'type': 'text',
