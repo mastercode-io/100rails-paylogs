@@ -1,18 +1,11 @@
 import anvil.server
-import openai
-
-
-attributes = dir(openai)
-for attr in attributes:
-    if not attr.startswith('_'):
-        print(attr)
+from openai import OpenAI
 
 
 @anvil.server.callable
 def get_openai_client(api_key=None):
-    # client = openai.Client(api_key=api_key)
-    # return client
-    return None
+    client = OpenAI(api_key=api_key)
+    return client
 
 
 @anvil.server.callable
