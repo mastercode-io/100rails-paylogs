@@ -153,11 +153,11 @@ class HomePage(HomePageTemplate):
         self.assistant.show()
         self.sidebar.show(AppEnv.start_menu)
 
-        copilot = Copilot()
-        message = 'what are you?'
-        thread = copilot.send_message(message)
-        print('copilot', message)
-        print(thread)
+        # copilot = Copilot()
+        # message = 'what are you?'
+        # thread = copilot.send_message(message)
+        # print('copilot', message)
+        # print(thread)
 
 
     def form_show(self, **event_args):

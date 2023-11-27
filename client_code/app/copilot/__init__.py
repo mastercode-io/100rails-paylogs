@@ -1,5 +1,4 @@
 import anvil.server
-import json
 
 
 OPENAI_API_KEY = "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"
@@ -21,4 +20,4 @@ class Copilot:
              assistant_id=self.assistant_id,
              thread_id=self.thread_id,
         )
-        return json.loads(response)
+        return response
