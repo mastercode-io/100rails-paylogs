@@ -7,7 +7,7 @@ from AnvilFusion.datamodel import migrate
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.features.developer.MigratePage import MigratePage
-from ...Pages.CopilotChat import AssistantChat
+from ...Pages import CopilotChat
 
 
 # Sidebar control CSS
@@ -232,7 +232,6 @@ class Assistant:
             # self.chat = AssistantChat(container_id='pl-assistant-chat')
             # self.chat.form_show()
             self.control.hide()
-
 
 
     # Sidebar toggle
