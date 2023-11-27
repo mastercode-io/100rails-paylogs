@@ -42,8 +42,8 @@ class CopilotChat:
             self.chat.renderMessage({
                 'type': 'text',
                 'text': message,
-                'timestamp': 'now',
-                'user': {'id': 'assistant'},
+                # 'timestamp': 'now',
+                'name': 'assistant',
             })
 
 
