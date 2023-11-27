@@ -9,6 +9,7 @@ from ... import Forms
 from ... import Views
 from ... import Pages
 import navigation as nav
+from ..copilot import Copilot
 
 
 AppEnv.APP_ID = "PayLogs"
@@ -151,6 +152,8 @@ class HomePage(HomePageTemplate):
 
         self.assistant.show()
         self.sidebar.show(AppEnv.start_menu)
+
+        copilot = Copilot()
 
 
     def form_show(self, **event_args):
