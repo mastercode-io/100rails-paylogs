@@ -49,11 +49,12 @@ class TimesheetListView(GridView):
         self.grid.aggregates = [{
             'columns': [
                 {
-                    'type': 'Count',
+                    'type': 'Custom',
                     'field': 'total_hours_view',
                     'columnName': 'total_hours_view',
-                    'groupCaptionTemplate': '${Count}',
-                    'customAggregate': 'timesheetListGroupingTotalHours',
+                    'groupCaptionTemplate': '${Custom}',
+                    # 'customAggregate': 'timesheetListGroupingTotalHours',
+                    'customAggregate': self.grouping_total_hours,
                 },
             ],
         }]
