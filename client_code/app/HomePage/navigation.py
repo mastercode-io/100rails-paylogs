@@ -365,7 +365,7 @@ class Sidebar:
             self.menu_select(None, subcomponent=subcomponent)
 
 
-    def menu_select(self, args, subcomponent=None):
+    def menu_select(self, args, subcomponent=None, menu_item_id=None):
         if subcomponent is None:
             if 'e-level-1' in list(args.node.classList):
                 # print('Accordion')
@@ -373,7 +373,7 @@ class Sidebar:
                 self.menu.expandAll([args.node])
                 self.nav_target_id = None
 
-            menu_item_id = args.nodeData.id
+            menu_item_id = args.nodeData.id if args else menu_item_id
             component = PL_NAV_ITEMS[menu_item_id] if menu_item_id in PL_NAV_ITEMS else None
         else:
             component = PL_NAV_ITEMS.get(subcomponent)

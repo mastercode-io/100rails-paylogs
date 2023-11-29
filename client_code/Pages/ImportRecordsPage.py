@@ -65,7 +65,6 @@ class ImportRecordsPage(PageBase):
         self.content += f'<br><div id="{self.import_button_id}"></div><br><br>'
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
         self.content += f'<div id="{self.record_count.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
-        self.content += '<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
@@ -153,7 +152,6 @@ class ImportRecordsPage(PageBase):
         locations = {location['name']: location for location in Location.search(status='Active')}
         existing_jobs = [job['number'] for job in Job.search()]
         print('existing_jobs:', len(existing_jobs))
-        print(existing_jobs)
 
         count = 0
         new_jobs = []

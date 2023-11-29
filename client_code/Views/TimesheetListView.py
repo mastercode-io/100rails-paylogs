@@ -19,6 +19,7 @@ class TimesheetListView(GridView):
                 {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
                 {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
                 {'name': 'total_hours_view', 'label': 'Total Hours'},
+                {'name': 'total_hours', 'visible': False},
                 {'name': 'total_pay', 'label': 'Total Pay'},
                 {'name': 'status', 'label': 'Status'},
                 {'name': 'job.name', 'label': 'Job Name'},
@@ -37,6 +38,7 @@ class TimesheetListView(GridView):
             **kwargs)
 
         anvil.js.window['captionTimesheetListView'] = self.grouping_caption
+        anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
         self.grid.allowGrouping = True
         self.grid.groupSettings = {
             'columns': ['employee__full_name'],
@@ -44,6 +46,15 @@ class TimesheetListView(GridView):
             # 'captionTemplate': '<div>${key} - ${data}</div>',
             'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
         }
+        self.grid.aggregates = [
+            {
+                'type': 'Sum',
+                'field': 'total_hours',
+                'format': 'n2',
+                'groupCaptionTemplate': '${timesheetListGroupingTotalHours(data)} hours'
+            },
+            # {'type': 'Sum', 'field': 'total_pay', 'format': 'c2'},
+        ]
         self.grid.allowSorting = True
         self.grid.sortSettings = {
             'columns': [
@@ -61,6 +72,11 @@ class TimesheetListView(GridView):
         return (f'<div class="template" style="{caption_color}">'
                 f'{args.items[0].employee__full_name}</div>')
         # return args['due_date']
+
+
+    def grouping_total_hours(self, args):
+        print('grouping_total_hours', args)
+        return 0
 
 
     def calculate_awards(self, args):

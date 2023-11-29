@@ -27,7 +27,7 @@ class CopilotChat:
             'post': self.chat_post,
             'height': '85%',
         }).data('kendoChat')
-        self.chat.renderUserTypingIndicator(self.chat.getUser())
+        self.chat.renderUserTypingIndicator()
 
 
     def chat_post(self, args):

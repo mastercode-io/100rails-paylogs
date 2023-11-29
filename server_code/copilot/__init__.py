@@ -33,12 +33,15 @@ def openai_send_message(question, assistant_id=None, thread_id=None):
         thread_id=thread_id,
         assistant_id=assistant_id,
     )
-    while run.status == "queued" or run.status == "in_progress":
-        run = openai_client.beta.threads.runs.retrieve(
-            thread_id=thread_id,
-            run_id=run.id,
-        )
-        time.sleep(0.5)
-    messages = openai_client.beta.threads.messages.list(thread_id=thread_id)
-    print('openai_ask_question run time', time.time() - start)
-    return json.loads(messages.model_dump_json())
+    return json.loads(run.model_dump_json())
+
+
+@anvil.server.callable
+def openai_retrieve_response(thread_id=None, run_id=None):
+    run = openai_client.beta.threads.runs.retrieve(
+        thread_id=thread_id,
+        run_id=run_id,
+    )
+    return json.loads(run.model_dump_json())
+
+    # messages = openai_client.beta.threads.messages.list(thread_id=thread_id)
