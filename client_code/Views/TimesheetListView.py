@@ -50,6 +50,7 @@ class TimesheetListView(GridView):
             {
                 'type': 'Custom',
                 'field': 'total_hours_view',
+                'columnName': 'total_hours_view',
                 'groupCaptionTemplate': '${Custom}',
                 'customAggregate': self.grouping_total_hours,
             },
@@ -75,7 +76,8 @@ class TimesheetListView(GridView):
 
     def grouping_total_hours(self, args):
         print('grouping_total_hours', args)
-        return 0
+        # return 'Total Hours: ' + str(sum([float(i.total_hours) for i in args.items])) + ' hours'
+        return '00:00'
 
 
     def calculate_awards(self, args):
