@@ -78,8 +78,8 @@ class TimesheetListView(GridView):
         # return args['due_date']
 
 
-    def grouping_total_hours(self, args):
-        print('grouping_total_hours', args)
+    def grouping_total_hours(self, data, column):
+        print('grouping_total_hours', data, column)
         # return 'Total Hours: ' + str(sum([float(i.total_hours) for i in args.items])) + ' hours'
         return '00:00'
 
