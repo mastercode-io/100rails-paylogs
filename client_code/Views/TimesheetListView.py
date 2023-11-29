@@ -48,11 +48,11 @@ class TimesheetListView(GridView):
         }
         self.grid.aggregates = [
             {
-                'type': 'Custom',
+                'type': 'Count',
                 'field': 'total_hours_view',
                 'columnName': 'total_hours_view',
-                'groupCaptionTemplate': '${Custom}',
-                'customAggregate': self.grouping_total_hours,
+                'groupCaptionTemplate': '${Count}',
+                # 'customAggregate': self.grouping_total_hours,
             },
         ]
         self.grid.allowSorting = True
