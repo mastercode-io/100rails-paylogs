@@ -53,7 +53,7 @@ class TimesheetListView(GridView):
                     'field': 'total_hours_view',
                     'columnName': 'total_hours_view',
                     'groupCaptionTemplate': '${Custom}',
-                    'customAggregate': self.grouping_total_hours,
+                    'customAggregate': 'timesheetListGroupingTotalHours',
                 },
             ],
         }]
