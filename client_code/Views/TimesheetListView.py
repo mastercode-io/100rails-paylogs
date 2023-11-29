@@ -54,8 +54,8 @@ class TimesheetListView(GridView):
                     'columnName': 'total_hours_view',
                     'groupCaptionTemplate': '${Custom}',
                     # 'customAggregate': 'timesheetListGroupingTotalHours',
-                    # 'customAggregate': self.grouping_total_hours,
-                    'customAggregate': anvil.js.window['timesheetListGroupingTotalHours'],
+                    'customAggregate': self.grouping_total_hours,
+                    # 'customAggregate': anvil.js.window['timesheetListGroupingTotalHours'],
                 },
             ],
         }]
