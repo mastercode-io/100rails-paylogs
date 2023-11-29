@@ -75,15 +75,14 @@ class TimesheetListView(GridView):
         caption_color = 'color:#6750A4;'
         return (f'<div class="template" style="{caption_color}">'
                 f'{args.items[0].employee__full_name}</div>')
-        # return args['due_date']
 
 
     def grouping_total_hours(self, data, column):
-        print('grouping_total_hours', data, column)
+        # print('grouping_total_hours', data, column)
         week_total = sum(day['total_hours'] for day in data.items)
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
-        return f"{hours}:{minutes:02d}"
+        return f"{hours}:{minutes:02d} week"
 
 
     def calculate_awards(self, args):
