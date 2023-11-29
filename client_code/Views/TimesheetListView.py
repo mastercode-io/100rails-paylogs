@@ -51,7 +51,7 @@ class TimesheetListView(GridView):
                 'type': 'Sum',
                 'field': 'total_hours',
                 'format': 'n2',
-                'groupCaptionTemplate': '${timesheetListGroupingTotalHours(data)} hours'
+                #'groupCaptionTemplate': '${timesheetListGroupingTotalHours(data)} hours'
             },
             # {'type': 'Sum', 'field': 'total_pay', 'format': 'c2'},
         ]
