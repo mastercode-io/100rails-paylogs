@@ -49,9 +49,9 @@ class TimesheetListView(GridView):
         self.grid.aggregates = [
             {
                 'type': 'Sum',
-                'field': 'total_hours',
+                'field': 'total_hours_view',
                 'format': 'n2',
-                'groupCaptionTemplate': '${timesheetListGroupingTotalHours(data)} hours'
+                'groupCaptionTemplate': '${timesheetListGroupingTotalHours(data)}'
             },
         ]
         self.grid.allowSorting = True
