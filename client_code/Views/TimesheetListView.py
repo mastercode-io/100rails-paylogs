@@ -80,8 +80,10 @@ class TimesheetListView(GridView):
 
     def grouping_total_hours(self, data, column):
         print('grouping_total_hours', data, column)
-        # return 'Total Hours: ' + str(sum([float(i.total_hours) for i in args.items])) + ' hours'
-        return '00:00'
+        week_total = sum(day['total_hours'] for day in data.items)
+        hours = int(week_total)
+        minutes = int((week_total - hours) * 60)
+        return f"{hours}:{minutes:02d}"
 
 
     def calculate_awards(self, args):
