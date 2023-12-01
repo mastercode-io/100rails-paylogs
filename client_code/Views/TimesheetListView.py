@@ -96,13 +96,12 @@ class TimesheetListView(GridView):
         end_of_week = start_of_week + datetime.timedelta(days=6)
         print('week dates', start_of_week, end_of_week)
         # get all timesheets for the week
-        timesheets = Timesheet.search(
+        timesheets = [*Timesheet.search(
             date=q.all_of(q.greater_than_or_equal_to(start_of_week), q.less_than_or_equal_to(end_of_week)),
             employee=employee,
             search_query=tables.order_by('date', ascending=True)
-        )
+        )]
         print('timesheets', [t['date'] for t in timesheets])
-        print(timesheets)
         pay_lines = []
         for ts in timesheets:
             scope = next(s for s in scopes if s['name'] == ts['job']['job_type']['name'])
