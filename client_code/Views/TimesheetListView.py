@@ -101,7 +101,6 @@ class TimesheetListView(GridView):
             employee=employee,
             search_query=tables.order_by('date', ascending=True)
         )
-        pay_rate_template = PayRateTemplate.get_by()
         print('timesheets', [t['date'] for t in timesheets])
         pay_lines = []
         for ts in timesheets:
