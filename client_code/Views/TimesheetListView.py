@@ -104,8 +104,7 @@ class TimesheetListView(GridView):
         print('timesheets', [t['date'] for t in timesheets])
         pay_lines = []
         for ts in timesheets:
-            scope = next(s for s in scopes if s['name'] == ts['job']['job_type']['name'])
+            scope = next((s for s in scopes if s['name'] == ts['job']['job_type']['name']), None)
             print('scope', scope, scope['name'])
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
             print('pay_rate_template', pay_rate_template, pay_rate_template['name'])
-
