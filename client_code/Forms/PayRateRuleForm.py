@@ -62,7 +62,6 @@ class PayRateRuleForm(FormBase):
               'name': '_', 'cols': [
                 [
                     self.name,
-                    self.pay_category,
                     self.scope,
                     self.time_scope,
                 ],
