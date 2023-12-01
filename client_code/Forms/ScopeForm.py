@@ -35,3 +35,4 @@ class ScopeForm(FormBase):
             self.short_code.options = []
         elif self.type.value == 'Job Type':
             self.short_code.options = [j['short_code'] for j in JobType.search()]
+            print('short_code options', self.short_code.options)
