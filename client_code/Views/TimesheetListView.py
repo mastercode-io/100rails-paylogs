@@ -3,7 +3,7 @@ from AnvilFusion.tools.utils import AppEnv
 import anvil.js
 import anvil.tables as tables
 import anvil.tables.query as q
-from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, Scope
+from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, Scope, ScopeType
 import datetime
 
 
@@ -90,7 +90,8 @@ class TimesheetListView(GridView):
         ts = Timesheet.get(args.rowInfo.rowData['uid'])
         ts_date = ts['date']
         employee = ts['employee']
-        scopes = Scope.search()
+        job_type_scopes = [*Scope.search(type=ScopeType.get_by('name', 'Job Type'))]
+        print('job_type_scopes', [s['name'] for s in job_type_scopes])
         # get start and end of week
         start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
         end_of_week = start_of_week + datetime.timedelta(days=6)
@@ -104,8 +105,8 @@ class TimesheetListView(GridView):
         print('timesheets', [t['date'] for t in timesheets])
         pay_lines = []
         for ts in timesheets:
-            # scope = next((s for s in scopes if s['name'] == ts['job']['job_type']['name']), None)
-            print('scopes', scopes)
+            scope = next((s for s in job_type_scopes if s['name'] == ts['job']['job_type']['name']), None)
+            print('scopes', job_type_scopes)
             print(ts['job']['job_type']['name'])
             # pay_rate_template = PayRateTemplate.get_by('scope', scope)
             # print('pay_rate_template', pay_rate_template, pay_rate_template['name'])

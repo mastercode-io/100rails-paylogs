@@ -426,6 +426,7 @@ class Scope:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     type = Relationship("ScopeType")
     custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
