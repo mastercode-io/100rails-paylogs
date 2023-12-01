@@ -10,7 +10,7 @@ class ScopeForm(FormBase):
         kwargs['model'] = 'Scope'
 
         self.name = TextInput(name='name', label='Name')
-        self.short_code = DropdownInput(name='short_code', label='Short Code', enabled=False)
+        self.short_code = DropdownInput(name='short_code', label='Short Code')
         self.description = MultiLineInput(name='description', label='Description', rows=4)
         self.type = LookupInput(name='type', label='Scope Type', model='ScopeType',
                                 on_chenge=self.scope_type_on_change)
