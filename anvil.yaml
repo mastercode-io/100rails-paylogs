@@ -76,6 +76,10 @@ db_schema:
     - name: order_number
       admin_ui: {order: 0, width: 200}
       type: number
+    - name: pay_category
+      admin_ui: {width: 200}
+      type: link_single
+      target: pay_categories
     title: Pay Rate Template Items
   user_roles:
     client: none
@@ -105,7 +109,6 @@ db_schema:
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: description, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
-    - {name: pay_category, admin_ui: null, type: link_single, target: pay_categories}
     - {name: pay_rate, admin_ui: null, type: number}
     - {name: pay_rate_multiplier, admin_ui: null, type: number}
     - {name: pay_rate_type, admin_ui: null, type: string}
