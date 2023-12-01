@@ -220,6 +220,9 @@ db_schema:
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: type, admin_ui: null, type: link_single, target: scope_types}
     - {name: custom_fields, admin_ui: null, type: simpleObject}
+    - name: short_code
+      admin_ui: {width: 200}
+      type: string
     title: Scopes
   users:
     client: none
