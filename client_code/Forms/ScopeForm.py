@@ -13,7 +13,7 @@ class ScopeForm(FormBase):
         self.short_code = DropdownInput(name='short_code', label='Short Code')
         self.description = MultiLineInput(name='description', label='Description', rows=4)
         self.type = LookupInput(name='type', label='Scope Type', model='ScopeType',
-                                on_chenge=self.scope_type_on_change)
+                                on_change=self.scope_type_on_change)
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
         # self.custom_fields = MultiFieldInput(name='custom_fields', label='Custom Fields', model='Scope', cols=2)
 
