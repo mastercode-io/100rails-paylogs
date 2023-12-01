@@ -102,6 +102,7 @@ class TimesheetListView(GridView):
             search_query=tables.order_by('date', ascending=True)
         )
         print('timesheets', [t['date'] for t in timesheets])
+        print(timesheets)
         pay_lines = []
         for ts in timesheets:
             scope = next(s for s in scopes if s['name'] == ts['job']['job_type']['name'])
