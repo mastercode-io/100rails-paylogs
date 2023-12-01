@@ -3,7 +3,7 @@ from AnvilFusion.tools.utils import AppEnv
 import anvil.js
 import anvil.tables as tables
 import anvil.tables.query as q
-from ..app.models import Employee, Timesheet
+from ..app.models import Employee, Timesheet, PayRateRule
 import datetime
 
 
@@ -89,6 +89,7 @@ class TimesheetListView(GridView):
         print('calculate_awards', args.rowInfo.rowData)
         ts = Timesheet.get(args.rowInfo.rowData['uid'])
         ts_date = ts['date']
+        employee = ts['employee']
         # get start and end of week
         start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
         end_of_week = start_of_week + datetime.timedelta(days=6)
@@ -96,8 +97,17 @@ class TimesheetListView(GridView):
         # get all timesheets for the week
         timesheets = Timesheet.search(
             date=q.all_of(q.greater_than_or_equal_to(start_of_week), q.less_than_or_equal_to(end_of_week)),
-            employee=ts['employee'],
+            employee=employee,
             search_query=tables.order_by('date', ascending=True)
         )
         print('timesheets', [t['date'] for t in timesheets])
+        # pay_lines = []
+        # for ts in timesheets:
+        #     pay_rate_rules =- PayRateRule.search(
+        #         time_scope=q.any_of(*ts.day_type()),
+        #         search_query=tables.order_by('start_time', ascending=True)
+        #     )
+        #
+        #     pay_lines.extend(ts.calculate_pay_lines())
+        # rules = PayRateRule.search()
 

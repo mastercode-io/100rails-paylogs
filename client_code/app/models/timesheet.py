@@ -5,7 +5,6 @@ from AnvilFusion.datamodel.particles import (
     Computed,
 )
 from AnvilFusion.datamodel import types
-# from . import Employee, Job, PayRun
 
 
 @model_type
@@ -66,3 +65,14 @@ class Timesheet:
         minutes = int((total_hours - hours) * 60)
         return f"{hours}:{minutes:02d}"
     total_hours_view = Computed(("start_time", "end_time"), "calculate_total_hours_view")
+
+    @staticmethod
+    def get_day_type(args):
+        day_of_week = args['date'].weekday()
+        if day_of_week == 5:  # Saturday
+            return "Weekend", "Saturday"
+        elif day_of_week == 6:  # Sunday
+            return "Weekend", "Sunday"
+        else:
+            return ("Weekday",)
+    day_type = Computed(("date",), "get_day_type")

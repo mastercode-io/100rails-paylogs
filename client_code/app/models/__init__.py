@@ -336,9 +336,7 @@ class PayRateRule:
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
     pay_rate_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
-    pay_category = Relationship("PayCategory")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    # order = Attribute(field_type=types.FieldTypes.NUMBER)
 
     calculation_settings_schema = {
         "exclude_break_time": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
@@ -361,6 +359,7 @@ class PayRateTemplateItem:
     _title = "pay_rate_rule.name"
     pay_rate_template = Relationship("PayRateTemplate")
     pay_rate_rule = Relationship("PayRateRule")
+    pay_category = Relationship("PayCategory")
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
     pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
     pay_rate_title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
