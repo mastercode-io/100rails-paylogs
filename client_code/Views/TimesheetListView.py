@@ -3,7 +3,7 @@ from AnvilFusion.tools.utils import AppEnv
 import anvil.js
 import anvil.tables as tables
 import anvil.tables.query as q
-from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, Scope, ScopeType
+from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, PayRateTemplateItem, Scope, ScopeType
 import datetime
 
 
@@ -105,8 +105,8 @@ class TimesheetListView(GridView):
         print('timesheets', [t['date'] for t in timesheets])
         pay_lines = []
         for ts in timesheets:
-            scope = next((s for s in job_type_scopes if s['name'] == ts['job']['job_type']['name']), None)
-            print('scopes', job_type_scopes)
-            print(ts['job']['job_type']['name'])
-            # pay_rate_template = PayRateTemplate.get_by('scope', scope)
-            # print('pay_rate_template', pay_rate_template, pay_rate_template['name'])
+            scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
+            pay_rate_template = PayRateTemplate.get_by('scope', scope)
+            print(scope, pay_rate_template)
+            pay_rate_template_items = PayRateTemplateItem.search(pay_rate_template=pay_rate_template)
+            print(len(pay_rate_template_items))
