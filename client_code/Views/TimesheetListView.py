@@ -108,12 +108,10 @@ class TimesheetListView(GridView):
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
             pay_rate_template_items = PayRateTemplateItem.search(pay_rate_template=pay_rate_template)
             for pay_item in pay_rate_template_items:
-                print('item', pay_item['name'], pay_item['rate'])
                 pay_lines.append({
                     'ts': ts['date'],
-                    'name': pay_item['name'],
+                    'name': pay_item['pay_rate_title'],
                     'rule': pay_item['pay_rate_rule']['name'],
                 })
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
-        print('pay_lines', pay_lines)

@@ -356,7 +356,7 @@ class PayRateTemplate:
 
 @model_type
 class PayRateTemplateItem:
-    _title = "pay_rate_rule.name"
+    _title = "pay_rate_title"
     pay_rate_template = Relationship("PayRateTemplate")
     pay_rate_rule = Relationship("PayRateRule")
     pay_category = Relationship("PayCategory")
