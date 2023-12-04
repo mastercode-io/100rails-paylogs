@@ -482,7 +482,7 @@ db_schema:
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: description, admin_ui: null, type: string}
-    - {name: shot_code, admin_ui: null, type: string}
+    - {name: short_code, type: string}
   payruns:
     title: Payruns
     client: none
