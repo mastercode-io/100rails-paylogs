@@ -88,25 +88,32 @@ class TimesheetListView(GridView):
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
         ts = Timesheet.get(args.rowInfo.rowData['uid'])
-        ts_date = ts['date']
         employee = ts['employee']
-        job_type_scopes = [*Scope.search(type=ScopeType.get_by('name', 'Job Type'))]
-        print('job_type_scopes', [s['name'] for s in job_type_scopes])
-        # get start and end of week
+        ts_date = ts['date']
         start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
         end_of_week = start_of_week + datetime.timedelta(days=6)
         print('week dates', start_of_week, end_of_week)
+        stime = datetime.datetime.now()
+        job_type_scopes = [*Scope.search(type=ScopeType.get_by('name', 'Job Type'))]
+        # get start and end of week
         # get all timesheets for the week
         timesheets = [*Timesheet.search(
             date=q.all_of(q.greater_than_or_equal_to(start_of_week), q.less_than_or_equal_to(end_of_week)),
             employee=employee,
             search_query=tables.order_by('date', ascending=True)
         )]
-        print('timesheets', [t['date'] for t in timesheets])
         pay_lines = []
         for ts in timesheets:
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
-            print(scope, pay_rate_template)
             pay_rate_template_items = PayRateTemplateItem.search(pay_rate_template=pay_rate_template)
-            print(len(pay_rate_template_items))
+            for pay_item in pay_rate_template_items:
+                print('item', pay_item['name'], pay_item['rate'])
+                pay_lines.append({
+                    'ts': ts['date'],
+                    'name': pay_item['name'],
+                    'rule': pay_item['pay_rate_rule']['name'],
+                })
+        etime = datetime.datetime.now()
+        print('calc time', etime - stime)
+        print('pay_lines', pay_lines)
