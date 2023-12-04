@@ -34,5 +34,7 @@ class ScopeForm(FormBase):
         if self.type.value is None or args.get('value', None) is None:
             self.short_code.options = []
         elif self.type.value['name'] == 'Job Type':
-            self.short_code.options = [j['short_code'] for j in JobType.search()]
+            options = [j['short_code'] for j in JobType.search()]
+            print('job type options', options)
+            self.short_code.options = options
             print('short_code options', self.short_code.options)
