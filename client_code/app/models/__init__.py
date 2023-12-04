@@ -266,7 +266,7 @@ class Job:
 
 @model_type
 class JobType:
-    _title = "shot_code"
+    _title = "short_code"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
