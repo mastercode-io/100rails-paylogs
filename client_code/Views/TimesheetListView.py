@@ -85,6 +85,7 @@ class TimesheetListView(GridView):
         return f"{hours}:{minutes:02d} week"
 
 
+    @staticmethod
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
         ts = Timesheet.get(args.rowInfo.rowData['uid'])
@@ -106,12 +107,86 @@ class TimesheetListView(GridView):
         for ts in timesheets:
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
-            pay_rate_template_items = PayRateTemplateItem.search(pay_rate_template=pay_rate_template)
+            pay_rate_template_items = PayRateTemplateItem.search(
+                pay_rate_template=pay_rate_template,
+                search_query=tables.order_by('order', ascending=True)
+            )
+            ts_time_frames = [(ts['start_time'], ts['end_time'])]
+            ts_pay_lines = []
             for pay_item in pay_rate_template_items:
-                pay_lines.append({
-                    'ts': ts['date'],
-                    'name': pay_item['pay_rate_title'],
-                    'rule': pay_item['pay_rate_rule']['name'],
-                })
+                if pay_item['pay_rate_rule']['time_scope'] not in ts['day_type']:
+                    continue
+                ts_time_frames, pay_lines = self.calculate_pay_line(
+                    time_frames=ts_time_frames,
+                    pay_item=pay_item,
+                    employee=employee,
+                )
+                if pay_lines:
+                    ts_pay_lines.extend(pay_lines)
+                if not ts_time_frames:
+                    break
+            if ts_pay_lines:
+                pay_lines.extend(ts_pay_lines)
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
+        print('pay_lines\n' + '\n'.join(pay_lines))
+
+
+    @staticmethod
+    def calculate_pay_lines(
+        self,
+        time_frames=None,
+        pay_item=None,
+        employee=None,
+    ):
+        pay_rule = pay_item['pay_rate_rule']
+        rule_start_time = pay_rule['start_time'].time()
+        rule_end_time = pay_rule['end_time'].time()
+        overtime_limit = pay_rule['overtime_limit'] or -1
+        unallocated_time_frames = []
+        pay_lines = []
+        for frame in time_frames:
+            start_time, end_time = frame
+            if end_time.time() <= rule_start_time or start_time.time() >= rule_end_time:
+                unallocated_time_frames.append(frame)
+                continue
+            if start_time.time() < rule_start_time:
+                unallocated_time_frames.append((start_time, datetime.datetime.combine(start_time.date(), rule_start_time)))
+                do_start_time = datetime.datetime.combine(start_time.date(), rule_start_time)
+            else:
+                do_start_time = start_time
+            if end_time.time() > rule_end_time:
+                unallocated_time_frames.append((datetime.datetime.combine(end_time.date(), rule_end_time), end_time))
+                do_end_time = datetime.datetime.combine(end_time.date(), rule_end_time)
+            else:
+                do_end_time = end_time
+            do_hours = (do_end_time - do_start_time).total_seconds() / 3600
+            if 0 <= overtime_limit < do_hours:
+                overtime_hours = do_hours - overtime_limit
+                do_hours = overtime_limit
+                unallocated_time_frames.append((do_end_time, end_time))
+            elif overtime_limit != -1:
+                overtime_limit -= do_hours
+            pay_rate = pay_item['pay_rate'] or employee['pay_rate'] or pay_rule['pay_rate']
+            if pay_rule['pay_rate_type'] == 'Rate Per Unit':
+                pay_amount = pay_rate * do_hours
+            elif pay_rule['pay_rate_type'] == 'Multiplier':
+                pay_rate = pay_rate * (pay_item['pay_rate_multiplier'] or pay_rule['pay_rate_multiplier'])
+                pay_amount = pay_rate * do_hours
+            elif pay_rule['pay_rate_type'] == 'Fixed Amount':
+                pay_amount = pay_item['pay_rate'] or pay_rule['pay_rate']
+            else:
+                pay_amount = 0
+            if pay_amount:
+                pay_line = {
+                    'pay_rate_title': pay_item['pay_rate_title'],
+                    'pay_category': pay_item['pay_category'],
+                    'date': do_start_time.date(),
+                    'start_time': do_start_time,
+                    'end_time': do_end_time,
+                    'pay_rate': pay_rate,
+                    'hours': do_hours,
+                    'pay_amount': pay_amount,
+                }
+                pay_lines.append(pay_line)
+        return unallocated_time_frames, pay_lines

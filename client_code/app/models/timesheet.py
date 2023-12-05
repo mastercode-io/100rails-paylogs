@@ -7,6 +7,17 @@ from AnvilFusion.datamodel.particles import (
 from AnvilFusion.datamodel import types
 
 
+WEEK_DAY_NAME = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+]
+
+
 @model_type
 class TimesheetType:
     _title = "short_code"
@@ -69,10 +80,8 @@ class Timesheet:
     @staticmethod
     def get_day_type(args):
         day_of_week = args['date'].weekday()
-        if day_of_week == 5:  # Saturday
-            return "Weekend", "Saturday"
-        elif day_of_week == 6:  # Sunday
-            return "Weekend", "Sunday"
+        if day_of_week == 5 or day_of_week == 6:  # Saturday or Sunday
+            return "Weekend", WEEK_DAY_NAME[day_of_week]
         else:
-            return ("Weekday",)
+            return "Weekday", WEEK_DAY_NAME[day_of_week]
     day_type = Computed(("date",), "get_day_type")
