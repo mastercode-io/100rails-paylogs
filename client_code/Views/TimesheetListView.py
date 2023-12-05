@@ -109,7 +109,7 @@ class TimesheetListView(GridView):
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
             pay_rate_template_items = PayRateTemplateItem.search(
                 pay_rate_template=pay_rate_template,
-                search_query=tables.order_by('order', ascending=True)
+                search_query=tables.order_by('order_number', ascending=True)
             )
             ts_time_frames = [(ts['start_time'], ts['end_time'])]
             ts_pay_lines = []
