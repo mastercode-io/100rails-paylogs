@@ -44,8 +44,8 @@ class PayRateRuleForm(FormBase):
         self.time_limits = CheckboxInput(name='time_limits', label='Time Limits', value=True, on_change=self.toggle_time_limits)
         self.start_time = TimeInput(name='start_time', label='Start Time')
         self.end_time = TimeInput(name='end_time', label='End Time')
-        self.max_time = NumberInput(name='max_time', label='Max Time')
-        self.overtime_limit = NumberInput(name='overtime_limit', label='Overtime Limit')
+        self.max_hours = NumberInput(name='max_hours', label='Max Hours')
+        self.overtime_start = NumberInput(name='overtime_start', label='Overtime Start')
         self.unit_type = DropdownInput(name='unit_type', label='Unit Type', options=UNIT_TYPE_OPTIONS, value='Hours')
         self.earnings_type = DropdownInput(name='earnings_type', label='Earnings Type',
                                            options=EARNINGS_TYPE_OPTIONS, value='Ordinary Earnings')
