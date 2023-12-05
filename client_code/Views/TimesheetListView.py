@@ -86,7 +86,7 @@ class TimesheetListView(GridView):
 
 
     @staticmethod
-    def calculate_awards(self, args):
+    def calculate_awards(args):
         print('calculate_awards', args.rowInfo.rowData)
         ts = Timesheet.get(args.rowInfo.rowData['uid'])
         employee = ts['employee']
@@ -116,7 +116,7 @@ class TimesheetListView(GridView):
             for pay_item in pay_rate_template_items:
                 if pay_item['pay_rate_rule']['time_scope'] not in ts['day_type']:
                     continue
-                ts_time_frames, pay_lines = self.calculate_pay_line(
+                ts_time_frames, pay_lines = TimesheetListView.calculate_pay_lines(
                     time_frames=ts_time_frames,
                     pay_item=pay_item,
                     employee=employee,
@@ -134,7 +134,6 @@ class TimesheetListView(GridView):
 
     @staticmethod
     def calculate_pay_lines(
-        self,
         time_frames=None,
         pay_item=None,
         employee=None,
