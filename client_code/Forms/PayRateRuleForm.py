@@ -84,8 +84,8 @@ class PayRateRuleForm(FormBase):
                         self.time_limits,
                         self.start_time,
                         self.end_time,
-                        self.max_time,
-                        self.overtime_limit,
+                        self.max_hours,
+                        self.overtime_start,
                     ],
                 ]
             }
@@ -105,12 +105,12 @@ class PayRateRuleForm(FormBase):
         if self.time_limits.value:
             self.start_time.show()
             self.end_time.show()
-            self.max_time.show()
+            self.max_hours.show()
             # self.overtime_limit.show()
         else:
             self.start_time.hide()
             self.end_time.hide()
-            self.max_time.hide()
+            self.max_hours.hide()
             # self.overtime_limit.hide()
 
 
@@ -118,10 +118,10 @@ class PayRateRuleForm(FormBase):
         if args.get('value') == 'Week':
             self.time_limits.value = False
             self.toggle_time_limits(args)
-            self.overtime_limit.show()
+            self.overtime_start.show()
         else:
-            self.overtime_limit.hide()
-            self.overtime_limit.value = None
+            self.overtime_start.hide()
+            self.overtime_start.value = None
 
 
     def pay_category_selected(self, args):
