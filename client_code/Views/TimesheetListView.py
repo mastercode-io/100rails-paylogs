@@ -129,7 +129,9 @@ class TimesheetListView(GridView):
                 pay_lines.extend(ts_pay_lines)
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
-        print('pay_lines\n' + '\n'.join(pay_lines))
+        print('pay_lines\n')
+        for pl in pay_lines:
+            print(pl)
 
 
     @staticmethod
