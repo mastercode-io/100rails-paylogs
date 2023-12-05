@@ -104,7 +104,7 @@ class TimesheetListView(GridView):
             search_query=tables.order_by('date', ascending=True)
         )]
         print('timesheets', len(timesheets))
-        pay_lines = []
+        week_pay_lines = []
         for ts in timesheets:
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
@@ -127,11 +127,11 @@ class TimesheetListView(GridView):
                 if not ts_time_frames:
                     break
             if ts_pay_lines:
-                pay_lines.extend(ts_pay_lines)
+                week_pay_lines.extend(ts_pay_lines)
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
         print('pay_lines')
-        for pl in pay_lines:
+        for pl in week_pay_lines:
             print(pl)
 
 
