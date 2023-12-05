@@ -144,7 +144,7 @@ class TimesheetListView(GridView):
         pay_rule = pay_item['pay_rate_rule']
         rule_start_time = pay_rule['start_time'].time()
         rule_end_time = pay_rule['end_time'].time()
-        overtime_limit = pay_rule['overtime_limit'] or -1
+        max_hours = pay_rule['max_time'] or -1
         unallocated_time_frames = []
         pay_lines = []
         for frame in time_frames:
@@ -163,12 +163,12 @@ class TimesheetListView(GridView):
             else:
                 do_end_time = end_time
             do_hours = (do_end_time - do_start_time).total_seconds() / 3600
-            if 0 <= overtime_limit < do_hours:
-                overtime_hours = do_hours - overtime_limit
-                do_hours = overtime_limit
+            if 0 <= max_hours < do_hours:
+                overtime_hours = do_hours - max_hours
+                do_hours = max_hours
                 unallocated_time_frames.append((do_end_time, end_time))
-            elif overtime_limit != -1:
-                overtime_limit -= do_hours
+            elif max_hours != -1:
+                max_hours -= do_hours
             pay_rate = pay_item['pay_rate'] or employee['pay_rate'] or pay_rule['pay_rate']
             if pay_rule['pay_rate_type'] == 'Rate Per Unit':
                 pay_amount = pay_rate * do_hours
@@ -192,3 +192,13 @@ class TimesheetListView(GridView):
                 }
                 pay_lines.append(pay_line)
         return unallocated_time_frames, pay_lines
+
+
+    @staticmethod
+    def calculate_week_overtime(pay_lines=None, pay_items=None):
+        for pay_item in pay_items:
+            pay_rule = pay_item['pay_rule']
+            if pay_rule['time_scope'] != 'Week':
+                continue
+
+
