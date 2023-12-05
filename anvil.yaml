@@ -120,7 +120,7 @@ db_schema:
     - {name: time_scope, admin_ui: null, type: string}
     - {name: start_time, admin_ui: null, type: datetime}
     - {name: scope, admin_ui: null, type: link_single, target: scopes}
-    - {name: max_time, admin_ui: null, type: number}
+    - {name: max_hours, type: number}
     - {name: end_time, admin_ui: null, type: datetime}
     - {name: earnings_type, admin_ui: null, type: string}
     - {name: time_limits, type: bool}
