@@ -39,9 +39,9 @@ class Copilot:
         response = self.send_message(question)
         self.current_run_id = response['id']
         while response['status'] == 'queued' or response['status'] == 'in_progress':
-            time.sleep(1)
+            time.sleep(0.5)
             response = self.retrieve_response()
-            print('get_response', response)
+            # print('get_response', response)
         response = anvil.server.call(
             'openai_get_messages',
             thread_id=self.thread_id,
