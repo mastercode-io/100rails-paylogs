@@ -38,6 +38,7 @@ def openai_send_message(question, assistant_id=None, thread_id=None):
 
 @anvil.server.callable
 def openai_retrieve_response(thread_id=None, run_id=None):
+    global openai_client
     run = openai_client.beta.threads.runs.retrieve(
         thread_id=thread_id,
         run_id=run_id,
