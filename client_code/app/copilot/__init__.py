@@ -41,4 +41,5 @@ class Copilot:
         while response['status'] == 'queued' or response['status'] == 'in_progress':
             time.sleep(1)
             response = self.retrieve_response()
+            print('get_response', response)
         return response
