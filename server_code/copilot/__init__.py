@@ -45,4 +45,9 @@ def openai_retrieve_response(thread_id=None, run_id=None):
     )
     return json.loads(run.model_dump_json())
 
-    # messages = openai_client.beta.threads.messages.list(thread_id=thread_id)
+
+@anvil.server.callable
+def openai_get_messages(thread_id=None):
+    global openai_client
+    messages = openai_client.beta.threads.messages.list(thread_id=thread_id)
+    return json.loads(messages.model_dump_json())

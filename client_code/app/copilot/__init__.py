@@ -42,4 +42,8 @@ class Copilot:
             time.sleep(1)
             response = self.retrieve_response()
             print('get_response', response)
+        response = anvil.server.call(
+            'openai_get_messages',
+            thread_id=self.thread_id,
+        )
         return response
