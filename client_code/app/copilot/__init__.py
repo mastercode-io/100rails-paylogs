@@ -22,6 +22,7 @@ class Copilot:
              assistant_id=self.assistant_id,
              thread_id=self.thread_id,
         )
+        print('send_message', response)
         return response
 
 

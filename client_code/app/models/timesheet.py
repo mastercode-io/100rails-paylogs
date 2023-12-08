@@ -5,6 +5,7 @@ from AnvilFusion.datamodel.particles import (
     Computed,
 )
 from AnvilFusion.datamodel import types
+from datetime import timedelta
 
 
 WEEK_DAY_NAME = [
@@ -64,7 +65,10 @@ class Timesheet:
     def calculate_total_hours(args):
         if args["start_time"] is None or args["end_time"] is None:
             return 0
-        return (args["end_time"] - args["start_time"]).total_seconds() / 3600
+        if args["start_time"] <= args["end_time"]:
+            return (args["end_time"] - args["start_time"]).total_seconds() / 3600
+        else:
+            return ((args["end_time"] + timedelta(days=1)) - args["start_time"]).total_seconds() / 3600
     total_hours = Computed(("start_time", "end_time"), "calculate_total_hours")
 
     @staticmethod

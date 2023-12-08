@@ -344,6 +344,8 @@ class PayRateRule:
     }
     calculation_settings = Attribute(field_type=types.FieldTypes.OBJECT, schema=calculation_settings_schema)
 
+    # def apply_rule(self, ):
+
 
 @model_type
 class PayRateTemplate:

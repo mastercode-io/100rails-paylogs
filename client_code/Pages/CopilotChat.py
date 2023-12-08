@@ -33,7 +33,8 @@ class CopilotChat:
     def chat_post(self, args):
         # print('chat_post', args)
         self.chat.renderUserTypingIndicator(self.chat.getUser())
-        response = self.copilot.send_message(args.text)
+        # response = self.copilot.send_message(args.text)
+        response = self.copilot.get_response(args.text)
         assistant_messages = []
         for message in response['data']:
             if message['role'] == 'user':

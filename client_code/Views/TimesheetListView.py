@@ -5,6 +5,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, PayRateTemplateItem, Scope, ScopeType
 import datetime
+import json
 
 
 class TimesheetListView(GridView):
@@ -162,21 +163,22 @@ class TimesheetListView(GridView):
                 do_end_time = datetime.datetime.combine(end_time.date(), rule_end_time)
             else:
                 do_end_time = end_time
-            do_hours = (do_end_time - do_start_time).total_seconds() / 3600
-            if 0 <= max_hours < do_hours:
-                overtime_hours = do_hours - max_hours
-                do_hours = max_hours
+            units = (do_end_time - do_start_time).total_seconds() / 3600
+            if 0 <= max_hours < units:
+                overtime_hours = units - max_hours
+                units = max_hours
                 unallocated_time_frames.append((do_end_time, end_time))
             elif max_hours != -1:
-                max_hours -= do_hours
-            pay_rate = pay_item['pay_rate'] or employee['pay_rate'] or pay_rule['pay_rate']
+                max_hours -= units
+            pay_rate = pay_item['pay_rate'] or employee['pay_rate']
             if pay_rule['pay_rate_type'] == 'Rate Per Unit':
-                pay_amount = pay_rate * do_hours
+                pay_amount = pay_rate * units
             elif pay_rule['pay_rate_type'] == 'Multiplier':
-                pay_rate = pay_rate * (pay_item['pay_rate_multiplier'] or pay_rule['pay_rate_multiplier'])
-                pay_amount = pay_rate * do_hours
+                pay_rate = pay_rate * pay_item['pay_rate_multiplier']
+                pay_amount = pay_rate * units
             elif pay_rule['pay_rate_type'] == 'Fixed Amount':
-                pay_amount = pay_item['pay_rate'] or pay_rule['pay_rate']
+                pay_amount = pay_item['pay_rate']
+                units = 1
             else:
                 pay_amount = 0
             if pay_amount:
@@ -187,7 +189,7 @@ class TimesheetListView(GridView):
                     'start_time': do_start_time,
                     'end_time': do_end_time,
                     'pay_rate': pay_rate,
-                    'hours': do_hours,
+                    'units': units,
                     'pay_amount': pay_amount,
                 }
                 pay_lines.append(pay_line)
@@ -200,5 +202,49 @@ class TimesheetListView(GridView):
             pay_rule = pay_item['pay_rule']
             if pay_rule['time_scope'] != 'Week':
                 continue
-
-
+            overtime_start = pay_rule['overtime_start']
+            max_hours = pay_rule['max_hours'] or 0
+            if not overtime_start or not max_hours:
+                continue
+            week_hours = 0
+            overtime_hours = 0
+            week_pay_lines = []
+            for pl in pay_lines:
+                if overtime_hours:
+                    week_pay_lines.append(pl)
+                    continue
+                if pl['hours'] and  'earnings' in pay_rule['earnings_type'].lower():
+                    week_hours += pl['hours']
+                else:
+                    week_pay_lines.append(pl)
+                    continue
+                if week_hours > overtime_start:
+                    overtime_hours = week_hours - overtime_start
+                    pl['hours'] -= overtime_hours
+                    pl['pay_amount'] -= overtime_hours * pl['pay_rate']
+                    week_pay_lines.append(pl)
+                    if max_hours and overtime_hours > max_hours:
+                        rule_hours = max_hours
+                        overtime_hours -= max_hours
+                    else:
+                        rule_hours = overtime_hours
+                    overtime_pl = {
+                        'pay_rate_title': pay_item['pay_rate_title'],
+                        'pay_category': pay_item['pay_category'],
+                        'date': pl['date'],
+                        'start_time': pl['end_time'],
+                        'end_time': pl['end_time'] + datetime.timedelta(hours=overtime_hours),
+                        'pay_rate': pl['pay_rate'],
+                        'hours': rule_hours,
+                        'pay_amount': rule_hours * pl['pay_rate'],
+                    }
+                    week_pay_lines.append(overtime_pl)
+                    if overtime_hours:
+                        pl_tail = pl.copy()
+                        pl_tail['hours'] = overtime_hours
+                        pl_tail['pay_amount'] = overtime_hours * pl['pay_rate']
+                        pl_tail['start_time'] = pl['end_time'] + datetime.timedelta(hours=overtime_hours)
+                        pl_tail['end_time'] = pl['end_time'] + datetime.timedelta(hours=overtime_hours)
+                        week_pay_lines.append(pl_tail)
+                else:
+                    week_pay_lines.append(pl)
