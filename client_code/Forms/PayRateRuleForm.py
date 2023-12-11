@@ -12,7 +12,7 @@ TIME_SCOPE_OPTIONS = [
     'Week',
 ]
 UNIT_TYPE_OPTIONS = [
-    'Hours',
+    'Hour',
     'Days',
 ]
 EARNINGS_TYPE_OPTIONS = [
