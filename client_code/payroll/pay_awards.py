@@ -32,6 +32,7 @@ class PyaRateRuleAward(PayRateRule):
         units = 0
         unallocated_time = []
         allocated_start_time = allocated_end_time = start_time
+        print('allocate_time', date, start_time, end_time, self.time_scope, day_type(date))
         if self.time_scope in day_type(date):
             if self.unit_type == 'Day' or self.pay_rate_type == 'Fixed Amount':
                 units = 1
