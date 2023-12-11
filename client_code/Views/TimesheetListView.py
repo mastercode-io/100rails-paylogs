@@ -110,14 +110,14 @@ class TimesheetListView(GridView):
         for ts in timesheets:
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
-            pay_rate_template_items = PayRateTemplateItem.search(
+            pay_item_list = [*PayRateTemplateItem.search(
                 pay_rate_template=pay_rate_template,
                 search_query=tables.order_by('order_number', ascending=True)
-            )
+            )]
             unallocated_time = [(ts['start_time'], ts['end_time'])]
             ts_pay_lines = []
             while unallocated_time:
-                pay_item = PayItemAward(next(pay_rate_template_items))
+                pay_item = PayItemAward(pay_item_list.pop(0))
                 start_time, end_time = unallocated_time.pop(0)
                 pay_line, unallocated_time = pay_item.calculate_award(
                     date=ts['date'],
