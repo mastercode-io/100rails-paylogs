@@ -73,7 +73,7 @@ class PayItemAward(PayRateTemplateItem):
             payline_rate *= self.pay_rate_multiplier
         if units:
             pay_line = PayLine(
-                pay_rate_title=self.pay_rate_rule.title,
+                pay_rate_title=self.pay_rate_title,
                 pay_category=self.pay_category,
                 date=date,
                 pay_rate=payline_rate,
