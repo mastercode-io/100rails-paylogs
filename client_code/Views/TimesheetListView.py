@@ -125,6 +125,7 @@ class TimesheetListView(GridView):
                     end_time=end_time,
                     employee_base_rate=employee['pay_rate'],
                 )
+                print('pay_line', pay_line, unallocated_time)
                 if pay_line:
                     ts_pay_lines.append(pay_line)
             if ts_pay_lines:
