@@ -4,6 +4,7 @@ import anvil.js
 import anvil.tables as tables
 import anvil.tables.query as q
 from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, PayRateTemplateItem, Scope, ScopeType
+from ..payroll.pay_awards import PayItemAward, PayLine
 import datetime
 import json
 
@@ -113,22 +114,38 @@ class TimesheetListView(GridView):
                 pay_rate_template=pay_rate_template,
                 search_query=tables.order_by('order_number', ascending=True)
             )
-            ts_time_frames = [(ts['start_time'], ts['end_time'])]
+            unallocated_time = [(ts['start_time'], ts['end_time'])]
             ts_pay_lines = []
-            for pay_item in pay_rate_template_items:
-                if pay_item['pay_rate_rule']['time_scope'] not in ts['day_type']:
-                    continue
-                ts_time_frames, pay_lines = TimesheetListView.calculate_pay_lines(
-                    time_frames=ts_time_frames,
-                    pay_item=pay_item,
-                    employee=employee,
+            while unallocated_time:
+                pay_item = PayItemAward(next(pay_rate_template_items))
+                start_time, end_time = unallocated_time.pop(0)
+                pay_line, unallocated_time = pay_item.calculate_award(
+                    date=ts['date'],
+                    start_time=start_time,
+                    end_time=end_time,
+                    employee_base_rate=employee['pay_rate'],
                 )
-                if pay_lines:
-                    ts_pay_lines.extend(pay_lines)
-                if not ts_time_frames:
-                    break
+                if pay_line:
+                    ts_pay_lines.append(pay_line)
             if ts_pay_lines:
                 week_pay_lines.extend(ts_pay_lines)
+
+            # ts_time_frames = [(ts['start_time'], ts['end_time'])]
+            # ts_pay_lines = []
+            # for pay_item in pay_rate_template_items:
+            #     if pay_item['pay_rate_rule']['time_scope'] not in ts['day_type']:
+            #         continue
+            #     ts_time_frames, pay_lines = TimesheetListView.calculate_pay_lines(
+            #         time_frames=ts_time_frames,
+            #         pay_item=pay_item,
+            #         employee=employee,
+            #     )
+            #     if pay_lines:
+            #         ts_pay_lines.extend(pay_lines)
+            #     if not ts_time_frames:
+            #         break
+            # if ts_pay_lines:
+            #     week_pay_lines.extend(ts_pay_lines)
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
         print('pay_lines')

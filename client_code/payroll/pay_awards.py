@@ -1,15 +1,84 @@
-from ..app.models import PayRateRule, Timesheet
+from ..app.models import PayRateRule, PayRateTemplateItem, Timesheet
 import json
+from datetime import datetime, timedelta
+
+
+WEEK_DAY_NAME = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+]
+
+
+def day_type(date):
+    day_of_week = date.weekday()
+    if day_of_week == 5 or day_of_week == 6:  # Saturday or Sunday
+        return "Weekend", WEEK_DAY_NAME[day_of_week]
+    else:
+        return "Weekday", WEEK_DAY_NAME[day_of_week]
+
 
 
 class PyaRateRuleAward(PayRateRule):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.pay_lines = []
+    def __init__(self, instance=None):
+        self.__dict__.update(instance.__dict__)
 
 
-    def apply_rule(self):
-        pass
+    def allocate_time(self, date, start_time, end_time):
+        units = 0
+        unallocated_time = []
+        allocated_start_time = allocated_end_time = start_time
+        if self.time_scope in day_type(date):
+            if self.unit_type == 'Day' or self.pay_rate_type == 'Fixed Amount':
+                units = 1
+                unallocated_time.append((start_time, end_time))
+            elif self.unit_type == 'Hour':
+                if end_time.time() <= self.start_time or start_time.time() >= self.end_time:
+                    unallocated_time.append((start_time, end_time))
+                elif start_time.time() < self.start_time:
+                    unallocated_time.append((start_time, datetime.combine(start_time.date(), self.start_time)))
+                    allocated_start_time = datetime.combine(start_time.date(), self.start_time)
+                else:
+                    allocated_start_time = start_time
+                if end_time.time() > self.end_time:
+                    unallocated_time.append((datetime.combine(end_time.date(), self.end_time), end_time))
+                    allocated_end_time = datetime.combine(end_time.date(), self.end_time)
+                else:
+                    allocated_end_time = end_time
+                units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
+                if units > self.max_hours:
+                    units = self.max_hours
+                    unallocated_time.append((allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
+        return units, unallocated_time
+
+
+class PayItemAward(PayRateTemplateItem):
+    def __init__(self, instance=None):
+        self.__dict__.update(instance.__dict__)
+
+
+    def calculate_award(self, date, start_time, end_time, employee_base_rate=None):
+        units, unallocated_time = PyaRateRuleAward(self.pay_rate_rule).allocate_time(date, start_time, end_time)
+        payline_rate = self.pay_rate or employee_base_rate
+        if self.pay_rate_rule.pay_rate_type == 'Multiplier':
+            payline_rate *= self.pay_rate_multiplier
+        if units:
+            pay_line = PayLine(
+                pay_rate_title=self.pay_rate_rule.title,
+                pay_category=self.pay_category,
+                date=date,
+                pay_rate=payline_rate,
+                unit_type=self.pay_rate_rule.unit_type,
+                units=units,
+            )
+        else:
+            pay_line = None
+        return pay_line, unallocated_time
+
 
 
 class PayLine:
