@@ -17,9 +17,9 @@ WEEK_DAY_NAME = [
 def day_type(date):
     day_of_week = date.weekday()
     if day_of_week == 5 or day_of_week == 6:  # Saturday or Sunday
-        return "Weekend", WEEK_DAY_NAME[day_of_week]
+        return "Any Day", "Weekend", WEEK_DAY_NAME[day_of_week]
     else:
-        return "Weekday", WEEK_DAY_NAME[day_of_week]
+        return "Any Day", "Weekday", WEEK_DAY_NAME[day_of_week]
 
 
 
