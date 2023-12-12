@@ -94,7 +94,7 @@ class Timesheet:
 
     @staticmethod
     def print_pay_lines(args):
-        if args['pay_lines'] is None:
+        if args['pay_lines'] is not None:
             return '\n'.join(args['pay_lines'])
         else:
             return ''
