@@ -41,16 +41,17 @@ class PyaRateRuleAward(PayRateRule):
             elif self.unit_type == 'Hour' and start_time is not None and end_time is not None:
                 allocated_start_time = start_time
                 allocated_end_time = start_time
-                if end_time.time() <= self.start_time.time() or start_time.time() >= self.end_time.time():
-                    unallocated_time.append((start_time, end_time))
-                elif start_time.time() < self.start_time.time():
-                    unallocated_time.append((start_time, datetime.combine(start_time.date(), self.start_time.time())))
-                    allocated_start_time = datetime.combine(start_time.date(), self.start_time.time())
-                else:
-                    allocated_start_time = start_time
-                if end_time.time() > self.end_time.time():
-                    unallocated_time.append((datetime.combine(end_time.date(), self.end_time.time()), end_time))
-                    allocated_end_time = datetime.combine(end_time.date(), self.end_time.time())
+                if self.time_limits:
+                    if end_time.time() <= self.start_time.time() or start_time.time() >= self.end_time.time():
+                        unallocated_time.append((start_time, end_time))
+                    elif start_time.time() < self.start_time.time():
+                        unallocated_time.append((start_time, datetime.combine(start_time.date(), self.start_time.time())))
+                        allocated_start_time = datetime.combine(start_time.date(), self.start_time.time())
+                    else:
+                        allocated_start_time = start_time
+                    if end_time.time() > self.end_time.time():
+                        unallocated_time.append((datetime.combine(end_time.date(), self.end_time.time()), end_time))
+                        allocated_end_time = datetime.combine(end_time.date(), self.end_time.time())
                 else:
                     allocated_end_time = end_time
                 units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
