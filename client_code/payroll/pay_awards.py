@@ -57,7 +57,7 @@ class PyaRateRuleAward(PayRateRule):
                 if units > self.max_hours:
                     units = self.max_hours
                     unallocated_time.append((allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
-        print(self.name, units, unallocated_time)
+        # print(self.name, units, unallocated_time)
         return units, unallocated_time
 
 
@@ -102,12 +102,12 @@ class PayLine:
     @property
     def pay_amount(self):
         if self.pay_rate is not None and self.units is not None:
-            self._pay_amount = self.pay_rate * self.units
+            self._pay_amount = (self.pay_rate * self.units).round(2)
         return self._pay_amount
 
 
     def __str__(self):
-        return f'{self.pay_amount} - @{self.pay_rate_title} {self.pay_rate} x {self.units} {self.unit_type}'
+        return f'{self.pay_amount:.2} - @{self.pay_rate_title} {self.pay_rate} x {self.units} {self.unit_type}'
 
 
     def __repr__(self):
