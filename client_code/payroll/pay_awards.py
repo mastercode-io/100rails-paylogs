@@ -28,14 +28,17 @@ class PyaRateRuleAward(PayRateRule):
         self.__dict__.update(instance.__dict__)
 
 
-    def allocate_time(self, date, start_time, end_time):
+    def allocate_time(self, date, start_time, end_time, total_hours=None):
         units = 0
         unallocated_time = []
         if self.time_scope in day_type(date):
             if self.unit_type == 'Day' or self.pay_rate_type == 'Fixed Amount':
                 units = 1
                 unallocated_time.append((start_time, end_time))
-            elif self.unit_type == 'Hour':
+            elif 'Allowance' in self.earnings_type and self.unit_type == 'Hour':
+                units = total_hours
+                unallocated_time.append((start_time, end_time))
+            elif self.unit_type == 'Hour' and start_time is not None and end_time is not None:
                 allocated_start_time = start_time
                 allocated_end_time = start_time
                 if end_time.time() <= self.start_time.time() or start_time.time() >= self.end_time.time():
