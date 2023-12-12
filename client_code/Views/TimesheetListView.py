@@ -114,9 +114,9 @@ class TimesheetListView(GridView):
                 pay_rate_template=pay_rate_template,
                 search_query=tables.order_by('order_number', ascending=True)
             )]
-            print('pay_item_list', len(pay_item_list))
             unallocated_time = [(ts['start_time'], ts['end_time'])]
             ts_pay_lines = []
+            total_pay = 0
             for pay_item in pay_item_list:
                 if unallocated_time:
                     start_time, end_time = unallocated_time.pop(0)
@@ -131,8 +131,12 @@ class TimesheetListView(GridView):
                 )
                 if pay_line:
                     ts_pay_lines.append(pay_line)
+                    total_pay += pay_line.pay_amount
             if ts_pay_lines:
                 week_pay_lines.extend(ts_pay_lines)
+                ts['total_pay'] = total_pay
+                ts['pay_lines'] = [pl.to_dict() for pl in ts_pay_lines]
+                ts.save()
 
             # ts_time_frames = [(ts['start_time'], ts['end_time'])]
             # ts_pay_lines = []
