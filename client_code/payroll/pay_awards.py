@@ -107,7 +107,7 @@ class PayLine:
 
 
     def __str__(self):
-        return f'{self.pay_amount:.2f} - @{self.pay_rate_title} {self.pay_rate} x {self.units} {self.unit_type}'
+        return f'${self.pay_amount:.2f} - @{self.pay_rate_title} {self.pay_rate} x {self.units} {self.unit_type}'
 
 
     def __repr__(self):
