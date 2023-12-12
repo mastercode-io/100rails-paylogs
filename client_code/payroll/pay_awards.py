@@ -57,6 +57,7 @@ class PyaRateRuleAward(PayRateRule):
                 if units > self.max_hours:
                     units = self.max_hours
                     unallocated_time.append((allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
+        print(self.name, units, unallocated_time)
         return units, unallocated_time
 
 
