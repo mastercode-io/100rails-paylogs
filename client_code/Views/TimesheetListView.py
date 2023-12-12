@@ -23,6 +23,8 @@ class TimesheetListView(GridView):
                 {'name': 'total_hours_view', 'label': 'Total Hours'},
                 {'name': 'total_hours', 'visible': False},
                 {'name': 'total_pay', 'label': 'Total Pay'},
+                {'name': 'pay_lines', 'visible': False},
+                {'name': 'pay_lines_view', 'label': 'Pay Lines'},
                 {'name': 'status', 'label': 'Status'},
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'timesheet_type.short_code', 'label': 'Time Type'},

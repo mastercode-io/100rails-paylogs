@@ -90,3 +90,12 @@ class Timesheet:
         else:
             return "Weekday", WEEK_DAY_NAME[day_of_week]
     day_type = Computed(("date",), "get_day_type")
+
+
+    @staticmethod
+    def print_pay_lines(args):
+        if args['pay_lines'] is None:
+            return '\n'.join(args['pay_lines'])
+        else:
+            return ''
+    pay_lines_view = Computed(("pay_lines",), "print_pay_lines")
