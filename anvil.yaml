@@ -355,7 +355,10 @@ db_schema:
     - {name: date, admin_ui: null, type: date}
     - {name: employee, admin_ui: null, type: link_single, target: employees}
     - {name: end_time, admin_ui: null, type: datetime}
-    - {name: job, admin_ui: null, type: link_single, target: jobs}
+    - name: job
+      admin_ui: {order: 0}
+      type: link_single
+      target: jobs
     - {name: notes, admin_ui: null, type: string}
     - {name: start_time, admin_ui: null, type: datetime}
     - {name: status, admin_ui: null, type: string}
@@ -366,6 +369,9 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: payrun, admin_ui: null, type: link_single, target: payruns}
+    - name: pay_lines
+      admin_ui: {order: 0, width: 200}
+      type: simpleObject
     title: Timesheets
   jobs:
     title: Jobs
