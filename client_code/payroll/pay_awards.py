@@ -31,9 +31,7 @@ class PyaRateRuleAward(PayRateRule):
     def allocate_time(self, date, start_time, end_time):
         units = 0
         unallocated_time = []
-        print('allocate_time', date, start_time, end_time, self.time_scope, day_type(date))
         if self.time_scope in day_type(date):
-            print(self.unit_type)
             if self.unit_type == 'Day' or self.pay_rate_type == 'Fixed Amount':
                 units = 1
                 unallocated_time.append((start_time, end_time))
@@ -53,11 +51,9 @@ class PyaRateRuleAward(PayRateRule):
                 else:
                     allocated_end_time = end_time
                 units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
-                print(units, allocated_start_time, allocated_end_time)
                 if units > self.max_hours:
                     units = self.max_hours
                     unallocated_time.append((allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
-        print('allocate_time', units, unallocated_time)
         return units, unallocated_time
 
 
