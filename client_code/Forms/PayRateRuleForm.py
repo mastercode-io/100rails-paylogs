@@ -14,7 +14,7 @@ TIME_SCOPE_OPTIONS = [
 ]
 UNIT_TYPE_OPTIONS = [
     'Hour',
-    'Days',
+    'Day',
 ]
 EARNINGS_TYPE_OPTIONS = [
     'Ordinary Earnings',
