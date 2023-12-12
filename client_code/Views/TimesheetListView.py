@@ -160,9 +160,9 @@ class TimesheetListView(GridView):
             #     week_pay_lines.extend(ts_pay_lines)
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
-        # print('pay_lines')
-        # for pl in week_pay_lines:
-        #     print(pl)
+        print('pay_lines')
+        for pl in week_pay_lines:
+            print(pl)
 
 
     @staticmethod
