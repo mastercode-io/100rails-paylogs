@@ -138,7 +138,7 @@ class TimesheetListView(GridView):
                 ts['total_pay'] = total_pay
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
-                self.grid.update_grid(ts, False)
+                self.update_grid(ts, False)
 
             # ts_time_frames = [(ts['start_time'], ts['end_time'])]
             # ts_pay_lines = []
