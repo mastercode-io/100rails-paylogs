@@ -137,10 +137,10 @@ class TimesheetListView(GridView):
                     total_pay += pay_line.pay_amount
             if ts_pay_lines:
                 week_pay_lines.extend(ts_pay_lines)
-                ts['total_pay'] = total_pay
-                ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
-                ts.save()
-                self.update_grid(ts, False)
+                # ts['total_pay'] = total_pay
+                # ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
+                # ts.save()
+                # self.update_grid(ts, False)
 
             # ts_time_frames = [(ts['start_time'], ts['end_time'])]
             # ts_pay_lines = []
