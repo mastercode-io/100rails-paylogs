@@ -89,8 +89,7 @@ class TimesheetListView(GridView):
         return f"{hours}:{minutes:02d} week"
 
 
-    @staticmethod
-    def calculate_awards(args):
+    def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
         ts = Timesheet.get(args.rowInfo.rowData['uid'])
         employee = ts['employee']
@@ -139,6 +138,7 @@ class TimesheetListView(GridView):
                 ts['total_pay'] = total_pay
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
+                self.grid.update_grid(ts, False)
 
             # ts_time_frames = [(ts['start_time'], ts['end_time'])]
             # ts_pay_lines = []
