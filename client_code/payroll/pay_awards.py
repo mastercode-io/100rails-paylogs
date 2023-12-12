@@ -62,7 +62,7 @@ class PayItemAward(PayRateTemplateItem):
         self.__dict__.update(instance.__dict__)
 
 
-    def calculate_award(self, date, start_time, end_time, employee_base_rate=None):
+    def calculate_award(self, date, start_time, end_time, total_hours=None, employee_base_rate=None):
         units, unallocated_time = PyaRateRuleAward(self.pay_rate_rule).allocate_time(date, start_time, end_time)
         payline_rate = self.pay_rate or employee_base_rate
         if self.pay_rate_rule.pay_rate_type == 'Multiplier':

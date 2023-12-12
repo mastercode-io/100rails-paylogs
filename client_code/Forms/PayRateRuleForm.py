@@ -4,6 +4,7 @@ from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 
 
 TIME_SCOPE_OPTIONS = [
+    'Any Day',
     'Weekday',
     'Weekend',
     'Saturday',
