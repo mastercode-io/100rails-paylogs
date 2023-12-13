@@ -2,7 +2,6 @@ from ..app.models import PayRateRule, PayRateTemplateItem, Timesheet
 import json
 from datetime import datetime, timedelta
 
-
 WEEK_DAY_NAME = [
     "Monday",
     "Tuesday",
@@ -22,11 +21,9 @@ def day_type(date):
         return "Any Day", "Weekday", WEEK_DAY_NAME[day_of_week]
 
 
-
 class PyaRateRuleAward(PayRateRule):
     def __init__(self, instance=None):
         self.__dict__.update(instance.__dict__)
-
 
     def allocate_time(self, date, start_time, end_time, total_hours=None):
         units = 0
@@ -69,7 +66,8 @@ class PyaRateRuleAward(PayRateRule):
                 units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
                 if self.time_limits and units > self.max_hours:
                     units = self.max_hours
-                    unallocated_time.append((allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
+                    unallocated_time.append(
+                        (allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
         # print(self.name, units, unallocated_time)
         return units, unallocated_time
 
@@ -77,7 +75,6 @@ class PyaRateRuleAward(PayRateRule):
 class PayItemAward(PayRateTemplateItem):
     def __init__(self, instance=None):
         self.__dict__.update(instance.__dict__)
-
 
     def calculate_award(self, date, start_time, end_time, total_hours=None, employee_base_rate=None):
         units, unallocated_time = PyaRateRuleAward(self.pay_rate_rule).allocate_time(
@@ -100,7 +97,6 @@ class PayItemAward(PayRateTemplateItem):
         return pay_line, unallocated_time
 
 
-
 class PayLine:
     def __init__(self, **kwargs):
         self.pay_rate_title = kwargs.get('pay_rate_title')
@@ -111,17 +107,14 @@ class PayLine:
         self.units = kwargs.get('units')
         self._pay_amount = None
 
-
     @property
     def pay_amount(self):
         if self.pay_rate is not None and self.units is not None:
             self._pay_amount = round(self.pay_rate * self.units, 2)
         return self._pay_amount
 
-
     def __str__(self):
         return f'${self.pay_amount:.2f} - @{self.pay_rate_title} {self.pay_rate} x {self.units} {self.unit_type}'
-
 
     def __repr__(self):
         return (f"PayLine("
@@ -132,7 +125,6 @@ class PayLine:
                 f"unit_type='{self.unit_type}', "
                 f"units={self.units}"
                 f")")
-
 
     def to_dict(self):
         return {
@@ -145,10 +137,8 @@ class PayLine:
             'pay_amount': self.pay_amount,
         }
 
-
     def to_json(self):
         return json.dumps(self.to_dict())
-
 
     def split(self, units):
         if units > self.units:
