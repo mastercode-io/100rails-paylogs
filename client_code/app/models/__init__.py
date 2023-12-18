@@ -56,6 +56,15 @@ class AppGridView:
 
 
 @model_type
+class AppEnum:
+    _title = "name"
+    model_type = types.ModelTypes.SYSTEM
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    options = Attribute(field_type=types.FieldTypes.OBJECT)
+
+
+@model_type
 class AppUploadsCache:
     _model_type = types.ModelTypes.SYSTEM
     _singular_name = "AppUploadsCache"

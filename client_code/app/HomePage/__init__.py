@@ -123,6 +123,7 @@ class HomePage(HomePageTemplate):
 
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
+        AppEnv.init_enum_constants()
         AppEnv.navigation = self.sidebar
         AppEnv.assistant = self.assistant
 
