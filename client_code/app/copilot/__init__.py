@@ -1,9 +1,12 @@
 import anvil.server
+import anvil.secrets
 import time
 
 
-OPENAI_API_KEY = "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"
-COPILOT_ASSISTANT_ID = "asst_Sy84Rcs6K3GsD2WnNqKnDwE3"
+# OPENAI_API_KEY = "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"
+#  COPILOT_ASSISTANT_ID = "asst_Sy84Rcs6K3GsD2WnNqKnDwE3"
+OPENAI_API_KEY = anvil.secrets.get_secret('openai_api_key')
+COPILOT_ASSISTANT_ID = anvil.secrets.get_secret('copilot_assistant_id')
 
 
 class Copilot:
