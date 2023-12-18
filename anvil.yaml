@@ -573,6 +573,20 @@ db_schema:
     - {name: component, admin_ui: null, type: string}
     - {name: action, admin_ui: null, type: string}
     title: App Error Logs
+  app_enums:
+    client: none
+    server: full
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: options, admin_ui: null, type: simpleObject}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    title: App Enums
   pay_categories:
     title: Pay Categories
     client: none
