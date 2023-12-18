@@ -42,7 +42,7 @@ class PayRateRuleForm(FormBase):
         self.scope = LookupInput(name='scope', label='Scope', model='Scope')
         self.time_scope = DropdownInput(name='time_scope', label='Time Scope',
                                         text_field='text', value_field='value',
-                                        options=[{'text': text, 'value': value} for text, value in AppEnv.enum_constants.DAY_TYPE_OPTIONS.items()],
+                                        options=[{'text': text, 'value': value} for text, value in AppEnv.enum_constants['DAY_TYPE_OPTIONS'].items()],
                                         value=AppEnv.enum_constants.DAY_TYPE_OPTIONS.AnyDay,
                                         on_change=self.time_scope_selected)
         self.time_limits = CheckboxInput(name='time_limits', label='Time Limits', value=True,
