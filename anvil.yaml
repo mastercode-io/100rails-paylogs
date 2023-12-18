@@ -674,4 +674,11 @@ db_schema:
       admin_ui: {order: -0.375}
       type: link_single
       target: pay_rate_templates
+secrets:
+  openai_api_key:
+    value: {BBEZAPHMPN72GFKM: ugSptjoLoZhPIt18UiQCdoX+ufwuNIYFh/fM/4l/o/5OCCqWGChJPAHPrlz3pw5R/zoFz9ucoN2IryHoByJTCNgza21saaV6I6SYfwV9RDaArnAf5eY1B8wDIOXPWyA/KMi/el4NuCZ3g5VDLYnneSljllCBWDJ1aKq8goMW7e7M5NuvdAN3PWIaMbunbCVr15w=}
+    type: secret
+  copilot_assistant_id:
+    value: {BBEZAPHMPN72GFKM: WW5JvILPAC6bLGRb1g0/2PVol2h65411z5i52IewI1iVBCXesRMT4XpqjjBppqwqExcoTRT1PBtVG3o/bS3jv+1hsDm9F0FTclBbEp0tAw3h+LpJO59MbdMIkmsD1tKNs9Fcv8K/NQAIwv8lTZaQk5tBR18SypB5yxRCrQ==}
+    type: secret
 uplink_visible: true
