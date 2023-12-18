@@ -124,6 +124,7 @@ class HomePage(HomePageTemplate):
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         AppEnv.init_enum_constants()
+        print('enum_constants', AppEnv.enum_constants)
         do_something()
         AppEnv.navigation = self.sidebar
         AppEnv.assistant = self.assistant
@@ -236,16 +237,17 @@ class HomePage(HomePageTemplate):
 
 
 def do_something():
-    enum_name = 'DAY_TYPE_OPTIONS'
-    enum_options = [
-        'Any Day',
-        'Weekday',
-        'Weekend',
-        'Saturday',
-        'Sunday',
-        'Public Holiday',
-        'Week',
-    ]
-    enum_values = {x: x for x in enum_options}
-    enum = models.AppEnum(name=enum_name, options=enum_values).save()
-    print(enum)
+    pass
+    # enum_name = 'DAY_TYPE_OPTIONS'
+    # enum_options = [
+    #     'Any Day',
+    #     'Weekday',
+    #     'Weekend',
+    #     'Saturday',
+    #     'Sunday',
+    #     'Public Holiday',
+    #     'Week',
+    # ]
+    # enum_values = {x: x for x in enum_options}
+    # enum = models.AppEnum(name=enum_name, options=enum_values).save()
+    # print(enum)
