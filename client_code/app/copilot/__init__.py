@@ -3,7 +3,7 @@ import time
 
 # OPENAI_API_KEY = "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"
 #  COPILOT_ASSISTANT_ID = "asst_Sy84Rcs6K3GsD2WnNqKnDwE3"
-copilot_keys = anvil.server.call('get_secrets', ['openai_api_key', 'copilot_assistant_id'])
+copilot_keys = anvil.server.call('get_secrets', 'openai_api_key', 'copilot_assistant_id')
 OPENAI_API_KEY = copilot_keys.get('openai_api_key')
 COPILOT_ASSISTANT_ID = copilot_keys.get('copilot_assistant_id')
 
