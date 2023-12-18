@@ -1,12 +1,11 @@
 import anvil.server
-import anvil.secrets
 import time
-
 
 # OPENAI_API_KEY = "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"
 #  COPILOT_ASSISTANT_ID = "asst_Sy84Rcs6K3GsD2WnNqKnDwE3"
-OPENAI_API_KEY = anvil.secrets.get_secret('openai_api_key')
-COPILOT_ASSISTANT_ID = anvil.secrets.get_secret('copilot_assistant_id')
+copilot_keys = anvil.server.call('get_secrets', ['openai_api_key', 'copilot_assistant_id'])
+OPENAI_API_KEY = copilot_keys.get('openai_api_key')
+COPILOT_ASSISTANT_ID = copilot_keys.get('copilot_assistant_id')
 
 
 class Copilot:
@@ -17,17 +16,15 @@ class Copilot:
         self.thread_id = anvil.server.call('openai_init_client', api_key=self.api_key)
         self.current_run_id = None
 
-
     def send_message(self, question):
-        response =  anvil.server.call(
+        response = anvil.server.call(
             'openai_send_message',
             question,
-             assistant_id=self.assistant_id,
-             thread_id=self.thread_id,
+            assistant_id=self.assistant_id,
+            thread_id=self.thread_id,
         )
         print('send_message', response)
         return response
-
 
     def retrieve_response(self):
         response = anvil.server.call(
@@ -36,7 +33,6 @@ class Copilot:
             run_id=self.current_run_id,
         )
         return response
-
 
     def get_response(self, question):
         response = self.send_message(question)
