@@ -125,6 +125,7 @@ class TimesheetListView(GridView):
                     start_time, end_time = unallocated_time.pop(0)
                 else:
                     start_time = end_time = None
+                print('pay_item', pay_item, start_time, end_time)
                 pay_line, unallocated_time = PayItemAward(pay_item).calculate_award(
                     date=ts['date'],
                     start_time=start_time,
@@ -141,7 +142,7 @@ class TimesheetListView(GridView):
                 ts['total_pay'] = total_pay
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
-                self.update_grid(ts, False)
+                # self.update_grid(ts, False)
 
             # ts_time_frames = [(ts['start_time'], ts['end_time'])]
             # ts_pay_lines = []
