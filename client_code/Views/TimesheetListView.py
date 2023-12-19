@@ -98,6 +98,7 @@ class TimesheetListView(GridView):
         print('week dates', start_of_week, end_of_week)
         stime = datetime.datetime.now()
         job_type_scopes = [*Scope.search(type=ScopeType.get_by('name', 'Job Type'))]
+        print('job_type_scopes', len(job_type_scopes))
         # get start and end of week
         # get all timesheets for the week
         timesheets = [*Timesheet.search(
@@ -108,6 +109,7 @@ class TimesheetListView(GridView):
         print('timesheets', len(timesheets))
         pay_lines = []
         for ts in timesheets:
+            print(ts['job']['job_type']['short_code'])
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
             pay_item_list = [item for item in PayRateTemplateItem.search(
