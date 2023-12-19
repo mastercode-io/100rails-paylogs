@@ -143,7 +143,7 @@ class TimesheetListView(GridView):
                 # self.update_grid(ts, False)
         pay_item_list = PayRateRule.search(
             time_scope='Week',
-            search_query=tables.order_by('order_number', ascending=True)
+            search_query=tables.order_by('overtime_start', ascending=True)
         )
         for pay_item in pay_item_list:
             print('pay_item', pay_item.name)
