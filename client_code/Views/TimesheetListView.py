@@ -106,7 +106,7 @@ class TimesheetListView(GridView):
             search_query=tables.order_by('date', ascending=True)
         )]
         print('timesheets', len(timesheets))
-        week_pay_lines = []
+        pay_lines = []
         for ts in timesheets:
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
@@ -136,7 +136,7 @@ class TimesheetListView(GridView):
                     ts_pay_lines.append(pay_line)
                     total_pay += pay_line.pay_amount
             if ts_pay_lines:
-                week_pay_lines.extend(ts_pay_lines)
+                pay_lines.extend(ts_pay_lines)
                 ts['total_pay'] = total_pay
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
@@ -146,12 +146,39 @@ class TimesheetListView(GridView):
             search_query=tables.order_by('overtime_start', ascending=True)
         )
         for pay_item in pay_item_list:
-            print('pay_item', pay_item.name)
+            week_hours = 0
+            week_pay_lines = []
+            overtime_lines = []
+            is_overtime = False
+            for pay_line in pay_lines:
+                if pay_line.unit_type != 'Hour':
+                    week_pay_lines.append(pay_line)
+                    continue
+                elif is_overtime:
+                    overtime_lines.append(pay_line)
+                    continue
+                else:
+                    week_hours += pay_line.units
+                if week_hours <= pay_item['overtime_start']:
+                    week_pay_lines.append(pay_line)
+                else:
+                    if week_hours == pay_item['overtime_start']:
+                        overtime_line = pay_line
+                    else:
+                        overtime_hours = week_hours - pay_item['overtime_start']
+                        overtime_line = pay_line.split(overtime_hours)
+                        week_pay_lines.append(pay_line)
+                    overtime_lines.append(overtime_line)
+                    is_overtime = True
+            if overtime_lines:
+                print('overtime_lines', overtime_lines)
+
+
 
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
         print('pay_lines')
-        for pl in week_pay_lines:
+        for pl in pay_lines:
             print(pl)
 
     @staticmethod
