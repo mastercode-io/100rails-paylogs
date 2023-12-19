@@ -70,7 +70,7 @@ class PyaRateRuleAward(PayRateRule):
                 units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
                 if day_type(date)[1] == 'Weekend':
                     print(self.name, units)
-                if self.time_limits and units > self.max_hours:
+                if self.max_hours and units > self.max_hours:
                     units = self.max_hours
                     unallocated_time.append(
                         (allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
