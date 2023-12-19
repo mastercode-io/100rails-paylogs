@@ -105,14 +105,17 @@ class PayItemAward(PayRateTemplateItem):
         units, unallocated_time = PyaRateRuleAward(self.pay_rate_rule).allocate_time(
             date, start_time, end_time, total_hours=total_hours
         )
-        payline_rate = self.pay_rate or employee_base_rate
+        base_rate = self.pay_rate or employee_base_rate
         if self.pay_rate_rule.pay_rate_type == 'Multiplier':
-            payline_rate *= self.pay_rate_multiplier
+            payline_rate = base_rate * self.pay_rate_multiplier
+        else:
+            payline_rate = base_rate
         if units:
             pay_line = PayLine(
                 pay_rate_title=self.pay_rate_title,
                 pay_category=self.pay_category,
                 date=date,
+                base_rate=base_rate,
                 pay_rate=payline_rate,
                 unit_type=self.pay_rate_rule.unit_type,
                 units=units,
@@ -129,6 +132,7 @@ class PayLine:
         self.pay_category = kwargs.get('pay_category')
         self.timesheet = kwargs.get('timesheet')
         self.date = kwargs.get('date')
+        self.base_rate = kwargs.get('base_rate')
         self.pay_rate = kwargs.get('pay_rate')
         self.unit_type = kwargs.get('unit_type')
         self.units = kwargs.get('units')
@@ -151,6 +155,7 @@ class PayLine:
                 f"pay_category='{self.pay_category}', "
                 f"timesheet='{self.timesheet}',"
                 f"date='{self.date}', "
+                f"base_rate={self.base_rate}, "
                 f"pay_rate={self.pay_rate}, "
                 f"unit_type='{self.unit_type}', "
                 f"units={self.units}, "
@@ -163,6 +168,7 @@ class PayLine:
             'pay_category': self.pay_category,
             'date': self.date,
             'timesheet': self.timesheet,
+            'base_rate': self.base_rate,
             'pay_rate': self.pay_rate,
             'unit_type': self.unit_type,
             'units': self.units,
@@ -182,6 +188,7 @@ class PayLine:
             pay_category=self.pay_category,
             timesheet=self.timesheet,
             date=self.date,
+            base_rate=self.base_rate,
             pay_rate=self.pay_rate,
             unit_type=self.unit_type,
             units=units,
