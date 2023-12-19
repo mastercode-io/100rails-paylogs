@@ -127,6 +127,9 @@ db_schema:
     - name: overtime_start
       admin_ui: {order: 0, width: 200}
       type: number
+    - name: count_overtime
+      admin_ui: {width: 200, order: 0}
+      type: bool
   employees:
     client: none
     server: full
