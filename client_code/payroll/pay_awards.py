@@ -75,8 +75,8 @@ class PyaRateRuleAward(PayRateRule):
                     units = self.max_hours
                     unallocated_time.append(
                         (allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
-                    if 'OT150% WD' in self.name or 'OT200% WD' in self.name:
-                        print(self.name, units, unallocated_time)
+                if 'OT150% WD' in self.name or 'OT200% WD' in self.name:
+                    print(self.name, units, unallocated_time)
         else:
             unallocated_time.append((start_time, end_time))
         # print(self.name, units, unallocated_time)
