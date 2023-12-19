@@ -132,6 +132,7 @@ class TimesheetListView(GridView):
                 )
                 # print('pay_line', pay_line, unallocated_time)
                 if pay_line:
+                    pay_line.timesheet = ts
                     ts_pay_lines.append(pay_line)
                     total_pay += pay_line.pay_amount
             if ts_pay_lines:
@@ -140,6 +141,12 @@ class TimesheetListView(GridView):
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
                 # self.update_grid(ts, False)
+        pay_item_list = PayRateRule.search(
+            time_scope='Week',
+            search_query=tables.order_by('order_number', ascending=True)
+        )
+        for pay_item in pay_item_list:
+            print('pay_item', pay_item.name)
 
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
