@@ -173,6 +173,7 @@ class TimesheetListView(GridView):
             pay_lines = week_pay_lines.copy()
             if overtime_lines:
                 print('overtime_lines', overtime_lines)
+                pay_lines.extend(overtime_lines)
 
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
