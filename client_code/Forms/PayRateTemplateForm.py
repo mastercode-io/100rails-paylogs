@@ -19,6 +19,7 @@ class PayRateTemplateForm(FormBase):
                 {'name': 'order_number', 'label': 'Order'},
                 {'name': 'pay_rate_title', 'label': 'Title'},
                 {'name': 'pay_rate_rule.name', 'label': 'Rule'},
+                {'name': 'pay_category.name', 'label': 'Payroll Category'},
                 {'name': 'pay_rate', 'label': 'Rate'},
                 {'name': 'pay_rate_multiplier', 'label': 'Multiplier'},
                 {'name': 'status', 'label': 'Status'},
