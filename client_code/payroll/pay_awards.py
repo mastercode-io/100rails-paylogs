@@ -24,6 +24,8 @@ def day_type(date):
 class PyaRateRuleAward(PayRateRule):
     def __init__(self, instance=None):
         self.__dict__.update(instance.__dict__)
+        if self.end_time.time() == datetime(1970, 1, 1, 0, 0, 0).time():
+            self.end_time = datetime(1970, 1, 1, 23, 59, 59)
 
     def allocate_time(self, date, start_time, end_time, total_hours=None):
         units = 0
