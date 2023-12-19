@@ -605,6 +605,9 @@ db_schema:
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: status, admin_ui: null, type: string}
     - {name: pay_category_type, admin_ui: null, type: string}
+    - name: payroll_sync_code
+      admin_ui: {width: 200, order: 0}
+      type: string
   pay_rate_templates:
     title: Pay Rate Templates
     client: none
