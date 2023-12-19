@@ -72,14 +72,12 @@ class TimesheetListView(GridView):
         }
         self.first_load = True
 
-
     def grouping_caption(self, args):
         # print('due_date_caption', args)
         # caption_color = 'color:#a63333;' if args['key'] == -100 else ''
         caption_color = 'color:#6750A4;'
         return (f'<div class="template" style="{caption_color}">'
                 f'{args.items[0].employee__full_name}</div>')
-
 
     def grouping_total_hours(self, data, column):
         # print('\n\ngrouping_total_hours\n\n', data, column)
@@ -89,7 +87,6 @@ class TimesheetListView(GridView):
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
         return f"{hours}:{minutes:02d} week"
-
 
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
@@ -113,10 +110,10 @@ class TimesheetListView(GridView):
         for ts in timesheets:
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
-            pay_item_list = [*PayRateTemplateItem.search(
+            pay_item_list = [item for item in PayRateTemplateItem.search(
                 pay_rate_template=pay_rate_template,
                 search_query=tables.order_by('order_number', ascending=True)
-            )]
+            ) if item['pay_rate_rule']['time_scope'] != 'Week']
             unallocated_time = [(ts['start_time'], ts['end_time'])]
             ts_pay_lines = []
             total_pay = 0
@@ -144,34 +141,17 @@ class TimesheetListView(GridView):
                 ts.save()
                 # self.update_grid(ts, False)
 
-            # ts_time_frames = [(ts['start_time'], ts['end_time'])]
-            # ts_pay_lines = []
-            # for pay_item in pay_rate_template_items:
-            #     if pay_item['pay_rate_rule']['time_scope'] not in ts['day_type']:
-            #         continue
-            #     ts_time_frames, pay_lines = TimesheetListView.calculate_pay_lines(
-            #         time_frames=ts_time_frames,
-            #         pay_item=pay_item,
-            #         employee=employee,
-            #     )
-            #     if pay_lines:
-            #         ts_pay_lines.extend(pay_lines)
-            #     if not ts_time_frames:
-            #         break
-            # if ts_pay_lines:
-            #     week_pay_lines.extend(ts_pay_lines)
         etime = datetime.datetime.now()
         print('calc time', etime - stime)
         print('pay_lines')
         for pl in week_pay_lines:
             print(pl)
 
-
     @staticmethod
     def calculate_pay_lines(
-        time_frames=None,
-        pay_item=None,
-        employee=None,
+            time_frames=None,
+            pay_item=None,
+            employee=None,
     ):
         pay_rule = pay_item['pay_rate_rule']
         rule_start_time = pay_rule['start_time'].time()
@@ -185,7 +165,8 @@ class TimesheetListView(GridView):
                 unallocated_time_frames.append(frame)
                 continue
             if start_time.time() < rule_start_time:
-                unallocated_time_frames.append((start_time, datetime.datetime.combine(start_time.date(), rule_start_time)))
+                unallocated_time_frames.append(
+                    (start_time, datetime.datetime.combine(start_time.date(), rule_start_time)))
                 do_start_time = datetime.datetime.combine(start_time.date(), rule_start_time)
             else:
                 do_start_time = start_time
@@ -226,7 +207,6 @@ class TimesheetListView(GridView):
                 pay_lines.append(pay_line)
         return unallocated_time_frames, pay_lines
 
-
     @staticmethod
     def calculate_week_overtime(pay_lines=None, pay_items=None):
         for pay_item in pay_items:
@@ -244,7 +224,7 @@ class TimesheetListView(GridView):
                 if overtime_hours:
                     week_pay_lines.append(pl)
                     continue
-                if pl['hours'] and  'earnings' in pay_rule['earnings_type'].lower():
+                if pl['hours'] and 'earnings' in pay_rule['earnings_type'].lower():
                     week_hours += pl['hours']
                 else:
                     week_pay_lines.append(pl)

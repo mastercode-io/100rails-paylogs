@@ -86,19 +86,14 @@ class PyaRateRuleAward(PayRateRule):
     def merge_time_periods(time_periods):
         if not time_periods:
             return []
-
         time_periods.sort(key=lambda x: x[0])
         merged_periods = [time_periods[0]]
         for current in time_periods[1:]:
             previous = merged_periods[-1]
-            # If the current period overlaps with the previous one, merge them
             if current[0] <= previous[1]:
-                # previous[1] = max(previous[1], current[1])
                 merged_periods[-1] = (previous[0], max(previous[1], current[1]))
             else:
-                # Add the current period to the list
                 merged_periods.append(list(current))
-
         return merged_periods
 
 
