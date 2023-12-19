@@ -116,6 +116,7 @@ class PayItemAward(PayRateTemplateItem):
                 pay_rate=payline_rate,
                 unit_type=self.pay_rate_rule.unit_type,
                 units=units,
+                count_overtime=self.pay_rate_rule.count_overtime,
             )
         else:
             pay_line = None
@@ -131,6 +132,7 @@ class PayLine:
         self.pay_rate = kwargs.get('pay_rate')
         self.unit_type = kwargs.get('unit_type')
         self.units = kwargs.get('units')
+        self.count_overtime = kwargs.get('count_overtime', False)
         self._pay_amount = None
 
     @property
@@ -147,10 +149,12 @@ class PayLine:
         return (f"PayLine("
                 f"pay_rate_title='{self.pay_rate_title}', "
                 f"pay_category='{self.pay_category}', "
+                f"timesheet='{self.timesheet}',"
                 f"date='{self.date}', "
                 f"pay_rate={self.pay_rate}, "
                 f"unit_type='{self.unit_type}', "
-                f"units={self.units}"
+                f"units={self.units}, "
+                f"count_overtime={self.count_overtime}"
                 f")")
 
     def to_dict(self):
@@ -158,10 +162,12 @@ class PayLine:
             'pay_rate_title': self.pay_rate_title,
             'pay_category': self.pay_category,
             'date': self.date,
+            'timesheet': self.timesheet,
             'pay_rate': self.pay_rate,
             'unit_type': self.unit_type,
             'units': self.units,
             'pay_amount': self.pay_amount,
+            'count_overtime': self.count_overtime,
         }
 
     def to_json(self):
@@ -174,8 +180,10 @@ class PayLine:
         return PayLine(
             pay_rate_title=self.pay_rate_title,
             pay_category=self.pay_category,
+            timesheet=self.timesheet,
             date=self.date,
             pay_rate=self.pay_rate,
             unit_type=self.unit_type,
             units=units,
+            count_overtime=self.count_overtime,
         )

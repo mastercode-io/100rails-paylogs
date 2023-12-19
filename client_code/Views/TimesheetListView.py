@@ -151,7 +151,7 @@ class TimesheetListView(GridView):
             overtime_lines = []
             is_overtime = False
             for pay_line in pay_lines:
-                if pay_line.unit_type != 'Hour':
+                if pay_line.count_overtime is False:
                     week_pay_lines.append(pay_line)
                     continue
                 elif is_overtime:
@@ -170,8 +170,6 @@ class TimesheetListView(GridView):
                     is_overtime = True
             if overtime_lines:
                 print('overtime_lines', overtime_lines)
-
-
 
         etime = datetime.datetime.now()
         print('calc time', etime - stime)

@@ -340,6 +340,7 @@ class PayRateRule:
     start_time = Attribute(field_type=types.FieldTypes.TIME)
     end_time = Attribute(field_type=types.FieldTypes.TIME)
     max_hours = Attribute(field_type=types.FieldTypes.NUMBER)
+    count_overtime = Attribute(field_type=types.FieldTypes.BOOLEAN)
     overtime_start = Attribute(field_type=types.FieldTypes.NUMBER)
     unit_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     earnings_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
