@@ -90,6 +90,7 @@ class PayRateRuleForm(FormBase):
                         self.start_time,
                         self.end_time,
                         self.max_hours,
+                        self.count_overtime,
                         self.overtime_start,
                     ],
                 ]
