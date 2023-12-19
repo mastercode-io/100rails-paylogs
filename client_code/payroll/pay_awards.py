@@ -57,8 +57,6 @@ class PyaRateRuleAward(PayRateRule):
                 else:
                     allocated_start_time = start_time
                 if end_time.time() > self.end_time.time():
-                    # unallocated_time.append((datetime.combine(end_time.date(), self.end_time.time()), end_time))
-                    # allocated_end_time = datetime.combine(end_time.date(), self.end_time.time())
                     allocated_end_time = end_time.replace(
                         hour=self.end_time.hour,
                         minute=self.end_time.minute,
@@ -68,16 +66,16 @@ class PyaRateRuleAward(PayRateRule):
                     unallocated_time.append((allocated_end_time, end_time))
                 else:
                     allocated_end_time = end_time
-                if day_type(date)[1] == 'Weekend':
+                if 'OT150% WD' in self.name:
                     print(self.name, allocated_start_time, allocated_end_time)
                 units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
-                if day_type(date)[1] == 'Weekend':
+                if 'OT150% WD' in self.name:
                     print(self.name, units)
                 if self.max_hours and units > self.max_hours:
                     units = self.max_hours
                     unallocated_time.append(
                         (allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
-                    if day_type(date)[1] == 'Weekend':
+                    if 'OT150% WD' in self.name:
                         print(self.name, units, unallocated_time)
         else:
             unallocated_time.append((start_time, end_time))
