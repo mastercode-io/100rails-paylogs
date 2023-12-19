@@ -141,11 +141,11 @@ class TimesheetListView(GridView):
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
                 # self.update_grid(ts, False)
-        pay_item_list = PayRateRule.search(
+        pay_rule_list = PayRateRule.search(
             time_scope='Week',
             search_query=tables.order_by('overtime_start', ascending=True)
         )
-        for pay_item in pay_item_list:
+        for pay_rule in pay_rule_list:
             week_hours = 0
             week_pay_lines = []
             overtime_lines = []
@@ -159,15 +159,13 @@ class TimesheetListView(GridView):
                     continue
                 else:
                     week_hours += pay_line.units
-                if week_hours <= pay_item['overtime_start']:
+                if week_hours <= pay_rule['overtime_start']:
                     week_pay_lines.append(pay_line)
                 else:
-                    if week_hours == pay_item['overtime_start']:
-                        overtime_line = pay_line
-                    else:
-                        overtime_hours = week_hours - pay_item['overtime_start']
-                        overtime_line = pay_line.split(overtime_hours)
-                        week_pay_lines.append(pay_line)
+                    print('pay_line', pay_line, week_hours, pay_rule['overtime_start'])
+                    overtime_hours = week_hours - pay_rule['overtime_start']
+                    overtime_line = pay_line.split(overtime_hours)
+                    week_pay_lines.append(pay_line)
                     overtime_lines.append(overtime_line)
                     is_overtime = True
             if overtime_lines:
