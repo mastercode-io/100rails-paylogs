@@ -64,6 +64,7 @@ class PyaRateRuleAward(PayRateRule):
                 else:
                     allocated_end_time = end_time
                 units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
+                print(self.name, units)
                 if self.time_limits and units > self.max_hours:
                     units = self.max_hours
                     unallocated_time.append(
