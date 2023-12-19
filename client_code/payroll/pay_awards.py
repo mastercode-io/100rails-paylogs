@@ -70,7 +70,7 @@ class PyaRateRuleAward(PayRateRule):
                         (allocated_start_time + timedelta(hours=self.max_hours), allocated_end_time))
         else:
             unallocated_time.append((start_time, end_time))
-        print(self.name, units, unallocated_time)
+        # print(self.name, units, unallocated_time)
         return units, unallocated_time
 
 
