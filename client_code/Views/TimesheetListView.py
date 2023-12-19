@@ -172,6 +172,10 @@ class TimesheetListView(GridView):
                     is_overtime = True
             pay_lines = week_pay_lines.copy()
             if overtime_lines:
+                for overtime_line in overtime_lines:
+                    overtime_line.pay_rate = overtime_line.base_rate * pay_rule['multiplier']
+                    overtime_line.pay_rate_title = pay_rule['name']
+                    print('overtime_line', overtime_line)
                 print('overtime_lines', overtime_lines)
                 pay_lines.extend(overtime_lines)
 
