@@ -159,6 +159,7 @@ class TimesheetListView(GridView):
                     continue
                 else:
                     week_hours += pay_line.units
+                    print('week_hours', week_hours, pay_line)
                 if week_hours <= pay_rule['overtime_start']:
                     week_pay_lines.append(pay_line)
                 else:
