@@ -146,6 +146,7 @@ class TimesheetListView(GridView):
             search_query=tables.order_by('overtime_start', ascending=True)
         )
         for pay_rule in pay_rule_list:
+            print('pay_rule', pay_rule.name)
             week_hours = 0
             week_pay_lines = []
             overtime_lines = []
@@ -169,6 +170,7 @@ class TimesheetListView(GridView):
                     week_pay_lines.append(pay_line)
                     overtime_lines.append(overtime_line)
                     is_overtime = True
+            pay_lines = week_pay_lines.copy()
             if overtime_lines:
                 print('overtime_lines', overtime_lines)
 
