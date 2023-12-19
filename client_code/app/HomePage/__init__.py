@@ -125,7 +125,7 @@ class HomePage(HomePageTemplate):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         AppEnv.init_enum_constants()
         print('enum_constants', AppEnv.enum_constants)
-        do_something()
+        # do_something()
         AppEnv.navigation = self.sidebar
         AppEnv.assistant = self.assistant
 
