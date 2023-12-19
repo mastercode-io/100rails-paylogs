@@ -63,6 +63,8 @@ class PyaRateRuleAward(PayRateRule):
                     unallocated_time.append((allocated_end_time, end_time))
                 else:
                     allocated_end_time = end_time
+                if day_type(date)[1] == 'Weekend':
+                    print(self.name, allocated_start_time, allocated_end_time)
                 units = (allocated_end_time - allocated_start_time).total_seconds() / 3600
                 if day_type(date)[1] == 'Weekend':
                     print(self.name, units)
