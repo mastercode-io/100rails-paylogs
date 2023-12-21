@@ -9,7 +9,6 @@ import uuid
 import secrets
 import string
 from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
 
 
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
@@ -81,15 +80,15 @@ def authenticate_request(request: anvil.server.request):
     tenant_uid = request.headers.get('X-Tenant-UID', None)
     api_key = request.headers.get('X-API-Key', None)
     if not tenant_uid or not api_key:
-        return False
+        return False, 'Missing X-Tenant-UID or X-API-Key header'
     else:
         api_user_name, api_user_password = decode_tenant_api_key(tenant_uid, api_key)
         api_user_email = get_api_user_email(tenant_uid, api_user_name)
         try:
             anvil.users.login_with_email(api_user_email, api_user_password)
         except anvil.users.AuthenticationFailed:
-            return False
+            return False, f'Invalid user credentials: {api_user_name}, {api_user_password}'
         logged_user = init_user_session()
         if not logged_user:
-            return False
+            return False, f'Cannot init user session: {api_user_name}, {api_user_password}'
     return True
