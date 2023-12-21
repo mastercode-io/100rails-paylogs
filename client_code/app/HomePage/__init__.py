@@ -232,7 +232,7 @@ class HomePage(HomePageTemplate):
 def do_something():
     print('do_something')
     print(anvil.server.get_api_origin())
-    new_api_key = anvil.server.call('generate_api_key', AppEnv.logged_user.tenant_uid, 'scaflog')
+    new_api_key = anvil.server.call('generate_tenant_api_key', AppEnv.logged_user.tenant_uid, 'scaflog')
     print('new_api_key', new_api_key)
     # enum_name = 'DAY_TYPE_OPTIONS'
     # enum_options = [
