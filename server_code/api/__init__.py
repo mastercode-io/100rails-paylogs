@@ -8,8 +8,8 @@ import json
 import uuid
 import secrets
 import string
-from crypto.Cipher import AES
-from crypto.Random import get_random_bytes
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
 
 
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
