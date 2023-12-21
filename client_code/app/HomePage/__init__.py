@@ -237,7 +237,8 @@ class HomePage(HomePageTemplate):
 
 
 def do_something():
-    pass
+    print('do_something')
+    print(anvil.server.get_api_origin())
     # enum_name = 'DAY_TYPE_OPTIONS'
     # enum_options = [
     #     'Any Day',
