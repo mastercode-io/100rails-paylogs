@@ -41,6 +41,8 @@ def generate_tenant_api_key(tenant_uid, api_user_name):
         tenant_uid=tenant_uid,
         uid=str(uuid.uuid4()),
         confirmed_email=True,
+        first_name=api_user_name,
+        last_name='API User',
     )
 
     cipher = AES.new(secret_key.encode(), AES.MODE_EAX)
@@ -67,7 +69,7 @@ def decode_tenant_api_key(tenant_uid, api_key):
     nonce = encrypted_bytes[:16]
     tag = encrypted_bytes[16:32]
     ciphertext = encrypted_bytes[32:]
-    cipher = AES.new(secret_key, AES.MODE_EAX, nonce=nonce)
+    cipher = AES.new(secret_key.encode(), AES.MODE_EAX, nonce=nonce)
     json_bytes = cipher.decrypt_and_verify(ciphertext, tag)
     json_str = json_bytes.decode('utf-8')
     data = json.loads(json_str)
