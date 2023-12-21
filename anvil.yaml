@@ -416,6 +416,12 @@ db_schema:
     - name: status
       admin_ui: {width: 200, order: 0}
       type: string
+    - name: api_keys
+      admin_ui: {width: 200, order: 0}
+      type: simpleObject
+    - name: api_secret
+      admin_ui: {width: 200, order: 0}
+      type: string
     title: Tenants
   scope_types:
     client: none
