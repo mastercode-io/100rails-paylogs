@@ -39,7 +39,7 @@ def generate_tenant_api_key(tenant_uid, api_user_name):
     api_user = anvil.users.signup_with_email(api_user_email, api_user_password)
     api_user.update(
         tenant_uid=tenant_uid,
-        uid=uuid.uuid4(),
+        uid=str(uuid.uuid4()),
         confirmed_email=True,
     )
 
