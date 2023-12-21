@@ -31,7 +31,7 @@ def generate_tenant_api_key(tenant_uid, api_user_name):
     if not tenant:
         raise Exception(f'Tenant {tenant_uid} not found')
     if not tenant['api_secret']:
-        api_secret = get_random_bytes(16)
+        api_secret = generate_password()
         tenant['api_secret'] = api_secret
     secret_key = tenant['api_secret']
     api_user_password = generate_password()
