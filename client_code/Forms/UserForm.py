@@ -20,7 +20,8 @@ class UserForm(FormBase):
         self.last_name = TextInput(name='last_name', label='Last Name', required=True)
         self.email = TextInput(name='email', label='Login (email)', required=True)
         self.password = TextInput(name='password', label='Password', input_type='password', required=True, save=False)
-        self.confirm_pwd = TextInput(name='confirm_password', label='Confirm Password', input_type='password', required=True, save=False)
+        self.confirm_pwd = TextInput(name='confirm_password', label='Confirm Password', input_type='password',
+                                     required=True, save=False)
         self.enabled = CheckboxInput(name='enabled', label='Enabled', value=True)
         self.user_roles = LookupInput(name='user_roles', label='Roles', model='UserRole', multiple=True)
         self.permissions = MultiFieldInput(name='permissions', model='User', label='Permissions')
@@ -51,7 +52,6 @@ class UserForm(FormBase):
         )
         self.persist = True
 
-
     def form_open(self, args):
         super().form_open(args)
         print('UserForm.form_show', self.action)
@@ -64,7 +64,6 @@ class UserForm(FormBase):
             self.password.hide()
             self.confirm_pwd.hide()
 
-
     def form_validate(self):
         return super().form_validate()
         # if self.action == 'add':
@@ -73,14 +72,13 @@ class UserForm(FormBase):
         #     else:
         #         return super().form_validate()
 
-
     def save_user(self, args):
         self.alert.hide()
         if not self.data['uid'] and self.form_validate():
             # user_instance = User()
             signup_result = anvil.server.call('signup_user',
                                               self.email.value,
-                                                self.password.value,
+                                              self.password.value,
                                               self.source.value['tenant_uid'])
             if signup_result['status'] == 'error':
                 self.alert.show()
@@ -101,7 +99,6 @@ class UserForm(FormBase):
                 # super().form_cancel(args)
 
         super().form_save(args)
-
 
     def form_cancel(self, args):
         super().form_cancel(args)

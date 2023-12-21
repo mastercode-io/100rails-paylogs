@@ -40,7 +40,6 @@ class UserLoginForm(FormBase):
         )
         self.form.showCloseIcon = False
 
-
     def login_user(self, args):
         print('Logging user...', args)
         try:
@@ -54,7 +53,6 @@ class UserLoginForm(FormBase):
             print('Login error', e)
             self.error.message = f'Invalid login details: {e}'
             self.error.type = 'e-error'
-
 
     def forgot_password(self, args):
         print('Forgot password', args)

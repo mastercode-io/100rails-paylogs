@@ -114,6 +114,7 @@ class Tenant:
     model_type = types.ModelTypes.SYSTEM
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    api_keys = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
