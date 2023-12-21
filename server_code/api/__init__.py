@@ -80,7 +80,7 @@ def authenticate_request(request: anvil.server.request):
     tenant_uid = request.headers.get('X-Tenant-UID', None)
     api_key = request.headers.get('X-API-Key', None)
     if not tenant_uid or not api_key:
-        return False, 'Missing X-Tenant-UID or X-API-Key header'
+        return False, f'Missing X-Tenant-UID or X-API-Key header: {request.headers}'
     else:
         api_user_name, api_user_password = decode_tenant_api_key(tenant_uid, api_key)
         api_user_email = get_api_user_email(tenant_uid, api_user_name)
