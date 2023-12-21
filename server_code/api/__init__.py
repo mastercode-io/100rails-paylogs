@@ -43,7 +43,7 @@ def generate_tenant_api_key(tenant_uid, api_user_name):
         confirmed_email=True,
     )
 
-    cipher = AES.new(secret_key, AES.MODE_EAX)
+    cipher = AES.new(secret_key.encode(), AES.MODE_EAX)
     cipher_text, tag = cipher.encrypt_and_digest(
         json.dumps({'api_user_name': api_user_name, 'password': api_user_password}).encode()
     )
