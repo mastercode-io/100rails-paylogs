@@ -11,7 +11,6 @@ import navigation as nav
 from ..copilot import Copilot
 import json
 
-
 AppEnv.APP_ID = "PayLogs"
 AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
 AppEnv.data_models = models
@@ -113,19 +112,17 @@ class HomePage(HomePageTemplate):
         AppEnv.login_user = self.login_user
         AppEnv.after_login = self.after_login
 
-
     def login_user(self):
         print('login_user')
         AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
         if AppEnv.logged_user:
             self.after_login()
 
-
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         AppEnv.init_enum_constants()
         print('enum_constants', AppEnv.enum_constants)
-        # do_something()
+        do_something()
         AppEnv.navigation = self.sidebar
         AppEnv.assistant = self.assistant
 
@@ -162,7 +159,6 @@ class HomePage(HomePageTemplate):
         # print('copilot', message)
         # print(thread)
 
-
     def form_show(self, **event_args):
         # Append appbar controls to elements
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
@@ -181,7 +177,6 @@ class HomePage(HomePageTemplate):
 
         self.login_user()
 
-
     def settings_click(self, args):
         print('settings menu')
         self.sidebar.show_menu("settings_menu")
@@ -190,31 +185,29 @@ class HomePage(HomePageTemplate):
     def sidebar_toggle(self, args):
         self.sidebar.toggle(args)
 
-
     def appbar_assistant_button_click(self, args):
         print('appbar_assistant_button_click')
         if AppEnv.assistant is None:
             AppEnv.assistant = Forms.AssistantForm(target=self.content_id)
         AppEnv.assistant.form_show()
 
-
     # Appbar menu popup window position adjustment
     @staticmethod
     def appbar_menu_popup_open(args):
         args.element.parentElement.style.top = (
-            str(float(args.element.parentElement.style.top[:-2]) + 10) + "px"
+                str(float(args.element.parentElement.style.top[:-2]) + 10) + "px"
         )
 
     # Sidebar menu popup window position adjustment
     @staticmethod
     def sidebar_menu_popup_open(args):
         args.element.parentElement.style.top = (
-            str(
-                args.element.getBoundingClientRect().top
-                - args.element.parentElement.offsetHeight
-                + 44
-            )
-            + "px"
+                str(
+                    args.element.getBoundingClientRect().top
+                    - args.element.parentElement.offsetHeight
+                    + 44
+                )
+                + "px"
         )
         args.element.parentElement.style.left = "100px"
 
