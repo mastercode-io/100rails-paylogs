@@ -25,6 +25,7 @@ def get_api_user_email(tenant_uid, api_user_name):
     return f'{tenant_uid}_{api_user_name}@paylogs.com'
 
 
+@anvil.server.callable
 def generate_tenant_api_key(tenant_uid, api_user_name):
     tenant = Tenant.get(tenant_uid)
     if not tenant:
