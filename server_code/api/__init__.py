@@ -24,6 +24,12 @@ def get_api_user_email(tenant_uid, api_user_name):
     return f'{tenant_uid}_{api_user_name}@paylogs.com'
 
 
+def set_system_user(tenant_uid):
+    anvil.server.session['tenant_uid'] = tenant_uid
+    anvil.server.session['user_uid'] = 'api request'
+    anvil.server.session['user_permissions'] = {}
+
+
 @anvil.server.callable
 def generate_tenant_api_key(tenant_uid, api_user_name):
     tenant = Tenant.get(tenant_uid)
@@ -82,6 +88,7 @@ def authenticate_request(request: anvil.server.request):
     if not tenant_uid or not api_key:
         return False, f'Missing x-tenant-uid or x-api-key header: {request.headers}'
     else:
+        set_system_user(tenant_uid)
         api_user_name, api_user_password = decode_tenant_api_key(tenant_uid, api_key)
         api_user_email = get_api_user_email(tenant_uid, api_user_name)
         try:
