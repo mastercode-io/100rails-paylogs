@@ -28,6 +28,7 @@ def set_system_user(tenant_uid):
     anvil.server.session['tenant_uid'] = tenant_uid
     anvil.server.session['user_uid'] = 'api request'
     anvil.server.session['user_permissions'] = {}
+    print('set_system_user', anvil.server.session)
 
 
 @anvil.server.callable
