@@ -89,7 +89,8 @@ def authenticate_request(request: anvil.server.request):
     if not tenant_uid or not api_key:
         return False, f'Missing x-tenant-uid or x-api-key header: {request.headers}'
     else:
-        set_system_user(tenant_uid)
+        # set_system_user(tenant_uid)
+        anvil.server.call('set_system_user', tenant_uid)
         api_user_name, api_user_password = decode_tenant_api_key(tenant_uid, api_key)
         api_user_email = get_api_user_email(tenant_uid, api_user_name)
         try:
