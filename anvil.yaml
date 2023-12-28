@@ -152,6 +152,22 @@ db_schema:
       admin_ui: {width: 200, order: 0}
       type: number
     title: Employees
+  app_in_api_credentials:
+    client: none
+    server: full
+    columns:
+    - {name: api_key, admin_ui: null, type: string}
+    - {name: api_secret, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: service_name, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    title: App In Api Credentials
   payrun_configs:
     client: none
     server: full
@@ -330,6 +346,22 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: status, admin_ui: null, type: string}
+  app_out_api_credentials:
+    client: none
+    server: full
+    columns:
+    - {name: api_credentials, admin_ui: null, type: simpleObject}
+    - {name: auth_type, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: service_name, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    title: App Out Api Credentials
   app_uploads_cache:
     client: none
     server: full
@@ -414,12 +446,6 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - name: status
-      admin_ui: {width: 200, order: 0}
-      type: string
-    - name: api_keys
-      admin_ui: {width: 200, order: 0}
-      type: simpleObject
-    - name: api_secret
       admin_ui: {width: 200, order: 0}
       type: string
     title: Tenants
