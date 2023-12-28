@@ -91,6 +91,7 @@ def authenticate_request(request: anvil.server.request):
     else:
         # set_system_user(tenant_uid)
         anvil.server.call('set_system_user', tenant_uid)
+        print('authenticate_request', anvil.server.session)
         api_user_name, api_user_password = decode_tenant_api_key(tenant_uid, api_key)
         api_user_email = get_api_user_email(tenant_uid, api_user_name)
         try:

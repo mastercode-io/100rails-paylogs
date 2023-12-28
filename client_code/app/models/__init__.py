@@ -22,6 +22,28 @@ ENUM_MODEL_LIST = {
 # Framework object model classes
 # ------------------------------
 @model_type
+class AppInApiCredential:
+    _title = "service_name"
+    # model_type = types.ModelTypes.SYSTEM
+    service_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    api_secret = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    api_key = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+class AppOutApiCredential:
+    _title = "service_name"
+    # model_type = types.ModelTypes.SYSTEM
+    service_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    auth_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    api_credentials = Attribute(field_type=types.FieldTypes.OBJECT)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
 class AppAuditLog:
     model_type = types.ModelTypes.SYSTEM
     table_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
