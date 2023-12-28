@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: app.HomePage}
+startup: {type: module, module: '@migrate'}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -152,6 +152,11 @@ db_schema:
       admin_ui: {width: 200, order: 0}
       type: number
     title: Employees
+  app_in_api_credentials:
+    client: none
+    server: full
+    columns: []
+    title: App In Api Credentials
   payrun_configs:
     client: none
     server: full
@@ -330,6 +335,11 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: status, admin_ui: null, type: string}
+  app_out_api_credentials:
+    client: none
+    server: full
+    columns: []
+    title: App Out Api Credentials
   app_uploads_cache:
     client: none
     server: full
