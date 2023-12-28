@@ -1,5 +1,5 @@
 from AnvilFusion.tools.utils import init_user_session
-from ..app.models import Tenant
+from ..app.models import User, AppInApiCredential, AppOutApiCredential
 import anvil.server
 import anvil.users
 import anvil.secrets
@@ -24,7 +24,7 @@ def get_api_user_email(tenant_uid, api_user_name):
     return f'{tenant_uid}_{api_user_name}@paylogs.com'
 
 
-def set_system_user(tenant_uid):
+def set_tenant_system_user(tenant_uid):
     anvil.server.session['tenant_uid'] = tenant_uid
     anvil.server.session['user_uid'] = 'api request'
     anvil.server.session['user_permissions'] = {}
@@ -33,6 +33,7 @@ def set_system_user(tenant_uid):
 
 @anvil.server.callable
 def generate_tenant_api_key(tenant_uid, api_user_name):
+    api_user_email = get_api_user_email(tenant_uid, api_user_name)
     tenant = Tenant.get(tenant_uid)
     if not tenant:
         raise Exception(f'Tenant {tenant_uid} not found')
@@ -41,7 +42,6 @@ def generate_tenant_api_key(tenant_uid, api_user_name):
         tenant['api_secret'] = api_secret
     secret_key = tenant['api_secret']
     api_user_password = generate_password()
-    api_user_email = get_api_user_email(tenant_uid, api_user_name)
     api_user = anvil.users.signup_with_email(api_user_email, api_user_password)
     api_user.update(
         tenant_uid=tenant_uid,
