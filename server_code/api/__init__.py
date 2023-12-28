@@ -1,4 +1,5 @@
 from AnvilFusion.tools.utils import init_user_session
+from anvil.server import utils as server_utils
 from ..app.models import User, AppInApiCredential, AppOutApiCredential
 import anvil.server
 import anvil.users
@@ -8,7 +9,7 @@ import json
 import uuid
 import secrets
 import string
-from Crypto.Cipher import AES
+from crypto.Cipher import AES
 
 
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
@@ -24,11 +25,11 @@ def get_api_user_email(tenant_uid, api_user_name):
     return f'{tenant_uid}_{api_user_name}@paylogs.com'
 
 
-def set_tenant_system_user(tenant_uid):
-    anvil.server.session['tenant_uid'] = tenant_uid
-    anvil.server.session['user_uid'] = 'api request'
-    anvil.server.session['user_permissions'] = {}
-    print('set_system_user', anvil.server.session)
+# def set_tenant_system_user(tenant_uid):
+#     anvil.server.session['tenant_uid'] = tenant_uid
+#     anvil.server.session['user_uid'] = 'api request'
+#     anvil.server.session['user_permissions'] = {}
+#     print('set_system_user', anvil.server.session)
 
 
 @anvil.server.callable

@@ -4,12 +4,12 @@ from AnvilFusion.tools.utils import AppEnv
 
 def lock_dataset(args):
     # print('lock_dataset', args.rowInfo.rowData.uid)
-    AppEnv.set_tenant(tenant_uid=args.rowInfo.rowData.uid, reload_func=AppEnv.after_login)
+    AppEnv.set_tenant_admin(tenant_uid=args.rowInfo.rowData.uid, reload_func=AppEnv.after_login)
 
 
 def reset_dataset(args):
     # print('reset_dataset', args.rowInfo.rowData.uid)
-    AppEnv.reset_tenant(reload_func=AppEnv.after_login)
+    AppEnv.reset_tenant_admin(reload_func=AppEnv.after_login)
 
 
 class TenantsView(GridView):
