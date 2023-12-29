@@ -34,7 +34,7 @@ class AppInApiCredential:
 @model_type
 class AppOutApiCredential:
     _title = "service_name"
-    service_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    api_service = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     auth_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     api_credentials = Attribute(field_type=types.FieldTypes.OBJECT)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
@@ -45,6 +45,7 @@ class AppOutApiCredential:
 class AppApiService:
     _title = "name"
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
