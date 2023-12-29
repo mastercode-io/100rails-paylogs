@@ -3,6 +3,7 @@ from .app import models
 from . import Forms
 from . import Views
 from . import Pages
+from . import api
 
 AppEnv.APP_ID = "PayLogs"
 AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
@@ -12,7 +13,7 @@ AppEnv.views = Views
 AppEnv.pages = Pages
 
 
-def execute():
+def add_enum_list():
     enum_name = 'DAY_TYPE_OPTIONS'
     enum_options = [
         'Any Day',
@@ -29,4 +30,10 @@ def execute():
 
 
 init_user_session()
-execute()
+api_service = api.register_api_service(
+    name='scaflog',
+    description='Scaflog API Integration',
+    url='https://creatorapp.zoho.com/100rails/goscaffold',
+    connection_type='in',
+)
+print(api_service)
