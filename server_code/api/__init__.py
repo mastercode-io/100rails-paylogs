@@ -9,7 +9,7 @@ import json
 import uuid
 import secrets
 import string
-from crypto.Cipher import AES
+from Crypto.Cipher import AES
 
 
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
