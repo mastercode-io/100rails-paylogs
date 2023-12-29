@@ -380,6 +380,11 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: App Uploads Cache
+  app_api_services:
+    client: none
+    server: full
+    columns: []
+    title: App Api Services
   timesheets:
     client: none
     server: full
