@@ -30,10 +30,11 @@ def add_enum_list():
 
 
 init_user_session()
-api_service = api.register_api_service(
-    name='scaflog',
-    description='Scaflog API Integration',
-    url='https://creatorapp.zoho.com/100rails/goscaffold',
-    connection_type='in',
-)
+# api_service = api.register_api_service(
+#     name='scaflog',
+#     description='Scaflog API Integration',
+#     url='https://creatorapp.zoho.com/100rails/goscaffold',
+#     connection_type='in',
+# )
+api_service = api.AppApiService.get_by('name', 'scaflog')
 print(api_service)
