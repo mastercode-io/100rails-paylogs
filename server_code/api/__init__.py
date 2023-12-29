@@ -1,6 +1,6 @@
 from AnvilFusion.tools.utils import init_user_session
-from anvil.server import utils as server_utils
-from ..app.models import User, AppInApiCredential, AppOutApiCredential
+from AnvilFusion.server import utils as server_utils
+from ..app.models import Tenant, User, AppApiService, AppInApiCredential, AppOutApiCredential
 import anvil.server
 import anvil.users
 import anvil.secrets
@@ -21,9 +21,26 @@ def generate_password(length=16):
     return password
 
 
-def get_api_user_email(tenant_uid, api_user_name):
-    return f'{tenant_uid}_{api_user_name}@paylogs.com'
+def get_api_service_login(tenant_uid, service_name):
+    return f'{tenant_uid}_{service_name}@paylogs.com'
 
+
+@anvil.server.callable
+def register_api_service(name, description, url, connection_type='in'):
+    api_service = AppApiService.get_by('name', name)
+    if api_service:
+        api_service['description'] = description
+        api_service['url'] = url
+        api_service['connection_type'] = connection_type
+    else:
+        api_service = AppApiService(
+            name=name,
+            description=description,
+            url=url,
+            connection_type=connection_type,
+        )
+    api_service.save()
+    return api_service
 
 # def set_tenant_system_user(tenant_uid):
 #     anvil.server.session['tenant_uid'] = tenant_uid
@@ -33,8 +50,37 @@ def get_api_user_email(tenant_uid, api_user_name):
 
 
 @anvil.server.callable
-def generate_tenant_api_key(tenant_uid, api_user_name):
-    api_user_email = get_api_user_email(tenant_uid, api_user_name)
+def generate_api_key(tenant_uid, api_service: AppApiService):
+    api_service_login = get_api_service_login(tenant_uid, api_service['name'])
+    api_service_password = generate_password()
+    api_service_user = User.get_by('email', api_service_login)
+    if not api_service_user:
+        api_user_row = anvil.users.signup_with_email(api_service_login, api_service_password)
+        api_user_row.update(
+            tenant_uid=tenant_uid,
+            uid=str(uuid.uuid4()),
+            confirmed_email=True,
+            first_name=api_service['name'],
+            last_name='API User',
+        )
+        api_service_user = User.get(api_user_row['uid'])
+    else:
+        temp_user = anvil.users.signup_with_email(f'{str(uuid.uuid4())}@paylogs.com', api_service_password)
+        api_service_user['password_hash'] = temp_user['password_hash']
+        temp_user.delete()
+    api_service_user.save()
+
+    if api_service['connection_type'] == 'in' or api_service['connection_type'] == 'bidirectional':
+        api_credential = AppInApiCredential.get_by('user_uid', api_service_user['uid'])
+        if api_credential:
+            api_credential['password'] = api_service_password
+        else:
+            api_credential = AppInApiCredential(
+                user_uid=api_service_user['uid'],
+                password=api_service_password,
+            )
+        api_credential.save()
+
     tenant = Tenant.get(tenant_uid)
     if not tenant:
         raise Exception(f'Tenant {tenant_uid} not found')
@@ -42,19 +88,11 @@ def generate_tenant_api_key(tenant_uid, api_user_name):
         api_secret = generate_password()
         tenant['api_secret'] = api_secret
     secret_key = tenant['api_secret']
-    api_user_password = generate_password()
-    api_user = anvil.users.signup_with_email(api_user_email, api_user_password)
-    api_user.update(
-        tenant_uid=tenant_uid,
-        uid=str(uuid.uuid4()),
-        confirmed_email=True,
-        first_name=api_user_name,
-        last_name='API User',
-    )
+
 
     cipher = AES.new(secret_key.encode(), AES.MODE_EAX)
     cipher_text, tag = cipher.encrypt_and_digest(
-        json.dumps({'api_user_name': api_user_name, 'password': api_user_password}).encode()
+        json.dumps({'api_user_name': api_service_login, 'password': api_service_password}).encode()
     )
     api_key = base64.urlsafe_b64encode(cipher.nonce + tag + cipher_text).decode()
     if tenant['api_keys'] is not None:
@@ -94,7 +132,7 @@ def authenticate_request(request: anvil.server.request):
         anvil.server.call('set_system_user', tenant_uid)
         print('authenticate_request', anvil.server.session)
         api_user_name, api_user_password = decode_tenant_api_key(tenant_uid, api_key)
-        api_user_email = get_api_user_email(tenant_uid, api_user_name)
+        api_user_email = get_api_service_login(tenant_uid, api_user_name)
         try:
             anvil.users.login_with_email(api_user_email, api_user_password)
         except anvil.users.AuthenticationFailed:
