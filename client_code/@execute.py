@@ -44,12 +44,4 @@ init_user_session()
 # tenant_uid = 'a48a5f3f-f4a0-40a7-9b56-23d08c98e182'
 # api_credential = anvil.server.call('generate_api_key', tenant_uid, api_service)
 # print(api_credential['api_key'])
-api_user_row = anvil.users.signup_with_email('api_request@oaylogs.com', 'PlQsbaAJg3QwWGID')
-api_user_row.update(
-    tenant_uid='00000000-0000-0000-0000-000000000000',
-    uid=str(uuid.uuid4()),
-    confirmed_email=True,
-    first_name='api_request',
-    last_name='system',
-    permissions={'super_admin': True},
-)
+anvil.server.call('foo')
