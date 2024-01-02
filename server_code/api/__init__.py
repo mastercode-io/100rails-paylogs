@@ -67,7 +67,7 @@ def generate_api_key(tenant_uid, api_service: AppApiService):
     api_service_user.save()
 
     if api_service['connection_type'] == 'in' or api_service['connection_type'] == 'bidirectional':
-        api_credential = AppInApiCredential.seacrh(api_service=api_service, api_user=api_service_user)
+        api_credential = AppInApiCredential.search(api_service=api_service, api_user=api_service_user)
         if not api_credential:
             api_credential = AppInApiCredential(
                 api_service=api_service,
