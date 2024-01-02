@@ -167,6 +167,10 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: api_service, admin_ui: null, type: link_single, target: app_api_services}
+    - name: api_user
+      admin_ui: {width: 200, order: 0}
+      type: link_single
+      target: users
     title: App In Api Credentials
   payrun_configs:
     client: none
