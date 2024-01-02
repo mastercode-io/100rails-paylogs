@@ -114,6 +114,8 @@ def authenticate_request(request: anvil.server.request):
     else:
         print(API_REQUEST_USER, API_REQUEST_PASSWORD)
         logged_user = fusion_server_utils.init_user_session(user_email=API_REQUEST_USER, password=API_REQUEST_PASSWORD)
+        anvil.server.session['test_key'] = 'test_value'
+        print('test session', anvil.server.session['test_key'])
         print('logged_user', logged_user)
         api_user, api_password = decode_api_key(api_key)
         if not api_user:
