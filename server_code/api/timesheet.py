@@ -6,7 +6,7 @@ import datetime
 
 
 @anvil.server.http_endpoint("/test")
-def timesheet_endpoint(**params):
+def test_endpoint(**params):
     auth, message = authenticate_request(anvil.server.request)
     if not auth:
         return anvil.server.HttpResponse(401, message)
