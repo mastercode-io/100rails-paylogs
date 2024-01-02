@@ -1,5 +1,5 @@
 from AnvilFusion.tools.utils import init_user_session
-from AnvilFusion.server import utils as server_utils
+from AnvilFusion.server import utils as fusion_server_utils
 from ..app.models import Tenant, User, AppApiService, AppInApiCredential, AppOutApiCredential
 import anvil.server
 import anvil.users
@@ -22,7 +22,8 @@ def generate_password(length=16):
 
 
 def get_api_service_login(tenant_uid, service_name):
-    return f'{service_name}_{tenant_uid}@paylogs.com'
+    tenant = Tenant.get(tenant_uid)
+    return f"{service_name}_{tenant['name']}@paylogs.com"
 
 
 @anvil.server.callable
@@ -76,7 +77,7 @@ def generate_api_key(tenant_uid, api_service: AppApiService):
         api_secret = generate_password()
         cipher = AES.new(api_secret.encode(), AES.MODE_EAX)
         cipher_text, tag = cipher.encrypt_and_digest(
-            json.dumps({'api_user_name': api_service_login, 'password': api_service_password}).encode()
+            json.dumps({'api_user': api_service_login, 'password': api_service_password}).encode()
         )
         api_key = base64.urlsafe_b64encode(cipher.nonce + tag + cipher_text).decode()
         api_credential['api_key'] = api_key
@@ -87,41 +88,34 @@ def generate_api_key(tenant_uid, api_service: AppApiService):
         return api_credential
 
 
-def decode_tenant_api_key(tenant_uid, api_key):
-    tenant = Tenant.get(tenant_uid)
-    if not tenant:
-        raise Exception(f'Tenant {tenant_uid} not found')
-    if not tenant['api_secret']:
-        raise Exception(f'Tenant {tenant_uid} has no API secret')
-    secret_key = tenant['api_secret']
-    encrypted_bytes = base64.urlsafe_b64decode(api_key)
-    nonce = encrypted_bytes[:16]
-    tag = encrypted_bytes[16:32]
-    ciphertext = encrypted_bytes[32:]
-    cipher = AES.new(secret_key.encode(), AES.MODE_EAX, nonce=nonce)
-    json_bytes = cipher.decrypt_and_verify(ciphertext, tag)
-    json_str = json_bytes.decode('utf-8')
-    data = json.loads(json_str)
-
-    return data['api_user_name'], data['password']
+def decode_api_key(api_key):
+    api_credential = AppInApiCredential.search(api_key=api_key)
+    if api_credential:
+        api_secret = api_credential['api_secret']
+        encrypted_bytes = base64.urlsafe_b64decode(api_key)
+        nonce = encrypted_bytes[:16]
+        tag = encrypted_bytes[16:32]
+        ciphertext = encrypted_bytes[32:]
+        cipher = AES.new(api_secret.encode(), AES.MODE_EAX, nonce=nonce)
+        json_bytes = cipher.decrypt_and_verify(ciphertext, tag)
+        json_str = json_bytes.decode('utf-8')
+        api_login = json.loads(json_str)
+        return api_login['api_user'], api_login['password']
 
 
 def authenticate_request(request: anvil.server.request):
     tenant_uid = request.headers.get('x-tenant-uid', None)
     api_key = request.headers.get('x-api-key', None)
-    if not tenant_uid or not api_key:
-        return False, f'Missing x-tenant-uid or x-api-key header: {request.headers}'
+    if not api_key:
+        return False, f'Missing x-api-key header: {request.headers}'
     else:
-        # set_system_user(tenant_uid)
-        anvil.server.call('set_system_user', tenant_uid)
-        print('authenticate_request', anvil.server.session)
-        api_user_name, api_user_password = decode_tenant_api_key(tenant_uid, api_key)
-        api_user_email = get_api_service_login(tenant_uid, api_user_name)
-        try:
-            anvil.users.login_with_email(api_user_email, api_user_password)
-        except anvil.users.AuthenticationFailed:
-            return False, f'Invalid user credentials: {api_user_name}, {api_user_password}'
-        logged_user = init_user_session()
-        if not logged_user:
-            return False, f'Cannot init user session: {api_user_name}, {api_user_password}'
-    return True
+        api_user, api_password = decode_api_key(api_key)
+        if not api_user:
+            return False, f'Invalid x-api-key header: {request.headers}'
+        else:
+            logged_user = fusion_server_utils.init_user_session(user_email=api_user, password=api_password)
+            print('logged_user', logged_user)
+            if not logged_user:
+                return False, f'Invalid user credentials: {api_user}, {api_password}'
+            else:
+                return True, None

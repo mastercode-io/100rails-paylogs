@@ -41,4 +41,4 @@ api_service = api.AppApiService.get_by('name', 'scaflog')
 print(api_service)
 tenant_uid = 'a48a5f3f-f4a0-40a7-9b56-23d08c98e182'
 api_credential = anvil.server.call('generate_api_key', tenant_uid, api_service)
-print(api_credential)
+print(api_credential['api_key'])
