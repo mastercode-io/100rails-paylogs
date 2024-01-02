@@ -739,4 +739,7 @@ secrets:
   copilot_assistant_id:
     value: {BBEZAPHMPN72GFKM: WW5JvILPAC6bLGRb1g0/2PVol2h65411z5i52IewI1iVBCXesRMT4XpqjjBppqwqExcoTRT1PBtVG3o/bS3jv+1hsDm9F0FTclBbEp0tAw3h+LpJO59MbdMIkmsD1tKNs9Fcv8K/NQAIwv8lTZaQk5tBR18SypB5yxRCrQ==}
     type: secret
+  api_request_password:
+    value: {BBEZAPHMPN72GFKM: oj6GkCtsH8Lj30rVKN/LQN+noBJbjQcSgVqbR3UoC+pGrP0j4tJesdQ+BKnleO22ST1CWsVuZfJiyM190+50jt3tC8xOoQzDQ6jJ4eSDRRSjivbD1eSxAN6ubHJDRe+9sZWX1q9U/N9KL888Lz9G}
+    type: secret
 uplink_visible: true
