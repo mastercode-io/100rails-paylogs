@@ -119,6 +119,7 @@ def authenticate_request(request: anvil.server.request):
         fusion_server_utils.check_session('p')
         AppEnv.login_user = logged_user
         anvil.server.cookies.local['logged_user'] = logged_user
+        print('cookies', anvil.server.cookies.local['logged_user'])
         api_user, api_password = decode_api_key(api_key)
         if not api_user:
             return False, f'Invalid x-api-key header: {request.headers}'
