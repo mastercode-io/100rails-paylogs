@@ -32,21 +32,17 @@ def register_api_service(name, description, url, connection_type='in'):
         api_service['description'] = description
         api_service['url'] = url
         api_service['connection_type'] = connection_type
+        api_service['status'] = 'active'
     else:
         api_service = AppApiService(
             name=name,
             description=description,
             url=url,
             connection_type=connection_type,
+            status='active',
         )
     api_service.save()
     return api_service
-
-# def set_tenant_system_user(tenant_uid):
-#     anvil.server.session['tenant_uid'] = tenant_uid
-#     anvil.server.session['user_uid'] = 'api request'
-#     anvil.server.session['user_permissions'] = {}
-#     print('set_system_user', anvil.server.session)
 
 
 @anvil.server.callable
@@ -71,36 +67,24 @@ def generate_api_key(tenant_uid, api_service: AppApiService):
     api_service_user.save()
 
     if api_service['connection_type'] == 'in' or api_service['connection_type'] == 'bidirectional':
-        api_credential = AppInApiCredential.get_by('user_uid', api_service_user['uid'])
-        if api_credential:
-            api_credential['password'] = api_service_password
-        else:
+        api_credential = AppInApiCredential.seacrh(api_service=api_service, api_user=api_service_user)
+        if not api_credential:
             api_credential = AppInApiCredential(
-                user_uid=api_service_user['uid'],
-                password=api_service_password,
+                api_service=api_service,
+                api_user=api_service_user,
             )
-        api_credential.save()
-
-    tenant = Tenant.get(tenant_uid)
-    if not tenant:
-        raise Exception(f'Tenant {tenant_uid} not found')
-    if not tenant['api_secret']:
         api_secret = generate_password()
-        tenant['api_secret'] = api_secret
-    secret_key = tenant['api_secret']
-
-
-    cipher = AES.new(secret_key.encode(), AES.MODE_EAX)
-    cipher_text, tag = cipher.encrypt_and_digest(
-        json.dumps({'api_user_name': api_service_login, 'password': api_service_password}).encode()
-    )
-    api_key = base64.urlsafe_b64encode(cipher.nonce + tag + cipher_text).decode()
-    if tenant['api_keys'] is not None:
-        tenant['api_keys'].append(api_key)
-    else:
-        tenant['api_keys'] = [api_key]
-    tenant.save()
-    return api_key
+        cipher = AES.new(api_secret.encode(), AES.MODE_EAX)
+        cipher_text, tag = cipher.encrypt_and_digest(
+            json.dumps({'api_user_name': api_service_login, 'password': api_service_password}).encode()
+        )
+        api_key = base64.urlsafe_b64encode(cipher.nonce + tag + cipher_text).decode()
+        api_credential['api_key'] = api_key
+        api_credential['api_secret'] = api_secret
+        api_credential['tenant_uid'] = tenant_uid
+        api_credential['status'] = 'active'
+        api_credential.save()
+        return api_credential
 
 
 def decode_tenant_api_key(tenant_uid, api_key):

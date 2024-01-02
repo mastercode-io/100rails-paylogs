@@ -27,6 +27,7 @@ class AppInApiCredential:
     api_service = Relationship("AppApiService")
     api_secret = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     api_key = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    api_user = Relationship("User")
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
