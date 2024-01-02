@@ -22,7 +22,7 @@ def generate_password(length=16):
 
 
 def get_api_service_login(tenant_uid, service_name):
-    return f'{tenant_uid}_{service_name}@paylogs.com'
+    return f'{service_name}_{tenant_uid}@paylogs.com'
 
 
 @anvil.server.callable
