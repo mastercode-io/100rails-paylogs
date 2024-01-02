@@ -12,7 +12,7 @@ import string
 from Crypto.Cipher import AES
 
 
-API_REQUEST_USER = 'api_request'
+API_REQUEST_USER = 'api_request@paylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
 
