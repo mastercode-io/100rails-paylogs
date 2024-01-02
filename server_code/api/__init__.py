@@ -12,6 +12,8 @@ import string
 from Crypto.Cipher import AES
 
 
+API_REQUEST_USER = 'api_request'
+API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
 
 
@@ -110,6 +112,7 @@ def authenticate_request(request: anvil.server.request):
     if not api_key:
         return False, f'Missing x-api-key header: {request.headers}'
     else:
+        fusion_server_utils.init_user_session(user_email=API_REQUEST_USER, password=API_REQUEST_PASSWORD)
         api_user, api_password = decode_api_key(api_key)
         if not api_user:
             return False, f'Invalid x-api-key header: {request.headers}'
