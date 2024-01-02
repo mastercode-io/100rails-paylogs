@@ -1,4 +1,4 @@
-from AnvilFusion.tools.utils import init_user_session
+from AnvilFusion.tools.utils import init_user_session, AppEnv
 from AnvilFusion.server import utils as fusion_server_utils
 from ..app.models import Tenant, User, AppApiService, AppInApiCredential, AppOutApiCredential
 import anvil.server
@@ -117,6 +117,7 @@ def authenticate_request(request: anvil.server.request):
         print('logged_user', logged_user)
         print(anvil.server.session['user_permissions'])
         fusion_server_utils.check_session('p')
+        AppEnv.login_user = logged_user
         api_user, api_password = decode_api_key(api_key)
         if not api_user:
             return False, f'Invalid x-api-key header: {request.headers}'
