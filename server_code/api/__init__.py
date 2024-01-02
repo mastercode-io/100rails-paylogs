@@ -112,6 +112,7 @@ def authenticate_request(request: anvil.server.request):
     if not api_key:
         return False, f'Missing x-api-key header: {request.headers}'
     else:
+        print(API_REQUEST_USER, API_REQUEST_PASSWORD)
         fusion_server_utils.init_user_session(user_email=API_REQUEST_USER, password=API_REQUEST_PASSWORD)
         api_user, api_password = decode_api_key(api_key)
         if not api_user:
