@@ -53,12 +53,13 @@ def generate_api_key(tenant_uid, api_service: AppApiService):
     api_service_user = User.get_by('email', api_service_login)
     if not api_service_user:
         api_user_row = anvil.users.signup_with_email(api_service_login, api_service_password)
+        tenant = Tenant.get(tenant_uid)
         api_user_row.update(
             tenant_uid=tenant_uid,
             uid=str(uuid.uuid4()),
             confirmed_email=True,
             first_name=api_service['name'],
-            last_name='API User',
+            last_name=tenant['name'],
         )
         api_service_user = User.get(api_user_row['uid'])
     else:
