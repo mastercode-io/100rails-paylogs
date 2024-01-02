@@ -5,7 +5,7 @@ import json
 import datetime
 
 
-@anvil.server.http_endpoint("/timesheets", methods=["GET", "POST"])
+@anvil.server.http_endpoint("/timesheets/", methods=["GET", "POST"])
 def timesheet_endpoint(**params):
     auth, message = authenticate_request(anvil.server.request)
     if not auth:
