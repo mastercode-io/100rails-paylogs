@@ -92,7 +92,7 @@ def generate_api_key(tenant_uid, api_service: AppApiService):
 
 
 def decode_api_key(api_key):
-    api_credential = AppInApiCredential.search(api_key=api_key)
+    api_credential = AppInApiCredential.get_by('api_key', api_key)
     if api_credential:
         api_secret = api_credential['api_secret']
         encrypted_bytes = base64.urlsafe_b64decode(api_key)
