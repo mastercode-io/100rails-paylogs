@@ -91,7 +91,6 @@ class Timesheet:
             return "Weekday", WEEK_DAY_NAME[day_of_week]
     day_type = Computed(("date",), "get_day_type")
 
-
     @staticmethod
     def print_pay_lines(args):
         if args['pay_lines'] is not None:
