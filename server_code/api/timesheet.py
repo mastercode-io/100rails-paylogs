@@ -19,11 +19,11 @@ import datetime
 
 TIMESHEET_JSON_FIELDS = [
     {'name': 'uid'},
-    {'name': 'timesheet_type.name'},
-    {'name': 'employee.full_name'},
-    {'name': 'approved_by.full_name'},
+    {'name': 'timesheet_type'},
+    {'name': 'employee'},
+    {'name': 'approved_by'},
     {'name': 'payrun.name'},
-    {'name': 'job.name'},
+    {'name': 'job'},
     {'name': 'date'},
     {'name': 'start_time'},
     {'name': 'end_time'},
