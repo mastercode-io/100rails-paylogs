@@ -53,6 +53,8 @@ def test_endpoint(timesheet_uid, **params):
         else:
             # timesheets = Timesheet.get_json_view({'columns': TIMESHEET_JSON_FIELDS})
             timesheets = Timesheet.get_json_view({'columns': TIMESHEET_JSON_FIELDS}, )
+            for i in range(10):
+                print(f"timesheet {i}: {timesheets[i]}")
             return anvil.server.HttpResponse(
                 200,
                 json.dumps(timesheets),
