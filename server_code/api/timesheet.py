@@ -52,7 +52,7 @@ def test_endpoint(timesheet_uid, **params):
                 return anvil.server.HttpResponse(404, f"Timesheet not found: {timesheet_uid}")
         else:
             # timesheets = Timesheet.get_json_view({'columns': TIMESHEET_JSON_FIELDS})
-            timesheets = [*Timesheet.serach()]
+            timesheets = [*Timesheet.search()]
             return anvil.server.HttpResponse(
                 200,
                 json.dumps(timesheets),
