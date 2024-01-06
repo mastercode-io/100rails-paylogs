@@ -337,13 +337,17 @@ class Location:
 
     @staticmethod
     def get_address_oneline(args):
+        if not args["address"]:
+            return ''
         address_online = ''
-        address_online += f'{args["address"]["address_line_1"]}, ' if args["address"]["address_line_1"] else ''
-        address_online += f'{args["address"]["address_line_2"]}, ' if args["address"]["address_line_2"] else ''
-        address_online += f'{args["address"]["city_district"]}, ' if args["address"]["city_district"] else ''
-        address_online += f'{args["address"]["state_province"]}, ' if args["address"]["state_province"] else ''
-        address_online += f'{args["address"]["country"]}, ' if args["address"]["country"] else ''
-        address_online += f'{args["address"]["postal_code"]}' if args["address"]["postal_code"] else ''
+        address_online += f'{args["address"].get("address_line_1", "")}, '
+        address_online += f'{args["address"].get("address_line_2", "")}, '
+        address_online += f'{args["address"].get("city_district", "")}, '
+        address_online += f'{args["address"].get("state_province", "")}, '
+        address_online += f'{args["address"].get("country", "")}, '
+        address_online += f'{args["address"].get("postal_code", "")}'
+        address_online = address_online.strip(', ')
+        address_online = address_online.replace(', ,', ',')
         return address_online
 
     address_oneline = Computed(["address"], "get_address_oneline")
