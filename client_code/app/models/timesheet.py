@@ -63,6 +63,7 @@ class Timesheet:
     notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
     pay_lines = Attribute(field_type=types.FieldTypes.OBJECT)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
     @staticmethod
     def calculate_total_hours(args):
