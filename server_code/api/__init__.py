@@ -1,5 +1,5 @@
 from AnvilFusion.server import utils as fusion_server_utils
-from ..app.models import Tenant, User, AppApiService, AppInApiCredential, AppOutApiCredential
+from ..app.models import Tenant, User, AppIntegration, AppInApiCredential, AppOutApiCredential
 import anvil.server
 import anvil.users
 import anvil.secrets
@@ -29,15 +29,15 @@ def get_api_service_login(tenant_uid, service_name):
 
 @anvil.server.callable
 def register_api_service(name, description, url, connection_type='in'):
-    api_service = AppApiService.get_by('name', name)
+    api_service = AppIntegration.get_by('service_name', name)
     if api_service:
         api_service['description'] = description
         api_service['url'] = url
         api_service['connection_type'] = connection_type
         api_service['status'] = 'active'
     else:
-        api_service = AppApiService(
-            name=name,
+        api_service = AppIntegration(
+            service_name=name,
             description=description,
             url=url,
             connection_type=connection_type,
@@ -48,7 +48,7 @@ def register_api_service(name, description, url, connection_type='in'):
 
 
 @anvil.server.callable
-def generate_api_key(tenant_uid, api_service: AppApiService):
+def generate_api_key(tenant_uid, api_service: AppIntegration):
     api_service_login = get_api_service_login(tenant_uid, api_service['name'])
     api_service_password = generate_password()
     api_service_user = User.get_by('email', api_service_login)

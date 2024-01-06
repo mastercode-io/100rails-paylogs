@@ -43,9 +43,9 @@ class AppOutApiCredential:
 
 
 @model_type
-class AppApiService:
-    _title = "name"
-    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+class AppIntegration:
+    _title = "service_name"
+    service_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     url = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     connection_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
@@ -181,6 +181,7 @@ class User:
     @staticmethod
     def get_full_name(args):
         return f"{args['first_name']} {args['last_name']}"
+
     full_name = Computed(("first_name", "last_name"), "get_full_name")
 
 
@@ -260,7 +261,7 @@ class Employee:
     last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    pay_rate  = Attribute(field_type=types.FieldTypes.CURRENCY)
+    pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
     role = Relationship("EmployeeRole", with_many=True)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     address_schema = {
@@ -273,6 +274,7 @@ class Employee:
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
     custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
     @staticmethod
     def get_full_name(args):
@@ -302,6 +304,7 @@ class Job:
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
@@ -342,6 +345,7 @@ class Location:
         address_online += f'{args["address"]["country"]}, ' if args["address"]["country"] else ''
         address_online += f'{args["address"]["postal_code"]}' if args["address"]["postal_code"] else ''
         return address_online
+
     address_oneline = Computed(["address"], "get_address_oneline")
 
 
@@ -357,6 +361,7 @@ class PayCategory:
     pay_rate_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
@@ -420,18 +425,19 @@ class Payrun:
     pay_date = Attribute(field_type=types.FieldTypes.DATE)
     status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
     @staticmethod
     def get_payrun_reference(args):
-      #example. "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"  
-      return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
+        # example. "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"
+        return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
     reference = Computed(
         ("pay_period_start", "pay_period_end"), "get_payrun_reference")
 
     @staticmethod
     def get_payrun_week(args):
         if args['pay_period_end']:
-            return  f"{args['pay_period_end'].year} - wk{args['pay_period_end'].isocalendar()[1]}"
+            return f"{args['pay_period_end'].year} - wk{args['pay_period_end'].isocalendar()[1]}"
         else:
             return ''
     payrun_week = Computed(["pay_period_end"], "get_payrun_week")
@@ -463,6 +469,7 @@ class PayrunItem:
     units = Attribute(field_type=types.FieldTypes.NUMBER)
     amount = Attribute(field_type=types.FieldTypes.CURRENCY)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type

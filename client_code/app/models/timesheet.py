@@ -27,6 +27,7 @@ class TimesheetType:
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
     configuration_schema = {
         "job_required": Attribute(field_type=types.FieldTypes.BOOLEAN),
@@ -44,6 +45,7 @@ class TimesheetType:
         field_type=types.FieldTypes.OBJECT, schema=configuration_schema
 
     )
+
 
 @model_type
 class Timesheet:

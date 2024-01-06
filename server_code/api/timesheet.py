@@ -18,20 +18,20 @@ import datetime
 # pay_lines = Attribute(field_type=types.FieldTypes.OBJECT)
 
 TIMESHEET_JSON_FIELDS = [
-    {'name': 'uid'},
-    {'name': 'timesheet_type'},
-    {'name': 'employee'},
-    {'name': 'approved_by'},
-    {'name': 'payrun.name'},
-    {'name': 'job'},
-    {'name': 'date'},
-    {'name': 'start_time'},
-    {'name': 'end_time'},
-    {'name': 'total_hours'},
-    {'name': 'total_pay'},
-    {'name': 'pay_lines'},
-    {'name': 'status'},
-    {'name': 'notes'},
+    'uid',
+    {'timesheet_type': ['name', 'short_code']},
+    {'employee': ['full_name']},
+    {'approved_by': ['full_name']},
+    {'payrun': ['name']},
+    {'job': ['name']},
+    'date',
+    'start_time',
+    'end_time',
+    'total_hours',
+    'total_pay',
+    'pay_lines',
+    'status',
+    'notes',
 ]
 
 
