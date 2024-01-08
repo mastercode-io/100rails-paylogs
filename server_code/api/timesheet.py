@@ -47,7 +47,7 @@ TIMESHEET_JSON_SCHEMA = {
         },
     },
 }
-TIMESHEET_PAGE_LENGTH = 100
+TIMESHEET_PAGE_LENGTH = 50
 
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
@@ -78,7 +78,7 @@ def test_endpoint(timesheet_uid, **params):
             # timesheets = list(itertools.islice(Timesheet.search(page=page),
             #                                    (page - 1) * TIMESHEET_PAGE_LENGTH,
             #                                    page * TIMESHEET_PAGE_LENGTH))
-            timesheets = Timesheet.search(page=page)
+            timesheets = Timesheet.search(page=page, page_length=TIMESHEET_PAGE_LENGTH)
             ts_list = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
             return anvil.server.HttpResponse(
                 200,
