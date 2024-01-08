@@ -3,6 +3,7 @@ from .. import api
 import anvil.server
 import json
 import datetime
+import itertools
 
 
 TIMESHEET_JSON_SCHEMA = {
@@ -71,7 +72,9 @@ def test_endpoint(timesheet_uid, **params):
                 return anvil.server.HttpResponse(404, f"Timesheet not found: {timesheet_uid}")
         else:
             page = int(params.get('page', 1))
-            timesheets = Timesheet.search(server_function='fetch_objects', page=page, page_size=TIMESHEET_PAGE_LENGTH)
+            timesheets = itertools.islice(Timesheet.search(),
+                                          (page - 1) * TIMESHEET_PAGE_LENGTH,
+                                          page * TIMESHEET_PAGE_LENGTH)
             timesheets = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
             for i in range(3):
                 print(f"timesheet {i}: {timesheets[i]}")
