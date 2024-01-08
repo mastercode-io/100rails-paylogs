@@ -75,9 +75,10 @@ def test_endpoint(timesheet_uid, **params):
         else:
             page = int(params.get('page', 1))
             stime = datetime.datetime.now()
-            timesheets = list(itertools.islice(Timesheet.search(),
-                                               (page - 1) * TIMESHEET_PAGE_LENGTH,
-                                               page * TIMESHEET_PAGE_LENGTH))
+            # timesheets = list(itertools.islice(Timesheet.search(page=page),
+            #                                    (page - 1) * TIMESHEET_PAGE_LENGTH,
+            #                                    page * TIMESHEET_PAGE_LENGTH))
+            timesheets = Timesheet.search(page=page)
             etime = datetime.datetime.now()
             print(f"search time: {round((etime - stime).total_seconds(), 2)}")
             ts_list = []
