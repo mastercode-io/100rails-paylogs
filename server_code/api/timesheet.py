@@ -87,7 +87,7 @@ def test_endpoint(timesheet_uid, **params):
                 sstime = datetime.datetime.now()
                 ts_list.append(ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA))
                 eetime = datetime.datetime.now()
-                print(f"to_json_dict time: {round((eetime - sstime).total_seconds(), 5)}")
+                print(f"to_json_dict time: {round((eetime - sstime).total_seconds(), 3):.3f}")
             etime = datetime.datetime.now()
             print(f"for loop time: {round((etime - stime).total_seconds(), 2)}")
             return anvil.server.HttpResponse(
