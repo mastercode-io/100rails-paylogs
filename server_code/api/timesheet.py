@@ -16,6 +16,7 @@ TIMESHEET_JSON_SCHEMA = {
         'pay_lines',
         'status',
         'notes',
+        'remote_links',
     ],
     'relationships': {
         'timesheet_type': {
@@ -46,6 +47,7 @@ TIMESHEET_JSON_SCHEMA = {
         },
     },
 }
+TIMESHEET_PAGE_LENGTH = 10
 
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
@@ -68,8 +70,9 @@ def test_endpoint(timesheet_uid, **params):
             else:
                 return anvil.server.HttpResponse(404, f"Timesheet not found: {timesheet_uid}")
         else:
-            # timesheets = Timesheet.get_json_view({'columns': TIMESHEET_JSON_FIELDS})
-            timesheets = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in Timesheet.search()]
+            page = int(params.get('page', 1))
+            timesheets = Timesheet.search(server_function='fetch_objects', page=page, page_size=TIMESHEET_PAGE_LENGTH)
+            timesheets = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
             for i in range(3):
                 print(f"timesheet {i}: {timesheets[i]}")
             return anvil.server.HttpResponse(
