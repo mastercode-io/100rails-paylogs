@@ -62,14 +62,14 @@ def test_endpoint(timesheet_uid, **params):
             if timesheet:
                 return anvil.server.HttpResponse(
                     200,
-                    json.dumps(timesheet.to_json_ditc(json_schema=TIMESHEET_JSON_SCHEMA)),
+                    json.dumps(timesheet.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA)),
                     {'content-type': 'application/json'},
                 )
             else:
                 return anvil.server.HttpResponse(404, f"Timesheet not found: {timesheet_uid}")
         else:
             # timesheets = Timesheet.get_json_view({'columns': TIMESHEET_JSON_FIELDS})
-            timesheets = [ts.to_json_ditc(json_schema=TIMESHEET_JSON_SCHEMA) for ts in Timesheet.search()]
+            timesheets = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in Timesheet.search()]
             for i in range(3):
                 print(f"timesheet {i}: {timesheets[i]}")
             return anvil.server.HttpResponse(
