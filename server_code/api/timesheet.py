@@ -60,7 +60,7 @@ def test_endpoint(timesheet_uid, **params):
           f"timesheet_uid: {timesheet_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
     etime = datetime.datetime.now()
-    print(f"authenticate_request time: {round((etime - stime).total_seconds(), 2)}")
+    # print(f"authenticate_request time: {round((etime - stime).total_seconds(), 2)}")
     if anvil.server.request.method == "GET":
         if timesheet_uid:
             timesheet = Timesheet.get(timesheet_uid)
@@ -74,23 +74,12 @@ def test_endpoint(timesheet_uid, **params):
                 return anvil.server.HttpResponse(404, f"Timesheet not found: {timesheet_uid}")
         else:
             page = int(params.get('page', 1))
-            stime = datetime.datetime.now()
+            # stime = datetime.datetime.now()
             # timesheets = list(itertools.islice(Timesheet.search(page=page),
             #                                    (page - 1) * TIMESHEET_PAGE_LENGTH,
             #                                    page * TIMESHEET_PAGE_LENGTH))
             timesheets = Timesheet.search(page=page)
-            etime = datetime.datetime.now()
-            print(f"search time: {round((etime - stime).total_seconds(), 2)}")
-            ts_list = []
-            stime = datetime.datetime.now()
-            lstime = datetime.datetime.now()
-            for ts in timesheets:
-                letime = datetime.datetime.now()
-                print(f"to_json_dict time: {round((letime - lstime).total_seconds(), 3):.3f}")
-                lstime = letime
-                ts_list.append(ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA))
-            etime = datetime.datetime.now()
-            print(f"for loop time: {round((etime - stime).total_seconds(), 2)}")
+            ts_list = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
             return anvil.server.HttpResponse(
                 200,
                 json.dumps({
