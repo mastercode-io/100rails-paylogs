@@ -23,8 +23,8 @@ ENUM_MODEL_LIST = {
 # ------------------------------
 @model_type
 class AppInApiCredential:
-    _title = "service.name"
-    api_service = Relationship("AppApiService")
+    _title = "integration.service_name"
+    integration = Relationship("AppIntegration")
     api_secret = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     api_key = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     api_user = Relationship("User")
@@ -34,8 +34,8 @@ class AppInApiCredential:
 
 @model_type
 class AppOutApiCredential:
-    _title = "service_name"
-    api_service = Relationship("AppApiService")
+    _title = "integration.service_name"
+    integration = Relationship("AppIntegration")
     auth_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     api_credentials = Attribute(field_type=types.FieldTypes.OBJECT)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)

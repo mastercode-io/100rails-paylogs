@@ -5,7 +5,7 @@ import json
 import datetime
 
 
-TIMESHEET_JSON_FIELDS = {
+TIMESHEET_JSON_SCHEMA = {
     'fields': [
         'uid',
         'date',
@@ -50,17 +50,24 @@ TIMESHEET_JSON_FIELDS = {
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
 def test_endpoint(timesheet_uid, **params):
-    auth, http_response = api.authenticate_request(anvil.server.request)
-    if not auth:
+    integration_name, http_response = api.authenticate_request(anvil.server.request)
+    if integration_name is None:
         return http_response
     print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"timesheet_uid: {timesheet_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
     if anvil.server.request.method == "GET":
+        integration_link = {
+            'remote_links': [
+                integration_name,
+            ]
+        }
+        # noinspection PyTypeChecker
+        TIMESHEET_JSON_SCHEMA['fields'].append(integration_link)
         if timesheet_uid:
             timesheet = Timesheet.get(timesheet_uid)
             if timesheet:
-                return json.dumps(timesheet.to_dict())
+                return json.dumps(timesheet.to_json_dict())
             else:
                 return anvil.server.HttpResponse(404, f"Timesheet not found: {timesheet_uid}")
         else:

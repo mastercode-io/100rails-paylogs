@@ -102,24 +102,24 @@ def decode_api_key(api_key):
         json_bytes = cipher.decrypt_and_verify(ciphertext, tag)
         json_str = json_bytes.decode('utf-8')
         api_login = json.loads(json_str)
-        return api_login['api_user'], api_login['password']
+        return api_credential['integration']['service_name'], api_login['api_user'], api_login['password']
 
 
 def authenticate_request(request: anvil.server.request):
     tenant_uid = request.headers.get('x-tenant-uid', None)
     api_key = request.headers.get('x-api-key', None)
     if not api_key:
-        return False, anvil.server.HttpResponse(401, f'Missing x-api-key header: {request.headers}')
+        return None, anvil.server.HttpResponse(401, f'Missing x-api-key header: {request.headers}')
     else:
         print(API_REQUEST_USER, API_REQUEST_PASSWORD)
         logged_user = fusion_server_utils.init_user_session(user_email=API_REQUEST_USER, password=API_REQUEST_PASSWORD)
-        api_user, api_password = decode_api_key(api_key)
+        integration_name, api_user, api_password = decode_api_key(api_key)
         if not api_user:
-            return False, anvil.server.HttpResponse(401, f'Invalid x-api-key header: {request.headers}')
+            return None, anvil.server.HttpResponse(401, f'Invalid x-api-key header: {request.headers}')
         else:
             logged_user = fusion_server_utils.init_user_session(user_email=api_user, password=api_password)
             print('logged_user', logged_user)
             if not logged_user:
-                return False, anvil.server.HttpResponse(401, f'Invalid user credentials: {api_user}, {api_password}')
+                return None, anvil.server.HttpResponse(401, f'Invalid user credentials: {api_user}, {api_password}')
             else:
-                return True, None
+                return integration_name, None
