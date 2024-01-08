@@ -84,6 +84,9 @@ def test_endpoint(timesheet_uid, **params):
             print(f"to_json_dict time: {(etime - stime).total_seconds()}")
             return anvil.server.HttpResponse(
                 200,
-                json.dumps(timesheets),
+                json.dumps({
+                    'timesheets': timesheets,
+                    'count': len(timesheets),
+                }),
                 {'content-type': 'application/json'},
             )
