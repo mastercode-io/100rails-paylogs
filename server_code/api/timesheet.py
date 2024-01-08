@@ -53,12 +53,15 @@ TIMESHEET_PAGE_LENGTH = 10
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
 def test_endpoint(timesheet_uid, **params):
+    stime = datetime.datetime.now()
     integration_name, http_response = api.authenticate_request(anvil.server.request)
     if integration_name is None:
         return http_response
     print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"timesheet_uid: {timesheet_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
+    etime = datetime.datetime.now()
+    print(f"authenticate_request time: {round((etime - stime).total_seconds(), 2)}")
     if anvil.server.request.method == "GET":
         if timesheet_uid:
             timesheet = Timesheet.get(timesheet_uid)
@@ -79,11 +82,14 @@ def test_endpoint(timesheet_uid, **params):
             etime = datetime.datetime.now()
             print(f"search time: {round((etime - stime).total_seconds(), 2)}")
             ts_list = []
+            stime = datetime.datetime.now()
             for ts in timesheets:
-                stime = datetime.datetime.now()
+                # stime = datetime.datetime.now()
                 ts_list.append(ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA))
-                etime = datetime.datetime.now()
+                # etime = datetime.datetime.now()
                 print(f"to_json_dict time: {round((etime - stime).total_seconds(), 2)}")
+            etime = datetime.datetime.now()
+            print(f"for loop time: {round((etime - stime).total_seconds(), 2)}")
             return anvil.server.HttpResponse(
                 200,
                 json.dumps({
