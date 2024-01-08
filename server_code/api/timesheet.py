@@ -3,7 +3,7 @@ from .. import api
 import anvil.server
 import json
 import datetime
-import itertools
+
 
 TIMESHEET_JSON_SCHEMA = {
     'fields': [
@@ -47,20 +47,17 @@ TIMESHEET_JSON_SCHEMA = {
         },
     },
 }
-TIMESHEET_PAGE_LENGTH = 50
+TIMESHEET_PAGE_LENGTH = 100
 
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
 def test_endpoint(timesheet_uid, **params):
-    stime = datetime.datetime.now()
     integration_name, http_response = api.authenticate_request(anvil.server.request)
     if integration_name is None:
         return http_response
     print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"timesheet_uid: {timesheet_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
-    etime = datetime.datetime.now()
-    # print(f"authenticate_request time: {round((etime - stime).total_seconds(), 2)}")
     if anvil.server.request.method == "GET":
         if timesheet_uid:
             timesheet = Timesheet.get(timesheet_uid)
@@ -74,10 +71,6 @@ def test_endpoint(timesheet_uid, **params):
                 return anvil.server.HttpResponse(404, f"Timesheet not found: {timesheet_uid}")
         else:
             page = int(params.get('page', 1))
-            # stime = datetime.datetime.now()
-            # timesheets = list(itertools.islice(Timesheet.search(page=page),
-            #                                    (page - 1) * TIMESHEET_PAGE_LENGTH,
-            #                                    page * TIMESHEET_PAGE_LENGTH))
             timesheets = Timesheet.search(page=page, page_length=TIMESHEET_PAGE_LENGTH)
             ts_list = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
             return anvil.server.HttpResponse(
@@ -85,6 +78,11 @@ def test_endpoint(timesheet_uid, **params):
                 json.dumps({
                     'timesheets': ts_list,
                     'count': len(ts_list),
+                    'page': page,
+                    # 'links': {
+                    #     'next': f'/timesheets?page={page + 1}' if len(ts_list) == TIMESHEET_PAGE_LENGTH else None,
+                    #     'prev': f'/timesheets?page={page - 1}' if page > 1 else None,
+                    # }
                 }),
                 {'content-type': 'application/json'},
             )
