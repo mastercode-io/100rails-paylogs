@@ -4,35 +4,48 @@ import anvil.server
 import json
 import datetime
 
-# timesheet_type = Relationship("TimesheetType")
-# employee = Relationship("Employee")
-# payrun = Relationship("Payrun")
-# job = Relationship("Job")
-# date = Attribute(field_type=types.FieldTypes.DATE)
-# start_time = Attribute(field_type=types.FieldTypes.DATETIME)
-# end_time = Attribute(field_type=types.FieldTypes.DATETIME)
-# status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-# approved_by = Relationship("Employee")
-# notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-# total_pay = Attribute(field_type=types.FieldTypes.CURRENCY)
-# pay_lines = Attribute(field_type=types.FieldTypes.OBJECT)
 
-TIMESHEET_JSON_FIELDS = [
-    'uid',
-    {'timesheet_type': ['name', 'short_code']},
-    {'employee': ['full_name']},
-    {'approved_by': ['full_name']},
-    {'payrun': ['name']},
-    {'job': ['name']},
-    'date',
-    'start_time',
-    'end_time',
-    'total_hours',
-    'total_pay',
-    'pay_lines',
-    'status',
-    'notes',
-]
+TIMESHEET_JSON_FIELDS = {
+    'fields': [
+        'uid',
+        'date',
+        'start_time',
+        'end_time',
+        'total_hours',
+        'total_pay',
+        'pay_lines',
+        'status',
+        'notes',
+    ],
+    'relationships': {
+        'timesheet_type': {
+            'fields': [
+                'name',
+                'short_code',
+            ],
+        },
+        'employee': {
+            'fields': [
+                'full_name',
+            ],
+        },
+        'approved_by': {
+            'fields': [
+                'full_name',
+            ],
+        },
+        'payrun': {
+            'fields': [
+                'name',
+            ],
+        },
+        'job': {
+            'fields': [
+                'name',
+            ],
+        },
+    },
+}
 
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
