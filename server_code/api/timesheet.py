@@ -83,11 +83,12 @@ def test_endpoint(timesheet_uid, **params):
             print(f"search time: {round((etime - stime).total_seconds(), 2)}")
             ts_list = []
             stime = datetime.datetime.now()
+            lstime = datetime.datetime.now()
             for ts in timesheets:
-                sstime = datetime.datetime.now()
+                letime = datetime.datetime.now()
+                print(f"to_json_dict time: {round((letime - lstime).total_seconds(), 3):.3f}")
+                lstime = letime
                 ts_list.append(ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA))
-                eetime = datetime.datetime.now()
-                print(f"to_json_dict time: {round((eetime - sstime).total_seconds(), 3):.3f}")
             etime = datetime.datetime.now()
             print(f"for loop time: {round((etime - stime).total_seconds(), 2)}")
             return anvil.server.HttpResponse(
