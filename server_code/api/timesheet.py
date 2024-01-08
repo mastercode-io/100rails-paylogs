@@ -47,7 +47,7 @@ TIMESHEET_JSON_SCHEMA = {
         },
     },
 }
-TIMESHEET_PAGE_LENGTH = 10
+TIMESHEET_PAGE_LENGTH = 100
 
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
