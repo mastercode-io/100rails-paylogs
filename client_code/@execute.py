@@ -34,7 +34,7 @@ def add_enum_list():
 
 init_user_session()
 timesheet_schema = models.Timesheet.get_json_schema()
-print(timesheet_schema)
+# print(timesheet_schema)
 
 ts = models.Timesheet.get('febd487a-f5ab-45f5-862a-8a1016568d27')
 print(ts.to_json_dict(json_shema=timesheet_schema))
