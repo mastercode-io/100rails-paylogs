@@ -78,15 +78,17 @@ def test_endpoint(timesheet_uid, **params):
                                           page * TIMESHEET_PAGE_LENGTH)
             etime = datetime.datetime.now()
             print(f"search time: {(etime - stime).total_seconds()}")
-            stime = datetime.datetime.now()
-            timesheets = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
-            etime = datetime.datetime.now()
-            print(f"to_json_dict time: {(etime - stime).total_seconds()}")
+            ts_list = []
+            for ts in timesheets:
+                stime = datetime.datetime.now()
+                ts_list.append(ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA))
+                etime = datetime.datetime.now()
+                print(f"to_json_dict time: {(etime - stime).total_seconds()}")
             return anvil.server.HttpResponse(
                 200,
                 json.dumps({
-                    'timesheets': timesheets,
-                    'count': len(timesheets),
+                    'timesheets': ts_list,
+                    'count': len(ts_list),
                 }),
                 {'content-type': 'application/json'},
             )
