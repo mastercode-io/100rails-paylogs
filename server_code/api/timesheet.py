@@ -114,7 +114,7 @@ def test_endpoint(timesheet_uid, **params):
             # ]
             filters['search_query'] = tables.order_by('employee', ascending=True)
             print('filters:', filters)
-            timesheets = Timesheet.search(page=page, page_length=page_length, **filters)
+            timesheets = Timesheet.search(page=page, page_length=TIMESHEET_PAGE_LENGTH, **filters)
             # print('timesheets search result:')
             # print(timesheets.count, timesheets.total_pages, timesheets.page_length, timesheets.page)
             ts_list = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
