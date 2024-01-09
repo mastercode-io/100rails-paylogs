@@ -104,10 +104,7 @@ def test_endpoint(timesheet_uid, **params):
                 filters['date'] = q.less_than_or_equal_to(end_date)
             elif start_date and end_date:
                 filters['date'] = q.between(start_date, end_date, max_inclusive=True)
-            filters['search_query'] = [
-                # tables.order_by('employee'),
-                tables.order_by('date'),
-            ]
+            filters['search_query'] = tables.order_by('date', ascending=True)
             timesheets = Timesheet.search(page=page, page_length=TIMESHEET_PAGE_LENGTH, **filters)
             # print('timesheets search result:')
             # print(timesheets.count, timesheets.total_pages, timesheets.page_length, timesheets.page)
