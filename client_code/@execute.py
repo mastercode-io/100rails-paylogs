@@ -39,6 +39,8 @@ emp = ts['employee']
 print(emp)
 ts = models.Timesheet.search(employee=emp)
 print(len(ts))
+for t in ts:
+    print(t)
 # print(ts.to_json_dict(json_schema=timesheet_schema))
 
 # api_service = api.register_api_service(
