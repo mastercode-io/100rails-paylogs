@@ -37,7 +37,7 @@ ts = models.Timesheet.get('febd487a-f5ab-45f5-862a-8a1016568d27')
 emp = ts['employee']
 # emp = models.Employee.get('56660563-c20d-4c2d-9a0b-361e5f660d8d')
 print(emp)
-ts = models.Timesheet.search()
+ts = models.Timesheet.search(employee=emp)
 print(len(ts))
 # print(ts.to_json_dict(json_schema=timesheet_schema))
 
