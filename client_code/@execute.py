@@ -40,7 +40,6 @@ print(emp)
 # ts = models.Timesheet.search(employee=emp)
 ts = models.Timesheet.search()
 print(len(ts), ts.page, ts.total_pages, ts.rows_id)
-print(anvil.server.call('get_session_prop', 'rows_id'))
 tsl = [*ts]
 for i in range(3):
     print(tsl[i])
