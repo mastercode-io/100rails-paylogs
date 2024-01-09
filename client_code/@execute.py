@@ -33,7 +33,9 @@ def add_enum_list():
 
 
 init_user_session()
-emp = models.Employee.get('56660563-c20d-4c2d-9a0b-361e5f660d8d')
+ts = models.Timesheet.get('febd487a-f5ab-45f5-862a-8a1016568d27')
+emp = ts['employee']
+# emp = models.Employee.get('56660563-c20d-4c2d-9a0b-361e5f660d8d')
 print(emp)
 ts = models.Timesheet.search(employee=emp)
 for t in ts:
