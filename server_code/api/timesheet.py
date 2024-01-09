@@ -96,7 +96,6 @@ def test_endpoint(timesheet_uid, **params):
             except (ValueError, TypeError):
                 end_date = None
             filters = {}
-            queries = []
             if employee_uid:
                 employee = Employee.get(employee_uid)
                 if employee is not None:
