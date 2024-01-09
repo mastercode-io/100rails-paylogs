@@ -94,7 +94,7 @@ def test_endpoint(timesheet_uid, **params):
             queries = []
             if employee_uid:
                 employee = Employee.get(employee_uid)
-                if employee:
+                if employee is not None:
                     filters['employee'] = employee
             elif employee_link_id:
                 filters['remote_links'] = {integration_name: employee_link_id}
