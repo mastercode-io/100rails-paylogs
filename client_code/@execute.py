@@ -34,6 +34,7 @@ def add_enum_list():
 
 init_user_session()
 emp = models.Employee.get('56660563-c20d-4c2d-9a0b-361e5f660d8d')
+print(emp)
 # print(ts.to_json_dict(json_schema=timesheet_schema))
 
 # api_service = api.register_api_service(
