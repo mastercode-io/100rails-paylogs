@@ -58,6 +58,7 @@ def test_endpoint(timesheet_uid, **params):
     print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"timesheet_uid: {timesheet_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
+
     if anvil.server.request.method == "GET":
         if timesheet_uid:
             timesheet = Timesheet.get(timesheet_uid)
@@ -72,6 +73,7 @@ def test_endpoint(timesheet_uid, **params):
         else:
             page = int(params.get('page', 1))
             timesheets = Timesheet.search(page=page, page_length=TIMESHEET_PAGE_LENGTH)
+            print(timesheets.count, timesheets.total_pages, timesheets.page_length, timesheets.page)
             ts_list = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
             return anvil.server.HttpResponse(
                 200,
@@ -84,5 +86,18 @@ def test_endpoint(timesheet_uid, **params):
                     #     'prev': f'/timesheets?page={page - 1}' if page > 1 else None,
                     # }
                 }),
+                {'content-type': 'application/json'},
+            )
+
+    elif anvil.server.request.method == "POST":
+        if timesheet_uid:
+            return anvil.server.HttpResponse(400, f"Invalid request: {anvil.server.request}")
+        else:
+            timesheet = Timesheet()
+            timesheet.from_json_dict(anvil.server.request.body_json, json_schema=TIMESHEET_JSON_SCHEMA)
+            timesheet.save()
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps(timesheet.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA)),
                 {'content-type': 'application/json'},
             )
