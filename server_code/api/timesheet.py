@@ -73,6 +73,7 @@ def test_endpoint(timesheet_uid, **params):
         else:
             page = int(params.get('page', 1))
             timesheets = Timesheet.search(page=page, page_length=TIMESHEET_PAGE_LENGTH)
+            print('timesheets search result:')
             print(timesheets.count, timesheets.total_pages, timesheets.page_length, timesheets.page)
             ts_list = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
             return anvil.server.HttpResponse(
