@@ -112,22 +112,34 @@ def test_endpoint(timesheet_uid, **params):
                 tables.order_by('employee', ascending=True),
                 tables.order_by('date', ascending=True),
             ]
-            # filters['search_query'] = tables.order_by('employee', ascending=True)
             print('filters:', filters)
             timesheets = Timesheet.search(page=page, page_length=page_length, **filters)
-            # print('timesheets search result:')
-            # print(timesheets.count, timesheets.total_pages, timesheets.page_length, timesheets.page)
             ts_list = [ts.to_json_dict(json_schema=TIMESHEET_JSON_SCHEMA) for ts in timesheets]
+            ts_uri = f'{anvil.server.get_api_origin()}/timesheets/?page_length={page_length}'
+            if employee_uid:
+                ts_uri += f'&employee_uid={employee_uid}'
+            elif employee_link_id:
+                ts_uri += f'&employee_link_id={employee_link_id}'
+            if start_date:
+                ts_uri += f'&start_date={start_date}'
+            if end_date:
+                ts_uri += f'&end_date={end_date}'
+            url_list = {
+                'first': f'{ts_uri}&page=1',
+                'last': f'{ts_uri}&page={timesheets.total_pages}',
+            }
+            if page > 1:
+                url_list['prev'] = f'{ts_uri}&page={page - 1}'
+            if page < timesheets.total_pages:
+                url_list['next'] = f'{ts_uri}&page={page + 1}'
             return anvil.server.HttpResponse(
                 200,
                 json.dumps({
                     'timesheets': ts_list,
                     'count': len(ts_list),
                     'page': page,
-                    # 'links': {
-                    #     'next': f'/timesheets?page={page + 1}' if len(ts_list) == TIMESHEET_PAGE_LENGTH else None,
-                    #     'prev': f'/timesheets?page={page - 1}' if page > 1 else None,
-                    # }
+                    'total_pages': timesheets.total_pages,
+                    'links': url_list,
                 }),
                 {'content-type': 'application/json'},
             )
