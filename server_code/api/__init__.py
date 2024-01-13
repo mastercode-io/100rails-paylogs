@@ -14,6 +14,7 @@ from Crypto.Cipher import AES
 API_REQUEST_USER = 'api_request@oaylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
+RESPONSE_PAGE_LENGTH = 100
 
 
 def generate_password(length=16):
@@ -102,7 +103,7 @@ def decode_api_key(api_key):
         json_bytes = cipher.decrypt_and_verify(ciphertext, tag)
         json_str = json_bytes.decode('utf-8')
         api_login = json.loads(json_str)
-        return api_credential['integration']['service_name'], api_login['api_user'], api_login['password']
+        return api_credential['integration']['uid'], api_login['api_user'], api_login['password']
 
 
 def authenticate_request(request: anvil.server.request):
@@ -113,7 +114,7 @@ def authenticate_request(request: anvil.server.request):
     else:
         print(API_REQUEST_USER, API_REQUEST_PASSWORD)
         logged_user = fusion_server_utils.init_user_session(user_email=API_REQUEST_USER, password=API_REQUEST_PASSWORD)
-        integration_name, api_user, api_password = decode_api_key(api_key)
+        integration_uid, api_user, api_password = decode_api_key(api_key)
         if not api_user:
             return None, anvil.server.HttpResponse(401, f'Invalid x-api-key header: {request.headers}')
         else:
@@ -122,4 +123,4 @@ def authenticate_request(request: anvil.server.request):
             if not logged_user:
                 return None, anvil.server.HttpResponse(401, f'Invalid user credentials: {api_user}, {api_password}')
             else:
-                return integration_name, None
+                return integration_uid, None

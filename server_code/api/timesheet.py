@@ -53,9 +53,9 @@ TIMESHEET_PAGE_LENGTH = 100
 
 
 @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
-def test_endpoint(timesheet_uid, **params):
-    integration_name, http_response = api.authenticate_request(anvil.server.request)
-    if integration_name is None:
+def timesheet_endpoint(timesheet_uid, **params):
+    integration_uid, http_response = api.authenticate_request(anvil.server.request)
+    if integration_uid is None:
         return http_response
     print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"timesheet_uid: {timesheet_uid}, params: {params}\n"
@@ -101,7 +101,7 @@ def test_endpoint(timesheet_uid, **params):
                 if employee is not None:
                     filters['employee'] = employee
             elif employee_link_id:
-                filters['remote_links'] = {integration_name: employee_link_id}
+                filters['remote_links'] = {integration_uid: employee_link_id}
             if start_date and not end_date:
                 filters['date'] = q.greater_than_or_equal_to(start_date)
             elif end_date and not start_date:

@@ -17,6 +17,14 @@ ENUM_MODEL_LIST = {
     # 'Activity': {'model': 'Activity', 'name_field': 'name'},
 }
 
+''' remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
+    is a special field that is used to store links to external resources
+    in the format:
+    {
+        AppIntegration.uid: remote_link_id (string ID of a resource in the external system)),
+        ...
+    }
+'''
 
 # ------------------------------
 # Framework object model classes
