@@ -26,6 +26,7 @@ ENUM_MODEL_LIST = {
     }
 '''
 
+
 # ------------------------------
 # Framework object model classes
 # ------------------------------

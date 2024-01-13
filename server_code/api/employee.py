@@ -1,4 +1,4 @@
-from ..app.models import Employee, EmmployeeRole
+from ..app.models import Employee, EmployeeRole
 from .. import api
 import anvil.server
 from anvil.tables import query as q
