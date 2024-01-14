@@ -38,7 +38,7 @@ EMPLOYEE_ROLE_JSON_SCHEMA = {
 }
 
 
-@anvil.server.http_endpoint("/employees/:employee_uid", methods=["GET", "POST"])
+# @anvil.server.http_endpoint("/employees/:employee_uid", methods=["GET", "POST"])
 def employee_endpoint(employee_uid, **params):
     integration_uid, http_response = api.authenticate_request(anvil.server.request)
     if integration_uid is None:

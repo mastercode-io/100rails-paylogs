@@ -128,7 +128,7 @@ def authenticate_request(request: anvil.server.request):
 
 
 @anvil.server.http_endpoint("/api/:resource_name/:resource_uid", methods=["GET", "POST"])
-def api_endpoint(resource_name, resource_uid, **params):
+def resource_endpoint(resource_name, resource_uid, **params):
     integration_uid, http_response = authenticate_request(anvil.server.request)
     if integration_uid is None:
         return http_response

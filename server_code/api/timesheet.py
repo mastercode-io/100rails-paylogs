@@ -52,7 +52,7 @@ TIMESHEET_JSON_SCHEMA = {
 TIMESHEET_PAGE_LENGTH = 100
 
 
-@anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
+# @anvil.server.http_endpoint("/timesheets/:timesheet_uid", methods=["GET", "POST"])
 def timesheet_endpoint(timesheet_uid, **params):
     integration_uid, http_response = api.authenticate_request(anvil.server.request)
     if integration_uid is None:
