@@ -168,7 +168,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
                 page_length = int(page_length)
             except ValueError:
                 page_length = API_RESPONSE_PAGE_LENGTH
-            filters = resource['filters'](params, integration_uid) if 'filters' in resource else {}
+            filters = resource['filters'](params, integration_uid) if resource.get('filters', None) else {}
             if resource['sorting']:
                 filters['search_query'] = resource['sorting']
             print('filters:', filters)

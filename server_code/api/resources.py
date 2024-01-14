@@ -132,7 +132,7 @@ API_RESOURCES = {
         ],
         'paging': True,
         'remote_links': True,
-        'filters': {},
+        'filters': None,
     },
 
     'employee_roles': {
