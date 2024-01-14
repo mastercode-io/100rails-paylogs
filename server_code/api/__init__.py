@@ -9,12 +9,13 @@ import uuid
 import secrets
 import string
 from Crypto.Cipher import AES
+from .resources import *
 
 
 API_REQUEST_USER = 'api_request@oaylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
-RESPONSE_PAGE_LENGTH = 100
+API_RESPONSE_PAGE_LENGTH = 100
 
 
 def generate_password(length=16):
@@ -124,3 +125,72 @@ def authenticate_request(request: anvil.server.request):
                 return None, anvil.server.HttpResponse(401, f'Invalid user credentials: {api_user}, {api_password}')
             else:
                 return integration_uid, None
+
+
+@anvil.server.http_endpoint("/api/:resource_name/:resource_uid", methods=["GET", "POST"])
+def api_endpoint(resource_name, resource_uid, **params):
+    integration_uid, http_response = authenticate_request(anvil.server.request)
+    if integration_uid is None:
+        return http_response
+    print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
+          f"resource_name: {resource_name}, resource_uid: {resource_uid}, params: {params}\n"
+          f"body: {anvil.server.request.body_json}\n")
+
+    if resource_name not in API_RESOURCES:
+        return anvil.server.HttpResponse(404, f'Invalid resource name: {resource_name}')
+
+    resource = API_RESOURCES[resource_name]
+    if anvil.server.request.method == "GET":
+        link_id = params.get('link_id', None) if resource['remote_links'] else None
+        if resource_uid or link_id:
+            item = None
+            if resource_uid:
+                item = resource['model'].get(resource_uid)
+            elif link_id:
+                item = resource['model'].get_by('remote_links', {integration_uid: link_id})
+            if item:
+                return anvil.server.HttpResponse(
+                    200,
+                    json.dumps(item.to_json_dict(json_schema=resource['json_schema'])),
+                    {'content-type': 'application/json'},
+                )
+            else:
+                return anvil.server.HttpResponse(404, f'{resource_name} not found: {resource_uid}')
+
+        else:
+            page = params.get('page', 1)
+            page_length = params.get('page_length', API_RESPONSE_PAGE_LENGTH)
+            try:
+                page = int(page)
+            except ValueError:
+                page = 1
+            try:
+                page_length = int(page_length)
+            except ValueError:
+                page_length = API_RESPONSE_PAGE_LENGTH
+            filters = resource['filters'](params, integration_uid) if 'filters' in resource else {}
+            if resource['sorting']:
+                filters['search_query'] = resource['sorting']
+            print('filters:', filters)
+            items = resource['model'].search(page=page, page_length=page_length, **filters)
+            item_list = [item.to_json_dict(json_schema=resource['json_schema']) for item in items]
+            resource_uri = f'{anvil.server.get_api_origin()}/{resource_name}/?page_length={page_length}'
+            url_list = {
+                'first': f'{resource_uri}&page=1',
+                'last': f'{resource_uri}&page={items.total_pages}',
+            }
+            if page > 1:
+                url_list['prev'] = f'{resource_uri}&page={page - 1}'
+            if page < items.total_pages:
+                url_list['next'] = f'{resource_uri}&page={page + 1}'
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps({
+                    'timesheets': item_list,
+                    'count': len(item_list),
+                    'page': page,
+                    'total_pages': items.total_pages,
+                    'links': url_list,
+                }),
+                {'content-type': 'application/json'},
+            )

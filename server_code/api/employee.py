@@ -6,29 +6,6 @@ import anvil.tables as tables
 import json
 import datetime
 
-# first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-# last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-# email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-# mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-# pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-# role = Relationship("EmployeeRole", with_many=True)
-# status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-# address_schema = {
-#     "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-#     "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-#     "city_district": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-#     "state_province": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-#     "country": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-#     "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-# }
-# address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
-# custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
-#
-# name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-# pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-# pay_rate_template = Relationship("PayRateTemplate")
-# status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-
 EMPLOYEE_JSON_SCHEMA = {
     'fields': [
         'uid',
@@ -51,6 +28,15 @@ EMPLOYEE_JSON_SCHEMA = {
     },
 }
 
+EMPLOYEE_ROLE_JSON_SCHEMA = {
+    'fields': [
+        'uid',
+        'name',
+        'pay_rate',
+        'status',
+    ]
+}
+
 
 @anvil.server.http_endpoint("/employees/:employee_uid", methods=["GET", "POST"])
 def employee_endpoint(employee_uid, **params):
@@ -65,7 +51,7 @@ def employee_endpoint(employee_uid, **params):
 
         employee_link_id = params.get('employee_link_id', None)
         if employee_uid or employee_link_id:
-            employee= None
+            employee = None
             if employee_uid:
                 employee = Employee.get(employee_uid)
             elif employee_link_id:
@@ -89,7 +75,7 @@ def employee_endpoint(employee_uid, **params):
             try:
                 page_length = int(page_length)
             except ValueError:
-                page_length = api.RESPONSE_PAGE_LENGTH
+                page_length = api.API_RESPONSE_PAGE_LENGTH
             filters = {'search_query': [
                 tables.order_by('last_name', ascending=True),
             ]}
@@ -127,5 +113,66 @@ def employee_endpoint(employee_uid, **params):
             return anvil.server.HttpResponse(
                 200,
                 json.dumps(timesheet.to_json_dict(json_schema=EMPLOYEE_JSON_SCHEMA)),
+                {'content-type': 'application/json'},
+            )
+
+
+@anvil.server.http_endpoint("/employee_roles/:employee_role_uid", methods=["GET", "POST"])
+def employee_role_endpoint(employee_role_uid, **params):
+    integration_uid, http_response = api.authenticate_request(anvil.server.request)
+    if integration_uid is None:
+        return http_response
+    print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
+          f"employee_role_uid: {employee_role_uid}, params: {params}\n"
+          f"body: {anvil.server.request.body_json}\n")
+
+    if anvil.server.request.method == "GET":
+
+        if employee_role_uid:
+            employee_role = EmployeeRole.get(employee_role_uid)
+            if employee_role:
+                return anvil.server.HttpResponse(
+                    200,
+                    json.dumps(employee_role.to_json_dict(json_schema=EMPLOYEE_ROLE_JSON_SCHEMA)),
+                    {'content-type': 'application/json'},
+                )
+            else:
+                return anvil.server.HttpResponse(404, f"Employee Role not found: {employee_role_uid}")
+
+        else:
+            page = params.get('page', 1)
+            page_length = params.get('page_length', 0)
+            try:
+                page = int(page)
+            except ValueError:
+                page = 1
+            try:
+                page_length = int(page_length)
+            except ValueError:
+                page_length = api.RESPONSE_PAGE_LENGTH
+            filters = {'search_query': [
+                tables.order_by('name', ascending=True),
+            ]}
+            print('filters:', filters)
+            employee_roles = EmployeeRole.search(page=page, page_length=page_length, **filters)
+            employee_role_list = [emp.to_json_dict(json_schema=EMPLOYEE_ROLE_JSON_SCHEMA) for emp in employee_roles]
+            employee_role_uri = f'{anvil.server.get_api_origin()}/employee_roles/?page_length={page_length}'
+            url_list = {
+                'first': f'{employee_role_uri}&page=1',
+                'last': f'{employee_role_uri}&page={employee_roles.total_pages}',
+            }
+            if page > 1:
+                url_list['prev'] = f'{employee_role_uri}&page={page - 1}'
+            if page < employee_roles.total_pages:
+                url_list['next'] = f'{employee_role_uri}&page={page + 1}'
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps({
+                    'employee_roles': employee_role_list,
+                    'count': len(employee_role_list),
+                    'page': page,
+                    'total_pages': employee_roles.total_pages,
+                    'links': url_list,
+                }),
                 {'content-type': 'application/json'},
             )
