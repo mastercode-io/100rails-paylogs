@@ -207,7 +207,7 @@ API_RESOURCES = {
         'filters': None,
     },
 
-    'location': {
+    'locations': {
         'model': models.Location,
         'json_schema': LOCATION_JSON_SCHEMA,
         'sorting': [
