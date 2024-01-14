@@ -54,6 +54,7 @@ EMPLOYEE_ROLE_JSON_SCHEMA = {
         'name',
         'pay_rate',
         'status',
+        'remote_links',
     ]
 }
 
@@ -130,7 +131,7 @@ API_RESOURCES = {
             tables.order_by('first_name', ascending=True),
             tables.order_by('last_name', ascending=True),
         ],
-        'paging': True,
+        'pagination': True,
         'remote_links': True,
         'filters': None,
     },
@@ -140,9 +141,9 @@ API_RESOURCES = {
         'sorting': [
             tables.order_by('name', ascending=True),
         ],
-        'paging': False,
+        'pagination': False,
         'remote_links': True,
-        'filters': {},
+        'filters': None,
     },
 
     'timesheets': {
@@ -151,7 +152,7 @@ API_RESOURCES = {
             tables.order_by('employee', ascending=True),
             tables.order_by('date', ascending=True),
         ],
-        'paging': True,
+        'pagination': True,
         'remote_links': True,
         'filters': get_timesheet_filters,
     },

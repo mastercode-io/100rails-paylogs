@@ -142,6 +142,8 @@ def resource_endpoint(resource_name, resource_uid, **params):
     resource = API_RESOURCES[resource_name]
     if anvil.server.request.method == "GET":
         link_id = params.get('link_id', None) if resource['remote_links'] else None
+
+        # get single resource object by uid or link_id
         if resource_uid or link_id:
             item = None
             if resource_uid:
@@ -157,17 +159,22 @@ def resource_endpoint(resource_name, resource_uid, **params):
             else:
                 return anvil.server.HttpResponse(404, f'{resource_name} not found: {resource_uid}')
 
+        # get list of resource objects with supported search, filter, sort, and pagination
         else:
-            page = params.get('page', 1)
-            page_length = params.get('page_length', API_RESPONSE_PAGE_LENGTH)
-            try:
-                page = int(page)
-            except ValueError:
+            if resource['pagination']:
+                page = params.get('page', 1)
+                page_length = params.get('page_length', API_RESPONSE_PAGE_LENGTH)
+                try:
+                    page = int(page)
+                except ValueError:
+                    page = 1
+                try:
+                    page_length = int(page_length)
+                except ValueError:
+                    page_length = API_RESPONSE_PAGE_LENGTH
+            else:
                 page = 1
-            try:
-                page_length = int(page_length)
-            except ValueError:
-                page_length = API_RESPONSE_PAGE_LENGTH
+                page_length = None
             filters = resource['filters'](params, integration_uid) if resource.get('filters', None) else {}
             if resource['sorting']:
                 filters['search_query'] = resource['sorting']
@@ -175,14 +182,14 @@ def resource_endpoint(resource_name, resource_uid, **params):
             items = resource['model'].search(page=page, page_length=page_length, **filters)
             item_list = [item.to_json_dict(json_schema=resource['json_schema']) for item in items]
             resource_uri = f'{anvil.server.get_api_origin()}/{resource_name}/?page_length={page_length}'
-            url_list = {
+            links = {
                 'first': f'{resource_uri}&page=1',
                 'last': f'{resource_uri}&page={items.total_pages}',
             }
             if page > 1:
-                url_list['prev'] = f'{resource_uri}&page={page - 1}'
+                links['prev'] = f'{resource_uri}&page={page - 1}'
             if page < items.total_pages:
-                url_list['next'] = f'{resource_uri}&page={page + 1}'
+                links['next'] = f'{resource_uri}&page={page + 1}'
             return anvil.server.HttpResponse(
                 200,
                 json.dumps({
@@ -190,7 +197,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
                     'count': len(item_list),
                     'page': page,
                     'total_pages': items.total_pages,
-                    'links': url_list,
+                    'links': links,
                 }),
                 {'content-type': 'application/json'},
             )
