@@ -143,14 +143,10 @@ TIMESHEET_JSON_SCHEMA = {
                 'full_name',
             ],
         },
-        'payrun': {
-            'fields': [
-                'name',
-            ],
-        },
         'job': {
             'fields': [
                 'name',
+                'number',
             ],
         },
     },
