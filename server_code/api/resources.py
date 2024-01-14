@@ -138,6 +138,7 @@ API_RESOURCES = {
 
     'employee_roles': {
         'model': EmployeeRole,
+        'json_schema': EMPLOYEE_ROLE_JSON_SCHEMA,
         'sorting': [
             tables.order_by('name', ascending=True),
         ],
@@ -148,6 +149,7 @@ API_RESOURCES = {
 
     'timesheets': {
         'model': Timesheet,
+        'json_schema': TIMESHEET_JSON_SCHEMA,
         'sorting': [
             tables.order_by('employee', ascending=True),
             tables.order_by('date', ascending=True),
@@ -159,12 +161,12 @@ API_RESOURCES = {
 
     'timesheet_types': {
         'model': 'TimesheetType',
-        'name_field': 'name',
+        'json_schema': TIMESHEET_TYPE_JSON_SCHEMA,
     },
 
     'jobs': {
         'model': 'Job',
-        'name_field': 'name',
+        'json_schema': JOB_JSON_SCHEMA,
     },
 
     'payruns': {
