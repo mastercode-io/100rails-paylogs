@@ -1,4 +1,4 @@
-from ..app.models import Employee, EmployeeRole, Timesheet, TimesheetType, Job, Payrun
+from ..app import models
 from anvil.tables import query as q
 import anvil.tables as tables
 import json
@@ -12,7 +12,7 @@ def get_timesheet_filters(params, integration_uid):
     employee_link_id = params.get('employee_link_id', None)
     filters = {}
     if employee_uid:
-        employee = Employee.get(employee_uid)
+        employee = models.Employee.get(employee_uid)
         if employee is not None:
             filters['employee'] = employee
     elif employee_link_id:
@@ -56,6 +56,53 @@ EMPLOYEE_ROLE_JSON_SCHEMA = {
         'status',
         'remote_links',
     ]
+}
+
+
+JOB_JSON_SCHEMA = {
+    'fields': [
+        'uid',
+        'name',
+        'number',
+        'description',
+        'status',
+        'custom_fields',
+        'remote_links',
+    ],
+    'relationships': {
+        'job_type': {
+            'fields': [
+                'name',
+                'short_code',
+            ],
+        },
+        'location': {
+            'fields': [
+                'name',
+                'address',
+            ],
+        },
+    },
+}
+
+JOB_TYPE_JSON_SCHEMA = {
+    'fields': [
+        'uid',
+        'name',
+        'short_code',
+        'description',
+        'remote_links',
+    ],
+}
+
+LOCATION_JSON_SCHEMA = {
+    'fields': [
+        'uid',
+        'name',
+        'description',
+        'address',
+        'remote_links',
+    ],
 }
 
 TIMESHEET_JSON_SCHEMA = {
@@ -113,19 +160,10 @@ TIMESHEET_TYPE_JSON_SCHEMA = {
     ],
 }
 
-JOB_JSON_SCHEMA = {
-    'fields': [
-        'uid',
-        'name',
-        'status',
-        'remote_links',
-    ],
-}
-
 API_RESOURCES = {
 
     'employees': {
-        'model': Employee,
+        'model': models.Employee,
         'json_schema': EMPLOYEE_JSON_SCHEMA,
         'sorting': [
             tables.order_by('first_name', ascending=True),
@@ -137,7 +175,7 @@ API_RESOURCES = {
     },
 
     'employee_roles': {
-        'model': EmployeeRole,
+        'model': models.EmployeeRole,
         'json_schema': EMPLOYEE_ROLE_JSON_SCHEMA,
         'sorting': [
             tables.order_by('name', ascending=True),
@@ -147,8 +185,41 @@ API_RESOURCES = {
         'filters': None,
     },
 
+    'jobs': {
+        'model': models.Job,
+        'json_schema': JOB_JSON_SCHEMA,
+        'sorting': [
+            tables.order_by('number', ascending=True),
+        ],
+        'pagination': True,
+        'remote_links': True,
+        'filters': None,
+    },
+
+    'job_types': {
+        'model': models.JobType,
+        'json_schema': JOB_TYPE_JSON_SCHEMA,
+        'sorting': [
+            tables.order_by('name', ascending=True),
+        ],
+        'pagination': False,
+        'remote_links': True,
+        'filters': None,
+    },
+
+    'location': {
+        'model': models.Location,
+        'json_schema': LOCATION_JSON_SCHEMA,
+        'sorting': [
+            tables.order_by('name', ascending=True),
+        ],
+        'pagination': False,
+        'remote_links': True,
+        'filters': None,
+    },
+
     'timesheets': {
-        'model': Timesheet,
+        'model': models.Timesheet,
         'json_schema': TIMESHEET_JSON_SCHEMA,
         'sorting': [
             tables.order_by('employee', ascending=True),
@@ -160,13 +231,14 @@ API_RESOURCES = {
     },
 
     'timesheet_types': {
-        'model': 'TimesheetType',
+        'model': models.TimesheetType,
         'json_schema': TIMESHEET_TYPE_JSON_SCHEMA,
-    },
-
-    'jobs': {
-        'model': 'Job',
-        'json_schema': JOB_JSON_SCHEMA,
+        'sorting': [
+            tables.order_by('name', ascending=True),
+        ],
+        'pagination': False,
+        'remote_links': True,
+        'filters': None,
     },
 
     'payruns': {

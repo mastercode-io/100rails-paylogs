@@ -325,6 +325,8 @@ class JobType:
     short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     pay_rate_template = Relationship("PayRateTemplate")
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
@@ -344,6 +346,7 @@ class Location:
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
     pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
     @staticmethod
     def get_address_oneline(args):
