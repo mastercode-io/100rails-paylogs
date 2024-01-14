@@ -193,7 +193,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
             return anvil.server.HttpResponse(
                 200,
                 json.dumps({
-                    'timesheets': item_list,
+                    resource_name: item_list,
                     'count': len(item_list),
                     'page': page,
                     'total_pages': items.total_pages,
