@@ -17,6 +17,14 @@ def get_timesheet_filters(params, integration_uid):
             filters['employee'] = employee
     elif employee_link_id:
         filters['remote_links'] = {integration_uid: employee_link_id}
+    try:
+        start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d').date()
+    except (ValueError, TypeError):
+        start_date = None
+    try:
+        end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d').date()
+    except (ValueError, TypeError):
+        end_date = None
     if start_date and not end_date:
         filters['date'] = q.greater_than_or_equal_to(start_date)
     elif end_date and not start_date:
