@@ -351,6 +351,9 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: status, admin_ui: null, type: string}
+    - name: remote_links
+      admin_ui: {width: 200, order: 0}
+      type: simpleObject
   app_out_api_credentials:
     client: none
     server: full
@@ -548,6 +551,9 @@ db_schema:
     - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: description, admin_ui: null, type: string}
     - {name: short_code, type: string}
+    - name: remote_links
+      admin_ui: {width: 200, order: 0}
+      type: simpleObject
   payruns:
     title: Payruns
     client: none
