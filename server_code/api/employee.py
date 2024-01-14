@@ -42,7 +42,7 @@ EMPLOYEE_JSON_SCHEMA = {
         'remote_links',
     ],
     'relationships': {
-        'employee_role': {
+        'role': {
             'fields': [
                 'name',
                 'pay_rate',
