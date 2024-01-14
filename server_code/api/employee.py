@@ -6,45 +6,46 @@ import anvil.tables as tables
 import json
 import datetime
 
+# first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+# last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+# email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+# mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+# pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+# role = Relationship("EmployeeRole", with_many=True)
+# status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+# address_schema = {
+#     "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+#     "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+#     "city_district": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+#     "state_province": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+#     "country": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+#     "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+# }
+# address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
+# custom_fields = Attribute(field_type=types.FieldTypes.OBJECT)
+#
+# name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+# pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+# pay_rate_template = Relationship("PayRateTemplate")
+# status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 EMPLOYEE_JSON_SCHEMA = {
     'fields': [
         'uid',
-        'date',
-        'start_time',
-        'end_time',
-        'total_hours',
-        'total_pay',
-        'pay_lines',
+        'first_name',
+        'last_name',
+        'email',
+        'mobile',
         'status',
-        'notes',
+        'address',
+        'custom_fields',
         'remote_links',
     ],
     'relationships': {
-        'timesheet_type': {
+        'employee_role': {
             'fields': [
                 'name',
-                'short_code',
-            ],
-        },
-        'employee': {
-            'fields': [
-                'full_name',
-            ],
-        },
-        'approved_by': {
-            'fields': [
-                'full_name',
-            ],
-        },
-        'payrun': {
-            'fields': [
-                'name',
-            ],
-        },
-        'job': {
-            'fields': [
-                'name',
+                'pay_rate',
             ],
         },
     },
