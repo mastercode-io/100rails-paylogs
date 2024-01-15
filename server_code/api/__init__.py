@@ -209,7 +209,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
 
         # get single resource object by uid or link_id
         link_id = params.get('link_id', None) if resource['remote_links'] else None
-        request_json = anvil.server.request.body_json
+        post_data = anvil.server.request.body_json
 
         if resource_uid or link_id:
             item = None
@@ -222,16 +222,16 @@ def resource_endpoint(resource_name, resource_uid, **params):
         else:
             item = resource['model']()
 
-        post_data = {}
+        item_data = {}
         for field in resource['json_schema']['fields']:
-            if field in request_json:
-                post_data[field] = request_json[field]
+            if field in post_data:
+                item_data[field] = post_data[field]
         for relationship in resource['json_schema'].get('relationships', {}):
-            if relationship in request_json:
-                rel_json = request_json[relationship]
+            if relationship in post_data:
+                rel_json = post_data[relationship]
                 if rel_json:
                     if 'uid' in rel_json:
-                        post_data[relationship] = {'uid': rel_json['uid']}
+                        item_data[relationship] = {'uid': rel_json['uid']}
                     elif 'link_id' in rel_json:
                         rel_item = resource['model']._relationships[relationship].cls.get_by(
                             'remote_links', {integration_uid: link_id}
@@ -241,13 +241,11 @@ def resource_endpoint(resource_name, resource_uid, **params):
                                 404,
                                 f'{relationship} not found: {link_id} (remote link)'
                             )
-                        post_data[relationship] = {'uid': rel_item['uid']}
+                        item_data[relationship] = {'uid': rel_item['uid']}
         if 'link_id' in post_data and 'remote_links' in resource['model']._attributes:
-            if item['remote_links'] is None:
-                item['remote_links'] = {}
-            item['remote_links'][integration_uid] = post_data['link_id']
-            del post_data['link_id']
-        item.update(post_data)
+            item_data['remote_links'] = item.get('remote_links', {})
+            item_data['remote_links'][integration_uid] = post_data['link_id']
+        item.update(item_data)
         item.save()
         return anvil.server.HttpResponse(
             200,
