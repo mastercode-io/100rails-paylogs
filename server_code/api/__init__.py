@@ -132,6 +132,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
     integration_uid, http_response = authenticate_request(anvil.server.request)
     if integration_uid is None:
         return http_response
+    resource_name = resource_name.lower()
     print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"resource_name: {resource_name}, resource_uid: {resource_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
@@ -210,6 +211,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
         # get single resource object by uid or link_id
         link_id = params.get('link_id', None) if resource['remote_links'] else None
         request_json = anvil.server.request.body_json
+
         if resource_uid or link_id:
             item = None
             if resource_uid:
