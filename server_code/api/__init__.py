@@ -249,8 +249,19 @@ def resource_endpoint(resource_name, resource_uid, **params):
             item_data['remote_links'][integration_uid] = post_data['link_id']
         item.update(item_data)
         item.save()
+        item = resource['model'].get(item['uid'])
         return anvil.server.HttpResponse(
             200,
             json.dumps(item.to_json_dict(json_schema=resource['json_schema'])),
             {'content-type': 'application/json'},
         )
+
+# {
+#     "uid": "76d5fa3f-442e-47df-a634-546c6035e11d",
+#     "name": "Test Type",
+#     "short_code": "TST",
+#     "description": null,
+#     "remote_links": {
+#         "76e14124-04dc-49e4-9f18-27b25a66f67e": "23453455346"
+#     }
+# }
