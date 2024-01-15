@@ -235,7 +235,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
                         item_data[relationship] = {'uid': rel_json['uid']}
                     elif 'link_id' in rel_json:
                         rel_item = resource['model']._relationships[relationship].cls.get_by(
-                            'remote_links', {integration_uid: link_id}
+                            'remote_links', {integration_uid: rel_json['link_id']}
                         )
                         if not rel_item:
                             return anvil.server.HttpResponse(
