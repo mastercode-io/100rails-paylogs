@@ -211,6 +211,12 @@ def resource_endpoint(resource_name, resource_uid, **params):
         # get single resource object by uid or link_id
         link_id = params.get('link_id', None) if resource['remote_links'] else None
         post_data = anvil.server.request.body_json
+        if post_data is None:
+            try:
+                post_data = json.loads(anvil.server.request.body, strict=False)
+            except json.JSONDecodeError:
+                print(f'Invalid JSON body: {anvil.server.request.body}')
+                return anvil.server.HttpResponse(400, f'Invalid JSON body: {anvil.server.request.body}')
 
         if resource_uid or link_id:
             item = None
