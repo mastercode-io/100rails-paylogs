@@ -227,7 +227,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
         for field in resource['json_schema']['fields']:
             if field in request_json:
                 post_data[field] = request_json[field]
-        for relationship in resource['json_schema']['relationships']:
+        for relationship in resource['json_schema'].get('relationships', {}):
             if relationship in request_json:
                 rel_json = request_json[relationship]
                 if rel_json:
