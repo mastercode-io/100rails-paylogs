@@ -334,6 +334,7 @@ class Location:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     address_schema = {
         "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),

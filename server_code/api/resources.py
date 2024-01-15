@@ -102,6 +102,7 @@ JOB_TYPE_JSON_SCHEMA = {
         'name',
         'short_code',
         'description',
+        'status',
         'remote_links',
     ],
 }
@@ -110,8 +111,10 @@ LOCATION_JSON_SCHEMA = {
     'fields': [
         'uid',
         'name',
+        'short_code',
         'description',
         'address',
+        'status',
         'remote_links',
     ],
 }
@@ -172,7 +175,7 @@ TIMESHEET_TYPE_JSON_SCHEMA = {
 }
 
 API_RESOURCES = {
-
+    # /api/employees/
     'employees': {
         'model': models.Employee,
         'json_schema': EMPLOYEE_JSON_SCHEMA,
@@ -185,6 +188,7 @@ API_RESOURCES = {
         'filters': None,
     },
 
+    # /api/employee_roles/
     'employee_roles': {
         'model': models.EmployeeRole,
         'json_schema': EMPLOYEE_ROLE_JSON_SCHEMA,
@@ -196,6 +200,7 @@ API_RESOURCES = {
         'filters': None,
     },
 
+    # /api/jobs/
     'jobs': {
         'model': models.Job,
         'json_schema': JOB_JSON_SCHEMA,
@@ -207,6 +212,7 @@ API_RESOURCES = {
         'filters': None,
     },
 
+    # /api/job_types/
     'job_types': {
         'model': models.JobType,
         'json_schema': JOB_TYPE_JSON_SCHEMA,
@@ -218,6 +224,7 @@ API_RESOURCES = {
         'filters': None,
     },
 
+    # /api/locations/
     'locations': {
         'model': models.Location,
         'json_schema': LOCATION_JSON_SCHEMA,
@@ -229,6 +236,7 @@ API_RESOURCES = {
         'filters': None,
     },
 
+    # /api/timesheets/
     'timesheets': {
         'model': models.Timesheet,
         'json_schema': TIMESHEET_JSON_SCHEMA,
@@ -241,6 +249,7 @@ API_RESOURCES = {
         'filters': get_timesheet_filters,
     },
 
+    # /api/timesheet_types/
     'timesheet_types': {
         'model': models.TimesheetType,
         'json_schema': TIMESHEET_TYPE_JSON_SCHEMA,
@@ -250,11 +259,6 @@ API_RESOURCES = {
         'pagination': False,
         'remote_links': True,
         'filters': None,
-    },
-
-    'payruns': {
-        'model': 'Payrun',
-        'name_field': 'name',
     },
 }
 
