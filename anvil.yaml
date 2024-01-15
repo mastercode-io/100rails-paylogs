@@ -354,6 +354,9 @@ db_schema:
     - name: remote_links
       admin_ui: {width: 200, order: 0}
       type: simpleObject
+    - name: short_code
+      admin_ui: {width: 200, order: 0}
+      type: string
   app_out_api_credentials:
     client: none
     server: full
