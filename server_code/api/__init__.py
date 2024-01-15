@@ -132,7 +132,8 @@ def resource_endpoint(resource_name, resource_uid, **params):
     if integration_uid is None:
         return http_response
     resource_name = resource_name.lower()
-    print(f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
+    print(f"integration: {integration_uid}\n"
+          f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"resource_name: {resource_name}, resource_uid: {resource_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
 
@@ -244,6 +245,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
                         item_data[relationship] = {'uid': rel_item['uid']}
         if 'link_id' in post_data and 'remote_links' in resource['model']._attributes:
             item_data['remote_links'] = item.get('remote_links', {})
+            print(item_data)
             item_data['remote_links'][integration_uid] = post_data['link_id']
         item.update(item_data)
         item.save()
