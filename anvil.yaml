@@ -554,6 +554,7 @@ db_schema:
     - name: remote_links
       admin_ui: {width: 200, order: 0}
       type: simpleObject
+    - {name: status, admin_ui: null, type: unresolved}
   payruns:
     title: Payruns
     client: none
