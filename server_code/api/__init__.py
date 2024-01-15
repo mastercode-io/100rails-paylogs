@@ -243,7 +243,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
                                 f'{relationship} not found: {link_id} (remote link)'
                             )
                         post_data[relationship] = {'uid': rel_item['uid']}
-        item.update(**post_data)
+        item.update(post_data)
         item.save()
         return anvil.server.HttpResponse(
             200,
