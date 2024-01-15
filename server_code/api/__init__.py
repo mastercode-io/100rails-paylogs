@@ -11,7 +11,6 @@ import string
 from Crypto.Cipher import AES
 from .resources import *
 
-
 API_REQUEST_USER = 'api_request@oaylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
 ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
@@ -243,6 +242,11 @@ def resource_endpoint(resource_name, resource_uid, **params):
                                 f'{relationship} not found: {link_id} (remote link)'
                             )
                         post_data[relationship] = {'uid': rel_item['uid']}
+        if 'link_id' in post_data and 'remote_links' in resource['model']._attributes:
+            if item['remote_links'] is None:
+                item['remote_links'] = {}
+            item['remote_links'][integration_uid] = post_data['link_id']
+            del post_data['link_id']
         item.update(post_data)
         item.save()
         return anvil.server.HttpResponse(
