@@ -51,6 +51,7 @@ EMPLOYEE_JSON_SCHEMA = {
             'fields': [
                 'name',
                 'pay_rate',
+                'remote_links'
             ],
         },
     },
@@ -82,12 +83,14 @@ JOB_JSON_SCHEMA = {
             'fields': [
                 'name',
                 'short_code',
+                'remote_links'
             ],
         },
         'location': {
             'fields': [
                 'name',
                 'address',
+                'remote_links'
             ],
         },
     },
@@ -131,22 +134,26 @@ TIMESHEET_JSON_SCHEMA = {
             'fields': [
                 'name',
                 'short_code',
+                'remote_links'
             ],
         },
         'employee': {
             'fields': [
                 'full_name',
+                'remote_links'
             ],
         },
         'approved_by': {
             'fields': [
                 'full_name',
+                'remote_links'
             ],
         },
         'job': {
             'fields': [
                 'name',
                 'number',
+                'remote_links'
             ],
         },
     },
