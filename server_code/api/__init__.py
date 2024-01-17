@@ -13,7 +13,9 @@ from .resources import *
 
 API_REQUEST_USER = 'api_request@oaylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
-ACCESS_DENIED_RESPONSE = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
+RESPONSE_401 = anvil.server.HttpResponse(401, "Access Denied. Authentication failed.")
+RESPONSE_404 = anvil.server.HttpResponse(404, "Resource not found.")
+RESPONSE_405 = anvil.server.HttpResponse(405, "Method not allowed.")
 API_RESPONSE_PAGE_LENGTH = 100
 
 
@@ -139,6 +141,20 @@ def resource_endpoint(resource_name, resource_uid, **params):
 
     if resource_name not in API_RESOURCES:
         return anvil.server.HttpResponse(404, f'Invalid resource name: {resource_name}')
+    if resource_name == 'connection':
+        if anvil.server.request.method != "GET":
+            return RESPONSE_405
+        else:
+            integration = AppIntegration.get(integration_uid)
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps({
+                    'service_name': integration['service_name'],
+                    'description': integration['description'],
+                    'url': integration['url'],
+                }),
+                {'content-type': 'application/json'},
+            )
 
     resource = API_RESOURCES[resource_name]
 
