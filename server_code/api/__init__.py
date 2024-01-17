@@ -117,6 +117,7 @@ def authenticate_request(request: anvil.server.request):
         print(API_REQUEST_USER, API_REQUEST_PASSWORD)
         logged_user = fusion_server_utils.init_user_session(user_email=API_REQUEST_USER, password=API_REQUEST_PASSWORD)
         integration_uid, api_user, api_password = decode_api_key(api_key)
+        integration = AppIntegration.get(integration_uid)
         if not api_user:
             return None, anvil.server.HttpResponse(401, f'Invalid x-api-key header: {request.headers}')
         else:
@@ -125,16 +126,16 @@ def authenticate_request(request: anvil.server.request):
             if not logged_user:
                 return None, anvil.server.HttpResponse(401, f'Invalid user credentials: {api_user}, {api_password}')
             else:
-                return integration_uid, None
+                return integration, None
 
 
 @anvil.server.http_endpoint("/:resource_name/:resource_uid", methods=["GET", "POST"])
 def resource_endpoint(resource_name, resource_uid, **params):
-    integration_uid, http_response = authenticate_request(anvil.server.request)
-    if integration_uid is None:
+    integration, http_response = authenticate_request(anvil.server.request)
+    if integration is None:
         return http_response
     resource_name = resource_name.lower()
-    print(f"integration: {integration_uid}\n"
+    print(f"integration: {integration['service_name']}\n"
           f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
           f"resource_name: {resource_name}, resource_uid: {resource_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
@@ -143,7 +144,6 @@ def resource_endpoint(resource_name, resource_uid, **params):
         if anvil.server.request.method != "GET":
             return RESPONSE_405
         else:
-            integration = AppIntegration.get(integration_uid)
             return anvil.server.HttpResponse(
                 200,
                 json.dumps({
@@ -168,7 +168,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
             if resource_uid:
                 item = resource['model'].get(resource_uid)
             elif link_id:
-                item = resource['model'].get_by('remote_links', {integration_uid: link_id})
+                item = resource['model'].get_by('remote_links', {integration['uid']: link_id})
             if item:
                 return anvil.server.HttpResponse(
                     200,
@@ -194,7 +194,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
             else:
                 page = 1
                 page_length = None
-            filters = resource['filters'](params, integration_uid) if resource.get('filters', None) else {}
+            filters = resource['filters'](params, integration['uid']) if resource.get('filters', None) else {}
             if resource['sorting']:
                 filters['search_query'] = resource['sorting']
             print('filters:', filters)
@@ -239,7 +239,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
             if resource_uid:
                 item = resource['model'].get(resource_uid)
             elif link_id:
-                item = resource['model'].get_by('remote_links', {integration_uid: link_id})
+                item = resource['model'].get_by('remote_links', {integration['uid']: link_id})
             if item is None:
                 return anvil.server.HttpResponse(404, f'{resource_name} not found: {resource_uid}')
         else:
@@ -257,7 +257,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
                         item_data[relationship] = {'uid': rel_json['uid']}
                     elif 'link_id' in rel_json:
                         rel_item = resource['model']._relationships[relationship].cls.get_by(
-                            'remote_links', {integration_uid: rel_json['link_id']}
+                            'remote_links', {integration['uid']: rel_json['link_id']}
                         )
                         if not rel_item:
                             return anvil.server.HttpResponse(
@@ -268,7 +268,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
         if 'link_id' in post_data and 'remote_links' in resource['model']._attributes:
             if item['remote_links'] is None:
                 item_data['remote_links'] = {}
-            item_data['remote_links'][integration_uid] = post_data['link_id']
+            item_data['remote_links'][integration['uid']] = post_data['link_id']
         item.update(item_data)
         item.save()
         item = resource['model'].get(item['uid'])
