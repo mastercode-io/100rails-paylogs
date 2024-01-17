@@ -139,8 +139,6 @@ def resource_endpoint(resource_name, resource_uid, **params):
           f"resource_name: {resource_name}, resource_uid: {resource_uid}, params: {params}\n"
           f"body: {anvil.server.request.body_json}\n")
 
-    if resource_name not in API_RESOURCES:
-        return anvil.server.HttpResponse(404, f'Invalid resource name: {resource_name}')
     if resource_name == 'connection':
         if anvil.server.request.method != "GET":
             return RESPONSE_405
@@ -155,6 +153,8 @@ def resource_endpoint(resource_name, resource_uid, **params):
                 }),
                 {'content-type': 'application/json'},
             )
+    if resource_name not in API_RESOURCES:
+        return anvil.server.HttpResponse(404, f'Invalid resource name: {resource_name}')
 
     resource = API_RESOURCES[resource_name]
 
