@@ -58,5 +58,8 @@ init_user_session()
 # print(api_credential['api_key'])
 # anvil.server.call('foo')
 print('start')
-anvil.server.call('long_function')
+try:
+    anvil.server.call('long_function')
+except anvil.server.TimeoutError:
+    print('timeout')
 print('end')
