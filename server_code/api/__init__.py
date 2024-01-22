@@ -236,7 +236,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
                 print(f'Invalid JSON body: {anvil.server.request.body}')
                 return anvil.server.HttpResponse(400, f'Invalid JSON body: {anvil.server.request.body}')
 
-        if resource_uid or link_id or post_data.get('uid', None) or post_data.get('link_id', None):
+        if resource_uid or link_id:
             item = None
             item_reference = None
             if resource_uid:
@@ -245,49 +245,92 @@ def resource_endpoint(resource_name, resource_uid, **params):
             elif link_id:
                 item = resource_class.get_by('remote_links', {integration['uid']: link_id})
                 item_reference = f'link_id: {link_id}'
-            elif post_data.get('uid', None):
-                item = resource_class.get(post_data['uid'])
-                item_reference = f'uid: {post_data["uid"]}'
-            elif post_data.get('link_id', None):
-                item = resource_class.get_by('remote_links', {integration['uid']: post_data['link_id']})
-                item_reference = f'link_id: {post_data["link_id"]}'
             if item is None:
                 return anvil.server.HttpResponse(404, f'{resource_name} not found: {item_reference}')
-        else:
-            item = resource_class()
+            elif resource_uid:
+                post_data['uid'] = resource_uid
+            elif link_id:
+                post_data['link_id'] = link_id
+                item_json, error = post_item(resource, post_data, integration)
+                return anvil.server.HttpResponse(
+                    200 if not error else error['status'],
+                    json.dumps(item_json),
+                    {'content-type': 'application/json'},
+                )
 
-        item_data = {}
-        for field in resource['json_schema']['fields']:
-            if field in post_data:
-                item_data[field] = post_data[field]
-        for relationship in resource['json_schema'].get('relationships', {}):
-            if relationship in post_data:
-                rel_json = post_data[relationship]
-                if rel_json:
-                    if 'uid' in rel_json:
-                        item_data[relationship] = {'uid': rel_json['uid']}
-                    elif 'link_id' in rel_json:
-                        rel_item = resource_class._relationships[relationship].cls.get_by(
-                            'remote_links', {integration['uid']: rel_json['link_id']}
-                        )
-                        if not rel_item:
-                            return anvil.server.HttpResponse(
-                                404,
-                                f'{relationship} not found: {link_id} (remote link)'
-                            )
-                        item_data[relationship] = {'uid': rel_item['uid']}
-        if 'link_id' in post_data and 'remote_links' in resource_class._attributes:
-            if not item.get('remote_links', None):
-                item_data['remote_links'] = {}
-            item_data['remote_links'][integration['uid']] = post_data['link_id']
-        item.update(item_data)
-        item.save()
-        item = resource_class.get(item['uid'])
-        return anvil.server.HttpResponse(
-            200,
-            json.dumps(item.to_json_dict(json_schema=resource['json_schema'])),
-            {'content-type': 'application/json'},
-        )
+        if resource_name not in post_data:
+            post_list = [post_data]
+        elif resource_name in post_data and not isinstance(post_data[resource_name], list):
+            return anvil.server.HttpResponse(400, f'Invalid JSON body: expected list of {resource_name}')
+        else:
+            post_list = post_data[resource_name]
+        item_list = []
+        error_list = []
+        for post_list_item in post_list[resource_name]:
+            item_json, error = post_item(resource, post_list_item, integration)
+            if not error:
+                item_list.append(item_json)
+            else:
+                error_list.append(item_json)
+        if not error_list:
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps({resource_name: item_list}),
+                {'content-type': 'application/json'},
+            )
+        else:
+            return anvil.server.HttpResponse(
+                207,
+                json.dumps({resource_name: item_list, 'errors': error_list}),
+                {'content-type': 'application/json'},
+            )
+
+
+def post_item(resource, post_data, integration):
+    resource_class = resource['model']
+    item = None
+    item_reference = None
+    if post_data.get('uid', None) or post_data.get('link_id', None):
+        if post_data.get('uid', None):
+            item = resource_class.get(post_data['uid'])
+            if item is None:
+                post_data['error'] = f"ValidationError, {resource['name']} not found: uid {post_data['uid']}"
+                return post_data, {'status': 404, 'error': post_data['error']}
+    elif post_data.get('link_id', None):
+        item = resource_class.get_by('remote_links', {integration['uid']: post_data['link_id']})
+    if not item:
+        item = resource_class()
+
+    item_data = {}
+    for field in resource['json_schema']['fields']:
+        if field in post_data:
+            item_data[field] = post_data[field]
+    for relationship in resource['json_schema'].get('relationships', {}):
+        if relationship in post_data:
+            rel_json = post_data[relationship]
+            if rel_json:
+                if 'uid' in rel_json:
+                    item_data[relationship] = {'uid': rel_json['uid']}
+                elif 'link_id' in rel_json:
+                    rel_item = resource_class._relationships[relationship].cls.get_by(
+                        'remote_links', {integration['uid']: rel_json['link_id']}
+                    )
+                    if not rel_item:
+                        post_data['error'] = f"ValidationError, {relationship} not found: {rel_json['link_id']}"
+                        return post_data, {'status': 400, 'error': post_data['error']}
+                    item_data[relationship] = {'uid': rel_item['uid']}
+    if 'link_id' in post_data and 'remote_links' in resource_class._attributes:
+        if not item.get('remote_links', None):
+            item_data['remote_links'] = {}
+        item_data['remote_links'][integration['uid']] = post_data['link_id']
+    item.update(item_data)
+    item.save()
+    item = resource_class.get(item['uid'])
+    item_json = item.to_json_dict(json_schema=resource['json_schema'])
+    if 'remote_links' in item_json and integration['uid'] in item_json['remote_links']:
+        item_json['link_id'] = item_json['remote_links'][integration['uid']]
+        item_json.pop('remote_links')
+    return item_json, None
 
 
 @anvil.server.callable
