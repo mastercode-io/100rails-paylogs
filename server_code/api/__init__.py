@@ -266,7 +266,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
             post_list = post_data[resource_name]
         item_list = []
         error_list = []
-        for post_list_item in post_list[resource_name]:
+        for post_list_item in post_list:
             item_json, error = post_item(resource, post_list_item, integration)
             if not error:
                 item_list.append(item_json)
