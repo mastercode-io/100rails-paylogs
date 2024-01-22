@@ -33,16 +33,16 @@ def add_enum_list():
 
 
 init_user_session()
-ts = models.Timesheet.get('febd487a-f5ab-45f5-862a-8a1016568d27')
-emp = ts['employee']
+# ts = models.Timesheet.get('febd487a-f5ab-45f5-862a-8a1016568d27')
+# emp = ts['employee']
 # emp = models.Employee.get('56660563-c20d-4c2d-9a0b-361e5f660d8d')
-print(emp)
-ts = models.Timesheet.search(employee=emp)
+# print(emp)
+# ts = models.Timesheet.search(employee=emp)
 # ts = models.Timesheet.search()
-print(len(ts), ts.page, ts.total_pages, ts.rows_id)
-tsl = [*ts]
-for i in range(3):
-    print(tsl[i])
+# print(len(ts), ts.page, ts.total_pages, ts.rows_id)
+# tsl = [*ts]
+# for i in range(3):
+#     print(tsl[i])
 # print(ts.to_json_dict(json_schema=timesheet_schema))
 
 # api_service = api.register_api_service(
@@ -57,3 +57,6 @@ for i in range(3):
 # api_credential = anvil.server.call('generate_api_key', tenant_uid, api_service)
 # print(api_credential['api_key'])
 # anvil.server.call('foo')
+print('start')
+anvil.server.call('long_function')
+print('end')

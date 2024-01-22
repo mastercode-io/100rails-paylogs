@@ -8,6 +8,7 @@ import json
 import uuid
 import secrets
 import string
+import time
 from Crypto.Cipher import AES
 from .resources import *
 
@@ -287,3 +288,15 @@ def resource_endpoint(resource_name, resource_uid, **params):
             json.dumps(item.to_json_dict(json_schema=resource['json_schema'])),
             {'content-type': 'application/json'},
         )
+
+
+@anvil.server.callable
+def long_function():
+    try:
+        for i in range(15):
+            print(i)
+            time.sleep(3)
+        print('done')
+    except Exception as e:
+        print(e)
+        raise e
