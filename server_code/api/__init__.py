@@ -315,6 +315,7 @@ def post_item(resource, post_data, integration):
                     rel_item = resource_class._relationships[relationship].cls.get_by(
                         'remote_links', {integration['uid']: rel_json['link_id']}
                     )
+                    print('rel_item', rel_item, 'remote_links', {integration['uid']: rel_json['link_id']})
                     if not rel_item:
                         post_data['error'] = f"ValidationError, {relationship} not found: {rel_json['link_id']}"
                         return post_data, {'status': 400, 'error': post_data['error']}
