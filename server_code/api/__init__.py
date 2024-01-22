@@ -316,10 +316,10 @@ def post_item(resource, post_data, integration):
                         remote_links={integration['uid']: rel_json['link_id']}
                     )
                     print('rel_item', rel_item, 'remote_links', {integration['uid']: rel_json['link_id']})
-                    if not rel_item:
+                    if len(rel_item) == 0:
                         post_data['error'] = f"ValidationError, {relationship} not found: {rel_json['link_id']}"
                         return post_data, {'status': 400, 'error': post_data['error']}
-                    item_data[relationship] = {'uid': rel_item[0]['uid']}
+                    item_data[relationship] = {'uid': next(rel_item)['uid']}
     if 'link_id' in post_data and 'remote_links' in resource_class._attributes:
         if not item.get('remote_links', None):
             item_data['remote_links'] = {'dummy': 'dummy'}
