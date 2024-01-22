@@ -297,6 +297,5 @@ def long_function():
             print(i)
             time.sleep(3)
         print('done')
-    except Exception as e:
-        print(e)
-        raise e
+    except anvil.server.TimeoutError:
+        print('timeout')
