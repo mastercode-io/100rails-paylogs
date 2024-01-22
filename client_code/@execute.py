@@ -65,7 +65,7 @@ print(1886330000100840400)
 items = models.JobType.search(remote_links={'76e14124-04dc-49e4-9f18-27b25a66f67e': 1886330000100840400})
 for item in items:
     print('job type', item['name'], item['remote_links'], type(item['remote_links']))
-print(1886330000091365941)
-items = models.JobType.search(remote_links={'76e14124-04dc-49e4-9f18-27b25a66f67e': 1886330000091365941})
+print(1886330000121072400)
+items = models.JobType.search(remote_links={'76e14124-04dc-49e4-9f18-27b25a66f67e': 1886330000121072400})
 for item in items:
     print('job type', item['name'], item['remote_links'], type(item['remote_links']))
