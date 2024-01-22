@@ -313,7 +313,7 @@ def post_item(resource, post_data, integration):
                     item_data[relationship] = {'uid': rel_json['uid']}
                 elif 'link_id' in rel_json:
                     rel_item = resource_class._relationships[relationship].cls.search(
-                        'remote_links', {integration['uid']: rel_json['link_id']}
+                        remote_links={integration['uid']: rel_json['link_id']}
                     )
                     print('rel_item', rel_item, 'remote_links', {integration['uid']: rel_json['link_id']})
                     if not rel_item:
