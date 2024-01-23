@@ -324,6 +324,7 @@ def post_item(resource, post_data, integration):
         if not item.get('remote_links', None):
             item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
+        print('remote_links', item_data['remote_links'])
     item.update(item_data)
     item.save()
     item = resource_class.get(item['uid'])
@@ -332,14 +333,3 @@ def post_item(resource, post_data, integration):
         item_json['link_id'] = item_json['remote_links'][integration['uid']]
         item_json.pop('remote_links')
     return item_json, None
-
-
-@anvil.server.callable
-def long_function():
-    try:
-        for i in range(15):
-            print(i)
-            time.sleep(3)
-        print('done')
-    except anvil.server.TimeoutError:
-        print('timeout')
