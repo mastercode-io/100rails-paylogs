@@ -322,7 +322,7 @@ def post_item(resource, post_data, integration):
                     item_data[relationship] = {'uid': rel_item['uid']}
     if 'link_id' in post_data and 'remote_links' in resource_class._attributes:
         if not item.get('remote_links', None):
-            item_data['remote_links'] = {'dummy': 'dummy'}
+            item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
     item.update(item_data)
     item.save()
