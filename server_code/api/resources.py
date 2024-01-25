@@ -119,6 +119,17 @@ LOCATION_JSON_SCHEMA = {
     ],
 }
 
+PAY_CATEGORY_JSON_SCHEMA = {
+    'fields': [
+        'uid',
+        'name',
+        'pay_category_code',
+        'pay_category_type',
+        'description',
+        'status',
+        'remote_links',
+    ],
+}
 TIMESHEET_JSON_SCHEMA = {
     'fields': [
         'uid',
