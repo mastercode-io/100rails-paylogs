@@ -138,8 +138,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
     resource_name = resource_name.lower()
     print(f"integration: {integration['service_name']}\n"
           f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
-          f"resource_name: {resource_name}, resource_uid: {resource_uid}, params: {params}\n"
-          f"body: {anvil.server.request.body_json}\n")
+          f"resource_name: {resource_name}, resource_uid: {resource_uid}, params: {params}\n")
 
     if resource_name == 'connection':
         if anvil.server.request.method != "GET":
@@ -328,7 +327,6 @@ def post_item(resource, post_data, integration):
         if not item.get('remote_links', None):
             item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
-        print('remote_links', item_data['remote_links'])
     item.update(item_data)
     item.save()
     item = resource_class.get(item['uid'])
