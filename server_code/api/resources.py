@@ -119,18 +119,6 @@ LOCATION_JSON_SCHEMA = {
     ],
 }
 
-PAY_CATEGORY_JSON_SCHEMA = {
-    'fields': [
-        'uid',
-        'name',
-        'pay_category_code',
-        'pay_category_type',
-        'description',
-        'status',
-        'remote_links',
-    ],
-}
-
 TIMESHEET_JSON_SCHEMA = {
     'fields': [
         'uid',
@@ -253,19 +241,6 @@ API_RESOURCES = {
         'filters': None,
     },
 
-    # /api/pay_categories/
-    'pay_categories': {
-        'name': 'pay_categories',
-        'model': models.pay_category,
-        'json_schema': PAY_CATEGORY_JSON_SCHEMA,
-        'sorting': [
-            tables.order_by('name', ascending=True),
-        ],
-        'pagination': False,
-        'remote_links': True,
-        'filters': None,
-    },
-
     # /api/timesheets/
     'timesheets': {
         'name': 'timesheets',
@@ -293,3 +268,4 @@ API_RESOURCES = {
         'filters': None,
     },
 }
+
