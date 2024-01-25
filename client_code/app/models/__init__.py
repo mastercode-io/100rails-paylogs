@@ -372,12 +372,9 @@ class PayCategory:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    payroll_sync_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_category_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_category_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-    pay_rate_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 

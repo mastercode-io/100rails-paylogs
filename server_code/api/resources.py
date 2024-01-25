@@ -119,6 +119,30 @@ LOCATION_JSON_SCHEMA = {
     ],
 }
 
+# name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+# payroll_sync_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+# pay_category_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+# description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+# pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+# pay_rate_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+# pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
+# status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+# remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
+PAY_CATEGORY_JSON_SCHEMA = {
+    'fields': [
+        'uid',
+        'name',
+        'pay_category_code',
+        'pay_category_type',
+        'description',
+        'pay_rate',
+        'pay_rate_type',
+        'pay_rate_multiplier',
+        'status',
+        'remote_links',
+    ],
+}
+
 TIMESHEET_JSON_SCHEMA = {
     'fields': [
         'uid',
