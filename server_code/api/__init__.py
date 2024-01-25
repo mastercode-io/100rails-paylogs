@@ -174,7 +174,10 @@ def resource_endpoint(resource_name, resource_uid, **params):
             if item:
                 return anvil.server.HttpResponse(
                     200,
-                    json.dumps(item.to_json_dict(json_schema=resource['json_schema'])),
+                    json.dumps(item.to_json_dict(
+                        json_schema=resource['json_schema'],
+                        integration_uid=integration['uid'])
+                    ),
                     {'content-type': 'application/json'},
                 )
             else:
@@ -201,7 +204,8 @@ def resource_endpoint(resource_name, resource_uid, **params):
                 filters['search_query'] = resource['sorting']
             print('filters:', filters)
             items = resource_class.search(page=page, page_length=page_length, **filters)
-            item_list = [item.to_json_dict(json_schema=resource['json_schema']) for item in items]
+            item_list = [item.to_json_dict(json_schema=resource['json_schema'], integration_uid=integration['uid'])
+                         for item in items]
             resource_uri = f'{anvil.server.get_api_origin()}/{resource_name}/?page_length={page_length}'
             links = {
                 'first': f'{resource_uri}&page=1',
@@ -328,8 +332,5 @@ def post_item(resource, post_data, integration):
     item.update(item_data)
     item.save()
     item = resource_class.get(item['uid'])
-    item_json = item.to_json_dict(json_schema=resource['json_schema'])
-    if 'remote_links' in item_json and integration['uid'] in item_json['remote_links']:
-        item_json['link_id'] = item_json['remote_links'][integration['uid']]
-        item_json.pop('remote_links')
+    item_json = item.to_json_dict(json_schema=resource['json_schema'], integration_uid=integration['uid'])
     return item_json, None
