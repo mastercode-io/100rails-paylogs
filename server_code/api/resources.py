@@ -252,6 +252,19 @@ API_RESOURCES = {
         'filters': None,
     },
 
+    # /api/pay_categories/
+    'pay_categories': {
+        'name': 'pay_categories',
+        'model': models.PayCategory,
+        'json_schema': PAY_CATEGORY_JSON_SCHEMA,
+        'sorting': [
+            tables.order_by('name', ascending=True),
+        ],
+        'pagination': False,
+        'remote_links': True,
+        'filters': None,
+    },
+
     # /api/timesheets/
     'timesheets': {
         'name': 'timesheets',
