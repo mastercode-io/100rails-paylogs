@@ -663,20 +663,17 @@ db_schema:
     server: full
     columns:
     - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: pay_rate_type, admin_ui: null, type: string}
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: created_by, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
-    - {name: pay_rate_multiplier, admin_ui: null, type: number}
-    - {name: pay_rate, admin_ui: null, type: number}
     - {name: uid, admin_ui: null, type: string}
     - {name: description, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: status, admin_ui: null, type: string}
     - {name: pay_category_type, admin_ui: null, type: string}
-    - name: payroll_sync_code
-      admin_ui: {width: 200, order: 0}
+    - name: pay_category_code
+      admin_ui: {order: 0, width: 200}
       type: string
     - {name: remote_links, admin_ui: null, type: simpleObject}
   pay_rate_templates:
