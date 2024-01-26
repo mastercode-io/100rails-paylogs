@@ -340,7 +340,8 @@ def timeout_handler(signum, frame):
 
 
 def set_timeout(num_seconds):
-    print(f"Previous alarm: {signal.alarm(0)} seconds")
+    print(f'Num seconds: {num_seconds}')
+    # print(f"Previous alarm: {signal.alarm(0)} seconds")
     signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(num_seconds)
     # print(f"This alarm: {signal.alarm(0)} seconds")
