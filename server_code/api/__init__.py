@@ -9,6 +9,7 @@ import uuid
 import secrets
 import string
 import time
+import signal
 from Crypto.Cipher import AES
 from .resources import *
 
@@ -332,3 +333,31 @@ def post_item(resource, post_data, integration):
     item = resource_class.get(item['uid'])
     item_json = item.to_json_dict(json_schema=resource['json_schema'], integration_uid=integration['uid'])
     return item_json, None
+
+
+def timeout_handler(signum, frame):
+    raise TimeoutError
+
+
+def set_timeout(num_seconds):
+    signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(num_seconds)
+
+
+@anvil.server.http_endpoint("/timeout", methods=["GET", "POST"])
+def long_running_function():
+    try:
+        set_timeout(28)  # Set timeout to 5 seconds
+        time.sleep(33)
+        return anvil.server.HttpResponse(
+            200,
+            json.dumps({'status': 'success'}),
+            {'content-type': 'application/json'},
+        )
+    finally:
+        signal.alarm(0)  # Disable the alarm
+        return anvil.server.HttpResponse(
+            202,
+            json.dumps({'status': 'incomplete', 'message': 'Request timed out. Use bulk API to process this request.'}),
+            {'content-type': 'application/json'},
+        )
