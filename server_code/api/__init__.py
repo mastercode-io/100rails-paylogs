@@ -340,14 +340,17 @@ def timeout_handler(signum, frame):
 
 
 def set_timeout(num_seconds):
+    print(f"Previous alarm: {signal.alarm(0)} seconds")
     signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(num_seconds)
+    # print(f"This alarm: {signal.alarm(0)} seconds")
 
 
 @anvil.server.http_endpoint("/timeout", methods=["GET", "POST"])
 def long_running_function():
     try:
-        set_timeout(28)  # Set timeout to 5 seconds
+        set_timeout(28)
+        print(f"Alarm set for: 28 seconds")
         time.sleep(33)
         return anvil.server.HttpResponse(
             200,
@@ -355,7 +358,7 @@ def long_running_function():
             {'content-type': 'application/json'},
         )
     finally:
-        signal.alarm(0)  # Disable the alarm
+        signal.alarm(0)
         return anvil.server.HttpResponse(
             202,
             json.dumps({'status': 'incomplete', 'message': 'Request timed out. Use bulk API to process this request.'}),
