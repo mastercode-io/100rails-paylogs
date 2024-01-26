@@ -351,7 +351,9 @@ def long_running_function():
     try:
         set_timeout(28)
         print(f"Alarm set for: 28 seconds")
-        time.sleep(33)
+        for i in range(33):
+            print(f"i: {i}")
+            time.sleep(1)
         return anvil.server.HttpResponse(
             200,
             json.dumps({'status': 'success'}),
