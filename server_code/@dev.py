@@ -8,6 +8,7 @@ from .app import models
 @anvil.server.callable
 def foo():
     print('Lunching BG task')
+    print('server context', anvil.server.context)
     bg_task = anvil.server.launch_background_task('background_task', get_logged_user())
     print(bg_task)
 
@@ -15,6 +16,7 @@ def foo():
 @anvil.server.background_task
 def background_task(logged_user=None):
     print('Background task started')
+    print('background task context', anvil.server.context)
     if logged_user:
         save_logged_user(current_user=logged_user)
     print('AnvilFusion function', get_logged_user())
