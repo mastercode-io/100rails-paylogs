@@ -9,7 +9,7 @@ from anvil.tables import app_tables
 def save_background_task_context(task_id, context=None, logged_user=None):
     bg_task_row = app_tables.background_tasks.get(task_id=task_id)
     if bg_task_row is None:
-        app_tables.background_tasks.add_row(task_id=task_id, context=context, logged_user=logged_user)
+        app_tables.app_background_tasks.add_row(task_id=task_id, context=context, logged_user=logged_user)
     else:
         bg_task_row['context'] = context
         bg_task_row['logged_user'] = logged_user
