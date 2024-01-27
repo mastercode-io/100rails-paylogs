@@ -1,7 +1,7 @@
 import anvil.server
 import anvil.users
 import uuid
-from AnvilFusion.server.utils import get_logged_user
+from AnvilFusion.server.utils import get_logged_user, save_logged_user
 
 
 @anvil.server.callable
@@ -13,5 +13,7 @@ def foo():
 
 @anvil.server.background_task
 def background_task(logged_user=None):
-    print('Background task logged user: ', logged_user)
+    if logged_user:
+        save_logged_user(logged_user)
+    print('Background task logged user: ', get_logged_user())
     return 'Background task done'
