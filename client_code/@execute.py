@@ -7,7 +7,7 @@ from . import api
 import uuid
 import anvil.server
 import anvil.users
-from .server_code._dev import bar
+from anvil.server import _dev
 
 AppEnv.APP_ID = "PayLogs"
 AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
@@ -35,5 +35,5 @@ def add_enum_list():
 
 init_user_session()
 print('client context', anvil.server.context)
-bar()
+_dev.bar()
 anvil.server.call('foo')
