@@ -3,6 +3,16 @@ import anvil.users
 import uuid
 from AnvilFusion.server.utils import get_logged_user, save_logged_user
 from .app import models
+from anvil.tables import app_tables
+
+
+def save_background_task_context(task_id, context=None, logged_user=None):
+    bg_task_row = app_tables.background_tasks.get(task_id=task_id)
+    if bg_task_row is None:
+        app_tables.background_tasks.add_row(task_id=task_id, context=context, logged_user=logged_user)
+    else:
+        bg_task_row['context'] = context
+        bg_task_row['logged_user'] = logged_user
 
 
 @anvil.server.callable
@@ -20,6 +30,10 @@ def background_task(logged_user=None):
     if logged_user:
         save_logged_user(current_user=logged_user)
     print('AnvilFusion function', get_logged_user())
+    save_background_task_context(
+        anvil.server.context.background_task_id,
+        logged_user=get_logged_user()
+    )
     bar()
     return 'Background task done'
 
