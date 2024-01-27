@@ -13,5 +13,5 @@ def foo():
 
 @anvil.server.background_task
 def background_task():
-    print('Background task: ', get_logged_user())
+    # print('Background task: ', get_logged_user())
     return 'Background task done'
