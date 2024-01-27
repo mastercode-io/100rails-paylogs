@@ -13,7 +13,7 @@ def foo():
 
 @anvil.server.background_task
 def background_task(logged_user=None):
-    print('Background task started', logged_user)
+    print('Background task started')
     if logged_user:
         save_logged_user(current_user=logged_user)
     print('AnvilFusion function', get_logged_user())
