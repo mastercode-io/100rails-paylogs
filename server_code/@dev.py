@@ -5,4 +5,4 @@ import uuid
 
 @anvil.server.callable
 def foo():
-    print('SERVER SESSION\n', anvil.server.session)
+    print('SERVER SESSION\n', anvil.server.session.keys())
