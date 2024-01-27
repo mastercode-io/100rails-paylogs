@@ -25,6 +25,7 @@ def background_task(logged_user=None):
 
 
 def bar():
+    print('bar context', anvil.server.context)
     print('BAR', get_logged_user())
     tenant = models.Tenant.search()
     for t in tenant:
