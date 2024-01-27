@@ -17,6 +17,12 @@ def background_task(logged_user=None):
     if logged_user:
         save_logged_user(current_user=logged_user)
     anvil.server.session['background_task'] = 'running'
-    print('Background task logged user: ', get_logged_user())
-    print('Background task session: ', anvil.server.session, anvil.server.session['background_task'])
+    print('Background task session: ', anvil.server.session['logged_user'])
+    print('local function', bar())
+    print('AnvilFusion function', get_logged_user())
     return 'Background task done'
+
+
+def bar():
+    print('BAR')
+    return anvil.server.session['logged_user']
