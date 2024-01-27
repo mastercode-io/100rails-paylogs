@@ -2,6 +2,7 @@ import anvil.server
 import anvil.users
 import uuid
 from AnvilFusion.server.utils import get_logged_user, save_logged_user
+from ..app import models
 
 
 @anvil.server.callable
@@ -17,9 +18,12 @@ def background_task(logged_user=None):
     if logged_user:
         save_logged_user(current_user=logged_user)
     print('AnvilFusion function', get_logged_user())
+    bar()
     return 'Background task done'
 
 
 def bar():
     print('BAR')
-    return anvil.server.session['logged_user']
+    tenant = models.Tenant.search()
+    for t in tenant:
+        print(t['name'])
