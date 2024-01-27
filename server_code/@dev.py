@@ -23,7 +23,7 @@ def background_task(logged_user=None):
 
 
 def bar():
-    print('BAR')
+    print('BAR', get_logged_user())
     tenant = models.Tenant.search()
     for t in tenant:
         print(t['name'])
