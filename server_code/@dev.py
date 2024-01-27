@@ -2,7 +2,7 @@ import anvil.server
 import anvil.users
 import uuid
 from AnvilFusion.server.utils import get_logged_user, save_logged_user
-from ..app import models
+from .app import models
 
 
 @anvil.server.callable
