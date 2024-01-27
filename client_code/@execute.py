@@ -7,7 +7,6 @@ from . import api
 import uuid
 import anvil.server
 import anvil.users
-from anvil.server import _dev
 
 AppEnv.APP_ID = "PayLogs"
 AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
