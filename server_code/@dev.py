@@ -15,6 +15,6 @@ def foo():
 def background_task(logged_user=None):
     print('Background task started', logged_user)
     if logged_user:
-        save_logged_user(curent_user=logged_user)
+        save_logged_user(current_user=logged_user)
     print('Background task logged user: ', get_logged_user())
     return 'Background task done'
