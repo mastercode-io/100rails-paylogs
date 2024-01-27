@@ -34,5 +34,4 @@ def add_enum_list():
 
 init_user_session()
 print('client context', anvil.server.context)
-bar()
 anvil.server.call('foo')
