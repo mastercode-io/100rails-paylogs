@@ -33,39 +33,4 @@ def add_enum_list():
 
 
 init_user_session()
-# ts = models.Timesheet.get('febd487a-f5ab-45f5-862a-8a1016568d27')
-# emp = ts['employee']
-# emp = models.Employee.get('56660563-c20d-4c2d-9a0b-361e5f660d8d')
-# print(emp)
-# ts = models.Timesheet.search(employee=emp)
-# ts = models.Timesheet.search()
-# print(len(ts), ts.page, ts.total_pages, ts.rows_id)
-# tsl = [*ts]
-# for i in range(3):
-#     print(tsl[i])
-# print(ts.to_json_dict(json_schema=timesheet_schema))
-
-# api_service = api.register_api_service(
-#     name='scaflog',
-#     description='Scaflog API Integration',
-#     url='https://creatorapp.zoho.com/100rails/goscaffold',
-#     connection_type='in',
-# )
-# api_service = api.AppApiService.get_by('name', 'scaflog')
-# print(api_service)
-# tenant_uid = 'a48a5f3f-f4a0-40a7-9b56-23d08c98e182'
-# api_credential = anvil.server.call('generate_api_key', tenant_uid, api_service)
-# print(api_credential['api_key'])
-# anvil.server.call('foo')
-# items = models.JobType.search(remote_links={'76e14124-04dc-49e4-9f18-27b25a66f67e': 1886330000100840400})
-items = models.JobType.search()
-for item in items:
-    print('job type', item['name'], item['remote_links'], type(item['remote_links']))
-print(1886330000100840400)
-items = models.JobType.search(remote_links={'76e14124-04dc-49e4-9f18-27b25a66f67e': 1886330000100840400})
-for item in items:
-    print('job type', item['name'], item['remote_links'], type(item['remote_links']))
-print(1886330000121072400)
-items = models.JobType.search(remote_links={'76e14124-04dc-49e4-9f18-27b25a66f67e': 1886330000121072400})
-for item in items:
-    print('job type', item['name'], item['remote_links'], type(item['remote_links']))
+anvil.server.call('foo')

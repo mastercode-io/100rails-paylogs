@@ -335,35 +335,34 @@ def post_item(resource, post_data, integration):
     return item_json, None
 
 
-def timeout_handler(signum, frame):
-    raise TimeoutError
-
-
-def set_timeout(num_seconds):
-    print(f'Num seconds: {num_seconds}')
-    # print(f"Previous alarm: {signal.alarm(0)} seconds")
-    signal.signal(signal.SIGALRM, timeout_handler)
-    signal.alarm(num_seconds)
-    # print(f"This alarm: {signal.alarm(0)} seconds")
-
-
-@anvil.server.http_endpoint("/timeout", methods=["GET", "POST"])
-def long_running_function():
-    try:
-        # set_timeout(28)
-        # print(f"Alarm set for: 28 seconds")
-        for i in range(33):
-            print(f"i: {i}")
-            time.sleep(1)
+def post_data_bulk(resource, post_data, integration):
+    resource_class = resource['model']
+    item_list = []
+    error_list = []
+    for post_list_item in post_data:
+        item_json, error = post_item(resource, post_list_item, integration)
+        if not error:
+            item_list.append(item_json)
+        else:
+            error_list.append(item_json)
+    if not error_list:
         return anvil.server.HttpResponse(
             200,
-            json.dumps({'status': 'success'}),
+            json.dumps({resource_name: item_list}),
             {'content-type': 'application/json'},
         )
-    finally:
-        # signal.alarm(0)
+    else:
         return anvil.server.HttpResponse(
-            202,
-            json.dumps({'status': 'incomplete', 'message': 'Request timed out. Use bulk API to process this request.'}),
+            207,
+            json.dumps({resource_name: item_list, 'errors': error_list}),
             {'content-type': 'application/json'},
         )
+
+
+@anvil.server.background_task
+def long_running_task():
+    for i in range(10):
+        time.sleep(1)
+        print(i)
+        if i == 5:
+            raise Exception('error')
