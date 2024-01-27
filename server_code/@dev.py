@@ -16,5 +16,7 @@ def background_task(logged_user=None):
     print('Background task started', logged_user)
     if logged_user:
         save_logged_user(current_user=logged_user)
+    anvil.server.session['background_task'] = 'running'
     print('Background task logged user: ', get_logged_user())
+    print('Background task session: ', anvil.server.session, anvil.server.session['background_task'])
     return 'Background task done'
