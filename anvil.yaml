@@ -96,6 +96,20 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: User Roles
+  app_background_tasks:
+    client: none
+    server: full
+    columns:
+    - name: context
+      admin_ui: {width: 200, order: 0}
+      type: simpleObject
+    - name: logged_user
+      admin_ui: {width: 200, order: 1}
+      type: simpleObject
+    - name: task_id
+      admin_ui: {width: 200, order: -1}
+      type: string
+    title: App Background Tasks
   pay_rate_rules:
     title: Pay Rate Rules
     client: none
