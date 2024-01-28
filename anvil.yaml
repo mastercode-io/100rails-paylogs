@@ -109,6 +109,12 @@ db_schema:
     - name: task_id
       admin_ui: {width: 200, order: -1}
       type: string
+    - name: status
+      admin_ui: {width: 200, order: 2}
+      type: string
+    - name: result
+      admin_ui: {width: 200, order: 3}
+      type: simpleObject
     title: App Background Tasks
   pay_rate_rules:
     title: Pay Rate Rules
