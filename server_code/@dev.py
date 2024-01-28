@@ -56,7 +56,7 @@ def bar():
     print('bar context', anvil.server.context)
     print('BAR', get_logged_user())
     tenant = models.Tenant.search()
-    print('tenant', tenant)
+    print('tenant', tenant, tenant.count, tenant.length)
     for t in tenant:
-        print(t['name'])
+        print(t)
     return 'bar'
