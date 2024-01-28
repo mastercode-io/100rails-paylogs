@@ -34,4 +34,5 @@ def add_enum_list():
 
 init_user_session()
 print('client context', anvil.server.context)
-anvil.server.call('foo')
+print('bg_task_id', anvil.server.context.background_task_id)
+# anvil.server.call('foo')
