@@ -33,8 +33,8 @@ def background_task(logged_user=None):
         anvil.server.context.background_task_id,
         logged_user=get_logged_user()
     )
-    # result = bar()
-    result = None
+    result = bar()
+    # result = None
     print('bg_task_id', getattr(anvil.server.context, 'background_task_id', None))
     update_background_task(
         anvil.server.context.background_task_id,
@@ -58,3 +58,4 @@ def bar():
     tenant = models.Tenant.search()
     for t in tenant:
         print(t['name'])
+    return 'bar'
