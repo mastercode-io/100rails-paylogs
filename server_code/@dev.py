@@ -54,6 +54,7 @@ def bar():
     return 'bar', 'BAR'
 
 
+@anvil.server.callable
 def foo_bar():
     rows = app_tables.app_background_tasks.search()
     for row in rows:
