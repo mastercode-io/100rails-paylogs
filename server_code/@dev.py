@@ -53,14 +53,4 @@ def foo():
 
 
 def bar():
-    print('bar context', anvil.server.context)
-    location = models.Location(name='test', short_code='TST').save()
-    print('location', location, location['name'], location['uid'])
-    item = models.Location.get(location['uid'])
-    print('item', item, item['name'], item['uid'])
-    item['name'] = 'TIEST'
-    item.save()
-    print('item', item, item['name'])
-    item2 = models.Location.get_by('short_code', 'TST')
-    print('item2', item2, item2['name'], item2['uid'])
-    # return location.to_json_dict()
+    return 'BAR'
