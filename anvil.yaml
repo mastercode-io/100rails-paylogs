@@ -115,6 +115,12 @@ db_schema:
     - name: result
       admin_ui: {width: 200, order: 3}
       type: simpleObject
+    - name: start_time
+      admin_ui: {width: 200, order: 4}
+      type: datetime
+    - name: updated_time
+      admin_ui: {width: 200, order: 5}
+      type: datetime
     title: App Background Tasks
   pay_rate_rules:
     title: Pay Rate Rules
