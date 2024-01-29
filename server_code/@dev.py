@@ -54,8 +54,6 @@ def foo():
 
 def bar():
     print('bar context', anvil.server.context)
-    tenant = models.Tenant.search()
-    print('tenant', tenant, tenant.count)
-    for t in tenant:
-        print(t['name'])
-    return 'bar'
+    location = models.Location(name='test', short_code='TST').save()
+    print('location', location, location['name'])
+    return location.to_json_dict()
