@@ -58,7 +58,7 @@ def bar():
     print('location', location, location['name'])
     item = models.Location.get(location['uid'])
     print('item', item, item['name'])
-    item.update(name='TEST').save()
+    item.update({'name': 'TEST'}).save()
     print('item', item, item['name'])
     item2 = models.Location.get_by('short_code', 'TST')
     print('item2', item2, item2['name'])
