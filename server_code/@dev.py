@@ -52,3 +52,9 @@ def foo():
 
 def bar():
     return 'bar', 'BAR'
+
+
+def foo_bar():
+    rows = app_tables.app_background_tasks.search()
+    for row in rows:
+        print(row['task_id'], row['status'], row['result'])
