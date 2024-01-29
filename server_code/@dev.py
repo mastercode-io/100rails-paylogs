@@ -53,4 +53,4 @@ def foo():
 
 
 def bar():
-    return 'BAR'
+    return {'bar': 'BAR'}
