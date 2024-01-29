@@ -26,6 +26,7 @@ def add_enum_list():
         'Sunday',
         'Public Holiday',
         'Week',
+        'RDO',
     ]
     enum_values = {x: x for x in enum_options}
     enum = models.AppEnum(name=enum_name, options=enum_values).save()
