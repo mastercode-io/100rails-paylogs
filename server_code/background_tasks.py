@@ -14,7 +14,8 @@ def register_background_task(task_id, context=None, logged_user=None):
         bg_task_row['logged_user'] = logged_user
 
 
-def update_background_task(task_id, status, result=None):
+def update_background_task(task_id, status=None, result=None):
+    bg_task = anvil.server.get_background_task(task_id)
     bg_task_row = app_tables.app_background_tasks.get(task_id=task_id)
     if bg_task_row:
         bg_task_row['status'] = status
@@ -22,12 +23,15 @@ def update_background_task(task_id, status, result=None):
 
 
 @anvil.server.background_task
-def background_task_manager(func, logged_user=None, *args, **kwargs):
+def background_task_manager(logged_user, context, func, *args, **kwargs):
     if logged_user:
         save_logged_user(current_user=logged_user)
+    else:
+        logged_user = {}
     register_background_task(
         anvil.server.context.background_task_id,
-        logged_user=get_logged_user()
+        context=context,
+        logged_user=logged_user,
     )
     try:
         result = func(*args, **kwargs)

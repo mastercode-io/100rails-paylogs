@@ -26,6 +26,8 @@ def background_task(logged_user=None):
     # print('Background task started')
     print('background task context', anvil.server.context)
     print('logged_user', get_logged_user())
+    anvil.server.task_state = 'my bg task'
+    print('task_state', anvil.server.task_state)
     if logged_user:
         save_logged_user(current_user=logged_user)
     # print('AnvilFusion function', get_logged_user())
@@ -51,7 +53,10 @@ def foo():
 
 
 def bar():
-    return 'bar', 'BAR'
+    print('bar task state', anvil.server.task_state)
+    locations = models.Location.search()
+    for location in locations:
+        print(location['name'])
 
 
 @anvil.server.callable
