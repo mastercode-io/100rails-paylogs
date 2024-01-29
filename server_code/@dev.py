@@ -24,18 +24,18 @@ def update_background_task(task_id, status, result=None):
 
 @anvil.server.background_task
 def background_task(logged_user=None):
-    print('Background task started')
-    print('background task context', anvil.server.context)
+    # print('Background task started')
+    # print('background task context', anvil.server.context)
     if logged_user:
         save_logged_user(current_user=logged_user)
-    print('AnvilFusion function', get_logged_user())
+    # print('AnvilFusion function', get_logged_user())
     add_background_task(
         anvil.server.context.background_task_id,
         logged_user=get_logged_user()
     )
     result = bar()
     # result = None
-    print('bg_task_id', getattr(anvil.server.context, 'background_task_id', None))
+    # print('bg_task_id', getattr(anvil.server.context, 'background_task_id', None))
     update_background_task(
         anvil.server.context.background_task_id,
         status='finished',
