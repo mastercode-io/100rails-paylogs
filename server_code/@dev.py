@@ -55,9 +55,9 @@ def foo():
 def bar():
     print('bar context', anvil.server.context)
     location = models.Location(name='test', short_code='TST').save()
-    print('location', location, location['name'])
+    print('location', location, location['name'], location['uid'])
     item = models.Location.get(location['uid'])
-    print('item', item, item['name'])
+    print('item', item, item['name'], item['uid'])
     # item.update({'name': 'TEST'}).save()
     # print('item', item, item['name'])
     # item2 = models.Location.get_by('short_code', 'TST')
