@@ -56,4 +56,4 @@ def bar():
     print('bar context', anvil.server.context)
     location = models.Location(name='test', short_code='TST').save()
     print('location', location, location['name'])
-    return location.to_json_dict()
+    # return location.to_json_dict()
