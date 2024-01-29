@@ -1,6 +1,5 @@
 import anvil.server
 import anvil.users
-import uuid
 from AnvilFusion.server.utils import get_logged_user, save_logged_user
 from .app import models
 from anvil.tables import app_tables
@@ -25,7 +24,8 @@ def update_background_task(task_id, status, result=None):
 @anvil.server.background_task
 def background_task(logged_user=None):
     # print('Background task started')
-    # print('background task context', anvil.server.context)
+    print('background task context', anvil.server.context)
+    print('logged_user', get_logged_user())
     if logged_user:
         save_logged_user(current_user=logged_user)
     # print('AnvilFusion function', get_logged_user())
