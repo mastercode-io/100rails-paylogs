@@ -354,7 +354,6 @@ def post_items(resource, post_list, integration):
 def post_item(resource, post_data, integration):
     resource_class = resource['model']
     item = None
-    item_reference = None
     if post_data.get('uid', None) or post_data.get('link_id', None):
         if post_data.get('uid', None):
             item = resource_class.get(post_data['uid'])
