@@ -272,7 +272,7 @@ class Employee:
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-    role = Relationship("EmployeeRole", with_many=True)
+    role = Relationship("EmployeeRole")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     address_schema = {
         "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
