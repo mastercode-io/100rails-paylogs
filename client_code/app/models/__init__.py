@@ -268,6 +268,7 @@ class Employee:
 
     first_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     last_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mobile = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)

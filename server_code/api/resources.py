@@ -39,6 +39,7 @@ EMPLOYEE_JSON_SCHEMA = {
         'uid',
         'first_name',
         'last_name',
+        'short_code',
         'email',
         'mobile',
         'status',
