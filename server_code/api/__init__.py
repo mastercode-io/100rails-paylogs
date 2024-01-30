@@ -388,6 +388,7 @@ def post_item(resource, post_data, integration):
         if not item.get('remote_links', None):
             item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
+    print('item_data', item_data)
     item.update(item_data)
     item.save()
     item = resource_class.get(item['uid'])
