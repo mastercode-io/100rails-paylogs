@@ -166,7 +166,6 @@ db_schema:
     - {name: email, admin_ui: null, type: string}
     - {name: first_name, admin_ui: null, type: string}
     - {name: last_name, admin_ui: null, type: string}
-    - {name: role, admin_ui: null, type: link_multiple, target: employee_roles}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
@@ -181,6 +180,10 @@ db_schema:
     - name: short_code
       admin_ui: {width: 200, order: 0}
       type: string
+    - name: role
+      admin_ui: {width: 200}
+      type: link_single
+      target: employee_roles
     title: Employees
   app_in_api_credentials:
     client: none
