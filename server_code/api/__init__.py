@@ -270,19 +270,12 @@ def resource_endpoint(resource_name, resource_uid, **params):
             return anvil.server.HttpResponse(400, f'Invalid JSON body: expected list of {resource_name}')
         else:
             post_list = post_data[resource_name]
-        item_list, error_list = post_items(resource, post_list, integration)
-        if not error_list:
-            return anvil.server.HttpResponse(
-                200,
-                json.dumps({resource_name: item_list}),
-                {'content-type': 'application/json'},
-            )
-        else:
-            return anvil.server.HttpResponse(
-                207,
-                json.dumps({resource_name: item_list, 'errors': error_list}),
-                {'content-type': 'application/json'},
-            )
+        result = post_items(resource, post_list, integration)
+        return anvil.server.HttpResponse(
+            200 if not result['errors'] else 207,
+            json.dumps(result),
+            {'content-type': 'application/json'},
+        )
 
 
 @anvil.server.http_endpoint("/batch/:resource_name/:task_id", methods=["GET", "POST"])
@@ -352,7 +345,10 @@ def post_items(resource, post_list, integration):
             item_list.append(item_json)
         else:
             error_list.append(item_json)
-    return item_list, error_list
+    return {
+        resource['name']: item_list,
+        'errors': error_list,
+    }
 
 
 def post_item(resource, post_data, integration):

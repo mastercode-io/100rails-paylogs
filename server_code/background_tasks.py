@@ -10,12 +10,13 @@ import importlib
 def register_background_task(task_id, context=None, logged_user=None):
     bg_task_row = app_tables.app_background_tasks.get(task_id=task_id)
     if bg_task_row is None:
-        app_tables.app_background_tasks.add_row(task_id=task_id, context=context, logged_user=logged_user)
-    else:
-        bg_task_row['context'] = context
-        bg_task_row['logged_user'] = logged_user
-        bg_task_row['status'] = 'running'
-        bg_task_row['start_time'] = datetime.datetime.now()
+        app_tables.app_background_tasks.add_row(
+            task_id=task_id,
+            context=context,
+            logged_user=logged_user,
+            status='running',
+            start_time=datetime.datetime.now(),
+        )
 
 
 def update_background_task(task_id, status=None, result=None):
