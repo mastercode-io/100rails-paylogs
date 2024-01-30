@@ -332,7 +332,8 @@ def resource_batch_endpoint(resource_name, task_id, **params):
             'background_task_manager',
             fusion_server_utils.get_logged_user(),
             'API batch post request',
-            post_items,
+            post_items.__module__,
+            'post_items',
             resource, post_list, integration,
         )
         return anvil.server.HttpResponse(

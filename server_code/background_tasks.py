@@ -4,6 +4,7 @@ from AnvilFusion.server.utils import get_logged_user, save_logged_user
 from anvil.tables import app_tables
 import traceback
 import datetime
+import importlib
 
 
 def register_background_task(task_id, context=None, logged_user=None):
@@ -50,7 +51,7 @@ def get_background_task_status(task_id):
 
 
 @anvil.server.background_task
-def background_task_manager(logged_user, context, func, *args, **kwargs):
+def background_task_manager(logged_user, context, module_name, func_name, *args, **kwargs):
     if logged_user:
         save_logged_user(current_user=logged_user)
     else:
@@ -61,6 +62,8 @@ def background_task_manager(logged_user, context, func, *args, **kwargs):
         logged_user=logged_user,
     )
     try:
+        module = importlib.import_module(module_name)
+        func = getattr(module, func_name)
         result = func(*args, **kwargs)
         status = 'completed'
     except Exception as e:  # noqa
