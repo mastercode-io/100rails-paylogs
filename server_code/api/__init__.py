@@ -389,7 +389,7 @@ def post_item(resource, post_data, integration):
             item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
     item.update(item_data)
-    print('item data', item_data)
+    print('ITEM DATA', item_data)
     item.save()
     item = resource_class.get(item['uid'])
     item_json = item.to_json_dict(json_schema=resource['json_schema'], integration_uid=integration['uid'])
