@@ -271,14 +271,6 @@ def resource_endpoint(resource_name, resource_uid, **params):
         else:
             post_list = post_data[resource_name]
         item_list, error_list = post_items(resource, post_list, integration)
-        # item_list = []
-        # error_list = []
-        # for post_list_item in post_list:
-        #     item_json, error = post_item(resource, post_list_item, integration)
-        #     if not error:
-        #         item_list.append(item_json)
-        #     else:
-        #         error_list.append(item_json)
         if not error_list:
             return anvil.server.HttpResponse(
                 200,
@@ -293,7 +285,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
             )
 
 
-@anvil.server.http_endpoint("batch/:resource_name/:task_id", methods=["GET", "POST"])
+@anvil.server.http_endpoint("/batch/:resource_name/:task_id", methods=["GET", "POST"])
 def resource_batch_endpoint(resource_name, task_id, **params):
 
     integration, http_response = authenticate_request(anvil.server.request)
