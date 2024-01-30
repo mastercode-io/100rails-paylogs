@@ -45,8 +45,8 @@ def get_background_task_status(task_id):
             'task_id': bg_task_row['task_id'],
             'status': bg_task_row['status'],
             'result': bg_task_row['result'],
-            'start_time': bg_task_row['start_time'],
-            'updated_time': bg_task_row['updated_time'],
+            'start_time': bg_task_row['start_time'].isoformat() if bg_task_row['start_time'] else None,
+            'updated_time': bg_task_row['updated_time'].isoformat() if bg_task_row['updated_time'] else None,
         }
 
 
