@@ -340,20 +340,14 @@ def resource_batch_endpoint(resource_name, task_id, **params):
             'background_task_manager',
             fusion_server_utils.get_logged_user(),
             'API batch post request',
+            post_items,
             resource, post_list, integration,
         )
-        if not error_list:
-            return anvil.server.HttpResponse(
-                200,
-                json.dumps({resource_name: item_list}),
-                {'content-type': 'application/json'},
-            )
-        else:
-            return anvil.server.HttpResponse(
-                207,
-                json.dumps({resource_name: item_list, 'errors': error_list}),
-                {'content-type': 'application/json'},
-            )
+        return anvil.server.HttpResponse(
+            202,
+            json.dumps({'task_id': bg_task.get_id()}),
+            {'content-type': 'application/json'},
+        )
 
 
 def post_items(resource, post_list, integration):
