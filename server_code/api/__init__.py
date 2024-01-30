@@ -361,8 +361,10 @@ def post_item(resource, post_data, integration):
                 post_data['error'] = f"ValidationError, {resource['name']} not found: uid {post_data['uid']}"
                 return post_data, {'status': 404, 'error': post_data['error']}
     elif post_data.get('link_id', None):
+        print('remote_links', {integration['uid']: post_data['link_id']})
         item = resource_class.get_by('remote_links', {integration['uid']: post_data['link_id']})
-    if not item:
+        print('item', item)
+    if item is None:
         item = resource_class()
 
     item_data = {}
