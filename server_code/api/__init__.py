@@ -12,6 +12,8 @@ import time
 import signal
 from Crypto.Cipher import AES
 from .resources import *
+from ..background_tasks import *
+
 
 API_REQUEST_USER = 'api_request@oaylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
@@ -268,14 +270,15 @@ def resource_endpoint(resource_name, resource_uid, **params):
             return anvil.server.HttpResponse(400, f'Invalid JSON body: expected list of {resource_name}')
         else:
             post_list = post_data[resource_name]
-        item_list = []
-        error_list = []
-        for post_list_item in post_list:
-            item_json, error = post_item(resource, post_list_item, integration)
-            if not error:
-                item_list.append(item_json)
-            else:
-                error_list.append(item_json)
+        item_list, error_list = post_items(resource, post_list, integration)
+        # item_list = []
+        # error_list = []
+        # for post_list_item in post_list:
+        #     item_json, error = post_item(resource, post_list_item, integration)
+        #     if not error:
+        #         item_list.append(item_json)
+        #     else:
+        #         error_list.append(item_json)
         if not error_list:
             return anvil.server.HttpResponse(
                 200,
@@ -288,6 +291,81 @@ def resource_endpoint(resource_name, resource_uid, **params):
                 json.dumps({resource_name: item_list, 'errors': error_list}),
                 {'content-type': 'application/json'},
             )
+
+
+@anvil.server.http_endpoint("batch/:resource_name/:task_id", methods=["GET", "POST"])
+def resource_batch_endpoint(resource_name, task_id, **params):
+
+    integration, http_response = authenticate_request(anvil.server.request)
+    if integration is None:
+        return http_response
+    resource_name = resource_name.lower()
+    print(f"integration: {integration['service_name']}\n"
+          f"method: {anvil.server.request.method}, headers: {anvil.server.request.headers}\n"
+          f"resource_name: {resource_name}, task_id: {task_id}, params: {params}\n")
+
+    if anvil.server.request.method == "GET":
+        bg_task = get_background_task_status(task_id)
+        if not bg_task:
+            return anvil.server.HttpResponse(404, f'Invalid task_id: {task_id}')
+        else:
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps(bg_task),
+                {'content-type': 'application/json'},
+            )
+
+    elif anvil.server.request.method == "POST":
+        if task_id:
+            bg_task = get_background_task_status(task_id)
+            if bg_task:
+                return anvil.server.HttpResponse(400, f'Invalid request: cannot post to a task')
+        if resource_name not in API_RESOURCES:
+            return anvil.server.HttpResponse(404, f'Invalid resource name: {resource_name}')
+        resource = API_RESOURCES[resource_name]
+        post_data = anvil.server.request.body_json
+        if post_data is None:
+            try:
+                post_data = json.loads(anvil.server.request.body, strict=False)
+            except json.JSONDecodeError:
+                print(f'Invalid JSON body: {anvil.server.request.body}')
+                return anvil.server.HttpResponse(400, f'Invalid JSON body: {anvil.server.request.body}')
+        if resource_name not in post_data:
+            post_list = [post_data]
+        elif resource_name in post_data and not isinstance(post_data[resource_name], list):
+            return anvil.server.HttpResponse(400, f'Invalid JSON body: expected list of {resource_name}')
+        else:
+            post_list = post_data[resource_name]
+        bg_task = anvil.server.launch_background_task(
+            'background_task_manager',
+            fusion_server_utils.get_logged_user(),
+            'API batch post request',
+            resource, post_list, integration,
+        )
+        if not error_list:
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps({resource_name: item_list}),
+                {'content-type': 'application/json'},
+            )
+        else:
+            return anvil.server.HttpResponse(
+                207,
+                json.dumps({resource_name: item_list, 'errors': error_list}),
+                {'content-type': 'application/json'},
+            )
+
+
+def post_items(resource, post_list, integration):
+    item_list = []
+    error_list = []
+    for item in post_list:
+        item_json, error = post_item(resource, item, integration)
+        if not error:
+            item_list.append(item_json)
+        else:
+            error_list.append(item_json)
+    return item_list, error_list
 
 
 def post_item(resource, post_data, integration):
@@ -333,36 +411,3 @@ def post_item(resource, post_data, integration):
     item = resource_class.get(item['uid'])
     item_json = item.to_json_dict(json_schema=resource['json_schema'], integration_uid=integration['uid'])
     return item_json, None
-
-
-def post_data_bulk(resource, post_data, integration):
-    resource_class = resource['model']
-    item_list = []
-    error_list = []
-    for post_list_item in post_data:
-        item_json, error = post_item(resource, post_list_item, integration)
-        if not error:
-            item_list.append(item_json)
-        else:
-            error_list.append(item_json)
-    if not error_list:
-        return anvil.server.HttpResponse(
-            200,
-            json.dumps({resource_name: item_list}),
-            {'content-type': 'application/json'},
-        )
-    else:
-        return anvil.server.HttpResponse(
-            207,
-            json.dumps({resource_name: item_list, 'errors': error_list}),
-            {'content-type': 'application/json'},
-        )
-
-
-@anvil.server.background_task
-def long_running_task():
-    for i in range(10):
-        time.sleep(1)
-        print(i)
-        if i == 5:
-            raise Exception('error')
