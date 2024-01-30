@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: module, module: '@execute'}
+startup: {type: form, module: app.HomePage}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -178,6 +178,9 @@ db_schema:
       admin_ui: {width: 200, order: 0}
       type: number
     - {name: remote_links, admin_ui: null, type: simpleObject}
+    - name: short_code
+      admin_ui: {width: 200, order: 0}
+      type: string
     title: Employees
   app_in_api_credentials:
     client: none
