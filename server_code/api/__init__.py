@@ -270,7 +270,7 @@ def resource_endpoint(resource_name, resource_uid, **params):
             return anvil.server.HttpResponse(400, f'Invalid JSON body: expected list of {resource_name}')
         else:
             post_list = post_data[resource_name]
-        result = post_items(resource, post_list, integration)
+        result = post_items(resource['name'], resource['model'], resource['json_schema'], post_list, integration)
         return anvil.server.HttpResponse(
             200 if not result['errors'] else 207,
             json.dumps(result),
