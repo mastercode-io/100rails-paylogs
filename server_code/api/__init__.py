@@ -368,7 +368,7 @@ def post_item(resource_name, resource_model, resource_json_schema, post_data, in
     item_data = {}
     for field in resource_json_schema['fields']:
         if field in post_data:
-            item_data[field] = post_data[field]
+            item_data[field] = type_check(post_data[field], resource_model._attributes[field].field_type)
     for relationship in resource_json_schema.get('relationships', {}):
         if relationship in post_data:
             rel_json = post_data[relationship]

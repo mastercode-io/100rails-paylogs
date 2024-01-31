@@ -1,8 +1,38 @@
+from AnvilFusion.datamodel import types
 from ..app import models
 from anvil.tables import query as q
 import anvil.tables as tables
-import json
 import datetime
+from AnvilFusion.datamodel import types
+
+
+def type_check(value, field_type):
+    try:
+        if field_type == types.FieldTypes.DATE:
+            return datetime.date.fromisoformat(value)
+        elif field_type == types.FieldTypes.DATETIME:
+            return datetime.datetime.fromisoformat(value)
+        elif field_type == types.FieldTypes.TIME:
+            return datetime.datetime.fromisoformat(value)
+        elif field_type == types.FieldTypes.NUMBER:
+            return float(value)
+        elif field_type == types.FieldTypes.DECIMAL:
+            return float(value)
+        elif field_type == types.FieldTypes.CURRENCY:
+            return float(value)
+        elif field_type == types.FieldTypes.BOOLEAN:
+            if isinstance(value, str):
+                if value.lower() in ['true', 'yes', '1']:
+                    return True
+                elif value.lower() in ['false', 'no', '0']:
+                    return False
+                else:
+                    return None
+            return bool(value)
+        else:
+            return value
+    except Exception as e: # noqa
+        return None
 
 
 def get_timesheet_filters(params, integration_uid):
