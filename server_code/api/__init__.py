@@ -375,7 +375,7 @@ def post_item(resource_name, resource_model, resource_json_schema, post_data, in
             if rel_json:
                 if 'uid' in rel_json:
                     item_data[relationship] = {'uid': rel_json['uid']}
-                elif 'link_id' in rel_json:
+                elif 'link_id' in rel_json and rel_json['link_id'] is not None:
                     rel_item = next(iter(resource_class._relationships[relationship].cls.search(
                         remote_links={integration['uid']: rel_json['link_id']}
                     )), None)
