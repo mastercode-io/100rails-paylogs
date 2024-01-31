@@ -340,25 +340,25 @@ def post_items(resource_name, resource_model, resource_json_schema, post_list, i
     item_list = []
     error_list = []
     for item in post_list:
-        item_json, error = post_item(resource, item, integration)
+        item_json, error = post_item(resource_name, resource_model, resource_json_schema, item, integration)
         if not error:
             item_list.append(item_json)
         else:
             error_list.append(item_json)
     return {
-        resource['name']: item_list,
+        resource_name: item_list,
         'errors': error_list,
     }
 
 
-def post_item(resource, post_data, integration):
-    resource_class = resource['model']
+def post_item(resource_name, resource_model, resource_json_schema, post_data, integration):
+    resource_class = resource_model
     item = None
     if post_data.get('uid', None) or post_data.get('link_id', None):
         if post_data.get('uid', None):
             item = resource_class.get(post_data['uid'])
             if item is None:
-                post_data['error'] = f"ValidationError, {resource['name']} not found: uid {post_data['uid']}"
+                post_data['error'] = f"ValidationError, {resource_name} not found: uid {post_data['uid']}"
                 return post_data, {'status': 404, 'error': post_data['error']}
         elif post_data.get('link_id', None):
             item = resource_class.get_by('remote_links', {integration['uid']: post_data['link_id']})
@@ -366,10 +366,10 @@ def post_item(resource, post_data, integration):
         item = resource_class()
 
     item_data = {}
-    for field in resource['json_schema']['fields']:
+    for field in resource_json_schema['fields']:
         if field in post_data:
             item_data[field] = post_data[field]
-    for relationship in resource['json_schema'].get('relationships', {}):
+    for relationship in resource_json_schema.get('relationships', {}):
         if relationship in post_data:
             rel_json = post_data[relationship]
             if rel_json:
@@ -392,5 +392,5 @@ def post_item(resource, post_data, integration):
     item.update(item_data)
     item.save()
     item = resource_class.get(item['uid'])
-    item_json = item.to_json_dict(json_schema=resource['json_schema'], integration_uid=integration['uid'])
+    item_json = item.to_json_dict(json_schema=resource_json_schema, integration_uid=integration['uid'])
     return item_json, None
