@@ -559,18 +559,26 @@ db_schema:
     client: none
     server: full
     columns:
-    - {name: configuration, admin_ui: null, type: simpleObject}
-    - {name: uid, admin_ui: null, type: string}
+    - name: configuration
+      admin_ui: {order: -0.5}
+      type: simpleObject
+    - name: uid
+      admin_ui: {order: -1}
+      type: string
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: description, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: name, admin_ui: null, type: string}
-    - {name: short_code, admin_ui: null, type: string}
+    - name: short_code
+      admin_ui: {order: 0}
+      type: string
     - {name: created_by, admin_ui: null, type: string}
     - {name: status, admin_ui: null, type: string}
-    - {name: remote_links, admin_ui: null, type: simpleObject}
+    - name: remote_links
+      admin_ui: {order: 0}
+      type: simpleObject
   job_types:
     title: Job Types
     client: none
