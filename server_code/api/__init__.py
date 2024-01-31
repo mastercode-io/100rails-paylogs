@@ -388,7 +388,8 @@ def post_item(resource_name, resource_model, resource_json_schema, post_data, in
         if not item.get('remote_links', None):
             item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
-    # print('item_data', item_data)
+    print('item_data', item_data)
+    print(item['date'], item['start_time'], item['end_time'])
     item.update(item_data)
     item.save()
     item = resource_class.get(item['uid'])
