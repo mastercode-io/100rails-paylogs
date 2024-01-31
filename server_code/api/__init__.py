@@ -327,7 +327,7 @@ def resource_batch_endpoint(resource_name, task_id, **params):
             'API batch post request',
             post_items.__module__,
             'post_items',
-            resource, post_list, integration,
+            resource['name'], resource['model'], resource['json_schema'], post_list, integration,
         )
         return anvil.server.HttpResponse(
             202,
@@ -336,7 +336,7 @@ def resource_batch_endpoint(resource_name, task_id, **params):
         )
 
 
-def post_items(resource, post_list, integration):
+def post_items(resource_name, resource_model, resource_json_schema, post_list, integration):
     item_list = []
     error_list = []
     for item in post_list:
@@ -388,7 +388,7 @@ def post_item(resource, post_data, integration):
         if not item.get('remote_links', None):
             item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
-    print('item_data', item_data)
+    # print('item_data', item_data)
     item.update(item_data)
     item.save()
     item = resource_class.get(item['uid'])

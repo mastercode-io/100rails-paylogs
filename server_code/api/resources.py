@@ -68,7 +68,6 @@ EMPLOYEE_ROLE_JSON_SCHEMA = {
     ]
 }
 
-
 JOB_JSON_SCHEMA = {
     'fields': [
         'uid',
@@ -293,4 +292,3 @@ API_RESOURCES = {
         'filters': None,
     },
 }
-
