@@ -43,34 +43,35 @@ class TimesheetListView(GridView):
 
         anvil.js.window['captionTimesheetListView'] = self.grouping_caption
         anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
-        self.grid.allowGrouping = True
-        self.grid.groupSettings = {
-            'columns': ['employee__full_name'],
-            'showDropArea': False,
-            # 'captionTemplate': '<div>${key} - ${data}</div>',
-            'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
-        }
-        self.grid.aggregates = [{
-            'columns': [
-                {
-                    'type': 'Custom',
-                    'field': 'total_hours_view',
-                    'columnName': 'total_hours_view',
-                    'groupCaptionTemplate': '${Custom}',
-                    # 'customAggregate': 'timesheetListGroupingTotalHours',
-                    'customAggregate': self.grouping_total_hours,
-                    # 'customAggregate': anvil.js.window['timesheetListGroupingTotalHours'],
-                },
-            ],
-        }]
-        self.grid.allowSorting = True
-        self.grid.sortSettings = {
-            'columns': [
-                {'field': 'employee__full_name', 'direction': 'Ascending'},
-                {'field': 'date', 'direction': 'Ascending'}
-            ]
-        }
+        # self.grid.allowGrouping = True
+        # self.grid.groupSettings = {
+        #     'columns': ['employee__full_name'],
+        #     'showDropArea': False,
+        #     # 'captionTemplate': '<div>${key} - ${data}</div>',
+        #     'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+        # }
+        # self.grid.aggregates = [{
+        #     'columns': [
+        #         {
+        #             'type': 'Custom',
+        #             'field': 'total_hours_view',
+        #             'columnName': 'total_hours_view',
+        #             'groupCaptionTemplate': '${Custom}',
+        #             # 'customAggregate': 'timesheetListGroupingTotalHours',
+        #             'customAggregate': self.grouping_total_hours,
+        #             # 'customAggregate': anvil.js.window['timesheetListGroupingTotalHours'],
+        #         },
+        #     ],
+        # }]
+        # self.grid.allowSorting = True
+        # self.grid.sortSettings = {
+        #     'columns': [
+        #         {'field': 'employee__full_name', 'direction': 'Ascending'},
+        #         {'field': 'date', 'direction': 'Ascending'}
+        #     ]
+        # }
         self.first_load = True
+
 
     def grouping_caption(self, args):
         # print('due_date_caption', args)
@@ -78,6 +79,7 @@ class TimesheetListView(GridView):
         caption_color = 'color:#6750A4;'
         return (f'<div class="template" style="{caption_color}">'
                 f'{args.items[0].employee__full_name}</div>')
+
 
     def grouping_total_hours(self, data, column):
         # print('\n\ngrouping_total_hours\n\n', data, column)
@@ -87,6 +89,7 @@ class TimesheetListView(GridView):
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
         return f"{hours}:{minutes:02d} week"
+
 
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
@@ -187,6 +190,7 @@ class TimesheetListView(GridView):
         for pl in pay_lines:
             print(pl)
 
+
     @staticmethod
     def calculate_pay_lines(
             time_frames=None,
@@ -246,6 +250,7 @@ class TimesheetListView(GridView):
                 }
                 pay_lines.append(pay_line)
         return unallocated_time_frames, pay_lines
+
 
     @staticmethod
     def calculate_week_overtime(pay_lines=None, pay_items=None):
