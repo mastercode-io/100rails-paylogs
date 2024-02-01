@@ -63,13 +63,13 @@ class TimesheetListView(GridView):
         #         },
         #     ],
         # }]
-        # self.grid.allowSorting = True
-        # self.grid.sortSettings = {
-        #     'columns': [
-        #         {'field': 'employee__full_name', 'direction': 'Ascending'},
-        #         {'field': 'date', 'direction': 'Ascending'}
-        #     ]
-        # }
+        self.grid.allowSorting = True
+        self.grid.sortSettings = {
+            'columns': [
+                {'field': 'employee__full_name', 'direction': 'Ascending'},
+                {'field': 'date', 'direction': 'Ascending'}
+            ]
+        }
         self.first_load = True
 
 
