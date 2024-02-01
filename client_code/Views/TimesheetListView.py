@@ -87,7 +87,10 @@ class TimesheetListView(GridView):
         week_total = 0
         for day in data.items:
             print(day['total_hours'])
-            week_total += day['total_hours']
+            if day['total_hours']:
+                week_total += day['total_hours']
+            else:
+                print(type(day['total_hours']))
         print('week_total', week_total)
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
