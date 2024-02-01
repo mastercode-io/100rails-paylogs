@@ -80,9 +80,11 @@ class TimesheetListView(GridView):
                 f'{args.items[0].employee__full_name}</div>')
 
     def grouping_total_hours(self, data, column):
-        print('\n\ngrouping_total_hours\n\n', data, column)
+        print('\n\ngrouping_total_hours\n\n', data)
         if isinstance(data, list):
+            print('data is list')
             return
+        print('data is not list')
         week_total = sum(day['total_hours'] for day in data.items)
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
