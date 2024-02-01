@@ -53,7 +53,7 @@ class TimesheetListView(GridView):
         self.grid.aggregates = [{
             'columns': [
                 {
-                    'type': 'Custom',
+                    'type': 'custom',
                     'field': 'total_hours_view',
                     'columnName': 'total_hours_view',
                     'groupCaptionTemplate': '${Custom}',
