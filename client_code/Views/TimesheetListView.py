@@ -53,7 +53,7 @@ class TimesheetListView(GridView):
         self.grid.aggregates = [{
             'columns': [
                 {
-                    'type': 'custom',
+                    'type': 'Custom',
                     'field': 'total_hours_view',
                     'columnName': 'total_hours_view',
                     'groupCaptionTemplate': '${Custom}',
@@ -80,7 +80,7 @@ class TimesheetListView(GridView):
                 f'{args.items[0].employee__full_name}</div>')
 
     def grouping_total_hours(self, data, column):
-        # print('\n\ngrouping_total_hours\n\n', data, column)
+        print('\n\ngrouping_total_hours\n\n', data, column)
         if isinstance(data, list):
             return
         week_total = sum(day['total_hours'] for day in data.items)
