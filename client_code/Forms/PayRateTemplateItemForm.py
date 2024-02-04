@@ -1,5 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.components.SubformGrid import SubformGrid
 from ..app.models import PayRateRule
 
 
@@ -18,17 +19,57 @@ class PayRateTemplateItemForm(FormBase):
         self.pay_rate_multiplier = NumberInput(name='pay_rate_multiplier', label='Multiplier', format='p2')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
-        fields = [
-            self.pay_rate_rule,
-            self.default_pay_category,
-            self.default_pay_rate_title,
-            self.default_pay_rate,
-            self.pay_rate_multiplier,
-            self.order_number,
-            self.status,
+        specific_roles_view = {
+            'model': 'PayRateTemplateSpecificRole',
+            'columns': [
+                {'name': 'name', 'label': 'Name'},
+                {'name': 'employee_role', 'label': 'Employee Role'},
+                {'name': 'pay_category.name', 'label': 'Payroll Category'},
+                {'name': 'pay_rate', 'label': 'Rate'},
+            ],
+        }
+        self.specific_roles = SubformGrid(
+            name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
+            link_model='PayRateTemplate', link_field='pay_rate_template',
+            add_edit_form='PayRateTemplateItemForm', form_container_id=kwargs.get('target'),
+            view_config=specific_roles_view,
+        )
+
+        sections = [
+            {
+                'name': '_', 'rows': [
+                    [
+                        self.pay_rate_rule,
+                        self.order_number,
+                        self.status,
+                    ],
+                    [
+                        self.default_pay_category,
+                        self.default_pay_rate_title,
+                        self.default_pay_rate,
+                        self.pay_rate_multiplier,
+                    ],
+                ]
+            },
+            {
+                'name': '_', 'rows': [
+                    [self.specific_roles],
+                ]
+            }
         ]
 
-        super().__init__(fields=fields, **kwargs)
+        # fields = [
+        #     self.pay_rate_rule,
+        #     self.default_pay_category,
+        #     self.default_pay_rate_title,
+        #     self.default_pay_rate,
+        #     self.pay_rate_multiplier,
+        #     self.order_number,
+        #     self.status,
+        # ]
+
+        super().__init__(sections=sections, **kwargs)
+        self.fullscreen = True
 
     def pay_rate_rule_selected(self, args):
         print('pay_rate_rule_selected', self.pay_rate_rule.value, args)

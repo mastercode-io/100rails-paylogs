@@ -37,12 +37,12 @@ class PayRateTemplateForm(FormBase):
                 'name': '_', 'cols': [
                     [self.name, self.scope],
                     [self.description, self.status],
-            ]
+                ]
             },
             {
                 'name': '_', 'rows': [
                     [self.items],
-            ]
+                ]
             }
         ]
 
