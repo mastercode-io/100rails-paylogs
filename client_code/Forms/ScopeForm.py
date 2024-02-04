@@ -27,7 +27,7 @@ class ScopeForm(FormBase):
 
         super().__init__(fields=fields, **kwargs)
         self.scope_type_on_change({})
-        print('ScopeForm', self.data)
+        print('ScopeForm', self.data, self.data['short_code'])
 
     def scope_type_on_change(self, args):
         print('scope_type_on_change', self.type.value, args)
@@ -38,4 +38,4 @@ class ScopeForm(FormBase):
         else:
             self.short_code.options = []
         self.short_code.enabled = True if self.short_code.options else False
-        self.short_code.value = self.data.get('short_code', None)
+        self.short_code.value = self.data['short_code']
