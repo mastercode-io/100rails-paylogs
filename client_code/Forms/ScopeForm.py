@@ -37,3 +37,4 @@ class ScopeForm(FormBase):
         else:
             self.short_code.options = []
         self.short_code.enabled = True if self.short_code.options else False
+        self.short_code.value = self.data.get('short_code', None)
