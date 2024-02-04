@@ -421,7 +421,7 @@ class PayRateTemplate:
 @model_type
 class PayRateTemplateItem:
     _title = "pay_rate_title"
-    # pay_rate_template = Relationship("PayRateTemplate")
+    pay_rate_template = Relationship("PayRateTemplate")
     pay_rate_rule = Relationship("PayRateRule")
     default_pay_category = Relationship("PayCategory")
     default_pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
