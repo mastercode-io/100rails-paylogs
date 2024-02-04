@@ -428,7 +428,7 @@ class PayRateTemplateItem:
     pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
     default_pay_rate_title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     order_number = Attribute(field_type=types.FieldTypes.NUMBER)
-    # specific_roles = Relationship("PayRateTemplateSpecificRole", with_many=True)
+    specific_roles = Relationship("PayRateTemplateSpecificRole", with_many=True)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
