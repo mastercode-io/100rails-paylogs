@@ -299,7 +299,7 @@ class EmployeeRole:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-    pay_rate_template = Relationship("PayRateTemplate")
+    # pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
