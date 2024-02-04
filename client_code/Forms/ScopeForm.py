@@ -19,9 +19,9 @@ class ScopeForm(FormBase):
 
         fields = [
             self.name,
+            self.type,
             self.short_code,
             self.description,
-            self.type,
             self.status,
         ]
 
