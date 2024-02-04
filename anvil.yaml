@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: app.HomePage}
+startup: {type: module, module: '@migrate'}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -57,30 +57,6 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \ />\n<script src=\"https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.all.min.js\"\
     ></script>\n"}
 db_schema:
-  pay_rate_template_items:
-    client: none
-    server: full
-    columns:
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: pay_rate, admin_ui: null, type: number}
-    - {name: pay_rate_multiplier, admin_ui: null, type: number}
-    - {name: pay_rate_rule, admin_ui: null, type: link_single, target: pay_rate_rules}
-    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
-    - {name: pay_rate_title, admin_ui: null, type: string}
-    - {name: status, admin_ui: null, type: string}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: updated_time, admin_ui: null, type: datetime}
-    - name: order_number
-      admin_ui: {order: 0, width: 200}
-      type: number
-    - name: pay_category
-      admin_ui: {width: 200}
-      type: link_single
-      target: pay_categories
-    title: Pay Rate Template Items
   user_roles:
     client: none
     server: full
@@ -243,6 +219,16 @@ db_schema:
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: updated_by, admin_ui: null, type: string}
     title: Files
+  pa_yrate_template_items:
+    title: Pa yRate Template Items
+    client: none
+    server: full
+    columns: []
+  pa_yrate_template_specific_roles:
+    title: Pa yRate Template Specific Roles
+    client: none
+    server: full
+    columns: []
   uploads:
     client: none
     server: full
@@ -381,7 +367,6 @@ db_schema:
     - {name: name, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: uid, admin_ui: null, type: string}
-    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: status, admin_ui: null, type: string}
     - name: remote_links
       admin_ui: {width: 200, order: 0}
@@ -591,7 +576,6 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
     - {name: description, admin_ui: null, type: string}
     - {name: short_code, type: string}
     - name: remote_links
@@ -720,17 +704,7 @@ db_schema:
     title: Pay Rate Templates
     client: none
     server: full
-    columns:
-    - {name: uid, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: description, admin_ui: null, type: string}
-    - {name: name, admin_ui: null, type: string}
-    - {name: status, admin_ui: null, type: string}
-    - {name: scope, admin_ui: null, type: link_single, target: scopes}
+    columns: []
   payrun_items:
     client: none
     server: full
@@ -782,10 +756,6 @@ db_schema:
     - name: status
       admin_ui: {order: -0.25}
       type: string
-    - name: pay_rate_template
-      admin_ui: {order: -0.375}
-      type: link_single
-      target: pay_rate_templates
     - name: remote_links
       admin_ui: {width: 200, order: -0.3125}
       type: simpleObject
