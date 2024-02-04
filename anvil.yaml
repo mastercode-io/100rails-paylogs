@@ -57,6 +57,11 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \ />\n<script src=\"https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.all.min.js\"\
     ></script>\n"}
 db_schema:
+  pay_rate_template_items:
+    title: Pay Rate Template Items
+    client: none
+    server: full
+    columns: []
   user_roles:
     client: none
     server: full
@@ -219,16 +224,6 @@ db_schema:
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: updated_by, admin_ui: null, type: string}
     title: Files
-  pa_yrate_template_items:
-    title: Pa yRate Template Items
-    client: none
-    server: full
-    columns: []
-  pa_yrate_template_specific_roles:
-    title: Pa yRate Template Specific Roles
-    client: none
-    server: full
-    columns: []
   uploads:
     client: none
     server: full
@@ -335,6 +330,11 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+  pay_rate_template_specific_roles:
+    title: Pay Rate Template Specific Roles
+    client: none
+    server: full
+    columns: []
   businesses:
     title: Businesses
     client: none
