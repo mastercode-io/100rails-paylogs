@@ -27,10 +27,8 @@ class ScopeForm(FormBase):
 
         super().__init__(fields=fields, **kwargs)
         self.scope_type_on_change({})
-        print('ScopeForm', self.data, self.data['short_code'])
 
     def scope_type_on_change(self, args):
-        print('scope_type_on_change', self.type.value, args)
         if self.type.value is None or args.get('value', None) is None:
             self.short_code.options = []
         elif self.type.value['name'] == 'Job Type':
