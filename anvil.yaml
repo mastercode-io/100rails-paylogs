@@ -61,7 +61,22 @@ db_schema:
     title: Pay Rate Template Items
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: default_pay_category, admin_ui: null, type: link_single, target: pay_categories}
+    - {name: default_pay_rate, admin_ui: null, type: number}
+    - {name: default_pay_rate_title, admin_ui: null, type: string}
+    - {name: order_number, admin_ui: null, type: number}
+    - {name: pay_rate_multiplier, admin_ui: null, type: number}
+    - {name: pay_rate_rule, admin_ui: null, type: link_single, target: pay_rate_rules}
+    - {name: pay_rate_template, admin_ui: null, type: link_single, target: pay_rate_templates}
+    - {name: specific_roles, admin_ui: null, type: link_multiple, target: pay_rate_template_specific_roles}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
   user_roles:
     client: none
     server: full
@@ -334,7 +349,19 @@ db_schema:
     title: Pay Rate Template Specific Roles
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: employee_role, admin_ui: null, type: link_single, target: employee_roles}
+    - {name: name, admin_ui: null, type: string}
+    - {name: pay_category, admin_ui: null, type: link_single, target: pay_categories}
+    - {name: pay_rate, admin_ui: null, type: number}
+    - {name: pay_rate_template_item, admin_ui: null, type: link_single, target: pay_rate_template_items}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
   businesses:
     title: Businesses
     client: none
@@ -704,7 +731,18 @@ db_schema:
     title: Pay Rate Templates
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: pay_rate_items, admin_ui: null, type: link_multiple, target: pay_rate_template_items}
+    - {name: scope, admin_ui: null, type: link_single, target: scopes}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
   payrun_items:
     client: none
     server: full
