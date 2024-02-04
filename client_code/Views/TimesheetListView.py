@@ -17,6 +17,7 @@ class TimesheetListView(GridView):
             'model': 'Timesheet',
             'columns': [
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
+                {'name': 'timesheet_type.short_code', 'label': 'Time Type'},
                 {'name': 'date', 'label': 'Date'},
                 {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
                 {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
@@ -27,7 +28,7 @@ class TimesheetListView(GridView):
                 {'name': 'pay_lines_view', 'label': 'Pay Lines', 'width': 300, 'disable_html_encode': False},
                 {'name': 'status', 'label': 'Status'},
                 {'name': 'job.name', 'label': 'Job Name'},
-                {'name': 'timesheet_type.short_code', 'label': 'Time Type'},
+                {'name': 'job.job_type.short_code', 'label': 'Job Type'},
             ],
         }
 
