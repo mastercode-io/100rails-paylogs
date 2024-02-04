@@ -30,8 +30,8 @@ class PayRateTemplateItemForm(FormBase):
         }
         self.specific_roles = SubformGrid(
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
-            link_model='PayRateTemplate', link_field='pay_rate_template',
-            add_edit_form='PayRateTemplateItemForm', form_container_id=kwargs.get('target'),
+            link_model='PayRateTemplateSpecificRole', link_field='pay_rate_template_item',
+            add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
             view_config=specific_roles_view,
         )
 
