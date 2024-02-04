@@ -27,6 +27,7 @@ class ScopeForm(FormBase):
 
         super().__init__(fields=fields, **kwargs)
         self.scope_type_on_change({})
+        print('ScopeForm', self.data)
 
     def scope_type_on_change(self, args):
         print('scope_type_on_change', self.type.value, args)
