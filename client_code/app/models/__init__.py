@@ -325,7 +325,7 @@ class JobType:
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    pay_rate_template = Relationship("PayRateTemplate")
+    # pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
@@ -346,7 +346,7 @@ class Location:
         "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
-    pay_rate_template = Relationship("PayRateTemplate")
+    # pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
@@ -407,8 +407,6 @@ class PayRateRule:
     }
     calculation_settings = Attribute(field_type=types.FieldTypes.OBJECT, schema=calculation_settings_schema)
 
-    # def apply_rule(self, ):
-
 
 @model_type
 class PayRateTemplate:
@@ -416,6 +414,7 @@ class PayRateTemplate:
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     scope = Relationship("Scope")
+    pay_rate_items = Relationship("PayRateTemplateItem", with_many=True)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
@@ -424,11 +423,23 @@ class PayRateTemplateItem:
     _title = "pay_rate_title"
     pay_rate_template = Relationship("PayRateTemplate")
     pay_rate_rule = Relationship("PayRateRule")
+    default_pay_category = Relationship("PayCategory")
+    default_pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
+    pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
+    default_pay_rate_title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    order_number = Attribute(field_type=types.FieldTypes.NUMBER)
+    specific_roles = Relationship("PayRateTemplateSpecificRole", with_many=True)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+class PayRateTemplateSpecificRole:
+    _title = "name"
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    pay_rate_template = Relationship("PayRateTemplate")
+    employee_role = Relationship("EmployeeRole")
     pay_category = Relationship("PayCategory")
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-    pay_rate_multiplier = Attribute(field_type=types.FieldTypes.NUMBER)
-    pay_rate_title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    order_number = Attribute(field_type=types.FieldTypes.NUMBER)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
