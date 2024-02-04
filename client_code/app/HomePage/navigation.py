@@ -9,13 +9,11 @@ from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.features.developer.MigratePage import MigratePage
 from ...Pages import CopilotChat
 
-
 # Sidebar control CSS
 PL_SIDEBAR_CSS = 'e-inherit e-caret-hide pm-sidebar-menu'
 PL_SIDEBAR_WIDTH = 200
 PL_SIDEBAR_POPUP_OFFSET = 1
 PL_ASSISTANT_WIDTH = 300
-
 
 # Appbar menu item list
 PL_APPBAR_MENU = [
@@ -30,7 +28,6 @@ PL_APPBAR_MENU_ADMIN = [
 PL_APPBAR_MENU_DEVELOPER = [
     {'id': 'developer_menu', 'text': 'Developer', 'items': []},
 ]
-
 
 # Sidebar menu item list
 PL_SIDEBAR_MENUS = {
@@ -94,7 +91,6 @@ PL_SIDEBAR_MENUS = {
     ]
 }
 
-
 # Navigation items/actions
 PL_NAV_ITEMS = {
     'timesheet_manage': {'class': 'TimesheetListView', 'type': 'custom', 'action': 'open', 'props': {}},
@@ -157,7 +153,6 @@ class AppbarMenu:
         self.selected_el = None
         self.menu = None
 
-
     def show(self):
         print('AppBar Show')
         if self.menu:
@@ -169,7 +164,6 @@ class AppbarMenu:
                 'select': self.menu_select
             })
             self.menu.appendTo(jQuery(f"#{self.container_el}")[0])
-
 
     def menu_select(self, args):
         if self.selected_el is not None:
@@ -199,7 +193,6 @@ class Assistant:
         self.chat = None
         self.open = False
         self.toggled = False
-
 
     # Show sidebar menu
     def show(self):
@@ -233,7 +226,6 @@ class Assistant:
             # self.chat.form_show()
             self.control.hide()
 
-
     # Sidebar toggle
     def toggle(self, args):
         # print('toggle assistant')
@@ -251,7 +243,6 @@ class Assistant:
         # if not self.open:
         #     self.control.hide()
 
-
     def sidebar_event(self, args):
         if self.toggled:
             self.toggled = False
@@ -263,7 +254,6 @@ class Assistant:
         #     self.control.show()
         # else:
         #     self.control.hide()
-
 
 
 # Sidebar navigation class
@@ -291,7 +281,6 @@ class Sidebar:
         self.control = None
         self.menu = None
         self.open = True
-
 
     # Show sidebar menu
     def show(self, menu_id):
@@ -325,7 +314,6 @@ class Sidebar:
 
         self.show_menu(menu_id)
 
-
     # Sidebar toggle
     def toggle(self, args):
         if self.open:
@@ -341,14 +329,12 @@ class Sidebar:
         # if not self.open:
         #     self.control.hide()
 
-
     def sidebar_event(self, args):
         print('sidebar event', args)
         if args.name == 'open' and self.open:
             args.cancel = True
         elif args.name == 'close' and not self.open:
             args.cancel = True
-
 
     def show_menu(self, menu_id):
         # self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, list(PL_SIDEBAR_MENUS.keys())[0])
@@ -363,7 +349,6 @@ class Sidebar:
                     item['expanded'] = True
             self.menu.fields.dataSource = menu_items
             self.menu_select(None, subcomponent=subcomponent)
-
 
     def menu_select(self, args, subcomponent=None, menu_item_id=None):
         if subcomponent is None:
@@ -387,7 +372,7 @@ class Sidebar:
         if component['type'] == 'custom':
             try:
                 view_class = getattr(AppEnv.views, component['class'])
-                self.content_control = view_class(container_id=nav_container_id,**component.get('props', {}))
+                self.content_control = view_class(container_id=nav_container_id, **component.get('props', {}))
             except Exception as e:
                 print(e)
 
@@ -448,7 +433,6 @@ class Sidebar:
         if 'subcomponent' in component:
             time.sleep(0.5)
             self.menu_select(None, subcomponent=component['subcomponent'])
-
 
     def refresh_content(self):
         if self.content_control:
