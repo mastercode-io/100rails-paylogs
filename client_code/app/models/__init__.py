@@ -436,7 +436,7 @@ class PayRateTemplateItem:
 class PayRateTemplateSpecificRole:
     _title = "name"
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    # pay_rate_template_item = Relationship("PayRateTemplateItem")
+    pay_rate_template_item = Relationship("PayRateTemplateItem")
     employee_role = Relationship("EmployeeRole")
     pay_category = Relationship("PayCategory")
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
