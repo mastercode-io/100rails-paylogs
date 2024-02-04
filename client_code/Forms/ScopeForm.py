@@ -26,7 +26,7 @@ class ScopeForm(FormBase):
         ]
 
         super().__init__(fields=fields, **kwargs)
-        # self.fullscreen = True
+        self.scope_type_on_change({})
 
     def scope_type_on_change(self, args):
         print('scope_type_on_change', self.type.value, args)
