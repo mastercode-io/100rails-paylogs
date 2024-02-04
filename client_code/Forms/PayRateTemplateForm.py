@@ -17,12 +17,12 @@ class PayRateTemplateForm(FormBase):
             'model': 'PayRateTemplateItem',
             'columns': [
                 {'name': 'order_number', 'label': 'Order'},
-                {'name': 'default_pay_rate_title', 'label': 'Title'},
-                {'name': 'pay_rate_rule.name', 'label': 'Rule'},
-                {'name': 'default_pay_category.name', 'label': 'Payroll Category'},
-                {'name': 'default_pay_rate', 'label': 'Rate'},
-                {'name': 'pay_rate_multiplier', 'label': 'Multiplier'},
-                {'name': 'status', 'label': 'Status'},
+                # {'name': 'default_pay_rate_title', 'label': 'Title'},
+                # {'name': 'pay_rate_rule.name', 'label': 'Rule'},
+                # {'name': 'default_pay_category.name', 'label': 'Payroll Category'},
+                # {'name': 'default_pay_rate', 'label': 'Rate'},
+                # {'name': 'pay_rate_multiplier', 'label': 'Multiplier'},
+                # {'name': 'status', 'label': 'Status'},
             ],
         }
         self.items = SubformGrid(name='items', label='Pay Rate Rules', model='PayRateTemplateItem',
