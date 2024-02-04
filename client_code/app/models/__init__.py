@@ -421,7 +421,7 @@ class PayRateTemplate:
 @model_type
 class PayRateTemplateItem:
     _title = "pay_rate_title"
-    pay_rate_template = Relationship("PayRateTemplate")
+    # pay_rate_template = Relationship("PayRateTemplate")
     pay_rate_rule = Relationship("PayRateRule")
     default_pay_category = Relationship("PayCategory")
     default_pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
@@ -436,7 +436,7 @@ class PayRateTemplateItem:
 class PayRateTemplateSpecificRole:
     _title = "name"
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    pay_rate_template = Relationship("PayRateTemplate")
+    # pay_rate_template_item = Relationship("PayRateTemplateItem")
     employee_role = Relationship("EmployeeRole")
     pay_category = Relationship("PayCategory")
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
