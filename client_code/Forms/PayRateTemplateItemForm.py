@@ -32,12 +32,12 @@ class PayRateTemplateItemForm(FormBase):
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
             link_model='PayRateTemplateSpecificRole', link_field='pay_rate_template_item',
             add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
-            view_config=specific_roles_view,
+            view_config=specific_roles_view, edit_mode='inline',
         )
 
         sections = [
             {
-                'name': '_', 'rows': [
+                'name': '_', 'cols': [
                     [
                         self.pay_rate_rule,
                         self.order_number,
@@ -57,16 +57,6 @@ class PayRateTemplateItemForm(FormBase):
                 ]
             }
         ]
-
-        # fields = [
-        #     self.pay_rate_rule,
-        #     self.default_pay_category,
-        #     self.default_pay_rate_title,
-        #     self.default_pay_rate,
-        #     self.pay_rate_multiplier,
-        #     self.order_number,
-        #     self.status,
-        # ]
 
         super().__init__(sections=sections, **kwargs)
         self.fullscreen = True
