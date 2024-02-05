@@ -27,19 +27,20 @@ class PayRateTemplateItemForm(FormBase):
         ]
         specific_roles_view = {
             'model': 'PayRateTemplateSpecificRole',
-            'columns': [col.grid_column for col in specific_roles_columns],
-            # 'columns': [
-            #     {'name': 'name', 'label': 'Name'},
-            #     {'name': 'employee_role.name', 'label': 'Employee Role'},
-            #     {'name': 'pay_category.name', 'label': 'Payroll Category'},
-            #     {'name': 'pay_rate', 'label': 'Rate'},
-            # ],
+            # 'columns': [col.grid_column for col in specific_roles_columns],
+            'columns': [
+                {'name': 'name', 'label': 'Name'},
+                {'name': 'employee_role.name', 'label': 'Employee Role'},
+                {'name': 'pay_category.name', 'label': 'Payroll Category'},
+                {'name': 'pay_rate', 'label': 'Rate'},
+            ],
         }
         self.specific_roles = SubformGrid(
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
             link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
             add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
-            view_config=specific_roles_view, edit_mode='inline',
+            view_config=specific_roles_view,
+            # edit_mode='inline',
         )
 
         # self.subform_base = SubformBase(
