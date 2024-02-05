@@ -40,7 +40,7 @@ class PayRateTemplateItemForm(FormBase):
             link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
             add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
             view_config=specific_roles_view,
-            # edit_mode='inline',
+            edit_mode='inline',
         )
 
         self.subform_base = SubformBase(
