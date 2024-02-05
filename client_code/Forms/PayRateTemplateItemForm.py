@@ -27,13 +27,13 @@ class PayRateTemplateItemForm(FormBase):
         ]
         specific_roles_view = {
             'model': 'PayRateTemplateSpecificRole',
-            # 'columns': [col.grid_column for col in specific_roles_columns],
-            'columns': [
-                {'name': 'name', 'label': 'Name'},
-                {'name': 'employee_role.name', 'label': 'Employee Role'},
-                {'name': 'pay_category.name', 'label': 'Payroll Category'},
-                {'name': 'pay_rate', 'label': 'Rate'},
-            ],
+            'columns': [col.grid_column for col in specific_roles_columns],
+            # 'columns': [
+            #     {'name': 'name', 'label': 'Name'},
+            #     {'name': 'employee_role.name', 'label': 'Employee Role'},
+            #     {'name': 'pay_category.name', 'label': 'Payroll Category'},
+            #     {'name': 'pay_rate', 'label': 'Rate'},
+            # ],
         }
         self.specific_roles = SubformGrid(
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
