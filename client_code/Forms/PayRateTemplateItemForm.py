@@ -19,14 +19,21 @@ class PayRateTemplateItemForm(FormBase):
         self.pay_rate_multiplier = NumberInput(name='pay_rate_multiplier', label='Multiplier', format='p2')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
+        specific_roles_columns = [
+            TextInput(name='name', label='Name'),
+            LookupInput(name='employee_role', label='Employee Role', model='EmployeeRole'),
+            LookupInput(name='pay_category', label='Pay Category', model='PayCategory'),
+            NumberInput(name='pay_rate', label='Pay Rate'),
+        ]
         specific_roles_view = {
             'model': 'PayRateTemplateSpecificRole',
-            'columns': [
-                {'name': 'name', 'label': 'Name'},
-                {'name': 'employee_role.name', 'label': 'Employee Role'},
-                {'name': 'pay_category.name', 'label': 'Payroll Category'},
-                {'name': 'pay_rate', 'label': 'Rate'},
-            ],
+            'columns': [col.grid_column for col in specific_roles_columns],
+            # 'columns': [
+            #     {'name': 'name', 'label': 'Name'},
+            #     {'name': 'employee_role.name', 'label': 'Employee Role'},
+            #     {'name': 'pay_category.name', 'label': 'Payroll Category'},
+            #     {'name': 'pay_rate', 'label': 'Rate'},
+            # ],
         }
         self.specific_roles = SubformGrid(
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
@@ -35,16 +42,10 @@ class PayRateTemplateItemForm(FormBase):
             view_config=specific_roles_view, edit_mode='inline',
         )
 
-        subform_fields = [
-            TextInput(name='name', label='Name'),
-            LookupInput(name='employee_role', label='Employee Role', model='EmployeeRole'),
-            LookupInput(name='pay_category', label='Pay Category', model='PayCategory'),
-            NumberInput(name='pay_rate', label='Pay Rate'),
-        ]
-        self.subform_base = SubformBase(
-            name='subform_base', model='PayRateTemplateSpecificRole', fields=subform_fields,
-            link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
-        )
+        # self.subform_base = SubformBase(
+        #     name='subform_base', model='PayRateTemplateSpecificRole', fields=subform_fields,
+        #     link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
+        # )
 
         sections = [
             {
