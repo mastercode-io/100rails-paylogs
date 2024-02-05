@@ -1,4 +1,4 @@
-from AnvilFusion.components.FormBase import FormBase
+from AnvilFusion.components.FormBase import FormBase, SubformBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
 from ..app.models import PayRateRule
@@ -30,9 +30,14 @@ class PayRateTemplateItemForm(FormBase):
         }
         self.specific_roles = SubformGrid(
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
-            link_model='PayRateTemplateSpecificRole', link_field='pay_rate_template_item',
+            link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
             add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
             view_config=specific_roles_view, edit_mode='inline',
+        )
+
+        self.subform_base = SubformBase(
+            name='subform_base', model='PayRateTemplateSpecificRole',
+            link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
         )
 
         sections = [
@@ -55,6 +60,11 @@ class PayRateTemplateItemForm(FormBase):
                 'name': '_', 'rows': [
                     [self.specific_roles],
                 ]
+            },
+            {
+                'name': '_', 'rows': [
+                [self.subform_base],
+            ]
             }
         ]
 
