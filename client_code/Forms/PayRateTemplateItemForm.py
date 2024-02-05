@@ -43,10 +43,10 @@ class PayRateTemplateItemForm(FormBase):
             # edit_mode='inline',
         )
 
-        # self.subform_base = SubformBase(
-        #     name='subform_base', model='PayRateTemplateSpecificRole', fields=subform_fields,
-        #     link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
-        # )
+        self.subform_base = SubformBase(
+            name='subform_base', model='PayRateTemplateSpecificRole', fields=specific_roles_columns,
+            link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
+        )
 
         sections = [
             {
@@ -69,11 +69,11 @@ class PayRateTemplateItemForm(FormBase):
                     [self.specific_roles],
                 ]
             },
-            # {
-            #     'name': '_', 'rows': [
-            #         [self.subform_base],
-            #     ]
-            # }
+            {
+                'name': '_', 'rows': [
+                    [self.subform_base],
+                ]
+            }
         ]
 
         super().__init__(sections=sections, **kwargs)
