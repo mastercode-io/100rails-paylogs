@@ -42,7 +42,7 @@ class PayRateTemplateItemForm(FormBase):
             NumberInput(name='pay_rate', label='Pay Rate'),
         ]
         self.subform_base = SubformBase(
-            name='subform_base', model='PayRateTemplateSpecificRole', field=subform_fields,
+            name='subform_base', model='PayRateTemplateSpecificRole', fields=subform_fields,
             link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
         )
 
