@@ -35,8 +35,14 @@ class PayRateTemplateItemForm(FormBase):
             view_config=specific_roles_view, edit_mode='inline',
         )
 
+        subform_fields = [
+            TextInput(name='name', label='Name'),
+            LookupInput(name='employee_role', label='Employee Role', model='EmployeeRole'),
+            LookupInput(name='pay_category', label='Pay Category', model='PayCategory'),
+            NumberInput(name='pay_rate', label='Pay Rate'),
+        ]
         self.subform_base = SubformBase(
-            name='subform_base', model='PayRateTemplateSpecificRole',
+            name='subform_base', model='PayRateTemplateSpecificRole', field=subform_fields,
             link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
         )
 
