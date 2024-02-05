@@ -63,11 +63,11 @@ class PayRateTemplateItemForm(FormBase):
                     ],
                 ]
             },
-            # {
-            #     'name': '_', 'rows': [
-            #         [self.specific_roles],
-            #     ]
-            # },
+            {
+                'name': '_', 'rows': [
+                    [self.specific_roles],
+                ]
+            },
             # {
             #     'name': '_', 'rows': [
             #         [self.subform_base],
