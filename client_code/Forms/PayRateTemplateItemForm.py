@@ -69,14 +69,14 @@ class PayRateTemplateItemForm(FormBase):
                     [self.specific_roles],
                 ]
             },
-            # {
-            #     'name': '_', 'rows': [
-            #         [self.subform_base],
-            #     ]
-            # }
+            {
+                'name': '_', 'rows': [
+                    [self.subform_base],
+                ]
+            }
         ]
 
-        super().__init__(sections=sections, **kwargs)
+        super().__init__(sections=sections, subforms=self.subform_base, **kwargs)
         self.fullscreen = True
 
     def pay_rate_rule_selected(self, args):
