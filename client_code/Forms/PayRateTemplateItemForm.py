@@ -97,4 +97,3 @@ class PayRateTemplateItemForm(FormBase):
             self.default_pay_rate_title.value = None
         else:
             self.default_pay_rate_title.value = self.default_pay_category.value['name']
-        print('pay_category_selected end')
