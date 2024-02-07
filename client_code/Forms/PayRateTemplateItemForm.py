@@ -19,7 +19,7 @@ class PayRateTemplateItemForm(FormBase):
         self.pay_rate_multiplier = NumberInput(name='pay_rate_multiplier', label='Multiplier', format='p2')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
-        specific_roles_columns = [
+        specific_roles_fields = [
             TextInput(name='name', label='Name'),
             LookupInput(name='employee_role', label='Employee Role', model='EmployeeRole'),
             LookupInput(name='pay_category', label='Pay Category', model='PayCategory'),
@@ -27,20 +27,19 @@ class PayRateTemplateItemForm(FormBase):
         ]
         specific_roles_view = {
             'model': 'PayRateTemplateSpecificRole',
-            'columns': [col.grid_column for col in specific_roles_columns],
-            # 'columns': [
-            #     {'name': 'name', 'label': 'Name'},
-            #     {'name': 'employee_role.name', 'label': 'Employee Role'},
-            #     {'name': 'pay_category.name', 'label': 'Payroll Category'},
-            #     {'name': 'pay_rate', 'label': 'Rate'},
-            # ],
+            'columns': [
+                {'name': 'name', 'label': 'Name'},
+                {'name': 'employee_role.name', 'label': 'Employee Role'},
+                {'name': 'pay_category.name', 'label': 'Payroll Category'},
+                {'name': 'pay_rate', 'label': 'Rate'},
+            ],
+            'inline_edit_fields': specific_roles_fields,
         }
         self.specific_roles = SubformGrid(
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
             link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
             add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
-            view_config=specific_roles_view,
-            edit_mode='inline',
+            view_config=specific_roles_view, edit_mode='inline',
         )
 
         # self.subform_base = SubformBase(
