@@ -1,6 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase, SubformBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
+from AnvilFusion.datamodel.types import FieldTypes
 from ..app.models import PayRateRule
 
 
@@ -25,7 +26,8 @@ class PayRateTemplateItemForm(FormBase):
                         on_change=self.specific_role_change),
             LookupInput(name='pay_category', label='Pay Category', model='PayCategory',
                         on_change=self.specific_role_change),
-            NumberInput(name='pay_rate', label='Pay Rate', format='c2', on_change=self.specific_role_change),
+            NumberInput(name='pay_rate', label='Pay Rate', format='c2', on_change=self.specific_role_change,
+                        field_type=FieldTypes.CURRENCY),
         ]
         specific_roles_view = {
             'model': 'PayRateTemplateSpecificRole',
