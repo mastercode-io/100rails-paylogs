@@ -21,12 +21,12 @@ class PayRateTemplateItemForm(FormBase):
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
         specific_roles_fields = [
-            TextInput(name='name', label='Name', on_change=self.specific_role_change),
-            LookupInput(name='employee_role', label='Employee Role', model='EmployeeRole',
+            TextInput(name='name', placeholder='name', on_change=self.specific_role_change),
+            LookupInput(name='employee_role', placeholder='employee_role', model='EmployeeRole',
                         on_change=self.specific_role_change),
-            LookupInput(name='pay_category', label='Pay Category', model='PayCategory',
+            LookupInput(name='pay_category', placeholder='pay_category', model='PayCategory',
                         on_change=self.specific_role_change),
-            NumberInput(name='pay_rate', label='Pay Rate', format='c2', on_change=self.specific_role_change,
+            NumberInput(name='pay_rate', placeholder='pay_rate', format='c2', on_change=self.specific_role_change,
                         field_type=FieldTypes.CURRENCY),
         ]
         specific_roles_view = {
