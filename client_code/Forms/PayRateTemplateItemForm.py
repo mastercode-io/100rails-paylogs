@@ -22,8 +22,10 @@ class PayRateTemplateItemForm(FormBase):
 
         specific_roles_fields = [
             TextInput(name='name', on_change=self.specific_role_change),
-            LookupInput(name='employee_role.name', model='EmployeeRole', on_change=self.specific_role_change),
-            LookupInput(name='pay_category.name', model='PayCategory', on_change=self.specific_role_change),
+            LookupInput(name='employee_role', model='EmployeeRole', on_change=self.specific_role_change,
+                        grid_field='employee_role.name'),
+            LookupInput(name='pay_category', model='PayCategory', on_change=self.specific_role_change,
+                        grid_field='pay_category.name'),
             NumberInput(name='pay_rate', format='c2', on_change=self.specific_role_change, field_type=FieldTypes.CURRENCY),
         ]
         specific_roles_view = {
