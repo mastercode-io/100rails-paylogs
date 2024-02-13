@@ -21,6 +21,8 @@ class PayRateTemplateItemForm(FormBase):
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
         specific_roles_fields = [
+            DateInput(name='start_date', label='Start Date'),
+            CheckboxInput(name='is_active'),
             TextInput(name='name', on_change=self.specific_role_change),
             LookupInput(name='employee_role', model='EmployeeRole', on_change=self.specific_role_change,
                         grid_field='employee_role.name', inline_grid=True),
