@@ -84,7 +84,7 @@ class TimesheetListView(GridView):
         week_total = sum(ts['total_hours'] for ts in data.items if ts['total_hours'])
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
-        return f"{hours}:{minutes:02d} week"
+        return f"{hours}:{minutes:02d} hrs per week"
 
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
