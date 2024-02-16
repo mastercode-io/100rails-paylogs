@@ -413,7 +413,7 @@ def check_link_ids(resource, post_data, integration_uid):
     missed_id_list = []
     for link_id in link_ids:
         item = resource['model'].get_by('remote_links', {integration_uid: link_id})
-        if item:
+        if item is not None:
             exist_id_list.append(link_id)
         else:
             missed_id_list.append(link_id)
