@@ -409,14 +409,14 @@ def post_item(resource_name, resource_model, resource_json_schema, post_data, in
 def check_link_ids(resource, post_data, integration_uid):
     link_ids = post_data.get('link_id_list', [])
     check_result = {'link_id_list': link_ids}
-    exist_id_list = []
+    persist_id_list = []
     missed_id_list = []
     for link_id in link_ids:
         item = resource['model'].get_by('remote_links', {integration_uid: link_id})
         if item is not None:
-            exist_id_list.append(link_id)
+            persist_id_list.append(link_id)
         else:
             missed_id_list.append(link_id)
-    check_result['exist_id_list'] = exist_id_list
+    check_result['exist_id_list'] = persist_id_list
     check_result['missed_id_list'] = missed_id_list
     return check_result
