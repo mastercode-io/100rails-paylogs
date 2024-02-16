@@ -232,8 +232,6 @@ def resource_endpoint(resource_name, resource_uid, **params):
     # HTTP POST request handler
     elif anvil.server.request.method == "POST":
 
-        # get single resource object by uid or link_id
-        link_id = params.get('link_id', None) if resource['remote_links'] else None
         post_data = anvil.server.request.body_json
         if post_data is None:
             try:
@@ -242,6 +240,15 @@ def resource_endpoint(resource_name, resource_uid, **params):
                 print(f'Invalid JSON body: {anvil.server.request.body}')
                 return anvil.server.HttpResponse(400, f'Invalid JSON body: {anvil.server.request.body}')
 
+        if 'check_ids' in params:
+            check_result = check_link_ids(resource, post_data, integration['uid'])
+            return anvil.server.HttpResponse(
+                200,
+                json.dumps(check_result),
+                {'content-type': 'application/json'},
+            )
+
+        link_id = params.get('link_id', None) if resource['remote_links'] else None
         if resource_uid or link_id:
             item = None
             item_reference = None
@@ -257,7 +264,8 @@ def resource_endpoint(resource_name, resource_uid, **params):
                 post_data['uid'] = resource_uid
             elif link_id:
                 post_data['link_id'] = link_id
-                item_json, error = post_item(resource, post_data, integration)
+                item_json, error = post_item(resource['name'], resource['model'], resource['json_schema'],
+                                             post_data, integration)
                 return anvil.server.HttpResponse(
                     200 if not error else error['status'],
                     json.dumps(item_json),
@@ -270,7 +278,8 @@ def resource_endpoint(resource_name, resource_uid, **params):
             return anvil.server.HttpResponse(400, f'Invalid JSON body: expected list of {resource_name}')
         else:
             post_list = post_data[resource_name]
-        result = post_items(resource['name'], resource['model'], resource['json_schema'], post_list, integration)
+        result = post_items(resource['name'], resource['model'], resource['json_schema'],
+                            post_list, integration)
         return anvil.server.HttpResponse(
             200 if not result['errors'] else 207,
             json.dumps(result),
@@ -395,3 +404,19 @@ def post_item(resource_name, resource_model, resource_json_schema, post_data, in
     item = resource_class.get(item['uid'])
     item_json = item.to_json_dict(json_schema=resource_json_schema, integration_uid=integration['uid'])
     return item_json, None
+
+
+def check_link_ids(resource, post_data, integration_uid):
+    link_ids = post_data.get('link_id_list', [])
+    check_result = {'link_id_list': link_ids}
+    exist_id_list = []
+    missed_id_list = []
+    for link_id in link_ids:
+        item = resource['model'].get_by('remote_links', {integration_uid: link_id})
+        if item:
+            exist_id_list.append(link_id)
+        else:
+            missed_id_list.append(link_id)
+    check_result['exist_id_list'] = exist_id_list
+    check_result['missed_id_list'] = missed_id_list
+    return check_result
