@@ -1,4 +1,4 @@
-from AnvilFusion.components.FormBase import FormBase
+from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL3
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
 
@@ -46,7 +46,7 @@ class PayRateTemplateForm(FormBase):
             }
         ]
 
-        super().__init__(sections=sections, **kwargs)
+        super().__init__(sections=sections, width=POPUP_WIDTH_COL3, **kwargs)
         self.fullscreen = self.data['uid'] is not None
 
 
@@ -54,3 +54,4 @@ class PayRateTemplateForm(FormBase):
         super().form_open(args)
         if self.data['uid'] is None:
             self.items.hide()
+        print('buttons', self.form.buttions)
