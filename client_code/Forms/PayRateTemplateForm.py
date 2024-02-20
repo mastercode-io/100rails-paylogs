@@ -78,15 +78,11 @@ class PayRateTemplateForm(FormBase):
             self.form.header = 'Edit Pay Rate Template'
             for button in self.form.buttons:
                 if button.buttonModel.cssClass == 'da-save-button':
-                    print('button', button.buttonModel.content)
                     button.buttonModel.content = 'Save'
-                    for k in button.keys():
-                        print(k, button[k])
-                    button.finalUpdate()
-            # self.form.show(True)
             self.form.refresh()
             self.form.show(True)
             super().form_open(args, force_show=True)
+            self.items.show()
 
 
     def scope_on_change(self, args):
