@@ -48,6 +48,7 @@ class PayRateTemplateForm(FormBase):
 
         super().__init__(sections=sections, width=POPUP_WIDTH_COL3, **kwargs)
         self.fullscreen = self.data['uid'] is not None
+        self.refreshed = False
 
 
     def form_open(self, args):
@@ -59,7 +60,10 @@ class PayRateTemplateForm(FormBase):
                 if button.buttonModel.cssClass == 'da-save-button':
                     print('change button')
                     button.buttonModel.content = 'Create'
-            self.form.refresh()
+                    button.buttonModel.cssClass = 'da-create-button'
+            if not self.refreshed:
+                self.refreshed = True
+                self.form.refresh()
         print('buttons', self.form.buttons)
         button0 = self.form.buttons[0]
         print(button0.buttonModel.isPrimary, button0.buttonModel.content, button0.buttonModel.cssClass)
