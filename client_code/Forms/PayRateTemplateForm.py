@@ -46,25 +46,21 @@ class PayRateTemplateForm(FormBase):
             }
         ]
 
-        super().__init__(sections=sections, width=POPUP_WIDTH_COL3, **kwargs)
-        self.fullscreen = self.data['uid'] is not None
-        self.refreshed = False
+        if self.data['uid'] is None:
+            super().__init__(sections=sections,
+                             width=POPUP_WIDTH_COL3,
+                             header='Crete Pay Rate Template',
+                             button_save_label='Create',
+                             **kwargs)
+            self.fullscreen = False
+        else:
+            super().__init__(sections=sections,
+                             header='Edit Pay Rate Template',
+                             **kwargs)
+            self.fullscreen = True
 
 
     def form_open(self, args):
         super().form_open(args)
-        if not self.refreshed:
-            self.refreshed = True
-            if self.data['uid'] is None:
-                self.items.hide()
-                self.form.header = 'Create Pay Rate Template'
-                for button in self.form.buttons:
-                    if button.buttonModel.cssClass == 'da-save-button':
-                        print('change button')
-                        button.buttonModel.content = 'Create'
-                        button.buttonModel.cssClass = 'da-create-button'
-            self.form.refresh()
-        print('buttons', self.form.buttons)
-        button0 = self.form.buttons[0]
-        print(button0.buttonModel.isPrimary, button0.buttonModel.content, button0.buttonModel.cssClass)
-        print(self.form.header)
+        if self.data['uid'] is None:
+            self.items.hide()
