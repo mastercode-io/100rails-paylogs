@@ -55,3 +55,5 @@ class PayRateTemplateForm(FormBase):
         if self.data['uid'] is None:
             self.items.hide()
         print('buttons', self.form.buttons)
+        button0 = self.form.buttons[0]
+        print(button0.isPrimary, button0.content, button0.cssClass)
