@@ -52,18 +52,18 @@ class PayRateTemplateForm(FormBase):
 
 
     def form_open(self, args):
-        super().form_open(args)
-        if self.data['uid'] is None:
-            self.items.hide()
-            self.form.header = 'Create Pay Rate Template'
-            for button in self.form.buttons:
-                if button.buttonModel.cssClass == 'da-save-button':
-                    print('change button')
-                    button.buttonModel.content = 'Create'
-                    button.buttonModel.cssClass = 'da-create-button'
-            if not self.refreshed:
-                self.refreshed = True
-                self.form.refresh()
+        if not self.refreshed:
+            self.refreshed = True
+            super().form_open(args)
+            if self.data['uid'] is None:
+                self.items.hide()
+                self.form.header = 'Create Pay Rate Template'
+                for button in self.form.buttons:
+                    if button.buttonModel.cssClass == 'da-save-button':
+                        print('change button')
+                        button.buttonModel.content = 'Create'
+                        button.buttonModel.cssClass = 'da-create-button'
+            self.form.refresh()
         print('buttons', self.form.buttons)
         button0 = self.form.buttons[0]
         print(button0.buttonModel.isPrimary, button0.buttonModel.content, button0.buttonModel.cssClass)
