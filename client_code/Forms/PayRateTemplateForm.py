@@ -84,7 +84,7 @@ class PayRateTemplateForm(FormBase):
                         print(k, button[k])
                     button.finalUpdate()
             # self.form.show(True)
-            # self.form.refresh()
+            self.form.refresh()
             self.form.show(True)
             super().form_open(args, force_show=True)
 
