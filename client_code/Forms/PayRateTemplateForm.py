@@ -47,7 +47,7 @@ class PayRateTemplateForm(FormBase):
         ]
 
         print('kwargs', kwargs, kwargs.get('data'))
-        if kwargs.get('data') is None or kwargs.get('data').get('uid') is None:
+        if kwargs.get('data') is None or kwargs['data']['uid'] is None:
             super().__init__(sections=sections,
                              width=POPUP_WIDTH_COL3,
                              header='Crete Pay Rate Template',
@@ -63,7 +63,7 @@ class PayRateTemplateForm(FormBase):
             self.create = False
 
 
-    def form_open(self, args):
+    def form_open(self, args, **kwargs):
         super().form_open(args)
         if self.data['uid'] is None:
             self.items.hide()
