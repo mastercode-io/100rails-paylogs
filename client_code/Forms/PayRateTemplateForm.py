@@ -47,4 +47,10 @@ class PayRateTemplateForm(FormBase):
         ]
 
         super().__init__(sections=sections, **kwargs)
-        self.fullscreen = True
+        self.fullscreen = self.data is not None
+
+
+    def form_open(self, args):
+        super().form_open(args)
+        if self.data is None:
+            self.items.hide()

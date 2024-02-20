@@ -299,7 +299,6 @@ class EmployeeRole:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
-    # pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
@@ -346,7 +345,6 @@ class Location:
         "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
-    # pay_rate_template = Relationship("PayRateTemplate")
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
