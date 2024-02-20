@@ -52,9 +52,9 @@ class PayRateTemplateForm(FormBase):
 
 
     def form_open(self, args):
+        super().form_open(args)
         if not self.refreshed:
             self.refreshed = True
-            super().form_open(args)
             if self.data['uid'] is None:
                 self.items.hide()
                 self.form.header = 'Create Pay Rate Template'
