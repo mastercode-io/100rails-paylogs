@@ -53,17 +53,28 @@ class PayRateTemplateForm(FormBase):
                              button_save_label='Create',
                              **kwargs)
             self.fullscreen = False
+            self.create = True
         else:
             super().__init__(sections=sections,
                              header='Edit Pay Rate Template',
                              **kwargs)
             self.fullscreen = True
+            self.create = False
 
 
     def form_open(self, args):
         super().form_open(args)
         if self.data['uid'] is None:
             self.items.hide()
+
+
+    def form_save(self, args, **kwargs):
+        if self.create:
+            super().form_save(args, hide=True)
+            self.create = False
+            self.fullscreen = True
+            self.form_open(args)
+
 
 
     def scope_on_change(self, args):
