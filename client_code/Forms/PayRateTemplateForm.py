@@ -81,7 +81,8 @@ class PayRateTemplateForm(FormBase):
                     for k in button.keys():
                         print(k, button[k])
                     button.finalUpdate()
-            self.form.show(True)
+            # self.form.show(True)
+            self.form.refresh()
 
 
     def scope_on_change(self, args):
