@@ -85,6 +85,7 @@ class PayRateTemplateForm(FormBase):
             # self.form.show(True)
             self.form.refresh()
             self.form.show(True)
+            super().form_open(args, force_show=True)
 
 
     def scope_on_change(self, args):
