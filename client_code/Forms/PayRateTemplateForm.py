@@ -56,5 +56,5 @@ class PayRateTemplateForm(FormBase):
             self.items.hide()
         print('buttons', self.form.buttons)
         button0 = self.form.buttons[0]
-        print(button0.isPrimary, button0.content, button0.cssClass)
+        print(button0.buttonModel.isPrimary, button0.buttonModel.content, button0.buttonModel.cssClass)
         print(self.form.header)
