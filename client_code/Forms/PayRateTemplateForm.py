@@ -73,7 +73,8 @@ class PayRateTemplateForm(FormBase):
             super().form_save(args, hide=False)
             self.create = False
             self.fullscreen = True
-            self.form_open(args)
+            self.form.show(True)
+            # self.form_open(args)
 
 
 
