@@ -83,6 +83,7 @@ class PayRateTemplateForm(FormBase):
                     button.finalUpdate()
             # self.form.show(True)
             self.form.refresh()
+            self.form.show(True)
 
 
     def scope_on_change(self, args):
