@@ -10,7 +10,7 @@ class PayRateTemplateForm(FormBase):
 
         self.name = TextInput(name='name', label='Name')
         self.description = MultiLineInput(name='description', label='Description', rows=4)
-        self.scope = LookupInput(name='scope', label='Scope', model='Scope')
+        self.scope = LookupInput(name='scope', label='Scope', model='Scope', on_change=self.scope_on_change)
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
         pay_rate_template_items_view = {
@@ -35,7 +35,7 @@ class PayRateTemplateForm(FormBase):
         sections = [
             {
                 'name': '_', 'cols': [
-                    [self.name, self.scope],
+                    [self.scope, self.name],
                     [self.description, self.status],
                 ]
             },
@@ -64,3 +64,8 @@ class PayRateTemplateForm(FormBase):
         super().form_open(args)
         if self.data['uid'] is None:
             self.items.hide()
+
+
+    def scope_on_change(self, args):
+        if self.scope.value and self.name.value is None:
+            self.name.value = self.scope.value.name
