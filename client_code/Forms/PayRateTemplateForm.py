@@ -46,6 +46,7 @@ class PayRateTemplateForm(FormBase):
             }
         ]
 
+        print('kwargs', kwargs, kwargs.get('data'))
         if kwargs.get('data') is None or kwargs.get('data').get('uid') is None:
             super().__init__(sections=sections,
                              width=POPUP_WIDTH_COL3,
