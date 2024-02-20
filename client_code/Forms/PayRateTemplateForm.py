@@ -72,6 +72,7 @@ class PayRateTemplateForm(FormBase):
     def form_save(self, args, **kwargs):
         if self.create:
             super().form_save(args, hide=False)
+            print('data', self.data, self.data['uid'])
             self.create = False
             self.fullscreen = True
             self.form.header = 'Edit Pay Rate Template'
