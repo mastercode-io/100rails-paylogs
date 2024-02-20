@@ -78,7 +78,8 @@ class PayRateTemplateForm(FormBase):
                 if button.buttonModel.cssClass == 'da-save-button':
                     print('button', button.buttonModel.content)
                     button.buttonModel.content = 'Save'
-                    button.refresh()
+                    for k in button.keys():
+                        print(k, button[k])
             self.form.show(True)
 
 
