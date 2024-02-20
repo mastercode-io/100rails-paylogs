@@ -80,7 +80,7 @@ class PayRateTemplateForm(FormBase):
                     button.buttonModel.content = 'Save'
                     for k in button.keys():
                         print(k, button[k])
-                    button.callChildDataBind()
+                    button.finalUpdate()
             self.form.show(True)
 
 
