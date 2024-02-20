@@ -54,7 +54,11 @@ class PayRateTemplateForm(FormBase):
         super().form_open(args)
         if self.data['uid'] is None:
             self.items.hide()
-        print('buttons', self.form.buttons)
-        button0 = self.form.buttons[0]
-        print(button0.buttonModel.isPrimary, button0.buttonModel.content, button0.buttonModel.cssClass)
-        print(self.form.header)
+            self.form.header = 'Create Pay Rate Template'
+            for button in self.form.buttons:
+                if button.buttonModel.cssClass == 'da-save-button':
+                    button.buttonModel.content = 'Create'
+        # print('buttons', self.form.buttons)
+        # button0 = self.form.buttons[0]
+        # print(button0.buttonModel.isPrimary, button0.buttonModel.content, button0.buttonModel.cssClass)
+        # print(self.form.header)
