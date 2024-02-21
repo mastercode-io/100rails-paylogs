@@ -76,10 +76,10 @@ class PayRateTemplateForm(FormBase):
             self.fullscreen = True
             self.form.header = 'Edit Pay Rate Template'
             self.button_save_label = 'Save'
-            # save_button = self.container_el.querySelector('.da-save-button')
-            # save_button.innerHTML = 'Save'
             self.items.show()
             self.form.show(True)
+        else:
+            super().form_save(args)
 
 
     def scope_on_change(self, args):
