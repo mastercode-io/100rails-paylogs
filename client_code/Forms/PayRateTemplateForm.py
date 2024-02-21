@@ -62,16 +62,19 @@ class PayRateTemplateForm(FormBase):
                              **kwargs)
             self.fullscreen = True
             self.create = False
+            self.show_once = True
 
 
     def form_open(self, args, **kwargs):
-        super().form_open(args)
-        if self.data['uid'] is None:
-            self.items.hide()
-            self.form.show(True)
-            print('show')
-            time.sleep(2)
-            self.items.show()
+        if self.show_once:
+            super().form_open(args)
+            if self.data['uid'] is None:
+                self.items.hide()
+                self.form.show(True)
+                print('show')
+                time.sleep(2)
+                self.items.show()
+            self.show_once = False
 
 
     def form_save(self, args, **kwargs):
