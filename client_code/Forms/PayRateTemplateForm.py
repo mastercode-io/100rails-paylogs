@@ -74,6 +74,9 @@ class PayRateTemplateForm(FormBase):
             time.sleep(2)
             print('hide')
             self.items.hide()
+            time.sleep(2)
+            print('show')
+            self.items.show()
 
 
     def form_save(self, args, **kwargs):
