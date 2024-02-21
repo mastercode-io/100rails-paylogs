@@ -62,19 +62,12 @@ class PayRateTemplateForm(FormBase):
                              **kwargs)
             self.fullscreen = True
             self.create = False
-            self.show_once = True
 
 
     def form_open(self, args, **kwargs):
-        if self.show_once:
-            self.show_once = False
-            super().form_open(args)
-            if self.data['uid'] is None:
-                self.items.hide()
-                self.form.show(True)
-                print('show')
-                time.sleep(2)
-                self.items.show()
+        super().form_open(args)
+        if self.data['uid'] is None:
+            self.items.hide()
 
 
     def form_save(self, args, **kwargs):
@@ -87,10 +80,11 @@ class PayRateTemplateForm(FormBase):
             for button in self.form.buttons:
                 if button.buttonModel.cssClass == 'da-save-button':
                     button.buttonModel.content = 'Save'
+            self.items.show()
+            time.sleep(2)
             self.form.refresh()
             self.form.show(True)
             super().form_open(args, force_show=True)
-            self.items.show()
 
 
     def scope_on_change(self, args):
