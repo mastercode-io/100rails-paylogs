@@ -80,9 +80,11 @@ class PayRateTemplateForm(FormBase):
             self.create = False
             self.fullscreen = True
             self.form.header = 'Edit Pay Rate Template'
-            for button in self.form.buttons:
-                if button.buttonModel.cssClass == 'da-save-button':
-                    button.buttonModel.content = 'Save'
+            save_button = self.form_el.querySelector('.da-save-button')
+            save_button.innerHTML = 'Save'
+            # for button in self.form.buttons:
+            #     if button.buttonModel.cssClass == 'da-save-button':
+            #         button.buttonModel.content = 'Save'
             time.sleep(2)
             # self.form.refresh()
             self.form.show(True)
