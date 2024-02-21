@@ -69,6 +69,9 @@ class PayRateTemplateForm(FormBase):
         if self.data['uid'] is None:
             self.items.hide()
             self.form.show(True)
+            print('show')
+            time.sleep(2)
+            self.items.show()
 
 
     def form_save(self, args, **kwargs):
