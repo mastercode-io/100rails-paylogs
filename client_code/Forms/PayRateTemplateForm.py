@@ -84,9 +84,9 @@ class PayRateTemplateForm(FormBase):
                 if button.buttonModel.cssClass == 'da-save-button':
                     button.buttonModel.content = 'Save'
             time.sleep(2)
-            self.form.refresh()
+            # self.form.refresh()
             self.form.show(True)
-            super().form_open(args, force_show=True)
+            # super().form_open(args, force_show=True)
 
 
     def scope_on_change(self, args):
