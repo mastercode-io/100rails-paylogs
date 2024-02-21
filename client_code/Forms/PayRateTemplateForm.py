@@ -1,6 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL3
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
+import time
 
 
 class PayRateTemplateForm(FormBase):
@@ -66,6 +67,12 @@ class PayRateTemplateForm(FormBase):
     def form_open(self, args, **kwargs):
         super().form_open(args)
         if self.data['uid'] is None:
+            self.items.hide()
+            time.sleep(2)
+            print('show')
+            self.items.show()
+            time.sleep(2)
+            print('hide')
             self.items.hide()
 
 
