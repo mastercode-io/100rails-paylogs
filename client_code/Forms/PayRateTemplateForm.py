@@ -67,6 +67,7 @@ class PayRateTemplateForm(FormBase):
 
     def form_open(self, args, **kwargs):
         if self.show_once:
+            self.show_once = False
             super().form_open(args)
             if self.data['uid'] is None:
                 self.items.hide()
@@ -74,7 +75,6 @@ class PayRateTemplateForm(FormBase):
                 print('show')
                 time.sleep(2)
                 self.items.show()
-            self.show_once = False
 
 
     def form_save(self, args, **kwargs):
