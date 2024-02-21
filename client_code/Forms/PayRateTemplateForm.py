@@ -86,6 +86,7 @@ class PayRateTemplateForm(FormBase):
             time.sleep(2)
             # self.form.refresh()
             self.form.show(True)
+            self.form.dataBind()
             # super().form_open(args, force_show=True)
 
 
