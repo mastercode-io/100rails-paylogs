@@ -47,7 +47,6 @@ class PayRateTemplateForm(FormBase):
             }
         ]
 
-        print('kwargs', kwargs, kwargs.get('data'))
         if kwargs.get('data') is None or kwargs['data']['uid'] is None:
             super().__init__(sections=sections,
                              width=POPUP_WIDTH_COL3,
@@ -66,32 +65,21 @@ class PayRateTemplateForm(FormBase):
 
     def form_open(self, args, **kwargs):
         super().form_open(args)
-        print('OPEN', self.data, self.data['uid'])
         if self.data['uid'] is None:
-            print('HIDE')
             self.items.hide()
 
 
     def form_save(self, args, **kwargs):
         if self.create:
             super().form_save(args, hide=False)
-            print('SAVE', self.data, self.data['uid'])
-            self.items.show()
             self.create = False
             self.fullscreen = True
             self.form.header = 'Edit Pay Rate Template'
-            save_button = self.container_el.querySelector('.da-save-button')
-            print('save_button', self.form_el, save_button)
-            # print(self.form_el.innerHTML)
-            save_button.innerHTML = 'Save'
-            # for button in self.form.buttons:
-            #     if button.buttonModel.cssClass == 'da-save-button':
-            #         button.buttonModel.content = 'Save'
-            time.sleep(2)
-            # self.form.refresh()
+            self.form.button_save_label = 'Save'
+            # save_button = self.container_el.querySelector('.da-save-button')
+            # save_button.innerHTML = 'Save'
+            self.items.show()
             self.form.show(True)
-            self.form.dataBind()
-            # super().form_open(args, force_show=True)
 
 
     def scope_on_change(self, args):
