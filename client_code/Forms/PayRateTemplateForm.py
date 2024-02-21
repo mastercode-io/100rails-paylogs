@@ -50,7 +50,7 @@ class PayRateTemplateForm(FormBase):
         if kwargs.get('data') is None or kwargs['data']['uid'] is None:
             super().__init__(sections=sections,
                              width=POPUP_WIDTH_COL3,
-                             header='Crete Pay Rate Template',
+                             header='Create Pay Rate Template',
                              button_save_label='Create',
                              **kwargs)
             self.fullscreen = False
