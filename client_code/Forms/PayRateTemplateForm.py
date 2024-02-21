@@ -66,6 +66,7 @@ class PayRateTemplateForm(FormBase):
 
     def form_open(self, args, **kwargs):
         super().form_open(args)
+        print('OPEN', self.data, self.data['uid'])
         if self.data['uid'] is None:
             self.items.hide()
 
@@ -73,7 +74,7 @@ class PayRateTemplateForm(FormBase):
     def form_save(self, args, **kwargs):
         if self.create:
             super().form_save(args, hide=False)
-            print('data', self.data, self.data['uid'])
+            print('SAVE', self.data, self.data['uid'])
             self.create = False
             self.fullscreen = True
             self.form.header = 'Edit Pay Rate Template'
