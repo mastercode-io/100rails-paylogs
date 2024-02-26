@@ -104,3 +104,15 @@ pay_rate_template = models.PayRateTemplate.get_by('name', 'C1 Job')
 print(pay_rate_template)
 rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, default_pay_rate_title='ORD')]
 print(rate_item)
+for rate_name in ord_rates:
+    role_name = rate_name[:-4]
+    rate = pay_rates[rate_name]
+    role = models.EmployeeRole.get_by('name', role_name)
+    pay_category = models.PayCategory.get_by('name', rate_name)
+    specific_role = models.PayRateTemplateSpecificRole(
+        name=role_name,
+        employee_role=role,
+        pay_category=pay_category,
+        pay_rate=rate,
+    )
+    specific_role.save()
