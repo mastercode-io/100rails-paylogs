@@ -105,10 +105,13 @@ print(pay_rate_template)
 rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, default_pay_rate_title='ORD')]
 print(rate_item)
 for rate_name in ord_rates:
-    role_name = rate_name[:-4]
+    role_name = rate_name
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', rate_name)
+    if not role or not pay_category:
+        print(f'Role or PayCategory not found for {rate_name}: {role} {pay_category}')
+        continue
     specific_role = models.PayRateTemplateSpecificRole(
         pay_rate_template_item=rate_item[0],
         name=role_name,
