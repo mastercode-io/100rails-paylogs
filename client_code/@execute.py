@@ -34,8 +34,71 @@ def add_enum_list():
 
 
 init_user_session()
-# print('client context', anvil.server.context)
-# print('bg_task_id', getattr(anvil.server.context, 'background_task_id', None))
-# anvil.server.call('foo')
-job_type = models.JobType.get_by('remote_links', {'76e14124-04dc-49e4-9f18-27b25a66f67e': 1886330000091365941})
-print('job type', job_type['short_code'])
+
+pay_rates = {
+    "CAS-CW1-LAB-ORD": 32.0,
+    "CAS-CW2-SCAF-ORD": 42.0,
+    "CAS-CW3-SCAF-ORD": 42.0,
+    "CAS-CW4-SCAF-ORD": 42.0,
+    "CAS-YD1-ORD": 56.48,
+    "CAS-YD2-ORD": 28.0,
+    "PFT-YDM-ORD": 45.0,
+    "PPT-TD1-ORD": 35.0,
+    "PPT-YD1-ORD": 35.0,
+    "PPT-YD2-ORD": 28.0,
+    "CAS-CW2-LH-ORD": 58.68,
+    "PFT-CW4-ORD": 53.98,
+    "SUP2 SALARY": 51.44,
+    "SUP3 SALARY": 52.92,
+    "CAS-YD1-OT150%": 84.72,
+    "CAS-YD1-OT200%": 112.96,
+    "CAS-YD2-OT150%": 42.0,
+    "CAS-YD2-OT200%": 56.0,
+    "PFT-YDM-OT150%": 67.5,
+    "PFT-YDM-OT200%": 90.0,
+    "PPT-TD1-OT150%": 52.5,
+    "PPT-TD1-OT200%": 70.0,
+    "PPT-YD1-OT150%": 52.5,
+    "PPT-YD1-OT200%": 70.0,
+    "PPT-YD2-OT150%": 42.0,
+    "PPT-YD2-OT200%": 56.0,
+    "CAS-YDM-ORD": 56.48,
+    "CAS-YDM-OT150%": 84.72,
+    "CAS-YDM-OT200%": 112.96,
+    "SUP2 OT150%": 77.16,
+    "SUP2 OT200%": 102.88,
+    "SUP3 OT150%": 77.16,
+    "SUP3 OT200%": 102.88,
+    "CAS-TD1-ORD": 46.9,
+    "PFT-CW1-LAB-ORD": 26.88,
+    "PFT-CW1-LAB-OT150%": 40.32,
+    "PFT-CW1-LAB-OT200%": 53.76,
+    "PFT-CW2-SCAF-ORD": 35.28,
+    "PFT-CW2-SCAF-OT150%": 52.92,
+    "PFT-CW2-SCAF-OT200%": 70.56,
+    "PFT-CW2-LH-ORD": 49.48,
+    "PFT-CW2-LH-OT150%": 74.22,
+    "PFT-CW2-LH-OT200%": 98.96,
+    "PFT-CW3-SCAF-ORD": 35.28,
+    "PFT-CW3-SCAF-OT150%": 52.92,
+    "PFT-CW3-SCAF-OT200%": 70.56,
+    "PFT-CW4-SCAF-ORD": 35.28,
+    "PFT-CW4-SCAF-OT150%": 52.92,
+    "PFT-CW4-SCAF-OT200%": 70.56,
+    "PFT-TD1-ORD": 39.4,
+    "PFT-TD1-OT150%": 59.1,
+    "PFT-TD1-OT200%": 78.79,
+    "PFT-YD1-ORD": 47.63,
+    "PFT-YD1-OT150%": 71.45,
+    "PFT-YD1-OT200%": 95.26,
+    "PFT-YD2-ORD": 23.52,
+    "PFT-YD2-OT150%": 35.28,
+    "PFT-YD2-OT200%": 47.04
+}
+ord_rates = [x for x in pay_rates.keys() if 'ORD' in x]
+mult15_rates = [x for x in pay_rates.keys() if 'OT150%' in x]
+mult20_rates = [x for x in pay_rates.keys() if 'OT200%' in x]
+print(len(ord_rates), len(mult15_rates), len(mult20_rates))
+
+pay_rate_template = models.PayRateTemplate.get_by('name', 'C1 Job')
+print(pay_rate_template)
