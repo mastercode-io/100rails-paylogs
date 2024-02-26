@@ -108,7 +108,7 @@ for rate_name in ord_rates:
     role_name = rate_name
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
-    pay_category = models.PayCategory.get_by('name', rate_name)
+    pay_category = models.PayCategory.get_by('name', f'C1-{rate_name}')
     if not role or not pay_category:
         print(f'Role or PayCategory not found for {rate_name}: {role} {pay_category}')
         continue
