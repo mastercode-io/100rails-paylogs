@@ -102,5 +102,5 @@ print(len(ord_rates), len(mult15_rates), len(mult20_rates))
 
 pay_rate_template = models.PayRateTemplate.get_by('name', 'C1 Job')
 print(pay_rate_template)
-rate_item = models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, title='ORD')
+rate_item = models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, default_pay_rate_title='ORD')
 print(rate_item)
