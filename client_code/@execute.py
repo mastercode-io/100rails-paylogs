@@ -107,9 +107,10 @@ print(rate_item)
 for rate_name in ord_rates:
     role_name = rate_name[:-4]
     rate = pay_rates[rate_name]
-    role = models.EmployeeRole.get_by('name', role_name)
+    role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', rate_name)
     specific_role = models.PayRateTemplateSpecificRole(
+        pay_rate_template_item=rate_item[0],
         name=role_name,
         employee_role=role,
         pay_category=pay_category,
