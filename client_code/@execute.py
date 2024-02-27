@@ -47,7 +47,7 @@ pay_rates = {
     "C1-PPT-YD1-ORD": 35.0,
     "C1-PPT-YD2-ORD": 28.0,
     "C1-CAS-CW2-LH-ORD": 58.68,
-    "C1-PFT-CW4-ORD": 53.98,
+    # "C1-PFT-CW4-ORD": 53.98,
     "SUP2 SALARY": 51.44,
     "SUP3 SALARY": 52.92,
     "C1-CAS-YD1-OT150%": 52.5,
@@ -109,9 +109,9 @@ print(len(ord_rates), len(mult15_rates), len(mult20_rates))
 
 pay_rate_template = models.PayRateTemplate.get_by('name', 'C1 Job')
 print(pay_rate_template)
-rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, default_pay_rate_title='ORD')]
+rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, default_pay_rate_title='OT150% WD')]
 print(rate_item)
-for rate_name in ord_rates:
+for rate_name in mult15_rates:
     role_name = rate_name[3:] if 'C1-' in rate_name else rate_name
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
