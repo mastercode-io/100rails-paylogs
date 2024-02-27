@@ -118,14 +118,14 @@ OTPH200_RULE = 'OT200% PH'
 pay_rate_template = models.PayRateTemplate.get_by('name', 'C1 Job')
 print(pay_rate_template)
 rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template,
-                                                default_pay_rate_title=ORD_RULE)]
+                                                default_pay_rate_title=OT150WD_RULE)]
 print(rate_item)
-for rate_name in ord_rates:
+for rate_name in mult15_rates:
     if 'SUP' in rate_name:
         role_name = rate_name[0:4] + ' SALARY'
     else:
-        role_name = rate_name[3:] if 'C1-' in rate_name else rate_name
-        # role_name = rate_name[3:-7] if 'C1-' in rate_name else rate_name[:-7]
+        # role_name = rate_name[3:] if 'C1-' in rate_name else rate_name
+        role_name = rate_name[3:-7] if 'C1-' in rate_name else rate_name[:-7]
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', f'{rate_name}')
