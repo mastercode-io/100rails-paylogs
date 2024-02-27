@@ -102,17 +102,30 @@ pay_rates = {
     "SUP3 C1 RDO ": 55.57
 }
 
-ord_rates = [x for x in pay_rates.keys() if 'ORD' in x]
+ord_rates = [x for x in pay_rates.keys() if 'ORD' in x or 'SALARY' in x]
 mult15_rates = [x for x in pay_rates.keys() if 'OT150%' in x]
 mult20_rates = [x for x in pay_rates.keys() if 'OT200%' in x]
 print(len(ord_rates), len(mult15_rates), len(mult20_rates))
 
+ORD_RULE = 'ORD'
+OT150WD_RULE = 'OT150% WD'
+OT200WD_RULE = 'OT200% WD'
+OTSAT150_RULE = 'OT150% SAT'
+OTSAT200_RULE = 'OT200% SAT'
+OTSUN200_RULE = 'OT200% SUN'
+OTPH200_RULE = 'OT200% PH'
+
 pay_rate_template = models.PayRateTemplate.get_by('name', 'C1 Job')
 print(pay_rate_template)
-rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, default_pay_rate_title='OT150% WD')]
+rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template,
+                                                default_pay_rate_title=ORD_RULE)]
 print(rate_item)
-for rate_name in mult15_rates:
-    role_name = rate_name[3:-6] if 'C1-' in rate_name else rate_name[:-6]
+for rate_name in ord_rates:
+    if 'SUP' in rate_name:
+        role_name = rate_name[0:4] + ' SALARY'
+    else:
+        role_name = rate_name[3:] if 'C1-' in rate_name else rate_name
+        # role_name = rate_name[3:-7] if 'C1-' in rate_name else rate_name[:-7]
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', f'{rate_name}')
