@@ -112,7 +112,7 @@ print(pay_rate_template)
 rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template, default_pay_rate_title='OT150% WD')]
 print(rate_item)
 for rate_name in mult15_rates:
-    role_name = rate_name[3:] if 'C1-' in rate_name else rate_name
+    role_name = rate_name[3:-6] if 'C1-' in rate_name else rate_name[:-6]
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', f'{rate_name}')
