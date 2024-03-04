@@ -120,7 +120,8 @@ class TimesheetListView(GridView):
                 if unallocated_time:
                     start_time, end_time = unallocated_time.pop(0)
                 else:
-                    start_time = end_time = None
+                    # start_time = end_time = None
+                    break
                 print('pay_item', pay_item, start_time, end_time)
                 pay_line, unallocated_time = PayItemAward(pay_item).calculate_award(
                     date=ts['date'],
