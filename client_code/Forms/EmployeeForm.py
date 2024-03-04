@@ -30,7 +30,7 @@ class EmployeeForm(FormBase):
                         #  self.pay_rate,
                         #  self.status
                     ],
-                    # [self.address],
+                    [self.address],
                 ]
             }
         ]
