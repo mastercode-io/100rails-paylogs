@@ -186,6 +186,9 @@ class TimesheetListView(GridView):
         for pl in pay_lines:
             print(pl)
 
+        for ts in timesheets:
+            self.update_grid(ts, False)
+
     @staticmethod
     def calculate_pay_lines(
             time_frames=None,
