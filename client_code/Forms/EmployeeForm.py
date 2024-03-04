@@ -26,9 +26,9 @@ class EmployeeForm(FormBase):
                          self.last_name,
                          self.email,
                          self.mobile,
-                         self.role,
-                        #  self.pay_rate,
-                        #  self.status
+                         # self.role,
+                         self.pay_rate,
+                         self.status
                     ],
                     [self.address],
                 ]
