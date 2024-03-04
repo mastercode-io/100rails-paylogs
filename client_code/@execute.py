@@ -152,7 +152,6 @@ pay_rates = {
     "RDO T2 CAS CW3 Leave": 65.61,
     "RDO T2 CAS CW4 Leave": 70.86,
     "RDO T2 PFT CW4 Leave": 56.69,
-    "T1-PFT-CW4-DELO-ORD": 53.98,
     "T2-CAS-CW1-OT150%": 72.36,
     "T2-CAS-CW2-OT150%": 92.78,
     "T2-CAS-CW3-OT150%": 98.42,
