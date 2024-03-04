@@ -102,39 +102,82 @@ init_user_session()
 #     "SUP3 C1 RDO ": 55.57
 # }
 
+# pay_rates = {
+#     "T1-CAS-CW1-LAB-ORD": 59.54,
+#     "T1-CAS-CW2-SCAF-ORD": 61.85,
+#     "T1-CAS-CW3-SCAF-ORD": 65.61,
+#     "T1-CAS-CW4-SCAF-ORD": 70.86,
+#     "T1-PFT-CW4-DELO-ORD": 56.69,
+#     "RDO T1 CAS CW1": 59.54,
+#     "RDO T1 CAS CW2": 61.85,
+#     "RDO T1 CAS CW3": 65.61,
+#     "RDO T1 CAS CW4": 70.86,
+#     "RDO T1 PFT CW4": 56.69,
+#     "RDO T1 CAS CW1 Leave": 59.54,
+#     "RDO T1 CAS CW2 Leave": 61.85,
+#     "RDO T1 CAS CW3 Leave": 65.61,
+#     "RDO T1 CAS CW4 Leave": 70.86,
+#     "RDO T1 PFT CW4 Leave": 56.69,
+#     "T1-CAS-CW1-LAB-OT200%": 119.08,
+#     "T1-CAS-CW2-SCAF-OT200%": 123.7,
+#     "T1-CAS-CW3-SCAF-OT200%": 131.22,
+#     "T1-CAS-CW4-SCAF-OT200%": 141.72,
+#     "T1-PFT-CW4-DELO-OT200%": 113.38,
+#     "SUP2 OT150%": 77.16,
+#     "SUP2 OT200%": 102.88,
+#     "SUP3 OT150%": 79.38,
+#     "SUP3 OT200%": 105.84,
+#     "T1-PFT-CW2-SCAF-OT200%": 98.96,
+#     "T1-PFT-CW2-SCAF-ORD": 49.48,
+#     "T1-PFT-CW3-SCAF-ORD": 52.49,
+#     "T1-PFT-CW3-SCAF-OT200%": 104.98,
+#     "T1-PFT-CW4-SCAF-ORD": 56.69,
+#     "T1-PFT-CW4-SCAF-OT200%": 113.38,
+#     "SUP2 C1 RDO ": 54.01,
+#     "SUP2 C1 RDO Leave": 54.01
+# }
+
 pay_rates = {
-    "T1-CAS-CW1-LAB-ORD": 59.54,
-    "T1-CAS-CW2-SCAF-ORD": 61.85,
-    "T1-CAS-CW3-SCAF-ORD": 65.61,
-    "T1-CAS-CW4-SCAF-ORD": 70.86,
-    "T1-PFT-CW4-DELO-ORD": 56.69,
-    "RDO T1 CAS CW1": 59.54,
-    "RDO T1 CAS CW2": 61.85,
-    "RDO T1 CAS CW3": 65.61,
-    "RDO T1 CAS CW4": 70.86,
-    "RDO T1 PFT CW4": 56.69,
-    "RDO T1 CAS CW1 Leave": 59.54,
-    "RDO T1 CAS CW2 Leave": 61.85,
-    "RDO T1 CAS CW3 Leave": 65.61,
-    "RDO T1 CAS CW4 Leave": 70.86,
-    "RDO T1 PFT CW4 Leave": 56.69,
-    "T1-CAS-CW1-LAB-OT200%": 119.08,
-    "T1-CAS-CW2-SCAF-OT200%": 123.7,
-    "T1-CAS-CW3-SCAF-OT200%": 131.22,
-    "T1-CAS-CW4-SCAF-OT200%": 141.72,
-    "T1-PFT-CW4-DELO-OT200%": 113.38,
+    "T2-CAS-CW1-LAB-ORD": 59.94,
+    "T2-CAS-CW2-SCAF-ORD": 61.85,
+    "T2-CAS-CW3-SCAF-ORD": 65.61,
+    "T2-CAS-CW4-SCAF-ORD": 70.86,
+    "RDO T2 CAS CW1": 59.94,
+    "RDO T2 CAS CW2": 61.85,
+    "RDO T2 CAS CW3": 65.61,
+    "RDO T2 CAS CW4": 70.86,
+    "RDO T2 PFT CW4": 56.69,
+    "RDO T2 CAS CW1 Leave": 59.94,
+    "RDO T2 CAS CW2 Leave": 61.85,
+    "RDO T2 CAS CW3 Leave": 65.61,
+    "RDO T2 CAS CW4 Leave": 70.86,
+    "RDO T2 PFT CW4 Leave": 56.69,
+    "T1-PFT-CW4-DELO-ORD": 53.98,
+    "T2-CAS-CW1-OT150%": 72.36,
+    "T2-CAS-CW2-OT150%": 92.78,
+    "T2-CAS-CW3-OT150%": 98.42,
+    "T2-CAS-CW4-OT150%": 106.29,
+    "T2-CAS-CW1-OT200%": 119.08,
+    "T2-CAS-CW2-OT200%": 123.7,
+    "T2-CAS-CW3-OT200%": 131.22,
+    "T2-CAS-CW4-OT200%": 141.72,
+    "T2-PFT-CW4-OT150%": 85.04,
+    "T2-PFT-CW4-OT200%": 113.38,
+    "T2-PFT-CW4-DELO-ORD": 56.69,
     "SUP2 OT150%": 77.16,
     "SUP2 OT200%": 102.88,
     "SUP3 OT150%": 79.38,
     "SUP3 OT200%": 105.84,
-    "T1-PFT-CW2-SCAF-OT200%": 98.96,
-    "T1-PFT-CW2-SCAF-ORD": 49.48,
-    "T1-PFT-CW3-SCAF-ORD": 52.49,
-    "T1-PFT-CW3-SCAF-OT200%": 104.98,
-    "T1-PFT-CW4-SCAF-ORD": 56.69,
-    "T1-PFT-CW4-SCAF-OT200%": 113.38,
-    "SUP2 C1 RDO ": 54.01,
-    "SUP2 C1 RDO Leave": 54.01
+    "SUP2 SALARY": 54.01,
+    "T2-PFT-CW1-LAB-ORD": 47.63,
+    "T2-PFT-CW1-OT150%": 71.45,
+    "T2-PFT-CW1-OT200%": 95.26,
+    "T2-PFT-CW2-SCAF-ORD": 49.48,
+    "T2-PFT-CW2-OT150%": 74.22,
+    "T2-PFT-CW2-OT200%": 98.96,
+    "T2-PFT-CW3-SCAF-ORD": 52.49,
+    "T2-PFT-CW3-OT150%": 78.73,
+    "T2-PFT-CW3-OT200%": 104.98
 }
 
 ord_rates = [x for x in pay_rates.keys() if 'ORD' in x or 'SALARY' in x]
@@ -150,29 +193,29 @@ OTSAT200_RULE = 'OT200% SAT'
 OTSUN200_RULE = 'OT200% SUN'
 OTPH200_RULE = 'OT200% PH'
 
-pay_rate_template = models.PayRateTemplate.get_by('name', 'T1 Job')
+pay_rate_template = models.PayRateTemplate.get_by('name', 'T2 Job')
 print(pay_rate_template)
 rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template,
-                                                default_pay_rate_title=OTPH200_RULE)]
-print(rate_item, OTPH200_RULE)
-for rate_name in mult20_rates:
+                                                default_pay_rate_title=ORD_RULE)]
+print(rate_item, ORD_RULE)
+for rate_name in ord_rates:
     if 'SUP' in rate_name:
         role_name = rate_name[0:4] + ' SALARY'
     else:
-        # role_name = rate_name[3:] if 'T1-' in rate_name else rate_name
-        role_name = (rate_name[3:-7] if 'T1-' in rate_name else rate_name[:-7]) + '-ORD'
+        role_name = rate_name[3:] if 'T2-' in rate_name else rate_name
+        # role_name = (rate_name[3:-7] if 'T1-' in rate_name else rate_name[:-7]) + '-ORD'
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', f'{rate_name}')
     if not role or not pay_category:
         print(f'Role or PayCategory not found for {role_name}/{rate_name}: {role} {pay_category}')
         continue
-    specific_role = models.PayRateTemplateSpecificRole(
-        pay_rate_template_item=rate_item[0],
-        name=role_name,
-        employee_role=role,
-        pay_category=pay_category,
-        pay_rate=rate,
-    )
-    specific_role.save()
-    print('saved', specific_role, role_name, rate_name, rate)
+    # specific_role = models.PayRateTemplateSpecificRole(
+    #     pay_rate_template_item=rate_item[0],
+    #     name=role_name,
+    #     employee_role=role,
+    #     pay_category=pay_category,
+    #     pay_rate=rate,
+    # )
+    # specific_role.save()
+    # print('saved', specific_role, role_name, rate_name, rate)
