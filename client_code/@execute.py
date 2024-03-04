@@ -198,9 +198,9 @@ OTPH200_RULE = 'OT200% PH'
 pay_rate_template = models.PayRateTemplate.get_by('name', 'T2 Job')
 print(pay_rate_template)
 rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template,
-                                                default_pay_rate_title=OTSAT150_RULE)]
-print(rate_item, OTSAT150_RULE)
-for rate_name in mult15_rates:
+                                                default_pay_rate_title=OT200WD_RULE)]
+print(rate_item, OT200WD_RULE)
+for rate_name in mult20_rates:
     if 'SUP' in rate_name:
         role_name = rate_name[0:4] + ' SALARY'
         cat_name = rate_name
@@ -216,12 +216,12 @@ for rate_name in mult15_rates:
     if not role or not pay_category:
         print(f'Role or PayCategory not found for {role_name}/{rate_name}({cat_name}): {role} {pay_category}')
         continue
-    specific_role = models.PayRateTemplateSpecificRole(
-        pay_rate_template_item=rate_item[0],
-        name=role_name,
-        employee_role=role,
-        pay_category=pay_category,
-        pay_rate=rate,
-    )
-    specific_role.save()
-    print('saved', specific_role, role_name, rate_name, rate)
+    # specific_role = models.PayRateTemplateSpecificRole(
+    #     pay_rate_template_item=rate_item[0],
+    #     name=role_name,
+    #     employee_role=role,
+    #     pay_category=pay_category,
+    #     pay_rate=rate,
+    # )
+    # specific_role.save()
+    # print('saved', specific_role, role_name, rate_name, rate)
