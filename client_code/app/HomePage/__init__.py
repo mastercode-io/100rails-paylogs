@@ -8,7 +8,7 @@ from ... import Forms
 from ... import Views
 from ... import Pages
 import navigation as nav
-from ..copilot import Copilot
+# from ..copilot import Copilot
 import json
 
 AppEnv.APP_ID = "PayLogs"
