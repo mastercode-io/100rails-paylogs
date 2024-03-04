@@ -155,7 +155,7 @@ print(pay_rate_template)
 rate_item = [*models.PayRateTemplateItem.search(pay_rate_template=pay_rate_template,
                                                 default_pay_rate_title=OT150WD_RULE)]
 print(rate_item, OT150WD_RULE)
-for rate_name in ord_rates:
+for rate_name in mult15_rates:
     if 'SUP' in rate_name:
         role_name = rate_name[0:4] + ' SALARY'
     else:
