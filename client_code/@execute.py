@@ -175,3 +175,4 @@ for rate_name in ord_rates:
         pay_rate=rate,
     )
     specific_role.save()
+    print('saved', specific_role, role_name, rate_name, rate)
