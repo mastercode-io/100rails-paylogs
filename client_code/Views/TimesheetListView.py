@@ -106,7 +106,7 @@ class TimesheetListView(GridView):
         print('timesheets', len(timesheets))
         pay_lines = []
         for ts in timesheets:
-            print(ts['job']['job_type']['short_code'])
+            # print(ts['job']['job_type']['short_code'])
             scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
             pay_rate_template = PayRateTemplate.get_by('scope', scope)
             pay_item_list = [item for item in PayRateTemplateItem.search(
@@ -122,7 +122,7 @@ class TimesheetListView(GridView):
                 else:
                     # start_time = end_time = None
                     break
-                print('pay_item', pay_item, start_time, end_time)
+                # print('pay_item', pay_item, start_time, end_time)
                 pay_line, unallocated_time = PayItemAward(pay_item).calculate_award(
                     date=ts['date'],
                     start_time=start_time,
@@ -147,7 +147,7 @@ class TimesheetListView(GridView):
             search_query=tables.order_by('overtime_start', ascending=True)
         )
         for pay_rule in pay_rule_list:
-            print('pay_rule', pay_rule.name)
+            # print('pay_rule', pay_rule.name)
             week_hours = 0
             week_pay_lines = []
             overtime_lines = []
