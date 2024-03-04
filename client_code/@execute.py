@@ -167,12 +167,12 @@ for rate_name in mult20_rates:
     if not role or not pay_category:
         print(f'Role or PayCategory not found for {role_name}/{rate_name}: {role} {pay_category}')
         continue
-    # specific_role = models.PayRateTemplateSpecificRole(
-    #     pay_rate_template_item=rate_item[0],
-    #     name=role_name,
-    #     employee_role=role,
-    #     pay_category=pay_category,
-    #     pay_rate=rate,
-    # )
-    # specific_role.save()
-    # print('saved', specific_role, role_name, rate_name, rate)
+    specific_role = models.PayRateTemplateSpecificRole(
+        pay_rate_template_item=rate_item[0],
+        name=role_name,
+        employee_role=role,
+        pay_category=pay_category,
+        pay_rate=rate,
+    )
+    specific_role.save()
+    print('saved', specific_role, role_name, rate_name, rate)
