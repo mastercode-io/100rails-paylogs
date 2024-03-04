@@ -207,14 +207,14 @@ for rate_name in mult15_rates:
     else:
         # role_name = rate_name[3:] if 'T2-' in rate_name else rate_name
         role_name = (rate_name[3:-7] if 'T2-' in rate_name else rate_name[:-7]) + '-ORD'
-        rate_name = ''.join(rate_name.split('-SCAF'))
-        rate_name = ''.join(rate_name.split('-LAB'))
-        rate_name = ''.join(rate_name.split('-DELO'))
+        cat_name = ''.join(rate_name.split('-SCAF'))
+        cat_name = ''.join(rate_name.split('-LAB'))
+        cat_name = ''.join(rate_name.split('-DELO'))
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
-    pay_category = models.PayCategory.get_by('name', f'{rate_name}')
+    pay_category = models.PayCategory.get_by('name', f'{cat_name}')
     if not role or not pay_category:
-        print(f'Role or PayCategory not found for {role_name}/{rate_name}: {role} {pay_category}')
+        print(f'Role or PayCategory not found for {role_name}/{rate_name}({cat_name}): {role} {pay_category}')
         continue
     # specific_role = models.PayRateTemplateSpecificRole(
     #     pay_rate_template_item=rate_item[0],
