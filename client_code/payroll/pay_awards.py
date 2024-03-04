@@ -107,7 +107,7 @@ class PayItemAward(PayRateTemplateItem):
         units, unallocated_time = PyaRateRuleAward(self.pay_rate_rule).allocate_time(
             date, start_time, end_time, total_hours=total_hours
         )
-        base_rate = self.default_pay_rate or employee_base_rate
+        base_rate = self.default_pay_rate or employee_base_rate or employee_role['pay_rate']
         specific_rate = None
         if employee_role:
             specific_roles = [*PayRateTemplateSpecificRole.search(pay_rate_template_item=self.pay_rate_template_item,
