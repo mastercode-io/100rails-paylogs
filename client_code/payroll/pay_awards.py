@@ -1,4 +1,4 @@
-from ..app.models import PayRateRule, PayRateTemplateItem, Timesheet
+from ..app.models import PayRateRule, PayRateTemplateItem, PayRateTemplateSpecificRole
 import json
 from datetime import datetime, timedelta
 
@@ -101,19 +101,30 @@ class PayItemAward(PayRateTemplateItem):
     def __init__(self, instance=None):
         self.__dict__.update(instance.__dict__)
 
-    def calculate_award(self, date, start_time, end_time, total_hours=None, employee_base_rate=None):
+    def calculate_award(self, date, start_time, end_time, total_hours=None,
+                        employee_base_rate=None, employee_role=None):
         units, unallocated_time = PyaRateRuleAward(self.pay_rate_rule).allocate_time(
             date, start_time, end_time, total_hours=total_hours
         )
-        base_rate = self.pay_rate or employee_base_rate
-        if self.pay_rate_rule.pay_rate_type == 'Multiplier':
-            payline_rate = base_rate * self.pay_rate_multiplier
+        specific_rate = None
+        if employee_role:
+            specific_roles = [*PayRateTemplateSpecificRole.search(pay_rate_template_item=self,
+                                                                  employee_role=employee_role)]
+            if specific_roles:
+                specific_rate = specific_roles[0].pay_rate
+                print(f'Using specific rate {specific_rate} for {employee_role.name} on {self.pay_rate_rule.name}')
+        base_rate = self.default_pay_rate or employee_base_rate
+        if specific_rate:
+            payline_rate = specific_rate
         else:
-            payline_rate = base_rate
+            if self.pay_rate_rule.pay_rate_type == 'Multiplier':
+                payline_rate = base_rate * self.pay_rate_multiplier
+            else:
+                payline_rate = base_rate
         if units:
             pay_line = PayLine(
-                pay_rate_title=self.pay_rate_title,
-                pay_category=self.pay_category,
+                pay_rate_title=self.default_pay_rate_title,
+                pay_category=self.default_pay_category,
                 date=date,
                 base_rate=base_rate,
                 pay_rate=payline_rate,

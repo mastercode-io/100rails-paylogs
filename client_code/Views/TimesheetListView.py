@@ -128,6 +128,7 @@ class TimesheetListView(GridView):
                     end_time=end_time,
                     total_hours=ts['total_hours'],
                     employee_base_rate=employee['pay_rate'],
+                    employee_role=employee['role'],
                 )
                 # print('pay_line', pay_line, unallocated_time)
                 if pay_line:
