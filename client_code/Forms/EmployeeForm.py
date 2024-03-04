@@ -21,15 +21,16 @@ class EmployeeForm(FormBase):
         sections = [
             {
                 'name': '_', 'cols': [
-                    [' ',
-                     self.first_name,
-                     self.last_name,
-                     self.email,
-                     self.mobile,
-                     self.role,
-                     self.pay_rate,
-                     self.status],
-                    [self.address],
+                    [
+                         self.first_name,
+                         self.last_name,
+                        #  self.email,
+                        #  self.mobile,
+                        #  self.role,
+                        #  self.pay_rate,
+                        #  self.status
+                    ],
+                    # [self.address],
                 ]
             }
         ]
