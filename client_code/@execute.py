@@ -159,8 +159,8 @@ for rate_name in ord_rates:
     if 'SUP' in rate_name:
         role_name = rate_name[0:4] + ' SALARY'
     else:
-        # role_name = rate_name[3:] if 'C1-' in rate_name else rate_name
-        role_name = (rate_name[3:-7] if 'T1-' in rate_name else rate_name[:-7]) + '-ORD'
+        role_name = rate_name[3:] if 'T1-' in rate_name else rate_name
+        # role_name = (rate_name[3:-7] if 'T1-' in rate_name else rate_name[:-7]) + '-ORD'
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', f'{rate_name}')
