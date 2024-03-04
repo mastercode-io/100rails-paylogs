@@ -12,7 +12,7 @@ class EmployeeForm(FormBase):
         self.last_name = TextInput(name='last_name', label='Last Name')
         self.email = TextInput(name='email', label='Email')
         self.mobile = TextInput(name='mobile', label='Mobile')
-        self.role = LookupInput(name='role', label='Role', model='EmployeeRole', select='multi')
+        self.role = LookupInput(name='role', label='Role', model='EmployeeRole')
         self.pay_rate = NumberInput(name='pay_rate', label='Pay Rate', number_format='c2')
         self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'])
         self.address = MultiFieldInput(name='address', label='_', model='Employee')
