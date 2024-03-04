@@ -141,7 +141,7 @@ class TimesheetListView(GridView):
                 ts['total_pay'] = total_pay
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
-                # self.update_grid(ts, False)
+                self.update_grid(ts, False)
         pay_rule_list = PayRateRule.search(
             time_scope='Week',
             search_query=tables.order_by('overtime_start', ascending=True)
@@ -186,8 +186,8 @@ class TimesheetListView(GridView):
         for pl in pay_lines:
             print(pl)
 
-        for ts in timesheets:
-            self.update_grid(ts, False)
+        # for ts in timesheets:
+        #     self.update_grid(ts, False)
 
     @staticmethod
     def calculate_pay_lines(
