@@ -207,6 +207,9 @@ for rate_name in mult15_rates:
     else:
         # role_name = rate_name[3:] if 'T2-' in rate_name else rate_name
         role_name = (rate_name[3:-7] if 'T2-' in rate_name else rate_name[:-7]) + '-ORD'
+        rate_name = ''.join(rate_name.split('-SCAF'))
+        rate_name = ''.join(rate_name.split('-LAB'))
+        rate_name = ''.join(rate_name.split('-DELO'))
     rate = pay_rates[rate_name]
     role = models.EmployeeRole.get_by('name', f'** {role_name}')
     pay_category = models.PayCategory.get_by('name', f'{rate_name}')
