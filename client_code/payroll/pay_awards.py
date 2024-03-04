@@ -114,9 +114,10 @@ class PayItemAward(PayRateTemplateItem):
                                                                   employee_role=employee_role)]
             if specific_roles:
                 specific_rate = specific_roles[0].pay_rate
-                print(f'Using specific rate {specific_rate} for {employee_role.name} on {self.pay_rate_rule.name}')
+                # print(f'Using specific rate {specific_rate} for {employee_role.name} on {self.pay_rate_rule.name}')
             else:
-                print(f'Using default/base rate {self.default_pay_rate}/{base_rate} for {self.pay_rate_rule.name}')
+                pass
+                # print(f'Using default/base rate {self.default_pay_rate}/{base_rate} for {self.pay_rate_rule.name}')
         if specific_rate:
             print('specific rate', specific_rate)
             payline_rate = specific_rate
