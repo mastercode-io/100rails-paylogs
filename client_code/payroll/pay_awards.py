@@ -100,6 +100,7 @@ class PyaRateRuleAward(PayRateRule):
 class PayItemAward(PayRateTemplateItem):
     def __init__(self, instance=None):
         self.__dict__.update(instance.__dict__)
+        self.pay_rate_template_item = instance
 
     def calculate_award(self, date, start_time, end_time, total_hours=None,
                         employee_base_rate=None, employee_role=None):
@@ -108,7 +109,7 @@ class PayItemAward(PayRateTemplateItem):
         )
         specific_rate = None
         if employee_role:
-            specific_roles = [*PayRateTemplateSpecificRole.search(pay_rate_template_item=self,
+            specific_roles = [*PayRateTemplateSpecificRole.search(pay_rate_template_item=self.pay_rate_template_item,
                                                                   employee_role=employee_role)]
             if specific_roles:
                 specific_rate = specific_roles[0].pay_rate
