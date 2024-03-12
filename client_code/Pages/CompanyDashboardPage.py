@@ -47,6 +47,6 @@ class CompanyDashboardPage(DashboardPage):
             layout=layout,
             container_id=container_id,
             page_title='Company Dashboard',
-            title_class='h3',
+            title_class='pl-company-dashboard-title',
             **kwargs
         )

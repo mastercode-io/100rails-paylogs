@@ -279,6 +279,13 @@ label>span.e-label {
 }
 
 /* Component specific styles */
+.pl-company-dashboard-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #4f46e5;
+}
 .pl-company-dashboard-panel {
     border: none!important;
     box-shadow: #ffffff 0 0 0 0!important;
