@@ -7,7 +7,7 @@ class CompanyDashboardPage(DashboardPage):
 
         layout = {
             # 'showGridLines': True,
-            # 'cellSpacing': [10, 10],
+            'cellSpacing': [0, 0],
             'columns': 2,
             'cellAspectRatio': 100/50,
             'panels': [
