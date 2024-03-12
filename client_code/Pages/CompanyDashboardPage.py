@@ -28,7 +28,7 @@ class CompanyDashboardPage(DashboardPage):
                     'id': 'labour_cost', 'header': 'Labour Cost',
                 },
             ],
-            'allowResizing': True,
+            # 'allowResizing': True,
         }
 
         super().__init__(
