@@ -6,7 +6,7 @@ class CompanyDashboardPage(DashboardPage):
     def __init__(self, container_id, **kwargs):
 
         layout = {
-            'showGridLines': True,
+            # 'showGridLines': True,
             # 'cellSpacing': [10, 10],
             'columns': 2,
             'cellAspectRatio': 100/50,
