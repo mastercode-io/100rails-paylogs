@@ -29,6 +29,7 @@ class CompanyDashboardPage(DashboardPage):
                 },
             ],
             # 'allowResizing': True,
+            'allowDragging': False,
         }
 
         super().__init__(
