@@ -21,7 +21,7 @@ class CompanyDashboardPage(DashboardPage):
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
-                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 1,
+                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
                     'id': 'widget_b',
                     'header': 'Widget B',
                     'cssClass': PANEL_CSS_CLASS,
