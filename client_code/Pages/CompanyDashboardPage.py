@@ -1,5 +1,7 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
 
+PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
+
 
 class CompanyDashboardPage(DashboardPage):
 
@@ -14,18 +16,22 @@ class CompanyDashboardPage(DashboardPage):
                 {
                     'sizeX': 2, 'sizeY': 1, 'row': 0, 'col': 0,
                     'id': 'company_info', 'header': 'Company Info',
+                    'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 1, 'sizeY': 2, 'row': 1, 'col': 0,
                     'id': 'employees', 'header': 'Employees',
+                    'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 1, 'col': 1,
                     'id': 'last_payrun', 'header': 'Last Payrun',
+                    'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 2, 'col': 1,
                     'id': 'labour_cost', 'header': 'Labour Cost',
+                    'cssClass': PANEL_CSS_CLASS,
                 },
             ],
             # 'allowResizing': True,
