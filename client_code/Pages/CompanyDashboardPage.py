@@ -1,6 +1,7 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
 
-PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
+# PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
+PANEL_CSS_CLASS = ''
 
 
 class CompanyDashboardPage(DashboardPage):
