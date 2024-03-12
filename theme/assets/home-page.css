@@ -280,5 +280,5 @@ label>span.e-label {
 
 /* Component specific styles */
 .pl-company-dashboard-panel {
-    border: none;
+    border: none!important;
 }
