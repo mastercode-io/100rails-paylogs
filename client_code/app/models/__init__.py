@@ -5,7 +5,7 @@ from AnvilFusion.datamodel.particles import (
     Computed,
 )
 from AnvilFusion.datamodel import types
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
 from .timesheet import TimesheetType, Timesheet
 
