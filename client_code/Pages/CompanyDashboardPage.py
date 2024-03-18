@@ -21,7 +21,7 @@ class CompanyDashboardPage(DashboardPage):
                     </div>\
                     <div style="font-size: 16px; color: green;">\
                         <i class="fa-solid fa-caret-up" style="font-size: 70px;\
-                         position: relative; top: 20px;"></i>\
+                         position: relative; top: 20px; margin-top: -20px;"></i>\
                         &nbsp;&nbsp;&nbsp;Up by 3\
                     </div>\
                 </div>\
