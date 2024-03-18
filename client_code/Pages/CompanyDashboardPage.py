@@ -10,7 +10,7 @@ class CompanyDashboardPage(DashboardPage):
 
         total_staff_widget_content = f'\
             <div style="padding: 10px;">\
-                <div style="border: 1px solid; background-color:grey;">\
+                <div height="100%" style="border: 1px solid; background-color:light-grey;">\
                     <p>Total Staff This Pay</p>\
                     <p style="font-size:20px;font-weight:bold;">1,400</p>\
                 </div>\
