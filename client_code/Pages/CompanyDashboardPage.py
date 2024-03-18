@@ -10,7 +10,7 @@ class CompanyDashboardPage(DashboardPage):
 
         total_staff_widget_content = f'\
             <div style="padding: 10px;">\
-                <div height="100%" style="border: 1px solid; background-color:light-grey;">\
+                <div height="100%" style="border: 1px solid; background-color:lightgrey;height:100%">\
                     <p>Total Staff This Pay</p>\
                     <p style="font-size:20px;font-weight:bold;">1,400</p>\
                 </div>\
@@ -38,7 +38,7 @@ class CompanyDashboardPage(DashboardPage):
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
-                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
+                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 1,
                     'id': 'total_pay_widget',
                     # 'header': 'Widget B',
                     'content': total_pay_widget_content,
