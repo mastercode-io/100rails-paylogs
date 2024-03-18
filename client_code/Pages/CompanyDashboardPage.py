@@ -15,7 +15,7 @@ class CompanyDashboardPage(DashboardPage):
                     <div style="font-size: 16px; font-weight: bold;">\
                         Total Staff This Pay\
                     </div>\
-                    <div style"font-size: 24px; font-weight: bold;">\
+                    <div style="font-size: 24px; font-weight: bold;">\
                         1,400\
                     </div>\
                     <div style="font-size: 16px; color: green;">\
