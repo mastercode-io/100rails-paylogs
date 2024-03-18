@@ -10,11 +10,15 @@ class CompanyDashboardPage(DashboardPage):
 
         total_staff_widget_content = f'\
             <div style="padding: 10px; height:100%;">\
-                <div height="100%" style="border: 1px solid; border-radius: 5px; background-color:#F5F5F5; \
-                height:100%; text-align:center; display: flex; flex-direction: column; justify-content: space-evenly;">\
-                    <div>Total Staff This Pay</div>\
-                    <div>1,400</div>\
-                    <div style="font-size: 16px;color: green;">\
+                <div height="100%" style="border: 1px solid; border-radius: 5px; background-color: #F5F5F5; \
+                height:100%; text-align: center; display: flex; flex-direction: column; justify-content: space-evenly;">\
+                    <div style="font-size: 16px; font-weight: bold;">\
+                        Total Staff This Pay\
+                    </div>\
+                    <div style"font-size: 24px; font-weight: bold;">\
+                        1,400\
+                    </div>\
+                    <div style="font-size: 16px; color: green;">\
                         <i class="fa-solid fa-triangle" style="font-size: 30px;"></i>\
                         &nbsp;&nbsp;&nbsp;Up by 3\
                     </div>\
