@@ -14,7 +14,9 @@ class CompanyDashboardPage(DashboardPage):
                 height:100%; text-align:center; ">\
                     <h4>Total Staff This Pay</h4>\
                     <h1>1,400</h1>\
-                    <p style="font-size: 20px;color: green;"><i class="fa-solid fa-triangle"></i>nbsp;nbsp;nbsp;Up by 3</p>\
+                    <p style="font-size: 20px;color: green;">\
+                        <i class="fa-solid fa-triangle"></i>&nbsp;&nbsp;&nbsp;Up by 3\
+                    </p>\
                 </div>\
             </div>'
 
