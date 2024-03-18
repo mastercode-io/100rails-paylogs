@@ -8,6 +8,22 @@ class CompanyDashboardPage(DashboardPage):
 
     def __init__(self, container_id, **kwargs):
 
+        total_staff_widget_content = f'\
+            <div style="padding: 10px;">\
+                <div style="border: 1px solid; background-color:grey;">\
+                    <p>Total Staff This Pay</p>\
+                    <p style="font-size:20px;font-weight:bold;">1,400</p>\
+                </div>\
+            </div>'
+
+        total_pay_widget_content = f'\
+            <div style="padding: 10px;">\
+                <div style="border: 1px solid; background-color:grey;">\
+                    <p>Total Paid This Pay</p>\
+                    <p style="font-size:20px;font-weight:bold;">$34,544</p>\
+                </div>\
+            </div>'
+
         layout = {
             'showGridLines': True,
             'cellSpacing': [0, 0],
@@ -16,25 +32,27 @@ class CompanyDashboardPage(DashboardPage):
             'panels': [
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
-                    'id': 'widget_a',
+                    'id': 'total_staff_widget',
                     # 'header': 'Widget A',
+                    'content': total_staff_widget_content,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
-                    'id': 'widget_b',
+                    'id': 'total_pay_widget',
                     # 'header': 'Widget B',
+                    'content': total_pay_widget_content,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 2, 'sizeY': 1, 'row': 1, 'col': 0,
-                    'id': 'widget_c',
+                    'id': 'pay_distribution_chart',
                     # 'header': 'Widget C',
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 2, 'sizeY': 2, 'row': 0, 'col': 2,
-                    'id': 'widget_d',
+                    'id': 'pay_trend_chat',
                     # 'header': 'Widget D',
                     'cssClass': PANEL_CSS_CLASS,
                 },
