@@ -20,7 +20,7 @@ class CompanyDashboardPage(DashboardPage):
                         1,400\
                     </div>\
                     <div style="font-size: 16px; color: green;">\
-                        <i class="fa-solid fa-caret-up" style="font-size: 50px;\
+                        <i class="fa-solid fa-caret-up" style="font-size: 70px;\
                          position: relative; top: 20px;"></i>\
                         &nbsp;&nbsp;&nbsp;Up by 3\
                     </div>\
