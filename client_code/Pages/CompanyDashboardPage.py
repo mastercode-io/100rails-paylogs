@@ -10,7 +10,7 @@ class CompanyDashboardPage(DashboardPage):
 
         total_staff_widget_content = f'\
             <div style="padding: 10px; height:100%;">\
-                <div height="100%" style="border: 1px solid; border-radius: 5px; border-color: grey;\
+                <div height="100%" style="border: 1px solid; border-radius: 5px; border-color: lightgrey;\
                 background-color: #F5F5F5; height:100%; text-align: center; \
                 display: flex; flex-direction: column; justify-content: space-evenly;">\
                     <div style="font-size: 14px; font-weight: bold;">\
