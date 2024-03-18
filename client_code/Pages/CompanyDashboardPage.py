@@ -20,7 +20,7 @@ class CompanyDashboardPage(DashboardPage):
                         1,400\
                     </div>\
                     <div style="font-size: 16px; color: green;">\
-                        <i class="fa-solid fa-triangle" style="font-size: 30px;"></i>\
+                        <i class="fa-solid fa-caret-up" style="font-size: 30px;"></i>\
                         &nbsp;&nbsp;&nbsp;Up by 3\
                     </div>\
                 </div>\
