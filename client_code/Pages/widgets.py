@@ -3,31 +3,38 @@
 class TickerWidget:
 
     def __init__(self,
-                 ticker_title,
-                 ticker_value,
-                 ticker_symbol=None,
-                 ticket_change=None,
+                 title=None,
+                 symbol=None,
+                 value=None,
+                 value_format=None,
+                 change=None,
+                 change_format=None,
                  **kwargs):
 
-        self.ticker_title = ticker_title
-        self.ticker_symbol = ticker_symbol
-        self.ticker_value = ticker_value
-        self.ticker_change = ticket_change or 0
+        self.title = title or ''
+        self.symbol = symbol
+        self.value = value or 0
+        self.value_format = value_format or '{:,.0f}'
+        self.change = change or 0
+        self.change_format = change_format or '{:,.0f}'
 
-        if self.ticker_change > 0:
+        if '%' in self.change_format:
+            self.change = (self.change / (self.value + self.change)) * 100
+
+        if self.change > 0:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: green;">\
                     <i class="fa-solid fa-caret-up" style="font-size: 70px;\
                      position: relative; top: 20px; margin-top: -30px;"></i>\
-                    &nbsp;&nbsp;&nbsp;Up by {self.ticker_change}\
+                    &nbsp;&nbsp;&nbsp;Up by {self.change_format.format(self.change)}\
                 </div>'
             value_el_position = 7
-        elif self.ticker_change < 0:
+        elif self.change < 0:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: red;">\
                     <i class="fa-solid fa-caret-down" style="font-size: 70px;\
                      position: relative; top: 10px; margin-top: -30px;"></i>\
-                    &nbsp;&nbsp;&nbsp;Down by {-self.ticker_change}\
+                    &nbsp;&nbsp;&nbsp;Down by {self.change_format.format(-self.change)}\
                 </div>'
             value_el_position = 7
 
@@ -46,11 +53,11 @@ class TickerWidget:
                 background-color: #F5F5F5; height:100%; text-align: center; \
                 display: flex; flex-direction: column; justify-content: space-evenly;">\
                     <div style="font-size: 14px; font-weight: bold;">\
-                        {self.ticker_symbol or self.ticker_title}\
+                        {self.title}{(" (" + self.symbol + ")") if self.symbol else ""}\
                     </div>\
                     <div style="font-size: 30px; font-weight: bold;\
                     position: relative; top: {value_el_position}px;">\
-                        {self.ticker_value}\
+                        {self.value_format.format(self.value)}\
                     </div>\
                     {self.ticker_direction}\
                 </div>\

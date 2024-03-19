@@ -35,10 +35,14 @@ class CompanyDashboardPage(DashboardPage):
         #             <p style="font-size:20px;font-weight:bold;">$34,544</p>\
         #         </div>\
         #     </div>'
-        total_staff_widget = TickerWidget('Total Staff This Pay', '1,400',
-                                          ticket_change=3)
-        total_pay_widget = TickerWidget('Total Paid This Pay', '$34,544',
-                                        ticket_change=-1234)
+        total_staff_widget = TickerWidget(title='Total Staff This Pay',
+                                          value=1400,
+                                          change=3)
+        total_pay_widget = TickerWidget(title='Total Paid This Pay',
+                                        value=34544,
+                                        value_format='${:,.0f}',
+                                        change=-2317,
+                                        change_format='{:,.2%}')
 
         layout = {
             'showGridLines': True,
