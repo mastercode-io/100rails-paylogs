@@ -53,7 +53,7 @@ class CompanyDashboardPage(DashboardPage):
             {'label': 'Vacation', 'value': 5},
         ]
         pay_distribution_chart = CircularChartWidget(title='Pay Distribution',
-                                                     chart_type='pie',
+                                                     chart_type='doughnut',
                                                      data=pay_distribution_data)
 
         self.widgets = [

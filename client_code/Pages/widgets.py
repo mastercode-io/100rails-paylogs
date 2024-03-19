@@ -90,7 +90,7 @@ class CircularChartWidget:
                  'yName': 'value',
                  'dataLabel': {'visible': True, 'position': 'Outside', 'name': 'label'},
                  'legendSettings': {'visible': False},
-                 'innerRadius': '40%' if self.chart_type == 'doughnut' else '0%',
+                 'innerRadius': '60%' if self.chart_type == 'doughnut' else '0%',
              }]
         }
         self.chart = ej.charts.AccumulationChart(chart_config)
