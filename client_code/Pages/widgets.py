@@ -2,7 +2,13 @@
 
 class TickerWidget:
 
-    def __init__(self, ticker_title, ticker_value, ticker_symbol=None, ticket_change=None, **kwargs):
+    def __init__(self,
+                 ticker_title,
+                 ticker_value,
+                 ticker_symbol=None,
+                 ticket_change=None,
+                 **kwargs):
+
         self.ticker_title = ticker_title
         self.ticker_symbol = ticker_symbol
         self.ticker_value = ticker_value
@@ -19,7 +25,7 @@ class TickerWidget:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: red;">\
                     <i class="fa-solid fa-caret-down" style="font-size: 70px;\
-                     position: relative; top: 0px; margin-top: -30px;"></i>\
+                     position: relative; top: 10px; margin-top: -30px;"></i>\
                     &nbsp;&nbsp;&nbsp;Down by {-self.ticker_change}\
                 </div>'
         else:
