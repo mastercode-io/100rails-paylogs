@@ -97,10 +97,8 @@ class CircularChartWidget:
 
         self.html = f'\
             <div style="padding: 10px; text-align: center; display: flex; flex-direction: column; height: 100%;">\
-                <div>\
-                    <div style="font-size: 14px; font-weight: bold;">{self.title}</div>\
-                    <div id="{self._element_id}"></div>\
-                </div>\
+                <div style="font-size: 14px; font-weight: bold;">{self.title}</div>\
+                <div id="{self._element_id}"></div>\
             </div>'
 
     def form_show(self):
