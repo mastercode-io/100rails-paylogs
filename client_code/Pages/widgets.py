@@ -17,10 +17,11 @@ class TickerWidget:
         if self.ticker_change > 0:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: green;">\
-                    <i class="fa-solid fa-caret-up" style="font-size: 40px;\
+                    <i class="fa-solid fa-caret-up" style="font-size: 70px;\
                      position: relative; top: 20px; margin-top: -30px;"></i>\
                     &nbsp;&nbsp;&nbsp;Up by {self.ticker_change}\
                 </div>'
+            value_el_position = 5
         elif self.ticker_change < 0:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: red;">\
@@ -28,6 +29,8 @@ class TickerWidget:
                      position: relative; top: 10px; margin-top: -30px;"></i>\
                     &nbsp;&nbsp;&nbsp;Down by {-self.ticker_change}\
                 </div>'
+            value_el_position = 0
+
         else:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: grey;">\
@@ -35,6 +38,7 @@ class TickerWidget:
                      position: relative; top: 10px; margin-top: -30px;"></i>\
                     &nbsp;&nbsp;&nbsp;Unchanged\
                 </div>'
+            value_el_position = 0
 
         self.html = f'\
             <div style="padding: 10px; height:100%;">\
@@ -44,7 +48,8 @@ class TickerWidget:
                     <div style="font-size: 14px; font-weight: bold;">\
                         {self.ticker_symbol or self.ticker_title}\
                     </div>\
-                    <div style="font-size: 30px; font-weight: bold;">\
+                    <div style="font-size: 30px; font-weight: bold;\
+                    position: relative; top: {value_el_position}px;">\
                         {self.ticker_value}\
                     </div>\
                     {self.ticker_direction}\
