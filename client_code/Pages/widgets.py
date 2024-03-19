@@ -33,7 +33,7 @@ class TickerWidget:
                 <div style="font-size: 16px; color: grey;">\
                     <i class="fa-solid fa-dash" style="font-size: 40px;\
                      position: relative; top: 10px; margin-top: -30px;"></i>\
-                    &nbsp;&nbsp;&nbsp;No Change\
+                    &nbsp;&nbsp;&nbsp;Unchanged\
                 </div>'
 
         self.html = f'\
