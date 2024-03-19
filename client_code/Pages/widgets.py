@@ -19,7 +19,7 @@ class TickerWidget:
         self.change_format = change_format or '{:,.0f}'
 
         if '%' in self.change_format:
-            self.change = (self.change / (self.value + self.change)) * 100
+            self.change = (self.change / (self.value + abs(self.change)))
 
         if self.change > 0:
             self.ticker_direction = f'\
