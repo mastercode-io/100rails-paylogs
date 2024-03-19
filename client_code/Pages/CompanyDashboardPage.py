@@ -38,7 +38,7 @@ class CompanyDashboardPage(DashboardPage):
         total_staff_widget = TickerWidget('Total Staff This Pay', '1,400',
                                           ticket_change=3)
         total_pay_widget = TickerWidget('Total Paid This Pay', '$34,544',
-                                        ticket_change=0)
+                                        ticket_change=-1234)
 
         layout = {
             'showGridLines': True,
