@@ -89,15 +89,16 @@ class CircularChartWidget:
                  'xName': 'label',
                  'yName': 'value',
                  'dataLabel': {'visible': True, 'position': 'Outside', 'name': 'label'},
+                 'legendSettings': {'visible': False},
                  'innerRadius': '40%' if self.chart_type == 'doughnut' else '0%',
              }]
         }
         self.chart = ej.charts.AccumulationChart(chart_config)
 
         self.html = f'\
-            <div style="padding: 10px;">\
+            <div style="padding: 10px; text-align: center;">\
                 <div style="width: 100%; height: 100%">\
-                    <p>{self.title}</p>\
+                    <div style="font-size: 14px; font-weight: bold;">{self.title}</div>\
                     <div id="{self._element_id}"></div>\
                 </div>\
             </div>'
