@@ -17,7 +17,7 @@ class TickerWidget:
         if self.ticker_change > 0:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: green;">\
-                    <i class="fa-solid fa-caret-up" style="font-size: 70px;\
+                    <i class="fa-solid fa-caret-up" style="font-size: 40px;\
                      position: relative; top: 20px; margin-top: -30px;"></i>\
                     &nbsp;&nbsp;&nbsp;Up by {self.ticker_change}\
                 </div>'
