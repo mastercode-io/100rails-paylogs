@@ -1,5 +1,5 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
-from .widgets import TickerWidget
+from .widgets import TickerWidget, CircularChartWidget
 
 PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
 # PANEL_CSS_CLASS = ''
@@ -38,11 +38,21 @@ class CompanyDashboardPage(DashboardPage):
         total_staff_widget = TickerWidget(title='Total Staff This Pay',
                                           value=1400,
                                           change=3)
+
         total_pay_widget = TickerWidget(title='Total Paid This Pay',
                                         value=34544,
                                         value_format='${:,.0f}',
                                         change=-2317,
                                         change_format='{:,.2%}')
+
+        pay_distribution_chart = CircularChartWidget(title='Pay Distribution',
+                                                     chart_type='pie')
+
+        self.widgets = [
+            total_staff_widget,
+            total_pay_widget,
+            pay_distribution_chart,
+        ]
 
         layout = {
             'showGridLines': True,
@@ -65,6 +75,7 @@ class CompanyDashboardPage(DashboardPage):
                 {
                     'sizeX': 2, 'sizeY': 1, 'row': 1, 'col': 0,
                     'id': 'pay_distribution_chart',
+                    'content': pay_distribution_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
@@ -85,3 +96,9 @@ class CompanyDashboardPage(DashboardPage):
             title_class='pl-company-dashboard-title',
             **kwargs
         )
+
+
+    def form_show(self):
+        super().form_show()
+        for widget in self.widgets:
+            widget.form_show()

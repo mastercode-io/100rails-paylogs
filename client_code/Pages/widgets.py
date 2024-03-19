@@ -1,3 +1,6 @@
+import anvil.js
+from anvil.js.window import ej
+from AnvilFusion.tools import utils
 
 
 class TickerWidget:
@@ -62,3 +65,44 @@ class TickerWidget:
                     {self.ticker_direction}\
                 </div>\
             </div>'
+
+
+    def form_show(self):
+        pass
+
+
+class CircularChartWidget:
+
+    def __init__(self,
+                 title=None,
+                 chart_type=None,
+                 data=None,
+                 **kwargs):
+        # self._element_id = utils.new_el_id()
+        self._element_id = ej.getUniqueID('fus-circular-chart')
+        self.title = title or ''
+        self.chart_type = chart_type or 'pie'
+        self.data = data or []
+
+        chart_config = {
+             'series': [{
+                 'dataSource': self.data,
+                 'xName': 'label',
+                 'yName': 'value',
+                 'dataLabel': {'visible': True, 'position': 'Outside', 'name': 'label'},
+                 'innerRadius': '40%' if self.chart_type == 'doughnut' else '0%',
+             }]
+        }
+        self.chart = ej.charts.AccumulationChart(chart_config)
+
+        self.html = f'\
+            <div style="padding: 10px;">\
+                <div style="border: 1px solid; background-color:grey;">\
+                    <p>{self.title}</p>\
+                    <div id="{self._element_id}"></div>\
+                </div>\
+            </div>'
+
+
+    def form_show(self):
+        self.chart.appendTo(f"#{self._element_id}")
