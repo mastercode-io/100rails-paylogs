@@ -19,7 +19,7 @@ class TickerWidget:
             self.ticker_direction = f'\
                 <div style="font-size: 16px; color: red;">\
                     <i class="fa-solid fa-caret-down" style="font-size: 70px;\
-                     position: relative; top: 20px; margin-top: -30px;"></i>\
+                     position: relative; top: 0px; margin-top: -30px;"></i>\
                     &nbsp;&nbsp;&nbsp;Down by {-self.ticker_change}\
                 </div>'
         else:
