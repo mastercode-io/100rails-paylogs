@@ -76,6 +76,7 @@ class CompanyDashboardPage(DashboardPage):
             'allowDragging': False,
         }
 
+        print('CompanyDashboardPage')
         super().__init__(
             layout=layout,
             container_id=container_id,
