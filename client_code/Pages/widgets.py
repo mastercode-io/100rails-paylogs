@@ -96,7 +96,7 @@ class CircularChartWidget:
         self.chart = ej.charts.AccumulationChart(chart_config)
 
         self.html = f'\
-            <div style="padding: 10px; text-align: center;">\
+            <div style="padding: 10px; text-align: center; height: auto">\
                 <div>\
                     <div style="font-size: 14px; font-weight: bold;">{self.title}</div>\
                     <div id="{self._element_id}"></div>\
