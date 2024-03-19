@@ -96,7 +96,7 @@ class CircularChartWidget:
 
         self.html = f'\
             <div style="padding: 10px;">\
-                <div style="border: 1px solid; background-color:grey;">\
+                <div style="width: 100%; height: 100%">\
                     <p>{self.title}</p>\
                     <div id="{self._element_id}"></div>\
                 </div>\

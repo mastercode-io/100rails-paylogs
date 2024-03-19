@@ -45,8 +45,16 @@ class CompanyDashboardPage(DashboardPage):
                                         change=-2317,
                                         change_format='{:,.2%}')
 
+        pay_distribution_data = [
+            {'label': 'Regular', 'value': 60},
+            {'label': 'Overtime', 'value': 20},
+            {'label': 'Holiday', 'value': 10},
+            {'label': 'Sick', 'value': 5},
+            {'label': 'Vacation', 'value': 5},
+        ]
         pay_distribution_chart = CircularChartWidget(title='Pay Distribution',
-                                                     chart_type='pie')
+                                                     chart_type='pie',
+                                                     data=pay_distribution_data)
 
         self.widgets = [
             total_staff_widget,
