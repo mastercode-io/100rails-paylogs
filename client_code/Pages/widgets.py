@@ -78,8 +78,7 @@ class CircularChartWidget:
                  chart_type=None,
                  data=None,
                  **kwargs):
-        # self._element_id = utils.new_el_id()
-        self._element_id = ej.getUniqueID('fus-circular-chart')
+        self._element_id = utils.new_el_id()
         self.title = title or ''
         self.chart_type = chart_type or 'pie'
         self.data = data or []
