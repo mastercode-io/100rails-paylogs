@@ -49,14 +49,14 @@ class CompanyDashboardPage(DashboardPage):
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
                     'id': 'total_staff_widget',
                     # 'header': 'Widget A',
-                    'content': total_staff_widget.html,
+                    # 'content': total_staff_widget.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 1,
                     'id': 'total_pay_widget',
                     # 'header': 'Widget B',
-                    'content': total_pay_widget.html,
+                    # 'content': total_pay_widget.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
