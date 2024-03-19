@@ -81,13 +81,13 @@ class CompanyDashboardPage(DashboardPage):
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
-                    'sizeX': 2, 'sizeY': 1, 'row': 1, 'col': 0,
+                    'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 0,
                     'id': 'pay_distribution_chart',
                     'content': pay_distribution_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
-                    'sizeX': 2, 'sizeY': 2, 'row': 0, 'col': 2,
+                    'sizeX': 2, 'sizeY': 3, 'row': 0, 'col': 2,
                     'id': 'pay_trend_chat',
                     'cssClass': PANEL_CSS_CLASS,
                 },
