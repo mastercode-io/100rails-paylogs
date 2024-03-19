@@ -29,7 +29,7 @@ class TickerWidget:
                      position: relative; top: 10px; margin-top: -30px;"></i>\
                     &nbsp;&nbsp;&nbsp;Down by {-self.ticker_change}\
                 </div>'
-            value_el_position = 0
+            value_el_position = 7
 
         else:
             self.ticker_direction = f'\
