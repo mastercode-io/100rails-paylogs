@@ -76,6 +76,8 @@ class CircularChartWidget:
                  title=None,
                  chart_type=None,
                  data=None,
+                 value_prefix=None,
+                 value_suffix=None,
                  **kwargs):
         self._element_id = utils.new_el_id()
         self.title = title or ''
@@ -88,7 +90,7 @@ class CircularChartWidget:
                 'xName': 'label',
                 'yName': 'value',
                 'dataLabel': {'visible': True, 'position': 'Outside', 'name': 'label',
-                              'template': '<div>${point.x}</div><div>${point.y}</div>'},
+                              'template': f'<div>${{point.x}}</div><div>${{point.y}}</div>'},
                 'innerRadius': '60%' if self.chart_type == 'doughnut' else '0%',
             }],
             'legendSettings': {'visible': False, 'visibility': 'Hidden'},
