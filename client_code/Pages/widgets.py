@@ -90,7 +90,7 @@ class CircularChartWidget:
                  'yName': 'value',
                  'dataLabel': {'visible': True, 'position': 'Outside', 'name': 'label',
                                'template': '<div>${point.x}</div><div>${point.y}</div>'},
-                 'legendSettings': {'visible': False},
+                 # 'legendSettings': {'visible': False},
                  'innerRadius': '60%' if self.chart_type == 'doughnut' else '0%',
              }]
         }
