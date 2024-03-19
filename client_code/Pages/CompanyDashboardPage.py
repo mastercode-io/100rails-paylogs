@@ -54,7 +54,8 @@ class CompanyDashboardPage(DashboardPage):
         ]
         pay_distribution_chart = CircularChartWidget(title='Pay Distribution',
                                                      chart_type='pie',
-                                                     data=pay_distribution_data)
+                                                     data=pay_distribution_data,
+                                                     value_suffix='%',)
 
         self.widgets = [
             total_staff_widget,

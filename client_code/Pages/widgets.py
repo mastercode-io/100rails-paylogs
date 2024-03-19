@@ -84,13 +84,17 @@ class CircularChartWidget:
         self.chart_type = chart_type or 'pie'
         self.data = data or []
 
+        value_prefix = value_prefix or ''
+        value_suffix = value_suffix or ''
+
         chart_config = {
             'series': [{
                 'dataSource': self.data,
                 'xName': 'label',
                 'yName': 'value',
                 'dataLabel': {'visible': True, 'position': 'Outside', 'name': 'label',
-                              'template': f'<div>${{point.x}}</div><div>${{point.y}}</div>'},
+                              'template': f'<div>${{point.x}}</div>\
+                                            <div>{value_prefix}${{point.y}}{value_suffix}</div>'},
                 'innerRadius': '60%' if self.chart_type == 'doughnut' else '0%',
             }],
             'legendSettings': {'visible': False, 'visibility': 'Hidden'},
