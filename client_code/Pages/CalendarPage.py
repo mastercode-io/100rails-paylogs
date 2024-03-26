@@ -8,7 +8,7 @@ import uuid
 class CalendarPage(PageBase):
     def __init__(self, **kwargs):
         print('CalendarPage')
-        title = 'Business Calendar'
+        title = 'Payroll Calendar'
         self.start_date = DateInput(name='start_date', label='Start Date', value=datetime.now().date())
         self.edn_date = DateInput(name='end_date', label='End Date', value=datetime.now().date())
         self.select_period = ej.buttons.Button({
