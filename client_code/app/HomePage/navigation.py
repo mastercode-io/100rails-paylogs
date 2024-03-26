@@ -88,7 +88,7 @@ PL_NAV_ITEMS = {
     'timesheet_view': {'class': 'TimesheetListView', 'type': 'custom', 'action': 'open', 'props': {}},
 
     'payroll_payrun_list': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
-    'payroll_payrun_settings': {'model': 'PayrunConfig', 'type': 'form', 'action': 'open', 'props': {}},
+    'payroll_payrun_settings': {'class': 'PayrunSettingsForm', 'type': 'form', 'action': 'open', 'props': {}},
     'payroll_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_pay_rate_rules': {'model': 'PayRateRule', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_pay_rate_scopes': {'model': 'Scope', 'type': 'view', 'action': 'open', 'props': {}},
