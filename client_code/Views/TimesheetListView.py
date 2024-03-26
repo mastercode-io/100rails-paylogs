@@ -113,6 +113,8 @@ class TimesheetListView(GridView):
                 pay_rate_template=pay_rate_template,
                 search_query=tables.order_by('order_number', ascending=True)
             ) if item['pay_rate_rule']['time_scope'] != 'Week']
+            if ts['end_time'] > ts['start_time']:
+                ts['end_time'] += datetime.timedelta(days=1)
             unallocated_time = [(ts['start_time'], ts['end_time'])]
             ts_pay_lines = []
             total_pay = 0
