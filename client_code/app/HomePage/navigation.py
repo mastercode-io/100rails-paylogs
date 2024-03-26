@@ -32,8 +32,8 @@ PL_APPBAR_MENU_DEVELOPER = [
 # Sidebar menu item list
 PL_SIDEBAR_MENUS = {
     'timesheet_menu': [
-        {'nodeId': 'timesheet_manage', 'nodeText': 'Manage Timesheets', 'nodeChild': []},
-        {'nodeId': 'timesheet_payroll', 'nodeText': 'Payroll Timesheets', 'nodeChild': []},
+        {'nodeId': 'timesheet_dashboard', 'nodeText': 'Dashboard', 'nodeChild': []},
+        {'nodeId': 'timesheet_view', 'nodeText': 'View Timesheets', 'nodeChild': []},
     ],
     'payroll_menu': [
         {'nodeId': 'payroll_payrun_report', 'nodeText': 'Payrun Report', 'nodeChild': []},
@@ -41,11 +41,6 @@ PL_SIDEBAR_MENUS = {
         {'nodeId': 'payroll_payrun_config', 'nodeText': 'Payrun Config', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
         # {'nodeId': 'views_', 'nodeText': '', 'nodeChild': []},
-    ],
-    'business_menu': [
-        {'nodeId': 'business_company', 'nodeText': 'Company Info', 'nodeChild': []},
-        {'nodeId': 'business_employees', 'nodeText': 'Employees', 'nodeChild': []},
-        {'nodeId': 'business_jobs', 'nodeText': 'Jobs', 'nodeChild': []},
     ],
     'settings_menu': [
         {'nodeId': 'settings_users', 'nodeText': 'Users', 'nodeChild': []},
@@ -93,16 +88,12 @@ PL_SIDEBAR_MENUS = {
 
 # Navigation items/actions
 PL_NAV_ITEMS = {
-    'timesheet_manage': {'class': 'TimesheetListView', 'type': 'custom', 'action': 'open', 'props': {}},
-    'timesheet_payroll': {'model': 'Timesheet', 'type': 'view', 'action': 'open', 'props': {}},
+    'timesheet_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
+    'timesheet_view': {'class': 'TimesheetListView', 'type': 'custom', 'action': 'open', 'props': {}},
 
     'payroll_payrun_report': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_payrun_list': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_payrun_config': {'model': 'PayrunConfig', 'type': 'form', 'action': 'open', 'props': {}},
-
-    'business_company': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
-    'business_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
-    'business_jobs': {'model': 'Job', 'type': 'view', 'action': 'open', 'props': {}},
 
     'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
