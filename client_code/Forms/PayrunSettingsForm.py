@@ -20,14 +20,22 @@ class PayrunSettingsForm(FormBase):
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day', options=WEEK_DAYS, value='Friday')
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
 
-        fields = [
-            self.name,
-            self.type,
-            self.pay_period_start_day,
-            self.pay_period_end_day,
-            self.pay_day,
-            self.scopes,
+        sections = [
+            {
+                'name': '_', 'cols': [
+                    [
+                        self.name,
+                        self.type,
+                        self.pay_period_start_day,
+                        self.pay_period_end_day,
+                        self.pay_day,
+                        self.scopes,
+                    ],
+                    [],
+                    []
+                ]
+            }
         ]
 
-        super().__init__(fields=fields, **kwargs)
+        super().__init__(sections=sections, **kwargs)
         self.fullscreen = True
