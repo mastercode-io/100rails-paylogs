@@ -125,7 +125,7 @@ PL_NAV_ITEMS = {
 }
 
 PL_DEFAULT_NAV_ITEMS = {
-    'timesheet_menu': 'timesheet_manage',
+    'timesheet_menu': 'timesheet_dashboard',
     'payroll_menu': 'payroll_payrun_report',
     'settings_menu': 'settings_users',
     'admin_menu': 'admin_tenants',
