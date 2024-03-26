@@ -37,6 +37,7 @@ class PayrunForm(FormBase):
                 'name': '_', 'cols': [
                     [self.pay_period_start, self.pay_period_end, self.pay_date],
                     [self.notes, self.status],
+                    [],
                 ]
             },
             {
