@@ -19,7 +19,6 @@ PL_ASSISTANT_WIDTH = 300
 PL_APPBAR_MENU = [
     {'id': 'timesheet_menu', 'text': 'Timesheet', 'items': []},
     {'id': 'payroll_menu', 'text': 'Payroll', 'items': []},
-    {'id': 'business_menu', 'text': 'Business', 'items': []},
 ]
 PL_APPBAR_MENU_ADMIN = [
     {'separator': True},
