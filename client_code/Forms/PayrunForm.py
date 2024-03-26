@@ -1,6 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
+from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 
 
 class PayrunForm(FormBase):
@@ -25,6 +26,10 @@ class PayrunForm(FormBase):
                 {'name': 'amount', 'label': 'Amount'},
                 {'name': 'status', 'label': 'Status'},
             ],
+            'toolbar': [
+                GRID_TOOLBAR_COMMAND_SEARCH,
+                GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE,
+            ]
         }
         self.payrun_items = SubformGrid(name='payrun_items', label='Payrun Items', model='PayrunItem',
                                         link_model='PayRun', link_field='pay_run',
