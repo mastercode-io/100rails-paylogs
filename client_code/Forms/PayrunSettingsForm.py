@@ -6,9 +6,9 @@ PAYRUN_CONFIG_TYPE = ['Weekly', 'Fortnightly', 'Monthly']
 WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 
-class PayrunConfigForm(FormBase):
+class PayrunSettingsForm(FormBase):
     def __init__(self, **kwargs):
-        print('PayrunConfigForm')
+        print('PayrunSettingsForm')
         kwargs['model'] = 'PayrunConfig'
 
         self.name = TextInput(name='name', label='Name')
@@ -19,7 +19,6 @@ class PayrunConfigForm(FormBase):
                                                 options=WEEK_DAYS, value='Sunday')
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day', options=WEEK_DAYS, value='Friday')
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
-        self.status = RadioButtonInput(name='status', label='Status', options=['Active', 'Inactive'], value='Active')
 
         fields = [
             self.name,
@@ -28,8 +27,7 @@ class PayrunConfigForm(FormBase):
             self.pay_period_end_day,
             self.pay_day,
             self.scopes,
-            self.status,
         ]
 
         super().__init__(fields=fields, **kwargs)
-        # self.fullscreen = True
+        self.fullscreen = True

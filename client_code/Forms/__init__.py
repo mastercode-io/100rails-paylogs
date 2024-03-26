@@ -11,7 +11,7 @@ from .PayRateTemplateForm import PayRateTemplateForm
 from .PayRateTemplateItemForm import PayRateTemplateItemForm
 from .PayRateRuleForm import PayRateRuleForm
 from .PayrunForm import PayrunForm
-from .PayrunConfigForm import PayrunConfigForm
+from .PayrunSettingsForm import PayrunSettingsForm
 from .TimesheetTypeForm import TimesheetTypeForm
 from .TimesheetForm import TimesheetForm
 from .ScopeForm import ScopeForm
