@@ -79,7 +79,10 @@ class Timesheet:
     def calculate_total_hours_view(args):
         if not isinstance(args["start_time"], datetime) or not isinstance(args["end_time"], datetime):
             return 0
-        total_hours = (args["end_time"] - args["start_time"]).total_seconds() / 3600
+        if args["start_time"] <= args["end_time"]:
+            total_hours = (args["end_time"] - args["start_time"]).total_seconds() / 3600
+        else:
+            total_hours = ((args["end_time"] + timedelta(days=1)) - args["start_time"]).total_seconds() / 3600
         hours = int(total_hours)
         minutes = int((total_hours - hours) * 60)
         return f"{hours}:{minutes:02d}"
