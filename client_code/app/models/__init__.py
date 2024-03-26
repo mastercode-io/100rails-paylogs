@@ -452,12 +452,12 @@ class Payrun:
     notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
 
-    @staticmethod
-    def get_payrun_reference(args):
-        # example. "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"
-        return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
-    reference = Computed(
-        ("pay_period_start", "pay_period_end"), "get_payrun_reference")
+    # @staticmethod
+    # def get_payrun_reference(args):
+    #     # example. "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"
+    #     return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
+    # reference = Computed(
+    #     ("pay_period_start", "pay_period_end"), "get_payrun_reference")
 
     @staticmethod
     def get_payrun_week(args):
