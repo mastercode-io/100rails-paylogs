@@ -106,3 +106,9 @@ class Timesheet:
         else:
             return ''
     pay_lines_view = Computed(("pay_lines",), "print_pay_lines")
+
+    def _validate(self):
+        if isinstance(self.start_time, datetime) and isinstance(self.end_time, datetime):
+            if self.start_time > self.end_time:
+                self.end_time = datetime.combine(self.start_time.date() + timedelta(days=1), self.end_time.time())
+        return True, None
