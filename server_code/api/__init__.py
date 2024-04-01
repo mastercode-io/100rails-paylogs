@@ -14,6 +14,9 @@ from Crypto.Cipher import AES
 from .resources import *
 from ..background_tasks import *
 
+print(anvil.secrets.get_secret('copilot_assistant_id'))
+print(anvil.secrets.get_secret('openai_api_key'))
+print(anvil.secrets.get_secret('api_request_password'))
 
 API_REQUEST_USER = 'api_request@oaylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
