@@ -1,6 +1,6 @@
-# from anvil import AppEnvironment, AppInfo
-#
-# app_info = AppInfo()
-# app_env = AppEnvironment()
-# print('app environment:', app_env.name, app_env.tags)
-# print('app info', app_info.branch, app_info.environment, app_info.id)
+from anvil import app
+
+print('-- App Info --')
+print(f'git branch: {app.branch}')
+print(f'environment: {app.Environment.name} ({app.Environment.tags})')
+print(f'id: {app.id}')
