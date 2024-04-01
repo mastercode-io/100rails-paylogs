@@ -18,6 +18,12 @@ WEEK_DAY_NAME = [
     "Sunday",
 ]
 
+TIMESHEET_STATUS = [
+    "Draft",
+    "Approved",
+    "Processed",
+]
+
 
 @model_type
 class TimesheetType:
@@ -111,4 +117,8 @@ class Timesheet:
         if isinstance(self.start_time, datetime) and isinstance(self.end_time, datetime):
             if self.start_time > self.end_time:
                 self.end_time = datetime.combine(self.start_time.date() + timedelta(days=1), self.end_time.time())
+
+        if not isinstance(self.status, str) or self.status.capitalize() not in TIMESHEET_STATUS:
+            self.status = "Draft"
+
         return True, None
