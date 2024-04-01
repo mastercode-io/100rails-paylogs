@@ -1,10 +1,9 @@
 from AnvilFusion.server import utils as fusion_server_utils
 from ..app.models import Tenant, User, AppIntegration, AppInApiCredential, AppOutApiCredential
-import anvil
 import anvil.server
 import anvil.users
 import anvil.secrets
-from anvil.tables import app_tables
+from anvil import app
 import base64
 import json
 import uuid
@@ -16,10 +15,6 @@ from Crypto.Cipher import AES
 from .resources import *
 from ..background_tasks import *
 
-# app_env = anvil.AppEnvironment()
-# app_info = anvil.AppInfo()
-# print('app environment:', app_env.name, app_env.tags)
-# print('app info', app_info.branch, app_info.environment, app_info.id)
 app_api_origin = anvil.server.get_api_origin()
 if app_api_origin:
     app_env_list = app_tables.app_environments.search()
@@ -37,6 +32,13 @@ RESPONSE_401 = anvil.server.HttpResponse(401, "Access Denied. Authentication fai
 RESPONSE_404 = anvil.server.HttpResponse(404, "Resource not found.")
 RESPONSE_405 = anvil.server.HttpResponse(405, "Method not allowed.")
 API_RESPONSE_PAGE_LENGTH = 100
+
+
+def app_env_info():
+    print('--- App Info ---')
+    print(f'git branch: {app.branch}')
+    print(f'environment: {app.environment.name} ({app.environment.tags})')
+    print(f'id: {app.id}')
 
 
 def generate_password(length=16):
@@ -134,6 +136,8 @@ def authenticate_request(request: anvil.server.request):
     if not api_key:
         return None, anvil.server.HttpResponse(401, f'Missing x-api-key header: {request.headers}')
     else:
+        print(app_env_info())
+        print(f'API request environment: {app_env_name}')
         print(API_REQUEST_USER, API_REQUEST_PASSWORD)
         logged_user = fusion_server_utils.init_user_session(user_email=API_REQUEST_USER, password=API_REQUEST_PASSWORD)
         integration_uid, api_user, api_password = decode_api_key(api_key)
