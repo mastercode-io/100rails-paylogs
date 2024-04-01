@@ -1,5 +1,6 @@
 from AnvilFusion.server import utils as fusion_server_utils
 from ..app.models import Tenant, User, AppIntegration, AppInApiCredential, AppOutApiCredential
+import anvil
 import anvil.server
 import anvil.users
 import anvil.secrets
@@ -16,14 +17,17 @@ from .resources import *
 from ..background_tasks import *
 
 
+print('app environment:', anvil.AppEnvironment.name, anvil.AppEnvironment.tags)
+print('app info', anvil.AppInfo.branch, anvil.AppInfo.environment, anvil.AppInfo.id)
 app_api_origin = anvil.server.get_api_origin()
-app_env_list = app_tables.app_environments.search()
-app_env_name = None
-# for env in app_env_list:
-#     if env['key'] in app_api_origin:
-#         app_env_name = env['name']
-#         break
-print(f'API request environment: {app_env_name}')
+if app_api_origin:
+    app_env_list = app_tables.app_environments.search()
+    app_env_name = None
+    for env in app_env_list:
+        if env['key'] in app_api_origin:
+            app_env_name = env['name']
+            break
+    print(f'API request environment: {app_env_name}')
 
 
 API_REQUEST_USER = 'api_request@oaylogs.com'
