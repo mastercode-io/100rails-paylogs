@@ -418,6 +418,10 @@ def post_item(resource_name, resource_model, resource_json_schema, post_data, in
             item_data['remote_links'] = {}
         item_data['remote_links'][integration['uid']] = post_data['link_id']
     item.update(item_data)
+    valid, error = item.validate()
+    if not valid:
+        post_data['error'] = f"ValidationError, {error}"
+        return post_data, {'status': 400, 'error': post_data['error']}
     # print('item_data', item_data)
     # print(item['date'], item['start_time'], item['end_time'])
     item.save()
