@@ -2,7 +2,7 @@ from AnvilFusion.components.PageBase import PageBase
 from AnvilFusion.components.FormInputs import *
 from anvil.js.window import ej
 from ..app.models import Employee, EmployeeRole, Job, Location, Timesheet, TimesheetType
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 import json
 
@@ -177,35 +177,7 @@ class ImportRecordsPage(PageBase):
             for timesheet_type_name in new_timesheet_types:
                 TimesheetType(name=timesheet_type_name, status='Active').save()
         timesheet_types = {timesheet_type['name']: timesheet_type for timesheet_type in TimesheetType.search()}
-
-        # uploaded_jobs = set(record['Related_Job.Quote_Job_Number'] for record in timesheets)
-        # existing_jobs = set([job['number'] for job in Job.search()])
-        # new_jobs = uploaded_jobs - existing_jobs
-        # print('uploaded_jobs:', len(uploaded_jobs))
-        # print('existing_jobs:', len(existing_jobs))
-        # print('new_jobs:', len(new_jobs))
-        # if new_jobs:
-        #     self.log_message(f'Adding {len(new_jobs)} jobs')
-        #     self.import_jobs([{
-        #         'Quote_Job_Number': timesheet['Related_Job.Quote_Job_Number'],
-        #         'Job_Reference': timesheet['Related_Job.Job_Reference'],
-        #         'Service_Location': timesheet['Related_Job.Service_Location'],
-        #         'Status': 'Active',
-        #     }
-        #         for timesheet in timesheets if timesheet['Related_Job.Quote_Job_Number'] in new_jobs])
         jobs = {job['number']: job for job in Job.search()}
-
-        # uploaded_employees = set(record['Related_Staff.Full_Name'] for record in timesheets)
-        # existing_employees = set([employee['full_name'] for employee in Employee.search()])
-        # new_employees = uploaded_employees - existing_employees
-        # if new_employees:
-        #     self.log_message(f'Adding {len(new_employees)} employees')
-        #     self.import_employees([{
-        #         'Full_Name': timesheet['Related_Staff.Full_Name'].strip(),
-        #         'Position_or_Title': timesheet['Related_Staff.Position_or_Title'],
-        #         'Status': 'Active',
-        #     }
-        #         for timesheet in timesheets if timesheet['Related_Staff.Full_Name'] in new_employees])
         employees = {employee['full_name']: employee for employee in Employee.search()}
 
         self.log_message(f'Importing {len(timesheets)} timesheets')
@@ -238,6 +210,8 @@ class ImportRecordsPage(PageBase):
             ts_end_time = datetime(ts_date.year, ts_date.month, ts_date.day,
                                    int(record['End_Time'].split(':')[0]),
                                    int(record['End_Time'].split(':')[1]))
+            if ts_end_time < ts_start_time:
+                ts_end_time += timedelta(days=1)
             timesheet_data = {
                 'timesheet_type': timesheet_types[record['Related_Time_Type']],
                 'employee': employees[record['Related_Staff.Full_Name'].strip()],
