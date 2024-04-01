@@ -152,6 +152,17 @@ db_schema:
     - name: count_overtime
       admin_ui: {width: 200, order: 0}
       type: bool
+  app_environments:
+    client: none
+    server: full
+    columns:
+    - name: key
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: name
+      admin_ui: {order: -1, width: 200}
+      type: string
+    title: App Environments
   employees:
     client: none
     server: full
