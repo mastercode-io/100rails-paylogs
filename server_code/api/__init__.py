@@ -15,6 +15,7 @@ from Crypto.Cipher import AES
 from .resources import *
 from ..background_tasks import *
 
+
 app_api_origin = anvil.server.get_api_origin()
 if app_api_origin:
     app_env_list = app_tables.app_environments.search()
@@ -23,7 +24,6 @@ if app_api_origin:
         if env['key'] in app_api_origin:
             app_env_name = env['name']
             break
-    print(f'API request environment: {app_env_name}')
 
 
 API_REQUEST_USER = 'api_request@oaylogs.com'
