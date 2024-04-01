@@ -17,7 +17,7 @@ AppEnv.data_models = models
 AppEnv.forms = Forms
 AppEnv.views = Views
 AppEnv.pages = Pages
-AppEnv.grid_settings = None
+AppEnv.grid_settings = {}
 AppEnv.start_menu = "timesheet_menu"
 
 
