@@ -19,10 +19,10 @@ from ..background_tasks import *
 app_api_origin = anvil.server.get_api_origin()
 app_env_list = app_tables.app_environments.search()
 app_env_name = None
-for env in app_env_list:
-    if env['key'] in app_api_origin:
-        app_env_name = env['name']
-        break
+# for env in app_env_list:
+#     if env['key'] in app_api_origin:
+#         app_env_name = env['name']
+#         break
 print(f'API request environment: {app_env_name}')
 
 
