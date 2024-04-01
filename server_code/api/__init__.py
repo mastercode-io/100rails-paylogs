@@ -3,6 +3,7 @@ from ..app.models import Tenant, User, AppIntegration, AppInApiCredential, AppOu
 import anvil.server
 import anvil.users
 import anvil.secrets
+from anvil.tables import app_tables
 import base64
 import json
 import uuid
@@ -14,10 +15,16 @@ from Crypto.Cipher import AES
 from .resources import *
 from ..background_tasks import *
 
-print('API URI', anvil.server.get_api_origin())
-# print(anvil.secrets.get_secret('copilot_assistant_id'))
-# print(anvil.secrets.get_secret('openai_api_key'))
-# print(anvil.secrets.get_secret('api_request_password'))
+
+app_api_origin = anvil.server.get_api_origin()
+app_env_list = app_tables.app_environments.search()
+app_env_name = None
+for env in app_env_list:
+    if env['key'] in app_api_origin:
+        app_env_name = env['name']
+        break
+print(f'API request environment: {app_env_name}')
+
 
 API_REQUEST_USER = 'api_request@oaylogs.com'
 API_REQUEST_PASSWORD = anvil.secrets.get_secret('api_request_password')
