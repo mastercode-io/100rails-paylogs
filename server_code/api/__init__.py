@@ -16,10 +16,10 @@ from Crypto.Cipher import AES
 from .resources import *
 from ..background_tasks import *
 
-app_env = anvil.AppEnvironment()
-app_info = anvil.AppInfo()
-print('app environment:', app_env.name, app_env.tags)
-print('app info', app_info.branch, app_info.environment, app_info.id)
+# app_env = anvil.AppEnvironment()
+# app_info = anvil.AppInfo()
+# print('app environment:', app_env.name, app_env.tags)
+# print('app info', app_info.branch, app_info.environment, app_info.id)
 app_api_origin = anvil.server.get_api_origin()
 if app_api_origin:
     app_env_list = app_tables.app_environments.search()
