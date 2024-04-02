@@ -97,6 +97,8 @@ class TimesheetListView(GridView):
                 plus_days = (end_date - start_date).days
                 if plus_days > 0:
                     print('plus_days', plus_days)
+                if end_date != start_date:
+                    print('end_date', end_date, start_date)
                     # for k in args.cell.keys():
                     #     print(k, args.cell[k])
         super().query_cell_info(args)
