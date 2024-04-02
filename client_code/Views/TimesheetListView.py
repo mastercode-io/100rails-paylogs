@@ -88,12 +88,13 @@ class TimesheetListView(GridView):
     def query_cell_info(self, args):
         print('query_cell_info', args)
         if args.column.field == 'end_time':
-            if args.data['end_time'] is not None and args.data['start_time'] is not None:
-                plus_days = (args.data['end_time'].getTime() - args.data['start_time'].getTime()) / 1000 / 3600 // 24
-                if plus_days > 0:
-                    # args.html = f"{args.html} (+{plus_days} days)"
-                    print(args.cell)
-                    print('plus_days', plus_days)
+            if args.data['start_time'] is not None and args.data['end_time'] is not None:
+                print(args.data['start_time'], args.data['end_time'])
+                # plus_days = (args.data['end_time'].getTime() - args.data['start_time'].getTime()) / 1000 / 3600 // 24
+                # if plus_days > 0:
+                #     # args.html = f"{args.html} (+{plus_days} days)"
+                #     print(args.cell)
+                #     print('plus_days', plus_days)
         super().query_cell_info(args)
 
     def calculate_awards(self, args):
