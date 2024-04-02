@@ -96,8 +96,8 @@ class TimesheetListView(GridView):
                 plus_days = 1
                 if plus_days > 0:
                     print('plus_days', plus_days)
-                    for k in args.cell.keys():
-                        print(k, args.cell[k])
+                    # for k in args.cell.keys():
+                    #     print(k, args.cell[k])
         super().query_cell_info(args)
 
     def calculate_awards(self, args):
