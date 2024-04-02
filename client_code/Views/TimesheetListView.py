@@ -20,8 +20,8 @@ class TimesheetListView(GridView):
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
                 {'name': 'date', 'label': 'Date', 'format': 'E dd MMM, yyyy'},
-                {'name': 'start_time', 'label': 'Start Time', 'format': 'dd/MM HH:mm'},
-                {'name': 'end_time', 'label': 'End Time', 'format': 'dd/MM HH:mm'},
+                {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
+                {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
                 {'name': 'total_hours_view', 'label': 'Total Hours'},
                 {'name': 'total_hours', 'visible': False},
                 {'name': 'total_pay', 'label': 'Total Pay'},
@@ -84,6 +84,18 @@ class TimesheetListView(GridView):
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
         return f"{hours}:{minutes:02d} hrs per week"
+
+    def query_cell_info(self, args):
+        # print('query_cell_info', args)
+        if args.column.field == 'end_time':
+            if args.data['end_time'] is not None and args.data['start_time'] is not None:
+                plus_days = (args.data['end_time'].getTime() - args.data['start_time'].getTime()) / 1000 / 3600 // 24
+                if plus_days > 0:
+                    # args.html = f"{args.html} (+{plus_days} days)"
+                    print('query_cell_info', args)
+                    print(args.cell)
+                    print('plus_days', plus_days)
+        super().query_cell_info(args)
 
     def calculate_awards(self, args):
         print('calculate_awards', args.rowInfo.rowData)
