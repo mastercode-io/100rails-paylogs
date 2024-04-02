@@ -87,6 +87,8 @@ class TimesheetListView(GridView):
 
     def query_cell_info(self, args):
         print('query_cell_info', args)
+        if args.column.type == 'checkbox':
+            return
         for k in args.column.keys():
             print(k, args.column[k])
         if args.column.field == 'end_time':
