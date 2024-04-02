@@ -20,8 +20,8 @@ class TimesheetListView(GridView):
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
                 {'name': 'date', 'label': 'Date', 'format': 'E dd MMM, yyyy'},
-                {'name': 'start_time', 'label': 'Start Time', 'format': 'dd/MM HH:mm'},
-                {'name': 'end_time', 'label': 'End Time', 'format': 'dd/MM HH:mm'},
+                {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
+                {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
                 {'name': 'total_hours_view', 'label': 'Total Hours'},
                 {'name': 'total_hours', 'visible': False},
                 {'name': 'total_pay', 'label': 'Total Pay'},
@@ -96,10 +96,7 @@ class TimesheetListView(GridView):
                 end_date = datetime.datetime.fromisoformat(args.data['end_time']).date()
                 plus_days = (end_date - start_date).days
                 if plus_days > 0:
-                    print('plus_days', plus_days, args.cell)
                     args.cell.innerHTML = f'{args.cell.innerHTML} +{plus_days} day(s)'
-                    for k in args.cell.keys():
-                        print(k, args.cell[k])
         super().query_cell_info(args)
 
     def calculate_awards(self, args):
