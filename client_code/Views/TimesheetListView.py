@@ -87,8 +87,8 @@ class TimesheetListView(GridView):
 
     def query_cell_info(self, args):
         print('query_cell_info', args)
-        for k, v in args.column.items():
-            print(k, v)
+        for k in args.column.keys():
+            print(k, args.column[k])
         if args.column.field == 'end_time':
             if args.data['start_time'] is not None and args.data['end_time'] is not None:
                 print(args.data['start_time'], args.data['end_time'])
