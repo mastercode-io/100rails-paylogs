@@ -86,19 +86,17 @@ class TimesheetListView(GridView):
         return f"{hours}:{minutes:02d} hrs per week"
 
     def query_cell_info(self, args):
-        print('query_cell_info', args)
-        if args.column.type == 'checkbox':
-            return
-        for k in args.column.keys():
-            print(k, args.column[k])
-        if args.column.field == 'end_time':
+        # print('query_cell_info', args)
+        if 'field' in args.colum.keys() and args.column.field == 'end_time':
             if args.data['start_time'] is not None and args.data['end_time'] is not None:
-                print(args.data['start_time'], args.data['end_time'])
-                # plus_days = (args.data['end_time'].getTime() - args.data['start_time'].getTime()) / 1000 / 3600 // 24
-                # if plus_days > 0:
-                #     # args.html = f"{args.html} (+{plus_days} days)"
-                #     print(args.cell)
-                #     print('plus_days', plus_days)
+                # print(args.data['start_time'], args.data['end_time'])
+                start_time = datetime.datetime.fromisoformat(args.data['start_time'])
+                end_time = datetime.datetime.fromisoformat(args.data['end_time'])
+                plus_days = (end_time - start_time).days
+                if plus_days > 0:
+                    print('plus_days', plus_days)
+                    for k in args.cell.keys():
+                        print(k, args.cell[k])
         super().query_cell_info(args)
 
     def calculate_awards(self, args):
