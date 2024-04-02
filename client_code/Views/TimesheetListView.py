@@ -92,11 +92,11 @@ class TimesheetListView(GridView):
                 if isinstance(args.data['start_time'], str):
                     start_date = datetime.datetime.fromisoformat(args.data['start_time'])
                 else:
-                    start_date = datetime.datetime.fromisoformat(args.data['start_time'].isoformat())
+                    start_date = datetime.datetime.fromtimestamp(args.data['start_time'].getTime())
                 if isinstance(args.data['end_time'], str):
                     end_date = datetime.datetime.fromisoformat(args.data['end_time'])
                 else:
-                    end_date = datetime.datetime.fromisoformat(args.data['end_time'].isoformat())
+                    end_date = datetime.datetime.fromtimestamp(args.data['end_time'].getTime())
                 plus_days = (end_date - start_date).days
                 if plus_days > 0:
                     args.cell.innerHTML = f'{args.cell.innerHTML} +{plus_days} day(s)'
