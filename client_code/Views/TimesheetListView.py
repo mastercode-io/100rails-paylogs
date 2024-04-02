@@ -107,7 +107,9 @@ class TimesheetListView(GridView):
         start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
         end_of_week = start_of_week + datetime.timedelta(days=6)
         print('week dates', start_of_week, end_of_week)
+
         stime = datetime.datetime.now()
+
         job_type_scopes = [*Scope.search(type=ScopeType.get_by('name', 'Job Type'))]
         print('job_type_scopes', len(job_type_scopes))
         # get start and end of week
