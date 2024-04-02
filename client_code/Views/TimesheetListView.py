@@ -123,6 +123,8 @@ class TimesheetListView(GridView):
             search_query=tables.order_by('date', ascending=True)
         )]
         print('timesheets', len(timesheets))
+        ts_row_index_list = [self.grid.self.grid.getRowIndexByPrimaryKey(ts['uid']) for ts in timesheets]
+        self.grid.selectRows(ts_row_index_list)
         pay_lines = []
         for ts in timesheets:
             # print(ts['job']['job_type']['short_code'])
