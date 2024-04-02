@@ -43,24 +43,24 @@ class TimesheetListView(GridView):
 
         anvil.js.window['captionTimesheetListView'] = self.grouping_caption
         # anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
-        self.grid.allowGrouping = True
-        self.grid.groupSettings = {
-            'columns': ['employee__full_name'],
-            'showDropArea': False,
-            # 'captionTemplate': '<div>${key} - ${data}</div>',
-            'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
-        }
-        self.grid.aggregates = [{
-            'columns': [
-                {
-                    'type': 'Custom',
-                    'field': 'total_hours_view',
-                    'columnName': 'total_hours_view',
-                    'groupCaptionTemplate': '${Custom}',
-                    'customAggregate': self.grouping_total_hours,
-                },
-            ],
-        }]
+        # self.grid.allowGrouping = True
+        # self.grid.groupSettings = {
+        #     'columns': ['employee__full_name'],
+        #     'showDropArea': False,
+        #     # 'captionTemplate': '<div>${key} - ${data}</div>',
+        #     'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+        # }
+        # self.grid.aggregates = [{
+        #     'columns': [
+        #         {
+        #             'type': 'Custom',
+        #             'field': 'total_hours_view',
+        #             'columnName': 'total_hours_view',
+        #             'groupCaptionTemplate': '${Custom}',
+        #             'customAggregate': self.grouping_total_hours,
+        #         },
+        #     ],
+        # }]
         self.grid.allowSorting = True
         self.grid.sortSettings = {
             'columns': [
@@ -113,8 +113,6 @@ class TimesheetListView(GridView):
                 pay_rate_template=pay_rate_template,
                 search_query=tables.order_by('order_number', ascending=True)
             ) if item['pay_rate_rule']['time_scope'] != 'Week']
-            if ts['end_time'] > ts['start_time']:
-                ts['end_time'] += datetime.timedelta(days=1)
             unallocated_time = [(ts['start_time'], ts['end_time'])]
             ts_pay_lines = []
             total_pay = 0
