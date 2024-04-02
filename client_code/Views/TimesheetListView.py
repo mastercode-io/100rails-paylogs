@@ -91,10 +91,10 @@ class TimesheetListView(GridView):
         #     print(k, args.column[k])
         if 'field' in args.column.keys() and args.column['field'] == 'end_time':
             if args.data['start_time'] is not None and args.data['end_time'] is not None:
-                print(args.data['start_time'], args.data['end_time'])
-                start_time = datetime.datetime.fromisoformat(args.data['start_time'])
-                end_time = datetime.datetime.fromisoformat(args.data['end_time'])
-                plus_days = (end_time - start_time).days
+                # print(args.data['start_time'], args.data['end_time'])
+                start_date = datetime.datetime.fromisoformat(args.data['start_time']).date()
+                end_date = datetime.datetime.fromisoformat(args.data['end_time']).date()
+                plus_days = (end_date - start_date).days
                 if plus_days > 0:
                     print('plus_days', plus_days)
                     # for k in args.cell.keys():
