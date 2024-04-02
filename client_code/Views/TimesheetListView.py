@@ -65,7 +65,7 @@ class TimesheetListView(GridView):
         self.grid.sortSettings = {
             'columns': [
                 {'field': 'employee__full_name', 'direction': 'Ascending'},
-                {'field': 'date', 'direction': 'Ascending'}
+                {'field': 'start_time', 'direction': 'Ascending'}
             ]
         }
         self.first_load = True
