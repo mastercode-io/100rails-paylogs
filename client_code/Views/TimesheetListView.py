@@ -86,12 +86,9 @@ class TimesheetListView(GridView):
         return f"{hours}:{minutes:02d} hrs per week"
 
     def query_cell_info(self, args):
-        # print('query_cell_info', args)
-        # for k in args.column.keys():
-        #     print(k, args.column[k])
         if 'field' in args.column.keys() and args.column['field'] == 'end_time':
             if args.data['start_time'] is not None and args.data['end_time'] is not None:
-                # print(args.data['start_time'], args.data['end_time'])
+                print(args.data['start_time'], args.data['end_time'])
                 start_date = datetime.datetime.fromisoformat(args.data['start_time']).date()
                 end_date = datetime.datetime.fromisoformat(args.data['end_time']).date()
                 plus_days = (end_date - start_date).days
