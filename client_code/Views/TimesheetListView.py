@@ -161,6 +161,7 @@ class TimesheetListView(GridView):
                 ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
                 ts.save()
                 self.update_grid(ts, False)
+        self.grid.clearRowSelection()
         pay_rule_list = PayRateRule.search(
             time_scope='Week',
             search_query=tables.order_by('overtime_start', ascending=True)
