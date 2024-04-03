@@ -31,6 +31,13 @@ class TimesheetListView(GridView):
             ],
         }
 
+        toolbar_actions = {
+            'calculate_awards': {
+                'label': 'Calculate Pay', 'tooltip': 'Calculate Pay Awards',
+                'action': self.calculate_awards
+            },
+        }
+
         context_menu_items = [
             {'id': 'calculate_awards', 'label': 'Calculate Pay Awards', 'action': self.calculate_awards},
         ]
@@ -39,6 +46,7 @@ class TimesheetListView(GridView):
             model='Timesheet',
             view_config=view_config,
             context_menu_items=context_menu_items,
+            toolbar_actions=toolbar_actions,
             **kwargs)
 
         anvil.js.window['captionTimesheetListView'] = self.grouping_caption
