@@ -205,7 +205,7 @@ li.e-list-item.e-level-1.e-hover {
     color: #4f46e5 !important;
 }
 .pl-grid-toolbar-action-button:hover {
-    background-color: rgba(0, 0, 0, 0.8) !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Form Elements */
