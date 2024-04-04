@@ -112,6 +112,10 @@ class TimesheetListView(GridView):
         super().query_cell_info(args)
 
     def calculate_awards(self, args):
+        if 'rowInfo' not in args.keys():
+            print(self.grid.getSelectedRecords())
+            for k in args.keys():
+                print(k, args[k])
         print('calculate_awards', args.rowInfo.rowData)
         ts = Timesheet.get(args.rowInfo.rowData['uid'])
         employee = ts['employee']
