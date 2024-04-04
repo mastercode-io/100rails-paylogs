@@ -34,7 +34,7 @@ class TimesheetListView(GridView):
         toolbar_actions = {
             'calculate_awards': {
                 'label': 'CALC Awards', 'tooltip': 'Calculate Pay Awards',
-                'action': self.calculate_awards,
+                'action': self.calculate_awards_action,
                 'css_class': 'e-outline pl-grid-toolbar-action-button',
             },
         }
@@ -111,13 +111,14 @@ class TimesheetListView(GridView):
                     args.cell.innerHTML = f'{args.cell.innerHTML} +{plus_days} day(s)'
         super().query_cell_info(args)
 
+    def calculate_awards_action(self, args):
+        selected_records = {rec['employee__full_name']: rec['uid'] for rec in self.grid.getSelectedRecords()}
+        for employee_name in selected_records:
+            self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
+
     def calculate_awards(self, args):
-        if 'rowInfo' not in args.keys():
-            print(self.grid.getSelectedRecords())
-            for k in args.keys():
-                print(k, args[k])
-        print('calculate_awards', args.rowInfo.rowData)
-        ts = Timesheet.get(args.rowInfo.rowData['uid'])
+        print('calculate_awards', args['rowInfo']['rowData'])
+        ts = Timesheet.get(args['rowInfo']['rowData']['uid'])
         employee = ts['employee']
         ts_date = ts['date']
         start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
