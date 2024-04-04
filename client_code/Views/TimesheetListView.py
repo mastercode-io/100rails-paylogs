@@ -33,7 +33,7 @@ class TimesheetListView(GridView):
 
         toolbar_actions = {
             'calculate_awards': {
-                'label': 'Calculate Pay', 'tooltip': 'Calculate Pay Awards',
+                'label': 'CALC Pay', 'tooltip': 'Calculate Pay Awards',
                 'action': self.calculate_awards
             },
         }

@@ -201,6 +201,12 @@ li.e-list-item.e-level-1.e-hover {
 .e-grid {
     width: 100% !important;
 }
+.pl-grid-toolbar-action-button {
+    color: #4f46e5 !important;
+}
+.pl-grid-toolbar-action-button:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
 
 /* Form Elements */
 .pl-dialog-section-header {
