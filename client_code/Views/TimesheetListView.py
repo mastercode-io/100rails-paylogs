@@ -112,7 +112,7 @@ class TimesheetListView(GridView):
         super().query_cell_info(args)
 
     def calculate_awards_action(self, args):
-        selected_records = {rec['employee__full_name']: rec['uid'] for rec in self.grid.getSelectedRecords()}
+        selected_records = {rec['employee__full_name']: rec for rec in self.grid.getSelectedRecords()}
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
 
