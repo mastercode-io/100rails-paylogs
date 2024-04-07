@@ -1,6 +1,7 @@
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.tools.utils import AppEnv
 import anvil.js
+from anvil.js.window import ej
 import anvil.tables as tables
 import anvil.tables.query as q
 from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, PayRateTemplateItem, Scope, ScopeType
@@ -36,6 +37,12 @@ class TimesheetListView(GridView):
                 'label': 'CALC Awards', 'tooltip': 'Calculate Pay Awards',
                 'action': self.calculate_awards_action,
                 'css_class': 'e-outline pl-grid-toolbar-action-button',
+                'control': ej.buttons.Button({
+                    'content': 'CALC Awards',
+                    'iconCss': '',
+                    'cssClass': 'e-outline pl-grid-toolbar-action-button',
+                    'click': self.calculate_awards_action,
+                }),
             },
         }
 
