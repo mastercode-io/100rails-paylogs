@@ -1,4 +1,5 @@
 from AnvilFusion.components.GridView import GridView
+from AnvilFusion.components.FormInputs import Button
 from AnvilFusion.tools.utils import AppEnv
 import anvil.js
 from anvil.js.window import ej
@@ -32,19 +33,26 @@ class TimesheetListView(GridView):
             ],
         }
 
-        toolbar_actions = {
-            'calculate_awards': {
-                'label': 'CALC Awards', 'tooltip': 'Calculate Pay Awards',
-                'action': self.calculate_awards_action,
-                'css_class': 'e-outline pl-grid-toolbar-action-button',
-                'control': ej.buttons.Button({
-                    'content': 'CALC Awards',
-                    'iconCss': '',
-                    'cssClass': 'e-outline pl-grid-toolbar-action-button',
-                    'click': self.calculate_awards_action,
-                }),
-            },
-        }
+        # toolbar_actions = {
+        #     'calculate_awards': {
+        #         'label': 'CALC Awards', 'tooltip': 'Calculate Pay Awards',
+        #         'action': self.calculate_awards_action,
+        #         'css_class': 'e-outline pl-grid-toolbar-action-button',
+        #         'control': ej.buttons.Button({
+        #             'content': 'CALC Awards',
+        #             'iconCss': '',
+        #             'cssClass': 'e-outline pl-grid-toolbar-action-button',
+        #             'click': self.calculate_awards_action,
+        #         }),
+        #     },
+        # }
+        toolbar_actions = [
+            Button(
+                label='CALC Awards',
+                css_class='e-outline pl-grid-toolbar-action-button',
+                action=self.calculate_awards_action,
+            ),
+        ]
 
         context_menu_items = [
             {'id': 'calculate_awards', 'label': 'Calculate Pay Awards', 'action': self.calculate_awards},
