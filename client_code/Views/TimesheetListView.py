@@ -17,7 +17,7 @@ class TimesheetListView(GridView):
         view_config = {
             'model': 'Timesheet',
             'columns': [
-                {'name': 'payrun.payrun_week', 'label': 'Payrun'},
+                {'name': 'payrun', 'label': 'Payrun'},
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
@@ -96,7 +96,7 @@ class TimesheetListView(GridView):
         # anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
         self.grid.allowGrouping = True
         self.grid.groupSettings = {
-            'columns': ['payrun__payrun_week', 'employee__full_name'],
+            'columns': ['payrun', 'employee__full_name'],
             'showDropArea': False,
             # 'captionTemplate': '<div>${key} - ${data}</div>',
             'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',

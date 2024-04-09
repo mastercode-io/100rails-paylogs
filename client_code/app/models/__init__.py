@@ -443,7 +443,7 @@ class PayRateTemplateSpecificRole:
 
 @model_type
 class Payrun:
-    _title = "reference"
+    _title = "pay_period_start"
 
     pay_period_start = Attribute(field_type=types.FieldTypes.DATE)
     pay_period_end = Attribute(field_type=types.FieldTypes.DATE)
