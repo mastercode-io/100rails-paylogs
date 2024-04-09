@@ -49,7 +49,7 @@ class TimesheetListView(GridView):
         toolbar_actions = [
             {
                 'name': 'select_payrun',
-                'control': DropdownButton(
+                'input': DropdownButton(
                     label='Select Payrun',
                     css_class='e-outline pl-grid-toolbar-action-button',
                     options=['No Payrun', 'Current Payrun', 'Last Payrun'],
@@ -60,7 +60,7 @@ class TimesheetListView(GridView):
             },
             {
                 'name': 'calculate_awards',
-                'control': Button(
+                'input': Button(
                     label='CALC Awards',
                     css_class='e-outline pl-grid-toolbar-action-button',
                     action=self.calculate_awards_action,
