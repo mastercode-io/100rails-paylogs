@@ -96,7 +96,7 @@ class TimesheetListView(GridView):
         # anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
         self.grid.allowGrouping = True
         self.grid.groupSettings = {
-            'columns': ['payrun', 'employee__full_name'],
+            'columns': ['employee__full_name'],
             'showDropArea': False,
             # 'captionTemplate': '<div>${key} - ${data}</div>',
             'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
