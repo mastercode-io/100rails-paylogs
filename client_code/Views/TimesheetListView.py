@@ -1,5 +1,5 @@
 from AnvilFusion.components.GridView import GridView
-from AnvilFusion.components.FormInputs import Button
+from AnvilFusion.components.FormInputs import Button, DropdownButton
 from AnvilFusion.tools.utils import AppEnv
 import anvil.js
 from anvil.js.window import ej
@@ -52,6 +52,12 @@ class TimesheetListView(GridView):
                 css_class='e-outline pl-grid-toolbar-action-button',
                 action=self.calculate_awards_action,
             ),
+            DropdownButton(
+                label='Select View',
+                css_class='e-outline pl-grid-toolbar-action-button',
+                items=['Calculate Pay Awards'],
+                action=self.view_selected,
+            )
         ]
 
         context_menu_items = [
@@ -130,6 +136,9 @@ class TimesheetListView(GridView):
         selected_records = {rec['employee__full_name']: rec for rec in self.grid.getSelectedRecords()}
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
+
+    def view_selected(self, args):
+        print('view_selected', args)
 
     def calculate_awards(self, args):
         print('calculate_awards', args['rowInfo']['rowData'])
