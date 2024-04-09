@@ -17,7 +17,7 @@ class TimesheetListView(GridView):
         view_config = {
             'model': 'Timesheet',
             'columns': [
-                {'name': 'payrun.pay_date', 'label': 'Payrun Date'},
+                {'name': 'payrun.payrun_week', 'label': 'Payrun Date'},
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
