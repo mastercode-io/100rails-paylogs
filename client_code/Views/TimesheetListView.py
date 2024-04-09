@@ -1,5 +1,5 @@
 from AnvilFusion.components.GridView import GridView
-from AnvilFusion.components.FormInputs import Button, DropdownButton
+from AnvilFusion.components.FormInputs import Button, DropdownInput
 from AnvilFusion.tools.utils import AppEnv
 import anvil.js
 from anvil.js.window import ej
@@ -49,11 +49,11 @@ class TimesheetListView(GridView):
         toolbar_actions = [
             {
                 'name': 'select_payrun',
-                'input': DropdownButton(
-                    content='Select Payrun',
+                'input': DropdownInput(
+                    placeholder='Select Payrun',
                     css_class='e-outline pl-grid-toolbar-action-button',
                     options=['No Payrun', 'Current Payrun', 'Last Payrun'],
-                    action=self.payrun_selected,
+                    on_change=self.payrun_selected,
                 ),
                 'selected_records': False,
                 'toolbar_click': False,
