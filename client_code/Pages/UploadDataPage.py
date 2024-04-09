@@ -80,14 +80,14 @@ class UploadDataPage(PageBase):
         self.import_button.appendTo(f'#{self.import_button_id}')
         self.import_button.element.onclick = self.import_button_action
         self.execution_log.show()
-        self.execution_log.message = 'Click <b>Import Records</b> to start import<br><br>'
+        self.execution_log.content = 'Click <b>Import Records</b> to start import<br><br>'
         self.record_count.show()
 
 
     def import_button_action(self, args):
         print('import_button_action')
         if self.select_model.value:
-            self.execution_log.message = f'Importing {self.select_model.value} records<br><br>'
+            self.execution_log.content = f'Importing {self.select_model.value} records<br><br>'
             if self.select_model.value == 'Employee' and 'Employees' in self.file_content:
                 self.import_employees(self.file_content['Employees'])
             elif self.select_model.value == 'Job' and 'Jobs' in self.file_content:
@@ -95,11 +95,11 @@ class UploadDataPage(PageBase):
             elif self.select_model.value == 'Timesheet' and 'Timesheets' in self.file_content:
                 self.import_timesheets(self.file_content['Timesheets'])
 
-        self.execution_log.message += '<br>Import completed'
+        self.execution_log.content += '<br>Import completed'
 
 
     def log_message(self, message):
-        self.execution_log.message += str(message) + '<br>'
+        self.execution_log.content += str(message) + '<br>'
 
 
     def file_selected(self, args):
@@ -141,7 +141,8 @@ class UploadDataPage(PageBase):
                 employee.save()
                 new_employees.append(employee)
                 count_new += 1
-            self.record_count.message = f'Imported {count_new} employee records\nUpdated {count_updated} employee records'
+            self.record_count.content = (f'Imported {count_new} employee records\nUpdated {count_updated} employee '
+                                         f'records')
         return new_employees
 
 
@@ -162,7 +163,7 @@ class UploadDataPage(PageBase):
                 job_data['status'] = 'Active'
                 new_jobs.append(Job(**job_data).save())
                 count += 1
-                self.record_count.message = f'Imported {count} job records'
+                self.record_count.content = f'Imported {count} job records'
         return new_jobs
 
 
@@ -224,4 +225,4 @@ class UploadDataPage(PageBase):
             }
             Timesheet(**timesheet_data).save()
             count += 1
-            self.record_count.message = f'Imported {count} timesheet records'
+            self.record_count.content = f'Imported {count} timesheet records'
