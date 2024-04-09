@@ -136,8 +136,7 @@ class HomePage(HomePageTemplate):
 
         self.assistant.show()
         self.sidebar.show(AppEnv.start_menu)
-        self.sidebar.menu_select(None, menu_item_id='timesheet_upload_data')
-        self.sidebar.menu_select(None, menu_item_id='timesheet_dashboard')
+        self.sidebar.refresh_content()
 
         # copilot = Copilot()
         # message = 'what are you?'
