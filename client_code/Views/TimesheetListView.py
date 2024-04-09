@@ -47,17 +47,27 @@ class TimesheetListView(GridView):
         #     },
         # }
         toolbar_actions = [
-            Button(
-                label='CALC Awards',
-                css_class='e-outline pl-grid-toolbar-action-button',
-                action=self.calculate_awards_action,
-            ),
-            DropdownButton(
-                label='Select Payrun',
-                css_class='e-outline pl-grid-toolbar-action-button',
-                options=['No Payrun', 'Current Payrun', 'Last Payrun'],
-                action=self.payrun_selected,
-            )
+            {
+                'name': 'calculate_awards',
+                'item': Button(
+                    label='CALC Awards',
+                    css_class='e-outline pl-grid-toolbar-action-button',
+                    action=self.calculate_awards_action,
+                ),
+                'selected_records': True,
+                'toolbar_click': True,
+            },
+            {
+                'name': 'select_payrun',
+                'item': DropdownButton(
+                    label='Select Payrun',
+                    css_class='e-outline pl-grid-toolbar-action-button',
+                    options=['No Payrun', 'Current Payrun', 'Last Payrun'],
+                    action=self.payrun_selected,
+                ),
+                'selected_records': False,
+                'toolbar_click': False,
+            },
         ]
 
         context_menu_items = [
