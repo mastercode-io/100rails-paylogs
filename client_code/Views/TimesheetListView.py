@@ -48,16 +48,6 @@ class TimesheetListView(GridView):
         # }
         toolbar_actions = [
             {
-                'name': 'calculate_awards',
-                'control': Button(
-                    label='CALC Awards',
-                    css_class='e-outline pl-grid-toolbar-action-button',
-                    action=self.calculate_awards_action,
-                ),
-                'selected_records': True,
-                'toolbar_click': True,
-            },
-            {
                 'name': 'select_payrun',
                 'control': DropdownButton(
                     label='Select Payrun',
@@ -67,6 +57,16 @@ class TimesheetListView(GridView):
                 ),
                 'selected_records': False,
                 'toolbar_click': False,
+            },
+            {
+                'name': 'calculate_awards',
+                'control': Button(
+                    label='CALC Awards',
+                    css_class='e-outline pl-grid-toolbar-action-button',
+                    action=self.calculate_awards_action,
+                ),
+                'selected_records': True,
+                'toolbar_click': True,
             },
         ]
 
