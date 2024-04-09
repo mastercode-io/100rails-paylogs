@@ -490,6 +490,7 @@ class PayrunItem:
     timesheet = Relationship("Timesheet")
     pay_category = Relationship("PayCategory")
     title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
     units = Attribute(field_type=types.FieldTypes.NUMBER)
     amount = Attribute(field_type=types.FieldTypes.CURRENCY)

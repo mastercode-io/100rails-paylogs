@@ -2,10 +2,9 @@ from AnvilFusion.components.GridView import GridView
 from AnvilFusion.components.FormInputs import Button, DropdownInput
 from AnvilFusion.tools.utils import AppEnv
 import anvil.js
-from anvil.js.window import ej
 import anvil.tables as tables
 import anvil.tables.query as q
-from ..app.models import Employee, Timesheet, PayRateRule, PayRateTemplate, PayRateTemplateItem, Scope, ScopeType
+from ..app.models import Payrun, Timesheet, PayRateRule, PayRateTemplate, PayRateTemplateItem, Scope, ScopeType
 from ..payroll.pay_awards import PayItemAward, PayLine
 import datetime
 import json
@@ -18,6 +17,7 @@ class TimesheetListView(GridView):
         view_config = {
             'model': 'Timesheet',
             'columns': [
+                {'name': 'payrun.payrun_week', 'label': 'Payrun'},
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
@@ -69,6 +69,16 @@ class TimesheetListView(GridView):
                 'selected_records': True,
                 'toolbar_click': True,
             },
+            {
+                'name': 'assign_payrun',
+                'input': Button(
+                    content='ASSIGN Payrun',
+                    css_class='e-outline pl-grid-toolbar-action-button',
+                    action=self.assign_payrun_action,
+                ),
+                'selected_records': True,
+                'toolbar_click': True,
+            },
         ]
 
         context_menu_items = [
@@ -86,7 +96,7 @@ class TimesheetListView(GridView):
         # anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
         self.grid.allowGrouping = True
         self.grid.groupSettings = {
-            'columns': ['employee__full_name'],
+            'columns': ['payrun__payrun_week', 'employee__full_name'],
             'showDropArea': False,
             # 'captionTemplate': '<div>${key} - ${data}</div>',
             'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
@@ -148,8 +158,21 @@ class TimesheetListView(GridView):
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
 
+    def assign_payrun_action(self, args):
+        timesheet_uids = [rec['uid'] for rec in self.grid.getSelectedRecords()]
+        self.assign_payrun(timesheet_uids)
+
     def payrun_selected(self, args):
         print('view_selected', args)
+
+    def assign_payrun(self, timesheet_uids):
+        print('assign_payrun', timesheet_uids)
+        payrun = Payrun.get_by('name', 'Current Payrun')
+        for ts_uid in timesheet_uids:
+            ts = Timesheet.get(ts_uid)
+            ts['payrun'] = payrun
+            ts.save()
+            self.update_grid(ts, False)
 
     def calculate_awards(self, args):
         print('calculate_awards', args['rowInfo']['rowData'])
