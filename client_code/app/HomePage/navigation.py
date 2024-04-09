@@ -33,6 +33,8 @@ PL_SIDEBAR_MENUS = {
     'timesheet_menu': [
         {'nodeId': 'timesheet_dashboard', 'nodeText': 'Dashboard', 'nodeChild': []},
         {'nodeId': 'timesheet_view', 'nodeText': 'View Timesheets', 'nodeChild': []},
+        {'nodeId': 'timesheet_sync', 'nodeText': 'Sync Timesheets from Connected App', 'nodeChild': []},
+        {'nodeId': 'timesheet_upload_data', 'nodeText': 'Upload Data', 'nodeChild': []},
     ],
     'payroll_menu': [
         {'nodeId': 'payroll_payrun_list', 'nodeText': 'Payruns', 'nodeChild': []},
@@ -42,7 +44,6 @@ PL_SIDEBAR_MENUS = {
         {'nodeId': 'payroll_pay_rate_scopes', 'nodeText': 'Pay Rate Scopes', 'nodeChild': []},
         {'nodeId': 'payroll_pay_rate_templates', 'nodeText': 'Pay Rate Templates', 'nodeChild': []},
         {'nodeId': 'payroll_calendar', 'nodeText': 'Payroll Calendar', 'nodeChild': []},
-        {'nodeId': 'payroll_import_records', 'nodeText': 'Import Records', 'nodeChild': []},
     ],
     'settings_menu': [
         {'nodeId': 'settings_users', 'nodeText': 'Users', 'nodeChild': []},
@@ -86,6 +87,7 @@ PL_SIDEBAR_MENUS = {
 PL_NAV_ITEMS = {
     'timesheet_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
     'timesheet_view': {'class': 'TimesheetListView', 'type': 'custom', 'action': 'open', 'props': {}},
+    'timesheet_upload_data': {'type': 'page', 'name': 'UploadDataPage', 'action': 'open', 'props': {}},
 
     'payroll_payrun_list': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_payrun_settings': {'class': 'PayrunSettingsForm', 'type': 'form', 'action': 'open', 'props': {}},
@@ -94,7 +96,6 @@ PL_NAV_ITEMS = {
     'payroll_pay_rate_scopes': {'model': 'Scope', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_calendar': {'type': 'page', 'name': 'CalendarPage', 'action': 'open', 'props': {}},
-    'payroll_import_records': {'type': 'page', 'name': 'ImportRecordsPage', 'action': 'open', 'props': {}},
 
     'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
