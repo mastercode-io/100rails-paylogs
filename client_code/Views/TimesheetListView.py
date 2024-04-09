@@ -17,7 +17,7 @@ class TimesheetListView(GridView):
         view_config = {
             'model': 'Timesheet',
             'columns': [
-                {'name': 'payrun', 'label': 'Payrun'},
+                # {'name': 'payrun', 'label': 'Payrun'},
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
@@ -33,19 +33,6 @@ class TimesheetListView(GridView):
             ],
         }
 
-        # toolbar_actions = {
-        #     'calculate_awards': {
-        #         'label': 'CALC Awards', 'tooltip': 'Calculate Pay Awards',
-        #         'action': self.calculate_awards_action,
-        #         'css_class': 'e-outline pl-grid-toolbar-action-button',
-        #         'control': ej.buttons.Button({
-        #             'content': 'CALC Awards',
-        #             'iconCss': '',
-        #             'cssClass': 'e-outline pl-grid-toolbar-action-button',
-        #             'click': self.calculate_awards_action,
-        #         }),
-        #     },
-        # }
         toolbar_actions = [
             {
                 'name': 'select_payrun',
