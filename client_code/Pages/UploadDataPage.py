@@ -45,7 +45,7 @@ TIMESHEET_FIELDS = {
 
 
 
-class ImportRecordsPage(PageBase):
+class UploadDataPage(PageBase):
     def __init__(self, **kwargs):
         print('ImportRecordsPage')
         title = 'Import Records'
