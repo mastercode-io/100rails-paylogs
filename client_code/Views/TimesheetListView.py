@@ -88,17 +88,17 @@ class TimesheetListView(GridView):
             # 'captionTemplate': '<div>${key} - ${data}</div>',
             # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
         }
-        self.grid.aggregates = [{
-            'columns': [
-                {
-                    'type': 'Custom',
-                    'field': 'total_hours_view',
-                    'columnName': 'total_hours_view',
-                    'groupCaptionTemplate': '${Custom}',
-                    'customAggregate': self.grouping_total_hours,
-                },
-            ],
-        }]
+        # self.grid.aggregates = [{
+        #     'columns': [
+        #         {
+        #             'type': 'Custom',
+        #             'field': 'total_hours_view',
+        #             'columnName': 'total_hours_view',
+        #             'groupCaptionTemplate': '${Custom}',
+        #             'customAggregate': self.grouping_total_hours,
+        #         },
+        #     ],
+        # }]
         self.grid.allowSorting = True
         self.grid.sortSettings = {
             'columns': [
