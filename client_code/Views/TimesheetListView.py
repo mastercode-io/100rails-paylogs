@@ -52,6 +52,7 @@ class TimesheetListView(GridView):
                 'input': DropdownInput(
                     placeholder='Select Payrun',
                     css_class='e-outline pl-grid-toolbar-action-button',
+                    float_label=False,
                     options=['No Payrun', 'Current Payrun', 'Last Payrun'],
                     on_change=self.payrun_selected,
                 ),
