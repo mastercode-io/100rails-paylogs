@@ -69,16 +69,16 @@ class TimesheetListView(GridView):
                 'selected_records': True,
                 'toolbar_click': True,
             },
-            {
-                'name': 'assign_payrun',
-                'input': Button(
-                    content='ASSIGN Payrun',
-                    css_class='e-outline pl-grid-toolbar-action-button',
-                    action=self.assign_payrun_action,
-                ),
-                'selected_records': True,
-                'toolbar_click': True,
-            },
+            # {
+            #     'name': 'assign_payrun',
+            #     'input': Button(
+            #         content='ASSIGN Payrun',
+            #         css_class='e-outline pl-grid-toolbar-action-button',
+            #         action=self.assign_payrun_action,
+            #     ),
+            #     'selected_records': True,
+            #     'toolbar_click': True,
+            # },
         ]
 
         context_menu_items = [
