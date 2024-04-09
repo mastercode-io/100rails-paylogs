@@ -53,10 +53,10 @@ class TimesheetListView(GridView):
                 action=self.calculate_awards_action,
             ),
             DropdownButton(
-                label='Select View',
+                label='Select Payrun',
                 css_class='e-outline pl-grid-toolbar-action-button',
-                items=['Calculate Pay Awards'],
-                action=self.view_selected,
+                options=['No Payrun', 'Current Payrun', 'Last Payrun'],
+                action=self.payrun_selected,
             )
         ]
 
@@ -137,7 +137,7 @@ class TimesheetListView(GridView):
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
 
-    def view_selected(self, args):
+    def payrun_selected(self, args):
         print('view_selected', args)
 
     def calculate_awards(self, args):
