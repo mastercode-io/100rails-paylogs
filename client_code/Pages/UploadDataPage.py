@@ -57,9 +57,9 @@ class UploadDataPage(PageBase):
             'size': 'large',
         })
         self.import_button_id = f'migrate-button-{uuid.uuid4()}'
-        print('DEBUG')
         self.execution_log = InlineMessage(name='execution_log')
         self.record_count = InlineMessage(name='record_count')
+        print('DEBUG')
 
         self.content = f'<br><div id="{self.select_model.container_id}" style="width:300px;"></div>'
         self.content += f'<div id="{self.upload_file.container_id}" style="width:300px;"></div>'
