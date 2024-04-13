@@ -101,7 +101,7 @@ class HomePage(HomePageTemplate):
                 "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
                 "items": self.appbar_settings_menu_items,
                 "open": self.appbar_menu_popup_open,
-                "select": self.appbar_settings_menu_select,
+                "select": self.settings_click,
             }
         )
         self.appbar_assistant_button = ej.buttons.Button({
@@ -179,7 +179,7 @@ class HomePage(HomePageTemplate):
         self.login_user()
 
     def settings_click(self, args):
-        print('settings menu')
+        print('settings menu', args.item.id)
         # self.sidebar.show_menu("settings_menu")
 
     # Sidebar toggle event handler
