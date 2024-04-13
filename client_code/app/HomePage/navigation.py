@@ -15,21 +15,8 @@ PL_SIDEBAR_WIDTH = 200
 PL_SIDEBAR_POPUP_OFFSET = 1
 PL_ASSISTANT_WIDTH = 300
 
-# Appbar menu item list
-PL_APPBAR_MENU = [
-    {'id': 'timesheet_menu', 'text': 'Timesheet', 'items': []},
-    {'id': 'payroll_menu', 'text': 'Payroll', 'items': []},
-]
-PL_APPBAR_MENU_ADMIN = [
-    {'separator': True},
-    {'id': 'admin_menu', 'text': 'Admin', 'items': []},
-]
-PL_APPBAR_MENU_DEVELOPER = [
-    {'id': 'developer_menu', 'text': 'Developer', 'items': []},
-]
-
-# Sidebar menu item list
-PL_SIDEBAR_MENUS = {
+# App menu item list
+PL_MENU_ITEMS = {
     'timesheet_menu': [
         {'nodeId': 'timesheet_dashboard', 'nodeText': 'Dashboard', 'nodeChild': []},
         {'nodeId': 'timesheet_view', 'nodeText': 'View Timesheets', 'nodeChild': []},
@@ -128,6 +115,19 @@ PL_DEFAULT_NAV_ITEMS = {
     'admin_menu': 'admin_tenants',
     'developer_menu': 'developer_views',
 }
+
+# Appbar main menu
+PL_APPBAR_MENU = [
+    {'id': 'timesheet_menu', 'text': 'Timesheet', 'items': [PL_MENU_ITEMS['timesheet_menu']]},
+    {'id': 'payroll_menu', 'text': 'Payroll', 'items': [PL_MENU_ITEMS['payroll_menu']]},
+]
+PL_APPBAR_MENU_ADMIN = [
+    {'separator': True},
+    {'id': 'admin_menu', 'text': 'Admin', 'items': [PL_MENU_ITEMS['admin_menu']]},
+]
+PL_APPBAR_MENU_DEVELOPER = [
+    {'id': 'developer_menu', 'text': 'Developer', 'items': [PL_MENU_ITEMS['developer_menu']]},
+]
 
 
 # Appbar navigation class
@@ -254,7 +254,7 @@ class Sidebar:
                  **properties):
 
         if sections is None:
-            sections = PL_SIDEBAR_MENUS
+            sections = PL_MENU_ITEMS
         if nav_items is None:
             nav_items = PL_NAV_ITEMS
         self.target_el = target_el
@@ -323,12 +323,12 @@ class Sidebar:
             args.cancel = True
 
     def show_menu(self, menu_id):
-        # self.menu.fields.dataSource = PL_SIDEBAR_MENUS.get(menu_id, list(PL_SIDEBAR_MENUS.keys())[0])
-        if menu_id in PL_SIDEBAR_MENUS:
+        # self.menu.fields.dataSource = PL_MENU_ITEMS.get(menu_id, list(PL_MENU_ITEMS.keys())[0])
+        if menu_id in PL_MENU_ITEMS:
             subcomponent = PL_DEFAULT_NAV_ITEMS.get(menu_id)
             if not subcomponent:
-                subcomponent = PL_SIDEBAR_MENUS[menu_id][0]['nodeId']
-            menu_items = PL_SIDEBAR_MENUS[menu_id]
+                subcomponent = PL_MENU_ITEMS[menu_id][0]['nodeId']
+            menu_items = PL_MENU_ITEMS[menu_id]
             for item in menu_items:
                 if item['nodeId'] == subcomponent:
                     item['selected'] = True
