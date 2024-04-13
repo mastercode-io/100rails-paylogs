@@ -118,21 +118,15 @@ PL_DEFAULT_NAV_ITEMS = {
 
 # Appbar main menu
 PL_APPBAR_MENU = [
-    {'id': 'timesheet_menu', 'text': 'Timesheet',
-     'items': [
-         {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
-         {'id': 'timesheet_view', 'text': 'View Timesheets', 'items': []},
-         {'id': 'timesheet_sync', 'text': 'Sync Timesheets from Connected App', 'items': []},
-         {'id': 'timesheet_upload_data', 'text': 'Upload Data', 'items': []},
-     ]},
-    {'id': 'payroll_menu', 'text': 'Payroll', 'items': [PL_MENU_ITEMS['payroll_menu']]},
+    {'id': 'timesheet_menu', 'text': 'Timesheet', 'items': PL_MENU_ITEMS['timesheet_menu']},
+    {'id': 'payroll_menu', 'text': 'Payroll', 'items': PL_MENU_ITEMS['payroll_menu']},
 ]
 PL_APPBAR_MENU_ADMIN = [
     {'separator': True},
-    {'id': 'admin_menu', 'text': 'Admin', 'items': [PL_MENU_ITEMS['admin_menu']]},
+    {'id': 'admin_menu', 'text': 'Admin', 'items': PL_MENU_ITEMS['admin_menu']},
 ]
 PL_APPBAR_MENU_DEVELOPER = [
-    {'id': 'developer_menu', 'text': 'Developer', 'items': [PL_MENU_ITEMS['developer_menu']]},
+    {'id': 'developer_menu', 'text': 'Developer', 'items': PL_MENU_ITEMS['developer_menu']},
 ]
 
 
