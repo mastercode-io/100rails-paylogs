@@ -79,7 +79,7 @@ class HomePage(HomePageTemplate):
                 "id": "pl-appbar-sign-out",
             },
         ]
-        self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
+        self.appbar_user_menu = ej.splitbuttons.DropDownButton(
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
                 "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
