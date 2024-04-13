@@ -98,10 +98,10 @@ class HomePage(HomePageTemplate):
         self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
-                "iconCss": "fa-solid fa-cag pl-appbar-menu-icon",
+                "iconCss": "fa-solid fa-cog pl-appbar-menu-icon",
                 "items": self.appbar_settings_menu_items,
                 "open": self.appbar_menu_popup_open,
-                "select": self.settings_click,
+                "select": self.appbar_settings_menu_select,
             }
         )
         self.appbar_assistant_button = ej.buttons.Button({
@@ -136,9 +136,9 @@ class HomePage(HomePageTemplate):
                 #     {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
                 # )
                 self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
-                self.appbar_settings_menu.element.addEventListener(
-                    "click", self.settings_click
-                )
+                # self.appbar_settings_menu.element.addEventListener(
+                #     "click", self.settings_click
+                # )
 
         self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
         if (AppEnv.logged_user.permissions.super_admin
