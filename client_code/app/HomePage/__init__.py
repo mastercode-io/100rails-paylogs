@@ -239,7 +239,7 @@ class HomePage(HomePageTemplate):
     def appbar_settings_menu_select(self, args):
         print('appbar_user_menu_select', args.item.id)
         if args.item.id in nav.PL_MENU_ITEMS['settings_menu']:
-            self.sidebar.show_menu(args.item.id)
+            self.appbar.show_selected(args.item.id)
 
 
 def do_something():

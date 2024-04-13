@@ -151,7 +151,7 @@ class AppbarMenu:
         self.content_id = content_id
         self.nav_target_id = None
         self.content_control = None
-        self.control = None
+        # self.control = None
         # self.menu = None
         # self.open = True
 
@@ -243,9 +243,9 @@ class AppbarMenu:
         self.content_control.form_show()
         # except Exception as e:
         #     print(e)
-        if self.control.isOpen:
-            self.control.toggle()
-            self.control.toggle()
+        # if self.control.isOpen:
+        #     self.control.toggle()
+        #     self.control.toggle()
 
 
 class Assistant:
