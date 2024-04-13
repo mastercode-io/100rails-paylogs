@@ -238,7 +238,7 @@ class HomePage(HomePageTemplate):
 
     def appbar_settings_menu_select(self, args):
         print('appbar_user_menu_select', args.item.id)
-        self.appbar.show_selected(args.item.id)
+        self.appbar_menu.show_selected(args.item.id)
 
 
 def do_something():
