@@ -247,6 +247,13 @@ class AppbarMenu:
         #     self.control.toggle()
         #     self.control.toggle()
 
+    def refresh_content(self):
+        if self.content_control:
+            try:
+                self.content_control.refresh()
+            except Exception as e:
+                pass
+
 
 class Assistant:
     def __init__(self,

@@ -85,3 +85,4 @@ class CompanyDashboardPage(DashboardPage):
         super().form_show()
         for widget in self.widgets:
             widget.form_show()
+        self.dashboard.refresh()

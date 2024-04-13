@@ -183,8 +183,8 @@ class HomePage(HomePageTemplate):
 
         self.login_user()
 
-    def settings_click(self, args):
-        print('settings menu', args.item.id)
+    # def settings_click(self, args):
+    #     print('settings menu', args.item.id)
         # self.sidebar.show_menu("settings_menu")
 
     # Sidebar toggle event handler
