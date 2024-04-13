@@ -79,13 +79,29 @@ class HomePage(HomePageTemplate):
                 "id": "pl-appbar-sign-out",
             },
         ]
-        self.appbar_user_menu = ej.splitbuttons.DropDownButton(
+        self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
                 "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
                 "items": self.appbar_user_menu_items,
                 "open": self.appbar_menu_popup_open,
                 "select": self.appbar_user_menu_select,
+            }
+        )
+        self.appbar_settings_menu_items = [
+            {'id': 'settings_users', 'text': 'Users', 'items': []},
+            {'id': 'settings_locations', 'text': 'Locations', 'items': []},
+            {'id': 'settings_employee_roles', 'text': 'Employee Roles', 'items': []},
+            {'id': 'settings_job_types', 'text': 'Job Types', 'items': []},
+            {'id': 'settings_timesheet_types', 'text': 'Timesheet Types', 'items': []},
+        ]
+        self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
+            {
+                "cssClass": "e-inherit e-caret-hide pl-menu-font",
+                "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
+                "items": self.appbar_settings_menu_items,
+                "open": self.appbar_menu_popup_open,
+                "select": self.appbar_settings_menu_select,
             }
         )
         self.appbar_assistant_button = ej.buttons.Button({
