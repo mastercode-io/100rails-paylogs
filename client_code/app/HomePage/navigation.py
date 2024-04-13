@@ -132,9 +132,9 @@ PL_DEFAULT_NAV_ITEMS = {
 
 # Appbar navigation class
 class AppbarMenu:
-    def __init__(self, container_el, sidebar, menu_items):
+    def __init__(self, container_el, menu_items):
         self.container_el = container_el
-        self.sidebar = sidebar
+        # self.sidebar = sidebar
         self.menu_items = menu_items
         self.selected_el = None
         self.menu = None
@@ -158,7 +158,7 @@ class AppbarMenu:
         self.selected_el.classList.add('pl-appbar-menu-selected')
         menu_id = args.item.properties.id
         print(menu_id)
-        self.sidebar.show_menu(menu_id)
+        # self.sidebar.show_menu(menu_id)
 
 
 class Assistant:
