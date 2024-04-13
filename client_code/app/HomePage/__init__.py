@@ -98,7 +98,7 @@ class HomePage(HomePageTemplate):
         self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
-                "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
+                "iconCss": "fa-solid fa-cag pl-appbar-menu-icon",
                 "items": self.appbar_settings_menu_items,
                 "open": self.appbar_menu_popup_open,
                 "select": self.settings_click,
@@ -230,6 +230,12 @@ class HomePage(HomePageTemplate):
         #     AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
         #     self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
         #     self.appbar_user_menu.items[0].disabled = True
+
+
+    def appbar_settings_menu_select(self, args):
+        print('appbar_user_menu_select', args.item.id)
+        if args.item.id in nav.PL_MENU_ITEMS['settings_menu']:
+            self.sidebar.show_menu(args.item.id)
 
 
 def do_something():
