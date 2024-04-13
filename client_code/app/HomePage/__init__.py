@@ -30,9 +30,9 @@ class HomePage(HomePageTemplate):
         # Appbar configuration
         self.appbar = ej.navigations.AppBar({"colorMode": "Primary", "isSticky": True})
         self.appbar_logo = ej.buttons.Button({"cssClass": "e-inherit"})
-        self.appbar_sidebar_toggle = ej.buttons.Button(
-            {"cssClass": "e-inherit", "iconCss": "fa-solid fa-bars pl-appbar-menu-icon"}
-        )
+        # self.appbar_sidebar_toggle = ej.buttons.Button(
+        #     {"cssClass": "e-inherit", "iconCss": "fa-solid fa-bars pl-appbar-menu-icon"}
+        # )
         self.appbar_settings_menu = None
         self.appbar_assistant_toggle = ej.buttons.Button(
             {"cssClass": "e-inherit", "iconCss": "fa-solid fa-comments pl-appbar-menu-icon"}
@@ -43,14 +43,14 @@ class HomePage(HomePageTemplate):
             container_id="pl-assistant",
             content_id=self.content_id,
         )
-        self.sidebar = nav.Sidebar(
-            target_el=".pl-page-container",
-            container_id="pl-sidebar",
-            content_id=self.content_id,
-        )
+        # self.sidebar = nav.Sidebar(
+        #     target_el=".pl-page-container",
+        #     container_id="pl-sidebar",
+        #     content_id=self.content_id,
+        # )
         self.appbar_menu = nav.AppbarMenu(
             container_el="pl-appbar-menu",
-            sidebar=self.sidebar,
+            # sidebar=self.sidebar,
             menu_items=nav.PL_APPBAR_MENU,
         )
 
@@ -107,7 +107,7 @@ class HomePage(HomePageTemplate):
         AppEnv.init_enum_constants()
         print('enum_constants', AppEnv.enum_constants)
         do_something()
-        AppEnv.navigation = self.sidebar
+        # AppEnv.navigation = self.sidebar
         AppEnv.assistant = self.assistant
 
         if (AppEnv.logged_user.permissions.super_admin
@@ -135,8 +135,8 @@ class HomePage(HomePageTemplate):
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
 
         self.assistant.show()
-        self.sidebar.show(AppEnv.start_menu)
-        self.sidebar.refresh_content()
+        # self.sidebar.show(AppEnv.start_menu)
+        # self.sidebar.refresh_content()
 
         # copilot = Copilot()
         # message = 'what are you?'
@@ -151,10 +151,10 @@ class HomePage(HomePageTemplate):
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
         # self.appbar_assistant_button.appendTo(jQuery('#pl-appbar-help-menu')[0])
         # self.appbar_assistant_button.element.addEventListener('click', self.appbar_assistant_button_click)
-        self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
-        self.appbar_sidebar_toggle.element.addEventListener(
-            "click", self.sidebar.toggle
-        )
+        # self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
+        # self.appbar_sidebar_toggle.element.addEventListener(
+        #     "click", self.sidebar.toggle
+        # )
         self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
         self.appbar_assistant_toggle.element.addEventListener(
             "click", self.assistant.toggle
@@ -164,11 +164,12 @@ class HomePage(HomePageTemplate):
 
     def settings_click(self, args):
         print('settings menu')
-        self.sidebar.show_menu("settings_menu")
+        # self.sidebar.show_menu("settings_menu")
 
     # Sidebar toggle event handler
     def sidebar_toggle(self, args):
-        self.sidebar.toggle(args)
+        pass
+        # self.sidebar.toggle(args)
 
     def appbar_assistant_button_click(self, args):
         print('appbar_assistant_button_click')
@@ -203,7 +204,7 @@ class HomePage(HomePageTemplate):
             if self.content_control:
                 self.content_control.destroy()
                 self.content_control = None
-            self.sidebar.show_menu(AppEnv.start_menu)
+            # self.sidebar.show_menu(AppEnv.start_menu)
             self.login_user()
             # self.appbar_user_menu.items[0].text = 'Sign In'
             # self.appbar_user_menu.items[0].iconCss = 'fa-solid fa-sign-in'
