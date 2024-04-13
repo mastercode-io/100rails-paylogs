@@ -50,8 +50,12 @@ class HomePage(HomePageTemplate):
         # )
         self.appbar_menu = nav.AppbarMenu(
             container_el="pl-appbar-menu",
-            # sidebar=self.sidebar,
+            target_el=".pl-page-container",
+            container_id="pl-sidebar",
+            content_id=self.content_id,
             menu_items=nav.PL_APPBAR_MENU,
+            nav_items=nav.PL_NAV_ITEMS,
+            # sidebar=self.sidebar,
         )
 
         self.appbar_notification_list = ej.splitbuttons.DropDownButton(

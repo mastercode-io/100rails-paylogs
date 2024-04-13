@@ -132,12 +132,28 @@ PL_APPBAR_MENU_DEVELOPER = [
 
 # Appbar navigation class
 class AppbarMenu:
-    def __init__(self, container_el, menu_items):
+    def __init__(self,
+                 container_el,
+                 menu_items,
+                 nav_items,
+                 target_el,
+                 container_id,
+                 content_id,
+                 ):
         self.container_el = container_el
         # self.sidebar = sidebar
         self.menu_items = menu_items
+        self.nav_items = nav_items
         self.selected_el = None
         self.menu = None
+        self.target_el = target_el
+        self.container_id = container_id
+        self.content_id = content_id
+        self.nav_target_id = None
+        self.content_control = None
+        self.control = None
+        # self.menu = None
+        # self.open = True
 
     def show(self):
         print('AppBar Show')
@@ -158,7 +174,78 @@ class AppbarMenu:
         self.selected_el.classList.add('pl-appbar-menu-selected')
         menu_id = args.item.properties.id
         print(menu_id)
+        self.show_selected(menu_id)
         # self.sidebar.show_menu(menu_id)
+
+    def show_selected(self, menu_id=None):
+        component = self.nav_items.get(menu_id)
+        if component is None:
+            return
+
+        if self.content_control is not None and self.nav_target_id is None:
+            self.content_control.destroy()
+
+        nav_container_id = self.content_id if self.nav_target_id is None else self.nav_target_id
+        if component['type'] == 'custom':
+            try:
+                view_class = getattr(AppEnv.views, component['class'])
+                self.content_control = view_class(container_id=nav_container_id, **component.get('props', {}))
+            except Exception as e:
+                print(e)
+
+        if component['type'] == 'view':
+            if 'config' in component:
+                self.content_control = GridView(view_name=component['config'],
+                                                container_id=nav_container_id,
+                                                **component.get('props', {}))
+            elif hasattr(AppEnv.views, f"{component['model']}View"):
+                view_class = getattr(AppEnv.views, f"{component['model']}View")
+                self.content_control = view_class(container_id=nav_container_id,
+                                                  **component.get('props', {}))
+            else:
+                self.content_control = GridView(model=component['model'],
+                                                container_id=nav_container_id,
+                                                **component.get('props', {}))
+
+        elif component['type'] == 'form':
+            print('form', component)
+            # try:
+            form_class = getattr(AppEnv.forms, component.get('class', f"{component.get('model')}Form"))
+            self.content_control = form_class(target=nav_container_id)
+            # except Exception as e:
+            #     print(e.args)
+            #     self.content_control = FormBase(model=component.get('model'), target=nav_container_id)
+
+        elif component['type'] == 'page':
+            print('page', component)
+            try:
+                if component.get('page', None):
+                    page_class = component['page']
+                else:
+                    page_class = getattr(AppEnv.pages, f"{component['name']}")
+                self.content_control = page_class(container_id=nav_container_id, **component.get('props', {}))
+            except Exception as e:
+                print('Exception', e.args)
+                # self.content_control = Pages.BaseForm(model=component['model'], target=self.content_id)
+        elif component['type'] == 'function':
+            try:
+                func_name = component['function']
+                if callable(func_name):
+                    func_name(**component.get('props', {}))
+            except Exception as e:
+                print(e.args)
+            return
+
+        if hasattr(self.content_control, 'target_id'):
+            self.nav_target_id = self.content_control.target_id
+
+        # try:
+        self.content_control.form_show()
+        # except Exception as e:
+        #     print(e)
+        if self.control.isOpen:
+            self.control.toggle()
+            self.control.toggle()
 
 
 class Assistant:
