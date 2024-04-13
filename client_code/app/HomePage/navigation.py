@@ -18,54 +18,54 @@ PL_ASSISTANT_WIDTH = 300
 # App menu item list
 PL_MENU_ITEMS = {
     'timesheet_menu': [
-        {'nodeId': 'timesheet_dashboard', 'nodeText': 'Dashboard', 'nodeChild': []},
-        {'nodeId': 'timesheet_view', 'nodeText': 'View Timesheets', 'nodeChild': []},
-        {'nodeId': 'timesheet_sync', 'nodeText': 'Sync Timesheets from Connected App', 'nodeChild': []},
-        {'nodeId': 'timesheet_upload_data', 'nodeText': 'Upload Data', 'nodeChild': []},
+        {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
+        {'id': 'timesheet_view', 'text': 'View Timesheets', 'items': []},
+        {'id': 'timesheet_sync', 'text': 'Sync Timesheets from Connected App', 'items': []},
+        {'id': 'timesheet_upload_data', 'text': 'Upload Data', 'items': []},
     ],
     'payroll_menu': [
-        {'nodeId': 'payroll_payrun_list', 'nodeText': 'Payruns', 'nodeChild': []},
-        {'nodeId': 'payroll_payrun_settings', 'nodeText': 'Payrun Settings', 'nodeChild': []},
-        {'nodeId': 'payroll_pay_categories', 'nodeText': 'Pay Categories', 'nodeChild': []},
-        {'nodeId': 'payroll_pay_rate_rules', 'nodeText': 'Pay Rate Rules', 'nodeChild': []},
-        {'nodeId': 'payroll_pay_rate_scopes', 'nodeText': 'Pay Rate Scopes', 'nodeChild': []},
-        {'nodeId': 'payroll_pay_rate_templates', 'nodeText': 'Pay Rate Templates', 'nodeChild': []},
-        {'nodeId': 'payroll_calendar', 'nodeText': 'Payroll Calendar', 'nodeChild': []},
+        {'id': 'payroll_payrun_list', 'text': 'Payruns', 'items': []},
+        {'id': 'payroll_payrun_settings', 'text': 'Payrun Settings', 'items': []},
+        {'id': 'payroll_pay_categories', 'text': 'Pay Categories', 'items': []},
+        {'id': 'payroll_pay_rate_rules', 'text': 'Pay Rate Rules', 'items': []},
+        {'id': 'payroll_pay_rate_scopes', 'text': 'Pay Rate Scopes', 'items': []},
+        {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate Templates', 'items': []},
+        {'id': 'payroll_calendar', 'text': 'Payroll Calendar', 'items': []},
     ],
     'settings_menu': [
-        {'nodeId': 'settings_users', 'nodeText': 'Users', 'nodeChild': []},
-        {'nodeId': 'settings_locations', 'nodeText': 'Locations', 'nodeChild': []},
-        {'nodeId': 'settings_employee_roles', 'nodeText': 'Employee Roles', 'nodeChild': []},
-        {'nodeId': 'settings_job_types', 'nodeText': 'Job Types', 'nodeChild': []},
-        {'nodeId': 'settings_timesheet_types', 'nodeText': 'Timesheet Types', 'nodeChild': []},
+        {'id': 'settings_users', 'text': 'Users', 'items': []},
+        {'id': 'settings_locations', 'text': 'Locations', 'items': []},
+        {'id': 'settings_employee_roles', 'text': 'Employee Roles', 'items': []},
+        {'id': 'settings_job_types', 'text': 'Job Types', 'items': []},
+        {'id': 'settings_timesheet_types', 'text': 'Timesheet Types', 'items': []},
     ],
     'admin_menu': [
-        {'nodeId': 'admin_tenants', 'nodeText': 'Tenants', 'nodeChild': []},
-        {'nodeId': 'admin_user_roles', 'nodeText': 'User Roles', 'nodeChild': []},
-        {'nodeId': 'admin_permissions', 'nodeText': 'Permissions', 'nodeChild': []},
-        {'nodeId': 'admin_settings', 'nodeText': 'Settings', 'nodeChild': [
-            {'nodeId': 'admin_settings_scope_types', 'nodeText': 'Scope Types', 'nodeChild': []},
+        {'id': 'admin_tenants', 'text': 'Tenants', 'items': []},
+        {'id': 'admin_user_roles', 'text': 'User Roles', 'items': []},
+        {'id': 'admin_permissions', 'text': 'Permissions', 'items': []},
+        {'id': 'admin_settings', 'text': 'Settings', 'items': [
+            {'id': 'admin_settings_scope_types', 'text': 'Scope Types', 'items': []},
         ]},
 
     ],
     'developer_menu': [
-        {'nodeId': 'developer_components', 'nodeText': 'Components', 'nodeChild': [
-            {'nodeId': 'developer_views', 'nodeText': 'Views', 'nodeChild': []},
-            {'nodeId': 'developer_pages', 'nodeText': 'Pages', 'nodeChild': []},
-            {'nodeId': 'developer_forms', 'nodeText': 'Forms', 'nodeChild': []},
+        {'id': 'developer_components', 'text': 'Components', 'items': [
+            {'id': 'developer_views', 'text': 'Views', 'items': []},
+            {'id': 'developer_pages', 'text': 'Pages', 'items': []},
+            {'id': 'developer_forms', 'text': 'Forms', 'items': []},
         ]},
-        {'nodeId': 'developer_schema', 'nodeText': 'App Schema', 'nodeChild': [
-            {'nodeId': 'developer_models', 'nodeText': 'Models', 'nodeChild': []},
-            {'nodeId': 'developer_migrate', 'nodeText': 'Migrate DB', 'nodeChild': []},
+        {'id': 'developer_schema', 'text': 'App Schema', 'items': [
+            {'id': 'developer_models', 'text': 'Models', 'items': []},
+            {'id': 'developer_migrate', 'text': 'Migrate DB', 'items': []},
         ]},
-        {'nodeId': 'developer_tools', 'nodeText': 'Tools', 'nodeChild': [
-            {'nodeId': 'developer_import', 'nodeText': 'Import Data', 'nodeChild': []},
-            {'nodeId': 'developer_export', 'nodeText': 'Export Data', 'nodeChild': []},
+        {'id': 'developer_tools', 'text': 'Tools', 'items': [
+            {'id': 'developer_import', 'text': 'Import Data', 'items': []},
+            {'id': 'developer_export', 'text': 'Export Data', 'items': []},
         ]},
-        {'nodeId': 'developer_preview', 'nodeText': 'Developer Preview', 'nodeChild': [
-            {'nodeId': 'developer_form_preview', 'nodeText': 'Form Preview', 'nodeChild': []},
-            {'nodeId': 'developer_grid_preview', 'nodeText': 'Grid View Preview', 'nodeChild': []},
-            {'nodeId': 'developer_page_preview', 'nodeText': 'Page Preview', 'nodeChild': []},
+        {'id': 'developer_preview', 'text': 'Developer Preview', 'items': [
+            {'id': 'developer_form_preview', 'text': 'Form Preview', 'items': []},
+            {'id': 'developer_grid_preview', 'text': 'Grid View Preview', 'items': []},
+            {'id': 'developer_page_preview', 'text': 'Page Preview', 'items': []},
         ]},
     ]
 }
@@ -276,9 +276,9 @@ class Sidebar:
                 'fields': {
                     'cssClass': PL_SIDEBAR_CSS,
                     'dataSource': '',
-                    'id': 'nodeId',
-                    'text': 'nodeText',
-                    'child': 'nodeChild'
+                    'id': 'id',
+                    'text': 'text',
+                    'child': 'items'
                 },
                 'expandOn': 'Click',
                 'nodeSelected': self.menu_select,
@@ -327,10 +327,10 @@ class Sidebar:
         if menu_id in PL_MENU_ITEMS:
             subcomponent = PL_DEFAULT_NAV_ITEMS.get(menu_id)
             if not subcomponent:
-                subcomponent = PL_MENU_ITEMS[menu_id][0]['nodeId']
+                subcomponent = PL_MENU_ITEMS[menu_id][0]['id']
             menu_items = PL_MENU_ITEMS[menu_id]
             for item in menu_items:
-                if item['nodeId'] == subcomponent:
+                if item['id'] == subcomponent:
                     item['selected'] = True
                     item['expanded'] = True
             self.menu.fields.dataSource = menu_items
