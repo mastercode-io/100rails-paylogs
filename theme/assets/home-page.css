@@ -240,11 +240,11 @@ label>span.e-label {
     color: #374151;
     font-size: 12px;
     font-weight: 500;
-    padding-right: 0;
-    padding-left: 0;
+    /*padding-right: 0;*/
+    /*padding-left: 0;*/
     /*transform: translate3d(-10px, -35px, 0) scale(1);*/
     user-select: text;
-    right: 0;
+    /*right: 0;*/
     font-family: inherit;
     box-sizing: border-box;
     /*top: 50%;*/
@@ -254,8 +254,8 @@ label>span.e-label {
     pointer-events: none;
     /*position: absolute;*/
     text-overflow: ellipsis;
-    transform-origin: left top;
-    transition: .25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /*transform-origin: left top;*/
+    /*transition: .25s cubic-bezier(0.25, 0.8, 0.25, 1);*/
     white-space: nowrap;
     display: inline-block;
     max-width: 100%;
