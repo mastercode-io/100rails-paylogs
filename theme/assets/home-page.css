@@ -236,6 +236,37 @@ label>span.e-label {
     color: grey;
     margin-top: -5px;
 }
+.da-form-input-label {
+    color: #374151;
+    font-size: 12px;
+    font-weight: 500;
+    padding-right: 0;
+    transform: translate3d(-10px, -35px, 0) scale(1);
+    user-select: text;
+    right: 0;
+    font-family: inherit;
+    box-sizing: border-box;
+    left: 0%;
+    top: 50%;
+    width: 100%;
+    font-style: normal;
+    overflow: hidden;
+    padding-left: 10px;
+    pointer-events: none;
+    position: absolute;
+    text-overflow: ellipsis;
+    transform-origin: left top;
+    transition: .25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    cursor: pointer;
+    line-height: 1.4;
+    visibility: visible;
+    text-align: justify;
+    tab-size: 4;
+}
 
 /* Calendar View */
 .e-schedule .e-spinner-pane {
