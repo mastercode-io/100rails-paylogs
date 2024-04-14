@@ -24,6 +24,7 @@ class TimesheetForm(FormBase):
                                        filters=approved_by_filters)
         self.notes = MultiLineInput(name='notes', label='Notes')
         self.total_pay = NumberInput(name='total_pay', label='Total Pay')
+        self.pay_lines = InlineMessage(name='pay_lines', label='Pay Lines')
 
         sections = [
             {
@@ -38,3 +39,11 @@ class TimesheetForm(FormBase):
         if self.data['status'] == 'Processed':
             self.action = 'view'
             self.form.header = 'View Timesheet'
+
+    def form_open(self, args, **kwargs):
+        super().form_open(args, **kwargs)
+        if self.data['pay_lines']:
+            self.pay_lines.content = self.data['pay_lines_view']
+            self.pay_lines.show()
+        else:
+            self.pay_lines.hide()
