@@ -32,6 +32,12 @@ class TimesheetForm(FormBase):
                     [self.employee, self.job, self.approved_by, self.status],
                     [self.date, self.start_time, self.end_time, self.total_pay],
                 ]
+            },
+            {
+                'name': '_', 'rows': [
+                    [self.pay_lines],
+                    [self.notes],
+                ]
             }
         ]
 
