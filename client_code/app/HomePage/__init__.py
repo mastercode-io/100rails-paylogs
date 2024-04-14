@@ -202,7 +202,7 @@ class HomePage(HomePageTemplate):
     @staticmethod
     def appbar_menu_popup_open(args):
         args.element.parentElement.style.top = (
-                str(float(args.element.parentElement.style.top[:-2]) + 10) + "px"
+                str(float(args.element.parentElement.style.top[:-2]) + 5) + "px"
         )
 
     # Sidebar menu popup window position adjustment
