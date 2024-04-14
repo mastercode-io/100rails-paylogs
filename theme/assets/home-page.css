@@ -242,7 +242,7 @@ label>span.e-label {
     font-weight: 500;
     padding-right: 0;
     padding-left: 25px;
-    transform: translate3d(-10px, -35px, 0) scale(1);
+    /*transform: translate3d(-10px, -35px, 0) scale(1);*/
     user-select: text;
     right: 0;
     font-family: inherit;
