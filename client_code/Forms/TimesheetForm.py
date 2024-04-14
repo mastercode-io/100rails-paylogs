@@ -42,6 +42,7 @@ class TimesheetForm(FormBase):
 
     def form_open(self, args, **kwargs):
         super().form_open(args, **kwargs)
+        print('TimesheetForm.form_open', self.data)
         if self.data['pay_lines']:
             self.pay_lines.content = self.data['pay_lines_view']
             self.pay_lines.show()
