@@ -156,6 +156,7 @@ class HomePage(HomePageTemplate):
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
 
         self.assistant.show()
+        self.appbar_menu.show_selected('timesheet_dashboard')
         # self.sidebar.show(AppEnv.start_menu)
         # self.sidebar.refresh_content()
 
