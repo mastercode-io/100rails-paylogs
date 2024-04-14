@@ -35,6 +35,6 @@ class TimesheetForm(FormBase):
         ]
 
         super().__init__(sections=sections, width=POPUP_WIDTH_COL2, **kwargs)
-        if self.data['status'] == 'Draft':
+        if self.data['status'] == 'Processed':
             self.action = 'view'
             self.form.header = 'View Timesheet'
