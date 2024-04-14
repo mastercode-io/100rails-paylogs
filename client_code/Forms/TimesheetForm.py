@@ -46,4 +46,5 @@ class TimesheetForm(FormBase):
         ]
 
         super().__init__(sections=sections, width=POPUP_WIDTH_COL2, **kwargs)
-        # self.fullscreen = True
+        if self.data['status'] == 'Draft':
+            self.allow_edit = False
