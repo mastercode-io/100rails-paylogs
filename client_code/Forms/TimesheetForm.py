@@ -25,7 +25,7 @@ class TimesheetForm(FormBase):
         self.notes = MultiLineInput(name='notes', label='Notes')
         self.total_pay = NumberInput(name='total_pay', label='Total Pay')
         self.pay_lines = InlineMessage(name='pay_lines', label='Pay Lines',
-                                       # label_style_source=f'label{self.employee.el_id}',
+                                       label_style_source=f'label{self.employee.el_id}',
                                        )
 
         sections = [
