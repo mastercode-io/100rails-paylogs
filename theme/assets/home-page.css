@@ -238,33 +238,23 @@ label>span.e-label {
 }
 .da-form-input-label {
     color: #374151;
+    font-family: inherit;
     font-size: 12px;
     font-weight: 500;
-    /*padding-right: 0;*/
-    /*padding-left: 0;*/
-    /*transform: translate3d(-10px, -35px, 0) scale(1);*/
-    user-select: text;
-    /*right: 0;*/
-    font-family: inherit;
-    box-sizing: border-box;
-    /*top: 50%;*/
-    width: 100%;
     font-style: normal;
-    overflow: hidden;
-    pointer-events: none;
-    /*position: absolute;*/
-    text-overflow: ellipsis;
-    /*transform-origin: left top;*/
-    /*transition: .25s cubic-bezier(0.25, 0.8, 0.25, 1);*/
-    white-space: nowrap;
+    box-sizing: border-box;
     display: inline-block;
-    max-width: 100%;
-    /*margin-top: 30px;*/
-    /*margin-bottom: 5px;*/
-    cursor: pointer;
     line-height: 1.4;
-    visibility: visible;
+    user-select: text;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-align: justify;
+    white-space: nowrap;
+    cursor: pointer;
+    pointer-events: none;
+    visibility: visible;
     tab-size: 4;
 }
 
