@@ -49,7 +49,8 @@ class AppIntegrationForm(FormBase):
             'toolbar': [
                 GRID_TOOLBAR_COMMAND_SEARCH,
                 GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE,
-            ]
+            ],
+            'content_wrap': False,
         }
         self.incoming_links = SubformGrid(
             name='incoming_links', label='Incoming API Links', model='AppInApiCredential',
@@ -68,7 +69,8 @@ class AppIntegrationForm(FormBase):
             'toolbar': [
                 GRID_TOOLBAR_COMMAND_SEARCH,
                 GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE,
-            ]
+            ],
+            'content_wrap': False,
         }
         self.outgoing_links = SubformGrid(
             name='outgoing_links', label='Outgoing API Links', model='AppOutApiCredential',
