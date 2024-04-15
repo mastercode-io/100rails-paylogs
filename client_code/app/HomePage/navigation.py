@@ -46,6 +46,7 @@ PL_MENU_ITEMS = {
         {'id': 'admin_settings', 'text': 'Settings', 'items': [
             {'id': 'admin_settings_scope_types', 'text': 'Scope Types', 'items': []},
         ]},
+        {'id': 'admin_integrations', 'text': 'Integrations', 'items': []},
 
     ],
     'developer_menu': [
@@ -93,12 +94,12 @@ PL_NAV_ITEMS = {
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_settings_scope_types': {'model': 'ScopeType', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_integrations': {'model': 'AppIntegrations', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_settings': {'model': 'Setting', 'type': 'view', 'action': 'open', 'props': {}},
 
     'developer_views': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
-    # 'developer_pages': {'model': 'Page', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_forms': {'model': 'Form', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},

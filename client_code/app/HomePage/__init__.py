@@ -148,9 +148,10 @@ class HomePage(HomePageTemplate):
         if (AppEnv.logged_user.permissions.super_admin
                 or AppEnv.logged_user.permissions.developer):
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_ADMIN)
-        if AppEnv.logged_user.permissions.developer:
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
-        self.appbar_menu.show()
+        # if AppEnv.logged_user.permissions.developer:
+        #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
+        # self.appbar_menu.show()
 
         self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
