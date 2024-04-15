@@ -28,7 +28,7 @@ class AppIntegrationForm(FormBase):
         self.service_name = TextInput(name='service_name', label='Service Name', required=True)
         self.type = DropdownInput(name='type', label='Service Type',
                                   options=SERVICE_TYPES, required=True)
-        self.url = TextInput(name='url', label='URL', required=True)
+        self.url = TextInput(name='url', label='URL')
         self.connection_type = DropdownInput(name='connection_type', label='Connection Type',
                                              options=CONNECTION_TYPES,
                                              required=True)
