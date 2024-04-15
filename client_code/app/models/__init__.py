@@ -486,7 +486,7 @@ class PayrunConfig:
 class PayrunItem:
     _title = "title"
 
-    pay_run = Relationship("Payrun")
+    payrun = Relationship("Payrun")
     employee = Relationship("Employee")
     timesheet = Relationship("Timesheet")
     pay_category = Relationship("PayCategory")

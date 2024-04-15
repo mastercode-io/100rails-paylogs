@@ -71,7 +71,7 @@ class AppIntegrationForm(FormBase):
             ]
         }
         self.outgoing_links = SubformGrid(
-            name='outgoing_links', label='Incoming API Links', model='AppOutApiCredential',
+            name='outgoing_links', label='Outgoing API Links', model='AppOutApiCredential',
             link_model='AppIntegration', link_field='integration',
             form_container_id=kwargs.get('target'),
             view_config=outgoing_links_view,

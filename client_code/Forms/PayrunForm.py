@@ -32,7 +32,7 @@ class PayrunForm(FormBase):
             ]
         }
         self.payrun_items = SubformGrid(name='payrun_items', label='Payrun Items', model='PayrunItem',
-                                        link_model='PayRun', link_field='pay_run',
+                                        link_model='PayRun', link_field='payrun',
                                         form_container_id=kwargs.get('target'),
                                         view_config=payrun_items_view,
                                         )
