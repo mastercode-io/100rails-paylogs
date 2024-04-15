@@ -75,6 +75,7 @@ PL_MENU_ITEMS = {
 PL_NAV_ITEMS = {
     'timesheet_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
     'timesheet_view': {'class': 'TimesheetListView', 'type': 'custom', 'action': 'open', 'props': {}},
+    'timesheet_import': {'type': 'page', 'name': 'ImportTimesheetPage', 'action': 'open', 'props': {}},
     'timesheet_upload_data': {'type': 'page', 'name': 'UploadDataPage', 'action': 'open', 'props': {}},
 
     'payroll_payrun_list': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
