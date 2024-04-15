@@ -87,13 +87,8 @@ class AppIntegrationForm(FormBase):
             },
             {
                 'name': '_',
-                'rows': [
+                'cols': [
                     [self.incoming_links],
-                ]
-            },
-            {
-                'name': '_',
-                'rows': [
                     [self.outgoing_links],
                 ]
             },
