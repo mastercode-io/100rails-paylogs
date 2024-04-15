@@ -768,7 +768,7 @@ db_schema:
     - {name: employee, admin_ui: null, type: link_single, target: employees}
     - {name: pay_category, admin_ui: null, type: link_single, target: pay_categories}
     - {name: pay_rate, admin_ui: null, type: number}
-    - {name: pay_run, admin_ui: null, type: link_single, target: payruns}
+    - {name: payrun, type: link_single, target: payruns}
     - {name: status, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: timesheet, admin_ui: null, type: link_single, target: timesheets}
