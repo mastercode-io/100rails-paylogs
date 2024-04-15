@@ -94,7 +94,7 @@ PL_NAV_ITEMS = {
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_settings_scope_types': {'model': 'ScopeType', 'type': 'view', 'action': 'open', 'props': {}},
-    'admin_integrations': {'model': 'AppIntegrations', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_integrations': {'model': 'AppIntegration', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_permissions': {'model': 'Permission', 'type': 'view', 'action': 'open', 'props': {}},
     # 'admin_settings': {'model': 'Setting', 'type': 'view', 'action': 'open', 'props': {}},
