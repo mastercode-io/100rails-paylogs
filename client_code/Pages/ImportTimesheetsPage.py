@@ -8,7 +8,7 @@ import uuid
 import json
 
 
-class ImportTimesheetPage(PageBase):
+class ImportTimesheetsPage(PageBase):
     def __init__(self, **kwargs):
         print('ImportTimesheetPage')
         title = 'Import Timesheet'
