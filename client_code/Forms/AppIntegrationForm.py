@@ -89,9 +89,15 @@ class AppIntegrationForm(FormBase):
                 'name': '_',
                 'rows': [
                     [self.incoming_links],
+                ]
+            },
+            {
+                'name': '_',
+                'rows': [
                     [self.outgoing_links],
                 ]
-            }
+            },
         ]
 
         super().__init__(sections=sections, width=POPUP_WIDTH_COL2, **kwargs)
+        self.fullscreen = True
