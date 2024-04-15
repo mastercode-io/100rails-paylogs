@@ -15,7 +15,7 @@ class ImportTimesheetsPage(PageBase):
 
         self.connected_app = LookupInput(name='connected_app',
                                          label='Connected App',
-                                         model='AppOutIntegration',
+                                         model='AppOutApiCredential',
                                          text_field='integration.service_name',
                                          on_change=self.enable_import_button)
         self.import_button = Button(content='Import Timesheets',
