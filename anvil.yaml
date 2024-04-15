@@ -547,6 +547,9 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: url, admin_ui: null, type: string}
+    - name: type
+      admin_ui: {width: 200, order: -1}
+      type: string
     title: App Integrations
   user_profiles:
     client: none
