@@ -25,7 +25,7 @@ class AppIntegrationForm(FormBase):
         print('AppIntegrationForm')
         kwargs['model'] = 'AppIntegration'
 
-        self.service_name = TextInput(name='name', label='Service Name', required=True)
+        self.service_name = TextInput(name='service_name', label='Service Name', required=True)
         self.type = DropdownInput(name='type', label='Service Type',
                                   options=SERVICE_TYPES, required=True)
         self.url = TextInput(name='url', label='URL', required=True)
