@@ -26,13 +26,11 @@ class ImportTimesheetsPage(PageBase):
         #     'size': 'large',
         # })
         # self.import_button_id = f'migrate-button-{uuid.uuid4()}'
-        self.execution_log = InlineMessage(name='execution_log')
-        self.record_count = InlineMessage(name='record_count')
+        self.execution_log = InlineMessage(content='execution log')
 
         self.content = f'<br><div id="{self.connected_app.container_id}" style="width:300px;"></div>'
         self.content += f'<br><div id="{self.import_button.container_id}"></div><br><br>'
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
-        self.content += f'<div id="{self.record_count.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
@@ -49,7 +47,6 @@ class ImportTimesheetsPage(PageBase):
         # self.import_button.element.onclick = self.import_button_action
         self.execution_log.show()
         self.execution_log.content = 'Click <b>Import Timesheets</b> to start import<br><br>'
-        self.record_count.show()
 
 
     def enable_import_button(self, args):
