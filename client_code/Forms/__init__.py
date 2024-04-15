@@ -1,3 +1,4 @@
+from .AppIntegrationForm import AppIntegrationForm
 from .AssistantForm import AssistantForm
 from .TenantForm import TenantForm
 from .UserLoginForm import UserLoginForm
