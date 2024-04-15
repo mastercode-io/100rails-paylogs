@@ -1,5 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL2
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.components.SubformGrid import SubformGrid
+from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 
 
@@ -36,13 +38,60 @@ class AppIntegrationForm(FormBase):
         self.status = DropdownInput(name='status', label='Status',
                                     options=['Active', 'Inactive'], required=True)
 
-        fields = [
-            self.service_name,
-            self.type,
-            self.url,
-            self.connection_type,
-            self.description,
-            self.status,
+        incoming_links_view = {
+            'model': 'AppInApiCredential',
+            'columns': [
+                {'name': 'api_secret', 'label': 'API Secret'},
+                {'name': 'api_key', 'label': 'API Key'},
+                {'name': 'api_user', 'label': 'API User'},
+                {'name': 'status', 'label': 'Status'},
+            ],
+            'toolbar': [
+                GRID_TOOLBAR_COMMAND_SEARCH,
+                GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE,
+            ]
+        }
+        self.incoming_links = SubformGrid(
+            name='incoming_links', label='Incoming API Links', model='AppInApiCredential',
+            link_model='AppIntegration', link_field='integration',
+            form_container_id=kwargs.get('target'),
+            view_config=incoming_links_view,
+        )
+
+        outgoing_links_view = {
+            'model': 'AppOutApiCredential',
+            'columns': [
+                {'name': 'auth_type', 'label': 'Auth Type'},
+                {'name': 'api_credentials', 'label': 'API Credentials'},
+                {'name': 'status', 'label': 'Status'},
+            ],
+            'toolbar': [
+                GRID_TOOLBAR_COMMAND_SEARCH,
+                GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE,
+            ]
+        }
+        self.outgoing_links = SubformGrid(
+            name='outgoing_links', label='Incoming API Links', model='AppOutApiCredential',
+            link_model='AppIntegration', link_field='integration',
+            form_container_id=kwargs.get('target'),
+            view_config=outgoing_links_view,
+        )
+
+        sections = [
+            {
+                'name': '_',
+                'cols': [
+                    [self.service_name, self.type, self.url, self.connection_type],
+                    [self.description, self.status],
+                ]
+            },
+            {
+                'name': '_',
+                'rows': [
+                    [self.incoming_links],
+                    [self.outgoing_links],
+                ]
+            }
         ]
 
-        super().__init__(fields=fields, width=POPUP_WIDTH_COL2, **kwargs)
+        super().__init__(sections=sections, width=POPUP_WIDTH_COL2, **kwargs)
