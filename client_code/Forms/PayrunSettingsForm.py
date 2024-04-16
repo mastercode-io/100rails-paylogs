@@ -1,6 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
-from ..app.models import PayrunConfig
+from ..app.models import PayrunConfig, AppIntegration, AppOutApiCredential
 
 
 PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
@@ -61,4 +61,7 @@ class PayrunSettingsForm(FormBase):
         if not args.get('value') or not self.integration.value:
             pass
         else:
-            print('value', self.integration.value)
+            payroll_integration = AppIntegration.get(self.integration.value['uid'])
+            print('payroll_integration', payroll_integration)
+            payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
+            print('payroll_connection', payroll_connection)
