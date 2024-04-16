@@ -446,19 +446,19 @@ class PayRateTemplateSpecificRole:
 class Payrun:
     _title = "pay_period_start"
 
+    integration = Relationship("AppIntegration")
     pay_period_start = Attribute(field_type=types.FieldTypes.DATE)
     pay_period_end = Attribute(field_type=types.FieldTypes.DATE)
     pay_date = Attribute(field_type=types.FieldTypes.DATE)
     status = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     notes = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     remote_links = Attribute(field_type=types.FieldTypes.OBJECT)
-
-    # @staticmethod
-    # def get_payrun_reference(args):
-    #     # example. "2023-wk44 - Weekly - Mon 14Jun23 to Sun 22Jun23"
-    #     return f"{({args['pay_period_start']} - {args['pay_period_end']})}"
-    # reference = Computed(
-    #     ("pay_period_start", "pay_period_end"), "get_payrun_reference")
+    action_log_schema = {
+        "action": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "timestamp": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "user_name": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+    }
+    action_log = Attribute(field_type=types.FieldTypes.OBJECT, schema=action_log_schema)
 
     @staticmethod
     def get_payrun_week(args):
@@ -471,10 +471,10 @@ class Payrun:
 
 @model_type
 class PayrunConfig:
-    _title = "name"
+    _title = "integration.name"
 
-    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    integration = Relationship("AppIntegration")
+    frequency = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_period_start_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_period_end_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
@@ -491,7 +491,6 @@ class PayrunItem:
     timesheet = Relationship("Timesheet")
     pay_category = Relationship("PayCategory")
     title = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-
     pay_rate = Attribute(field_type=types.FieldTypes.CURRENCY)
     units = Attribute(field_type=types.FieldTypes.NUMBER)
     amount = Attribute(field_type=types.FieldTypes.CURRENCY)
