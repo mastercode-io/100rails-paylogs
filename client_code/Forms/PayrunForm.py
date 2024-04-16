@@ -42,8 +42,14 @@ class PayrunForm(FormBase):
         sections = [
             {
                 'name': '_', 'cols': [
+                    [self.message],
+                    []
+                ]
+            },
+            {
+                'name': '_', 'cols': [
                     [self.pay_period_start, self.pay_period_end, self.pay_date],
-                    [self.notes, self.status, self.message],
+                    [self.notes, self.status],
                     [],
                 ]
             },
@@ -61,9 +67,10 @@ class PayrunForm(FormBase):
         self.payrun_config = next(iter(PayrunConfig.search()), None)
         if not self.payrun_config:
             self.action = 'view'
-            self.message.message_type = 'e-warning'
-            self.message.content = 'Payrun settings not configured'
 
 
     def form_open(self, args, **kwargs):
         super().form_open(args, **kwargs)
+        if not self.payrun_config:
+            self.message.message_type = 'e-danger'
+            self.message.content = 'Payrun settings not configured'
