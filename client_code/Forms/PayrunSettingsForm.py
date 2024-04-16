@@ -12,13 +12,22 @@ class PayrunSettingsForm(FormBase):
         print('PayrunSettingsForm')
         kwargs['model'] = 'PayrunConfig'
 
-        self.integration = LookupInput(name='integration', label='Integration', model='AppIntegration')
-        self.frequency = DropdownInput(name='type', label='Type', options=PAYRUN_FREQUENCY, value='Weekly')
+        self.integration = LookupInput(name='integration', label='Integration',
+                                       model='AppIntegration',
+                                       required=True,
+                                       on_change=self.integration_selected)
+        self.frequency = DropdownInput(name='type', label='Frequency',
+                                       options=PAYRUN_FREQUENCY, value='Weekly',
+                                       required=True)
         self.pay_period_start_day = DropdownInput(name='pay_period_start_day', label='Pay Period Start Day',
-                                                  options=WEEK_DAYS, value='Monday')
+                                                  options=WEEK_DAYS, value='Monday',
+                                                  required=True)
         self.pay_period_end_day = DropdownInput(name='pay_period_end_day', label='Pay Period End Day',
-                                                options=WEEK_DAYS, value='Sunday')
-        self.pay_day = DropdownInput(name='pay_day', label='Pay Day', options=WEEK_DAYS, value='Friday')
+                                                options=WEEK_DAYS, value='Sunday',
+                                                required=True)
+        self.pay_day = DropdownInput(name='pay_day', label='Pay Day',
+                                     options=WEEK_DAYS, value='Friday',
+                                     required=True)
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
 
         sections = [
@@ -38,10 +47,18 @@ class PayrunSettingsForm(FormBase):
             }
         ]
 
-        super().__init__(sections=sections, **kwargs)
+        super().__init__(header='Payrun Settings', sections=sections, **kwargs)
         self.fullscreen = True
 
         payrun_config = next(iter(PayrunConfig.search()))
         print('payrun_config', payrun_config)
         if payrun_config:
             self.data = payrun_config
+
+
+    def integration_selected(self, args):
+        print('integration_selected', args)
+        if not args.get('value') or not self.integration.value:
+            pass
+        else:
+            print('value', self.integration.value)
