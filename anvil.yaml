@@ -27,7 +27,7 @@ services:
 - source: /runtime/services/facebook.yml
   client_config: {}
   server_config: {}
-startup: {type: module, module: '@migrate'}
+startup: {type: form, module: app.HomePage}
 package_name: PayLogs
 allow_embedding: false
 name: PayLogs
@@ -226,7 +226,6 @@ db_schema:
     - {name: scopes, admin_ui: null, type: link_multiple, target: scopes}
     - {name: status, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: type, admin_ui: null, type: string}
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
