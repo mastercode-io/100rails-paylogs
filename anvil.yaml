@@ -226,10 +226,11 @@ db_schema:
     - {name: scopes, admin_ui: null, type: link_multiple, target: scopes}
     - {name: status, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: type, admin_ui: null, type: string}
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
+    - {name: frequency, admin_ui: null, type: string}
     title: Payrun Configs
   files:
     client: none
@@ -641,6 +642,8 @@ db_schema:
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: remote_links, admin_ui: null, type: simpleObject}
+    - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
+    - {name: action_log, admin_ui: null, type: simpleObject}
   app_custom_fields_schemas:
     client: none
     server: full
