@@ -16,7 +16,7 @@ class PayrunSettingsForm(FormBase):
                                        model='AppIntegration', get_data=False,
                                        required=True,
                                        on_change=self.integration_selected)
-        self.frequency = DropdownInput(name='type', label='Frequency',
+        self.frequency = DropdownInput(name='frequency', label='Frequency',
                                        options=PAYRUN_FREQUENCY, value='Weekly',
                                        required=True)
         self.pay_period_start_day = DropdownInput(name='pay_period_start_day', label='Pay Period Start Day',
