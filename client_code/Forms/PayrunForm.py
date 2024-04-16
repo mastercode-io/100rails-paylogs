@@ -56,12 +56,13 @@ class PayrunForm(FormBase):
 
         super().__init__(sections=sections, **kwargs)
         self.fullscreen = True
+        if self.action == 'add':
+            self.form.header = 'Create Payrun'
         self.payrun_config = next(iter(PayrunConfig.search()), None)
         if not self.payrun_config:
             self.action = 'view'
+            self.message.message_type = 'e-danger'
             self.message.content = 'Payrun settings are not configured'
-        elif self.action == 'add':
-            self.form.header = 'Create Payrun'
 
 
     def form_open(self, args, **kwargs):
