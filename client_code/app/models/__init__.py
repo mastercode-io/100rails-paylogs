@@ -12,8 +12,6 @@ from .timesheet import TimesheetType, Timesheet
 TimesheetType.__module__ = __name__
 Timesheet.__module__ = __name__
 
-SYSTEM_TENANT_UID = '00000000-0000-0000-0000-000000000000'
-
 # Model list for enumerations
 ENUM_MODEL_LIST = {
     # 'Activity': {'model': 'Activity', 'text_field': 'name'},
