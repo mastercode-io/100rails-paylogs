@@ -538,10 +538,14 @@ db_schema:
     server: full
     columns:
     - {name: connection_type, admin_ui: null, type: string}
-    - {name: created_by, admin_ui: null, type: string}
+    - name: created_by
+      admin_ui: {order: 0}
+      type: string
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: description, admin_ui: null, type: string}
-    - {name: service_name, type: string}
+    - name: service_name
+      admin_ui: {order: 0, width: 119}
+      type: string
     - {name: status, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: uid, admin_ui: null, type: string}
@@ -549,7 +553,7 @@ db_schema:
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: url, admin_ui: null, type: string}
     - name: type
-      admin_ui: {width: 200, order: -1}
+      admin_ui: {order: 0, width: 120}
       type: string
     title: App Integrations
   user_profiles:
