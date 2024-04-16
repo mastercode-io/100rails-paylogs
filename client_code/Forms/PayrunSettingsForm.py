@@ -52,9 +52,6 @@ class PayrunSettingsForm(FormBase):
         super().__init__(header='Payrun Settings', sections=sections, **kwargs)
         self.fullscreen = True
         app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
-        print('integrations', app_list, len(app_list))
-        # for app in app_list:
-        #     print('app', app)
         self.integration.data = app_list
 
         payrun_config = next(iter(PayrunConfig.search()), None)
@@ -69,7 +66,6 @@ class PayrunSettingsForm(FormBase):
 
 
     def integration_selected(self, args):
-        print('integration_selected', args)
         if not args.get('value') or not self.integration.value:
             self.message.message_type = ''
             self.message.content = ''
