@@ -1,6 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
-from ..app.models import PayrunConfig, AppIntegration, AppOutApiCredential
+from ..app.models import PayrunConfig, AppIntegration, AppOutApiCredential, SYSTEM_TENANT_UID
 
 
 PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
@@ -13,7 +13,7 @@ class PayrunSettingsForm(FormBase):
         kwargs['model'] = 'PayrunConfig'
 
         self.integration = LookupInput(name='integration', label='Integration',
-                                       model='AppIntegration',
+                                       model='AppIntegration', get_data=False,
                                        required=True,
                                        on_change=self.integration_selected)
         self.frequency = DropdownInput(name='type', label='Frequency',
@@ -50,6 +50,9 @@ class PayrunSettingsForm(FormBase):
 
         super().__init__(header='Payrun Settings', sections=sections, **kwargs)
         self.fullscreen = True
+        app_list = AppIntegration.search(tenant_UID=SYSTEM_TENANT_UID)
+        print('integrations', app_list)
+        self.integration = app_list
 
         payrun_config = next(iter(PayrunConfig.search()), None)
         print('payrun_config', payrun_config)
