@@ -78,4 +78,5 @@ class PayrunSettingsForm(FormBase):
             print('payroll_integration', payroll_integration)
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
             if not payroll_connection:
-                self.message.content = 'No connection found for this integration'
+                self.message.content = (f"No connection found for this integration: "
+                                        f"{self.integration.value['name']}")
