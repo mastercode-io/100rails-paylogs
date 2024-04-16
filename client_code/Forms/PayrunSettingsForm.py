@@ -51,7 +51,7 @@ class PayrunSettingsForm(FormBase):
             }
         ]
 
-        super().__init__(header='Payrun Settings', sections=sections, **kwargs)
+        super().__init__(header='Payrun Settings', sections=sections, action='edit', **kwargs)
         self.fullscreen = True
         app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
         self.integration.data = app_list
