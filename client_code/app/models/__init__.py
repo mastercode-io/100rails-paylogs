@@ -191,8 +191,14 @@ class User:
     @staticmethod
     def get_full_name(args):
         return f"{args['first_name']} {args['last_name']}"
-
     full_name = Computed(("first_name", "last_name"), "get_full_name")
+
+    @staticmethod
+    def get_tenant_name(args):
+        if args.get('tenant_uid'):
+            return Tenant.get(args['tenant_uid']).get('name', '')
+        return ''
+    tenant_name = Computed("tenant_uid", "get_tenant_name")
 
 
 @model_type
