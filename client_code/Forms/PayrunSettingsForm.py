@@ -57,7 +57,6 @@ class PayrunSettingsForm(FormBase):
         self.integration.data = app_list
 
         payrun_config = next(iter(PayrunConfig.search()), None)
-        print('payrun_config', payrun_config)
         if payrun_config:
             self.data = payrun_config
 
