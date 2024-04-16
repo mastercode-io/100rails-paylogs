@@ -52,6 +52,8 @@ class PayrunSettingsForm(FormBase):
         self.fullscreen = True
         app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
         print('integrations', app_list, len(app_list))
+        for app in app_list:
+            print('app', app)
         self.integration.data = app_list
 
         payrun_config = next(iter(PayrunConfig.search()), None)
