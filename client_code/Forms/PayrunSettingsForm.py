@@ -29,6 +29,7 @@ class PayrunSettingsForm(FormBase):
                                      options=WEEK_DAYS, value='Friday',
                                      required=True)
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
+        self.info = InlineMessage()
 
         sections = [
             {
@@ -56,12 +57,19 @@ class PayrunSettingsForm(FormBase):
             self.data = payrun_config
 
 
+    def form_open(self, args, **kwargs):
+        super().form_open(args)
+        self.info.hide()
+
+
     def integration_selected(self, args):
         print('integration_selected', args)
         if not args.get('value') or not self.integration.value:
-            pass
+            self.info.hide()
         else:
             payroll_integration = AppIntegration.get(self.integration.value['uid'])
             print('payroll_integration', payroll_integration)
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
-            print('payroll_connection', payroll_connection)
+            if not payroll_connection:
+                self.info.show()
+                self.info.content = 'No connection found for this integration'
