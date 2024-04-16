@@ -60,6 +60,8 @@ class PayrunForm(FormBase):
         if not self.payrun_config:
             self.action = 'view'
             self.message.content = 'Payrun settings are not configured'
+        elif self.action == 'add':
+            self.form.header = 'Create Payrun'
 
 
     def form_open(self, args, **kwargs):
