@@ -41,7 +41,7 @@ class PayrunSettingsForm(FormBase):
         super().__init__(sections=sections, **kwargs)
         self.fullscreen = True
 
-        payrun_config = PayrunConfig.search().next()
+        payrun_config = next(PayrunConfig.search())
         print('payrun_config', payrun_config)
         if payrun_config:
             self.data = payrun_config
