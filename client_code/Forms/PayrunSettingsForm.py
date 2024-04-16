@@ -50,7 +50,7 @@ class PayrunSettingsForm(FormBase):
 
         super().__init__(header='Payrun Settings', sections=sections, **kwargs)
         self.fullscreen = True
-        app_list = AppIntegration.search(tenant_UID=SYSTEM_TENANT_UID)
+        app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
         print('integrations', app_list)
         self.integration = app_list
 
