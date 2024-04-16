@@ -43,7 +43,7 @@ class AppIntegrationForm(FormBase):
             'columns': [
                 {'name': 'api_secret', 'label': 'API Secret'},
                 {'name': 'api_key', 'label': 'API Key'},
-                {'name': 'api_user.full_name', 'label': 'API User'},
+                {'name': 'api_user.tenant_name', 'label': 'API User'},
                 {'name': 'status', 'label': 'Status'},
             ],
             'toolbar': [

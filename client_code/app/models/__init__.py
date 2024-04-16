@@ -195,7 +195,6 @@ class User:
 
     @staticmethod
     def get_tenant_name(args):
-        print('get_tenant_name', args.get('tenant_uid'))
         if args['tenant_uid'] == '00000000-0000-0000-0000-000000000000':
             return 'System'
         elif args['tenant_uid'] is not None:
