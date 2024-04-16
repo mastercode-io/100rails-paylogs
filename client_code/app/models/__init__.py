@@ -195,7 +195,7 @@ class User:
 
     @staticmethod
     def get_tenant_name(args):
-        print('get_tenant_name', args)
+        print('get_tenant_name', args.get('tenant_uid'))
         if args.get('tenant_uid'):
             return Tenant.get(args['tenant_uid']).get('name', '')
         return ''
