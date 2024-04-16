@@ -70,6 +70,7 @@ class PayrunSettingsForm(FormBase):
     def integration_selected(self, args):
         print('integration_selected', args)
         if not args.get('value') or not self.integration.value:
+            print('No integration selected')
             self.message.content = ''
         else:
             payroll_integration = AppIntegration.get(self.integration.value['uid'])
