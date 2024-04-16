@@ -29,6 +29,7 @@ class PayrunSettingsForm(FormBase):
                                      options=WEEK_DAYS, value='Friday',
                                      required=True)
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
+        self.connection_button = Button(content='Create Connection', action=self.create_connection)
         self.message = InlineMessage()
 
         sections = [
@@ -41,6 +42,7 @@ class PayrunSettingsForm(FormBase):
                         self.pay_period_end_day,
                         self.pay_day,
                         self.scopes,
+                        self.connection_button,
                         self.message,
                     ],
                     [],
@@ -62,7 +64,7 @@ class PayrunSettingsForm(FormBase):
 
     def form_open(self, args, **kwargs):
         super().form_open(args)
-        # self.info.hide()
+        self.connection_button.hide()
 
 
     def integration_selected(self, args):
@@ -76,3 +78,10 @@ class PayrunSettingsForm(FormBase):
                 self.message.message_type = 'e-warning'
                 self.message.content = (f"No connection found for this integration: "
                                         f"<b>{self.integration.value['name']}</b>")
+                self.connection_button.show()
+
+
+    def create_connection(self, args):
+        print('create_connection', args)
+        self.message.message_type = 'e-info'
+        self.message.content = 'Creating connection...'
