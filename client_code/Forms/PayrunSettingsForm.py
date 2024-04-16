@@ -41,6 +41,7 @@ class PayrunSettingsForm(FormBase):
                         self.pay_period_end_day,
                         self.pay_day,
                         self.scopes,
+                        self.message,
                     ],
                     [],
                     []
