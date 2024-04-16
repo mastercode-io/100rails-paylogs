@@ -61,8 +61,8 @@ class PayrunForm(FormBase):
         self.payrun_config = next(iter(PayrunConfig.search()), None)
         if not self.payrun_config:
             self.action = 'view'
-            self.message.message_type = 'e-danger'
-            self.message.content = 'Payrun settings are not configured'
+            self.message.message_type = 'e-warning'
+            self.message.content = 'Payrun settings not configured'
 
 
     def form_open(self, args, **kwargs):
