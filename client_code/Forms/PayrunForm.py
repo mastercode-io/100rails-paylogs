@@ -2,6 +2,7 @@ from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
+from ..app.models import Payrun, PayrunConfig
 
 
 class PayrunForm(FormBase):
@@ -14,6 +15,7 @@ class PayrunForm(FormBase):
         self.pay_date = DateInput(name='pay_date', label='Pay Date')
         self.status = RadioButtonInput(name='status', label='Status', options=['Draft', 'Posted'], value='Draft')
         self.notes = MultiLineInput(name='notes', label='Notes', rows=4)
+        self.message = InlineMessage()
 
         payrun_items_view = {
             'model': 'PayrunItem',
@@ -41,7 +43,7 @@ class PayrunForm(FormBase):
             {
                 'name': '_', 'cols': [
                     [self.pay_period_start, self.pay_period_end, self.pay_date],
-                    [self.notes, self.status],
+                    [self.notes, self.status, self.message],
                     [],
                 ]
             },
@@ -54,3 +56,11 @@ class PayrunForm(FormBase):
 
         super().__init__(sections=sections, **kwargs)
         self.fullscreen = True
+        self.payrun_config = next(iter(PayrunConfig.search()), None)
+        if not self.payrun_config:
+            self.action = 'view'
+            self.message.content = 'Payrun settings are not configured'
+
+
+    def form_open(self, args, **kwargs):
+        super().form_open(args, **kwargs)
