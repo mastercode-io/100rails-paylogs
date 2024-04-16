@@ -541,7 +541,9 @@ db_schema:
     - {name: connection_type, admin_ui: null, type: string}
     - {name: created_by, admin_ui: null, type: string}
     - {name: created_time, admin_ui: null, type: datetime}
-    - {name: description, admin_ui: null, type: string}
+    - name: description
+      admin_ui: {order: 0, width: 174}
+      type: string
     - {name: service_name, type: string}
     - {name: status, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
