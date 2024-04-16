@@ -1,8 +1,9 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
+from ..app.models import PayrunConfig
 
 
-PAYRUN_CONFIG_TYPE = ['Weekly', 'Fortnightly', 'Monthly']
+PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
 WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 
@@ -11,8 +12,8 @@ class PayrunSettingsForm(FormBase):
         print('PayrunSettingsForm')
         kwargs['model'] = 'PayrunConfig'
 
-        self.name = TextInput(name='name', label='Name')
-        self.type = DropdownInput(name='type', label='Type', options=PAYRUN_CONFIG_TYPE, value='Weekly')
+        self.integration = LookupInput(name='integration', label='Integration', model='AppIntegration')
+        self.frequency = DropdownInput(name='type', label='Type', options=PAYRUN_FREQUENCY, value='Weekly')
         self.pay_period_start_day = DropdownInput(name='pay_period_start_day', label='Pay Period Start Day',
                                                   options=WEEK_DAYS, value='Monday')
         self.pay_period_end_day = DropdownInput(name='pay_period_end_day', label='Pay Period End Day',
@@ -24,8 +25,8 @@ class PayrunSettingsForm(FormBase):
             {
                 'name': '_', 'cols': [
                     [
-                        self.name,
-                        self.type,
+                        self.integration,
+                        self.frequency,
                         self.pay_period_start_day,
                         self.pay_period_end_day,
                         self.pay_day,
@@ -39,3 +40,8 @@ class PayrunSettingsForm(FormBase):
 
         super().__init__(sections=sections, **kwargs)
         self.fullscreen = True
+
+        payrun_config = PayrunConfig.search().next()
+        print('payrun_config', payrun_config)
+        if payrun_config:
+            self.data = payrun_config
