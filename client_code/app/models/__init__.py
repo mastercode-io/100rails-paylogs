@@ -196,9 +196,15 @@ class User:
     @staticmethod
     def get_tenant_name(args):
         print('get_tenant_name', args.get('tenant_uid'))
-        if args.get('tenant_uid'):
-            return Tenant.get(args['tenant_uid']).get('name', '')
-        return ''
+        if args['tenant_uid'] == '00000000-0000-0000-0000-000000000000':
+            return 'System'
+        elif args['tenant_uid'] is not None:
+            tenant = Tenant.get(args['tenant_uid'])
+            if tenant:
+                return tenant['name']
+            else:
+                return 'Not Found'
+        return 'N/A'
     tenant_name = Computed("tenant_uid", "get_tenant_name")
 
 
