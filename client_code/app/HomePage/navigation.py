@@ -20,7 +20,7 @@ PL_MENU_ITEMS = {
     'timesheet_menu': [
         {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
         {'id': 'timesheet_view', 'text': 'View Timesheets', 'items': []},
-        {'id': 'timesheet_import', 'text': 'Sync Timesheets from Connected App', 'items': []},
+        {'id': 'timesheet_import', 'text': 'Sync Timesheets', 'items': []},
         {'id': 'timesheet_upload_data', 'text': 'Upload Data', 'items': []},
     ],
     'payroll_menu': [
