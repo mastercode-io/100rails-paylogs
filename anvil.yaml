@@ -45,6 +45,7 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \ rel=\"stylesheet\">\n\n<!--Fontawsome library -->\n<script src=\"https://kit.fontawesome.com/1466988a10.js\"\
     \ crossorigin=\"anonymous\"></script>\n\n<!-- Fonts -->\n<link href='https://fonts.googleapis.com/css?family=Open\
     \ Sans' rel='stylesheet'>\n<link href='https://fonts.googleapis.com/css?family=Montserrat'\
+    \ rel='stylesheet'>\n<link href='https://fonts.googleapis.com/css?family=Roboto'\
     \ rel='stylesheet'>\n\n<!-- Essential JS 2 styles and scripts -->\n<link href=\"\
     https://cdn.syncfusion.com/ej2/23.1.36/tailwind.css\" rel=\"stylesheet\">\n<script\
     \ src=\"https://cdn.syncfusion.com/ej2/23.1.36/dist/ej2.min.js\" type=\"text/javascript\"\
