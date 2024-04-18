@@ -51,6 +51,7 @@
 .pl-appbar-menu {
     font-family: "Roboto", sans-serif!important;
     font-size: 8px !important;
+    text-transform: uppercase;
 }
 
 .pl-appbar-menu-icon {
