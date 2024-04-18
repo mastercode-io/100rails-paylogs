@@ -48,6 +48,10 @@
     margin: 0 3px;
 }
 
+.pl-appbar-menu {
+    font-family: "Open Sans", sans-serif!important;
+}
+
 .pl-appbar-menu-icon {
     font-size: 18px !important;
 }

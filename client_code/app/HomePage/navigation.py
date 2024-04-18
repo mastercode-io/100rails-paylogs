@@ -163,7 +163,7 @@ class AppbarMenu:
             self.menu.items = self.menu_items
         else:
             self.menu = ej.navigations.Menu({
-                'cssClass': 'e-inherit',
+                'cssClass': 'e-inherit pl-appbar-menu',
                 'items': self.menu_items,
                 'select': self.menu_select
             })

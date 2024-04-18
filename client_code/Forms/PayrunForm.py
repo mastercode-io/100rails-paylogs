@@ -3,6 +3,7 @@ from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 from ..app.models import Payrun, PayrunConfig
+import datetime
 
 
 class PayrunForm(FormBase):
@@ -10,12 +11,17 @@ class PayrunForm(FormBase):
         print('PayrunForm')
         kwargs['model'] = 'Payrun'
 
-        self.pay_period_start = DateInput(name='pay_period_start', label='Pay Period Start')
-        self.pay_period_end = DateInput(name='pay_period_end', label='Pay Period End')
+        self.message = InlineMessage()
+        self.select_pay_period = DropdownInput(name='select_pay_period', label='Select Pay Period',
+                                               save=False
+                                               )
+        self.pay_period_start = DateInput(name='pay_period_start', label='Pay Period Start',
+                                          enabled=False)
+        self.pay_period_end = DateInput(name='pay_period_end', label='Pay Period End',
+                                        enabled=False)
         self.pay_date = DateInput(name='pay_date', label='Pay Date')
         self.status = RadioButtonInput(name='status', label='Status', options=['Draft', 'Posted'], value='Draft')
         self.notes = MultiLineInput(name='notes', label='Notes', rows=4)
-        self.message = InlineMessage()
 
         payrun_items_view = {
             'model': 'PayrunItem',
@@ -67,6 +73,11 @@ class PayrunForm(FormBase):
         self.payrun_config = next(iter(PayrunConfig.search()), None)
         if not self.payrun_config:
             self.action = 'view'
+        else:
+            pay_period_dates = []
+            today= datetime.datetime.today()
+            current_monday = start_of_week = today - datetime.timedelta(days=today.weekday())
+            last_monday = current_monday - datetime.timedelta(days=7)
 
 
     def form_open(self, args, **kwargs):
