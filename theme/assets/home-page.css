@@ -58,6 +58,9 @@
 #pl-appbar-menu .e-caret {
     display: none;
 }
+#pl-appbar-menu .e-menu-popup {
+    border-radius: 0;
+}
 
 /* #pl-appbar-menu .e-menu-item:hover:not(.pl-appbar-menu-selected) {
     border-radius: 20px;
