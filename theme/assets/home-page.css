@@ -58,8 +58,8 @@
 #pl-appbar-menu .e-caret {
     display: none;
 }
-#pl-appbar-menu .e-menu-popup {
-    border-radius: 0;
+#pl-appbar-menu .e-menu-wrapper.e-menu-popup {
+    border-radius: 0!important;
 }
 
 /* #pl-appbar-menu .e-menu-item:hover:not(.pl-appbar-menu-selected) {
