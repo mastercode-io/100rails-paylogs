@@ -56,7 +56,7 @@
     font-size: 18px !important;
 }
 #pl-appbar-menu .e-caret {
-    display: none;
+    display: none!important;
 }
 #pl-appbar-menu .e-menu-wrapper.e-menu-popup {
     border-radius: 0!important;
