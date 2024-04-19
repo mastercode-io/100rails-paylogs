@@ -52,9 +52,11 @@
     font-family: "Roboto", sans-serif!important;
     font-size: 8px !important;
 }
-
 .pl-appbar-menu-icon {
     font-size: 18px !important;
+}
+#pl-appbar-menu .e-caret {
+    display: none;
 }
 
 /* #pl-appbar-menu .e-menu-item:hover:not(.pl-appbar-menu-selected) {
