@@ -2,8 +2,22 @@
 <html data-theme="light">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="_/theme/home-page.css" rel="stylesheet">
-  <body>
-    <div id="pl-app-container" class="pl-app-container">
+
+  <!-- daisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      plugins: [require("daisyui")],
+      daisyui: {
+        themes: ["light"],
+        darkTheme: "light",
+      },
+    }
+  </script>
+
+  <body data-theme="light">
+    <div data-theme="light" id="pl-app-container" class="pl-app-container">
         <header id="pl-appbar">
             <div>
                 <div id="pl-appbar-logo">
