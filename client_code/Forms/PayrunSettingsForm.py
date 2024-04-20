@@ -82,5 +82,5 @@ class PayrunSettingsForm(FormBase):
 
     def create_connection(self, args):
         print('create_connection', args)
-        self.message.message_type = 'e-info'
+        self.message.message_type = 'alert alert-info'
         self.message.content = 'Creating connection...'
