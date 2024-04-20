@@ -70,6 +70,7 @@ class PayrunSettingsForm(FormBase):
         if not args.get('value') or not self.integration.value:
             self.message.message_type = ''
             self.message.content = ''
+            self.connection_button.hide()
         else:
             payroll_integration = AppIntegration.get(self.integration.value['uid'])
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
