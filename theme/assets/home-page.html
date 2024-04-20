@@ -1,31 +1,35 @@
 <!--suppress ALL -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="_/theme/home-page.css" rel="stylesheet">
-<div id="pl-app-container" class="pl-app-container">
-    <header id="pl-appbar">
-        <div>
-            <div id="pl-appbar-logo">
-                <img src="_/theme/pl-logo.png" height="32px" style="height: 32px!important;">
+<html data-theme="light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_/theme/home-page.css" rel="stylesheet">
+  <body>
+    <div id="pl-app-container" class="pl-app-container">
+        <header id="pl-appbar">
+            <div>
+                <div id="pl-appbar-logo">
+                    <img src="_/theme/pl-logo.png" height="32px" style="height: 32px!important;">
+                </div>
+                <ul id="pl-appbar-menu"></ul>
+                <!-- <div id="pl-appbar-spacer" class="e-appbar-spacer"></div> -->
+                <div id="pl-appbar-spacer" class="e-appbar-spacer"
+                    style="text-align: right;color: #EADFFF;font-size: 12px;font-style: italic;padding-right: 15px;margin-top: -8px;">
+                </div>
+                <div id="pl-appbar-settings-menu"></div>
+                <div id="pl-appbar-assistant-toggle"></div>
+                <div id="pl-appbar-notification-list"></div>
+                <div id="pl-appbar-user-menu"></div>
             </div>
-            <ul id="pl-appbar-menu"></ul>
-            <!-- <div id="pl-appbar-spacer" class="e-appbar-spacer"></div> -->
-            <div id="pl-appbar-spacer" class="e-appbar-spacer"
-                 style="text-align: right;color: #EADFFF;font-size: 12px;font-style: italic;padding-right: 15px;margin-top: -8px;">
+        </header>
+        <div id="pl-page-container" class="pl-page-container">
+            <!-- <div id="pl-sidebar">
+                <ul id="pl-sidebar-menu" class="pl-sidebar-menu"></ul>
+            </div> -->
+            <div id="pl-content" class="e-main-content pl-content"></div>
+            <div id="pl-assistant">
+    <!--            <div id="pl-assistant-chat"></div>-->
             </div>
-            <div id="pl-appbar-settings-menu"></div>
-            <div id="pl-appbar-assistant-toggle"></div>
-            <div id="pl-appbar-notification-list"></div>
-            <div id="pl-appbar-user-menu"></div>
         </div>
-    </header>
-    <div id="pl-page-container" class="pl-page-container">
-        <!-- <div id="pl-sidebar">
-            <ul id="pl-sidebar-menu" class="pl-sidebar-menu"></ul>
-        </div> -->
-        <div id="pl-content" class="e-main-content pl-content"></div>
-        <div id="pl-assistant">
-<!--            <div id="pl-assistant-chat"></div>-->
-        </div>
+        <div id="pl-footer"></div>
     </div>
-    <div id="pl-footer"></div>
-</div>
+  </body>
+</html>
