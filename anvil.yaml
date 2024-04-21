@@ -55,13 +55,9 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \ href=\"_/theme/home-page.css\" rel=\"stylesheet\">\n\n<!-- Syncfusion license\
     \ and modules -->\n<script>\n  ej.base.registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXtccHVVRWJdUEN/V0Y=');\n\
     \  ej.schedule.Schedule.inject(ej.schedule.DragAndDrop, ej.schedule.Resize)\n\
-    </script>\n\n<!-- daisyUI -->\n<link href=\"https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css\"\
-    \ rel=\"stylesheet\" type=\"text/css\" />\n<script src=\"_/theme/tailwind.config.js\"\
-    ></script>\n<script src=\"https://cdn.tailwindcss.com\"></script>\n<script>\n\
-    \  module.exports = {\n  plugins: [require(\"daisyui\")],\n  daisyui: {\n    darkTheme:\
-    \ \"light\",\n  },\n}\n</script>\n\n<!-- Kendo UI for jQuery -->\n<!--  <link\
-    \ rel=\"stylesheet\" href=\"https://kendo.cdn.telerik.com/2023.3.1114/styles/kendo.common.min.css\"\
-    > -->\n<link rel=\"stylesheet\" href=\"https://kendo.cdn.telerik.com/themes/7.0.2/default/default-main.css\"\
+    </script>\n\n<!-- Kendo UI for jQuery -->\n<!--  <link rel=\"stylesheet\" href=\"\
+    https://kendo.cdn.telerik.com/2023.3.1114/styles/kendo.common.min.css\"> -->\n\
+    <link rel=\"stylesheet\" href=\"https://kendo.cdn.telerik.com/themes/7.0.2/default/default-main.css\"\
     \ />\n<link rel=\"stylesheet\" href=\"https://kendo.cdn.telerik.com/2023.3.1114/styles/kendo.uniform.min.css\"\
     \ />\n<script src=\"https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.all.min.js\"\
     ></script>\n"}
