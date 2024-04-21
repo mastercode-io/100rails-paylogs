@@ -75,7 +75,7 @@ class PayrunSettingsForm(FormBase):
             payroll_integration = AppIntegration.get(self.integration.value['uid'])
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
             if not payroll_connection:
-                self.message.message_type = 'alert alert-warning'
+                self.message.message_type = 'alert alert-warning pl-message-bar'
                 self.message.content = (f"No connection found for this integration: "
                                         f"<b>{self.integration.value['name']}</b>")
                 self.connection_button.show()
