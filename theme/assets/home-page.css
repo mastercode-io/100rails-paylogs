@@ -298,6 +298,7 @@ label>span.e-label {
 
 .pl-message-bar {
     border: none!important;
+    border-radius: 0.5rem!important;
 }
 
 /* Large Screen Styles */
