@@ -163,7 +163,8 @@ class AppbarMenu:
             self.menu.items = self.menu_items
         else:
             self.menu = ej.navigations.Menu({
-                'cssClass': 'e-inherit pl-appbar-menu menu bg-base-200 w-56 rounded-box',
+                # 'cssClass': 'e-inherit pl-appbar-menu',
+                'cssClass': 'menu bg-base-200 w-56 rounded-box',
                 'items': self.menu_items,
                 'select': self.menu_select
             })
