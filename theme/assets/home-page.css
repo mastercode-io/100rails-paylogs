@@ -296,6 +296,10 @@ label>span.e-label {
     position: relative;
 }
 
+.pl-message-bar {
+    border: none!important;
+}
+
 /* Large Screen Styles */
 @media only screen and (min-width: 718px) {
     #pl-content {
