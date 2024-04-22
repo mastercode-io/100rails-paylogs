@@ -1,7 +1,7 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
 from .widgets import (TickerWidget, CircularChartWidget, StatWidget, ChartWidget,
                       STAT_UNCHANGED, STAT_UP, STAT_DOWN)
-from AnvilFusion.components.FormInputs import InlineMessage, AC
+from AnvilFusion.components.FormInputs import InlineMessage
 
 PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
 
