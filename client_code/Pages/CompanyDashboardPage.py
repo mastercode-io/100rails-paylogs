@@ -23,16 +23,16 @@ class CompanyDashboardPage(DashboardPage):
 
         total_staff_stat = StatWidget(title='Total Staff',
                                       value=156,
-                                      description='Total staff fo this payroll period',
+                                      description='Headcount unchanged from last pay period',
                                       accent=STAT_UNCHANGED)
         total_hours_stat = StatWidget(title='Total Hours',
                                       value=4396,
-                                      description='Total paid hours',
+                                      description='Up by 3% (128 hours)',
                                       accent=STAT_UP)
         total_pay_stat = StatWidget(title='Total Pay',
                                     value=34544,
                                     value_format='${:,.0f}',
-                                    description='Total pay for this payroll period',
+                                    description='Down by 6.3% ($2,317) from last pay period',
                                     accent=STAT_DOWN)
 
         stat_widgets_html = f'\
