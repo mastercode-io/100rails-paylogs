@@ -1,6 +1,7 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
 from .widgets import (TickerWidget, CircularChartWidget, StatWidget, ChartWidget,
                       STAT_UNCHANGED, STAT_UP, STAT_DOWN)
+from AnvilFusion.components.FormInputs import InlineMessage
 
 PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
 
@@ -56,7 +57,7 @@ class CompanyDashboardPage(DashboardPage):
 
         rate_per_hour_chart_config = {
             'primaryXAxis': {
-                'title': 'Week Number',
+                'title': 'Year Week Number',
                 'minimum': 1,
                 'maximum': 17,
                 'interval': 1,
@@ -95,6 +96,18 @@ class CompanyDashboardPage(DashboardPage):
         rate_per_hour_chart = ChartWidget(title='Average Rate per Hour',
                                           chart_config=rate_per_hour_chart_config,
                                           data=rate_per_hour_chart_data,)
+
+        self.info_message = InlineMessage(content='This is a test message', accent='info')
+        self.warning_message = InlineMessage(content='This is a test message', accent='warning')
+        self.error_message = InlineMessage(content='This is a test message', accent='error')
+        self.success_message = InlineMessage(content='This is a test message', accent='success')
+        self.message_demo_html = f'\
+            <div class="pl-flex-column-start">\
+                {self.info_message.html}\
+                {self.warning_message.html}\
+                {self.error_message.html}\
+                {self.success_message.html}\
+            </div>'
 
         self.widgets = [
             # total_staff_widget,
@@ -148,6 +161,12 @@ class CompanyDashboardPage(DashboardPage):
                     'content': rate_per_hour_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
+                {
+                    'sizeX': 4, 'sizeY': 1, 'row': 3, 'col': 0,
+                    'id': 'message_demo',
+                    'content': message_demo_html,
+                    'cssClass': PANEL_CSS_CLASS
+                }
             ],
             # 'allowResizing': True,
             'allowDragging': False,
@@ -167,5 +186,9 @@ class CompanyDashboardPage(DashboardPage):
         for widget in self.widgets:
             print('widget', widget)
             widget.form_show()
+        self.info_message.show()
+        self.warning_message.show()
+        self.error_message.show()
+        self.success_message.show()
         print('CompanyDashboardPage refresh')
         self.dashboard.refresh()

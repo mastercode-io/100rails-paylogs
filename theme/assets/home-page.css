@@ -372,3 +372,9 @@ label>span.e-label {
     justify-content: flex-start;
     align-items: center;
 }
+.pl-flex-column-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
