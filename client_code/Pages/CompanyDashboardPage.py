@@ -103,6 +103,7 @@ class CompanyDashboardPage(DashboardPage):
             total_hours_stat,
             total_pay_stat,
             pay_distribution_chart,
+            rate_per_hour_chart,
         ]
 
         layout = {
