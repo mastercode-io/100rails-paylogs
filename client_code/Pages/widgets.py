@@ -104,11 +104,11 @@ class StatWidget:
         self.html = (f'\
             <div class="stats shadow">\
                 <div class="stat">\
-                    <div class="stat-title" style="font-size: 2rem!important">{self.title}</div>\
-                    <div class="stat-value {STAT_ACCENTS[self.accent]}" style="font-size: 5rem!important">\
+                    <div class="stat-title" style="font-size: 3rem!important; line-height: 1.5!important">{self.title}</div>\
+                    <div class="stat-value {STAT_ACCENTS[self.accent]}" style="font-size: 5rem!important; line-height: 1.5!important">\
                         {self.value_format.format(self.value)}\
                     </div>\
-                    <div class="stat-desc" style="font-size: 1.5rem!important">{self.description}</div>\
+                    <div class="stat-desc" style="font-size: 1.5rem!important; line-height: 1.5!important">{self.description}</div>\
                 </div>\
             </div>')
 
