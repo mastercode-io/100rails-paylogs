@@ -31,6 +31,9 @@ class PayrunSettingsForm(FormBase):
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
         self.connection_button = Button(content='Create Connection', action=self.create_connection)
         self.message = InlineMessage(css_class='pl-message-bar')
+        self.message_success = InlineMessage(css_class='pl-message-bar', accent='success', content='Connection created successfully')
+        self.message_error = InlineMessage(css_class='pl-message-bar', accent='error', content='Connection failed')
+        self.message_info = InlineMessage(css_class='pl-message-bar', accent='info', content='Connection in progress')
 
         sections = [
             {
@@ -43,6 +46,9 @@ class PayrunSettingsForm(FormBase):
                         self.pay_day,
                         self.scopes,
                         self.message,
+                        self.message_success,
+                        self.message_error,
+                        self.message_info,
                         self.connection_button,
                     ],
                     [],
@@ -75,7 +81,7 @@ class PayrunSettingsForm(FormBase):
             payroll_integration = AppIntegration.get(self.integration.value['uid'])
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
             if not payroll_connection:
-                self.message.accent = 'error'
+                self.message.accent = 'warning'
                 self.message.content = (f"No connection found for this integration: "
                                         f"<b>{self.integration.value['name']}</b>")
                 self.connection_button.show()

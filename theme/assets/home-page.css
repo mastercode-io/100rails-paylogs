@@ -300,6 +300,9 @@ label>span.e-label {
     border: none!important;
     border-radius: 0.5rem!important;
 }
+.pl-message-icon {
+    font-size: 1.5rem!important;
+}
 
 /* Large Screen Styles */
 @media only screen and (min-width: 718px) {
