@@ -1,7 +1,7 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
 from .widgets import (TickerWidget, CircularChartWidget, StatWidget, ChartWidget,
                       STAT_UNCHANGED, STAT_UP, STAT_DOWN)
-from AnvilFusion.components.FormInputs import InlineMessage
+from AnvilFusion.components.FormInputs import InlineMessage, AC
 
 PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
 
@@ -190,8 +190,12 @@ class CompanyDashboardPage(DashboardPage):
         for widget in self.widgets:
             widget.form_show()
         self.info_message.show()
+        self.info_message.accent = 'info'
         self.warning_message.show()
+        self.warning_message.accent = 'warning'
         self.error_message.show()
+        self.error_message.accent = 'error'
         self.success_message.show()
+        self.success_message.accent = 'success'
         print('CompanyDashboardPage refresh')
         self.dashboard.refresh()
