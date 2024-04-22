@@ -111,7 +111,8 @@ class StatWidget:
             <div class="stats shadow pl-stat-widget">\
                 <div class="stat">\
                     <div class="stat-title" style="font-size: 2.5rem!important; line-height: 1.5!important">{self.title}</div>\
-                    <div class="stat-value {STAT_ACCENTS[self.accent]}" style="font-size: 5rem!important; line-height: 1.5!important">\
+                    <div class="stat-value {STAT_ACCENTS[self.accent]}" '
+                     f'style="font-size: 5rem!important; line-height: 1.5!important; display: flex; justify-content: space-between">\
                         {self.value_format.format(self.value)} <i class="{self.icon}"></i>\
                     </div>\
                     <div class="stat-desc" style="font-size: 1.5rem!important; line-height: 1.5!important">{self.description}</div>\
