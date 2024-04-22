@@ -31,9 +31,6 @@ class PayrunSettingsForm(FormBase):
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
         self.connection_button = Button(content='Create Connection', action=self.create_connection)
         self.message = InlineMessage(css_class='pl-message-bar')
-        self.message_success = InlineMessage(css_class='pl-message-bar', accent='success', content='Connection created successfully')
-        self.message_error = InlineMessage(css_class='pl-message-bar', accent='error', content='Connection failed')
-        self.message_info = InlineMessage(css_class='pl-message-bar', accent='info', content='Connection in progress')
 
         sections = [
             {
@@ -46,9 +43,6 @@ class PayrunSettingsForm(FormBase):
                         self.pay_day,
                         self.scopes,
                         self.message,
-                        self.message_success,
-                        self.message_error,
-                        self.message_info,
                         self.connection_button,
                     ],
                     [],
@@ -70,9 +64,6 @@ class PayrunSettingsForm(FormBase):
     def form_open(self, args, **kwargs):
         super().form_open(args)
         self.connection_button.hide()
-        self.message_info.accent = 'info'
-        self.message_success.accent = 'success'
-        self.message_error.accent = 'error'
 
 
     def integration_selected(self, args):
