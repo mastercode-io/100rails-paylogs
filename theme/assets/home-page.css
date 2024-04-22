@@ -362,3 +362,6 @@ label>span.e-label {
     box-shadow: #ffffff 0 0 0 0!important;
     border-radius: 0!important;
 }
+.pl-stat-widget {
+    font-size: 3rem!important;
+}
