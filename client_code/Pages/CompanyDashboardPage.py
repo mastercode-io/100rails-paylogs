@@ -65,7 +65,7 @@ class CompanyDashboardPage(DashboardPage):
                 'title': 'Rate per Hour',
                 'labelFormat': '${value}',
                 'minimum': 20,
-                'maximum': 75,
+                'maximum': 70,
                 'interval': 10,
             },
             'series': [{
