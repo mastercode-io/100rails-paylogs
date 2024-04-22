@@ -52,7 +52,8 @@ native_deps: {head_html: "<!-- Material Design icons -->\n<link href=\"https://c
     \ src=\"https://cdn.syncfusion.com/ej2/25.1.35/dist/ej2.min.js\" type=\"text/javascript\"\
     ></script>\n<script src=\"_/theme/aws-sdk-v3-bundle.js\" type=\"text/javascript\"\
     ></script>\n<link href=\"_/theme/anvil-fusion.css\" rel=\"stylesheet\">\n<link\
-    \ href=\"_/theme/home-page.css\" rel=\"stylesheet\">\n\n<!-- Syncfusion license\
+    \ href=\"_/theme/home-page.css\" rel=\"stylesheet\">\n\n<!-- Tailwind CSS-->\n\
+    <script src=\"https://cdn.tailwindcss.com\"></script>\n\n<!-- Syncfusion license\
     \ and modules -->\n<script>\n  ej.base.registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXtccHVVRWJdUEN/V0Y=');\n\
     \  ej.schedule.Schedule.inject(ej.schedule.DragAndDrop, ej.schedule.Resize)\n\
     </script>\n\n<!-- Kendo UI for jQuery -->\n<!--  <link rel=\"stylesheet\" href=\"\
