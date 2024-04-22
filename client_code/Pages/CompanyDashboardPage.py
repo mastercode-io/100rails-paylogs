@@ -23,7 +23,7 @@ class CompanyDashboardPage(DashboardPage):
         total_staff_stat = StatWidget(title='Total Staff',
                                       value=1400,
                                       description='Total staff fo this payroll period',
-                                      accent=STAT_UNCHANGED)
+                                      accent=STAT_UP)
         total_pay_stat = StatWidget(title='Total Pay',
                                     value=34544,
                                     value_format='${:,.0f}',
