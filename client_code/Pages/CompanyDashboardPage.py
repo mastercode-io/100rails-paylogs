@@ -62,7 +62,7 @@ class CompanyDashboardPage(DashboardPage):
                 'interval': 1,
             },
             'primaryYAxis': {
-                'title': 'Average Rate per Hour',
+                'title': 'Rate per Hour',
                 'labelFormat': '${value}',
                 'minimum': 20,
                 'maximum': 75,
