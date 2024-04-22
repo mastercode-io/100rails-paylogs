@@ -108,7 +108,7 @@ class StatWidget:
             self.icon = ICON_UP if self.accent == STAT_UP else ICON_DOWN if self.accent == STAT_DOWN else ICON_UNCHANGED
 
         self.html = (f'\
-            <div class="stats shadow">\
+            <div class="stats shadow pl-stat-widget">\
                 <div class="stat">\
                     <div class="stat-title" style="font-size: 2.5rem!important; line-height: 1.5!important">{self.title}</div>\
                     <div class="stat-value {STAT_ACCENTS[self.accent]}" style="font-size: 5rem!important; line-height: 1.5!important">\
