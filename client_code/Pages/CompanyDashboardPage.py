@@ -21,8 +21,12 @@ class CompanyDashboardPage(DashboardPage):
                                         change_format='{:,.2%}')
 
         total_staff_stat = StatWidget(title='Total Staff',
-                                      value=1400,
+                                      value=156,
                                       description='Total staff fo this payroll period',
+                                      accent=STAT_UNCHANGED)
+        total_hours_stat = StatWidget(title='Total Hours',
+                                      value=4396,
+                                      description='Total paid hours',
                                       accent=STAT_UP)
         total_pay_stat = StatWidget(title='Total Pay',
                                     value=34544,
@@ -52,9 +56,9 @@ class CompanyDashboardPage(DashboardPage):
 
         layout = {
             'showGridLines': True,
-            'cellSpacing': [0, 0],
+            'cellSpacing': [5, 5],
             'columns': 4,
-            'cellAspectRatio': 100 / 100,
+            'cellAspectRatio': 100 / 80,
             'panels': [
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
@@ -64,6 +68,12 @@ class CompanyDashboardPage(DashboardPage):
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 1,
+                    'id': 'total_staff_widget',
+                    'content': total_hours_stat.html,
+                    'cssClass': PANEL_CSS_CLASS,
+                },
+                {
+                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 2,
                     'id': 'total_pay_widget',
                     'content': total_pay_stat.html,
                     'cssClass': PANEL_CSS_CLASS,
