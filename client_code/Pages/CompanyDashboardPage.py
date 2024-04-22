@@ -59,7 +59,7 @@ class CompanyDashboardPage(DashboardPage):
             'showGridLines': True,
             'cellSpacing': [0, 0],
             'columns': 4,
-            'cellAspectRatio': 100 / 100,
+            'cellAspectRatio': 100 / 80,
             'panels': [
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
