@@ -96,6 +96,7 @@ class CompanyDashboardPage(DashboardPage):
     def form_show(self):
         super().form_show()
         for widget in self.widgets:
+            print('widget', widget)
             widget.form_show()
         print('CompanyDashboardPage refresh')
         self.dashboard.refresh()
