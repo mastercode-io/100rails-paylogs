@@ -120,6 +120,12 @@
     padding-inline: 16px !important;
 }
 
+#pl-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
 .pl-footer-logo {
     font-size: 12px;
     text-align: left;
@@ -129,6 +135,7 @@
     font-size: 12px;
     text-align: right;
     padding-right: 10px;
+    margin-left: auto;
 }
 
 .e-sidebar {}
