@@ -1,5 +1,5 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
-from .widgets import TickerWidget, CircularChartWidget, StatWidget
+from .widgets import TickerWidget, CircularChartWidget, StatWidget, STAT_UNCHANGED, STAT_UP, STAT_DOWN
 
 PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
 
@@ -23,12 +23,12 @@ class CompanyDashboardPage(DashboardPage):
         total_staff_stat = StatWidget(title='Total Staff',
                                       value=1400,
                                       description='Total staff fo this payroll period',
-                                      accent='unchanged')
+                                      accent=STAT_UNCHANGED)
         total_pay_stat = StatWidget(title='Total Pay',
                                     value=34544,
                                     value_format='${:,.0f}',
                                     description='Total pay for this payroll period',
-                                    accent='down')
+                                    accent=STAT_DOWN)
 
         pay_distribution_data = [
             {'label': 'Regular', 'value': 60},
