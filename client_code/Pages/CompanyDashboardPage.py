@@ -56,9 +56,9 @@ class CompanyDashboardPage(DashboardPage):
 
         layout = {
             'showGridLines': True,
-            'cellSpacing': [5, 5],
+            'cellSpacing': [0, 0],
             'columns': 4,
-            'cellAspectRatio': 100 / 80,
+            'cellAspectRatio': 100 / 100,
             'panels': [
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
@@ -79,13 +79,18 @@ class CompanyDashboardPage(DashboardPage):
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
+                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 3,
+                    'id': 'total_pay_widget',
+                    'cssClass': PANEL_CSS_CLASS,
+                },
+                {
                     'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 0,
                     'id': 'pay_distribution_chart',
                     'content': pay_distribution_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
-                    'sizeX': 2, 'sizeY': 3, 'row': 0, 'col': 2,
+                    'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 2,
                     'id': 'pay_trend_chat',
                     'cssClass': PANEL_CSS_CLASS,
                 },
