@@ -113,7 +113,7 @@ class CompanyDashboardPage(DashboardPage):
             layout=layout,
             container_id=container_id,
             page_title='Company Dashboard',
-            title_class='text-5xl font-semibold',
+            title_class='text-5xl font-semibold leading-normal',
             **kwargs
         )
 
