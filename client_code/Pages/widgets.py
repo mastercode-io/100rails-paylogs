@@ -113,7 +113,7 @@ class StatWidget:
                     <div class="stat-title" style="font-size: 2.5rem!important; line-height: 1.5!important">{self.title}</div>\
                     <div class="stat-value {STAT_ACCENTS[self.accent]}" '
                      f'style="font-size: 5rem!important; line-height: 1.5!important;">\
-                        {self.value_format.format(self.value)} <i class="{self.icon}"></i>\
+                        {self.value_format.format(self.value)} <i class="{self.icon}" style="alin: right!important"></i>\
                     </div>\
                     <div class="stat-desc" style="font-size: 1.5rem!important; line-height: 1.5!important">{self.description}</div>\
                 </div>\
