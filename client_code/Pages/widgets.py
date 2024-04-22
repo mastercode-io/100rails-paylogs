@@ -16,6 +16,9 @@ STAT_ACCENTS = {
 STAT_UP = 'success'
 STAT_DOWN = 'error'
 STAT_UNCHANGED = 'neutral'
+ICON_UP = 'fa-caret-up'
+ICON_DOWN = 'fa-caret-down'
+ICON_UNCHANGED = 'fa-dash'
 
 
 class TickerWidget:
@@ -100,13 +103,16 @@ class StatWidget:
         self.value_format = value_format or '{:,.0f}'
         self.description = description or ''
         self.accent = accent or STAT_UNCHANGED
+        self.icon = icon
+        if not icon and self.accent:
+            self.icon = ICON_UP if self.accent == STAT_UP else ICON_DOWN if self.accent == STAT_DOWN else ICON_UNCHANGED
 
         self.html = (f'\
             <div class="stats shadow">\
                 <div class="stat">\
                     <div class="stat-title" style="font-size: 3rem!important; line-height: 1.5!important">{self.title}</div>\
                     <div class="stat-value {STAT_ACCENTS[self.accent]}" style="font-size: 5rem!important; line-height: 1.5!important">\
-                        {self.value_format.format(self.value)}\
+                        {self.value_format.format(self.value)} <i class="{self.icon}"></i>\
                     </div>\
                     <div class="stat-desc" style="font-size: 1.5rem!important; line-height: 1.5!important">{self.description}</div>\
                 </div>\
