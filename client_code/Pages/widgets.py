@@ -161,3 +161,37 @@ class CircularChartWidget:
 
     def form_show(self):
         self.chart.appendTo(f"#{self._element_id}")
+
+
+class ChartWidget:
+
+    def __init__(self,
+                 title=None,
+                 chart_config=None,
+                 data=None,
+                 **kwargs):
+        self._element_id = utils.new_el_id()
+        self.title = title or ''
+        self.chart_config = chart_config or {'series': [{'dataSource': []}]}
+        self._data = data or []
+
+        chart_config.series[0]['dataSource'] = self._data
+        self.chart = ej.charts.Chart(chart_config)
+
+        self.html = f'\
+            <div style="padding: 10px; text-align: center; display: flex; flex-direction: column; height: 100%;">\
+                <div style="font-size: 14px; font-weight: bold;">{self.title}</div>\
+                <div id="{self._element_id}"></div>\
+            </div>'
+
+    @property
+    def data(self):
+        return self._data
+
+    @data.setter
+    def data(self, value):
+        self._data = value
+        self.chart.series[0].dataSource = value
+
+    def form_show(self):
+        self.chart.appendTo(f"#{self._element_id}")

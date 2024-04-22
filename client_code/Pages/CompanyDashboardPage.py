@@ -1,5 +1,6 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
-from .widgets import TickerWidget, CircularChartWidget, StatWidget, STAT_UNCHANGED, STAT_UP, STAT_DOWN
+from .widgets import (TickerWidget, CircularChartWidget, StatWidget, ChartWidget,
+                      STAT_UNCHANGED, STAT_UP, STAT_DOWN)
 
 PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
 
@@ -53,6 +54,48 @@ class CompanyDashboardPage(DashboardPage):
                                                      data=pay_distribution_data,
                                                      value_suffix='%', )
 
+        rate_per_hour_chart_config = {
+            'primaryXAxis': {
+                'title': 'Week Number',
+                'minimum': 1,
+                'maximum': 52,
+                'interval': 1,
+            },
+            'primaryYAxis': {
+                'title': 'Average Rate per Hour',
+                'labelFormat': '${value}',
+                'minimum': 20,
+                'maximum': 250,
+                'interval': 20,
+            },
+            'series': [{
+                'xName': 'rate',
+                'yName': 'week',
+                'type': 'Line',
+            }],
+        }
+        rate_per_hour_chart_data = [
+            {'week': 1, 'rate': 38.26},
+            {'week': 2, 'rate': 35.14},
+            {'week': 3, 'rate': 42.58},
+            {'week': 4, 'rate': 45.23},
+            {'week': 5, 'rate': 50.12},
+            {'week': 6, 'rate': 46.34},
+            {'week': 7, 'rate': 48.23},
+            {'week': 8, 'rate': 51.36},
+            {'week': 9, 'rate': 39.84},
+            {'week': 10, 'rate': 42.36},
+            {'week': 11, 'rate': 41.71},
+            {'week': 12, 'rate': 40.44},
+            {'week': 13, 'rate': 42.94},
+            {'week': 14, 'rate': 43.17},
+            {'week': 15, 'rate': 48.68},
+            {'week': 16, 'rate': 47.09},
+        ]
+        rate_per_hour_chart = ChartWidget(title='Average Rate per Hour',
+                                          chart_config=rate_per_hour_chart_config,
+                                          data=rate_per_hour_chart_data,)
+
         self.widgets = [
             # total_staff_widget,
             # total_pay_widget,
@@ -100,7 +143,8 @@ class CompanyDashboardPage(DashboardPage):
                 },
                 {
                     'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 2,
-                    'id': 'pay_trend_chat',
+                    'id': 'rate_per_hour_chart',
+                    'content': rate_per_hour_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
             ],
