@@ -47,9 +47,10 @@ class CompanyDashboardPage(DashboardPage):
                                                      value_suffix='%', )
 
         self.widgets = [
-            total_staff_widget,
-            total_pay_widget,
+            # total_staff_widget,
+            # total_pay_widget,
             total_staff_stat,
+            total_hours_stat,
             total_pay_stat,
             pay_distribution_chart,
         ]
