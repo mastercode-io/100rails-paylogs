@@ -90,11 +90,11 @@ class CompanyDashboardPage(DashboardPage):
                     'content': pay_distribution_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
-                {
-                    'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 2,
-                    'id': 'pay_trend_chat',
-                    'cssClass': PANEL_CSS_CLASS,
-                },
+                # {
+                #     'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 2,
+                #     'id': 'pay_trend_chat',
+                #     'cssClass': PANEL_CSS_CLASS,
+                # },
             ],
             # 'allowResizing': True,
             'allowDragging': False,
