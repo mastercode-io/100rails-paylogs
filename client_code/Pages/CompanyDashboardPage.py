@@ -69,8 +69,8 @@ class CompanyDashboardPage(DashboardPage):
                 'interval': 20,
             },
             'series': [{
-                'xName': 'rate',
-                'yName': 'week',
+                'xName': 'week',
+                'yName': 'rate',
                 'type': 'Line',
             }],
         }
