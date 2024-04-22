@@ -69,7 +69,7 @@ class CompanyDashboardPage(DashboardPage):
             'cellAspectRatio': 100 / 80,
             'panels': [
                 {
-                    'sizeX': 4, 'sizeY': 1, 'row': 0, 'col': 0,
+                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
                     'id': 'total_staff_stat',
                     'content': total_staff_stat.html,
                     'cssClass': PANEL_CSS_CLASS,
