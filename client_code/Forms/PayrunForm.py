@@ -75,7 +75,7 @@ class PayrunForm(FormBase):
             self.action = 'view'
         else:
             pay_period_dates = []
-            today= datetime.datetime.today()
+            today = datetime.datetime.today()
             current_monday = start_of_week = today - datetime.timedelta(days=today.weekday())
             last_monday = current_monday - datetime.timedelta(days=7)
 
