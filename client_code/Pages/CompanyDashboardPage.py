@@ -71,7 +71,8 @@ class CompanyDashboardPage(DashboardPage):
                 {
                     'sizeX': 4, 'sizeY': 1, 'row': 0, 'col': 0,
                     'id': 'total_staff_stat',
-                    'content': total_staff_stat.html,
+                    # 'content': total_staff_stat.html,
+                    'content': stat_widgets_html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 # {
