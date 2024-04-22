@@ -101,14 +101,16 @@ class StatWidget:
         self.description = description or ''
         self.accent = accent or STAT_UNCHANGED
 
-        self.html = f'\
+        self.html = (f'\
             <div class="stats shadow">\
-                <div class="stat pl-stat-widget">\
-                    <div class="stat-title">{self.title}</div>\
-                    <div class="stat-value {STAT_ACCENTS[self.accent]}">{self.value_format.format(self.value)}</div>\
-                    <div class="stat-desc">{self.description}</div>\
+                <div class="stat">\
+                    <div class="stat-title" style="font-size: 2rem!important">{self.title}</div>\
+                    <div class="stat-value {STAT_ACCENTS[self.accent]}" style="font-size: 5rem!important">\
+                        {self.value_format.format(self.value)}\
+                    </div>\
+                    <div class="stat-desc" style="font-size: 1.5rem!important">{self.description}</div>\
                 </div>\
-            </div>'
+            </div>')
 
     def form_show(self):
         pass
