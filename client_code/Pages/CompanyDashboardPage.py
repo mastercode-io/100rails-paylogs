@@ -24,16 +24,16 @@ class CompanyDashboardPage(DashboardPage):
 
         total_staff_stat = StatWidget(title='Total Staff',
                                       value=156,
-                                      description='Headcount unchanged from last pay period',
+                                      description='Staff number unchanged',
                                       accent=STAT_UNCHANGED)
         total_hours_stat = StatWidget(title='Total Hours',
                                       value=4396,
-                                      description='Up by 3% (128 hours)',
+                                      description='Up by 3% (128 hours) from last week',
                                       accent=STAT_UP)
         total_pay_stat = StatWidget(title='Total Pay',
                                     value=34544,
                                     value_format='${:,.0f}',
-                                    description='Down by 6.3% ($2,317) from last pay period',
+                                    description='Down by 6.3% ($2,317) from last week',
                                     accent=STAT_DOWN)
 
         stat_widgets_html = f'\
@@ -103,10 +103,10 @@ class CompanyDashboardPage(DashboardPage):
         self.success_message = InlineMessage(content='This is success message', accent='success')
         self.message_demo_html = f'\
             <div class="pl-flex-column-start">\
-                {self.info_message.html}\
-                {self.warning_message.html}\
-                {self.error_message.html}\
-                {self.success_message.html}\
+                <dvi id="{self.info_message.container_id}">{self.info_message.html}</dvi>\
+                <dvi id="{self.warning_message.container_id}">{self.warning_message.html}</dvi>\
+                <dvi id="{self.error_message.container_id}">{self.error_message.html}</dvi>\
+                <dvi id="{self.success_message.container_id}">{self.success_message.html}</dvi>\
             </div>'
 
         self.widgets = [
