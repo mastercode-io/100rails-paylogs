@@ -209,6 +209,7 @@ li.e-list-item.e-level-1.e-hover {
     grid-area: footer;
     background-color: #c2d1fc;
     color: #374151;
+    font-weight: 500;
 }
 #pl-footer-content {
     display: flex;
