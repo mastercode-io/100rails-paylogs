@@ -175,7 +175,7 @@ class ChartWidget:
         self.chart_config = chart_config or {'series': [{'dataSource': []}]}
         self._data = data or []
 
-        chart_config.series[0]['dataSource'] = self._data
+        chart_config['series'][0]['dataSource'] = self._data
         self.chart = ej.charts.Chart(chart_config)
 
         self.html = f'\
