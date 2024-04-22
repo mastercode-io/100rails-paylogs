@@ -70,6 +70,9 @@ class PayrunSettingsForm(FormBase):
     def form_open(self, args, **kwargs):
         super().form_open(args)
         self.connection_button.hide()
+        self.message_info.accent = 'info'
+        self.message_success.accent = 'success'
+        self.message_error.accent = 'error'
 
 
     def integration_selected(self, args):

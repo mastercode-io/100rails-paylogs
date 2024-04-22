@@ -21,10 +21,10 @@ AppEnv.grid_settings = {}
 AppEnv.theme = {
     'components': {
         'alert': {
-            'success': {'class': 'alert alert-success', 'icon': 'fa-light fa-circle-check pl-message-icon'},
-            'info': {'class': 'alert alert-info', 'icon': 'fa-light fa-circle-info pl-message-icon'},
-            'warning': {'class': 'alert alert-warning', 'icon': 'fa-light fa-triangle-exclamation pl-message-icon'},
-            'error': {'class': 'alert alert-error', 'icon': 'fa-light fa-circle-xmark pl-message-icon'},
+            'success': {'class': 'alert alert-success', 'icon': 'fa-regular fa-circle-check pl-message-icon'},
+            'info': {'class': 'alert alert-info', 'icon': 'fa-regular fa-circle-info pl-message-icon'},
+            'warning': {'class': 'alert alert-warning', 'icon': 'fa-regular fa-triangle-exclamation pl-message-icon'},
+            'error': {'class': 'alert alert-error', 'icon': 'fa-regular fa-circle-xmark pl-message-icon'},
         },
     }
 }
