@@ -24,7 +24,7 @@ AppEnv.theme = {
             'success': {'class': 'alert alert-success', 'icon': 'fa-solid fa-check-circle'},
             'info': {'class': 'alert alert-info', 'icon': 'fa-solid fa-info-circle'},
             'warning': {'class': 'alert alert-warning', 'icon': 'fa-solid fa-exclamation-circle'},
-            'error': {'class': 'alert alert-danger', 'icon': 'fa-solid fa-exclamation-triangle'},
+            'error': {'class': 'alert alert-error', 'icon': 'fa-solid fa-exclamation-triangle'},
         },
     }
 }
