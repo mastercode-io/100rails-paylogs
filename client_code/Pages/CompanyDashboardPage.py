@@ -188,7 +188,6 @@ class CompanyDashboardPage(DashboardPage):
     def form_show(self):
         super().form_show()
         for widget in self.widgets:
-            print('widget', widget)
             widget.form_show()
         self.info_message.show()
         self.warning_message.show()
