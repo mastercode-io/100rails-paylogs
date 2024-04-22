@@ -16,9 +16,9 @@ STAT_ACCENTS = {
 STAT_UP = 'success'
 STAT_DOWN = 'error'
 STAT_UNCHANGED = 'neutral'
-ICON_UP = 'fa-caret-up'
-ICON_DOWN = 'fa-caret-down'
-ICON_UNCHANGED = 'fa-dash'
+ICON_UP = 'fa-solid fa-up-right'
+ICON_DOWN = 'fa solid fa-down-right'
+ICON_UNCHANGED = 'fa-solid fa-dash'
 
 
 class TickerWidget:
