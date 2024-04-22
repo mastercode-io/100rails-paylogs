@@ -365,3 +365,9 @@ label>span.e-label {
 .pl-stat-widget {
     font-size: 3rem!important;
 }
+.pl-flex-row-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
