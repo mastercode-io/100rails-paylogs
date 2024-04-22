@@ -58,15 +58,15 @@ class CompanyDashboardPage(DashboardPage):
             'primaryXAxis': {
                 'title': 'Week Number',
                 'minimum': 1,
-                'maximum': 52,
+                'maximum': 17,
                 'interval': 1,
             },
             'primaryYAxis': {
                 'title': 'Average Rate per Hour',
                 'labelFormat': '${value}',
                 'minimum': 20,
-                'maximum': 250,
-                'interval': 20,
+                'maximum': 75,
+                'interval': 10,
             },
             'series': [{
                 'xName': 'week',
