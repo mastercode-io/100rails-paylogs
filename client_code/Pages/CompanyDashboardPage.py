@@ -73,19 +73,19 @@ class CompanyDashboardPage(DashboardPage):
                     'content': total_hours_stat.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
-                # {
-                #     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 2,
-                #     'id': 'total_pay_stat',
-                #     'content': total_pay_stat.html,
-                #     'cssClass': PANEL_CSS_CLASS,
-                # },
+                {
+                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 2,
+                    'id': 'total_pay_stat',
+                    'content': total_pay_stat.html,
+                    'cssClass': PANEL_CSS_CLASS,
+                },
                 # {
                 #     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 3,
                 #     # 'id': 'total_pay_widget',
                 #     'cssClass': PANEL_CSS_CLASS,
                 # },
                 {
-                    'sizeX': 2, 'sizeY': 1, 'row': 0, 'col': 2,
+                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 3,
                     'id': 'temp',
                     'cssClass': PANEL_CSS_CLASS,
                 },
