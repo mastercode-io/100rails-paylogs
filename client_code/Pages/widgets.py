@@ -17,8 +17,8 @@ STAT_UP = 'success'
 STAT_DOWN = 'error'
 STAT_UNCHANGED = 'neutral'
 ICON_UP = 'fa-solid fa-up-right'
-ICON_DOWN = 'fa solid fa-down-right'
-ICON_UNCHANGED = 'fa-duotone fa-arrows-left-right'
+ICON_DOWN = 'fa-solid fa-down-right'
+ICON_UNCHANGED = 'fa-solid fa-arrows-left-right'
 
 
 class TickerWidget:
