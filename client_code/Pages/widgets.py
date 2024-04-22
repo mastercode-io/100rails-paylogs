@@ -3,6 +3,21 @@ from anvil.js.window import ej
 from AnvilFusion.tools import utils
 
 
+STAT_ACCENTS = {
+    'primary': 'text-primary',
+    'secondary': 'text-secondary',
+    'success': 'text-success',
+    'error': 'text-error',
+    'warning': 'text-warning',
+    'info': 'text-info',
+    'neutral': 'text-neutral',
+    'accent': 'accent',
+}
+STAT_UP = 'success'
+STAT_DOWN = 'error'
+STAT_UNCHANGED = 'neutral'
+
+
 class TickerWidget:
 
     def __init__(self,
@@ -63,6 +78,35 @@ class TickerWidget:
                         {self.value_format.format(self.value)}\
                     </div>\
                     {self.ticker_direction}\
+                </div>\
+            </div>'
+
+    def form_show(self):
+        pass
+
+
+class StatWidget:
+
+    def __init__(self,
+                 title=None,
+                 value=None,
+                 value_format=None,
+                 description=None,
+                 accent=None,
+                 icon=None,
+                 **kwargs):
+        self.title = title or ''
+        self.value = value or ''
+        self.value_format = value_format or '{:,.0f}'
+        self.description = description or ''
+        self.accent = accent or STAT_UNCHANGED
+
+        self.html = f'\
+            <div class="stats shadow">\
+                <div class="stat>\
+                    <div class="stat-title">{self.title}</div>\
+                    <div class="stat-value {STAT_ACCENTS[self.accent]}>{self.value_format.format(self.value)}</div>\
+                    <div class="stat-desc">{self.description}</div>\
                 </div>\
             </div>'
 

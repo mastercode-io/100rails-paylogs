@@ -1,14 +1,15 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
-from .widgets import TickerWidget, CircularChartWidget
+from .widgets import TickerWidget, CircularChartWidget, StatWidget
 
 PANEL_CSS_CLASS = 'pl-company-dashboard-panel'
+
+
 # PANEL_CSS_CLASS = ''
 
 
 class CompanyDashboardPage(DashboardPage):
 
     def __init__(self, container_id, **kwargs):
-
         total_staff_widget = TickerWidget(title='Total Staff This Pay',
                                           value=1400,
                                           change=0)
@@ -18,6 +19,16 @@ class CompanyDashboardPage(DashboardPage):
                                         value_format='${:,.0f}',
                                         change=-2317,
                                         change_format='{:,.2%}')
+
+        total_staff_stat = StatWidget(title='Total Staff',
+                                      value=1400,
+                                      description='Total staff fo this payroll period',
+                                      accent='unchanged')
+        total_pay_stat = StatWidget(title='Total Pay',
+                                    value=34544,
+                                    value_format='${:,.0f}',
+                                    description='Total pay for this payroll period',
+                                    accent='down')
 
         pay_distribution_data = [
             {'label': 'Regular', 'value': 60},
@@ -29,11 +40,13 @@ class CompanyDashboardPage(DashboardPage):
         pay_distribution_chart = CircularChartWidget(title='Pay Distribution by Rate Type',
                                                      chart_type='doughnut',
                                                      data=pay_distribution_data,
-                                                     value_suffix='%',)
+                                                     value_suffix='%', )
 
         self.widgets = [
             total_staff_widget,
             total_pay_widget,
+            total_staff_stat,
+            total_pay_stat,
             pay_distribution_chart,
         ]
 
@@ -41,18 +54,18 @@ class CompanyDashboardPage(DashboardPage):
             'showGridLines': True,
             'cellSpacing': [0, 0],
             'columns': 4,
-            'cellAspectRatio': 100/100,
+            'cellAspectRatio': 100 / 100,
             'panels': [
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
                     'id': 'total_staff_widget',
-                    'content': total_staff_widget.html,
+                    'content': total_staff_stat.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 1,
                     'id': 'total_pay_widget',
-                    'content': total_pay_widget.html,
+                    'content': total_pay_stat.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
@@ -79,7 +92,6 @@ class CompanyDashboardPage(DashboardPage):
             title_class='pl-company-dashboard-title',
             **kwargs
         )
-
 
     def form_show(self):
         super().form_show()
