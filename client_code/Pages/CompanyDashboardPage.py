@@ -113,7 +113,7 @@ class CompanyDashboardPage(DashboardPage):
             layout=layout,
             container_id=container_id,
             page_title='Company Dashboard',
-            title_class='pl-company-dashboard-title',
+            title_class='primary-content text-6xl',
             **kwargs
         )
 
