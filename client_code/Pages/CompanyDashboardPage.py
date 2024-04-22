@@ -69,28 +69,28 @@ class CompanyDashboardPage(DashboardPage):
             'cellAspectRatio': 100 / 80,
             'panels': [
                 {
-                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
+                    'sizeX': 4, 'sizeY': 1, 'row': 0, 'col': 0,
                     'id': 'total_staff_stat',
                     'content': total_staff_stat.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
-                {
-                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 1,
-                    'id': 'total_hours_stat',
-                    'content': total_hours_stat.html,
-                    'cssClass': PANEL_CSS_CLASS,
-                },
-                {
-                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 2,
-                    'id': 'total_pay_stat',
-                    'content': total_pay_stat.html,
-                    'cssClass': PANEL_CSS_CLASS,
-                },
-                {
-                    'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 3,
-                    # 'id': 'total_pay_widget',
-                    'cssClass': PANEL_CSS_CLASS,
-                },
+                # {
+                #     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 1,
+                #     'id': 'total_hours_stat',
+                #     'content': total_hours_stat.html,
+                #     'cssClass': PANEL_CSS_CLASS,
+                # },
+                # {
+                #     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 2,
+                #     'id': 'total_pay_stat',
+                #     'content': total_pay_stat.html,
+                #     'cssClass': PANEL_CSS_CLASS,
+                # },
+                # {
+                #     'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 3,
+                #     # 'id': 'total_pay_widget',
+                #     'cssClass': PANEL_CSS_CLASS,
+                # },
                 {
                     'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 0,
                     'id': 'pay_distribution_chart',
