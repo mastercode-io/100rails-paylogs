@@ -162,9 +162,13 @@ class CompanyDashboardPage(DashboardPage):
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
-                    'sizeX': 4, 'sizeY': 1, 'row': 3, 'col': 0,
+                    'sizeX': 1, 'sizeY': 1, 'row': 3, 'col': 0,
                     'id': 'message_demo',
                     'content': self.message_demo_html,
+                    'cssClass': PANEL_CSS_CLASS
+                },
+                {
+                    'sizeX': 3, 'sizeY': 1, 'row': 3, 'col': 3,
                     'cssClass': PANEL_CSS_CLASS
                 }
             ],
