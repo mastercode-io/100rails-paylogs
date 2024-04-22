@@ -368,6 +368,6 @@ label>span.e-label {
 .pl-flex-row-start {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
