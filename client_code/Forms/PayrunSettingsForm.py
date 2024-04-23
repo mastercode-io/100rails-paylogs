@@ -28,7 +28,7 @@ class PayrunSettingsForm(FormBase):
                                      options=WEEK_DAYS, value='Friday')
         self.message = InlineMessage(css_class='pl-message-bar')
 
-        steps = [
+        self.payrun_steps = [
             {'label': 'Created', 'iconCss': 'fa-solid fa-circle-1'},
             {'label': 'Review', 'iconCss': 'fa-solid fa-circle-2'},
             {'label': 'Approved', 'iconCss': 'fa-solid fa-circle-3'},
@@ -36,7 +36,7 @@ class PayrunSettingsForm(FormBase):
             {'label': 'Paid', 'iconCss': 'fa-solid fa-circle-5'},
         ]
         self.payrun_flow_steps = StepperWidget(title='Payrun Flow',
-                                               steps=steps,
+                                               steps=self.payrun_steps,
                                                direction='vertical',)
         self.payrun_flow_view = InlineMessage(content=self.payrun_flow_steps.html)
 
@@ -122,6 +122,10 @@ class PayrunSettingsForm(FormBase):
         else:
             self.action = 'view'
         self.form_open(args)
+        new_step = {'label': f'Step {len(self.payrun_steps)}', 'iconCss': f'fa-solid fa-circle-{len(self.payrun_steps)}'}
+        self.payrun_steps.append(new_step)
+        self.payrun_flow_steps.steps = self.payrun_steps
+
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
