@@ -106,6 +106,8 @@ class PayrunSettingsForm(FormBase):
 
     def form_open(self, args, **kwargs):
         super().form_open(args)
+        self.action_button.content = 'Edit' if self.mode == 'view' else 'Save'
+        self.action_button.show()
         self.connection_button.hide()
         # self.form_mode(self.mode)
 
