@@ -33,7 +33,7 @@ class PayrunSettingsForm(FormBase):
         # View mode fields
         self.view_integration = InlineMessage(label='Integration',
                                               label_css='pl-form-field-label',
-                                              css_class='pl-message')
+                                              css_class='pl-message-field')
         self.view_frequency = InlineMessage(label='Frequency',
                                             label_css='pl-form-field-label',
                                             css_class='pl-message-field')
