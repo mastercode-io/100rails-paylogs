@@ -1,4 +1,5 @@
 from AnvilFusion.components.DashboardPage import DashboardPage
+from AnvilFusion.components.FormInputs import Button
 from .widgets import (TickerWidget, CircularChartWidget, StatWidget, ChartWidget,
                       STAT_UNCHANGED, STAT_UP, STAT_DOWN)
 from AnvilFusion.components.FormInputs import InlineMessage
@@ -103,8 +104,10 @@ class CompanyDashboardPage(DashboardPage):
         self.warning_message = InlineMessage(content='Warning message', accent='warning', css_class='pl-message-bar')
         self.error_message = InlineMessage(content='Error message', accent='error', css_class='pl-message-bar')
         self.success_message = InlineMessage(content='Success message', accent='success', css_class='pl-message-bar')
+        self.demo_button = Button(content='Show Alerts', action=self.demo_button_action)
         self.message_demo_html = f'\
             <div class="pl-flex-column-start">\
+                <dvi id="{self.demo_button.container_id}"></dvi>\
                 <dvi id="{self.info_message.container_id}">{self.info_message.html}</dvi>\
                 <dvi id="{self.warning_message.container_id}">{self.warning_message.html}</dvi>\
                 <dvi id="{self.error_message.container_id}">{self.error_message.html}</dvi>\
@@ -191,13 +194,23 @@ class CompanyDashboardPage(DashboardPage):
         super().form_show()
         for widget in self.widgets:
             widget.form_show()
-        self.info_message.show()
-        self.info_message.accent = 'info'
-        self.warning_message.show()
-        self.warning_message.accent = 'warning'
-        self.error_message.show()
-        self.error_message.accent = 'error'
-        self.success_message.show()
-        self.success_message.accent = 'success'
         print('CompanyDashboardPage refresh')
         self.dashboard.refresh()
+
+    def demo_button_action(self, **args):
+        if self.demo_button.content == 'Show Alerts':
+            self.demo_button.content = 'Hide Alerts'
+            self.info_message.show()
+            self.info_message.accent = 'info'
+            self.warning_message.show()
+            self.warning_message.accent = 'warning'
+            self.error_message.show()
+            self.error_message.accent = 'error'
+            self.success_message.show()
+            self.success_message.accent = 'success'
+        else:
+            self.demo_button.content = 'Show Alerts'
+            self.info_message.hide()
+            self.warning_message.hide()
+            self.error_message.hide()
+            self.success_message.hide()

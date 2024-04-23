@@ -136,6 +136,7 @@ class PayrunSettingsForm(FormBase):
             self.pay_period_end_day.enabled = True
             self.pay_day.enabled = True
             self.payrun_flow_steps_field.enabled = True
+            self.payrun_flow_steps_field.fields[0].enabled = False
         else:
             self.action = 'view'
         self.form_open(args)
