@@ -194,6 +194,7 @@ class CompanyDashboardPage(DashboardPage):
         super().form_show()
         for widget in self.widgets:
             widget.form_show()
+        self.demo_button.show()
         self.info_message.hide()
         self.warning_message.hide()
         self.error_message.hide()
