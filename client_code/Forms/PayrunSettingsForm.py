@@ -100,13 +100,16 @@ class PayrunSettingsForm(FormBase):
                          buttons_mode='off',
                          **kwargs)
         self.fullscreen = True
+        self.opened = False
 
     def form_open(self, args, **kwargs):
         super().form_open(args)
         self.action_button.content = 'Edit' if self.action == 'view' else 'Save'
         self.action_button.show()
         self.connection_button.hide()
-        self.payrun_flow_steps.form_show()
+        if not self.opened:
+            self.payrun_flow_steps.form_show()
+            self.opened = True
 
     def action_handler(self, args):
         if self.action == 'view':
