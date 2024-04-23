@@ -111,7 +111,7 @@ class PayrunSettingsForm(FormBase):
         if not self.opened:
             self.payrun_flow_steps.form_show()
             self.opened = True
-        print('form height', self.form.element.style.height)
+        print('form height', self.form.element)
 
     def action_handler(self, args):
         if self.action == 'view':
