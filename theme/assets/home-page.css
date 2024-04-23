@@ -320,6 +320,15 @@ label>span.e-label {
     position: relative;
 }
 
+.pl-form-header {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    line-height: 1.25;
+    color: #111827;
+}
 .pl-message-bar {
     border: none!important;
     border-radius: 0.5rem!important;
