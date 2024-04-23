@@ -30,7 +30,7 @@ class PayrunSettingsForm(FormBase):
         self.message = InlineMessage(css_class='pl-message-bar')
 
         self.payrun_flow_steps_schema = [
-            CheckboxInput(name='created', label='Created', value=True, enabled=True,
+            CheckboxInput(name='created', label='Created', value=True, enabled=False,
                           on_change=self.payrun_flow_changed),
             CheckboxInput(name='ts_entered', label='Timesheets Entered', value=False, enabled=True,
                           on_change=self.payrun_flow_changed),
