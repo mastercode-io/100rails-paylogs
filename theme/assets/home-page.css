@@ -333,6 +333,9 @@ label>span.e-label {
 }
 .pl-form-field-label {
     top: 50%;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
 }
 
 /* Large Screen Styles */
