@@ -61,7 +61,7 @@ class CompanyDashboardPage(DashboardPage):
                 'title': 'Year Week Number',
                 'labelFormat': 'wk{value}',
                 'minimum': 5,
-                'maximum': 16,
+                'maximum': 17,
                 'interval': 1,
             },
             'primaryYAxis': {
