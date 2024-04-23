@@ -73,6 +73,7 @@ class CompanyDashboardPage(DashboardPage):
                 'xName': 'week',
                 'yName': 'rate',
                 'type': 'Line',
+                'width': 4,
             }],
         }
         rate_per_hour_chart_data = [
