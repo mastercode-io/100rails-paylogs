@@ -153,7 +153,7 @@ class PayrunSettingsForm(FormBase):
                 step_num += 1
                 flow_steps.append({'label': field.label, 'iconCss': f'fa-solid fa-circle-{step_num}'})
         print('flow_steps', flow_steps)
-        self.payrun_flow_steps_widget.control.steps = flow_steps
+        self.payrun_flow_steps_widget.steps = flow_steps
         print('steps updated')
 
     def integration_selected(self, args):

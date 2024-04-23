@@ -237,8 +237,9 @@ class StepperWidget:
         self._steps = value
         print('A')
         if self.control is not None:
-            self.control.steps = self._steps
-            self.control.reset()
+            self.control.destroy()
+            self.control = None
+            self.form_show()
         print('B')
 
     def form_show(self, height=None, width=None):
