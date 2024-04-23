@@ -1,5 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 from ..app.models import PayrunConfig, AppIntegration, AppOutApiCredential, SYSTEM_TENANT_UID
 from ..Pages.widgets import StepperWidget
 
@@ -35,11 +36,11 @@ class PayrunSettingsForm(FormBase):
             {'label': 'Synced', 'iconCss': 'fa-solid fa-circle-4'},
             {'label': 'Paid', 'iconCss': 'fa-solid fa-circle-5'},
         ]
-        self.payrun_flow_steps = StepperWidget(title='Payrun Flow',
-                                               steps=self.payrun_steps,
-                                               direction='vertical',
-                                               label_position='right',)
-        self.payrun_flow_view = InlineMessage(content=self.payrun_flow_steps.html)
+        self.payrun_flow_steps_widget = StepperWidget(title='Payrun Flow',
+                                                      steps=self.payrun_steps,
+                                                      direction='vertical',
+                                                      label_position='right', )
+        self.payrun_flow_steps_view = InlineMessage(content=self.payrun_flow_steps_widget.html)
 
         # Buttons
         self.action_button = Button(content='Edit',
@@ -57,32 +58,32 @@ class PayrunSettingsForm(FormBase):
         sections = [
             {
                 'name': '_', 'cols': [
-                    [
-                        self.integration,
-                        self.frequency,
-                        self.pay_period_start_day,
-                        self.pay_period_end_day,
-                        self.pay_day,
+                [
+                    self.integration,
+                    self.frequency,
+                    self.pay_period_start_day,
+                    self.pay_period_end_day,
+                    self.pay_day,
 
-                        # self.view_integration,
-                        # self.view_frequency,
-                        # self.view_pay_period_start_day,
-                        # self.view_pay_period_end_day,
-                        # self.view_pay_day,
-                    ],
-                    [],
-                    [self.payrun_flow_view]
-                ]
+                    # self.view_integration,
+                    # self.view_frequency,
+                    # self.view_pay_period_start_day,
+                    # self.view_pay_period_end_day,
+                    # self.view_pay_day,
+                ],
+                [],
+                [self.payrun_flow_steps_view]
+            ]
             },
             {
                 'name': '_', 'cols': [
-                    [
-                        self.message,
-                        self.connection_button,
-                    ],
-                    [],
-                    []
-                ]
+                [
+                    self.message,
+                    self.connection_button,
+                ],
+                [],
+                []
+            ]
             }
         ]
 
@@ -109,9 +110,8 @@ class PayrunSettingsForm(FormBase):
         self.action_button.show()
         self.connection_button.hide()
         if not self.opened:
-            self.payrun_flow_steps.form_show()
+            self.payrun_flow_steps_widget.form_show(height=self.form.element.offsetHeight - 100)
             self.opened = True
-        print('form height', self.form.element.offsetHeight)
 
     def action_handler(self, args):
         if self.action == 'view':
@@ -124,10 +124,10 @@ class PayrunSettingsForm(FormBase):
         else:
             self.action = 'view'
         self.form_open(args)
-        new_step = {'label': f'Step {len(self.payrun_steps)}', 'iconCss': f'fa-solid fa-circle-{len(self.payrun_steps)}'}
+        new_step = {'label': f'Step {len(self.payrun_steps)}',
+                    'iconCss': f'fa-solid fa-circle-{len(self.payrun_steps)}'}
         self.payrun_steps.append(new_step)
         self.payrun_flow_steps.steps = self.payrun_steps
-
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
