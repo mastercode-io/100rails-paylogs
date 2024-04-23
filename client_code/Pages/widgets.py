@@ -226,10 +226,11 @@ class StepperWidget:
         self.control.reset()
 
     def form_show(self):
-        self.control = ej.navigations.Stepper({
-            'steps': self._steps,
-            'orientation': self.direction,
-            'stepType': self.step_type,
-        })
+        if self.control is None:
+            self.control = ej.navigations.Stepper({
+                'steps': self._steps,
+                'orientation': self.direction,
+                'stepType': self.step_type,
+            })
         self.control.appendTo(f"#{self._element_id}")
 
