@@ -106,6 +106,7 @@ class PayrunSettingsForm(FormBase):
         self.action_button.content = 'Edit' if self.action == 'view' else 'Save'
         self.action_button.show()
         self.connection_button.hide()
+        self.payrun_flow_steps.form_show()
 
     def action_handler(self, args):
         if self.action == 'view':
