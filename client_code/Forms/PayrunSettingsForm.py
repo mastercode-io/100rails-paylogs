@@ -124,6 +124,7 @@ class PayrunSettingsForm(FormBase):
         self.action_button.show()
         self.connection_button.hide()
         if not self.opened:
+            self.payrun_flow_steps_view.show()
             self.payrun_flow_steps_widget.form_show(height=self.form.element.offsetHeight - 100)
             self.opened = True
         self.payrun_flow_changed(args)
