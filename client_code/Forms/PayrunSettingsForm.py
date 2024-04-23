@@ -98,12 +98,11 @@ class PayrunSettingsForm(FormBase):
     def action_handler(self, args):
         if self.action == 'view':
             self.action = 'edit'
-            # self.action_button.content = 'Save'
-            # self.integration.enabled = True
-            # self.frequency.enabled = True
-            # self.pay_period_start_day.enabled = True
-            # self.pay_period_end_day.enabled = True
-            # self.pay_day.enabled = True
+            self.integration.enabled = True
+            self.frequency.enabled = True
+            self.pay_period_start_day.enabled = True
+            self.pay_period_end_day.enabled = True
+            self.pay_day.enabled = True
         else:
             self.action = 'view'
         self.form_open(args)
