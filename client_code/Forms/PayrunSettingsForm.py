@@ -126,6 +126,7 @@ class PayrunSettingsForm(FormBase):
         if not self.opened:
             self.payrun_flow_steps_widget.form_show(height=self.form.element.offsetHeight - 100)
             self.opened = True
+        self.payrun_flow_changed(args)
 
     def action_handler(self, args):
         if self.action == 'view':
@@ -144,7 +145,13 @@ class PayrunSettingsForm(FormBase):
 
     def payrun_flow_changed(self, args):
         print('payrun_flow_changed', args)
-        pass
+        flow_steps = []
+        step_num = 0
+        for field in self.payrun_flow_steps_field.fields:
+            if field.value is True:
+                step_num += 1
+                flow_steps.append({'label': field.label, 'iconCss': f'fa-solid fa-circle-{step_num}'})
+        self.payrun_flow_steps_widget.steps = flow_steps
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
