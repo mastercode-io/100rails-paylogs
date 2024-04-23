@@ -104,10 +104,10 @@ class CompanyDashboardPage(DashboardPage):
         self.warning_message = InlineMessage(content='Warning message', accent='warning', css_class='pl-message-bar')
         self.error_message = InlineMessage(content='Error message', accent='error', css_class='pl-message-bar')
         self.success_message = InlineMessage(content='Success message', accent='success', css_class='pl-message-bar')
-        self.demo_button = Button(content='Show Alerts', action=self.demo_button_action)
+        self.demo_button = Button(content='Hide Alerts', action=self.demo_button_action)
         self.message_demo_html = f'\
             <div class="pl-flex-column-start">\
-                <dvi id="{self.demo_button.container_id}"></dvi><br><br>\
+                <dvi id="{self.demo_button.container_id}"></div><br><br>\
                 <dvi id="{self.info_message.container_id}">{self.info_message.html}</dvi>\
                 <dvi id="{self.warning_message.container_id}">{self.warning_message.html}</dvi>\
                 <dvi id="{self.error_message.container_id}">{self.error_message.html}</dvi>\
@@ -194,12 +194,9 @@ class CompanyDashboardPage(DashboardPage):
         super().form_show()
         for widget in self.widgets:
             widget.form_show()
-        self.demo_button.show()
-        self.info_message.hide()
-        self.warning_message.hide()
-        self.error_message.hide()
-        self.success_message.hide()
         self.dashboard.refresh()
+        self.demo_button.show()
+        self.demo_button_action(None)
 
     def demo_button_action(self, args):
         if self.demo_button.content == 'Show Alerts':
