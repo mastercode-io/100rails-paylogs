@@ -233,9 +233,13 @@ class StepperWidget:
 
     @steps.setter
     def steps(self, value):
+        print('steps', value)
         self._steps = value
+        print('A')
         self.control.steps = value
+        print('B')
         self.control.reset()
+        print('C')
 
     def form_show(self, height=None, width=None):
         if self.control is None:
