@@ -73,7 +73,7 @@ class PayrunSettingsForm(FormBase):
             self.message.content = ''
             self.connection_button.hide()
             self.frequency.hide()
-            self.frequency_view.hide()
+            self.frequency_view.show()
         else:
             self.frequency_view.hide()
             self.frequency.show()
