@@ -54,7 +54,11 @@ class PayrunSettingsForm(FormBase):
             }
         ]
 
-        super().__init__(header='Payrun Settings', sections=sections, action='edit', **kwargs)
+        super().__init__(header='Payrun Settings',
+                         sections=sections,
+                         action='edit',
+                         buttons_mode='off',
+                         **kwargs)
         self.fullscreen = True
         app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
         self.integration.data = app_list
@@ -86,7 +90,7 @@ class PayrunSettingsForm(FormBase):
 
     def scope_selected(self, args):
         print('scope_selected', args)
-        if args.get('value', None) is None or self.scopes.value is None:
+        if self.frequency.visible:
             print('A')
             self.frequency.hide()
             self.frequency_view.show()
