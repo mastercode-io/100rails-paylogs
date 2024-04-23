@@ -26,35 +26,20 @@ class PayrunSettingsForm(FormBase):
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day',
                                      options=WEEK_DAYS, value='Friday')
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
-        self.connection_button = Button(content='Create Connection', action=self.create_connection)
         self.message = InlineMessage(css_class='pl-message-bar')
 
         # Buttons
         self.action_button = Button(content='Edit',
                                     container_id='payrun-settings-action-button',
                                     action=self.action_handler)
+        self.connection_button = Button(content='Create Connection', action=self.create_connection)
+
+        # Header
         self.form_header = f'\
             <div class="pl-form-header">\
                 <div class="pl-form-header-title" style="float: left">Payrun Settings</div>\
                 <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
             </div>'
-
-        # View mode fields
-        # self.view_integration = InlineMessage(label='Integration',
-        #                                       label_css='pl-form-field-label',
-        #                                       css_class='pl-message-field')
-        # self.view_frequency = InlineMessage(label='Frequency',
-        #                                     label_css='pl-form-field-label',
-        #                                     css_class='pl-message-field')
-        # self.view_pay_period_start_day = InlineMessage(label='Pay Period Start Day',
-        #                                                label_css='pl-form-field-label',
-        #                                                css_class='pl-message-field')
-        # self.view_pay_period_end_day = InlineMessage(label='Pay Period End Day',
-        #                                              label_css='pl-form-field-label',
-        #                                              css_class='pl-message-field')
-        # self.view_pay_day = InlineMessage(label='Pay Day',
-        #                                   label_css='pl-form-field-label',
-        #                                   css_class='pl-message-field')
 
         sections = [
             {
@@ -93,13 +78,13 @@ class PayrunSettingsForm(FormBase):
         payrun_config = next(iter(PayrunConfig.search()), None)
         if payrun_config:
             self.data = payrun_config
-            self.mode = 'view'
+            action = 'view'
         else:
-            self.mode = 'edit'
+            action = 'edit'
 
         super().__init__(header=self.form_header,
                          sections=sections,
-                         action=self.mode,
+                         action=action,
                          buttons_mode='off',
                          **kwargs)
         self.fullscreen = True
@@ -109,65 +94,19 @@ class PayrunSettingsForm(FormBase):
         self.action_button.content = 'Edit' if self.mode == 'view' else 'Save'
         self.action_button.show()
         self.connection_button.hide()
-        # self.form_mode(self.mode)
 
     def action_handler(self, args):
-        if self.mode == 'view':
-            self.mode = 'edit'
+        if self.action == 'view':
             self.action = 'edit'
-            self.action_button.content = 'Save'
-            self.integration.enabled = True
-            self.frequency.enabled = True
-            self.pay_period_start_day.enabled = True
-            self.pay_period_end_day.enabled = True
-            self.pay_day.enabled = True
+            # self.action_button.content = 'Save'
+            # self.integration.enabled = True
+            # self.frequency.enabled = True
+            # self.pay_period_start_day.enabled = True
+            # self.pay_period_end_day.enabled = True
+            # self.pay_day.enabled = True
         else:
-            self.mode = 'view'
             self.action = 'view'
-            self.action_button.content = 'Edit'
-            self.integration.enabled = False
-            self.frequency.enabled = False
-            self.pay_period_start_day.enabled = False
-            self.pay_period_end_day.enabled = False
-            self.pay_day.enabled = False
-        self.form.show()
-
-    # def form_mode(self, mode):
-    #     print('form_mode', mode)
-    #     if mode == 'view':
-    #
-    #         self.view_integration.content = self.integration.value['name'] if self.integration.value else 'N/A'
-    #         self.integration.hide()
-    #         self.view_integration.show()
-    #
-    #         self.view_frequency.content = self.frequency.value or 'N/A'
-    #         self.frequency.hide()
-    #         self.view_frequency.show()
-    #
-    #         self.view_pay_period_start_day.content = self.pay_period_start_day.value or 'N/A'
-    #         self.pay_period_start_day.hide()
-    #         self.view_pay_period_start_day.show()
-    #
-    #         self.view_pay_period_end_day.content = self.pay_period_end_day.value or 'N/A'
-    #         self.pay_period_end_day.hide()
-    #         self.view_pay_period_end_day.show()
-    #
-    #         self.view_pay_day.content = self.pay_day.value or 'N/A'
-    #         self.pay_day.hide()
-    #         self.view_pay_day.show()
-    #
-    #     else:
-    #         self.view_integration.hide()
-    #         self.view_frequency.hide()
-    #         self.view_pay_period_start_day.hide()
-    #         self.view_pay_period_end_day.hide()
-    #         self.view_pay_day.hide()
-    #
-    #         self.integration.show()
-    #         self.frequency.show()
-    #         self.pay_period_start_day.show()
-    #         self.pay_period_end_day.show()
-    #         self.pay_day.show()
+        self.form_show()
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
