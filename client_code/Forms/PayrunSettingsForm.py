@@ -1,6 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from ..app.models import PayrunConfig, AppIntegration, AppOutApiCredential, SYSTEM_TENANT_UID
+from ..Pages.widgets import StepperWidget
 
 PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
 WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -25,8 +26,19 @@ class PayrunSettingsForm(FormBase):
                                                 required=True)
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day',
                                      options=WEEK_DAYS, value='Friday')
-        self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
         self.message = InlineMessage(css_class='pl-message-bar')
+
+        steps = [
+            {'label': 'Created', 'iconCss': 'fa-solid fa-circle-1'},
+            {'label': 'Review', 'iconCss': 'fa-solid fa-circle-2'},
+            {'label': 'Approved', 'iconCss': 'fa-solid fa-circle-3'},
+            {'label': 'Synced', 'iconCss': 'fa-solid fa-circle-4'},
+            {'label': 'Paid', 'iconCss': 'fa-solid fa-circle-5'},
+        ]
+        self.payrun_flow_steps = StepperWidget(title='Payrun Flow',
+                                               steps=steps,
+                                               direction='vertical',)
+        self.payrun_flow_view = InlineMessage(content=self.payrun_flow_steps.html)
 
         # Buttons
         self.action_button = Button(content='Edit',
@@ -58,7 +70,7 @@ class PayrunSettingsForm(FormBase):
                         # self.view_pay_day,
                     ],
                     [],
-                    []
+                    [self.payrun_flow_view]
                 ]
             },
             {

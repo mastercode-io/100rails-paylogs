@@ -197,3 +197,39 @@ class ChartWidget:
 
     def form_show(self):
         self.chart.appendTo(f"#{self._element_id}")
+
+
+class StepperWidget:
+
+    def __init__(self, title=None, steps=None, direction=None, step_type=None, **kwargs):
+        self._element_id = utils.new_el_id()
+        self.title = title or ''
+        self._steps = steps or []
+        self.direction = direction or 'horizontal'
+        self.step_type = step_type or 'default'
+        self.control = None
+
+        self.html = f'\
+            <div class="form-group da-form-group">\
+                <div style="font-size: 14px; font-weight: 500;">{self.title}</div>\
+                <div id="{self._element_id}"></div>\
+            </div>'
+
+    @property
+    def steps(self):
+        return self._steps
+
+    @steps.setter
+    def steps(self, value):
+        self._steps = value
+        self.control.steps = value
+        self.control.reset()
+
+    def form_show(self):
+        self.control = ej.navigations.Stepper({
+            'steps': self._steps,
+            'direction': self.direction,
+            'stepType': self.step_type,
+        })
+        self.control.appendTo(f"#{self._element_id}")
+
