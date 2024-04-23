@@ -47,7 +47,7 @@ class PayrunSettingsForm(FormBase):
             CheckboxInput(name='paid', label='Paid', value=False, enabled=True,
                           on_change=self.payrun_flow_changed),
         ]
-        self.payrun_flow_steps_field = MultiFieldInput(name='payrun_steps', label='Payrun Flow Steps',
+        self.payrun_flow_steps_field = MultiFieldInput(name='payrun_steps', label='Payrun Flow Steps<br><br>',
                                                        fields=self.payrun_flow_steps_schema)
 
         self.payrun_flow_steps_widget = StepperWidget(title='Payrun Flow',
@@ -127,7 +127,7 @@ class PayrunSettingsForm(FormBase):
             self.payrun_flow_steps_view.show()
             self.payrun_flow_steps_widget.form_show(height=self.form.element.offsetHeight - 100)
             self.opened = True
-        self.payrun_flow_changed(args)
+        # self.payrun_flow_changed(args)
 
     def action_handler(self, args):
         if self.action == 'view':
@@ -152,8 +152,8 @@ class PayrunSettingsForm(FormBase):
             if field.value is True:
                 step_num += 1
                 flow_steps.append({'label': field.label, 'iconCss': f'fa-solid fa-circle-{step_num}'})
-        # self.payrun_flow_steps_widget.steps = flow_steps
         print('flow_steps', flow_steps)
+        self.payrun_flow_steps_widget.steps = flow_steps
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
