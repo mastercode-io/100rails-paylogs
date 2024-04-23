@@ -14,11 +14,11 @@ class PayrunSettingsForm(FormBase):
 
         self.integration = LookupInput(name='integration', label='Integration',
                                        model='AppIntegration', get_data=False,
-                                       required=True,
                                        on_change=self.integration_selected)
         self.frequency = DropdownInput(name='frequency', label='Frequency',
                                        options=PAYRUN_FREQUENCY, value='Weekly',
                                        required=True)
+        self.frequency_view = InlineMessage(label='Frequency', content='Weekly')
         self.pay_period_start_day = DropdownInput(name='pay_period_start_day', label='Pay Period Start Day',
                                                   options=WEEK_DAYS, value='Monday',
                                                   required=True)
@@ -26,8 +26,7 @@ class PayrunSettingsForm(FormBase):
                                                 options=WEEK_DAYS, value='Sunday',
                                                 required=True)
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day',
-                                     options=WEEK_DAYS, value='Friday',
-                                     required=True)
+                                     options=WEEK_DAYS, value='Friday')
         self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
         self.connection_button = Button(content='Create Connection', action=self.create_connection)
         self.message = InlineMessage(css_class='pl-message-bar')
@@ -38,6 +37,7 @@ class PayrunSettingsForm(FormBase):
                     [
                         self.integration,
                         self.frequency,
+                        self.frequency_view,
                         self.pay_period_start_day,
                         self.pay_period_end_day,
                         self.pay_day,
@@ -64,6 +64,7 @@ class PayrunSettingsForm(FormBase):
     def form_open(self, args, **kwargs):
         super().form_open(args)
         self.connection_button.hide()
+        self.frequency.hide()
 
 
     def integration_selected(self, args):
@@ -71,7 +72,11 @@ class PayrunSettingsForm(FormBase):
             self.message.accent = None
             self.message.content = ''
             self.connection_button.hide()
+            self.frequency.hide()
+            self.frequency_view.hide()
         else:
+            self.frequency_view.hide()
+            self.frequency.show()
             payroll_integration = AppIntegration.get(self.integration.value['uid'])
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
             if not payroll_connection:
