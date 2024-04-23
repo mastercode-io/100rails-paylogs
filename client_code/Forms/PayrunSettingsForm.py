@@ -87,9 +87,11 @@ class PayrunSettingsForm(FormBase):
     def scope_selected(self, args):
         print('scope_selected', args)
         if args.get('value', None) is None or self.scopes.value is None:
+            print('A')
             self.frequency.hide()
             self.frequency_view.show()
         else:
+            print('B')
             self.frequency.show()
             self.frequency_view.hide()
 
