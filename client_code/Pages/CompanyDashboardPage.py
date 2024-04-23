@@ -97,10 +97,10 @@ class CompanyDashboardPage(DashboardPage):
                                           chart_config=rate_per_hour_chart_config,
                                           data=rate_per_hour_chart_data,)
 
-        self.info_message = InlineMessage(content='This is info message', accent='info', css_class='pl-message-bar')
-        self.warning_message = InlineMessage(content='This warning message', accent='warning', css_class='pl-message-bar')
-        self.error_message = InlineMessage(content='This is error message', accent='error', css_class='pl-message-bar')
-        self.success_message = InlineMessage(content='This is success message', accent='success', css_class='pl-message-bar')
+        self.info_message = InlineMessage(content='Info message', accent='info', css_class='pl-message-bar')
+        self.warning_message = InlineMessage(content='Warning message', accent='warning', css_class='pl-message-bar')
+        self.error_message = InlineMessage(content='Error message', accent='error', css_class='pl-message-bar')
+        self.success_message = InlineMessage(content='Success message', accent='success', css_class='pl-message-bar')
         self.message_demo_html = f'\
             <div class="pl-flex-column-start">\
                 <dvi id="{self.info_message.container_id}">{self.info_message.html}</dvi>\
