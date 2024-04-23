@@ -201,12 +201,23 @@ class ChartWidget:
 
 class StepperWidget:
 
-    def __init__(self, title=None, steps=None, direction=None, step_type=None, **kwargs):
+    def __init__(self, title=None,
+                 steps=None, step_type=None,
+                 label_position=None,
+                 direction=None, **kwargs):
         self._element_id = utils.new_el_id()
         self.title = title or ''
         self._steps = steps or []
         self.direction = direction or 'horizontal'
         self.step_type = step_type or 'default'
+        if label_position is None:
+            self.label_position = 'Top'
+        elif label_position.lower() in ['top', 'bottom']:
+            self.label_position = label_position.capitalize()
+        elif label_position.lower() == 'left':
+            self.label_position = 'Start'
+        elif label_position.lower() == 'right':
+            self.label_position = 'End'
         self.control = None
 
         self.html = f'\
@@ -231,6 +242,7 @@ class StepperWidget:
                 'steps': self._steps,
                 'orientation': self.direction,
                 'stepType': self.step_type,
+                'labelPosition': self.label_position,
             })
         self.control.appendTo(f"#{self._element_id}")
 

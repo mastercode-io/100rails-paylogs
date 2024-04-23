@@ -37,7 +37,8 @@ class PayrunSettingsForm(FormBase):
         ]
         self.payrun_flow_steps = StepperWidget(title='Payrun Flow',
                                                steps=self.payrun_steps,
-                                               direction='vertical',)
+                                               direction='vertical',
+                                               label_position='right',)
         self.payrun_flow_view = InlineMessage(content=self.payrun_flow_steps.html)
 
         # Buttons
