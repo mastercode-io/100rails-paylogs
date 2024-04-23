@@ -220,11 +220,12 @@ class StepperWidget:
             self.label_position = 'End'
         self.control = None
 
-        self.html = f'\
-            <div class="form-group da-form-group" style="margin-left: auto; margin-right: auto; width: 50%;">\
+        self.html = (f'\
+            <div class="form-group da-form-group" '
+                     f'style="margin-left: auto; margin-right: auto; width: 50%; height: 100%">\
                 <div style="font-size: 14px; font-weight: 500; margin-bottom: 20px;">{self.title}</div>\
                 <div id="{self._element_id}"></div>\
-            </div>'
+            </div>')
 
     @property
     def steps(self):
