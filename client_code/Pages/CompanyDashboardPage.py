@@ -107,7 +107,7 @@ class CompanyDashboardPage(DashboardPage):
         self.demo_button = Button(content='Show Alerts', action=self.demo_button_action)
         self.message_demo_html = f'\
             <div class="pl-flex-column-start">\
-                <dvi id="{self.demo_button.container_id}"></dvi>\
+                <dvi id="{self.demo_button.container_id}"></dvi><br><br>\
                 <dvi id="{self.info_message.container_id}">{self.info_message.html}</dvi>\
                 <dvi id="{self.warning_message.container_id}">{self.warning_message.html}</dvi>\
                 <dvi id="{self.error_message.container_id}">{self.error_message.html}</dvi>\
@@ -201,7 +201,7 @@ class CompanyDashboardPage(DashboardPage):
         self.success_message.hide()
         self.dashboard.refresh()
 
-    def demo_button_action(self, **args):
+    def demo_button_action(self, args):
         if self.demo_button.content == 'Show Alerts':
             self.demo_button.content = 'Hide Alerts'
             self.info_message.show()
