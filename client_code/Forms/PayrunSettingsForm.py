@@ -35,7 +35,7 @@ class PayrunSettingsForm(FormBase):
                                     action=self.action_handler)
         self.form_header = f'\
             <div class="pl-form-header">\
-                <div class="pl-form-header-title">Payrun Settings</div>\
+                <div class="pl-form-header-title" style="float: left">Payrun Settings</div>\
                 <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
             </div>'
 
