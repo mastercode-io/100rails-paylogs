@@ -154,6 +154,7 @@ class PayrunSettingsForm(FormBase):
                 flow_steps.append({'label': field.label, 'iconCss': f'fa-solid fa-circle-{step_num}'})
         print('flow_steps', flow_steps)
         self.payrun_flow_steps_widget.control.steps = flow_steps
+        print('steps updated')
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
