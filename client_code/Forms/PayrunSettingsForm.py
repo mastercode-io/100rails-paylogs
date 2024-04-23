@@ -84,9 +84,9 @@ class PayrunSettingsForm(FormBase):
         payrun_config = next(iter(PayrunConfig.search()), None)
         if payrun_config:
             self.data = payrun_config
-            self.action = 'view'
+            self.mode = 'view'
         else:
-            self.action = 'edit'
+            self.mode = 'edit'
 
         super().__init__(header='Payrun Settings',
                          sections=sections,
@@ -98,10 +98,10 @@ class PayrunSettingsForm(FormBase):
     def form_open(self, args, **kwargs):
         super().form_open(args)
         self.connection_button.hide()
-        self.form_mode(self.action)
+        self.form_mode(self.mode)
 
-    def form_mode(self, action):
-        if action == 'view':
+    def form_mode(self, mode):
+        if mode == 'view':
 
             self.view_integration.content = self.integration.value['name']
             self.integration.hide()
