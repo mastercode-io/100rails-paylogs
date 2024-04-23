@@ -246,5 +246,6 @@ class StepperWidget:
                 'labelPosition': self.label_position,
             })
         self.control.appendTo(f"#{self._element_id}")
-        print('Stepper element', self.control.element)
+        self.control.element.style.height = height or '100%'
+        self.control.element.style.width = width or '100%'
 
