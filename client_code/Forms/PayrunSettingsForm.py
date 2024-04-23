@@ -101,25 +101,26 @@ class PayrunSettingsForm(FormBase):
         self.form_mode(self.mode)
 
     def form_mode(self, mode):
+        print('form_mode', mode)
         if mode == 'view':
 
-            self.view_integration.content = self.integration.value['name']
+            self.view_integration.content = self.integration.value['name'] if self.integration.value else 'N/A'
             self.integration.hide()
             self.view_integration.show()
 
-            self.view_frequency.content = self.frequency.value
+            self.view_frequency.content = self.frequency.value or 'N/A'
             self.frequency.hide()
             self.view_frequency.show()
 
-            self.view_pay_period_start_day.content = self.pay_period_start_day.value
+            self.view_pay_period_start_day.content = self.pay_period_start_day.value or 'N/A'
             self.pay_period_start_day.hide()
             self.view_pay_period_start_day.show()
 
-            self.view_pay_period_end_day.content = self.pay_period_end_day.value
+            self.view_pay_period_end_day.content = self.pay_period_end_day.value or 'N/A'
             self.pay_period_end_day.hide()
             self.view_pay_period_end_day.show()
 
-            self.view_pay_day.content = self.pay_day.value
+            self.view_pay_day.content = self.pay_day.value or 'N/A'
             self.pay_day.hide()
             self.view_pay_day.show()
 
