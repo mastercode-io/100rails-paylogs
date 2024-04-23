@@ -58,9 +58,9 @@ class CompanyDashboardPage(DashboardPage):
         rate_per_hour_chart_config = {
             'primaryXAxis': {
                 'title': 'Year Week Number',
-                'labelFormat': 'WK-{value}',
-                'minimum': 1,
-                'maximum': 17,
+                'labelFormat': 'wk{value}',
+                'minimum': 5,
+                'maximum': 16,
                 'interval': 1,
             },
             'primaryYAxis': {
