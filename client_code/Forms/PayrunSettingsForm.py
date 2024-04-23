@@ -29,15 +29,29 @@ class PayrunSettingsForm(FormBase):
                                      options=WEEK_DAYS, value='Friday')
         self.message = InlineMessage(css_class='pl-message-bar')
 
-        self.payrun_steps = [
-            {'label': 'Created', 'iconCss': 'fa-solid fa-circle-1'},
-            {'label': 'Review', 'iconCss': 'fa-solid fa-circle-2'},
-            {'label': 'Approved', 'iconCss': 'fa-solid fa-circle-3'},
-            {'label': 'Synced', 'iconCss': 'fa-solid fa-circle-4'},
-            {'label': 'Paid', 'iconCss': 'fa-solid fa-circle-5'},
+        self.payrun_flow_steps_schema = [
+            CheckboxInput(name='created', label='Created', value=True, enabled=False,
+                          on_change=self.payrun_flow_changed),
+            CheckboxInput(name='ts_entered', label='Timesheets Entered', value=False, enabled=True,
+                          on_change=self.payrun_flow_changed),
+            CheckboxInput(name='ts_approve3d', label='Timesheets Approved', value=False, enabled=True,
+                          on_change=self.payrun_flow_changed),
+            CheckboxInput(name='review', label='Review', value=False, enabled=True,
+                          on_change=self.payrun_flow_changed),
+            CheckboxInput(name='pay_calculated', label='Pay Calculated', value=False, enabled=True,
+                          on_change=self.payrun_flow_changed),
+            CheckboxInput(name='pay_approved', label='Pay Approved', value=False, enabled=True,
+                          on_change=self.payrun_flow_changed),
+            CheckboxInput(name='sent', label='Sent to Payroll', value=False, enabled=True,
+                          on_change=self.payrun_flow_changed),
+            CheckboxInput(name='paid', label='Paid', value=False, enabled=True,
+                          on_change=self.payrun_flow_changed),
         ]
+        self.payrun_flow_steps_field = MultiFieldInput(name='payrun_steps', label='Payrun Flow Steps',
+                                                       fields=self.payrun_flow_steps_schema)
+
         self.payrun_flow_steps_widget = StepperWidget(title='Payrun Flow',
-                                                      steps=self.payrun_steps,
+                                                      steps=None,
                                                       direction='vertical',
                                                       label_position='right', )
         self.payrun_flow_steps_view = InlineMessage(content=self.payrun_flow_steps_widget.html)
@@ -71,7 +85,7 @@ class PayrunSettingsForm(FormBase):
                     # self.view_pay_period_end_day,
                     # self.view_pay_day,
                 ],
-                [],
+                [self.payrun_flow_steps_field],
                 [self.payrun_flow_steps_view]
             ]
             },
@@ -124,10 +138,11 @@ class PayrunSettingsForm(FormBase):
         else:
             self.action = 'view'
         self.form_open(args)
-        new_step = {'label': f'Step {len(self.payrun_steps)}',
-                    'iconCss': f'fa-solid fa-circle-{len(self.payrun_steps)}'}
-        self.payrun_steps.append(new_step)
-        self.payrun_flow_steps.steps = self.payrun_steps
+
+
+    def payrun_flow_changed(self, args):
+        print('payrun_flow_changed', args)
+        pass
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
