@@ -106,7 +106,7 @@ class PayrunSettingsForm(FormBase):
             # self.pay_day.enabled = True
         else:
             self.action = 'view'
-        self.form_show()
+        self.form_open(args)
 
     def integration_selected(self, args):
         if not args.get('value') or not self.integration.value:
