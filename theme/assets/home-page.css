@@ -331,6 +331,9 @@ label>span.e-label {
     line-height: 28px;
     margin-left: 12px;
 }
+.pl-form-field-label {
+    top: 50%;
+}
 
 /* Large Screen Styles */
 @media only screen and (min-width: 718px) {
