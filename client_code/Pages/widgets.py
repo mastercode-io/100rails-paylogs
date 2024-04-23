@@ -238,7 +238,7 @@ class StepperWidget:
         print('A')
         self.control.steps = value
         print('B')
-        self.control.reset()
+        # self.control.reset()
         print('C')
 
     def form_show(self, height=None, width=None):
