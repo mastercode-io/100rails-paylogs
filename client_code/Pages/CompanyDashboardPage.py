@@ -153,14 +153,14 @@ class CompanyDashboardPage(DashboardPage):
                 # },
                 {
                     'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 0,
-                    'id': 'pay_distribution_chart',
-                    'content': pay_distribution_chart.html,
+                    'id': 'rate_per_hour_chart',
+                    'content': rate_per_hour_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
                     'sizeX': 2, 'sizeY': 2, 'row': 1, 'col': 2,
-                    'id': 'rate_per_hour_chart',
-                    'content': rate_per_hour_chart.html,
+                    'id': 'pay_distribution_chart',
+                    'content': pay_distribution_chart.html,
                     'cssClass': PANEL_CSS_CLASS,
                 },
                 {
