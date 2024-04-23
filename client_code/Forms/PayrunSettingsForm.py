@@ -57,11 +57,11 @@ class PayrunSettingsForm(FormBase):
                         self.pay_period_end_day,
                         self.pay_day,
 
-                        self.view_integration,
-                        self.view_frequency,
-                        self.view_pay_period_start_day,
-                        self.view_pay_period_end_day,
-                        self.view_pay_day,
+                        # self.view_integration,
+                        # self.view_frequency,
+                        # self.view_pay_period_start_day,
+                        # self.view_pay_period_end_day,
+                        # self.view_pay_day,
                     ],
                     [],
                     []
@@ -90,7 +90,7 @@ class PayrunSettingsForm(FormBase):
 
         super().__init__(header='Payrun Settings',
                          sections=sections,
-                         action='edit',
+                         action=self.mode,
                          buttons_mode='off',
                          **kwargs)
         self.fullscreen = True
@@ -98,7 +98,7 @@ class PayrunSettingsForm(FormBase):
     def form_open(self, args, **kwargs):
         super().form_open(args)
         self.connection_button.hide()
-        self.form_mode(self.mode)
+        # self.form_mode(self.mode)
 
     def form_mode(self, mode):
         print('form_mode', mode)
