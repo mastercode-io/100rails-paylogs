@@ -210,7 +210,7 @@ class StepperWidget:
         self.control = None
 
         self.html = f'\
-            <div class="form-group da-form-group">\
+            <div class="form-group da-form-group" style="float: center">\
                 <div style="font-size: 14px; font-weight: 500;">{self.title}</div>\
                 <div id="{self._element_id}"></div>\
             </div>'
