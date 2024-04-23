@@ -107,7 +107,7 @@ class CompanyDashboardPage(DashboardPage):
         self.demo_button = Button(content='Hide Alerts', action=self.demo_button_action)
         self.message_demo_html = f'\
             <div class="pl-flex-column-start">\
-                <dvi id="{self.demo_button.container_id}"></div><br><br>\
+                <dvi id="{self.demo_button.container_id}"></div><br>\
                 <dvi id="{self.info_message.container_id}">{self.info_message.html}</dvi>\
                 <dvi id="{self.warning_message.container_id}">{self.warning_message.html}</dvi>\
                 <dvi id="{self.error_message.container_id}">{self.error_message.html}</dvi>\
