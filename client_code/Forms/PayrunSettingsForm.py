@@ -29,7 +29,8 @@ class PayrunSettingsForm(FormBase):
                                                 required=True)
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day',
                                      options=WEEK_DAYS, value='Friday')
-        self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi')
+        self.scopes = LookupInput(name='scopes', label='Scopes', model='Scope', select='multi',
+                                  on_change=self.scope_selected)
         self.connection_button = Button(content='Create Connection', action=self.create_connection)
         self.message = InlineMessage(css_class='pl-message-bar')
 
@@ -74,11 +75,7 @@ class PayrunSettingsForm(FormBase):
             self.message.accent = None
             self.message.content = ''
             self.connection_button.hide()
-            self.frequency.hide()
-            self.frequency_view.show()
         else:
-            self.frequency_view.hide()
-            self.frequency.show()
             payroll_integration = AppIntegration.get(self.integration.value['uid'])
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
             if not payroll_connection:
@@ -87,6 +84,14 @@ class PayrunSettingsForm(FormBase):
                                         f"<b>{self.integration.value['name']}</b>")
                 self.connection_button.show()
 
+    def scope_selected(self, args):
+        print('scope_selected', args)
+        if not args.get('value') or not self.integration.value:
+            self.frequency.hide()
+            self.frequency_view.show()
+        else:
+            self.frequency.show()
+            self.frequency_view.hide()
 
     def create_connection(self, args):
         print('create_connection', args)
