@@ -24,7 +24,7 @@ class TimesheetForm(FormBase):
                                        filters=approved_by_filters)
         self.notes = MultiLineInput(name='notes', label='Notes')
         self.total_pay = NumberInput(name='total_pay', label='Total Pay')
-        self.pay_lines = InlineMessage(name='pay_lines', label='Pay Lines')
+        self.pay_lines = InlineMessage(name='pay_lines', label='Pay Lines', css_class='pl-message-field')
 
         sections = [
             {

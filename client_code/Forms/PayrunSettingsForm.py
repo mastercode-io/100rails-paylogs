@@ -18,7 +18,9 @@ class PayrunSettingsForm(FormBase):
         self.frequency = DropdownInput(name='frequency', label='Frequency',
                                        options=PAYRUN_FREQUENCY, value='Weekly',
                                        required=False)
-        self.frequency_view = InlineMessage(label='Frequency', content='Weekly')
+        self.frequency_view = InlineMessage(label='Frequency',
+                                            content='Weekly',
+                                            css_class='pl-message-field')
         self.pay_period_start_day = DropdownInput(name='pay_period_start_day', label='Pay Period Start Day',
                                                   options=WEEK_DAYS, value='Monday',
                                                   required=True)
