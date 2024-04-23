@@ -194,7 +194,10 @@ class CompanyDashboardPage(DashboardPage):
         super().form_show()
         for widget in self.widgets:
             widget.form_show()
-        print('CompanyDashboardPage refresh')
+        self.info_message.hide()
+        self.warning_message.hide()
+        self.error_message.hide()
+        self.success_message.hide()
         self.dashboard.refresh()
 
     def demo_button_action(self, **args):
