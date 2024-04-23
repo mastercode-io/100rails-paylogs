@@ -90,7 +90,7 @@ class PayrunSettingsForm(FormBase):
 
         super().__init__(header='Payrun Settings',
                          sections=sections,
-                         action=self.action,
+                         action='edit',
                          buttons_mode='off',
                          **kwargs)
         self.fullscreen = True
