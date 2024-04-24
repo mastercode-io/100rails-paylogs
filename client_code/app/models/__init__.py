@@ -323,6 +323,7 @@ class Job:
 
     job_type = Relationship("JobType")
     location = Relationship("Location")
+    tags = Relationship("Tag", with_many=True)
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     number = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
@@ -399,6 +400,7 @@ class PayRateRule:
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     scope = Relationship("Scope")
+    tags = Relationship("Tag", with_many=True)
     time_scope = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     time_limits = Attribute(field_type=types.FieldTypes.BOOLEAN)
     start_time = Attribute(field_type=types.FieldTypes.TIME)
@@ -528,5 +530,15 @@ class ScopeType:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+class Tag:
+    _title = "name"
+
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    short_code = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)

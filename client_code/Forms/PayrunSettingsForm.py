@@ -27,6 +27,7 @@ class PayrunSettingsForm(FormBase):
                                                 required=True)
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day',
                                      options=WEEK_DAYS, value='Friday')
+        self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date')
         self.message = InlineMessage(css_class='pl-message-bar')
 
         self.payrun_flow_steps_schema = [

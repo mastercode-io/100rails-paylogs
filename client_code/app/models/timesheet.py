@@ -61,6 +61,7 @@ class Timesheet:
     employee = Relationship("Employee")
     payrun = Relationship("Payrun")
     job = Relationship("Job")
+    tags = Relationship("Tag", with_many=True)
     date = Attribute(field_type=types.FieldTypes.DATE)
     start_time = Attribute(field_type=types.FieldTypes.DATETIME)
     end_time = Attribute(field_type=types.FieldTypes.DATETIME)
