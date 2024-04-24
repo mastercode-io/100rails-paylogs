@@ -158,6 +158,7 @@ db_schema:
     - name: count_overtime
       admin_ui: {width: 200, order: 0}
       type: bool
+    - {name: tags, admin_ui: null, type: link_multiple, target: tags}
   app_environments:
     client: none
     server: full
@@ -237,6 +238,21 @@ db_schema:
     - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
     - {name: frequency, admin_ui: null, type: string}
     title: Payrun Configs
+  tags:
+    title: Tags
+    client: none
+    server: full
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: status, admin_ui: null, type: string}
+    - {name: short_code, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
   files:
     client: none
     server: full
@@ -481,6 +497,7 @@ db_schema:
       admin_ui: {order: 0, width: 200}
       type: simpleObject
     - {name: remote_links, admin_ui: null, type: simpleObject}
+    - {name: tags, admin_ui: null, type: link_multiple, target: tags}
     title: Timesheets
   jobs:
     title: Jobs
@@ -505,6 +522,7 @@ db_schema:
       admin_ui: {order: 0, width: 200}
       type: string
     - {name: remote_links, admin_ui: null, type: simpleObject}
+    - {name: tags, admin_ui: null, type: link_multiple, target: tags}
   tenants:
     client: none
     server: full
