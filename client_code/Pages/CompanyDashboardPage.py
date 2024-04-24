@@ -169,7 +169,7 @@ class CompanyDashboardPage(DashboardPage):
                 {
                     'sizeX': 1, 'sizeY': 1, 'row': 3, 'col': 0,
                     'id': 'message_demo',
-                    'content': self.message_demo_html,
+                    # 'content': self.message_demo_html,
                     'cssClass': PANEL_CSS_CLASS
                 },
                 {
