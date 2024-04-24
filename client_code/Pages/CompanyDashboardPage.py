@@ -195,8 +195,8 @@ class CompanyDashboardPage(DashboardPage):
         for widget in self.widgets:
             widget.form_show()
         self.dashboard.refresh()
-        self.demo_button.show()
-        self.demo_button_action(None)
+        # self.demo_button.show()
+        # self.demo_button_action(None)
 
     def demo_button_action(self, args):
         if self.demo_button.content == 'Show Alerts':
