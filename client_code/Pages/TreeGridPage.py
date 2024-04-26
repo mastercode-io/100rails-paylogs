@@ -36,7 +36,7 @@ class TreeGridPage(PageBase):
         }
         self.grid_data = None
 
-        self.tree_grid = ej.grids.TreeGrid({
+        self.tree_grid = ej.treegrid.TreeGrid({
             'dataSource': self.grid_data,
             'idMapping': 'uid',
             'parentIdMapping': 'employee__uid',
