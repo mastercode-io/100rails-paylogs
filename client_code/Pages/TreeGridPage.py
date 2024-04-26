@@ -21,7 +21,7 @@ class TreeGridPage(PageBase):
         self.timesheet_fields = {
             'columns': [
                 {'name': 'payrun.payrun_week', 'label': 'Payrun Week'},
-                {'name': 'employee.full_name', 'label': 'Employee Name'},
+                {'name': 'employee.uid', 'label': 'Employee Name'},
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
                 {'name': 'date', 'label': 'Date', 'format': 'E dd MMM, yyyy'},
