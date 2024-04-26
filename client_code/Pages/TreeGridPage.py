@@ -18,19 +18,21 @@ class TreeGridPage(PageBase):
         self.content = f'<br><div id="{self.container_id}"></div>'
 
         self.view_config = {
-            {'name': 'payrun.payrun_week', 'label': 'Payrun Week'},
-            {'name': 'employee.full_name', 'label': 'Employee Name'},
-            {'name': 'job.name', 'label': 'Job Name'},
-            {'name': 'job.job_type.short_code', 'label': 'Job Type'},
-            {'name': 'date', 'label': 'Date', 'format': 'E dd MMM, yyyy'},
-            {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
-            {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
-            {'name': 'total_hours_view', 'label': 'Total Hours'},
-            {'name': 'total_hours', 'visible': False},
-            {'name': 'total_pay', 'label': 'Total Pay'},
-            {'name': 'pay_lines', 'visible': False},
-            {'name': 'pay_lines_view', 'label': 'Pay Lines', 'width': 300, 'disable_html_encode': False},
-            {'name': 'status', 'label': 'Status'},
+            'columns': [
+                {'name': 'payrun.payrun_week', 'label': 'Payrun Week'},
+                {'name': 'employee.full_name', 'label': 'Employee Name'},
+                {'name': 'job.name', 'label': 'Job Name'},
+                {'name': 'job.job_type.short_code', 'label': 'Job Type'},
+                {'name': 'date', 'label': 'Date', 'format': 'E dd MMM, yyyy'},
+                {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
+                {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
+                {'name': 'total_hours_view', 'label': 'Total Hours'},
+                {'name': 'total_hours', 'visible': False},
+                {'name': 'total_pay', 'label': 'Total Pay'},
+                {'name': 'pay_lines', 'visible': False},
+                {'name': 'pay_lines_view', 'label': 'Pay Lines', 'width': 300, 'disable_html_encode': False},
+                {'name': 'status', 'label': 'Status'},
+            ]
         }
         self.grid_data = None
 
@@ -57,7 +59,6 @@ class TreeGridPage(PageBase):
         })
 
         super().__init__(page_title=title, content=self.content, **kwargs)
-
 
     def form_show(self, **args):
         print('TreeGridPage.form_show')
