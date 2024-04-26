@@ -63,10 +63,9 @@ PL_MENU_ITEMS = {
             {'id': 'developer_import', 'text': 'Import Data', 'items': []},
             {'id': 'developer_export', 'text': 'Export Data', 'items': []},
         ]},
-        {'id': 'developer_preview', 'text': 'Developer Preview', 'items': [
-            {'id': 'developer_form_preview', 'text': 'Form Preview', 'items': []},
-            {'id': 'developer_grid_preview', 'text': 'Grid View Preview', 'items': []},
-            {'id': 'developer_page_preview', 'text': 'Page Preview', 'items': []},
+        {'id': 'developer_prototype', 'text': 'Prototype', 'items': [
+            {'id': 'developer_tenant_form', 'text': 'Tenant Form', 'items': []},
+            {'id': 'developer_tree_grid', 'text': 'Tree Grid View', 'items': []},
         ]},
     ]
 }
@@ -105,7 +104,8 @@ PL_NAV_ITEMS = {
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
-    'developer_form_preview': {'type': 'form', 'class': 'TenantForm', 'props': {}},
+    'developer_tenant_form': {'type': 'form', 'class': 'TenantForm', 'props': {}},
+    'developer_tree_grid': {'type': 'form', 'class': 'TreeGridPage', 'props': {}},
     # 'developer_grid_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
     # 'developer_page_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
 }
