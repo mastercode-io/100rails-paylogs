@@ -17,7 +17,8 @@ class TreeGridPage(PageBase):
         self.container_id = f'tree-grid-page-{uuid.uuid4()}'
         self.content = f'<br><div id="{self.container_id}"></div>'
 
-        self.view_config = {
+        self.grid_data = None
+        self.timesheet_fields = {
             'columns': [
                 {'name': 'payrun.payrun_week', 'label': 'Payrun Week'},
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
@@ -34,14 +35,18 @@ class TreeGridPage(PageBase):
                 {'name': 'status', 'label': 'Status'},
             ]
         }
-        self.grid_data = None
+        self.employee_fields = {
+            'columns': [
+                {'name': 'full_name', 'label': 'Employee Name'},
+            ]
+        }
 
         self.tree_grid = ej.treegrid.TreeGrid({
             'dataSource': self.grid_data,
             'idMapping': 'uid',
             'parentIdMapping': 'employee__uid',
             'columns': [
-                {'field': 'employee__full_name', 'headerText': 'Employee'},
+                {'field': 'full_name', 'headerText': 'Employee'},
                 {'field': 'job__name', 'headerText': 'Job Name'},
                 {'field': 'job__type', 'headerText': 'Job Type'},
                 {'field': 'date', 'headerText': 'Date'},
@@ -63,7 +68,13 @@ class TreeGridPage(PageBase):
     def form_show(self, **args):
         print('TreeGridPage.form_show')
         super().form_show(**args)
-        self.grid_data = Timesheet.get_grid_view(self.view_config)
+        emp_data = Employee.get_grid_view(self.employee_fields)
+        ts_data = Timesheet.get_grid_view(self.timesheet_fields)
+        for i in range(5):
+            print(emp_data[i])
+        for i in range(5):
+            print(ts_data[i])
+        self.grid_data = emp_data + ts_data
         self.tree_grid.dataSource = self.grid_data
         self.tree_grid.appendTo(f'#{self.container_id}')
         self.tree_grid.refresh()
