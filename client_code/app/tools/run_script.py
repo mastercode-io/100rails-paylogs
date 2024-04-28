@@ -7,8 +7,9 @@ def bar():
     integration = AppIntegration.get_by('service_name', 'scaflog')
     tenant = Tenant.get_by('name', 'Simos')
     print(integration, tenant)
-    api_credentials = anvil.server.call('generate_api_key', tenant['uid'], integration)
-    print(api_credentials)
+    print(integration['uid'], integration['service_name'])
+    # api_credentials = anvil.server.call('generate_api_key', tenant['uid'], integration)
+    # print(api_credentials)
 
 
 def foo():
