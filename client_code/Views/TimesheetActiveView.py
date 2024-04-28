@@ -10,9 +10,9 @@ import datetime
 import json
 
 
-class TimesheetListView(GridView):
+class TimesheetActiveView(GridView):
     def __init__(self, **kwargs):
-        print('TimesheetListView')
+        print('TimesheetActiveView')
 
         view_config = {
             'model': 'Timesheet',
