@@ -12,6 +12,7 @@ class RunScriptPage(PageBase):
         self.execution_log = InlineMessage(name='execution_log')
         self.content = f'<br><div id="{self.run_button.container_id}></div><br><br>'
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
+        print(self.content)
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
