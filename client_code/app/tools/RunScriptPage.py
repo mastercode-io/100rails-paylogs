@@ -10,7 +10,7 @@ class RunScriptPage(PageBase):
         title = 'Run Script (developer)'
         self.run_button = Button(content='Run Script', action=self.run_button_action)
         self.execution_log = InlineMessage(name='execution_log')
-        self.content = f'<br><div id="{self.run_button.container_id}></div><br><br>'
+        self.content = f'<br><div id="{self.run_button.container_id}"></div><br><br>'
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
         print(self.content)
 
