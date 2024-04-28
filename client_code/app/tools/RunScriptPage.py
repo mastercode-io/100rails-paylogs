@@ -14,7 +14,7 @@ class RunScriptPage(PageBase):
         self.content += f'<div id="{self.execution_log.container_id}" style="overflow-y: scroll; height: 100%;"></div>'
         print(self.content)
 
-        super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
+        super().__init__(page_title=None, content=self.content, overflow='auto', **kwargs)
 
 
     def form_show(self, **args):
