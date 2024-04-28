@@ -21,7 +21,7 @@ PL_MENU_ITEMS = {
         {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
         {'id': 'timesheet_upcoming_period', 'text': 'Upcoming Period', 'items': []},
         {'id': 'timesheet_active_period', 'text': 'Active Period', 'items': []},
-        {'id': 'timesheet_past_period', 'text': 'Past Period', 'items': []},
+        {'id': 'timesheet_past_period', 'text': 'Past Periods', 'items': []},
         {'id': 'timesheet_import', 'text': 'Sync Timesheets', 'items': []},
         {'id': 'timesheet_upload_data', 'text': 'Upload Data', 'items': []},
     ],
