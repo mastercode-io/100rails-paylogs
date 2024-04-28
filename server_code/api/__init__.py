@@ -87,6 +87,8 @@ def generate_api_key(tenant_uid, api_service: AppIntegration):
             first_name=api_service['name'],
             last_name=tenant['name'],
         )
+        print('api_user_row', api_user_row)
+        print(tenant_uid, api_service['name'], tenant['name'])
         api_service_user = User.get(api_user_row['uid'])
     else:
         temp_user = anvil.users.signup_with_email(f'{str(uuid.uuid4())}@paylogs.com', api_service_password)
