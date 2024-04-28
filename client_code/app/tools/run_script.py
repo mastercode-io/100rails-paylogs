@@ -8,8 +8,8 @@ def bar():
     tenant = Tenant.get_by('name', 'Simos')
     print(integration, tenant)
     print(integration['uid'], integration['service_name'])
-    # api_credentials = anvil.server.call('generate_api_key', tenant['uid'], integration)
-    # print(api_credentials)
+    api_credentials = anvil.server.call('generate_api_key', tenant['uid'], integration)
+    print(api_credentials)
 
 
 def foo():

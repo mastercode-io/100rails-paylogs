@@ -53,8 +53,8 @@ def get_api_service_login(tenant_uid, service_name):
 
 
 @anvil.server.callable
-def register_api_service(name, description, url, connection_type='in'):
-    api_service = AppIntegration.get_by('service_name', name)
+def register_api_service(service_name, description, url, connection_type='in'):
+    api_service = AppIntegration.get_by('service_name', service_name)
     if api_service:
         api_service['description'] = description
         api_service['url'] = url
@@ -62,7 +62,7 @@ def register_api_service(name, description, url, connection_type='in'):
         api_service['status'] = 'active'
     else:
         api_service = AppIntegration(
-            service_name=name,
+            service_name=service_name,
             description=description,
             url=url,
             connection_type=connection_type,
@@ -74,7 +74,7 @@ def register_api_service(name, description, url, connection_type='in'):
 
 @anvil.server.callable
 def generate_api_key(tenant_uid, api_service: AppIntegration):
-    api_service_login = get_api_service_login(tenant_uid, api_service['name'])
+    api_service_login = get_api_service_login(tenant_uid, api_service['service_name'])
     api_service_password = generate_password()
     api_service_user = User.get_by('email', api_service_login)
     if not api_service_user:
@@ -84,11 +84,11 @@ def generate_api_key(tenant_uid, api_service: AppIntegration):
             tenant_uid=tenant_uid,
             uid=str(uuid.uuid4()),
             confirmed_email=True,
-            first_name=api_service['name'],
+            first_name=api_service['service_name'],
             last_name=tenant['name'],
         )
         print('api_user_row', api_user_row)
-        print(tenant_uid, api_service['name'], tenant['name'])
+        print(tenant_uid, api_service['service_name'], tenant['name'])
         api_service_user = User.get(api_user_row['uid'])
     else:
         temp_user = anvil.users.signup_with_email(f'{str(uuid.uuid4())}@paylogs.com', api_service_password)
