@@ -7,7 +7,9 @@ from AnvilFusion.datamodel import migrate
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.features.developer.MigratePage import MigratePage
+from ..tools.RunScriptPage import RunScriptPage
 from ...Pages import CopilotChat
+
 
 # Sidebar control CSS
 PL_SIDEBAR_CSS = 'e-inherit e-caret-hide pm-sidebar-menu'
@@ -64,6 +66,7 @@ PL_MENU_ITEMS = {
         {'id': 'developer_tools', 'text': 'Tools', 'items': [
             {'id': 'developer_import', 'text': 'Import Data', 'items': []},
             {'id': 'developer_export', 'text': 'Export Data', 'items': []},
+            {'id': 'developer_run_script', 'text': 'Run Script', 'items': []},
         ]},
         {'id': 'developer_prototype', 'text': 'Prototype', 'items': [
             {'id': 'developer_tenant_form', 'text': 'Tenant Form', 'items': []},
@@ -108,6 +111,7 @@ PL_NAV_ITEMS = {
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
+    'developer_run_script': {'type': 'page', 'page': RunScriptPage, 'props': {}},
     'developer_tenant_form': {'type': 'form', 'class': 'TenantForm', 'props': {}},
     'developer_tree_grid': {'type': 'page', 'name': 'TreeGridPage', 'props': {}},
     # 'developer_grid_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
