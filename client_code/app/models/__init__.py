@@ -205,7 +205,7 @@ class User:
             else:
                 return 'Not Found'
         return 'N/A'
-    tenant_name = Computed("tenant_uid", "get_tenant_name")
+    tenant_name = Computed(["tenant_uid"], "get_tenant_name")
 
 
 @model_type
