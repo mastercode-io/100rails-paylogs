@@ -56,9 +56,10 @@ class AppOutApiCredential:
 class AppIntegration:
     _title = "service_name"
     service_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    service_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     url = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    connection_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    auth_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    direction = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 

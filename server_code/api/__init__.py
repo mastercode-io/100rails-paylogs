@@ -53,19 +53,19 @@ def get_api_service_login(tenant_uid, service_name):
 
 
 @anvil.server.callable
-def register_api_service(service_name, description, url, connection_type='in'):
+def register_api_service(service_name, description, url, direction='in'):
     api_service = AppIntegration.get_by('service_name', service_name)
     if api_service:
         api_service['description'] = description
         api_service['url'] = url
-        api_service['connection_type'] = connection_type
+        api_service['direction'] = direction
         api_service['status'] = 'active'
     else:
         api_service = AppIntegration(
             service_name=service_name,
             description=description,
             url=url,
-            connection_type=connection_type,
+            direction=direction,
             status='active',
         )
     api_service.save()
@@ -96,7 +96,7 @@ def generate_api_key(tenant_uid, api_service: AppIntegration):
         temp_user.delete()
     api_service_user.save()
 
-    if api_service['connection_type'] == 'in' or api_service['connection_type'] == 'bidirectional':
+    if api_service['direction'] == 'in' or api_service['direction'] == 'bidirectional':
         api_credential = AppInApiCredential.search(api_service=api_service, api_user=api_service_user)
         if not api_credential:
             api_credential = AppInApiCredential(
