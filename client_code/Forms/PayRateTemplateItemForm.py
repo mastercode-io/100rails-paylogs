@@ -44,6 +44,7 @@ class PayRateTemplateItemForm(FormBase):
             # add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
             view_config=specific_roles_view, edit_mode='inline',
         )
+        print('specific_roles', self.specific_roles.container_id)
 
         # self.subform_base = SubformBase(
         #     name='subform_base', model='PayRateTemplateSpecificRole', fields=specific_roles_columns,
