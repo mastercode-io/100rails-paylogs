@@ -102,13 +102,14 @@ class HomePage(HomePageTemplate):
                 "select": self.appbar_user_menu_select,
             }
         )
-        self.appbar_settings_menu_items = [
-            {'id': 'settings_users', 'text': 'Users', 'items': []},
-            {'id': 'settings_locations', 'text': 'Locations', 'items': []},
-            {'id': 'settings_employee_roles', 'text': 'Employee Roles', 'items': []},
-            {'id': 'settings_job_types', 'text': 'Job Types', 'items': []},
-            {'id': 'settings_timesheet_types', 'text': 'Timesheet Types', 'items': []},
-        ]
+        self.appbar_settings_menu_items = nav.PL_MENU_ITEMS['settings_menu']
+        #     [
+        #     {'id': 'settings_users', 'text': 'Users', 'items': []},
+        #     {'id': 'settings_locations', 'text': 'Locations', 'items': []},
+        #     {'id': 'settings_employee_roles', 'text': 'Employee Roles', 'items': []},
+        #     {'id': 'settings_job_types', 'text': 'Job Types', 'items': []},
+        #     {'id': 'settings_timesheet_types', 'text': 'Timesheet Types', 'items': []},
+        # ]
         self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
             {
                 "cssClass": "e-inherit e-caret-hide pl-menu-font",
