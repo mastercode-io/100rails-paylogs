@@ -41,7 +41,7 @@ class PayRateTemplateItemForm(FormBase):
         self.specific_roles = SubformGrid(
             name='specific_roles', label='Pay Rate Specific Roles', model='PayRateTemplateSpecificRole',
             link_model='PayRateTemplateItem', link_field='pay_rate_template_item',
-            add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
+            # add_edit_form='PayRateTemplateSpecificRoleForm', form_container_id=kwargs.get('target'),
             view_config=specific_roles_view, edit_mode='inline',
         )
 
@@ -81,6 +81,7 @@ class PayRateTemplateItemForm(FormBase):
         # super().__init__(sections=sections, subforms=[self.subform_base], **kwargs)
         super().__init__(sections=sections, **kwargs)
         self.fullscreen = True
+
 
     def pay_rate_rule_selected(self, args):
         print('pay_rate_rule_selected', self.pay_rate_rule.value, args)
