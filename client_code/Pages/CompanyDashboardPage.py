@@ -215,3 +215,8 @@ class CompanyDashboardPage(DashboardPage):
             self.warning_message.hide()
             self.error_message.hide()
             self.success_message.hide()
+
+    def destroy(self):
+        for widget in self.widgets:
+            widget.destroy()
+        super().destroy()

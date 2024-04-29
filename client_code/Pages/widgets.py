@@ -87,6 +87,9 @@ class TickerWidget:
     def form_show(self):
         pass
 
+    def destroy(self):
+        pass
+
 
 class StatWidget:
 
@@ -121,6 +124,9 @@ class StatWidget:
             </div>')
 
     def form_show(self):
+        pass
+
+    def destroy(self):
         pass
 
 
@@ -164,6 +170,9 @@ class CircularChartWidget:
     def form_show(self):
         self.chart.appendTo(f"#{self._element_id}")
 
+    def destroy(self):
+        self.chart.destroy()
+
 
 class ChartWidget:
 
@@ -197,6 +206,9 @@ class ChartWidget:
 
     def form_show(self):
         self.chart.appendTo(f"#{self._element_id}")
+
+    def destroy(self):
+        self.chart.destroy()
 
 
 class StepperWidget:
@@ -250,4 +262,7 @@ class StepperWidget:
         self.control.appendTo(f"#{self._element_id}")
         self.control.element.style.height = height or '100%'
         self.control.element.style.width = width or '100%'
+
+    def destroy(self):
+        self.control.destroy()
 
