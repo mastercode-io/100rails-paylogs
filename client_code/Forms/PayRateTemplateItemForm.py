@@ -45,6 +45,7 @@ class PayRateTemplateItemForm(FormBase):
             view_config=specific_roles_view, edit_mode='inline',
         )
         print('specific_roles', self.specific_roles.container_id)
+        self.specific_roles.grid_height = '100%'
 
         # self.subform_base = SubformBase(
         #     name='subform_base', model='PayRateTemplateSpecificRole', fields=specific_roles_columns,
