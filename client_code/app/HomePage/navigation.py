@@ -36,12 +36,16 @@ PL_MENU_ITEMS = {
         {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate Templates', 'items': []},
         {'id': 'payroll_calendar', 'text': 'Payroll Calendar', 'items': []},
     ],
+    'directory_menu': [
+        {'id': 'directory_employees', 'text': 'Employees', 'items': []},
+        {'id': 'directory_locations', 'text': 'Locations', 'items': []},
+        {'id': 'directory_jobs', 'text': 'Jobs', 'items': []},
+        {'id': 'directory_job_types', 'text': 'Job Types', 'items': []},
+        {'id': 'directory_employee_roles', 'text': 'Employee Roles', 'items': []},
+        {'id': 'directory_timesheet_types', 'text': 'Timesheet Types', 'items': []},
+    ],
     'settings_menu': [
         {'id': 'settings_users', 'text': 'Users', 'items': []},
-        {'id': 'settings_locations', 'text': 'Locations', 'items': []},
-        {'id': 'settings_employee_roles', 'text': 'Employee Roles', 'items': []},
-        {'id': 'settings_job_types', 'text': 'Job Types', 'items': []},
-        {'id': 'settings_timesheet_types', 'text': 'Timesheet Types', 'items': []},
     ],
     'admin_menu': [
         {'id': 'admin_tenants', 'text': 'Tenants', 'items': []},
@@ -92,11 +96,14 @@ PL_NAV_ITEMS = {
     'payroll_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_calendar': {'type': 'page', 'name': 'CalendarPage', 'action': 'open', 'props': {}},
 
+    'directory_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
+    'directory_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
+    'directory_jobs': {'model': 'Job', 'type': 'view', 'action': 'open', 'props': {}},
+    'directory_job_types': {'model': 'JobType', 'type': 'view', 'action': 'open', 'props': {}},
+    'directory_employee_roles': {'model': 'EmployeeRole', 'type': 'view', 'action': 'open', 'props': {}},
+    'directory_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
+
     'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
-    'settings_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
-    'settings_employee_roles': {'model': 'EmployeeRole', 'type': 'view', 'action': 'open', 'props': {}},
-    'settings_job_types': {'model': 'JobType', 'type': 'view', 'action': 'open', 'props': {}},
-    'settings_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
 
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
