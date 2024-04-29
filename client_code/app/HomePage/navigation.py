@@ -128,6 +128,7 @@ PL_NAV_ITEMS = {
 PL_DEFAULT_NAV_ITEMS = {
     'timesheet_menu': 'timesheet_dashboard',
     'payroll_menu': 'payroll_payrun_report',
+    'directory_menu': 'directory_employees',
     'settings_menu': 'settings_users',
     'admin_menu': 'admin_tenants',
     'developer_menu': 'developer_views',
@@ -137,6 +138,10 @@ PL_DEFAULT_NAV_ITEMS = {
 PL_APPBAR_MENU = [
     {'id': 'timesheet_menu', 'text': 'TIMESHEET', 'items': PL_MENU_ITEMS['timesheet_menu']},
     {'id': 'payroll_menu', 'text': 'PAYROLL', 'items': PL_MENU_ITEMS['payroll_menu']},
+    {'id': 'directory_menu', 'text': 'DIRECTORY', 'items': PL_MENU_ITEMS['directory_menu']},
+    # {'id': 'settings_menu', 'text': 'SETTINGS', 'items': PL_MENU_ITEMS['settings_menu']},
+    # {'id': 'admin_menu', 'text': 'ADMIN', 'items': PL_MENU_ITEMS['admin_menu']},
+    # {'id': 'developer_menu', 'text': 'DEVELOPER', 'items': PL_MENU_ITEMS['developer_menu']},
 ]
 PL_APPBAR_MENU_ADMIN = [
     {'separator': True},
