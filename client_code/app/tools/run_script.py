@@ -6,12 +6,12 @@ from ..models import AppIntegration, Tenant
 def add_enum_list():
     enum_name = 'DAY_TYPE_OPTIONS'
     enum_options = [
-        'Any Day',
+        'AnyDay',
         'Weekday',
         'Weekend',
         'Saturday',
         'Sunday',
-        'Public Holiday',
+        'PublicHoliday',
         'Week',
         'RDO',
     ]
