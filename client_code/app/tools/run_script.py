@@ -1,5 +1,23 @@
 import anvil.server
+from ...app import models
 from ..models import AppIntegration, Tenant
+
+
+def add_enum_list():
+    enum_name = 'DAY_TYPE_OPTIONS'
+    enum_options = [
+        'Any Day',
+        'Weekday',
+        'Weekend',
+        'Saturday',
+        'Sunday',
+        'Public Holiday',
+        'Week',
+        'RDO',
+    ]
+    enum_values = {x: x for x in enum_options}
+    enum = models.AppEnum(name=enum_name, options=enum_values).save()
+    print(enum)
 
 
 def bar():
@@ -13,4 +31,4 @@ def bar():
 
 
 def foo():
-    bar()
+    add_enum_list()
