@@ -433,6 +433,7 @@ def post_item(resource_name, resource_model, resource_json_schema, post_data, in
 
 
 def check_link_ids(resource, post_data, integration_uid):
+    print('check_link_ids', post_data)
     link_ids = post_data.get('link_id_list', []) or []
     check_result = {'link_id_list': link_ids}
     persist_id_list = []
