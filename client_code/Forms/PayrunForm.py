@@ -82,15 +82,16 @@ class PayrunForm(FormBase):
                              **kwargs)
             self.create = False
 
-        super().__init__(sections=sections, **kwargs)
+        # super().__init__(sections=sections, **kwargs)
         self.payrun_config = next(iter(PayrollConfig.search()), None)
 
 
     def form_open(self, args, **kwargs):
-        super().form_open(args, **kwargs)
         if not self.payrun_config:
             self.message.message_type = 'e-warning'
             self.message.content = 'Payrun settings not configured'
+            self.action = 'view'
+        super().form_open(args, **kwargs)
         if self.action == 'add':
             self.show_payrun_items.hide()
             pay_period_dates = []
