@@ -84,26 +84,20 @@ class PayrollSettingsForm(FormBase):
 
         sections = [
             {
-                'name': 'Pay Period', 'cols': [
+                'name': 'pay_period', 'label': 'Pay Period', 'cols': [
                     [
                         self.frequency,
                         self.pay_period_start_day,
                         self.pay_period_end_day,
                         self.pay_day,
                         self.payrun_initial_date,
-
-                        # self.view_integration,
-                        # self.view_frequency,
-                        # self.view_pay_period_start_day,
-                        # self.view_pay_period_end_day,
-                        # self.view_pay_day,
                     ],
                     [],
                     []
                 ]
             },
             {
-                'name': 'Pay Calculation', 'cols': [
+                'name': 'pay_calculation', 'label': 'Pay Calculation', 'cols': [
                     [
                         self.pay_category_type,
                     ],
@@ -112,7 +106,7 @@ class PayrollSettingsForm(FormBase):
                 ]
             },
             {
-                'name': 'Payroll Integration', 'cols': [
+                'name': 'integration', 'label': 'Payroll Integration', 'cols': [
                     [
                         self.use_integration,
                         self.integration,
@@ -161,8 +155,12 @@ class PayrollSettingsForm(FormBase):
             self.pay_period_start_day.enabled = True
             self.pay_period_end_day.enabled = True
             self.pay_day.enabled = True
-            self.payrun_flow_steps_field.enabled = True
-            self.payrun_flow_steps_field.fields[0].enabled = False
+            self.payrun_initial_date.enabled = True
+            self.pay_category_type.enabled = True
+            self.use_integration.enabled = True
+            self.integration.enabled = True
+            # self.payrun_flow_steps_field.enabled = True
+            # self.payrun_flow_steps_field.fields[0].enabled = False
         else:
             self.action = 'view'
         self.form_open(args)
