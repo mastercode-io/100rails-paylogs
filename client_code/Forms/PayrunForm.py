@@ -140,9 +140,11 @@ class PayrunForm(FormBase):
 
     def show_payrun_items_switch(self, args):
         if self.show_payrun_items.value:
-            self.fullscreen = True
-            self.form.show(True)
-            self.payrun_items.show()
-            self.show_payrun_items.value = False
-            self.show_payrun_items.hide()
+            if not self.fullscreen:
+                self.fullscreen = True
+                self.form.show(True)
+            else:
+                self.payrun_items.show()
+                self.show_payrun_items.hide()
+                self.show_payrun_items.value = False
 
