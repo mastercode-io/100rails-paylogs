@@ -219,25 +219,6 @@ db_schema:
       type: link_single
       target: users
     title: App In Api Credentials
-  payrun_configs:
-    client: none
-    server: full
-    columns:
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: name, admin_ui: null, type: string}
-    - {name: pay_day, admin_ui: null, type: string}
-    - {name: pay_period_end_day, admin_ui: null, type: string}
-    - {name: pay_period_start_day, admin_ui: null, type: string}
-    - {name: scopes, admin_ui: null, type: link_multiple, target: scopes}
-    - {name: status, admin_ui: null, type: string}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
-    - {name: frequency, admin_ui: null, type: string}
-    title: Payrun Configs
   tags:
     title: Tags
     client: none
@@ -687,6 +668,25 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: App Custom Fields Schemas
+  payroll_configs:
+    client: none
+    server: full
+    columns:
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: name, admin_ui: null, type: string}
+    - {name: pay_day, admin_ui: null, type: string}
+    - {name: pay_period_end_day, admin_ui: null, type: string}
+    - {name: pay_period_start_day, admin_ui: null, type: string}
+    - {name: scopes, admin_ui: null, type: link_multiple, target: scopes}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
+    - {name: frequency, admin_ui: null, type: string}
+    title: Payroll Configs
   calendars:
     client: none
     server: full
