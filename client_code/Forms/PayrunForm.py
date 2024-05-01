@@ -22,6 +22,7 @@ PAY_DAY_DELTA = {
     'Thursday': 4,
     'Friday': 5,
 }
+DATE_FORMAT = 'd MMM yyyy'
 
 
 class PayrunForm(FormBase):
@@ -34,10 +35,10 @@ class PayrunForm(FormBase):
                                                save=False
                                                )
         self.pay_period_start = DateInput(name='pay_period_start', label='Pay Period Start',
-                                          enabled=False)
+                                          string_format=DATE_FORMAT, enabled=False)
         self.pay_period_end = DateInput(name='pay_period_end', label='Pay Period End',
-                                        enabled=False)
-        self.pay_date = DateInput(name='pay_date', label='Pay Date')
+                                        string_format=DATE_FORMAT, enabled=False)
+        self.pay_date = DateInput(name='pay_date', label='Pay Date', string_format=DATE_FORMAT,)
         self.status = DropdownInput(name='status', label='Status', options=PAYRUN_STATUSES, value='Created',
                                     enabled=False)
         self.notes = MultiLineInput(name='notes', label='Notes', rows=4)
@@ -59,7 +60,8 @@ class PayrunForm(FormBase):
             ]
         }
         self.show_payrun_items = CheckboxInput(name='show_payrun_items', label='Show Payrun Items',
-                                               value=False, save=False)
+                                               value=False, save=False,
+                                               on_change=self.show_payrun_items_switch)
         self.payrun_items = SubformGrid(name='payrun_items', label='Payrun Items', model='PayrunItem',
                                         link_model='PayRun', link_field='payrun',
                                         form_container_id=kwargs.get('target'),
@@ -95,6 +97,7 @@ class PayrunForm(FormBase):
             self.create = True
         else:
             super().__init__(sections=sections,
+                             width=POPUP_WIDTH_COL3,
                              header='View Payrun',
                              **kwargs)
             self.create = False
@@ -134,4 +137,14 @@ class PayrunForm(FormBase):
             self.pay_date.value = self.pay_period_end.value + datetime.timedelta(
                 days=PAY_DAY_DELTA[self.payroll_config['pay_day']]
             )
+
+    def show_payrun_items_switch(self, args):
+        if self.show_payrun_items.value:
+            self.fullscreen = True
+            self.form.show(True)
+            self.payrun_items.show()
+        else:
+            self.payrun_items.hide()
+            self.fullscreen = False
+            self.form.show(False)
 
