@@ -691,6 +691,9 @@ db_schema:
     - name: pay_category_type
       admin_ui: {width: 200}
       type: string
+    - name: payrun_initial_date
+      admin_ui: {width: 200, order: -1}
+      type: date
     title: Payroll Configs
   calendars:
     client: none
