@@ -115,7 +115,8 @@ class PayrunForm(FormBase):
         if self.action == 'add':
             self.set_payrun_dates()
             self.show_payrun_items.hide()
-        self.payrun_items.hide()
+        if not self.fullscreen:
+            self.payrun_items.hide()
 
 
     def set_payrun_dates(self):
