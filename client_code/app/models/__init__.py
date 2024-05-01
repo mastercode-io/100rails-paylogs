@@ -495,6 +495,7 @@ class PayrollConfig:
     pay_period_start_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_period_end_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    payrun_initial_date = Attribute(field_type=types.FieldTypes.DATE)
     pay_category_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
