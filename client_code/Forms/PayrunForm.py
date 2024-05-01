@@ -3,7 +3,9 @@ from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 from ..app.models import Payrun, PayrollConfig
+import anvil.tables as tables
 import datetime
+import calendar
 
 
 PAYRUN_STATUSES = [
@@ -13,6 +15,13 @@ PAYRUN_STATUSES = [
     'Submitted',
     'Paid'
 ]
+PAY_DAY_DELTA = {
+    'Monday': 1,
+    'Tuesday': 2,
+    'Wednesday': 3,
+    'Thursday': 4,
+    'Friday': 5,
+}
 
 
 class PayrunForm(FormBase):
@@ -59,9 +68,8 @@ class PayrunForm(FormBase):
 
         sections = [
             {
-                'name': '_', 'cols': [
+                'name': '_', 'rows': [
                     [self.message],
-                    []
                 ]
             },
             {
@@ -92,20 +100,37 @@ class PayrunForm(FormBase):
             self.create = False
 
         # super().__init__(sections=sections, **kwargs)
-        self.payrun_config = next(iter(PayrollConfig.search()), None)
+        self.payroll_config = next(iter(PayrollConfig.search()), None)
 
 
     def form_open(self, args, **kwargs):
-        if not self.payrun_config:
+        if not self.payroll_config:
             self.message.message_type = 'e-warning'
             self.message.content = 'Payrun settings not configured'
             self.action = 'view'
         super().form_open(args, **kwargs)
         if self.action == 'add':
             self.show_payrun_items.hide()
-            pay_period_dates = []
-            today = datetime.datetime.today()
-            current_monday = start_of_week = today - datetime.timedelta(days=today.weekday())
-            last_monday = current_monday - datetime.timedelta(days=7)
         self.payrun_items.hide()
+
+
+    def set_payrun_dates(self):
+        if self.payroll_config:
+            last_payrun = next(iter(Payrun.search(
+                search_query=tables.order_by('pay_period_start', ascending=False),
+            )), None)
+            if last_payrun:
+                self.pay_period_start.value = last_payrun['pay_period_end'] + datetime.timedelta(days=1)
+            else:
+                self.pay_period_start.value = self.payroll_config['payrun_initial_date']
+            if self.payroll_config['frequency'] == 'Weekly':
+                self.pay_period_end.value = self.pay_period_start.value + datetime.timedelta(days=6)
+            elif self.payroll_config['frequency'] == 'Fortnightly':
+                self.pay_period_end.value = self.pay_period_start.value + datetime.timedelta(days=13)
+            elif self.payroll_config['frequency'] == 'Monthly':
+                self.pay_period_end.value = self.pay_period_start.value + datetime.timedelta(
+                    days=calendar.monthrange(self.pay_period_start.value.year, self.pay_period_start.value.month)[1])
+            self.pay_date.value = self.pay_period_end.value + datetime.timedelta(
+                days=PAY_DAY_DELTA[self.payroll_config['pay_day']]
+            )
 
