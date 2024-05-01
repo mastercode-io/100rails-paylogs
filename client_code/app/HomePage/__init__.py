@@ -199,7 +199,7 @@ class HomePage(HomePageTemplate):
             "click", self.assistant.toggle
         )
 
-        self.login_user()
+        # ˚self.login_user()
 
     # def settings_click(self, args):
     #     print('settings menu', args.item.id)
