@@ -2,7 +2,7 @@ from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
-from ..app.models import Payrun, PayrunConfig
+from ..app.models import Payrun, PayrollConfig
 import datetime
 
 
