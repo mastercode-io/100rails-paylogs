@@ -21,7 +21,7 @@ PL_ASSISTANT_WIDTH = 300
 PL_MENU_ITEMS = {
     'timesheet_menu': [
         {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
-        {'id': 'timesheet_submitted', 'text': 'Submitted Timesheets', 'items': []},
+        {'id': 'timesheet_submitted', 'text': 'Unassigned', 'items': []},
         {'id': 'timesheet_active_payrun', 'text': 'Active Payrun', 'items': []},
         {'id': 'timesheet_closed_periods', 'text': 'Closed Periods', 'items': []},
         {'id': 'timesheet_import', 'text': 'Sync Timesheets', 'items': []},
