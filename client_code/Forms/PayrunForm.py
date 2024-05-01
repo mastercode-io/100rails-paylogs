@@ -6,6 +6,15 @@ from ..app.models import Payrun, PayrollConfig
 import datetime
 
 
+PAYRUN_STATUSES = [
+    'Created',
+    'Preview',
+    'Approved',
+    'Submitted',
+    'Paid'
+]
+
+
 class PayrunForm(FormBase):
     def __init__(self, **kwargs):
         print('PayrunForm')
@@ -20,7 +29,8 @@ class PayrunForm(FormBase):
         self.pay_period_end = DateInput(name='pay_period_end', label='Pay Period End',
                                         enabled=False)
         self.pay_date = DateInput(name='pay_date', label='Pay Date')
-        self.status = RadioButtonInput(name='status', label='Status', options=['Draft', 'Posted'], value='Draft')
+        self.status = DropdownInput(name='status', label='Status', options=PAYRUN_STATUSES, value='Created',
+                                    enabled=False)
         self.notes = MultiLineInput(name='notes', label='Notes', rows=4)
 
         payrun_items_view = {
@@ -59,7 +69,6 @@ class PayrunForm(FormBase):
                     [self.pay_period_start, self.pay_period_end, self.pay_date,
                      self.show_payrun_items],
                     [self.notes, self.status],
-                    [],
                 ]
             },
             {
