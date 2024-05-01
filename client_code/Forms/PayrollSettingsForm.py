@@ -7,8 +7,8 @@ from ..Pages.widgets import StepperWidget
 PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
 WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 PAY_CATEGORY_TYPES = {
-    'single': 'Single category for each pay rule',
-    'role': 'Pay category for each pay rule/employee role',
+    'Single': 'Single category for each pay rule',
+    'Role': 'Pay category for each pay rule/employee role',
 }
 
 
@@ -38,7 +38,7 @@ class PayrollSettingsForm(FormBase):
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day', options=WEEK_DAYS, value='Friday',
                                      required=True)
         self.pay_category_type = DropdownInput(name='pay_category_type', label='Pay Category Type',
-                                               options=PAY_CATEGORY_TYPES.keys(), value='single',
+                                               options=list(PAY_CATEGORY_TYPES.keys()), value='Single',
                                                on_change=self.pay_category_type_selected,
                                                required=True)
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
@@ -86,7 +86,8 @@ class PayrollSettingsForm(FormBase):
 
         sections = [
             {
-                'name': 'pay_period', 'label': 'Pay Period', 'cols': [
+                'name': 'pay_period', 'label': 'Pay Period', 'label_style': 'margin-bottom:10px',
+                'cols': [
                     [
                         self.frequency,
                         self.pay_period_start_day,
@@ -99,7 +100,8 @@ class PayrollSettingsForm(FormBase):
                 ]
             },
             {
-                'name': 'pay_calculation', 'label': 'Pay Calculation', 'cols': [
+                'name': 'pay_calculation', 'label': 'Pay Calculation',  'label_style': 'margin-bottom:10px',
+                'cols': [
                     [
                         self.pay_category_type,
                     ],
@@ -108,7 +110,8 @@ class PayrollSettingsForm(FormBase):
                 ]
             },
             {
-                'name': 'integration', 'label': 'Payroll Integration', 'cols': [
+                'name': 'integration', 'label': 'Payroll Integration',  'label_style': 'margin-bottom:10px',
+                'cols': [
                     [
                         self.use_integration,
                         self.integration,
