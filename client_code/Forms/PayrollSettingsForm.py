@@ -167,7 +167,17 @@ class PayrollSettingsForm(FormBase):
             # self.payrun_flow_steps_field.enabled = True
             # self.payrun_flow_steps_field.fields[0].enabled = False
         else:
+            super().form_save(args, hide=False)
             self.action = 'view'
+            # self.integration.enabled = False
+            # self.frequency.enabled = False
+            # self.pay_period_start_day.enabled = False
+            # self.pay_period_end_day.enabled = False
+            # self.pay_day.enabled = False
+            # self.payrun_initial_date.enabled = False
+            # self.pay_category_type.enabled = False
+            # self.use_integration.enabled = False
+            # self.integration.enabled = False
         self.form_open(args)
 
     def payrun_flow_changed(self, args):
