@@ -462,7 +462,6 @@ class PayRateTemplateSpecificRole:
 class Payrun:
     _title = "pay_period_start"
 
-    integration = Relationship("AppIntegration")
     pay_period_start = Attribute(field_type=types.FieldTypes.DATE)
     pay_period_end = Attribute(field_type=types.FieldTypes.DATE)
     pay_date = Attribute(field_type=types.FieldTypes.DATE)
