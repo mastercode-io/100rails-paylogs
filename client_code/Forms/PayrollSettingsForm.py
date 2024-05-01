@@ -169,6 +169,9 @@ class PayrollSettingsForm(FormBase):
         else:
             super().form_save(args, hide=False)
             self.action = 'view'
+            payroll_config = next(iter(PayrollConfig.search()), None)
+            if payroll_config:
+                self.data = payroll_config
             # self.integration.enabled = False
             # self.frequency.enabled = False
             # self.pay_period_start_day.enabled = False
