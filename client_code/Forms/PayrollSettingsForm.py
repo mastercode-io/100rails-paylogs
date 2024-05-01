@@ -37,12 +37,13 @@ class PayrollSettingsForm(FormBase):
                                                 required=True)
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day', options=WEEK_DAYS, value='Friday',
                                      required=True)
+        self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
+                                             string_format='d MMM yyy', required=True)
+
         self.pay_category_type = DropdownInput(name='pay_category_type', label='Pay Category Type',
                                                options=list(PAY_CATEGORY_TYPES.keys()), value='Single',
                                                on_change=self.pay_category_type_selected,
                                                required=True)
-        self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
-                                             format='d MMM yyy', required=True)
 
         self.payrun_flow_steps_schema = [
             CheckboxInput(name='created', label='Created', value=True, enabled=False,
@@ -214,8 +215,6 @@ class PayrollSettingsForm(FormBase):
         print('use_integration_changed', args)
         if self.use_integration.value is True:
             self.integration.show()
-            if self.action == 'view':
-                self.connection_button.hide()
         else:
             self.integration.hide()
 
