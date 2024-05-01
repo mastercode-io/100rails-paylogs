@@ -212,8 +212,10 @@ class PayrollSettingsForm(FormBase):
 
     def use_integration_changed(self, args):
         print('use_integration_changed', args)
-        if self.use_integration.value is True and self.action == 'edit':
+        if self.use_integration.value is True:
             self.integration.show()
+            if self.action == 'view':
+                self.connection_button.hide()
         else:
             self.integration.hide()
 
