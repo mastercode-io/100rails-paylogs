@@ -1,4 +1,4 @@
-from AnvilFusion.components.FormBase import FormBase
+from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL3
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
@@ -39,6 +39,8 @@ class PayrunForm(FormBase):
                 GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE,
             ]
         }
+        self.show_payrun_items = CheckboxInput(name='show_payrun_items', label='Show Payrun Items',
+                                               value=False, save=False)
         self.payrun_items = SubformGrid(name='payrun_items', label='Payrun Items', model='PayrunItem',
                                         link_model='PayRun', link_field='payrun',
                                         form_container_id=kwargs.get('target'),
@@ -54,7 +56,8 @@ class PayrunForm(FormBase):
             },
             {
                 'name': '_', 'cols': [
-                    [self.pay_period_start, self.pay_period_end, self.pay_date],
+                    [self.pay_period_start, self.pay_period_end, self.pay_date,
+                     self.show_payrun_items],
                     [self.notes, self.status],
                     [],
                 ]
@@ -66,18 +69,21 @@ class PayrunForm(FormBase):
             }
         ]
 
-        super().__init__(sections=sections, **kwargs)
-        self.fullscreen = True
-        if self.action == 'add':
-            self.form.header = 'Create Payrun'
-        self.payrun_config = next(iter(PayrollConfig.search()), None)
-        if not self.payrun_config:
-            self.action = 'view'
+        if kwargs.get('data') is None or kwargs['data']['uid'] is None:
+            super().__init__(sections=sections,
+                             width=POPUP_WIDTH_COL3,
+                             header='Create Payrun',
+                             button_save_label='Create',
+                             **kwargs)
+            self.create = True
         else:
-            pay_period_dates = []
-            today = datetime.datetime.today()
-            current_monday = start_of_week = today - datetime.timedelta(days=today.weekday())
-            last_monday = current_monday - datetime.timedelta(days=7)
+            super().__init__(sections=sections,
+                             header='View Payrun',
+                             **kwargs)
+            self.create = False
+
+        super().__init__(sections=sections, **kwargs)
+        self.payrun_config = next(iter(PayrollConfig.search()), None)
 
 
     def form_open(self, args, **kwargs):
@@ -85,3 +91,11 @@ class PayrunForm(FormBase):
         if not self.payrun_config:
             self.message.message_type = 'e-warning'
             self.message.content = 'Payrun settings not configured'
+        if self.action == 'add':
+            self.show_payrun_items.hide()
+            pay_period_dates = []
+            today = datetime.datetime.today()
+            current_monday = start_of_week = today - datetime.timedelta(days=today.weekday())
+            last_monday = current_monday - datetime.timedelta(days=7)
+        self.payrun_items.hide()
+
