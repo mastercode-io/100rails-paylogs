@@ -70,7 +70,7 @@ class PayrunForm(FormBase):
         self.fullscreen = True
         if self.action == 'add':
             self.form.header = 'Create Payrun'
-        self.payrun_config = next(iter(PayrunConfig.search()), None)
+        self.payrun_config = next(iter(PayrollConfig.search()), None)
         if not self.payrun_config:
             self.action = 'view'
         else:
