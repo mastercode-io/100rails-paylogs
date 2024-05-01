@@ -112,11 +112,11 @@ class PayrunForm(FormBase):
             self.message.content = 'Payrun settings not configured'
             self.action = 'view'
         super().form_open(args, **kwargs)
+        if not self.fullscreen:
+            self.payrun_items.hide()
         if self.action == 'add':
             self.set_payrun_dates()
             self.show_payrun_items.hide()
-        if not self.fullscreen:
-            self.payrun_items.hide()
 
 
     def set_payrun_dates(self):
