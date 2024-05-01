@@ -652,7 +652,6 @@ db_schema:
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: remote_links, admin_ui: null, type: simpleObject}
-    - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
     - {name: action_log, admin_ui: null, type: simpleObject}
   app_custom_fields_schemas:
     client: none
