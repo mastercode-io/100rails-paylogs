@@ -28,19 +28,21 @@ class PayrollSettingsForm(FormBase):
 
         self.frequency = DropdownInput(name='frequency', label='Frequency',
                                        options=PAYRUN_FREQUENCY, value='Weekly',
-                                       required=False)
+                                       required=True)
         self.pay_period_start_day = DropdownInput(name='pay_period_start_day', label='Pay Period Start Day',
                                                   options=WEEK_DAYS, value='Monday',
                                                   required=True)
         self.pay_period_end_day = DropdownInput(name='pay_period_end_day', label='Pay Period End Day',
                                                 options=WEEK_DAYS, value='Sunday',
                                                 required=True)
-        self.pay_day = DropdownInput(name='pay_day', label='Pay Day',
-                                     options=WEEK_DAYS, value='Friday')
+        self.pay_day = DropdownInput(name='pay_day', label='Pay Day', options=WEEK_DAYS, value='Friday',
+                                     required=True)
         self.pay_category_type = DropdownInput(name='pay_category_type', label='Pay Category Type',
                                                options=PAY_CATEGORY_TYPES.keys(), value='single',
-                                               on_change=self.pay_category_type_selected)
-        self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date')
+                                               on_change=self.pay_category_type_selected,
+                                               required=True)
+        self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
+                                             required=True)
 
         self.payrun_flow_steps_schema = [
             CheckboxInput(name='created', label='Created', value=True, enabled=False,
