@@ -21,9 +21,9 @@ PL_ASSISTANT_WIDTH = 300
 PL_MENU_ITEMS = {
     'timesheet_menu': [
         {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
-        {'id': 'timesheet_upcoming_period', 'text': 'Upcoming Period', 'items': []},
-        {'id': 'timesheet_active_period', 'text': 'Active Period', 'items': []},
-        {'id': 'timesheet_past_period', 'text': 'Past Periods', 'items': []},
+        {'id': 'timesheet_submitted', 'text': 'Submitted Timesheets', 'items': []},
+        {'id': 'timesheet_active_payrun', 'text': 'Active Payrun', 'items': []},
+        {'id': 'timesheet_closed_periods', 'text': 'Closed Periods', 'items': []},
         {'id': 'timesheet_import', 'text': 'Sync Timesheets', 'items': []},
         {'id': 'timesheet_upload_data', 'text': 'Upload Data', 'items': []},
     ],
@@ -82,9 +82,9 @@ PL_MENU_ITEMS = {
 # Navigation items/actions
 PL_NAV_ITEMS = {
     'timesheet_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
-    'timesheet_upcoming_period': {'class': 'TimesheetUpcomingView', 'type': 'custom', 'action': 'open', 'props': {}},
-    'timesheet_active_period': {'class': 'TimesheetActiveView', 'type': 'custom', 'action': 'open', 'props': {}},
-    'timesheet_past_period': {'class': 'TimesheetPastView', 'type': 'custom', 'action': 'open', 'props': {}},
+    'timesheet_submitted': {'class': 'TimesheetSubmittedView', 'type': 'custom', 'action': 'open', 'props': {}},
+    'timesheet_active_payrun': {'class': 'TimesheetActiveView', 'type': 'custom', 'action': 'open', 'props': {}},
+    'timesheet_closed_periods': {'class': 'TimesheetClosedView', 'type': 'custom', 'action': 'open', 'props': {}},
     'timesheet_import': {'type': 'page', 'name': 'ImportTimesheetsPage', 'action': 'open', 'props': {}},
     'timesheet_upload_data': {'type': 'page', 'name': 'UploadDataPage', 'action': 'open', 'props': {}},
 

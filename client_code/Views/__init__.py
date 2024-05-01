@@ -1,4 +1,4 @@
 from .TenantsView import TenantsView
-from .TimesheetUpcomingView import TimesheetUpcomingView
+from .TimesheetSubmittedView import TimesheeSubmittedView
 from .TimesheetActiveView import TimesheetActiveView
-from .TimesheetPastView import TimesheetPastView
+from .TimesheetClosedView import TimesheetClosedView
