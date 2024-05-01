@@ -143,5 +143,6 @@ class PayrunForm(FormBase):
             self.fullscreen = True
             self.form.show(True)
             self.payrun_items.show()
+            self.show_payrun_items.value = False
             self.show_payrun_items.hide()
 
