@@ -110,6 +110,7 @@ class PayrunForm(FormBase):
             self.action = 'view'
         super().form_open(args, **kwargs)
         if self.action == 'add':
+            self.set_payrun_dates()
             self.show_payrun_items.hide()
         self.payrun_items.hide()
 
