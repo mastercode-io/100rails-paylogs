@@ -64,6 +64,7 @@ class TimesheetSubmittedView(GridView):
             model='Timesheet',
             title='Unassigned Timesheets',
             view_config=view_config,
+            filters={'payrun': None},
             context_menu_items=context_menu_items,
             toolbar_actions=toolbar_actions,
             **kwargs)
