@@ -42,7 +42,7 @@ class PayrollSettingsForm(FormBase):
                                                on_change=self.pay_category_type_selected,
                                                required=True)
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
-                                             required=True)
+                                             format='d MMM yyy', required=True)
 
         self.payrun_flow_steps_schema = [
             CheckboxInput(name='created', label='Created', value=True, enabled=False,
@@ -165,7 +165,6 @@ class PayrollSettingsForm(FormBase):
             self.pay_category_type.enabled = True
             self.use_integration.enabled = True
             self.integration.enabled = True
-            self.connection_button.enabled = True
             # self.payrun_flow_steps_field.enabled = True
             # self.payrun_flow_steps_field.fields[0].enabled = False
         else:
@@ -174,7 +173,6 @@ class PayrollSettingsForm(FormBase):
             payroll_config = next(iter(PayrollConfig.search()), None)
             if payroll_config:
                 self.data = payroll_config
-            self.connection_button.enabled = False
             # self.integration.enabled = False
             # self.frequency.enabled = False
             # self.pay_period_start_day.enabled = False
@@ -214,7 +212,7 @@ class PayrollSettingsForm(FormBase):
 
     def use_integration_changed(self, args):
         print('use_integration_changed', args)
-        if self.use_integration.value is True:
+        if self.use_integration.value is True and self.action == 'edit':
             self.integration.show()
         else:
             self.integration.hide()
