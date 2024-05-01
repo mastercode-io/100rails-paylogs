@@ -128,7 +128,7 @@ class PayrollSettingsForm(FormBase):
         self.integration.data = app_list
         payroll_config = next(iter(PayrollConfig.search()), None)
         if payroll_config:
-            self.data = payroll_config
+            # self.data = payroll_config
             action = 'view'
         else:
             action = 'edit'
@@ -137,6 +137,7 @@ class PayrollSettingsForm(FormBase):
                          sections=sections,
                          action=action,
                          buttons_mode='off',
+                         data=payroll_config,
                          **kwargs)
         self.fullscreen = True
         self.opened = False
