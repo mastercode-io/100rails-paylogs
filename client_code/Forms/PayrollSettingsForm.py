@@ -1,7 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
-from ..app.models import PayrunConfig, AppIntegration, AppOutApiCredential, SYSTEM_TENANT_UID
+from ..app.models import PayrollConfig, AppIntegration, AppOutApiCredential, SYSTEM_TENANT_UID
 from ..Pages.widgets import StepperWidget
 
 PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
@@ -127,9 +127,9 @@ class PayrollSettingsForm(FormBase):
 
         app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
         self.integration.data = app_list
-        payrun_config = next(iter(PayrunConfig.search()), None)
-        if payrun_config:
-            self.data = payrun_config
+        payroll_config = next(iter(PayrollConfig.search()), None)
+        if payroll_config:
+            self.data = payroll_config
             action = 'view'
         else:
             action = 'edit'
