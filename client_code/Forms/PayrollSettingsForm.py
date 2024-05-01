@@ -8,7 +8,7 @@ PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
 WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 
-class PayrunSettingsForm(FormBase):
+class PayrollSettingsForm(FormBase):
     def __init__(self, **kwargs):
         print('PayrunSettingsForm')
         kwargs['model'] = 'PayrunConfig'

@@ -29,12 +29,12 @@ PL_MENU_ITEMS = {
     ],
     'payroll_menu': [
         {'id': 'payroll_payrun_list', 'text': 'Payruns', 'items': []},
-        {'id': 'payroll_payrun_settings', 'text': 'Payrun Settings', 'items': []},
         {'id': 'payroll_pay_categories', 'text': 'Pay Categories', 'items': []},
         {'id': 'payroll_pay_rate_rules', 'text': 'Pay Rate Rules', 'items': []},
         {'id': 'payroll_pay_rate_scopes', 'text': 'Pay Rate Scopes', 'items': []},
         {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate Templates', 'items': []},
         {'id': 'payroll_calendar', 'text': 'Payroll Calendar', 'items': []},
+        {'id': 'payroll_settings', 'text': 'Payroll Settings', 'items': []},
     ],
     'directory_menu': [
         {'id': 'directory_employees', 'text': 'Employees', 'items': []},
@@ -89,12 +89,12 @@ PL_NAV_ITEMS = {
     'timesheet_upload_data': {'type': 'page', 'name': 'UploadDataPage', 'action': 'open', 'props': {}},
 
     'payroll_payrun_list': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
-    'payroll_payrun_settings': {'class': 'PayrunSettingsForm', 'type': 'form', 'action': 'open', 'props': {}},
     'payroll_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_pay_rate_rules': {'model': 'PayRateRule', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_pay_rate_scopes': {'model': 'Scope', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_calendar': {'type': 'page', 'name': 'CalendarPage', 'action': 'open', 'props': {}},
+    'payroll_settings': {'class': 'PayrollSettingsForm', 'type': 'form', 'action': 'open', 'props': {}},
 
     'directory_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
     'directory_locations': {'model': 'Location', 'type': 'view', 'action': 'open', 'props': {}},
