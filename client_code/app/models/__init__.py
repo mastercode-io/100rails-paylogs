@@ -486,15 +486,16 @@ class Payrun:
 
 
 @model_type
-class PayrunConfig:
+class PayrollConfig:
     _title = "integration.name"
 
     integration = Relationship("AppIntegration")
+    use_integration = Attribute(field_type=types.FieldTypes.BOOLEAN)
     frequency = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_period_start_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_period_end_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    scopes = Relationship("Scope", with_many=True)
+    pay_category_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 

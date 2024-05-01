@@ -10,8 +10,8 @@ WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
 
 class PayrollSettingsForm(FormBase):
     def __init__(self, **kwargs):
-        print('PayrunSettingsForm')
-        kwargs['model'] = 'PayrunConfig'
+        print('PayrollSettingsForm')
+        kwargs['model'] = 'PayrollConfig'
 
         self.integration = LookupInput(name='integration', label='Integration',
                                        model='AppIntegration', get_data=False,
