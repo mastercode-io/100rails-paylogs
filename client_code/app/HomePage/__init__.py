@@ -129,12 +129,12 @@ class HomePage(HomePageTemplate):
 
     def login_user(self):
         print('login_user')
-        # AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
-        AppEnv.logged_user = init_user_session(
-            user_email='alex@100email.co',
-            password='7CAwXs-D"H:a]84',
-            after_login=self.after_login,
-        )
+        AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
+        # AppEnv.logged_user = init_user_session(
+        #     user_email='alex@100email.co',
+        #     password='7CAwXs-D"H:a]84',
+        #     after_login=self.after_login,
+        # )
         if AppEnv.logged_user:
             self.after_login()
 
@@ -199,7 +199,7 @@ class HomePage(HomePageTemplate):
             "click", self.assistant.toggle
         )
 
-        # ˚self.login_user()
+        self.login_user()
 
     # def settings_click(self, args):
     #     print('settings menu', args.item.id)
