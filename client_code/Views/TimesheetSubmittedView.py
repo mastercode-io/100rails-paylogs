@@ -34,32 +34,20 @@ class TimesheetSubmittedView(GridView):
         }
 
         toolbar_actions = [
-            {
-                'name': 'select_payrun',
-                'input': DropdownInput(
-                    placeholder='Select Payrun',
-                    css_class='e-outline pl-grid-toolbar-action-button',
-                    float_label=False,
-                    options=['No Payrun', 'Current Payrun', 'Last Payrun'],
-                    on_change=self.payrun_selected,
-                ),
-                'selected_records': False,
-                'toolbar_click': False,
-            },
-            {
-                'name': 'calculate_awards',
-                'input': Button(
-                    content='CALC Awards',
-                    css_class='e-outline pl-grid-toolbar-action-button',
-                    action=self.calculate_awards_action,
-                ),
-                'selected_records': True,
-                'toolbar_click': True,
-            },
+            # {
+            #     'name': 'calculate_awards',
+            #     'input': Button(
+            #         content='CALC Awards',
+            #         css_class='e-outline pl-grid-toolbar-action-button',
+            #         action=self.calculate_awards_action,
+            #     ),
+            #     'selected_records': True,
+            #     'toolbar_click': True,
+            # },
             {
                 'name': 'assign_payrun',
                 'input': Button(
-                    content='ASSIGN Payrun',
+                    content='ASSIGN to Payrun',
                     css_class='e-outline pl-grid-toolbar-action-button',
                     action=self.assign_payrun_action,
                 ),
@@ -69,11 +57,12 @@ class TimesheetSubmittedView(GridView):
         ]
 
         context_menu_items = [
-            {'id': 'calculate_awards', 'label': 'Calculate Pay Awards', 'action': self.calculate_awards},
+            {'id': 'assign_payrun', 'label': 'ASSIGN to Payrun', 'action': self.assign_payrun},
         ]
 
         super().__init__(
             model='Timesheet',
+            title='Unassigned Timesheets',
             view_config=view_config,
             context_menu_items=context_menu_items,
             toolbar_actions=toolbar_actions,
@@ -140,18 +129,13 @@ class TimesheetSubmittedView(GridView):
                     args.cell.innerHTML = f'{args.cell.innerHTML} +{plus_days} day(s)'
         super().query_cell_info(args)
 
-    def calculate_awards_action(self, args):
-        selected_records = {rec['employee__full_name']: rec for rec in self.grid.getSelectedRecords()}
-        for employee_name in selected_records:
-            self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
-
     def assign_payrun_action(self, args):
-        timesheet_uids = [rec['uid'] for rec in self.grid.getSelectedRecords()]
+        if 'rowInfo' in args:
+            timesheet_uids = [args['rowInfo']['rowData']['uid']]
+        else:
+            timesheet_uids = [rec['uid'] for rec in self.grid.getSelectedRecords()]
         print('assign_payrun_action', timesheet_uids)
-        # self.assign_payrun(timesheet_uids)
-
-    def payrun_selected(self, args):
-        print('view_selected', args)
+        self.assign_payrun(timesheet_uids)
 
     def assign_payrun(self, timesheet_uids):
         print('assign_payrun', timesheet_uids)
@@ -161,225 +145,3 @@ class TimesheetSubmittedView(GridView):
             ts['payrun'] = payrun
             ts.save()
             self.update_grid(ts, False)
-
-    def calculate_awards(self, args):
-        print('calculate_awards', args['rowInfo']['rowData'])
-        ts = Timesheet.get(args['rowInfo']['rowData']['uid'])
-        employee = ts['employee']
-        ts_date = ts['date']
-        start_of_week = ts_date - datetime.timedelta(days=ts_date.weekday())
-        end_of_week = start_of_week + datetime.timedelta(days=6)
-        print('week dates', start_of_week, end_of_week)
-
-        stime = datetime.datetime.now()
-
-        job_type_scopes = [*Scope.search(type=ScopeType.get_by('name', 'Job Type'))]
-        print('job_type_scopes', len(job_type_scopes))
-        # get start and end of week
-        # get all timesheets for the week
-        timesheets = [*Timesheet.search(
-            date=q.all_of(q.greater_than_or_equal_to(start_of_week), q.less_than_or_equal_to(end_of_week)),
-            employee=employee,
-            search_query=tables.order_by('date', ascending=True)
-        )]
-        print('timesheets', len(timesheets))
-        ts_row_index_list = [self.grid.getRowIndexByPrimaryKey(ts['uid']) for ts in timesheets]
-        self.grid.selectRows(ts_row_index_list)
-        pay_lines = []
-        for ts in timesheets:
-            # print(ts['job']['job_type']['short_code'])
-            scope = next((s for s in job_type_scopes if s['short_code'] == ts['job']['job_type']['short_code']), None)
-            pay_rate_template = PayRateTemplate.get_by('scope', scope)
-            pay_item_list = [item for item in PayRateTemplateItem.search(
-                pay_rate_template=pay_rate_template,
-                search_query=tables.order_by('order_number', ascending=True)
-            ) if item['pay_rate_rule']['time_scope'] != 'Week']
-            unallocated_time = [(ts['start_time'], ts['end_time'])]
-            ts_pay_lines = []
-            total_pay = 0
-            for pay_item in pay_item_list:
-                if unallocated_time:
-                    start_time, end_time = unallocated_time.pop(0)
-                else:
-                    # start_time = end_time = None
-                    break
-                # print('pay_item', pay_item, start_time, end_time)
-                pay_line, unallocated_time = PayItemAward(pay_item).calculate_award(
-                    date=ts['date'],
-                    start_time=start_time,
-                    end_time=end_time,
-                    total_hours=ts['total_hours'],
-                    employee_base_rate=employee['pay_rate'],
-                    employee_role=employee['role'],
-                )
-                # print('pay_line', pay_line, unallocated_time)
-                if pay_line:
-                    pay_line.timesheet = ts
-                    ts_pay_lines.append(pay_line)
-                    total_pay += pay_line.pay_amount
-            if ts_pay_lines:
-                pay_lines.extend(ts_pay_lines)
-                ts['total_pay'] = total_pay
-                ts['pay_lines'] = [str(pl) for pl in ts_pay_lines]
-                ts.save()
-                self.update_grid(ts, False)
-        self.grid.clearSelection()
-        pay_rule_list = PayRateRule.search(
-            time_scope='Week',
-            search_query=tables.order_by('overtime_start', ascending=True)
-        )
-        for pay_rule in pay_rule_list:
-            # print('pay_rule', pay_rule.name)
-            week_hours = 0
-            week_pay_lines = []
-            overtime_lines = []
-            is_overtime = False
-            for pay_line in pay_lines:
-                if pay_line.count_overtime is False:
-                    week_pay_lines.append(pay_line)
-                    continue
-                elif is_overtime:
-                    overtime_lines.append(pay_line)
-                    continue
-                else:
-                    week_hours += pay_line.units
-                    # print('week_hours', week_hours, pay_line)
-                if week_hours <= pay_rule['overtime_start']:
-                    week_pay_lines.append(pay_line)
-                else:
-                    print('pay_line', pay_line, week_hours, pay_rule['overtime_start'])
-                    overtime_hours = week_hours - pay_rule['overtime_start']
-                    overtime_line = pay_line.split(overtime_hours)
-                    week_pay_lines.append(pay_line)
-                    overtime_lines.append(overtime_line)
-                    is_overtime = True
-            pay_lines = week_pay_lines.copy()
-            if overtime_lines:
-                for overtime_line in overtime_lines:
-                    overtime_line.pay_rate = overtime_line.base_rate * pay_rule['pay_rate_multiplier']
-                    overtime_line.pay_rate_title = pay_rule['name']
-                    print('overtime_line', overtime_line)
-                print('overtime_lines', overtime_lines)
-                pay_lines.extend(overtime_lines)
-
-        etime = datetime.datetime.now()
-        print('calc time', etime - stime)
-        print('pay_lines')
-        for pl in pay_lines:
-            print(pl)
-
-        # for ts in timesheets:
-        #     self.update_grid(ts, False)
-
-    @staticmethod
-    def calculate_pay_lines(
-            time_frames=None,
-            pay_item=None,
-            employee=None,
-    ):
-        pay_rule = pay_item['pay_rate_rule']
-        rule_start_time = pay_rule['start_time'].time()
-        rule_end_time = pay_rule['end_time'].time()
-        max_hours = pay_rule['max_time'] or -1
-        unallocated_time_frames = []
-        pay_lines = []
-        for frame in time_frames:
-            start_time, end_time = frame
-            if end_time.time() <= rule_start_time or start_time.time() >= rule_end_time:
-                unallocated_time_frames.append(frame)
-                continue
-            if start_time.time() < rule_start_time:
-                unallocated_time_frames.append(
-                    (start_time, datetime.datetime.combine(start_time.date(), rule_start_time)))
-                do_start_time = datetime.datetime.combine(start_time.date(), rule_start_time)
-            else:
-                do_start_time = start_time
-            if end_time.time() > rule_end_time:
-                unallocated_time_frames.append((datetime.datetime.combine(end_time.date(), rule_end_time), end_time))
-                do_end_time = datetime.datetime.combine(end_time.date(), rule_end_time)
-            else:
-                do_end_time = end_time
-            units = (do_end_time - do_start_time).total_seconds() / 3600
-            if 0 <= max_hours < units:
-                overtime_hours = units - max_hours
-                units = max_hours
-                unallocated_time_frames.append((do_end_time, end_time))
-            elif max_hours != -1:
-                max_hours -= units
-            pay_rate = pay_item['pay_rate'] or employee['pay_rate']
-            if pay_rule['pay_rate_type'] == 'Rate Per Unit':
-                pay_amount = pay_rate * units
-            elif pay_rule['pay_rate_type'] == 'Multiplier':
-                pay_rate = pay_rate * pay_item['pay_rate_multiplier']
-                pay_amount = pay_rate * units
-            elif pay_rule['pay_rate_type'] == 'Fixed Amount':
-                pay_amount = pay_item['pay_rate']
-                units = 1
-            else:
-                pay_amount = 0
-            if pay_amount:
-                pay_line = {
-                    'pay_rate_title': pay_item['pay_rate_title'],
-                    'pay_category': pay_item['pay_category'],
-                    'date': do_start_time.date(),
-                    'start_time': do_start_time,
-                    'end_time': do_end_time,
-                    'pay_rate': pay_rate,
-                    'units': units,
-                    'pay_amount': pay_amount,
-                }
-                pay_lines.append(pay_line)
-        return unallocated_time_frames, pay_lines
-
-    @staticmethod
-    def calculate_week_overtime(pay_lines=None, pay_items=None):
-        for pay_item in pay_items:
-            pay_rule = pay_item['pay_rule']
-            if pay_rule['time_scope'] != 'Week':
-                continue
-            overtime_start = pay_rule['overtime_start']
-            max_hours = pay_rule['max_hours'] or 0
-            if not overtime_start or not max_hours:
-                continue
-            week_hours = 0
-            overtime_hours = 0
-            week_pay_lines = []
-            for pl in pay_lines:
-                if overtime_hours:
-                    week_pay_lines.append(pl)
-                    continue
-                if pl['hours'] and 'earnings' in pay_rule['earnings_type'].lower():
-                    week_hours += pl['hours']
-                else:
-                    week_pay_lines.append(pl)
-                    continue
-                if week_hours > overtime_start:
-                    overtime_hours = week_hours - overtime_start
-                    pl['hours'] -= overtime_hours
-                    pl['pay_amount'] -= overtime_hours * pl['pay_rate']
-                    week_pay_lines.append(pl)
-                    if max_hours and overtime_hours > max_hours:
-                        rule_hours = max_hours
-                        overtime_hours -= max_hours
-                    else:
-                        rule_hours = overtime_hours
-                    overtime_pl = {
-                        'pay_rate_title': pay_item['pay_rate_title'],
-                        'pay_category': pay_item['pay_category'],
-                        'date': pl['date'],
-                        'start_time': pl['end_time'],
-                        'end_time': pl['end_time'] + datetime.timedelta(hours=overtime_hours),
-                        'pay_rate': pl['pay_rate'],
-                        'hours': rule_hours,
-                        'pay_amount': rule_hours * pl['pay_rate'],
-                    }
-                    week_pay_lines.append(overtime_pl)
-                    if overtime_hours:
-                        pl_tail = pl.copy()
-                        pl_tail['hours'] = overtime_hours
-                        pl_tail['pay_amount'] = overtime_hours * pl['pay_rate']
-                        pl_tail['start_time'] = pl['end_time'] + datetime.timedelta(hours=overtime_hours)
-                        pl_tail['end_time'] = pl['end_time'] + datetime.timedelta(hours=overtime_hours)
-                        week_pay_lines.append(pl_tail)
-                else:
-                    week_pay_lines.append(pl)
