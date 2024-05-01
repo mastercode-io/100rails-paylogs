@@ -165,6 +165,7 @@ class PayrollSettingsForm(FormBase):
             self.pay_category_type.enabled = True
             self.use_integration.enabled = True
             self.integration.enabled = True
+            self.connection_button.enabled = True
             # self.payrun_flow_steps_field.enabled = True
             # self.payrun_flow_steps_field.fields[0].enabled = False
         else:
@@ -173,6 +174,7 @@ class PayrollSettingsForm(FormBase):
             payroll_config = next(iter(PayrollConfig.search()), None)
             if payroll_config:
                 self.data = payroll_config
+            self.connection_button.enabled = False
             # self.integration.enabled = False
             # self.frequency.enabled = False
             # self.pay_period_start_day.enabled = False
@@ -207,6 +209,8 @@ class PayrollSettingsForm(FormBase):
                 self.connection_message.content = (f"No connection found for this integration: "
                                                    f"<b>{self.integration.value['name']}</b>")
                 self.connection_button.show()
+                if self.action == 'view':
+                    self.connection_button.enabled = False
 
     def use_integration_changed(self, args):
         print('use_integration_changed', args)
