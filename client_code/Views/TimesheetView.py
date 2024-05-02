@@ -10,9 +10,9 @@ import datetime
 import json
 
 
-class TimesheetActiveView(GridView):
+class TimesheetView(GridView):
     def __init__(self, **kwargs):
-        print('TimesheetActiveView')
+        print('TimesheetView')
 
         view_config = {
             'model': 'Timesheet',
@@ -145,22 +145,28 @@ class TimesheetActiveView(GridView):
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
 
-    def assign_payrun_action(self, args):
-        timesheet_uids = [rec['uid'] for rec in self.grid.getSelectedRecords()]
-        print('assign_payrun_action', timesheet_uids)
-        # self.assign_payrun(timesheet_uids)
-
     def payrun_selected(self, args):
         print('view_selected', args)
 
+    def assign_payrun_action(self, args):
+        if 'rowInfo' in args:
+            timesheet_uids = [args['rowInfo']['rowData']['uid']]
+        else:
+            timesheet_uids = [rec['uid'] for rec in self.grid.getSelectedRecords()]
+        print('assign_payrun_action', timesheet_uids)
+        self.assign_payrun(timesheet_uids)
+
     def assign_payrun(self, timesheet_uids):
         print('assign_payrun', timesheet_uids)
-        payrun = Payrun.get_by('name', 'Current Payrun')
-        for ts_uid in timesheet_uids:
-            ts = Timesheet.get(ts_uid)
-            ts['payrun'] = payrun
-            ts.save()
-            self.update_grid(ts, False)
+        payrun = next(iter(Payrun.search()))
+        if payrun is not None:
+            for ts_uid in timesheet_uids:
+                ts = Timesheet.get(ts_uid)
+                ts['payrun'] = payrun
+                ts.save()
+                row = self.grid.getRowIndexByPrimaryKey(ts_uid)
+                # self.grid.dataSource.remove(grid_row)
+                self.grid.deleteRow(row)
 
     def calculate_awards(self, args):
         print('calculate_awards', args['rowInfo']['rowData'])

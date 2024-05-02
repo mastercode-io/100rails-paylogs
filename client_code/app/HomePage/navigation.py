@@ -21,11 +21,9 @@ PL_ASSISTANT_WIDTH = 300
 PL_MENU_ITEMS = {
     'timesheet_menu': [
         {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
-        {'id': 'timesheet_submitted', 'text': 'Unassigned', 'items': []},
-        {'id': 'timesheet_active_payrun', 'text': 'Active Payrun', 'items': []},
-        {'id': 'timesheet_closed_periods', 'text': 'Closed Periods', 'items': []},
-        {'id': 'timesheet_import', 'text': 'Sync Timesheets', 'items': []},
-        {'id': 'timesheet_upload_data', 'text': 'Upload Data', 'items': []},
+        {'id': 'timesheet_report', 'text': 'Timesheet Report', 'items': []},
+        {'id': 'timesheet_sync', 'text': 'Sync Timesheets', 'items': []},
+        {'id': 'timesheet_upload', 'text': 'Upload Data', 'items': []},
     ],
     'payroll_menu': [
         {'id': 'payroll_payrun_list', 'text': 'Payruns', 'items': []},
@@ -82,11 +80,9 @@ PL_MENU_ITEMS = {
 # Navigation items/actions
 PL_NAV_ITEMS = {
     'timesheet_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
-    'timesheet_submitted': {'class': 'TimesheetSubmittedView', 'type': 'custom', 'action': 'open', 'props': {}},
-    'timesheet_active_payrun': {'class': 'TimesheetActiveView', 'type': 'custom', 'action': 'open', 'props': {}},
-    'timesheet_closed_periods': {'class': 'TimesheetClosedView', 'type': 'custom', 'action': 'open', 'props': {}},
-    'timesheet_import': {'type': 'page', 'name': 'ImportTimesheetsPage', 'action': 'open', 'props': {}},
-    'timesheet_upload_data': {'type': 'page', 'name': 'UploadDataPage', 'action': 'open', 'props': {}},
+    'timesheet_report': {'class': 'TimesheetView', 'type': 'custom', 'action': 'open', 'props': {}},
+    'timesheet_sync': {'type': 'page', 'name': 'ImportTimesheetsPage', 'action': 'open', 'props': {}},
+    'timesheet_upload': {'type': 'page', 'name': 'UploadDataPage', 'action': 'open', 'props': {}},
 
     'payroll_payrun_list': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
     'payroll_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
