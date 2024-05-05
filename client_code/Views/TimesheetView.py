@@ -190,6 +190,7 @@ class TimesheetView(GridView):
         self.show_confirm_dialog = False
         self.assign_payrun(timesheet_uids)
         self.show_confirm_dialog = True
+        self.grid.refresh()
 
 
     def assign_payrun(self, timesheet_uids):
