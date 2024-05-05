@@ -172,6 +172,7 @@ class TimesheetView(GridView):
         self.grid.dataSource = self.grid_data
 
     def assign_payrun_action(self, args):
+        args.cancel = True
         if 'rowInfo' in args:
             timesheet_uids = [args['rowInfo']['rowData']['uid']]
         else:
@@ -188,6 +189,7 @@ class TimesheetView(GridView):
                 ts['payrun'] = payrun
                 ts.save()
                 row = self.grid.getRowIndexByPrimaryKey(ts_uid)
+                print('delete row', ts_uid, row)
                 # self.grid.dataSource.remove(grid_row)
                 self.grid.deleteRow(row)
 
