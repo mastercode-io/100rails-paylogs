@@ -21,18 +21,18 @@ PL_ASSISTANT_WIDTH = 300
 PL_MENU_ITEMS = {
     'timesheet_menu': [
         {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
-        {'id': 'timesheet_report', 'text': 'Timesheet Report', 'items': []},
-        {'id': 'timesheet_sync', 'text': 'Sync Timesheets', 'items': []},
+        {'id': 'timesheet_report', 'text': 'Timesheets', 'items': []},
+        {'id': 'timesheet_sync', 'text': 'Transfer Data', 'items': []},
         {'id': 'timesheet_upload', 'text': 'Upload Data', 'items': []},
     ],
     'payroll_menu': [
         {'id': 'payroll_payrun_list', 'text': 'Payruns', 'items': []},
         {'id': 'payroll_pay_categories', 'text': 'Pay Categories', 'items': []},
-        {'id': 'payroll_pay_rate_rules', 'text': 'Pay Rate Rules', 'items': []},
-        {'id': 'payroll_pay_rate_scopes', 'text': 'Pay Rate Scopes', 'items': []},
-        {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate Templates', 'items': []},
-        {'id': 'payroll_calendar', 'text': 'Payroll Calendar', 'items': []},
-        {'id': 'payroll_settings', 'text': 'Payroll Settings', 'items': []},
+        {'id': 'payroll_pay_rate_rules', 'text': 'Pay Rate RULES', 'items': []},
+        {'id': 'payroll_pay_rate_scopes', 'text': 'Pay Rate SCOPES', 'items': []},
+        {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate TEMPLATES', 'items': []},
+        {'id': 'payroll_calendar', 'text': 'Payroll CALENDAR', 'items': []},
+        {'id': 'payroll_settings', 'text': 'Payroll SETTINGS', 'items': []},
     ],
     'directory_menu': [
         {'id': 'directory_employees', 'text': 'Employees', 'items': []},
