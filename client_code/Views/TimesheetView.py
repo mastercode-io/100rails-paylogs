@@ -206,6 +206,7 @@ class TimesheetView(GridView):
                 print('delete row', ts_uid, row_index, row)
                 # self.grid.dataSource.remove(grid_row)
                 # self.grid.deleteRow(row)
+            for ts_uid in timesheet_uids:
                 self.grid.deleteRecord('uid', ts_uid)
 
 
