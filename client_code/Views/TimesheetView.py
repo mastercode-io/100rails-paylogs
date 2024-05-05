@@ -165,7 +165,8 @@ class TimesheetView(GridView):
         elif args['value'] == 'Past Periods':
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config)
         else:
-            self.grid_data = None
+            self.grid_data = []
+        print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
 
     def assign_payrun_action(self, args):
