@@ -174,6 +174,8 @@ class TimesheetView(GridView):
     def assign_payrun_action(self, args):
         args.cancel = True
         if 'rowInfo' in args:
+            for key in args['rowInfo']:
+                print(key, args['rowInfo'][key])
             timesheet_uids = [args['rowInfo']['rowData']['uid']]
         else:
             timesheet_uids = [rec['uid'] for rec in self.grid.getSelectedRecords()]
