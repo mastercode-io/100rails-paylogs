@@ -189,7 +189,7 @@ class TimesheetView(GridView):
                 ts['payrun'] = payrun
                 ts.save()
                 row_index = self.grid.getRowIndexByPrimaryKey(ts_uid)
-                row = self.grid.getRow(row_index)
+                row = self.grid.getRowByIndex(row_index)
                 print('delete row', ts_uid, row_index, row)
                 # self.grid.dataSource.remove(grid_row)
                 self.grid.deleteRow(row)
