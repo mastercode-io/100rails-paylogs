@@ -164,6 +164,8 @@ class TimesheetView(GridView):
                                                      filters={'payrun': active_payrun})
         elif args['value'] == 'Past Periods':
             active_row = Timesheet.get_row(active_payrun['uid'])
+            print('active_row', active_row)
+            print(type(q.none_of(None, active_row)))
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      search_queries=[q.all_of(payrun=q.none_of(None, active_row))])
         else:
