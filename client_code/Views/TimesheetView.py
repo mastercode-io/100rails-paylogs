@@ -155,15 +155,16 @@ class TimesheetView(GridView):
 
     def timesheet_view_selected(self, args):
         print('tinesheet_view_selected', args)
+        active_payrun = next(iter(Payrun.search()))
         if args['value'] == 'Unassigned Timesheets':
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': None})
         elif args['value'] == 'Active Payrun':
-            active_payrun = next(iter(Payrun.search()))
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': active_payrun})
         elif args['value'] == 'Past Periods':
-            self.grid_data = Timesheet.get_grid_view(view_config=self.view_config)
+            self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
+                                                     filters={'payrun': q.none_of(None, active_payrun)})
         else:
             self.grid_data = []
         print('grid_data', len(self.grid_data))
