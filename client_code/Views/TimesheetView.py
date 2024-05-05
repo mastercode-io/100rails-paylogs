@@ -164,7 +164,7 @@ class TimesheetView(GridView):
                                                      filters={'payrun': active_payrun})
         elif args['value'] == 'Past Periods':
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
-                                                     filters={'payrun': q.none_of(None, active_payrun)})
+                                                     seacrh_queries=[q.all_of(payrun=q.none_of(None, active_payrun))])
         else:
             self.grid_data = []
         print('grid_data', len(self.grid_data))
