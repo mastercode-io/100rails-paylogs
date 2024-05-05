@@ -194,7 +194,8 @@ class TimesheetView(GridView):
                 row = self.grid.getRowByIndex(row_index)
                 print('delete row', ts_uid, row_index, row)
                 # self.grid.dataSource.remove(grid_row)
-                self.grid.deleteRow(row)
+                # self.grid.deleteRow(row)
+                self.grid.deleteRecord('uid', ts_uid)
 
     def calculate_awards(self, args):
         print('calculate_awards', args['rowInfo']['rowData'])
