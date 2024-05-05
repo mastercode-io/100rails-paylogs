@@ -67,7 +67,7 @@ class TimesheetView(GridView):
                     action=self.assign_payrun_action,
                 ),
                 'selected_records': True,
-                'toolbar_click': True,
+                'toolbar_click': False,
             },
         ]
 
