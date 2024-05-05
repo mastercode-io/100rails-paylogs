@@ -37,11 +37,13 @@ class TimesheetView(GridView):
             {
                 'name': 'select_payrun',
                 'input': DropdownInput(
-                    placeholder='Select Payrun',
+                    placeholder='Select View',
                     css_class='e-outline pl-grid-toolbar-action-button',
                     float_label=False,
-                    options=['No Payrun', 'Current Payrun', 'Last Payrun'],
-                    on_change=self.payrun_selected,
+                    options=['Unassigned Timesheets', 'Active Payrun', 'Past Periods'],
+                    value='Unassigned Timesheets',
+                    required=True,
+                    on_change=self.timesheet_view_selected,
                 ),
                 'selected_records': False,
                 'toolbar_click': False,
@@ -145,8 +147,8 @@ class TimesheetView(GridView):
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
 
-    def payrun_selected(self, args):
-        print('view_selected', args)
+    def timesheet_view_selected(self, args):
+        print('tinesheet_view_selected', args)
 
     def assign_payrun_action(self, args):
         if 'rowInfo' in args:
