@@ -33,18 +33,19 @@ class TimesheetView(GridView):
             ],
         }
 
-        toolbar_actions = [
-            {
-                'name': 'select_payrun',
-                'input': DropdownInput(
+        self.timesheet_view = DropdownInput(
                     placeholder='Select View',
                     css_class='e-outline pl-grid-toolbar-action-button',
                     float_label=False,
                     options=['Unassigned Timesheets', 'Active Payrun', 'Past Periods'],
-                    value='Unassigned Timesheets',
                     required=True,
                     on_change=self.timesheet_view_selected,
-                ),
+                )
+
+        toolbar_actions = [
+            {
+                'name': 'select_payrun',
+                'input': self.timesheet_view,
                 'selected_records': False,
                 'toolbar_click': False,
             },
@@ -109,6 +110,11 @@ class TimesheetView(GridView):
             ]
         }
         self.first_load = True
+
+    def form_show(self, **args):
+        print('TimesheetView.form_show')
+        super().form_show(**args)
+        self.timesheet_view.value = 'Unassigned Timesheets'
 
     def grouping_caption(self, args):
         # print('due_date_caption', args)
