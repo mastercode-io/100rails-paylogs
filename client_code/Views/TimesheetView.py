@@ -113,7 +113,7 @@ class TimesheetView(GridView):
 
     def form_show(self, **args):
         print('TimesheetView.form_show')
-        super().form_show(**args)
+        super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned Timesheets'
 
     def grouping_caption(self, args):
@@ -155,6 +155,18 @@ class TimesheetView(GridView):
 
     def timesheet_view_selected(self, args):
         print('tinesheet_view_selected', args)
+        if args['value'] == 'Unassigned Timesheets':
+            self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
+                                                     filters={'payrun': None})
+        elif args['value'] == 'Active Payrun':
+            active_payrun = next(iter(Payrun.search()))
+            self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
+                                                     filters={'payrun': active_payrun})
+        elif args['value'] == 'Past Periods':
+            self.grid_data = Timesheet.get_grid_view(view_config=self.view_config)
+        else:
+            self.grid_data = None
+        self.grid.dataSource = self.grid_data
 
     def assign_payrun_action(self, args):
         if 'rowInfo' in args:
