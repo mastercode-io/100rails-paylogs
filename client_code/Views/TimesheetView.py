@@ -154,7 +154,7 @@ class TimesheetView(GridView):
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
 
     def timesheet_view_selected(self, args):
-        print('tinesheet_view_selected', args)
+        print('timesheet_view_selected', args)
         active_payrun = next(iter(Payrun.search()))
         if args['value'] == 'Unassigned Timesheets':
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
@@ -163,7 +163,7 @@ class TimesheetView(GridView):
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': active_payrun})
         elif args['value'] == 'Past Periods':
-            active_row = Timesheet.get_row(active_payrun['uid'])
+            active_row = Payrun.get_row(active_payrun['uid'])
             print('active_row', active_payrun, active_row)
             print(callable(q.none_of(None, active_row)))
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
