@@ -88,9 +88,9 @@ class TimesheetView(GridView):
                 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
             },
             'Past Periods': {
-                'columns': ['date'],
+                'columns': ['payrun__payrun_week'],
                 'showDropArea': False,
-                'captionTemplate': None,
+                # 'captionTemplate': None,
                 # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
             },
         }
@@ -177,21 +177,28 @@ class TimesheetView(GridView):
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
-            self.grid.groupSettings = self.grid_group_settings['Unassigned']
+            # self.grid.groupSettings = self.grid_group_settings['Unassigned']
+            self.grid.ungroupColumn('payrun__payrun_week')
+            self.grid.groupColumn('employee__full_name')
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': None})
         elif args['value'] == 'Active Payrun':
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
-            self.grid.groupSettings = self.grid_group_settings['Active Payrun']
+            # self.grid.groupSettings = self.grid_group_settings['Active Payrun']
+            self.grid.ungroupColumn('payrun__payrun_week')
+            self.grid.groupColumn('employee__full_name')
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': self.active_payrun})
         elif args['value'] == 'Past Periods':
             self.grid.allowSelection = False
             self.grid.columns[self.grid_column_indexes['_selected']].visible = False
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = True
-            self.grid.groupSettings = self.grid_group_settings['Past Periods']
+            # self.grid.groupSettings = self.grid_group_settings['Past Periods']
+            self.grid.ungroupColumn('employee__full_name')
+            self.grid.groupColumn('payrun__payrun_week')
+            self.grid.groupColumn('employee__full_name')
             active_row = Payrun.get_row(self.active_payrun['uid'])
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      search_queries=[q.all_of(payrun=q.none_of(None, active_row))])
