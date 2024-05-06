@@ -1,4 +1,5 @@
 import anvil.server
+import anvil.tables.query as q
 from ...app import models
 from ..models import AppIntegration, Tenant
 
@@ -68,18 +69,20 @@ def add_grid_view():
 
 
 def bar():
-    ts_list = models.Timesheet.search()
+    search_query = [q.none_of(payrun=None)]
+    ts_list = models.Timesheet.search(search_query=search_query)
     print('ts_list', len(ts_list))
     for ts in ts_list:
         print(ts, ts['uid'], ts['payrun'])
         ts['payrun'] = None
         ts.save()
-        print(ts['payrun'])
-    ts_list = models.Timesheet.search()
-    print('ts_list', len(ts_list))
-    for ts in ts_list:
-        print(ts['uid'], ts['payrun'])
-    print('done')
+        updated_ts = models.Timesheet.get(ts['uid'])
+        print(updated_ts['payrun'])
+    # ts_list = models.Timesheet.search(search_query=search_query)
+    # print('ts_list', len(ts_list))
+    # for ts in ts_list:
+    #     print(ts['uid'], ts['payrun'])
+    # print('done')
 
 
 def foo():
