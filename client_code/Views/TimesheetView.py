@@ -174,12 +174,12 @@ class TimesheetView(GridView):
     def timesheet_view_selected(self, args):
         # print('timesheet_view_selected', args)
         if args['value'] == 'Unassigned':
-            self.grid.allowSelection = True
-            self.grid.columns[self.grid_column_indexes['_selected']].visible = True
-            self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
             # self.grid.groupSettings = self.grid_group_settings['Unassigned']
             self.grid.ungroupColumn('payrun__payrun_week')
             # self.grid.groupColumn('employee__full_name')
+            self.grid.allowSelection = True
+            self.grid.columns[self.grid_column_indexes['_selected']].visible = True
+            self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': None})
         elif args['value'] == 'Active Payrun':
