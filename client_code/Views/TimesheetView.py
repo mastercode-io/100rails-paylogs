@@ -167,13 +167,13 @@ class TimesheetView(GridView):
         if args['value'] == 'Unassigned Timesheets':
             self.grid.allowSelection = True
             self.grid.columns[0].visible = True
-            self.grid.columns[self.col_index['payrun.payrun_week']] = False
+            self.grid.columns[self.col_index['payrun.payrun_week']].visible = False
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': None})
         elif args['value'] == 'Active Payrun':
             # self.grid.allowSelection = False
             # self.grid.columns[0].visible = False
-            self.grid.columns[self.col_index['payrun.payrun_week']] = False
+            self.grid.columns[self.col_index['payrun.payrun_week']].visible = False
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': self.active_payrun})
         elif args['value'] == 'Past Periods':
