@@ -116,8 +116,6 @@ class TimesheetView(GridView):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned Timesheets'
-        for k in self.grid.columns[5].keys():
-            print(k, self.grid.columns[5][k])
 
 
     def grouping_caption(self, args):

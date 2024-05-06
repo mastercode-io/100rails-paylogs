@@ -40,7 +40,7 @@ class PayrunForm(FormBase):
                                         string_format=DATE_FORMAT, enabled=False)
         self.pay_date = DateInput(name='pay_date', label='Pay Date', string_format=DATE_FORMAT,)
         self.status = DropdownInput(name='status', label='Status', options=PAYRUN_STATUSES, value='Created',
-                                    enabled=False)
+                                    enabled=True)
         self.notes = MultiLineInput(name='notes', label='Notes', rows=4)
 
         payrun_items_view = {
