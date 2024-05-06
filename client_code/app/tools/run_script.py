@@ -20,7 +20,7 @@ def add_enum_list():
     print(enum)
 
 
-def bar():
+def add_integration():
     print('func')
     integration = AppIntegration.get_by('service_name', 'scaflog')
     tenant = Tenant.get_by('name', 'Simos')
@@ -30,5 +30,12 @@ def bar():
     print(api_credentials)
 
 
+def bar():
+    for ts in models.Timesheet.search():
+        ts['payrun'] = None
+        ts.save()
+    print('done')
+
+
 def foo():
-    add_enum_list()
+    bar()
