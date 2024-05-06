@@ -76,7 +76,7 @@ class TimesheetView(GridView):
         ]
         self.grid_group_settings = {
             'Unassigned': {
-                'columns': ['payrun__payrun_week'],
+                'columns': ['employee__full_name', 'job__job_name'],
                 'showDropArea': False,
                 # 'captionTemplate': '<div>${key} - ${data}</div>',
                 # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
@@ -175,8 +175,8 @@ class TimesheetView(GridView):
         # print('timesheet_view_selected', args)
         if args['value'] == 'Unassigned':
             # self.grid.groupSettings = self.grid_group_settings['Unassigned']
-            self.grid.clearGrouping()
-            self.grid.groupColumn('employee__full_name')
+            # self.grid.clearGrouping()
+            # self.grid.groupColumn('employee__full_name')
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
