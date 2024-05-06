@@ -34,13 +34,13 @@ class TimesheetView(GridView):
         }
 
         self.timesheet_view = DropdownInput(
-                    placeholder='Select View',
-                    css_class='e-outline pl-grid-toolbar-action-button pl-timesheet-toolbar-item-select-view',
-                    float_label=False,
-                    options=['Unassigned', 'Active Payrun', 'Past Periods'],
-                    required=True,
-                    on_change=self.timesheet_view_selected,
-                )
+            placeholder='Select View',
+            css_class='e-outline pl-grid-toolbar-action-button pl-timesheet-toolbar-item-select-view',
+            float_label=False,
+            options=['Unassigned', 'Active Payrun', 'Past Periods'],
+            required=True,
+            on_change=self.timesheet_view_selected,
+        )
 
         toolbar_actions = [
             {
@@ -74,6 +74,26 @@ class TimesheetView(GridView):
         context_menu_items = [
             {'id': 'calculate_awards', 'label': 'Calculate Pay Awards', 'action': self.calculate_awards},
         ]
+        self.grid_group_settings = {
+            'Unassigned': {
+                'columns': ['employee__full_name'],
+                'showDropArea': False,
+                # 'captionTemplate': '<div>${key} - ${data}</div>',
+                'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+            },
+            'Active Payrun': {
+                'columns': ['employee__full_name'],
+                'showDropArea': False,
+                # 'captionTemplate': '<div>${key} - ${data}</div>',
+                'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+            },
+            'Past Periods': {
+                'columns': ['payrun__payrun_week', 'employee__full_name'],
+                'showDropArea': False,
+                # 'captionTemplate': '<div>${key} - ${data}</div>',
+                'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+            },
+        }
 
         super().__init__(
             model='Timesheet',
@@ -86,12 +106,7 @@ class TimesheetView(GridView):
         anvil.js.window['captionTimesheetListView'] = self.grouping_caption
         # anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
         self.grid.allowGrouping = True
-        self.grid.groupSettings = {
-            'columns': ['employee__full_name'],
-            'showDropArea': False,
-            # 'captionTemplate': '<div>${key} - ${data}</div>',
-            'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
-        }
+        self.grid.groupSettings = self.grid_group_settings['Unassigned']
         self.grid.aggregates = [{
             'columns': [
                 {
@@ -114,12 +129,10 @@ class TimesheetView(GridView):
         self.active_payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
         self.first_load = True
 
-
     def form_show(self, **args):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned'
-
 
     def grouping_caption(self, args):
         # print('due_date_caption', args)
@@ -128,7 +141,6 @@ class TimesheetView(GridView):
         return (f'<div class="template" style="{caption_color}">'
                 f'{args.items[0].employee__full_name}</div>')
 
-
     def grouping_total_hours(self, data, column):
         if isinstance(data, list):
             return
@@ -136,7 +148,6 @@ class TimesheetView(GridView):
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
         return f"{hours}:{minutes:02d} hrs per week"
-
 
     def query_cell_info(self, args):
         if 'field' in args.column.keys() and args.column['field'] == 'end_time':
@@ -155,12 +166,10 @@ class TimesheetView(GridView):
                     args.cell.innerHTML = f'{args.cell.innerHTML} +{plus_days} day(s)'
         super().query_cell_info(args)
 
-
     def calculate_awards_action(self, args):
         selected_records = {rec['employee__full_name']: rec for rec in self.grid.getSelectedRecords()}
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
-
 
     def timesheet_view_selected(self, args):
         # print('timesheet_view_selected', args)
@@ -168,18 +177,21 @@ class TimesheetView(GridView):
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
+            self.grid.groupSettings = self.grid_group_settings['Unassigned']
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': None})
         elif args['value'] == 'Active Payrun':
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
+            self.grid.groupSettings = self.grid_group_settings['Active Payrun']
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': self.active_payrun})
         elif args['value'] == 'Past Periods':
             self.grid.allowSelection = False
             self.grid.columns[self.grid_column_indexes['_selected']].visible = False
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = True
+            self.grid.groupSettings = self.grid_group_settings['Past Periods']
             active_row = Payrun.get_row(self.active_payrun['uid'])
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      search_queries=[q.all_of(payrun=q.none_of(None, active_row))])
@@ -187,7 +199,6 @@ class TimesheetView(GridView):
             self.grid_data = []
         print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
-
 
     def assign_payrun_action(self, args):
         args.cancel = True
@@ -202,7 +213,6 @@ class TimesheetView(GridView):
         self.assign_payrun(timesheet_uids)
         self.show_confirm_dialog = True
         self.grid.refresh()
-
 
     def assign_payrun(self, timesheet_uids):
         print('assign_payrun', timesheet_uids)
@@ -219,7 +229,6 @@ class TimesheetView(GridView):
                 # self.grid.deleteRow(row)
             for ts_uid in timesheet_uids:
                 self.grid.deleteRecord('uid', ts_uid)
-
 
     def calculate_awards(self, args):
         print('calculate_awards', args['rowInfo']['rowData'])
@@ -330,7 +339,6 @@ class TimesheetView(GridView):
         # for ts in timesheets:
         #     self.update_grid(ts, False)
 
-
     @staticmethod
     def calculate_pay_lines(
             time_frames=None,
@@ -390,7 +398,6 @@ class TimesheetView(GridView):
                 }
                 pay_lines.append(pay_line)
         return unallocated_time_frames, pay_lines
-
 
     @staticmethod
     def calculate_week_overtime(pay_lines=None, pay_items=None):
