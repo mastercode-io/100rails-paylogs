@@ -37,7 +37,7 @@ class TimesheetView(GridView):
                     placeholder='Select View',
                     css_class='e-outline pl-grid-toolbar-action-button',
                     float_label=False,
-                    options=['Unassigned Timesheets', 'Active Payrun', 'Past Periods'],
+                    options=['Unassigned', 'Active Payrun', 'Past Periods'],
                     required=True,
                     on_change=self.timesheet_view_selected,
                 )
@@ -170,7 +170,7 @@ class TimesheetView(GridView):
 
     def timesheet_view_selected(self, args):
         # print('timesheet_view_selected', args)
-        if args['value'] == 'Unassigned Timesheets':
+        if args['value'] == 'Unassigned':
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
