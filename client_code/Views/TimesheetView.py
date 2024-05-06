@@ -199,7 +199,7 @@ class TimesheetView(GridView):
             self.grid_data = []
         print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
-        self.grid.refresh()
+        # self.grid.refresh()
 
     def assign_payrun_action(self, args):
         args.cancel = True
