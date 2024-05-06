@@ -88,7 +88,7 @@ class TimesheetView(GridView):
                 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
             },
             'Past Periods': {
-                'columns': ['payrun__payrun_week', 'employee__full_name'],
+                'columns': ['payrun__payrun_week'],
                 'showDropArea': False,
                 # 'captionTemplate': '<div>${key} - ${data}</div>',
                 # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
