@@ -76,7 +76,7 @@ class TimesheetView(GridView):
         ]
         self.grid_group_settings = {
             'Unassigned': {
-                'columns': ['job__name', 'start_time'],
+                'columns': ['job__name', 'employee__full_name'],
                 'showDropArea': False,
                 # 'captionTemplate': '<div>${key} - ${data}</div>',
                 # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
@@ -175,8 +175,8 @@ class TimesheetView(GridView):
         # print('timesheet_view_selected', args)
         if args['value'] == 'Unassigned':
             # self.grid.groupSettings = self.grid_group_settings['Unassigned']
-            # self.grid.clearGrouping()
-            # self.grid.groupColumn('employee__full_name')
+            self.grid.clearGrouping()
+            self.grid.groupColumn('job__name')
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
@@ -197,7 +197,7 @@ class TimesheetView(GridView):
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = True
             # self.grid.groupSettings = self.grid_group_settings['Past Periods']
             self.grid.clearGrouping()
-            self.grid.groupColumn('payrun__payrun_week, employee__full_name')
+            self.grid.groupColumn('payrun__payrun_week')
             active_row = Payrun.get_row(self.active_payrun['uid'])
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      search_queries=[q.all_of(payrun=q.none_of(None, active_row))])
