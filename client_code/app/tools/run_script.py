@@ -70,9 +70,14 @@ def add_grid_view():
 def bar():
     ts_list = models.Timesheet.search()
     print('ts_list', len(ts_list))
-    for ts in models.Timesheet.search():
+    for ts in ts_list:
+        print(ts['uid'], ts['payrun'])
         ts['payrun'] = None
         ts.save()
+    ts_list = models.Timesheet.search()
+    print('ts_list', len(ts_list))
+    for ts in ts_list:
+        print(ts['uid'], ts['payrun'])
     print('done')
 
 
