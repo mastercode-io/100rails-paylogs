@@ -40,6 +40,7 @@ class TimesheetView(GridView):
                     options=['Unassigned', 'Active Payrun', 'Past Periods'],
                     required=True,
                     on_change=self.timesheet_view_selected,
+                    el_style='"width": "150px"',
                 )
 
         toolbar_actions = [
