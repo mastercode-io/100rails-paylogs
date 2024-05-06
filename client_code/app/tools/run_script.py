@@ -2,6 +2,7 @@ import anvil.server
 import anvil.tables.query as q
 from ...app import models
 from ..models import AppIntegration, Tenant
+import datetime
 
 
 def add_enum_list():
@@ -69,20 +70,18 @@ def add_grid_view():
 
 
 def bar():
-    search_query = [q.none_of(payrun=None)]
-    ts_list = models.Timesheet.search(search_query=search_query)
-    print('ts_list', len(ts_list))
-    for ts in ts_list:
-        print(ts, ts['uid'], ts['payrun'])
-        ts['payrun'] = None
-        ts.save()
-        updated_ts = models.Timesheet.get(ts['uid'])
-        print(updated_ts['payrun'])
+    # search_query = [q.none_of(payrun=None)]
     # ts_list = models.Timesheet.search(search_query=search_query)
-    # print('ts_list', len(ts_list))
     # for ts in ts_list:
-    #     print(ts['uid'], ts['payrun'])
-    # print('done')
+    #     ts['payrun'] = None
+    #     ts.save()
+    payrun = models.Payrun.get_by('pay_period_start', datetime.date(2024, 4, 1))
+    print(payrun)
+    ts_list = models.Timesheet.search(pay_period_start=q.between(datetime.date(2024, 4, 1), datetime.date(2024, 4, 8)))
+    print(len(ts_list))
+    for ts in ts_list:
+        ts['payrun'] = payrun
+        ts.save()
 
 
 def foo():
