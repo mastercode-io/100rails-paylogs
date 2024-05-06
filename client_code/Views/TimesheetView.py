@@ -77,6 +77,7 @@ class TimesheetView(GridView):
 
         super().__init__(
             model='Timesheet',
+            title='Timesheet View',
             view_config=view_config,
             context_menu_items=context_menu_items,
             toolbar_actions=toolbar_actions,
