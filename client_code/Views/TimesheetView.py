@@ -130,10 +130,12 @@ class TimesheetView(GridView):
         self.active_payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
         self.first_load = True
 
+
     def form_show(self, **args):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned'
+
 
     def grouping_caption(self, args):
         # print('due_date_caption', args)
@@ -142,6 +144,7 @@ class TimesheetView(GridView):
         return (f'<div class="template" style="{caption_color}">'
                 f'{args.items[0].employee__full_name}</div>')
 
+
     def grouping_total_hours(self, data, column):
         if isinstance(data, list):
             return
@@ -149,6 +152,7 @@ class TimesheetView(GridView):
         hours = int(week_total)
         minutes = int((week_total - hours) * 60)
         return f"{hours}:{minutes:02d} hrs per week"
+
 
     def query_cell_info(self, args):
         if 'field' in args.column.keys() and args.column['field'] == 'end_time':
@@ -171,6 +175,7 @@ class TimesheetView(GridView):
         selected_records = {rec['employee__full_name']: rec for rec in self.grid.getSelectedRecords()}
         for employee_name in selected_records:
             self.calculate_awards({'rowInfo': {'rowData': selected_records[employee_name]}})
+
 
     def timesheet_view_selected(self, args):
         # print('timesheet_view_selected', args)
@@ -203,15 +208,14 @@ class TimesheetView(GridView):
             self.grid.clearGrouping()
             self.grid.groupColumn('payrun__payrun_week')
             self.grid.groupColumn('employee__full_name')
-            self.grid.groupCollapseAll()
+            # self.grid.groupCollapseAll()
         else:
             self.grid_data = []
         print('grid_data', len(self.grid_data))
-        for k in self.grid.groupSettings.keys():
-            print(k, self.grid.groupSettings[k])
-        # print(self.grid.groupSettings)
         self.grid.dataSource = self.grid_data
-        # self.grid.refresh()
+        if args['value'] == 'Past Periods':
+            self.grid.groupCollapseAll()
+
 
     def assign_payrun_action(self, args):
         args.cancel = True
@@ -226,6 +230,7 @@ class TimesheetView(GridView):
         self.assign_payrun(timesheet_uids)
         self.show_confirm_dialog = True
         self.grid.refresh()
+
 
     def assign_payrun(self, timesheet_uids):
         print('assign_payrun', timesheet_uids)
@@ -242,6 +247,7 @@ class TimesheetView(GridView):
                 # self.grid.deleteRow(row)
             for ts_uid in timesheet_uids:
                 self.grid.deleteRecord('uid', ts_uid)
+
 
     def calculate_awards(self, args):
         print('calculate_awards', args['rowInfo']['rowData'])
@@ -352,6 +358,7 @@ class TimesheetView(GridView):
         # for ts in timesheets:
         #     self.update_grid(ts, False)
 
+
     @staticmethod
     def calculate_pay_lines(
             time_frames=None,
@@ -411,6 +418,7 @@ class TimesheetView(GridView):
                 }
                 pay_lines.append(pay_line)
         return unallocated_time_frames, pay_lines
+
 
     @staticmethod
     def calculate_week_overtime(pay_lines=None, pay_items=None):
