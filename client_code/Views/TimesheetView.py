@@ -21,7 +21,7 @@ class TimesheetView(GridView):
                 {'name': 'employee.full_name', 'label': 'Employee Name'},
                 {'name': 'job.name', 'label': 'Job Name'},
                 {'name': 'job.job_type.short_code', 'label': 'Job Type'},
-                {'name': 'date', 'label': 'Date', 'format': 'E dd MMM, yyyy'},
+                {'name': 'date', 'label': 'Date', 'format': 'E dd MMM'},
                 {'name': 'start_time', 'label': 'Start Time', 'format': 'HH:mm'},
                 {'name': 'end_time', 'label': 'End Time', 'format': 'HH:mm'},
                 {'name': 'total_hours_view', 'label': 'Total Hours'},
@@ -32,6 +32,7 @@ class TimesheetView(GridView):
                 {'name': 'status', 'label': 'Status'},
             ],
         }
+        self.col_index = {column['name']: (i + 1) for i, column in enumerate(view_config['columns'])}
 
         self.timesheet_view = DropdownInput(
                     placeholder='Select View',
@@ -109,6 +110,8 @@ class TimesheetView(GridView):
                 {'field': 'start_time', 'direction': 'Ascending'}
             ]
         }
+
+        self.active_payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
         self.first_load = True
 
 
@@ -161,20 +164,22 @@ class TimesheetView(GridView):
 
     def timesheet_view_selected(self, args):
         # print('timesheet_view_selected', args)
-        active_payrun = next(iter(Payrun.search()))
         if args['value'] == 'Unassigned Timesheets':
             self.grid.allowSelection = True
             self.grid.columns[0].visible = True
+            self.grid.columns[self.col_index['payrun.payrun_week']] = False
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': None})
         elif args['value'] == 'Active Payrun':
-            self.grid.allowSelection = False
-            self.grid.columns[0].visible = False
+            # self.grid.allowSelection = False
+            # self.grid.columns[0].visible = False
+            self.grid.columns[self.col_index['payrun.payrun_week']] = False
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
-                                                     filters={'payrun': active_payrun})
+                                                     filters={'payrun': self.active_payrun})
         elif args['value'] == 'Past Periods':
             self.grid.allowSelection = False
-            active_row = Payrun.get_row(active_payrun['uid'])
+            self.grid.columns[0].visible = False
+            active_row = Payrun.get_row(self.active_payrun['uid'])
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      search_queries=[q.all_of(payrun=q.none_of(None, active_row))])
         else:
