@@ -118,12 +118,12 @@ class TimesheetView(GridView):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned Timesheets'
-        print(self.col_index)
-        self.grid.columns[self.col_index['payrun.payrun_week']].visible = False
-        for k in self.grid.columns[5].keys():
-            print(k, self.grid.columns[5][k])
-        for col in self.grid.columns:
-            print(col, col.get('field'))
+        # print(self.col_index)
+        # self.grid.columns[self.col_index['payrun.payrun_week']].visible = False
+        # for k in self.grid.columns[5].keys():
+        #     print(k, self.grid.columns[5][k])
+        # for col in self.grid.columns:
+        #     print(col, col.get('field'))
 
 
     def grouping_caption(self, args):
