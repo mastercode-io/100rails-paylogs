@@ -35,12 +35,11 @@ class TimesheetView(GridView):
 
         self.timesheet_view = DropdownInput(
                     placeholder='Select View',
-                    css_class='e-outline pl-grid-toolbar-action-button',
+                    css_class='e-outline pl-grid-toolbar-action-button pl-timesheet-toolbar-item-select-view',
                     float_label=False,
                     options=['Unassigned', 'Active Payrun', 'Past Periods'],
                     required=True,
                     on_change=self.timesheet_view_selected,
-                    el_style='"width": "150px"',
                 )
 
         toolbar_actions = [

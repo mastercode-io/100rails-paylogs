@@ -396,3 +396,6 @@ label>span.e-label {
     flex-direction: column;
     justify-content: flex-start;
 }
+.pl-timesheet-toolbar-item-select-view {
+    width: 150px!important;
+}
