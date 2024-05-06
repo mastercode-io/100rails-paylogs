@@ -197,12 +197,13 @@ class TimesheetView(GridView):
             self.grid.columns[self.grid_column_indexes['_selected']].visible = False
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = True
             # self.grid.groupSettings = self.grid_group_settings['Past Periods']
-            self.grid.clearGrouping()
-            self.grid.groupColumn('payrun__payrun_week')
-            self.grid.groupColumn('employee__full_name')
             active_row = Payrun.get_row(self.active_payrun['uid'])
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      search_queries=[q.all_of(payrun=q.none_of(None, active_row))])
+            self.grid.clearGrouping()
+            self.grid.groupColumn('payrun__payrun_week')
+            self.grid.groupColumn('employee__full_name')
+            self.grid.groupCollapseAll()
         else:
             self.grid_data = []
         print('grid_data', len(self.grid_data))
