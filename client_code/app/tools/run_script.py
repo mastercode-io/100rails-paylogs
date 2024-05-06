@@ -30,11 +30,7 @@ def add_integration():
     print(api_credentials)
 
 
-def bar():
-    # for ts in models.Timesheet.search():
-    #     ts['payrun'] = None
-    #     ts.save()
-    # print('done')
+def add_grid_view():
     models.AppGridView(
         name='PayrunList',
         model='Payrun',
@@ -69,6 +65,15 @@ def bar():
             }
         ],
     ).save()
+
+
+def bar():
+    ts_list = models.Timesheet.search()
+    print('ts_list', len(ts_list))
+    for ts in models.Timesheet.search():
+        ts['payrun'] = None
+        ts.save()
+    print('done')
 
 
 def foo():
