@@ -79,7 +79,7 @@ class TimesheetView(GridView):
                 'columns': ['employee__full_name'],
                 'showDropArea': False,
                 # 'captionTemplate': '<div>${key} - ${data}</div>',
-                'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+                # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
             },
             'Active Payrun': {
                 'columns': ['employee__full_name'],
