@@ -198,6 +198,9 @@ class TimesheetView(GridView):
         else:
             self.grid_data = []
         print('grid_data', len(self.grid_data))
+        for k in self.grid.groupSettings.keys():
+            print(k, self.grid.groupSettings[k])
+        # print(self.grid.groupSettings)
         self.grid.dataSource = self.grid_data
         # self.grid.refresh()
 
