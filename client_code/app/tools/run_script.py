@@ -31,10 +31,44 @@ def add_integration():
 
 
 def bar():
-    for ts in models.Timesheet.search():
-        ts['payrun'] = None
-        ts.save()
-    print('done')
+    # for ts in models.Timesheet.search():
+    #     ts['payrun'] = None
+    #     ts.save()
+    # print('done')
+    models.AppGridView(
+        name='PayrunList',
+        model='Payrun',
+        owner='system',
+        columns=[
+            {
+                "name": "payrun_week",
+                "label": "Year Week"
+            },
+            {
+                "name": "pay_period_start",
+                "label": "Pay Period Start",
+                "format": "MMM dd"
+            },
+            {
+                "name": "pay_period_end",
+                "label": "Pay Period End",
+                "format": "MMM dd"
+            },
+            {
+                "name": "pay_date",
+                "label": "Pay Date",
+                "format": "MMM dd"
+            },
+            {
+                "name": "status",
+                "label": "Status"
+            },
+            {
+                "name": "notes",
+                "label": "Notes"
+            }
+        ],
+    ).save()
 
 
 def foo():
