@@ -77,7 +77,7 @@ def bar():
     #     ts.save()
     payrun = models.Payrun.get_by('pay_period_start', datetime.date(2024, 4, 8))
     print(payrun)
-    ts_list = models.Timesheet.search(date=q.between(datetime.date(2024, 4, 8), datetime.date(2024, 4, 5)))
+    ts_list = models.Timesheet.search(date=q.between(datetime.date(2024, 4, 8), datetime.date(2024, 4, 15)))
     print(len(ts_list))
     for ts in ts_list:
         ts['payrun'] = payrun
