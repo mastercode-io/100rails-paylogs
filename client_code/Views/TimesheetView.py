@@ -178,7 +178,7 @@ class TimesheetView(GridView):
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
             # self.grid.groupSettings = self.grid_group_settings['Unassigned']
-            # self.grid.ungroupColumn('payrun__payrun_week')
+            self.grid.ungroupColumn('payrun__payrun_week')
             # self.grid.groupColumn('employee__full_name')
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
                                                      filters={'payrun': None})
@@ -197,7 +197,7 @@ class TimesheetView(GridView):
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = True
             # self.grid.groupSettings = self.grid_group_settings['Past Periods']
             # self.grid.ungroupColumn('employee__full_name')
-            # self.grid.groupColumn('date')
+            self.grid.groupColumn('payrun__payrun_week')
             # self.grid.groupColumn('employee__full_name')
             active_row = Payrun.get_row(self.active_payrun['uid'])
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
