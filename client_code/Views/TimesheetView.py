@@ -76,7 +76,7 @@ class TimesheetView(GridView):
         ]
         self.grid_group_settings = {
             'Unassigned': {
-                'columns': ['employee__full_name'],
+                'columns': ['date'],
                 'showDropArea': False,
                 # 'captionTemplate': '<div>${key} - ${data}</div>',
                 # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
