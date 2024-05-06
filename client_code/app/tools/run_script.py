@@ -71,9 +71,10 @@ def bar():
     ts_list = models.Timesheet.search()
     print('ts_list', len(ts_list))
     for ts in ts_list:
-        print(ts['uid'], ts['payrun'])
+        print(ts, ts['uid'], ts['payrun'])
         ts['payrun'] = None
         ts.save()
+        print(ts['payrun'])
     ts_list = models.Timesheet.search()
     print('ts_list', len(ts_list))
     for ts in ts_list:
