@@ -122,6 +122,7 @@ class TimesheetView(GridView):
         self.grid.sortSettings = {
             'columns': [
                 {'field': 'employee__full_name', 'direction': 'Ascending'},
+                {'field': 'date', 'direction': 'Ascending'},
                 {'field': 'start_time', 'direction': 'Ascending'}
             ]
         }
@@ -176,7 +177,7 @@ class TimesheetView(GridView):
         if args['value'] == 'Unassigned':
             # self.grid.groupSettings = self.grid_group_settings['Unassigned']
             self.grid.clearGrouping()
-            self.grid.groupColumn('job__name')
+            # self.grid.groupColumn('job__name')
             self.grid.allowSelection = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
