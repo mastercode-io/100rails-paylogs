@@ -107,25 +107,25 @@ class TimesheetView(GridView):
         # anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
         self.grid.allowGrouping = True
         self.grid.groupSettings = self.grid_group_settings['Unassigned']
-        self.grid.aggregates = [{
-            'columns': [
-                {
-                    'type': 'Custom',
-                    'field': 'total_hours_view',
-                    'columnName': 'total_hours_view',
-                    'groupCaptionTemplate': '${Custom}',
-                    'customAggregate': self.grouping_total_hours,
-                },
-            ],
-        }]
+        # self.grid.aggregates = [{
+        #     'columns': [
+        #         {
+        #             'type': 'Custom',
+        #             'field': 'total_hours_view',
+        #             'columnName': 'total_hours_view',
+        #             'groupCaptionTemplate': '${Custom}',
+        #             'customAggregate': self.grouping_total_hours,
+        #         },
+        #     ],
+        # }]
         self.grid.allowSorting = True
-        self.grid.sortSettings = {
-            'columns': [
-                {'field': 'employee__full_name', 'direction': 'Ascending'},
-                {'field': 'date', 'direction': 'Ascending'},
-                {'field': 'start_time', 'direction': 'Ascending'}
-            ]
-        }
+        # self.grid.sortSettings = {
+        #     'columns': [
+        #         {'field': 'employee__full_name', 'direction': 'Ascending'},
+        #         {'field': 'date', 'direction': 'Ascending'},
+        #         {'field': 'start_time', 'direction': 'Ascending'}
+        #     ]
+        # }
 
         self.active_payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
         self.first_load = True
