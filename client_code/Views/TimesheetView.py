@@ -216,6 +216,9 @@ class TimesheetView(GridView):
             self.grid.clearGrouping()
             self.grid.groupColumn('payrun__payrun_week')
             self.grid.groupColumn('employee__full_name')
+            self.grid.allowAdding = False
+            self.grid.allowEditing = False
+            self.grid.allowDeleting = False
             # self.grid.groupCollapseAll()
         else:
             self.grid_data = []
