@@ -64,9 +64,19 @@ class TimesheetView(GridView):
                 'input': Button(
                     content='ASSIGN Payrun',
                     css_class='e-outline pl-grid-toolbar-action-button',
-                    action=self.assign_payrun_action,
+                    action=self.assign_unassign_action,
                 ),
                 'selected_records': True,
+                'toolbar_click': False,
+            },
+            {
+                'name': 'unassign_payrun',
+                'input': Button(
+                    content='UNASSIGN',
+                    css_class='e-outline pl-grid-toolbar-action-button',
+                    action=self.assign_unassign_action,
+                ),
+                'selected_records': False,
                 'toolbar_click': False,
             },
         ]
@@ -200,6 +210,11 @@ class TimesheetView(GridView):
             self.grid.clearGrouping()
             self.grid.groupColumn('employee__full_name')
             self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'inline-flex'
+            for action in self.toolbar_actions:
+                if action['name'] == 'assign_payrun':
+                    action['selected_records'] = True
+                if action['name'] == 'unassign_payrun':
+                    action['selected_records'] = False
 
         elif args['value'] == 'Active Payrun':
             self.edit_mode = 'dialog'
@@ -211,6 +226,11 @@ class TimesheetView(GridView):
                                                      filters={'payrun': self.active_payrun})
             self.grid.clearGrouping()
             self.grid.groupColumn('employee__full_name')
+            for action in self.toolbar_actions:
+                if action['name'] == 'assign_payrun':
+                    action['selected_records'] = False
+                if action['name'] == 'unassign_payrun':
+                    action['selected_records'] = True
 
         elif args['value'] == 'Past Periods':
             self.edit_mode = 'view'
@@ -236,7 +256,7 @@ class TimesheetView(GridView):
         #     self.grid.groupModule.expandCollapseRows(row)
 
 
-    def assign_payrun_action(self, args):
+    def assign_unassign_action(self, args):
         args.cancel = True
         if 'rowInfo' in args:
             for key in args['rowInfo']:
@@ -244,28 +264,32 @@ class TimesheetView(GridView):
             timesheet_uids = [args['rowInfo']['rowData']['uid']]
         else:
             timesheet_uids = [rec['uid'] for rec in self.grid.getSelectedRecords()]
-        print('assign_payrun_action', timesheet_uids)
+        print('assign_unassign_action', timesheet_uids)
         self.show_confirm_dialog = False
-        self.assign_payrun(timesheet_uids)
+        self.assign_unassign_payrun(timesheet_uids)
         self.show_confirm_dialog = True
         self.grid.refresh()
 
 
-    def assign_payrun(self, timesheet_uids):
-        print('assign_payrun', timesheet_uids)
-        payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
-        if payrun is not None:
-            for ts_uid in timesheet_uids:
-                ts = Timesheet.get(ts_uid)
-                ts['payrun'] = payrun
-                ts.save()
-                row_index = self.grid.getRowIndexByPrimaryKey(ts_uid)
-                row = self.grid.getRowByIndex(row_index)
-                print('delete row', ts_uid, row_index, row)
-                # self.grid.dataSource.remove(grid_row)
-                # self.grid.deleteRow(row)
-            for ts_uid in timesheet_uids:
-                self.grid.deleteRecord('uid', ts_uid)
+    def assign_unassign_payrun(self, timesheet_uids):
+        print('assign_unassign_payrun', timesheet_uids)
+        if self.timesheet_view.value == 'Unassigned':
+            payrun = None
+        else:
+            payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
+            if not payrun:
+                return
+        for ts_uid in timesheet_uids:
+            ts = Timesheet.get(ts_uid)
+            ts['payrun'] = payrun
+            ts.save()
+            row_index = self.grid.getRowIndexByPrimaryKey(ts_uid)
+            row = self.grid.getRowByIndex(row_index)
+            print('delete row', ts_uid, row_index, row)
+            # self.grid.dataSource.remove(grid_row)
+            # self.grid.deleteRow(row)
+        for ts_uid in timesheet_uids:
+            self.grid.deleteRecord('uid', ts_uid)
 
 
     def calculate_awards(self, args):
