@@ -199,10 +199,12 @@ class TimesheetView(GridView):
                                                      filters={'payrun': None})
             self.grid.clearGrouping()
             self.grid.groupColumn('employee__full_name')
+            self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'inline-flex'
 
         elif args['value'] == 'Active Payrun':
             self.edit_mode = 'dialog'
             self.grid.allowSelection = True
+            self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'none'
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
@@ -213,6 +215,7 @@ class TimesheetView(GridView):
         elif args['value'] == 'Past Periods':
             self.edit_mode = 'view'
             self.grid.allowSelection = False
+            self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'none'
             self.grid.columns[self.grid_column_indexes['_selected']].visible = False
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = True
             active_row = Payrun.get_row(self.active_payrun['uid'])
