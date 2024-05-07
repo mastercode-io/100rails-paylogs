@@ -152,7 +152,7 @@ class TimesheetView(GridView):
             #     caption_text = item.payrun__payrun_week
             else:
                 print('__start__')
-                print(item)
+                print(args)
                 print('__end__')
                 caption_text = ''
             return (f'<div class="template" style="{caption_color}">'
