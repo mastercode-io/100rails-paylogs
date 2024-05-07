@@ -171,6 +171,7 @@ class TimesheetView(GridView):
             minutes = int((week_total - hours) * 60)
             return f"{hours}:{minutes:02d} hrs per week"
         else:
+            print(data)
             return
 
 
