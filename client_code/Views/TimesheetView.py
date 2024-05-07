@@ -215,6 +215,8 @@ class TimesheetView(GridView):
         self.grid.dataSource = self.grid_data
         grouped_rows = self.grid.getContentTable().querySelectorAll('.e-recordplusexpand, .e-recordpluscollapse')
         print('grouped_rows', grouped_rows)
+        for row in grouped_rows:
+            print(row)
 
 
     def assign_payrun_action(self, args):
