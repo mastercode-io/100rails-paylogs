@@ -210,12 +210,11 @@ class TimesheetView(GridView):
             self.grid.clearGrouping()
             self.grid.groupColumn('employee__full_name')
             self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'inline-flex'
-            for action in self.toolbar_actions:
-                print(action)
-                if action['name'] == 'assign_payrun':
-                    action['selected_records'] = True
-                if action['name'] == 'unassign_payrun':
-                    action['selected_records'] = False
+            for action_item in self.toolbar_actions:
+                if action_item == 'assign_payrun':
+                    self.toolbar_actions[action_item]['selected_records'] = True
+                if action_item == 'unassign_payrun':
+                    self.toolbar_actions[action_item]['selected_records'] = False
 
         elif args['value'] == 'Active Payrun':
             self.edit_mode = 'dialog'
@@ -227,11 +226,11 @@ class TimesheetView(GridView):
                                                      filters={'payrun': self.active_payrun})
             self.grid.clearGrouping()
             self.grid.groupColumn('employee__full_name')
-            for action in self.toolbar_actions:
-                if action['name'] == 'assign_payrun':
-                    action['selected_records'] = False
-                if action['name'] == 'unassign_payrun':
-                    action['selected_records'] = True
+            for action_item in self.toolbar_actions:
+                if action_item == 'assign_payrun':
+                    self.toolbar_actions[action_item]['selected_records'] = False
+                if action_item == 'unassign_payrun':
+                    self.toolbar_actions[action_item]['selected_records'] = True
 
         elif args['value'] == 'Past Periods':
             self.edit_mode = 'view'
