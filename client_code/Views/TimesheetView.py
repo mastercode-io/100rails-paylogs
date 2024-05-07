@@ -211,6 +211,7 @@ class TimesheetView(GridView):
             self.grid.groupColumn('employee__full_name')
             self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'inline-flex'
             for action in self.toolbar_actions:
+                print(action)
                 if action['name'] == 'assign_payrun':
                     action['selected_records'] = True
                 if action['name'] == 'unassign_payrun':
