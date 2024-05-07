@@ -214,7 +214,7 @@ class TimesheetView(GridView):
         print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
         grouped_rows = self.grid.getContentTable().querySelector('.e-recordplusexpand, .e-recordpluscollapse')
-        grouped_row_index = anvil.js.window.document.getElementById('rowIndex').value
+        grouped_row_index = anvil.js.window.document.getElementById('rowIndex')
         print('grouped_rows', grouped_rows, grouped_row_index)
 
 
