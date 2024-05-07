@@ -135,6 +135,9 @@ class TimesheetView(GridView):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned'
+        print('toolbar')
+        for k in self.grid.toolbar.keys():
+            print(k, self.grid.toolbar[k])
 
 
     def grouping_caption(self, args):
@@ -216,10 +219,6 @@ class TimesheetView(GridView):
             self.grid.clearGrouping()
             self.grid.groupColumn('payrun__payrun_week')
             self.grid.groupColumn('employee__full_name')
-            self.grid.allowAdding = False
-            self.grid.allowEditing = False
-            self.grid.allowDeleting = False
-            # self.grid.groupCollapseAll()
         else:
             self.grid_data = []
         print('grid_data', len(self.grid_data))
