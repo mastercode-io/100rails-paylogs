@@ -79,7 +79,7 @@ class TimesheetView(GridView):
                 'columns': ['employee__full_name'],
                 'showDropArea': False,
                 # 'captionTemplate': '<div>${key} - ${data}</div>',
-                # 'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
+                'captionTemplate': '<div>${captionTimesheetListView(data)}</div>',
             },
             'Active Payrun': {
                 'columns': ['employee__full_name'],
@@ -213,11 +213,11 @@ class TimesheetView(GridView):
             self.grid_data = []
         print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
-        grouped_rows = self.grid.getContentTable().querySelectorAll('.e-recordplusexpand, .e-recordpluscollapse')
-        print('grouped_rows', grouped_rows)
-        for row in grouped_rows:
-            print(row)
-            self.grid.groupModule.expandCollapseRows(row)
+        # grouped_rows = self.grid.getContentTable().querySelectorAll('.e-recordplusexpand, .e-recordpluscollapse')
+        # print('grouped_rows', grouped_rows)
+        # for row in grouped_rows:
+        #     print(row)
+        #     self.grid.groupModule.expandCollapseRows(row)
 
 
     def assign_payrun_action(self, args):
