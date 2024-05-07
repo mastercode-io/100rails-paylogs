@@ -253,7 +253,7 @@ class TimesheetView(GridView):
 
     def assign_payrun(self, timesheet_uids):
         print('assign_payrun', timesheet_uids)
-        payrun = next(iter(Payrun.search()))
+        payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
         if payrun is not None:
             for ts_uid in timesheet_uids:
                 ts = Timesheet.get(ts_uid)
