@@ -141,8 +141,12 @@ class TimesheetView(GridView):
         # print('due_date_caption', args)
         # caption_color = 'color:#a63333;' if args['key'] == -100 else ''
         caption_color = 'color:#6750A4;'
-        return (f'<div class="template" style="{caption_color}">'
-                f'{args.items[0].employee__full_name}</div>')
+        if self.timesheet_view.value in ('Unassigned', 'Active Payrun'):
+            return (f'<div class="template" style="{caption_color}">'
+                    f'{args.items[0].employee__full_name}</div>')
+        else:
+            return (f'<div class="template" style="{caption_color}">'
+                    f'{args.items[0].payrun__payrun_week}</div>')
 
 
     def grouping_total_hours(self, data, column):
@@ -170,6 +174,7 @@ class TimesheetView(GridView):
                 if plus_days > 0:
                     args.cell.innerHTML = f'{args.cell.innerHTML} +{plus_days} day(s)'
         super().query_cell_info(args)
+
 
     def calculate_awards_action(self, args):
         selected_records = {rec['employee__full_name']: rec for rec in self.grid.getSelectedRecords()}
