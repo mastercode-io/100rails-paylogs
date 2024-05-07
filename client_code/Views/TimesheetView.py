@@ -145,12 +145,15 @@ class TimesheetView(GridView):
             return (f'<div class="template" style="{caption_color}">'
                     f'{args.items[0].employee__full_name}</div>')
         else:
-            print('__start__')
-            print(args.items)
-            print('__end__')
-            return ''
-            # return (f'<div class="template" style="{caption_color}">'
-            #         f'{args.items[0].payrun__payrun_week}</div>')
+            item = args.items[0]
+            if 'payrun__payrun_week' in item:
+                caption_text = item.payrun__payrun_week
+            elif 'employee__full_name' in item:
+                caption_text = item.employee__full_name
+            else:
+                caption_text = ''
+            return (f'<div class="template" style="{caption_color}">'
+                    f'{caption_text}</div>')
 
 
     def grouping_total_hours(self, data, column):
