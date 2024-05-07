@@ -107,17 +107,17 @@ class TimesheetView(GridView):
         # anvil.js.window['timesheetListGroupingTotalHours'] = self.grouping_total_hours
         self.grid.allowGrouping = True
         self.grid.groupSettings = self.grid_group_settings['Unassigned']
-        # self.grid.aggregates = [{
-        #     'columns': [
-        #         {
-        #             'type': 'Custom',
-        #             'field': 'total_hours_view',
-        #             'columnName': 'total_hours_view',
-        #             'groupCaptionTemplate': '${Custom}',
-        #             'customAggregate': self.grouping_total_hours,
-        #         },
-        #     ],
-        # }]
+        self.grid.aggregates = [{
+            'columns': [
+                {
+                    'type': 'Custom',
+                    'field': 'total_hours_view',
+                    'columnName': 'total_hours_view',
+                    'groupCaptionTemplate': '${Custom}',
+                    'customAggregate': self.grouping_total_hours,
+                },
+            ],
+        }]
         self.grid.allowSorting = True
         self.grid.sortSettings = {
             'columns': [
@@ -145,16 +145,6 @@ class TimesheetView(GridView):
             return (f'<div class="template" style="{caption_color}">'
                     f'{args.items[0].employee__full_name}</div>')
         else:
-            # item = args.items[0]
-            # if 'employee__full_name' in item:
-            #     caption_text = item.employee__full_name
-            # # elif 'payrun__payrun_week' in item:
-            # #     caption_text = item.payrun__payrun_week
-            # else:
-            #     print('__start__')
-            #     print(args)
-            #     print('__end__')
-            #     caption_text = ''
             return (f'<div class="template" style="{caption_color}">'
                     f'{args.key}</div>')
 
