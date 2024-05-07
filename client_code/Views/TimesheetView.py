@@ -213,6 +213,7 @@ class TimesheetView(GridView):
             self.grid_data = []
         print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
+        self.grid.groupModule.collapseAll()
 
 
     def assign_payrun_action(self, args):
