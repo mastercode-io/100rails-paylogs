@@ -145,7 +145,9 @@ class TimesheetView(GridView):
             return (f'<div class="template" style="{caption_color}">'
                     f'{args.items[0].employee__full_name}</div>')
         else:
+            print('__start__')
             print(args.items)
+            print('__end__')
             return ''
             # return (f'<div class="template" style="{caption_color}">'
             #         f'{args.items[0].payrun__payrun_week}</div>')
