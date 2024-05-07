@@ -213,9 +213,8 @@ class TimesheetView(GridView):
             self.grid_data = []
         print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
-        grouped_rows = self.grid.getContentTable().querySelector('.e-recordplusexpand, .e-recordpluscollapse')
-        grouped_row_index = anvil.js.window.document.getElementById('rowIndex')
-        print('grouped_rows', grouped_rows, grouped_row_index)
+        grouped_rows = self.grid.getContentTable().querySelectorAll('.e-recordplusexpand, .e-recordpluscollapse')
+        print('grouped_rows', grouped_rows)
 
 
     def assign_payrun_action(self, args):
