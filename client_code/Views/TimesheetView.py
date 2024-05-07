@@ -214,8 +214,6 @@ class TimesheetView(GridView):
         print('grid_data', len(self.grid_data))
         self.grid.dataSource = self.grid_data
         if args['value'] == 'Past Periods':
-            self.grid.groupCollapseAll()
-        self.grid.groupCollapseAll()
 
 
     def assign_payrun_action(self, args):
