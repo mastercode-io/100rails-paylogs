@@ -152,10 +152,13 @@ class TimesheetView(GridView):
     def grouping_total_hours(self, data, column):
         if isinstance(data, list):
             return
-        week_total = sum(ts['total_hours'] for ts in data.items if ts['total_hours'])
-        hours = int(week_total)
-        minutes = int((week_total - hours) * 60)
-        return f"{hours}:{minutes:02d} hrs per week"
+        if self.timesheet_view.value in ('Unassigned', 'Active Payrun'):
+            week_total = sum(ts['total_hours'] for ts in data.items if ts['total_hours'])
+            hours = int(week_total)
+            minutes = int((week_total - hours) * 60)
+            return f"{hours}:{minutes:02d} hrs per week"
+        else:
+            return
 
 
     def query_cell_info(self, args):
