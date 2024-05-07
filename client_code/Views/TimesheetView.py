@@ -276,11 +276,11 @@ class TimesheetView(GridView):
     def assign_unassign_payrun(self, timesheet_uids):
         print('assign_unassign_payrun', timesheet_uids)
         if self.timesheet_view.value == 'Unassigned':
-            payrun = None
-        else:
-            payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
-            if not payrun:
+            if self.active_payrun is None:
                 return
+            payrun = self.active_payrun
+        else:
+            payrun = None
         for ts_uid in timesheet_uids:
             ts = Timesheet.get(ts_uid)
             ts['payrun'] = payrun
