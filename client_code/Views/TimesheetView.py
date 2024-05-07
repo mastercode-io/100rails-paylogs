@@ -148,9 +148,12 @@ class TimesheetView(GridView):
             item = args.items[0]
             if 'employee__full_name' in item:
                 caption_text = item.employee__full_name
-            elif 'payrun__payrun_week' in item:
-                caption_text = item.payrun__payrun_week
+            # elif 'payrun__payrun_week' in item:
+            #     caption_text = item.payrun__payrun_week
             else:
+                print('__start__')
+                print(item)
+                print('__end__')
                 caption_text = ''
             return (f'<div class="template" style="{caption_color}">'
                     f'{caption_text}</div>')
