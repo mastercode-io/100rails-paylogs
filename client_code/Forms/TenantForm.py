@@ -6,9 +6,9 @@ from AnvilFusion.tools.utils import AppEnv
 from ..app.models import Tenant, Business, User
 
 
-class TenantForm(FormBase):
+class AccountForm(FormBase):
     def __init__(self, **kwargs):
-        print('TenantForm')
+        print('AccountForm')
         kwargs['model'] = 'Business'
 
         self.business_instance = None
@@ -80,7 +80,7 @@ class TenantForm(FormBase):
         self.fullscreen = True
 
 
-    def form_open(self, args):
+    def form_open(self, args, **kwargs):
         print('TenantForm.form_open')
         # super().form_open(args)
         print(self.data)

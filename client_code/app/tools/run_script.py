@@ -69,6 +69,13 @@ def add_grid_view():
     ).save()
 
 
+def create_user():
+    email = 'brendan.k@rbscaff.com.au'
+    password = 'fpCwhPydSHEbaXO'
+    tenant = Tenant.get_by('name', 'RB Scaffolding')
+    anvil.server.call('signup_user', email, password, tenant['uid'])
+
+
 def bar():
     # search_query = [q.none_of(payrun=None)]
     # ts_list = models.Timesheet.search(search_query=search_query)
@@ -97,4 +104,4 @@ def bar():
 
 
 def foo():
-    bar()
+    create_user()
