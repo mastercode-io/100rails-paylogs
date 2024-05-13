@@ -151,6 +151,7 @@ class TimesheetView(GridView):
 
 
     def grouping_caption(self, args):
+        return
         # print('due_date_caption', args)
         # caption_color = 'color:#a63333;' if args['key'] == -100 else ''
         caption_color = 'color:#6750A4;'
@@ -163,6 +164,7 @@ class TimesheetView(GridView):
 
 
     def grouping_total_hours(self, data, column):
+        return
         if isinstance(data, list):
             return
         print('grouping_total_hours', data.field)
