@@ -207,7 +207,7 @@ class TimesheetView(GridView):
         if args['value'] == 'Unassigned':
             self.edit_mode = 'dialog'
             self.grid.allowSelection = True
-            self.grid.allowDeleting = True
+            self.grid.editSettings.allowDeleting = True
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
             self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
@@ -224,7 +224,7 @@ class TimesheetView(GridView):
         elif args['value'] == 'Active Payrun':
             self.edit_mode = 'dialog'
             self.grid.allowSelection = True
-            self.grid.allowDeleting = False
+            self.grid.editSettings.allowDeleting = False
             self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'none'
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
