@@ -35,6 +35,7 @@ class UserLoginForm(FormBase):
             validation=validation,
             header='Sign In',
             modal=True,
+            buttons_mode='custom',
             buttons=buttons,
             **kwargs
         )
