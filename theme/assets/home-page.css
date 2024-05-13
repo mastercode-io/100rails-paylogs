@@ -399,3 +399,7 @@ label>span.e-label {
 .pl-timesheet-toolbar-item-select-view {
     width: 150px!important;
 }
+.e-valid-input {
+    color: inherit!important;
+    background-color: inherit!important;
+}
