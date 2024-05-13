@@ -137,8 +137,12 @@ class TimesheetView(GridView):
             ]
         }
 
-        self.active_payrun = next(iter(Payrun.search(status='Preview'))) or next(iter(Payrun.search(status='Created')))
-        self.first_load = True
+        try:
+            self.active_payrun = next(iter(Payrun.search(status='Preview')), None) or next(
+                iter(Payrun.search(status='Created')), None)
+        except StopIteration:
+            self.active_payrun = None
+            self.first_load = True
 
 
     def form_show(self, **args):
