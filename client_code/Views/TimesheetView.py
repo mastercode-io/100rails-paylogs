@@ -149,9 +149,9 @@ class TimesheetView(GridView):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned'
-        print('toolbar')
-        for k in self.grid.toolbar.keys():
-            print(k, self.grid.toolbar[k])
+        # print('toolbar')
+        # for k in self.grid.toolbar.keys():
+        #     print(k, self.grid.toolbar[k])
 
 
     def grouping_caption(self, args):
@@ -169,7 +169,7 @@ class TimesheetView(GridView):
     def grouping_total_hours(self, data, column):
         if isinstance(data, list):
             return
-        print('grouping_total_hours', data.field)
+        # print('grouping_total_hours', data.field)
         if self.timesheet_view.value in ('Unassigned', 'Active Payrun') or data.field == 'employee__full_name':
             week_total = sum(ts['total_hours'] for ts in data.items if ts['total_hours'])
             hours = int(week_total)
