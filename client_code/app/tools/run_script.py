@@ -73,6 +73,7 @@ def create_user():
     email = 'brendan.k@rbscaff.com.au'
     password = 'fpCwhPydSHEbaXO'
     tenant = Tenant.get_by('name', 'RB Scaffolding')
+    print(tenant)
     anvil.server.call('signup_user', email, password, tenant['uid'])
 
 
