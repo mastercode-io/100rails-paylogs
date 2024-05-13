@@ -97,7 +97,8 @@ def bar():
     # for ts in ts_list:
     #     ts['payrun'] = payrun
     #     ts.save()
-    ts_list = models.Timesheet.search(date=q.between(datetime.date(2024, 4, 22), datetime.date(2024, 4, 28)))
+    # ts_list = models.Timesheet.search(date=q.between(datetime.date(2024, 4, 22), datetime.date(2024, 4, 28)))
+    ts_list = models.Timesheet.search()
     print(len(ts_list))
     for ts in ts_list:
         ts['payrun'] = None
@@ -105,4 +106,4 @@ def bar():
 
 
 def foo():
-    create_user()
+    bar()

@@ -141,7 +141,7 @@ class TimesheetView(GridView):
         self.first_load = True
 
 
-    def form_show(self, get_data=False, **args):
+    def form_show(self, **args):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned'
