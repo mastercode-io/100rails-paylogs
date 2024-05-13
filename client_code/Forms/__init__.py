@@ -1,6 +1,6 @@
 from .AppIntegrationForm import AppIntegrationForm
 from .AssistantForm import AssistantForm
-from .TenantForm import TenantForm
+from .AccountForm import AccountForm
 from .UserLoginForm import UserLoginForm
 from .UserForm import UserForm
 from .BusinessForm import BusinessForm
