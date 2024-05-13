@@ -11,8 +11,10 @@ class UserLoginForm(FormBase):
         self.after_login = after_login
         # anvil.users.signup_with_email('alex@100email.co', '!X!SnRGgr8Gzk56')
 
-        self.login = TextInput(name='login', label='User Login (email)', input_type='email', save=False)
-        self.password = TextInput(name='password', label='Password', input_type='password', save=False)
+        self.login = TextInput(name='login', label='User Login (email)', input_type='email', save=False,
+                               css_class='pl-color-inherit')
+        self.password = TextInput(name='password', label='Password', input_type='password', save=False,
+                                  css_class='pl-color-inherit')
         self.remember = CheckboxInput(name='remember', label='Remember Me', value=True, save=False)
         self.error = InlineMessage(name='message', label='', type='')
 
