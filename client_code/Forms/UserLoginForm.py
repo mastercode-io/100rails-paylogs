@@ -11,7 +11,7 @@ class UserLoginForm(FormBase):
         self.after_login = after_login
         # anvil.users.signup_with_email('alex@100email.co', '!X!SnRGgr8Gzk56')
 
-        self.login = TextInput(name='login', label='User Login (email)', input_type='email', save=False,
+        self.login = TextInput(name='login', label='User Login (email)', input_type='text', save=False,
                                css_class='pl-form-input-color')
         self.password = TextInput(name='password', label='Password', input_type='password', save=False,
                                   css_class='pl-form-input-color')
