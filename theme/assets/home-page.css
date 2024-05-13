@@ -399,7 +399,7 @@ label>span.e-label {
 .pl-timesheet-toolbar-item-select-view {
     width: 150px!important;
 }
-.pl-form-input-color {
+input.e-input::selection {
     color: #111827!important;
     background-color: #f9fafb!important;
 }
