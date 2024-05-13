@@ -141,7 +141,7 @@ class TimesheetView(GridView):
         self.first_load = True
 
 
-    def form_show(self, **args):
+    def form_show(self, get_data=False, **args):
         print('TimesheetView.form_show')
         super().form_show(get_data=False, **args)
         self.timesheet_view.value = 'Unassigned'
@@ -151,7 +151,6 @@ class TimesheetView(GridView):
 
 
     def grouping_caption(self, args):
-        return
         # print('due_date_caption', args)
         # caption_color = 'color:#a63333;' if args['key'] == -100 else ''
         caption_color = 'color:#6750A4;'
@@ -164,7 +163,6 @@ class TimesheetView(GridView):
 
 
     def grouping_total_hours(self, data, column):
-        return
         if isinstance(data, list):
             return
         print('grouping_total_hours', data.field)
@@ -205,7 +203,7 @@ class TimesheetView(GridView):
 
 
     def timesheet_view_selected(self, args):
-        # print('timesheet_view_selected', args)
+        print('timesheet_view_selected', args)
         if args['value'] == 'Unassigned':
             self.edit_mode = 'dialog'
             self.grid.allowSelection = True
