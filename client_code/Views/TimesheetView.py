@@ -232,8 +232,11 @@ class TimesheetView(GridView):
             self.grid.element.querySelector(f'.e-toolbar .e-toolbar-item[title="Add"]').style.display = 'none'
             self.grid.columns[self.grid_column_indexes['_selected']].visible = True
             self.grid.columns[self.grid_column_indexes['payrun__payrun_week']].visible = False
-            self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
-                                                     filters={'payrun': self.active_payrun})
+            if self.active_payrun is None:
+                self.grid_data = []
+            else:
+                self.grid_data = Timesheet.get_grid_view(view_config=self.view_config,
+                                                         filters={'payrun': self.active_payrun})
             self.grid.clearGrouping()
             self.grid.groupColumn('employee__full_name')
             for action_item in self.toolbar_actions:
