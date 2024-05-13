@@ -12,9 +12,9 @@ class UserLoginForm(FormBase):
         # anvil.users.signup_with_email('alex@100email.co', '!X!SnRGgr8Gzk56')
 
         self.login = TextInput(name='login', label='User Login (email)', input_type='email', save=False,
-                               css_class='pl-color-inherit')
+                               css_class='pl-form-input-color')
         self.password = TextInput(name='password', label='Password', input_type='password', save=False,
-                                  css_class='pl-color-inherit')
+                                  css_class='pl-form-input-color')
         self.remember = CheckboxInput(name='remember', label='Remember Me', value=True, save=False)
         self.error = InlineMessage(name='message', label='', type='')
 
