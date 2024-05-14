@@ -399,7 +399,3 @@ label>span.e-label {
 .pl-timesheet-toolbar-item-select-view {
     width: 150px!important;
 }
-input::selection, textarea::selection {
-    color: #111827!important;
-    background-color: #f9fafb!important;
-}

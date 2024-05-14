@@ -110,15 +110,19 @@ class HomePage(HomePageTemplate):
         #     {'id': 'settings_job_types', 'text': 'Job Types', 'items': []},
         #     {'id': 'settings_timesheet_types', 'text': 'Timesheet Types', 'items': []},
         # ]
-        self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
-            {
-                "cssClass": "e-inherit e-caret-hide pl-menu-font",
-                "iconCss": "fa-solid fa-cog pl-appbar-menu-icon",
-                "items": self.appbar_settings_menu_items,
-                "open": self.appbar_menu_popup_open,
-                "select": self.appbar_settings_menu_select,
-            }
-        )
+        # self.appbar_settings_menu = ej.splitbuttons.DropDownButton(
+        #     {
+        #         "cssClass": "e-inherit e-caret-hide pl-menu-font",
+        #         "iconCss": "fa-solid fa-cog pl-appbar-menu-icon",
+        #         "items": self.appbar_settings_menu_items,
+        #         "open": self.appbar_menu_popup_open,
+        #         "select": self.appbar_settings_menu_select,
+        #     }
+        # )
+        self.appbar_settings_button = ej.buttons.Button({
+            'cssClass': 'e-inherit e-caret-hide pl-menu-font',
+            'iconCss': 'fa-solid fa-cog pl-appbar-menu-icon',
+        })
         self.appbar_assistant_button = ej.buttons.Button({
             'cssClass': 'e-inherit e-caret-hide pl-menu-font',
             'iconCss': 'fa-solid fa-comments pl-appbar-menu-icon',
@@ -146,19 +150,20 @@ class HomePage(HomePageTemplate):
         # AppEnv.navigation = self.sidebar
         AppEnv.assistant = self.assistant
 
-        if (AppEnv.logged_user.permissions.super_admin
-                or AppEnv.logged_user.permissions.administrator
-                or AppEnv.logged_user.permissions.developer):
-            if self.appbar_settings_menu_show is False:
-                self.appbar_settings_menu_show = True
-                print('settings menu', self.appbar_settings_menu)
-                # self.appbar_settings_menu = ej.buttons.Button(
-                #     {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
-                # )
-                self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
-                # self.appbar_settings_menu.element.addEventListener(
-                #     "click", self.settings_click
-                # )
+        # if (AppEnv.logged_user.permissions.super_admin
+        #         or AppEnv.logged_user.permissions.administrator
+        #         or AppEnv.logged_user.permissions.developer):
+        #     if self.appbar_settings_menu_show is False:
+        #         self.appbar_settings_menu_show = True
+        #         print('settings menu', self.appbar_settings_menu)
+        #         # self.appbar_settings_menu = ej.buttons.Button(
+        #         #     {"cssClass": "e-inherit", "iconCss": "fa-solid fa-cog pl-appbar-menu-icon"}
+        #         # )
+        #         self.appbar_settings_menu.appendTo(jQuery("#pl-appbar-settings-menu")[0])
+        #         # self.appbar_settings_menu.element.addEventListener(
+        #         #     "click", self.settings_click
+        #         # )
+
 
         self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
         if (AppEnv.logged_user.permissions.super_admin
@@ -194,6 +199,8 @@ class HomePage(HomePageTemplate):
         # self.appbar_sidebar_toggle.element.addEventListener(
         #     "click", self.sidebar.toggle
         # )
+        self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
+        self.appbar_settings_button.element.onclick = None
         self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
         self.appbar_assistant_toggle.element.addEventListener(
             "click", self.assistant.toggle
