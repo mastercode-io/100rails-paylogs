@@ -36,7 +36,7 @@ class AccountForm(FormBase):
                         'name': '_', 'label': '', 'cols': [
                             [self.account_name, self.business_name, self.phone, self.email, self.website],
                             [self.address],
-                            [None]
+                            []
                         ]
                     },
                 ],
@@ -46,7 +46,8 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'cols': [
-                            [self.subscription]
+                            [self.subscription],
+                            [],
                         ]
                     }
                 ],
@@ -67,6 +68,16 @@ class AccountForm(FormBase):
                     {
                         'name': '_', 'rows': [
                             [self.users]
+                        ]
+                    }
+                ],
+            },
+            {
+                'name': 'data_files', 'label': 'Data Files', 'sections':
+                [
+                    {
+                        'name': '_', 'rows': [
+                            []
                         ]
                     }
                 ],
