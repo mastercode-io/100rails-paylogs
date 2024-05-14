@@ -228,9 +228,9 @@ class HomePage(HomePageTemplate):
 
     def appbar_settings_button_click(self, args):
         print('appbar_settings_button_click')
-        account_data = models.Business.get_by('tenant_uid', AppEnv.logged_user.tenant_uid)
-        print('account_data', account_data)
-        nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': account_data}
+        tenant = models.Business.get(AppEnv.logged_user.tenant_uid)
+        print('tenant', tenant)
+        nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': tenant}
         self.appbar_menu.show_selected('settings_account')
 
 
