@@ -91,7 +91,7 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'rows': [
-                            []
+                            [self.data_files]
                         ]
                     }
                 ],
