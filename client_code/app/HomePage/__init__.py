@@ -220,7 +220,6 @@ class HomePage(HomePageTemplate):
 
     # Sidebar toggle event handler
 
-
     def sidebar_toggle(self, args):
         pass
         # self.sidebar.toggle(args)
@@ -242,7 +241,6 @@ class HomePage(HomePageTemplate):
 
     # Appbar menu popup window position adjustment
 
-
     @staticmethod
     def appbar_menu_popup_open(args):
         args.element.parentElement.style.top = (
@@ -251,6 +249,7 @@ class HomePage(HomePageTemplate):
 
 
     # Sidebar menu popup window position adjustment
+
     @staticmethod
     def sidebar_menu_popup_open(args):
         args.element.parentElement.style.top = (
