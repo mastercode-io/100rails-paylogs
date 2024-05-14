@@ -15,7 +15,7 @@ class AccountForm(FormBase):
 
         self.tenant_name = TextInput(name='name', label='Account Name', required=True)
         self.business_name = TextInput(name='business_name', label='Business Name', required=True)
-        self.address= MultiFieldInput(name='address', model='Business')
+        self.address = MultiFieldInput(name='address', model='Business')
         self.phone = TextInput(name='phone', label='Phone')
         self.email = TextInput(name='email', label='Email')
         self.website = TextInput(name='website', label='Website')
@@ -30,7 +30,7 @@ class AccountForm(FormBase):
 
         tabs = [
             {
-                'name':'account', 'label': 'Account', 'sections': [
+                'name': 'account', 'label': 'Account', 'sections': [
                 {
                     'name': '_', 'rows': [
                     {self.tenant_name, None}
@@ -45,7 +45,7 @@ class AccountForm(FormBase):
             ],
             },
             {
-                'name':'subscription', 'label': 'Subscription', 'sections': [
+                'name': 'subscription', 'label': 'Subscription', 'sections': [
                 {
                     'name': '_', 'cols': [
                     [self.subscription]
@@ -54,7 +54,7 @@ class AccountForm(FormBase):
             ],
             },
             {
-                'name':'billing', 'label': 'Billing', 'sections': [
+                'name': 'billing', 'label': 'Billing', 'sections': [
                 {
                     'name': '_', 'rows': [
                     # []
@@ -63,7 +63,7 @@ class AccountForm(FormBase):
             ],
             },
             {
-                'name':'users', 'label': 'Users', 'sections': [
+                'name': 'users', 'label': 'Users', 'sections': [
                 {
                     'name': '_', 'rows': [
                     [self.users]

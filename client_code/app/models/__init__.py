@@ -233,10 +233,11 @@ class UserProfile:
 # Data object model classes
 # -------------------------
 @model_type
-class Business:
+class Account:
     _title = "name"
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    business_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     address_schema = {
         "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
@@ -261,6 +262,8 @@ class Business:
         "current_period_end": Attribute(field_type=types.FieldTypes.DATE),
     }
     subscription = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_schema)
+    main_data_file = Relationship("Tenant")
+    data_files = Relationship("Tenant", with_many=True)
 
 
 @model_type
