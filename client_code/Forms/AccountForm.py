@@ -88,7 +88,7 @@ class AccountForm(FormBase):
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             print(self.data['uid'], self.data['tenant_uid'])
             self.account = Account.get_by('tenant_uid', self.data['uid'])
-            print('business', self.business_instance)
+            print('business', self.account)
             self.business_name.value = self.account['name']
             self.phone.value = self.account['phone']
             self.email.value = self.account['email']
