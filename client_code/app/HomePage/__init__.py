@@ -202,7 +202,7 @@ class HomePage(HomePageTemplate):
         self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
         self.appbar_settings_button.element.onclick = self.appbar_menu.show_selected('settings_account')
         self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
-        self.appbar_assistant_toggle.element.onclick = self.toggle
+        self.appbar_assistant_toggle.element.onclick = self.assistant.toggle
         # self.appbar_assistant_toggle.element.addEventListener(
         #     "click", self.assistant.toggle
         # )
