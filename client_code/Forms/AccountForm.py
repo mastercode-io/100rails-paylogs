@@ -37,7 +37,6 @@ class AccountForm(FormBase):
                                  # link_model='Tenant', link_field='case_workflow',
                                  form_container_id=kwargs.get('target'),
                                  view_config=self.user_view_config,
-
                                  )
 
         self.data_files = SubformGrid(name='data_files', label='Data Files', model='Tenant', is_dependent=False,
@@ -136,7 +135,7 @@ class AccountForm(FormBase):
             # for tenant in self.account['data_files']:
             #     data_files.append(Tenant.get_row_view(tenant))
             print('data_files', self.account['data_files'])
-            self.data_files.value = self.account['data_files']
+            self.data_files.value = [tenant.to_json_dict for tenant in self.account['data_files']]
         else:
             super().form_open(args)
             self.form.header = 'Create Account'
