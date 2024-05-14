@@ -96,6 +96,26 @@ class AccountForm(FormBase):
                     }
                 ],
             },
+            {
+                'name': 'payroll_settings', 'label': 'Payroll', 'sections':
+                [
+                    {
+                        'name': '_', 'rows': [
+                            []
+                        ]
+                    }
+                ],
+            },
+            {
+                'name': 'integrations', 'label': 'Integrations', 'sections':
+                [
+                    {
+                        'name': '_', 'rows': [
+                            []
+                        ]
+                    }
+                ],
+            },
         ]
 
         super().__init__(tabs=tabs,
