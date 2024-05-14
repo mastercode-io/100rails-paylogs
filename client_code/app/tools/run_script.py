@@ -78,6 +78,7 @@ def create_user():
 
 
 def bar():
+    pass
     # search_query = [q.none_of(payrun=None)]
     # ts_list = models.Timesheet.search(search_query=search_query)
     # for ts in ts_list:
@@ -103,12 +104,12 @@ def bar():
     # for ts in ts_list:
     #     ts['payrun'] = None
     #     ts.save()
-    tenant = Tenant.get_by('name', 'RB Scaffolding')
-    account = Account.get_by('tenant_uid', tenant['uid'])
-    account['main_data_file'] = tenant
-    rbt = Tenant(name='RBT').save()
-    account['data_files'] = [tenant, rbt]
-    account.save()
+    # tenant = Tenant.get_by('name', 'RB Scaffolding')
+    # account = Account.get_by('tenant_uid', tenant['uid'])
+    # account['main_data_file'] = tenant
+    # rbt = Tenant(name='RBT').save()
+    # account['data_files'] = [tenant, rbt]
+    # account.save()
 
 
 def foo():
