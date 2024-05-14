@@ -122,10 +122,13 @@ class AccountForm(FormBase):
             self.address.value = self.account['address']
             self.subscription.value = self.account['subscription']
 
-            user_list = User.get_grid_view(
-                view_config=self.user_view_config,
-                filters={'tenant_uid': [tenant['uid'] for tenant in self.account['data_files']]}
-            )
+            user_list = []
+            for tenant in self.account['data_files']:
+                print('tenant', tenant['uid'])
+                user_list += User.get_grid_view(
+                    view_config=self.user_view_config,
+                    filters={'tenant_uid': tenant['uid']}
+                )
             print('user_list', user_list)
             self.users.filters = {'tenant_uid': self.data['uid']}
             self.users.value = self.data
