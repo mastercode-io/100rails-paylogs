@@ -414,6 +414,27 @@ db_schema:
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: integration, type: link_single, target: app_integrations}
     title: App Out Api Credentials
+  accounts:
+    title: Accounts
+    client: none
+    server: full
+    columns:
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: website, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: subscription, admin_ui: null, type: simpleObject}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: address, admin_ui: null, type: simpleObject}
+    - {name: email, admin_ui: null, type: string}
+    - {name: logo, admin_ui: null, type: media}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: phone, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: main_data_file, admin_ui: null, type: link_single, target: tenants}
+    - {name: data_files, admin_ui: null, type: link_multiple, target: tenants}
+    - {name: business_name, admin_ui: null, type: string}
   app_uploads_cache:
     client: none
     server: full
@@ -432,24 +453,6 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: App Uploads Cache
-  account:
-    title: Account
-    client: none
-    server: full
-    columns:
-    - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: website, admin_ui: null, type: string}
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: subscription, admin_ui: null, type: simpleObject}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: address, admin_ui: null, type: simpleObject}
-    - {name: email, admin_ui: null, type: string}
-    - {name: logo, admin_ui: null, type: media}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: phone, admin_ui: null, type: string}
-    - {name: name, admin_ui: null, type: string}
   timesheets:
     client: none
     server: full
