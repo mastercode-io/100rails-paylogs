@@ -4,6 +4,7 @@ from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.tools.utils import AppEnv
 from ..app.models import Tenant, Account, User
+import anvil.tables.query as q
 
 
 class AccountForm(FormBase):
@@ -22,7 +23,7 @@ class AccountForm(FormBase):
         self.logo = InlineMessage(name='logo', label='Logo')
         self.subscription = MultiFieldInput(name='subscription', model='Account', label='_', cols=2)
 
-        user_view_config = {
+        self.user_view_config = {
             'model': 'User',
             'columns': [
                 {'name': 'tenant_name', 'label': 'Data File'},
@@ -35,7 +36,7 @@ class AccountForm(FormBase):
         self.users = SubformGrid(name='users', label='User List', model='User', is_dependent=True,
                                  # link_model='Tenant', link_field='case_workflow',
                                  form_container_id=kwargs.get('target'),
-                                 view_config=user_view_config,
+                                 view_config=self.user_view_config,
 
                                  )
 
@@ -120,6 +121,12 @@ class AccountForm(FormBase):
             self.website.value = self.account['website']
             self.address.value = self.account['address']
             self.subscription.value = self.account['subscription']
+
+            user_list = User.get_grid_view(
+                view_config=self.user_view_config,
+                filters={'tenant_uid': [tenant['uid'] for tenant in self.account['data_files']]}
+            )
+            print('user_list', user_list)
             self.users.filters = {'tenant_uid': self.data['uid']}
             self.users.value = self.data
             super().form_open(args)
