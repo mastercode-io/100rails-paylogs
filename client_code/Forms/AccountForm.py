@@ -130,8 +130,7 @@ class AccountForm(FormBase):
                     filters={'tenant_uid': tenant['uid']}
                 )
             print('user_list', user_list)
-            self.users.filters = {'tenant_uid': self.data['uid']}
-            self.users.value = self.data
+            self.users.value = user_list
             super().form_open(args)
         else:
             super().form_open(args)
