@@ -20,7 +20,7 @@ class AccountForm(FormBase):
         self.email = TextInput(name='email', label='Email')
         self.website = TextInput(name='website', label='Website')
         self.logo = InlineMessage(name='logo', label='Logo')
-        self.subscription = MultiFieldInput(name='subscription', model='Business', label='_', cols=2)
+        self.subscription = MultiFieldInput(name='subscription', model='Account', label='_', cols=2)
 
         self.users = SubformGrid(name='users', label='User List', model='User', is_dependent=True,
                                  # link_model='Tenant', link_field='case_workflow',
