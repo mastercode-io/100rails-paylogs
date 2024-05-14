@@ -512,18 +512,26 @@ db_schema:
     server: full
     columns:
     - name: name
+      admin_ui: {order: 0, width: 200}
       type: string
-      admin_ui: {width: 200, order: 0}
     - name: uid
       type: string
       admin_ui: {width: 200, order: 1}
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
+    - name: created_by
+      admin_ui: {order: 0.5}
+      type: string
+    - name: created_time
+      admin_ui: {order: 0.25}
+      type: datetime
     - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: updated_time, admin_ui: null, type: datetime}
+    - name: updated_by
+      admin_ui: {order: 0.03125}
+      type: string
+    - name: updated_time
+      admin_ui: {order: 0.125}
+      type: datetime
     - name: status
-      admin_ui: {width: 200, order: 0}
+      admin_ui: {order: 0.0625, width: 200}
       type: string
     title: Tenants
   scope_types:
