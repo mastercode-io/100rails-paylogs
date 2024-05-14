@@ -121,6 +121,7 @@ class AccountForm(FormBase):
             self.website.value = self.account['website']
             self.address.value = self.account['address']
             self.subscription.value = self.account['subscription']
+            super().form_open(args)
 
             user_list = []
             for tenant in self.account['data_files']:
@@ -131,7 +132,11 @@ class AccountForm(FormBase):
                 )
             print('user_list', user_list)
             self.users.value = user_list
-            super().form_open(args)
+            # data_files = []
+            # for tenant in self.account['data_files']:
+            #     data_files.append(Tenant.get_row_view(tenant))
+            print('data_files', self.account['data_files'])
+            self.data_files.value = self.account['data_files']
         else:
             super().form_open(args)
             self.form.header = 'Create Account'
