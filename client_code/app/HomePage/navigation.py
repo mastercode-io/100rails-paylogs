@@ -231,7 +231,7 @@ class AppbarMenu:
             print('form', component)
             # try:
             form_class = getattr(AppEnv.forms, component.get('class', f"{component.get('model')}Form"))
-            self.content_control = form_class(target=nav_container_id)
+            self.content_control = form_class(target=nav_container_id, **component.get('props', {}))
             # except Exception as e:
             #     print(e.args)
             #     self.content_control = FormBase(model=component.get('model'), target=nav_container_id)
