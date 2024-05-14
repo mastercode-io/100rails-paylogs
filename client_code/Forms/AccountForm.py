@@ -3,7 +3,7 @@ from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.tools.utils import AppEnv
-from ..app.models import Tenant, Business, User
+from ..app.models import Tenant, Account, User
 
 
 class AccountForm(FormBase):
@@ -87,7 +87,7 @@ class AccountForm(FormBase):
         if self.data['uid']:
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             print(self.data['uid'], self.data['tenant_uid'])
-            self.business_instance = Business.get_by('tenant_uid', self.data['uid'])
+            self.business_instance = Account.get_by('tenant_uid', self.data['uid'])
             print('business', self.business_instance)
             self.business_name.value = self.business_instance['name']
             self.phone.value = self.business_instance['phone']
@@ -125,7 +125,7 @@ class AccountForm(FormBase):
             tenant.save()
             print('b) tenant', tenant['uid'], tenant['tenant_uid'])
             # AppEnv.set_tenant(tenant_uid=tenant.uid)
-            self.business_instance = Business(
+            self.business_instance = Account(
                 tenant_uid=tenant['uid'],
                 name=self.business_name.value,
                 phone=self.phone.value,
