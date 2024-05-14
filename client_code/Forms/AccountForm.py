@@ -155,7 +155,7 @@ class AccountForm(FormBase):
             # for tenant in self.account['data_files']:
             #     data_files.append(Tenant.get_row_view(tenant))
             print('data_files', self.account['data_files'])
-            self.data_files.value = [tenant.to_json_dict for tenant in self.account['data_files']]
+            self.data_files.value = [tenant.to_json_dict() for tenant in self.account['data_files']]
         else:
             super().form_open(args)
             self.form.header = 'Create Account'
