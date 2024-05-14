@@ -70,9 +70,12 @@ def add_grid_view():
 
 
 def create_user():
-    email = 'brendan.k@rbscaff.com.au'
-    password = 'fpCwhPydSHEbaXO'
-    tenant = Tenant.get_by('name', 'RB Scaffolding')
+    # email = 'brendan.k@rbscaff.com.au'
+    # password = 'fpCwhPydSHEbaXO'
+    # tenant = Tenant.get_by('name', 'RB Scaffolding')
+    email = 'brady.v@rbteam.com.au'
+    password = '4AzqGwM9x2FKu6q'
+    tenant = Tenant.get_by('name', 'RBT')
     print(tenant)
     anvil.server.call('signup_user', email, password, tenant['uid'])
 
@@ -113,4 +116,4 @@ def bar():
 
 
 def foo():
-    bar()
+    create_user()

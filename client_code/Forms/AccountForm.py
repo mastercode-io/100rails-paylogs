@@ -22,11 +22,25 @@ class AccountForm(FormBase):
         self.logo = InlineMessage(name='logo', label='Logo')
         self.subscription = MultiFieldInput(name='subscription', model='Account', label='_', cols=2)
 
+        user_view_config = {
+            'model': 'User',
+            'columns': [
+                {'name': 'tenant_name', 'label': 'Data File'},
+                {'name': 'full_name', 'label': 'User Name'},
+                {'name': 'email', 'label': 'Email'},
+                {'name': 'enabled', 'label': 'Enabled'},
+                {'name': 'permissions', 'label': 'Permissions'},
+            ]
+        }
         self.users = SubformGrid(name='users', label='User List', model='User', is_dependent=True,
                                  # link_model='Tenant', link_field='case_workflow',
                                  form_container_id=kwargs.get('target'),
-                                 # view_config=workflow_items_view,
+                                 view_config=user_view_config,
+
                                  )
+
+        self.data_files = SubformGrid(name='data_files', label='Data Files', model='Tenant', is_dependent=False,
+                                      form_container_id=kwargs.get('target'))
 
         tabs = [
             {
@@ -111,7 +125,7 @@ class AccountForm(FormBase):
             super().form_open(args)
         else:
             super().form_open(args)
-            self.form.header = 'Create Business Account'
+            self.form.header = 'Create Account'
             buttons = self.form.getButtons()
             for button in buttons:
                 if button.cssClass == 'da-save-button':
