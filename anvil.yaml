@@ -377,24 +377,6 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
-  businesses:
-    title: Businesses
-    client: none
-    server: full
-    columns:
-    - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: website, admin_ui: null, type: string}
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: address, admin_ui: null, type: simpleObject}
-    - {name: email, admin_ui: null, type: string}
-    - {name: logo, admin_ui: null, type: media}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: phone, admin_ui: null, type: string}
-    - {name: name, admin_ui: null, type: string}
-    - {name: subscription, admin_ui: null, type: simpleObject}
   locations:
     title: Locations
     client: none
@@ -450,6 +432,24 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: App Uploads Cache
+  account:
+    title: Account
+    client: none
+    server: full
+    columns:
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: website, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: subscription, admin_ui: null, type: simpleObject}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: address, admin_ui: null, type: simpleObject}
+    - {name: email, admin_ui: null, type: string}
+    - {name: logo, admin_ui: null, type: media}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: phone, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
   timesheets:
     client: none
     server: full
