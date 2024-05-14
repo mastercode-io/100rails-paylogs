@@ -245,7 +245,7 @@ class Account:
         "state_province": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         "country": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         "postal_code": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
-        "time_zone": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+        "time_zone": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
     }
     address = Attribute(field_type=types.FieldTypes.OBJECT, schema=address_schema)
     phone = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
