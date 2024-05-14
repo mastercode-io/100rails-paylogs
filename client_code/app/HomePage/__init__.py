@@ -200,7 +200,8 @@ class HomePage(HomePageTemplate):
         #     "click", self.sidebar.toggle
         # )
         self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
-        self.appbar_settings_button.element.onclick = self.appbar_menu.show_selected('settings_account')
+        # self.appbar_settings_button.element.onclick = self.appbar_menu.show_selected('settings_account')
+        self.appbar_settings_button.element.onclick = self.appbar_settings_button_click
         self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
         self.appbar_assistant_toggle.element.onclick = self.assistant.toggle
         # self.appbar_assistant_toggle.element.addEventListener(
@@ -217,6 +218,11 @@ class HomePage(HomePageTemplate):
     def sidebar_toggle(self, args):
         pass
         # self.sidebar.toggle(args)
+
+    def appbar_settings_button_click(self, args):
+        print('appbar_settings_button_click')
+        self.appbar_menu.show_selected('settings_account')
+
 
     def appbar_assistant_button_click(self, args):
         print('appbar_assistant_button_click')
