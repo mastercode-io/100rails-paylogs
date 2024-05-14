@@ -5,11 +5,12 @@ import anvil.users
 from AnvilFusion.tools.utils import AppEnv, DotDict, init_user_session
 from .. import models
 from ... import Forms
-from ... import Views 
+from ... import Views
 from ... import Pages
 import navigation as nav
 # from ..copilot import Copilot
 import json
+
 
 AppEnv.APP_ID = "PayLogs"
 AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
@@ -131,6 +132,7 @@ class HomePage(HomePageTemplate):
         AppEnv.login_user = self.login_user
         AppEnv.after_login = self.after_login
 
+
     def login_user(self):
         print('login_user')
         AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
@@ -141,6 +143,7 @@ class HomePage(HomePageTemplate):
         # )
         if AppEnv.logged_user:
             self.after_login()
+
 
     def after_login(self):
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
@@ -163,7 +166,6 @@ class HomePage(HomePageTemplate):
         #         # self.appbar_settings_menu.element.addEventListener(
         #         #     "click", self.settings_click
         #         # )
-
 
         self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
         if (AppEnv.logged_user.permissions.super_admin
@@ -188,6 +190,7 @@ class HomePage(HomePageTemplate):
         # print('copilot', message)
         # print(thread)
 
+
     def form_show(self, **event_args):
         # Append appbar controls to elements
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
@@ -210,32 +213,42 @@ class HomePage(HomePageTemplate):
 
         self.login_user()
 
+
     # def settings_click(self, args):
     #     print('settings menu', args.item.id)
-        # self.sidebar.show_menu("settings_menu")
+    # self.sidebar.show_menu("settings_menu")
 
     # Sidebar toggle event handler
+
+
     def sidebar_toggle(self, args):
         pass
         # self.sidebar.toggle(args)
 
+
     def appbar_settings_button_click(self, args):
         print('appbar_settings_button_click')
+        account_data = models.Business.get_by('tenant_uid', AppEnv.logged_user.tenant_uid)
+        print('account_data', account_data)
+        nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': account_data}
         self.appbar_menu.show_selected('settings_account')
 
 
-    def appbar_assistant_button_click(self, args):
-        print('appbar_assistant_button_click')
-        if AppEnv.assistant is None:
-            AppEnv.assistant = Forms.AssistantForm(target=self.content_id)
-        AppEnv.assistant.form_show()
+    # def appbar_assistant_button_click(self, args):
+    #     print('appbar_assistant_button_click')
+    #     if AppEnv.assistant is None:
+    #         AppEnv.assistant = Forms.AssistantForm(target=self.content_id)
+    #     AppEnv.assistant.form_show()
 
     # Appbar menu popup window position adjustment
+
+
     @staticmethod
     def appbar_menu_popup_open(args):
         args.element.parentElement.style.top = (
                 str(float(args.element.parentElement.style.top[:-2]) + 3) + "px"
         )
+
 
     # Sidebar menu popup window position adjustment
     @staticmethod
@@ -249,6 +262,7 @@ class HomePage(HomePageTemplate):
                 + "px"
         )
         args.element.parentElement.style.left = "100px"
+
 
     def appbar_user_menu_select(self, args):
         print('appbar_user_menu_select', args.item.id)
