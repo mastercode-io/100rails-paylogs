@@ -1,7 +1,7 @@
 import anvil.server
 import anvil.tables.query as q
 from ...app import models
-from ..models import AppIntegration, Tenant
+from ..models import AppIntegration, Tenant, Account
 import datetime
 
 
@@ -98,11 +98,17 @@ def bar():
     #     ts['payrun'] = payrun
     #     ts.save()
     # ts_list = models.Timesheet.search(date=q.between(datetime.date(2024, 4, 22), datetime.date(2024, 4, 28)))
-    ts_list = models.Timesheet.search()
-    print(len(ts_list))
-    for ts in ts_list:
-        ts['payrun'] = None
-        ts.save()
+    # ts_list = models.Timesheet.search()
+    # print(len(ts_list))
+    # for ts in ts_list:
+    #     ts['payrun'] = None
+    #     ts.save()
+    tenant = Tenant.get_by('name', 'RB Scaffolding')
+    account = Account.get_by('tenant_uid', tenant['uid'])
+    account['main_data_file'] = tenant
+    rbt = Tenant(name='RBT').save()
+    account['data_files'] = [tenant, rbt]
+    account.save()
 
 
 def foo():

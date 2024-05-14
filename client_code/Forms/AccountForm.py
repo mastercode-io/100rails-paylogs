@@ -81,7 +81,7 @@ class AccountForm(FormBase):
 
 
     def form_open(self, args, **kwargs):
-        print('TenantForm.form_open')
+        print('AccountForm.form_open')
         # super().form_open(args)
         print(self.data)
         if self.data['uid']:
@@ -115,7 +115,7 @@ class AccountForm(FormBase):
         super().form_cancel(args)
 
 
-    def form_save(self, args):
+    def form_save(self, args, **kwargs):
 
         if not self.data['uid']:
             add_new = True
