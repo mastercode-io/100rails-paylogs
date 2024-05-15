@@ -15,7 +15,7 @@ class AccountForm(FormBase):
 
         self.account = None
 
-        self.subtitle = SectionSubtitle(name='company_info', content='Company Info')
+        self.subtitle = SectionSubtitle(name='company_info', value='Company Info')
         self.account_name = TextInput(name='name', label='Account Name', required=True)
         self.business_name = TextInput(name='business_name', label='Business Name', required=True)
         self.address = MultiFieldInput(name='address', model='Account')
