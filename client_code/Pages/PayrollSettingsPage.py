@@ -9,8 +9,8 @@ class PayrollSettingsPage(PageBase):
         print('PayrollSettingsPage')
         title = ''
         if account is None:
-            tenant = Tenant.get(AppEnv.logged_user.tenant_uid)
-            account = next(iter(Account.search(filters={'data_files': [tenant]})), None)
+            tenant = Tenant.get_row(AppEnv.logged_user.tenant_uid)
+            account = next(iter(Account.search(data_files=[tenant])), None)
             print(account, tenant)
         if account is not None:
             options = account['data_files']
