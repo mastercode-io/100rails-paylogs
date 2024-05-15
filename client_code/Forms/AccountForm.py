@@ -171,7 +171,7 @@ class AccountForm(FormBase):
 
         super().__init__(tabs=tabs,
                          header='Account Settings',
-                         button_cancel_label='Close',
+                         buttons_mode='off',
                          **kwargs)
         self.fullscreen = True
 
