@@ -86,9 +86,9 @@ class AccountForm(FormBase):
             view_config=outgoing_links_view,
         )
 
-        self.payroll_settings_form = PayrollSettingsForm(target=kwargs.get('target'))
-        self.payroll_settings_frame = ContentFrame(name='payroll_settings',
-                                                   value=self.payroll_settings_form.form_content)
+        # self.payroll_settings_form = PayrollSettingsForm(target=kwargs.get('target'))
+        # self.payroll_settings_frame = ContentFrame(name='payroll_settings',
+        #                                            value=self.payroll_settings_form.form_content)
 
         tabs = [
             {
@@ -156,7 +156,7 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'rows': [
-                            [self.payroll_settings_frame]
+                            []
                         ]
                     }
                 ],
