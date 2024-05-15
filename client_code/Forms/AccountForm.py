@@ -5,7 +5,7 @@ from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 from AnvilFusion.tools.utils import AppEnv
 from ..app.models import Tenant, Account, User
-from .PayrollSettingsForm import PayrollSettingsForm
+from ..Pages.PayrollSettingsPage import PayrollSettingsPage
 import anvil.tables.query as q
 
 
@@ -87,7 +87,7 @@ class AccountForm(FormBase):
         )
 
         self.payroll_settings_frame = ContentFrame(name='payroll_settings')
-        self.payroll_settings_page = PayrollSettingsForm(container_id=self.payroll_settings_frame.container_id)
+        self.payroll_settings_page = PayrollSettingsPage(container_id=self.payroll_settings_frame.container_id)
 
         tabs = [
             {
