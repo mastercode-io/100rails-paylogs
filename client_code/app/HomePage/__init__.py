@@ -220,6 +220,7 @@ class HomePage(HomePageTemplate):
 
     # Sidebar toggle event handler
 
+
     def sidebar_toggle(self, args):
         pass
         # self.sidebar.toggle(args)

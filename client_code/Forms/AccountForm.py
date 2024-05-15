@@ -60,7 +60,7 @@ class AccountForm(FormBase):
             'content_wrap': False,
         }
         self.incoming_links = SubformGrid(
-            name='incoming_links', label='Incoming API Links', model='AppInApiCredential',
+            name='incoming_links', label='Incoming', model='AppInApiCredential',
             link_model='AppIntegration', link_field='integration',
             form_container_id=kwargs.get('target'),
             view_config=incoming_links_view,
@@ -80,15 +80,14 @@ class AccountForm(FormBase):
             'content_wrap': False,
         }
         self.outgoing_links = SubformGrid(
-            name='outgoing_links', label='Outgoing API Links', model='AppOutApiCredential',
+            name='outgoing_links', label='Outgoing', model='AppOutApiCredential',
             link_model='AppIntegration', link_field='integration',
             form_container_id=kwargs.get('target'),
             view_config=outgoing_links_view,
         )
 
-        # self.payroll_settings_form = PayrollSettingsForm(target=kwargs.get('target'))
-        # self.payroll_settings_frame = ContentFrame(name='payroll_settings',
-        #                                            value=self.payroll_settings_form.form_content)
+        self.payroll_settings_frame = ContentFrame(name='payroll_settings')
+        self.payroll_settings_page = PayrollSettingsForm(container_id=self.payroll_settings_frame.container_id)
 
         tabs = [
             {
@@ -156,7 +155,7 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'rows': [
-                            []
+                            [self.payroll_settings_frame]
                         ]
                     }
                 ],
@@ -213,7 +212,7 @@ class AccountForm(FormBase):
             print('data_files', self.account['data_files'])
             self.data_files.value = [tenant.to_json_dict() for tenant in self.account['data_files']]
 
-            # self.payroll_settings_form.form_show()
+            self.payroll_settings_page.form_show()
 
         else:
             super().form_open(args)
