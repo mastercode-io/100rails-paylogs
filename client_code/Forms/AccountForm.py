@@ -15,7 +15,7 @@ class AccountForm(FormBase):
 
         self.account = None
 
-        self.padding = InlineMessage(name='padding', content='')
+        self.subtitle = SectionSubtitle(name='company_info', content='Company Info')
         self.account_name = TextInput(name='name', label='Account Name', required=True)
         self.business_name = TextInput(name='business_name', label='Business Name', required=True)
         self.address = MultiFieldInput(name='address', model='Account')
@@ -92,7 +92,7 @@ class AccountForm(FormBase):
                     {
                         'name': '_', 'label': '', 'cols': [
                             [
-                                self.padding,
+                                self.subtitle,
                                 self.account_name,
                                 self.business_name,
                                 self.phone,
