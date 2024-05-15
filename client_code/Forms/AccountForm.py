@@ -5,6 +5,7 @@ from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 from AnvilFusion.tools.utils import AppEnv
 from ..app.models import Tenant, Account, User
+from .PayrollSettingsForm import PayrollSettingsForm
 import anvil.tables.query as q
 
 
@@ -85,6 +86,10 @@ class AccountForm(FormBase):
             view_config=outgoing_links_view,
         )
 
+        self.payroll_settings_form = PayrollSettingsForm(target=kwargs.get('target'))
+        self.payroll_settings_frame = ContentFrame(name='payroll_settings',
+                                                   value=self.payroll_settings_form.form_content)
+
         tabs = [
             {
                 'name': 'account', 'label': 'Account Info', 'sections':
@@ -151,7 +156,7 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'rows': [
-                            []
+                            [self.payroll_settings_frame]
                         ]
                     }
                 ],
@@ -207,6 +212,9 @@ class AccountForm(FormBase):
             #     data_files.append(Tenant.get_row_view(tenant))
             print('data_files', self.account['data_files'])
             self.data_files.value = [tenant.to_json_dict() for tenant in self.account['data_files']]
+
+            self.payroll_settings_form.form_show()
+
         else:
             super().form_open(args)
             self.form.header = 'Create Account'
