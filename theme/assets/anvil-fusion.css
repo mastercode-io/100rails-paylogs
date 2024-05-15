@@ -1,4 +1,4 @@
-/* GridView component styles */
+/* GridView styles */
 .da-grid-view-title {
   font-weight: 500;
   font-size: 16px;
@@ -16,4 +16,9 @@ button.da-grid-view-toolbar-action-button:hover {
 }
 button.da-no-button {
   display: none;
+}
+
+/* ForomBase stryles */
+.da-dialog-section-header {
+  margin-bottom: 5px;
 }
