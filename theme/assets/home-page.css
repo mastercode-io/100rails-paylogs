@@ -1,6 +1,10 @@
 #loadingSpinner {
     opacity: 1 !important;
 }
+input {
+  filter: none;
+}
+
 
 #pl-app-container {
     display: grid;
