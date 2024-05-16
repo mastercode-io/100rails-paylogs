@@ -23,7 +23,7 @@ class PayrollSettingsPage(PageBase):
                                        options=options)
         # self.import_button = Button(content='Import Timesheets',
         #                             action=self.import_button_action)
-        self.content = f'<br><div id="{self.data_file.container_id}" style="width:300px;"></div>'
+        self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
