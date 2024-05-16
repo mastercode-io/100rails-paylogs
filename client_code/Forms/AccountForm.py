@@ -87,7 +87,8 @@ class AccountForm(FormBase):
         )
 
         self.payroll_settings_frame = ContentFrame(name='payroll_settings')
-        self.payroll_settings_page = PayrollSettingsPage(container_id=self.payroll_settings_frame.container_id)
+        self.payroll_settings_page = PayrollSettingsPage(container_id=self.payroll_settings_frame.container_id,
+                                                         account=self.account)
 
         tabs = [
             {
