@@ -22,7 +22,7 @@ class SettingsPage(PageBase):
 
         elif len(self.account['data_files']) > 1:
             # options = [{'name': df['name'], 'uid': df['uid']} for df in self.account['data_files']]
-            options = self.account['data_files']
+            options = [df.to_json_dict() for df in self.account['data_files']]
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            options=options)
