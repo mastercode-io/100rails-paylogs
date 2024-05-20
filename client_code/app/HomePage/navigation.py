@@ -101,6 +101,7 @@ PL_NAV_ITEMS = {
 
     'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'settings_account': {'name': 'SettingsPage', 'type': 'page', 'action': 'open', 'props': {}},
+    'settings_form': {'name': 'AccountForm', 'type': 'form', 'action': 'open', 'props': {}},
 
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},

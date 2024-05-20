@@ -124,6 +124,10 @@ class HomePage(HomePageTemplate):
             'cssClass': 'e-inherit e-caret-hide pl-menu-font',
             'iconCss': 'fa-solid fa-cog pl-appbar-menu-icon',
         })
+        self.appbar_settings_form = ej.buttons.Button({
+            'cssClass': 'e-inherit e-caret-hide pl-menu-font',
+            'iconCss': 'fa-solid fa-input-text pl-appbar-menu-icon',
+        })
         self.appbar_assistant_button = ej.buttons.Button({
             'cssClass': 'e-inherit e-caret-hide pl-menu-font',
             'iconCss': 'fa-solid fa-comments pl-appbar-menu-icon',
@@ -205,6 +209,7 @@ class HomePage(HomePageTemplate):
         self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
         # self.appbar_settings_button.element.onclick = self.appbar_menu.show_selected('settings_account')
         self.appbar_settings_button.element.onclick = self.appbar_settings_button_click
+        self.appbar_settings_form.element.onclick = self.appbar_settings_form_click
         self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
         self.appbar_assistant_toggle.element.onclick = self.assistant.toggle
         # self.appbar_assistant_toggle.element.addEventListener(
@@ -233,6 +238,12 @@ class HomePage(HomePageTemplate):
         nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': tenant}
         self.appbar_menu.show_selected('settings_account')
 
+    def appbar_settings_form_click(self, args):
+        print('appbar_settings_button_click')
+        tenant = models.Tenant.get(AppEnv.logged_user.tenant_uid)
+        print('tenant', tenant)
+        nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': tenant}
+        self.appbar_menu.show_selected('settings_form')
 
     # def appbar_assistant_button_click(self, args):
     #     print('appbar_assistant_button_click')
