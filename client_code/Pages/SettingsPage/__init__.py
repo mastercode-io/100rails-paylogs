@@ -16,7 +16,7 @@ class SettingsPage(PageBase):
         for data_file in self.account['data_files']:
             print(data_file['uid'], data_file['name'])
 
-        if self.account is not None:
+        if self.account is None:
             self.error_message = InlineMessage(content='No account found', accent='warning', css_class='pl-message-bar')
             self.content = f'<div id="{self.error_message.container_id}"></div>'
 
@@ -33,7 +33,7 @@ class SettingsPage(PageBase):
 
     def form_show(self, **args):
         super().form_show(**args)
-        if self.account is not None:
+        if self.account is None:
             self.error_message.show()
         elif len(self.account['data_files']) > 1:
             self.data_file.show()
