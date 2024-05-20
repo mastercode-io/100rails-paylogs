@@ -35,7 +35,7 @@ class SettingsPage(PageBase):
                 {'name': 'expenses', 'label': 'Expenses', 'content': 'Expenses Settings'},
             ]
             self.tabs = Tabs(tabs_config=tabs_config)
-            # self.content += f"<div id='{self.tabs.container_id}'></div>"
+            self.content += f"<div id='{self.tabs.container_id}'></div>"
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
