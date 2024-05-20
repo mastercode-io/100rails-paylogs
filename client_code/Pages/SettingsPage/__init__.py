@@ -21,12 +21,11 @@ class SettingsPage(PageBase):
             self.content = f'<div id="{self.error_message.container_id}"></div>'
 
         elif len(self.account['data_files']) > 1:
-            # options = [{'name': df['name'], 'uid': df['uid']} for df in self.account['data_files']]
             options = [df.to_json_dict() for df in self.account['data_files']]
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
-                                           options=options)
-            print(self.data_file.options, self.data_file.fields)
+                                           options=options,
+                                           value=AppEnv.logged_user.tenant_uid)
             self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
