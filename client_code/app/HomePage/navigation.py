@@ -100,7 +100,7 @@ PL_NAV_ITEMS = {
     'directory_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
 
     'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
-    'settings_account': {'page': 'SettingsPage', 'type': 'page', 'action': 'open', 'props': {}},
+    'settings_account': {'name': 'SettingsPage', 'type': 'page', 'action': 'open', 'props': {}},
 
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
