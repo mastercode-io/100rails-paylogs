@@ -21,7 +21,7 @@ class SettingsPage(PageBase):
             self.content = f'<div id="{self.error_message.container_id}"></div>'
 
         elif len(self.account['data_files']) > 1:
-            options = [{df['name']: df['uid']} for df in self.account['data_files']]
+            options = [{'name': df['name'], 'uid': df['uid']} for df in self.account['data_files']]
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            text_field='integration.service_name',
