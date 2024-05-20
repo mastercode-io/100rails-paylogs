@@ -8,19 +8,20 @@ class SettingsPage(PageBase):
     def __init__(self, account=None, **kwargs):
         print('SettingsPage')
         title = ''
-        if account is None:
+        self.account = account
+        if self.account is None:
             tenant = Tenant.get_row(AppEnv.logged_user.tenant_uid)
-            account = next(iter(Account.search(data_files=[tenant])), None)
-        print(account, account['data_files'])
-        for data_file in account['data_files']:
+            self.account = next(iter(Account.search(data_files=[tenant])), None)
+        print(self.account, self.account['data_files'])
+        for data_file in self.account['data_files']:
             print(data_file['uid'], data_file['name'])
 
-        if account is not None:
+        if self.account is not None:
             self.error_message = InlineMessage(content='No account found', message_type='error')
             self.content = f'<div id="{self.error_message.container_id}"></div>'
 
-        elif len(account['data_files']) > 1:
-            options = account['data_files']
+        elif len(self.account['data_files']) > 1:
+            options = self.account['data_files']
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            text_field='integration.service_name',
@@ -32,4 +33,7 @@ class SettingsPage(PageBase):
 
     def form_show(self, **args):
         super().form_show(**args)
-        self.data_file.show()
+        if self.account is not None:
+            self.error_message.show()
+        elif len(self.account['data_files']) > 1:
+            self.data_file.show()
