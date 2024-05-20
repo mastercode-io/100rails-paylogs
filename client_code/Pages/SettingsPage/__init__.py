@@ -26,7 +26,7 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            text_field='integration.service_name',
                                            options=options)
-            print(self.data_file.options)
+            print(self.data_file.options, self.data_file.fields)
             self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
