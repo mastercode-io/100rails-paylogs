@@ -211,7 +211,7 @@ class AppbarMenu:
                 view_class = getattr(AppEnv.views, component['class'])
                 self.content_control = view_class(container_id=nav_container_id, **component.get('props', {}))
             except Exception as e:
-                print(e)
+                print('Load Form Exception', e.args)
 
         if component['type'] == 'view':
             if 'config' in component:
@@ -245,7 +245,7 @@ class AppbarMenu:
                     page_class = getattr(AppEnv.pages, f"{component['name']}")
                 self.content_control = page_class(container_id=nav_container_id, **component.get('props', {}))
             except Exception as e:
-                print('Exception', e.args)
+                print('Load Page Exception', e.args)
                 # self.content_control = Pages.BaseForm(model=component['model'], target=self.content_id)
         elif component['type'] == 'function':
             try:
@@ -253,7 +253,7 @@ class AppbarMenu:
                 if callable(func_name):
                     func_name(**component.get('props', {}))
             except Exception as e:
-                print(e.args)
+                print('Run Function Exception', e.args)
             return
 
         if hasattr(self.content_control, 'target_id'):
