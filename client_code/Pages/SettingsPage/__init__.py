@@ -15,7 +15,7 @@ class SettingsPage(PageBase):
         for data_file in account['data_files']:
             print(data_file['uid'], data_file['name'])
 
-        if account is None:
+        if account is not None:
             self.error_message = InlineMessage(content='No account found', message_type='error')
             self.content = f'<div id="{self.error_message.container_id}"></div>'
 
