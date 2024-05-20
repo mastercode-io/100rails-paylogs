@@ -46,4 +46,4 @@ class SettingsPage(PageBase):
             self.error_message.show()
         elif len(self.account['data_files']) > 1:
             self.data_file.show()
-            self.tabs.form_show()
+            # self.tabs.form_show()
