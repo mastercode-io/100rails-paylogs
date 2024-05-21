@@ -28,14 +28,12 @@ class SettingsPage(PageBase):
                     current_data_file = {'uid': data_file['uid'], 'name': data_file['name']}
                     current_data_file = data_file
                     break
-            print('debug')
             self.data_file = LookupInput(name='data_file',
                                          label='Select Data File',
                                          # options=options,
                                          data=self.account['data_files'],
-                                         value=AppEnv.logged_user.tenant_uid,
+                                         value=current_data_file,
                                          on_change=self.data_file_selected)
-            print('debug2')
             self.data_fil2 = LookupInput(name='data_file',
                                          label='Select Data File',
                                          # options=options,
@@ -43,7 +41,6 @@ class SettingsPage(PageBase):
                                          inplace_mode='Inline',
                                          value=current_data_file,
                                          on_change=self.data_file_selected)
-            print('debug3')
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
                                         value='Text Input Value',
