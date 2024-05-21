@@ -28,6 +28,7 @@ class SettingsPage(PageBase):
                     current_data_file = {'uid': data_file['uid'], 'name': data_file['name']}
                     current_data_file = data_file
                     break
+            print('debug')
             self.data_file = LookupInput(name='data_file',
                                          label='Select Data File',
                                          # options=options,
@@ -82,6 +83,7 @@ class SettingsPage(PageBase):
         if self.account is None:
             self.error_message.show()
         elif len(self.account['data_files']) > 1:
+            print('debug2')
             self.data_file.show()
             self.data_fil2.show()
             self.text_input.show()
