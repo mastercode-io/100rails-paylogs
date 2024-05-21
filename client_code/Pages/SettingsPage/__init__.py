@@ -14,9 +14,6 @@ class SettingsPage(PageBase):
         if self.account is None:
             tenant = Tenant.get_row(AppEnv.logged_user.tenant_uid)
             self.account = next(iter(Account.search(data_files=[tenant])), None)
-        print(self.account, self.account['data_files'])
-        for data_file in self.account['data_files']:
-            print(data_file['uid'], data_file['name'])
 
         if self.account is None:
             self.error_message = InlineMessage(content='No account found', accent='warning', css_class='pl-message-bar')
@@ -28,9 +25,10 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            options=options,
                                            value=AppEnv.logged_user.tenant_uid)
+            self.text_input = TextInput(name='text_input', label='Text Input', value='Text Input Value')
             self.inplace_editor = InplaceEditor(name='inplace_editor',
                                                 label='Inplace Editor',
-                                                input_control_id=self.data_file.el_id,)
+                                                input_control_id=self.text_input.el_id,)
 
             tabs_config = [
                 {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
@@ -41,6 +39,7 @@ class SettingsPage(PageBase):
             self.tabs = Tabs(tabs_config=tabs_config)
 
             self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
+            self.content += f'<div id="{self.text_input.container_id}" style="width:300px;"></div>'
             self.content += f"<div id='{self.inplace_editor.container_id}'></div>"
             self.content += f"<div id='{self.tabs.container_id}'></div>"
 
@@ -53,5 +52,6 @@ class SettingsPage(PageBase):
             self.error_message.show()
         elif len(self.account['data_files']) > 1:
             self.data_file.show()
+            self.text_input.show()
             self.inplace_editor.show()
             self.tabs.form_show()
