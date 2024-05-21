@@ -39,7 +39,6 @@ class SettingsPage(PageBase):
                                                   inplace_mode='Inline')
             self.date_input = DateInput(name='date_input',
                                         label='Date Input',
-                                        value='2021-01-01',
                                         inplace_mode='Inline')
             self.inplace_text = InplaceEditor(name='inplace_editor',
                                               label='Inplace Editor',
