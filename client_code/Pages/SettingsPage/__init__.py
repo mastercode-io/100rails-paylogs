@@ -24,6 +24,7 @@ class SettingsPage(PageBase):
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            options=options,
+                                           inplace_mode='Inline',
                                            value=AppEnv.logged_user.tenant_uid)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
