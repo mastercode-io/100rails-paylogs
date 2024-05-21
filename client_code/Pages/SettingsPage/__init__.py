@@ -86,8 +86,8 @@ class SettingsPage(PageBase):
             self.multiline_input.show()
             self.date_input.show()
             self.tabs.form_show()
-            print('1', self.data_file.value)
-            print('2', self.data_fil2.value)
+            print('1', self.data_file.options)
+            print('2', self.data_fil2.options)
 
     def data_file_selected(self, args):
         print('data_file_selected', args)
