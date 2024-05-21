@@ -79,7 +79,7 @@ class SettingsPage(PageBase):
             self.text_input.show()
             self.number_input.show()
             self.multiline_input.show()
-            self.date_input.show()
+            # self.date_input.show()
             self.inplace_text.show()
             self.inplace_date.show()
             self.tabs.form_show()
