@@ -28,7 +28,7 @@ class SettingsPage(PageBase):
             self.text_input = TextInput(name='text_input', label='Text Input', value='Text Input Value')
             self.inplace_editor = InplaceEditor(name='inplace_editor',
                                                 label='Inplace Editor',
-                                                input_control_id=self.text_input.el_id,)
+                                                input_control_id=self.data_file.el_id,)
 
             tabs_config = [
                 {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
