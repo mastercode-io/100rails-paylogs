@@ -1,5 +1,6 @@
 from AnvilFusion.components.PageBase import PageBase
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.components.Inputs import InplaceEditor
 from AnvilFusion.components.Layouts import Tabs
 from AnvilFusion.tools.utils import AppEnv
 from ...app.models import Account, Tenant, PayrollConfig
@@ -27,7 +28,8 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            options=options,
                                            value=AppEnv.logged_user.tenant_uid)
-            self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
+            self.inplace_editor = InplaceEditor(name='inplace_editor', label='Inplace Editor', value='Inplace Editor')
+
             tabs_config = [
                 {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
                 {'name': 'timesheets', 'label': 'Timesheets', 'content': 'Timesheets Settings'},
@@ -35,6 +37,9 @@ class SettingsPage(PageBase):
                 {'name': 'expenses', 'label': 'Expenses', 'content': 'Expenses Settings'},
             ]
             self.tabs = Tabs(tabs_config=tabs_config)
+
+            self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
+            self.content += f"<div id='{self.inplace_editor.container_id}'></div>"
             self.content += f"<div id='{self.tabs.container_id}'></div>"
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
@@ -46,4 +51,5 @@ class SettingsPage(PageBase):
             self.error_message.show()
         elif len(self.account['data_files']) > 1:
             self.data_file.show()
+            self.inplace_editor.show()
             self.tabs.form_show()
