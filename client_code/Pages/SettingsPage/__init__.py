@@ -36,7 +36,7 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            options=options,
                                            inplace_mode='Inline',
-                                           value=AppEnv.logged_user.tenant_uid,
+                                           value=current_data_file,
                                            on_change=self.data_file_selected)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
