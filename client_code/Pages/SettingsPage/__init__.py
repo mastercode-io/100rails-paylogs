@@ -4,6 +4,7 @@ from AnvilFusion.components.Inputs import InplaceEditor
 from AnvilFusion.components.Layouts import Tabs
 from AnvilFusion.tools.utils import AppEnv
 from ...app.models import Account, Tenant, PayrollConfig
+import datetime
 
 
 class SettingsPage(PageBase):
@@ -25,7 +26,8 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            options=options,
                                            inplace_mode='Inline',
-                                           value=AppEnv.logged_user.tenant_uid)
+                                           value=AppEnv.logged_user.tenant_uid,
+                                           on_change=self.data_file_selected)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
                                         value='Text Input Value',
@@ -40,15 +42,8 @@ class SettingsPage(PageBase):
                                                   inplace_mode='Inline')
             self.date_input = DateInput(name='date_input',
                                         label='Date Input',
+                                        value=datetime.date.today(),
                                         inplace_mode='Inline')
-            self.inplace_text = InplaceEditor(name='inplace_editor',
-                                              label='Inplace Editor',
-                                              value='Inplace Editor Value',
-                                              edit_mode='Inline')
-            self.inplace_date = InplaceEditor(name='inplace_date',
-                                              label='Inplace Date',
-                                              edit_mode='Inline',
-                                              input_type='Date')
 
             tabs_config = [
                 {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
@@ -63,8 +58,6 @@ class SettingsPage(PageBase):
             self.content += f'<div id="{self.number_input.container_id}"></div>'
             self.content += f'<div id="{self.multiline_input.container_id}"></div>'
             self.content += f'<div id="{self.date_input.container_id}"></div>'
-            self.content += f'<div id="{self.inplace_text.container_id}"></div>'
-            self.content += f'<div id="{self.inplace_date.container_id}"></div>'
             self.content += f"<div id='{self.tabs.container_id}'></div>"
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
@@ -80,6 +73,8 @@ class SettingsPage(PageBase):
             self.number_input.show()
             self.multiline_input.show()
             self.date_input.show()
-            self.inplace_text.show()
-            self.inplace_date.show()
             self.tabs.form_show()
+
+    def data_file_selected(self, **event_args):
+        print('data_file_selected', event_args)
+        print(self.data_file.value)
