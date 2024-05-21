@@ -25,10 +25,22 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            options=options,
                                            value=AppEnv.logged_user.tenant_uid)
-            self.text_input = TextInput(name='text_input', label='Text Input', value='Text Input Value')
-            self.inplace_editor = InplaceEditor(name='inplace_editor',
-                                                label='Inplace Editor',
-                                                input_control_id=self.data_file.el_id,)
+            self.text_input = TextInput(name='text_input',
+                                        label='Text Input',
+                                        value='Text Input Value',
+                                        inplace_mode='Inline')
+            self.number_input = NumberInput(name='number_input',
+                                            label='Number Input',
+                                            value='123',
+                                            inplace_mode='Inline')
+            self.multiline_input = MultiLineInput(name='multiline_input',
+                                                  label='Multiline',
+                                                  value='Some text',
+                                                  inplace_mode='Inline')
+            self.date_input = DateInput(name='date_input',
+                                        label='Date Input',
+                                        value='2021-01-01',
+                                        inplace_mode='Inline')
 
             tabs_config = [
                 {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
@@ -40,7 +52,9 @@ class SettingsPage(PageBase):
 
             self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
             self.content += f'<div id="{self.text_input.container_id}" style="width:300px;"></div>'
-            self.content += f"<div id='{self.inplace_editor.container_id}'></div>"
+            self.content += f'<div id="{self.number_input.container_id}" style="width:300px;"></div>'
+            self.content += f'<div id="{self.multiline_input.container_id}" style="width:300px;"></div>'
+            self.content += f'<div id="{self.date_input.container_id}" style="width:300px;"></div>'
             self.content += f"<div id='{self.tabs.container_id}'></div>"
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
@@ -53,5 +67,7 @@ class SettingsPage(PageBase):
         elif len(self.account['data_files']) > 1:
             self.data_file.show()
             self.text_input.show()
-            self.inplace_editor.show()
+            self.number_input.show()
+            self.multiline_input.show()
+            self.date_input.show()
             self.tabs.form_show()
