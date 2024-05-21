@@ -89,7 +89,7 @@ class SettingsPage(PageBase):
             print('2', self.data_fil2.options)
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
-            self.data_fil2.control.refresh()
+            self.data_fil2.control.dataBind()
             # control = self.data_fil2.control
             # for k in control.keys():
             #     print(k, control[k])
