@@ -35,6 +35,7 @@ class SettingsPage(PageBase):
                                          data=self.account['data_files'],
                                          value=AppEnv.logged_user.tenant_uid,
                                          on_change=self.data_file_selected)
+            print('debug2')
             self.data_fil2 = LookupInput(name='data_file',
                                          label='Select Data File',
                                          # options=options,
@@ -42,6 +43,7 @@ class SettingsPage(PageBase):
                                          inplace_mode='Inline',
                                          value=current_data_file,
                                          on_change=self.data_file_selected)
+            print('debug3')
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
                                         value='Text Input Value',
@@ -83,7 +85,6 @@ class SettingsPage(PageBase):
         if self.account is None:
             self.error_message.show()
         elif len(self.account['data_files']) > 1:
-            print('debug2')
             self.data_file.show()
             self.data_fil2.show()
             self.text_input.show()
