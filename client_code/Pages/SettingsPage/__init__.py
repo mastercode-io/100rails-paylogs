@@ -26,25 +26,19 @@ class SettingsPage(PageBase):
             for data_file in options:
                 if data_file['uid'] == AppEnv.logged_user.tenant_uid:
                     current_data_file = {'uid': data_file['uid'], 'name': data_file['name']}
-                    current_data_file = data_file
+                    # current_data_file = data_file
                     break
-            self.data_file = LookupInput(name='data_file',
-                                         label='Select Data File',
-                                         # options=options,
-                                         text_field='name',
-                                         value_field='uid',
-                                         data=self.account['data_files'],
-                                         value=current_data_file,
-                                         on_change=self.data_file_selected)
-            self.data_fil2 = LookupInput(name='data_file',
-                                         label='Select Data File',
-                                         # options=options,
-                                         text_field='name',
-                                         value_field='uid',
-                                         data=self.account['data_files'],
-                                         inplace_mode='Inline',
-                                         value=current_data_file,
-                                         on_change=self.data_file_selected)
+            self.data_file = DropdownInput(name='data_file',
+                                           label='Select Data File',
+                                           options=options,
+                                           value=AppEnv.logged_user.tenant_uid,
+                                           on_change=self.data_file_selected)
+            self.data_fil2 = DropdownInput(name='data_file',
+                                           label='Select Data File',
+                                           options=options,
+                                           inplace_mode='Inline',
+                                           value=AppEnv.logged_user.tenant_uid,
+                                           on_change=self.data_file_selected)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
                                         value='Text Input Value',
@@ -95,11 +89,12 @@ class SettingsPage(PageBase):
             self.tabs.form_show()
             print('1', self.data_file.options)
             print('2', self.data_fil2.options)
-            control = self.data_fil2.control
-            for k in control.keys():
-                print(k, control[k])
+            # control = self.data_fil2.control
+            # for k in control.keys():
+            #     print(k, control[k])
+
 
     def data_file_selected(self, args):
         print('data_file_selected', args)
         print('1', self.data_file.value)
-        # print('2', self.data_fil2.value)
+        print('2', self.data_fil2.value)
