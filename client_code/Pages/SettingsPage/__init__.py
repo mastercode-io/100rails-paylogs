@@ -75,6 +75,6 @@ class SettingsPage(PageBase):
             self.date_input.show()
             self.tabs.form_show()
 
-    def data_file_selected(self, **event_args):
-        print('data_file_selected', event_args)
+    def data_file_selected(self, args):
+        print('data_file_selected', args)
         print(self.data_file.value)
