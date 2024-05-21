@@ -31,13 +31,11 @@ class SettingsPage(PageBase):
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            options=options,
-                                           value=AppEnv.logged_user.tenant_uid,
                                            on_change=self.data_file_selected)
             self.data_fil2 = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            options=options,
                                            inplace_mode='Inline',
-                                           value=AppEnv.logged_user.tenant_uid,
                                            on_change=self.data_file_selected)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
@@ -89,6 +87,9 @@ class SettingsPage(PageBase):
             self.tabs.form_show()
             print('1', self.data_file.options)
             print('2', self.data_fil2.options)
+            self.data_file.value = AppEnv.logged_user.tenant_uid
+            self.data_fil2.value = AppEnv.logged_user.tenant_uid
+            self.data_fil2.control.refresh()
             # control = self.data_fil2.control
             # for k in control.keys():
             #     print(k, control[k])
