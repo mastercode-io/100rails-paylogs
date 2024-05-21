@@ -66,7 +66,7 @@ class SettingsPage(PageBase):
             ]
             self.tabs = Tabs(tabs_config=tabs_config)
 
-            self.content = f'<div id="{self.data_file.container_id}"></div>'
+            self.content = f'<div id="{self.data_file.container_id}" style="width: 300px;"></div>'
             self.content += f'<div id="{self.data_fil2.container_id}"></div>'
             self.content += f'<div id="{self.text_input.container_id}"></div>'
             self.content += f'<div id="{self.number_input.container_id}"></div>'
@@ -91,8 +91,11 @@ class SettingsPage(PageBase):
             self.tabs.form_show()
             print('1', self.data_file.options)
             print('2', self.data_fil2.options)
+            control = self.data_fil2.control
+            for k in control.model.keys():
+                print(k, control.model[k])
 
     def data_file_selected(self, args):
         print('data_file_selected', args)
         print('1', self.data_file.value)
-        print('2', self.data_fil2.value)
+        # print('2', self.data_fil2.value)
