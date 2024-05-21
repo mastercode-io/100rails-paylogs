@@ -30,8 +30,13 @@ class SettingsPage(PageBase):
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            options=options,
+                                           value=AppEnv.logged_user.tenant_uid,
+                                           on_change=self.data_file_selected)
+            self.data_fil2 = DropdownInput(name='data_file',
+                                           label='Select Data File',
+                                           options=options,
                                            inplace_mode='Inline',
-                                           value=current_data_file,
+                                           value=AppEnv.logged_user.tenant_uid,
                                            on_change=self.data_file_selected)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
@@ -59,6 +64,7 @@ class SettingsPage(PageBase):
             self.tabs = Tabs(tabs_config=tabs_config)
 
             self.content = f'<div id="{self.data_file.container_id}"></div>'
+            self.content += f'<div id="{self.data_fil2.container_id}"></div>'
             self.content += f'<div id="{self.text_input.container_id}"></div>'
             self.content += f'<div id="{self.number_input.container_id}"></div>'
             self.content += f'<div id="{self.multiline_input.container_id}"></div>'
@@ -74,13 +80,16 @@ class SettingsPage(PageBase):
             self.error_message.show()
         elif len(self.account['data_files']) > 1:
             self.data_file.show()
+            self.data_fil2.show()
             self.text_input.show()
             self.number_input.show()
             self.multiline_input.show()
             self.date_input.show()
             self.tabs.form_show()
-            print(self.data_file.value)
+            print('1', self.data_file.value)
+            print('2', self.data_fil2.value)
 
     def data_file_selected(self, args):
         print('data_file_selected', args)
-        print(self.data_file.value)
+        print('1', self.data_file.value)
+        print('2', self.data_fil2.value)
