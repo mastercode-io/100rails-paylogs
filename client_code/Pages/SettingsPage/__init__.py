@@ -58,13 +58,13 @@ class SettingsPage(PageBase):
             ]
             self.tabs = Tabs(tabs_config=tabs_config)
 
-            self.content = f'<div id="{self.data_file.container_id}" style="width:300px;"></div>'
-            self.content += f'<div id="{self.text_input.container_id}" style="width:300px;"></div>'
-            self.content += f'<div id="{self.number_input.container_id}" style="width:300px;"></div>'
-            self.content += f'<div id="{self.multiline_input.container_id}" style="width:300px;"></div>'
-            self.content += f'<div id="{self.date_input.container_id}" style="width:300px;"></div>'
-            self.content += f'<div id="{self.inplace_text.container_id}" style="width:300px;"></div>'
-            self.content += f'<div id="{self.inplace_date.container_id}" style="width:300px;"></div>'
+            self.content = f'<div id="{self.data_file.container_id}"></div>'
+            self.content += f'<div id="{self.text_input.container_id}"></div>'
+            self.content += f'<div id="{self.number_input.container_id}"></div>'
+            self.content += f'<div id="{self.multiline_input.container_id}"></div>'
+            self.content += f'<div id="{self.date_input.container_id}"></div>'
+            self.content += f'<div id="{self.inplace_text.container_id}"></div>'
+            self.content += f'<div id="{self.inplace_date.container_id}"></div>'
             self.content += f"<div id='{self.tabs.container_id}'></div>"
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
@@ -79,7 +79,7 @@ class SettingsPage(PageBase):
             self.text_input.show()
             self.number_input.show()
             self.multiline_input.show()
-            # self.date_input.show()
+            self.date_input.show()
             self.inplace_text.show()
             self.inplace_date.show()
             self.tabs.form_show()
