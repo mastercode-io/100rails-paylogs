@@ -41,6 +41,10 @@ class SettingsPage(PageBase):
                                         label='Date Input',
                                         value='2021-01-01',
                                         inplace_mode='Inline')
+            self.inplace_editor = InplaceEditor(name='inplace_editor',
+                                                label='Inplace Editor',
+                                                value='Inplace Editor Value',
+                                                edit_mode='Inline')
 
             tabs_config = [
                 {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
@@ -55,6 +59,7 @@ class SettingsPage(PageBase):
             self.content += f'<div id="{self.number_input.container_id}" style="width:300px;"></div>'
             self.content += f'<div id="{self.multiline_input.container_id}" style="width:300px;"></div>'
             self.content += f'<div id="{self.date_input.container_id}" style="width:300px;"></div>'
+            self.content += f'<div id="{self.inplace_editor.container_id}" style="width:300px;"></div>'
             self.content += f"<div id='{self.tabs.container_id}'></div>"
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
@@ -70,4 +75,5 @@ class SettingsPage(PageBase):
             self.number_input.show()
             self.multiline_input.show()
             self.date_input.show()
+            self.inplace_editor.show()
             self.tabs.form_show()
