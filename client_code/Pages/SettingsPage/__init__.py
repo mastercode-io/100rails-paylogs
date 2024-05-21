@@ -28,7 +28,9 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            options=options,
                                            value=AppEnv.logged_user.tenant_uid)
-            self.inplace_editor = InplaceEditor(name='inplace_editor', label='Inplace Editor', value='Inplace Editor')
+            self.inplace_editor = InplaceEditor(name='inplace_editor',
+                                                label='Inplace Editor',
+                                                input_control_id=self.data_file.el_id,)
 
             tabs_config = [
                 {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
