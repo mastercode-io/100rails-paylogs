@@ -92,8 +92,8 @@ class SettingsPage(PageBase):
             print('1', self.data_file.options)
             print('2', self.data_fil2.options)
             control = self.data_fil2.control
-            for k in control.model.keys():
-                print(k, control.model[k])
+            for k in control.keys():
+                print(k, control[k])
 
     def data_file_selected(self, args):
         print('data_file_selected', args)
