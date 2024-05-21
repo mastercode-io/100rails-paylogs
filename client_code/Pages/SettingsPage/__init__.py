@@ -25,13 +25,13 @@ class SettingsPage(PageBase):
             current_data_file = None
             for data_file in options:
                 if data_file['uid'] == AppEnv.logged_user.tenant_uid:
-                    current_data_file = data_file
+                    current_data_file = {'uid': data_file, 'name': data_file['name']}
                     break
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            options=options,
                                            inplace_mode='Inline',
-                                           value=current_data_file['name'],
+                                           value=current_data_file,
                                            on_change=self.data_file_selected)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
