@@ -37,7 +37,7 @@ class SettingsPage(PageBase):
                                            options=options,
                                            inplace_mode='Inline',
                                            # value=current_data_file,
-                                           on_change=self.data_file_selected)
+                                           on_change=self.data_file_selected2)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
                                         value='Text Input Value',
