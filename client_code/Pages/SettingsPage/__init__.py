@@ -102,6 +102,13 @@ class SettingsPage(PageBase):
 
 
     def data_file_selected(self, args):
-        print('data_file_selected', args)
+        print('data_file', args)
         print('1', self.data_file.value)
+
+
+    def data_file_selected2(self, args):
+        print('data_file_2', args)
         print('2', self.data_fil2.value)
+        control = self.data_fil2.control
+        for k in control.keys():
+            print(k, control[k])
