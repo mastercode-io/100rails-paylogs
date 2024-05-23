@@ -36,7 +36,7 @@ class SettingsPage(PageBase):
                                            label='Select Data File',
                                            options=options,
                                            inplace_mode='Inline',
-                                           value=current_data_file,
+                                           # value=current_data_file,
                                            on_change=self.data_file_selected)
             self.text_input = TextInput(name='text_input',
                                         label='Text Input',
@@ -89,7 +89,7 @@ class SettingsPage(PageBase):
             print('1', self.data_file.options)
             print('2', self.data_fil2.options)
             self.data_file.value = AppEnv.logged_user.tenant_uid
-            # self.data_fil2.value = AppEnv.logged_user.tenant_uid
+            self.data_fil2.value = AppEnv.logged_user.tenant_uid
             # self.data_fil2.control.dataBind()
             control = self.data_fil2.control
             for k in control.keys():
