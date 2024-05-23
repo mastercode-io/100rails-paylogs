@@ -22,6 +22,7 @@ class SettingsPage(PageBase):
 
         elif len(self.account['data_files']) > 1:
             options = [df.to_json_dict() for df in self.account['data_files']]
+            options.append({'uid': 'all', 'name': 'All Data Files'})
             current_data_file = None
             for data_file in options:
                 if data_file['uid'] == AppEnv.logged_user.tenant_uid:
