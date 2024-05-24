@@ -23,10 +23,10 @@ class SettingsPage(PageBase):
         elif len(self.account['data_files']) > 1:
             options = [df.to_json_dict() for df in self.account['data_files']]
             options.append({'uid': 'all', 'name': 'All Data Files'})
-            current_data_file = None
+            self.current_data_file = None
             for data_file in options:
                 if data_file['uid'] == AppEnv.logged_user.tenant_uid:
-                    current_data_file = {'uid': data_file['uid'], 'name': data_file['name']}
+                    self.current_data_file = {'uid': data_file['uid'], 'name': data_file['name']}
                     # current_data_file = data_file
                     break
             self.data_file = DropdownInput(name='data_file',
@@ -89,7 +89,7 @@ class SettingsPage(PageBase):
             self.tabs.form_show()
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
-            self.data_fil2.action_success({'value': AppEnv.logged_user.tenant_uid})
+            self.data_fil2.action_success({'value': self.current_data_file['name']})
 
 
     def data_file_selected(self, args):
