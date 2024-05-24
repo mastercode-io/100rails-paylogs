@@ -5,6 +5,7 @@ from AnvilFusion.components.Layouts import Tabs
 from AnvilFusion.tools.utils import AppEnv
 from ...app.models import Account, Tenant, PayrollConfig
 import datetime
+import time
 
 
 class SettingsPage(PageBase):
@@ -89,8 +90,9 @@ class SettingsPage(PageBase):
             self.tabs.form_show()
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
-            self.data_fil2.control.enableEditMode = True
+            # self.data_fil2.control.enableEditMode = True
             # self.data_fil2.control.enableEditMode = False
+            time.sleep(0.5)
             self.data_fil2.action_success({'value': self.current_data_file['name']})
 
 
