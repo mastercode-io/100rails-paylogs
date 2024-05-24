@@ -90,10 +90,10 @@ class SettingsPage(PageBase):
             self.tabs.form_show()
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
-            # self.data_fil2.control.enableEditMode = True
-            # self.data_fil2.control.enableEditMode = False
+            self.data_fil2.control.enableEditMode = True
             time.sleep(0.5)
-            self.data_fil2.action_success({'value': self.current_data_file['name']})
+            self.data_fil2.control.enableEditMode = False
+            # self.data_fil2.action_success({'value': self.current_data_file['name']})
 
 
     def data_file_selected(self, args):
