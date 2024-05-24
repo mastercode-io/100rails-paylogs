@@ -94,12 +94,7 @@ class SettingsPage(PageBase):
 
 
     def data_file_selected(self, args):
-        print('\ndata_file\n', args)
-        print('1 for 2', self.data_fil2.value)
-        control = self.data_fil2.control.componentObj
-        for k in control.keys():
-            print(k, control[k])
-
+        pass
 
     def data_file_selected2(self, args):
         print('\ndata_file_2\n', args)
