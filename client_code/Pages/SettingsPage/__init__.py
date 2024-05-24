@@ -92,12 +92,8 @@ class SettingsPage(PageBase):
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
             # self.data_fil2.control.dataBind()
-            print('DATA_FILE')
-            control = self.data_file.control
-            for k in control.keys():
-                print(k, control[k])
-            print('DATA_FIL_2')
-            control = self.data_fil2.control
+            print('\n=== DATA_FIL_2 ===\n')
+            control = self.data_fil2.control.componentObj
             for k in control.keys():
                 print(k, control[k])
 
@@ -105,11 +101,14 @@ class SettingsPage(PageBase):
     def data_file_selected(self, args):
         print('data_file', args)
         print('1', self.data_file.value)
+        control = self.data_file.control
+        for k in control.keys():
+            print(k, control[k])
 
 
     def data_file_selected2(self, args):
-        print('data_file_2', args)
+        print('\ndata_file_2\n', args)
         print('2', self.data_fil2.value)
-        control = self.data_fil2.control
-        for k in control.componentObj.keys():
-            print(k, control.componentObj[k])
+        control = self.data_fil2.control.componentObj
+        for k in control.keys():
+            print(k, control[k])
