@@ -89,7 +89,6 @@ class SettingsPage(PageBase):
             self.date_input.show()
             self.tabs.form_show()
             self.data_file.value = AppEnv.logged_user.tenant_uid
-            time.sleep(0.1)
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
             # self.data_fil2.action_success({'value': self.current_data_file['name']})
 
@@ -98,8 +97,4 @@ class SettingsPage(PageBase):
         pass
 
     def data_file_selected2(self, args):
-        print('\ndata_file_2\n', args)
-        print('2', self.data_fil2.value)
-        control = self.data_fil2.control.componentObj
-        for k in control.keys():
-            print(k, control[k])
+        pass
