@@ -111,5 +111,5 @@ class SettingsPage(PageBase):
         print('data_file_2', args)
         print('2', self.data_fil2.value)
         control = self.data_fil2.control
-        for k in control.keys():
-            print(k, control[k])
+        for k in control.componentObj.keys():
+            print(k, control.componentObj[k])
