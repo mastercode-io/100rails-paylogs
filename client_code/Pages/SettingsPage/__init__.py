@@ -91,7 +91,7 @@ class SettingsPage(PageBase):
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
             time.sleep(0.1)
-            # self.data_fil2.action_success({'value': self.current_data_file['name']})
+            self.data_fil2.action_success({'value': self.current_data_file['name']})
 
 
     def data_file_selected(self, args):
