@@ -87,8 +87,6 @@ class SettingsPage(PageBase):
             self.multiline_input.show()
             self.date_input.show()
             self.tabs.form_show()
-            print('1', self.data_file.options)
-            print('2', self.data_fil2.options)
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
 
