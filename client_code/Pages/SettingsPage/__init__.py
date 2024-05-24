@@ -91,11 +91,6 @@ class SettingsPage(PageBase):
             print('2', self.data_fil2.options)
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
-            # self.data_fil2.control.dataBind()
-            print('\n=== DATA_FIL_2 ===\n')
-            control = self.data_fil2.control.componentObj
-            for k in control.keys():
-                print(k, control[k])
 
 
     def data_file_selected(self, args):
