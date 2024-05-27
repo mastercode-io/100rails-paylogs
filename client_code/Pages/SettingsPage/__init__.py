@@ -97,4 +97,5 @@ class SettingsPage(PageBase):
         pass
 
     def data_file_selected2(self, args):
-        pass
+        print('inline', args)
+        print(self.data_fil2.value)
