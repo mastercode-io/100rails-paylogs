@@ -90,6 +90,8 @@ class SettingsPage(PageBase):
             self.tabs.form_show()
             self.data_file.value = AppEnv.logged_user.tenant_uid
             self.data_fil2.value = AppEnv.logged_user.tenant_uid
+            print('inline', args)
+            print(self.data_fil2.value)
             # self.data_fil2.action_success({'value': self.current_data_file['name']})
 
 
@@ -100,5 +102,5 @@ class SettingsPage(PageBase):
     def data_file_selected2(self, args):
         print('inline', args)
         print(self.data_fil2.value)
-        for k in self.data_fil2.control.keys():
-            print(k, self.data_fil2.control[k])
+        # for k in self.data_fil2.control.keys():
+        #     print(k, self.data_fil2.control[k])
