@@ -94,7 +94,8 @@ class SettingsPage(PageBase):
 
 
     def data_file_selected(self, args):
-        pass
+        print('dropdown', args)
+        print(self.data_file.value)
 
     def data_file_selected2(self, args):
         print('inline', args)
