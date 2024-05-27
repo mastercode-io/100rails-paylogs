@@ -100,5 +100,5 @@ class SettingsPage(PageBase):
     def data_file_selected2(self, args):
         print('inline', args)
         print(self.data_fil2.value)
-        for k in self.data_fil2.control.keys()
+        for k in self.data_fil2.control.keys():
             print(k, self.data_fil2.control[k])
