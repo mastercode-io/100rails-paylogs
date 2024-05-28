@@ -242,6 +242,8 @@ class HomePage(HomePageTemplate):
     def appbar_settings_form_click(self, args):
         print('appbar_settings_button_click')
         tenant = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
+        recs = models.Account.search(data_files=[tenant])
+        print('recs', len(recs))
         account = next(iter(models.Account.search(data_files=[tenant])), None)
         print('tenant', tenant)
         print('account', account)
