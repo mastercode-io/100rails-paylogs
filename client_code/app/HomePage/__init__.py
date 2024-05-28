@@ -242,8 +242,9 @@ class HomePage(HomePageTemplate):
     def appbar_settings_form_click(self, args):
         print('appbar_settings_button_click')
         tenant = models.Tenant.get(AppEnv.logged_user.tenant_uid)
-        print('tenant', tenant)
-        nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': tenant}
+        account = next(iter(models.Account.search(data_files=[tenant])), None)
+        print('account', account)
+        nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': account}
         self.appbar_menu.show_selected('settings_form')
 
     # def appbar_assistant_button_click(self, args):
