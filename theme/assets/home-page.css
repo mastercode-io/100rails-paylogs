@@ -82,6 +82,7 @@ select:-webkit-autofill:focus {
 .pl-appbar-data-file {
     margin-top: 5px!important;
     margin-bottom: 5px!important;
+    width: 150px;!important;
 }
 /*#pl-appbar-menu .e-menu-wrapper.e-menu-popup {*/
 /*    border-radius: 0!important;*/
