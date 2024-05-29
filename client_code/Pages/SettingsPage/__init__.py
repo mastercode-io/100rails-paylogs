@@ -39,6 +39,10 @@ class SettingsPage(PageBase):
                 model='User',
                 container_id=self.settings_tabs.items['users']['content_id'],
             )
+            self.subscription = TextInput(name='subscription',
+                                          label='Subscription',
+                                          container_id=self.settings_tabs.items['subscription']['content_id'],
+                                          value='Free')
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
@@ -49,5 +53,6 @@ class SettingsPage(PageBase):
             self.error_message.show()
         else:
             self.settings_tabs.form_show()
-            self.settings_tabs.set_tab_content(tab_name='account', content='Account Info')
+            self.settings_tabs.set_tab_content(tab_name='account', content='Basic account info')
             self.users.form_show()
+            self.subscription.show()
