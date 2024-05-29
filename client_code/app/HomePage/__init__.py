@@ -187,6 +187,12 @@ class HomePage(HomePageTemplate):
         self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.tenant_name
 
+        self.appbar_data_file.options = AppEnv.logged_user.data_files
+        self.appbar_data_file.value = AppEnv.logged_user.data_files[0]
+        self.appbar_data_file.show()
+        print(self.appbar_data_file.options)
+        print(self.appbar_data_file.control.dataSource)
+
         self.assistant.show()
         self.appbar_menu.show_selected('timesheet_dashboard')
         # self.sidebar.show(AppEnv.start_menu)
@@ -221,11 +227,6 @@ class HomePage(HomePageTemplate):
         #     "click", self.assistant.toggle
         # )
         self.login_user()
-        self.appbar_data_file.options = AppEnv.logged_user.data_files
-        self.appbar_data_file.value = AppEnv.logged_user.data_files[0]
-        self.appbar_data_file.show()
-        print(self.appbar_data_file.options)
-        print(self.appbar_data_file.control.dataSource)
 
 
     # def settings_click(self, args):
