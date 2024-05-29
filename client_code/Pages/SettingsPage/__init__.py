@@ -23,13 +23,13 @@ class SettingsPage(PageBase):
 
         else:
             tabs_config = [
-                {'name': 'payroll', 'label': 'Payroll', 'content': 'Payroll Settings'},
+                {'name': 'account', 'label': 'Account Info', 'content': 'Payroll Settings'},
                 {'name': 'timesheets', 'label': 'Timesheets', 'content': 'Timesheets Settings'},
                 {'name': 'leave', 'label': 'Leave', 'content': 'Leave Settings'},
                 {'name': 'expenses', 'label': 'Expenses', 'content': 'Expenses Settings'},
             ]
-            self.tabs = Tabs(tabs_config=tabs_config)
-            self.content = f'<div id="{self.tabs.container_id}"></div>'
+            self.settings_tabs = Tabs(tabs_config=tabs_config)
+            self.content = f'<div id="{self.settings_tabs.container_id}"></div>'
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
@@ -41,4 +41,5 @@ class SettingsPage(PageBase):
         if self.account is None:
             self.error_message.show()
         else:
-            self.tabs.form_show()
+            self.settings_tabs.form_show()
+            print(self.settings_tabs.tabs.items)
