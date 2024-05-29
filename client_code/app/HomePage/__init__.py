@@ -321,7 +321,7 @@ class HomePage(HomePageTemplate):
     def appbar_data_file_select(self, args):
         print('appbar_data_file_select', args)
         print(self.appbar_data_file.value)
-        # self.appbar_menu.show_selected(args.item.id)
+        AppEnv.set_current_tenant(tenant_uid=self.appbar_data_file.value, reload_func=self.after_login)
 
 
 def do_something():
