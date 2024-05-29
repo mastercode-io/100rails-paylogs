@@ -1,4 +1,5 @@
 from AnvilFusion.components.PageBase import PageBase
+from AnvilFusion.components.GridView import GridView
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.Inputs import InplaceEditor
 from AnvilFusion.components.Layouts import Tabs
@@ -34,6 +35,11 @@ class SettingsPage(PageBase):
             self.settings_tabs = Tabs(tabs_config=tabs_config)
             self.content = f'<div id="{self.settings_tabs.container_id}"></div>'
 
+            self.users = GridView(
+                model='User',
+                container_id=self.settings_tabs.items['users']['content_id'],
+            )
+
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
 
 
@@ -44,6 +50,4 @@ class SettingsPage(PageBase):
         else:
             self.settings_tabs.form_show()
             self.settings_tabs.set_tab_content(tab_name='account', content='Account Info')
-            tab_item = self.settings_tabs.tabs.items[0]
-            for k in tab_item.keys():
-                print(k, tab_item[k])
+            self.users.form_show()
