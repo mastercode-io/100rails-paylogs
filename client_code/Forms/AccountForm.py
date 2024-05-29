@@ -222,8 +222,6 @@ class AccountForm(FormBase):
             for button in buttons:
                 if button.cssClass == 'da-save-button':
                     button.content = 'Create Account'
-                for i in range(1, 4):
-                    self.tabs.enableTab(i, False)
         # super().form_open(args)
 
 
