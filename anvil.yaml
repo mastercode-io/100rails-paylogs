@@ -539,6 +539,9 @@ db_schema:
     - name: desctiption
       admin_ui: {width: 200, order: 0.0078125}
       type: string
+    - name: account_uid
+      admin_ui: {width: 200, order: 0.00390625}
+      type: string
     title: Tenants
   scope_types:
     client: none
