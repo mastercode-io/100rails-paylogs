@@ -40,3 +40,5 @@ class SettingsPage(PageBase):
         print('super show end')
         if self.account is None:
             self.error_message.show()
+        else:
+            self.tabs.form_show()
