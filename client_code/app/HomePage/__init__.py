@@ -36,6 +36,7 @@ AppEnv.start_menu = "timesheet_menu"
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
 
+        self.account = None
         self.appbar_settings_menu_show = False
         self.content_id = "pl-content"
         self.content_control = None
@@ -188,6 +189,10 @@ class HomePage(HomePageTemplate):
         self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
 
+        tenant_row = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
+        self.account = next(iter(models.Account.search(data_files=[tenant_row])), None)
+        if self.account is not None:
+            AppEnv.logged_user.data_files = [df.to_json_dict() for df in self.account['data_files']]
         self.appbar_data_file.options = AppEnv.logged_user.data_files
         self.appbar_data_file.value = AppEnv.logged_user.tenant_uid
         self.appbar_data_file.show()
