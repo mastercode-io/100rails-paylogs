@@ -3,6 +3,7 @@ import anvil.js
 from anvil.js.window import ej, jQuery
 import anvil.users
 from AnvilFusion.tools.utils import AppEnv, DotDict, init_user_session
+from AnvilFusion.components.FormInputs import DropdownInput
 from .. import models
 from ... import Forms
 from ... import Views
@@ -103,6 +104,9 @@ class HomePage(HomePageTemplate):
                 "select": self.appbar_user_menu_select,
             }
         )
+        self.appbar_data_file = DropdownInput(name='data_file',
+                                              container_id='pl-appbar-data-file',
+                                              on_change=self.appbar_data_file_select)
         self.appbar_settings_menu_items = nav.PL_MENU_ITEMS['settings_menu']
         #     [
         #     {'id': 'settings_users', 'text': 'Users', 'items': []},
@@ -216,8 +220,10 @@ class HomePage(HomePageTemplate):
         # self.appbar_assistant_toggle.element.addEventListener(
         #     "click", self.assistant.toggle
         # )
-
         self.login_user()
+        self.appbar_data_file.options = AppEnv.logged_user.data_files
+        self.appbar_data_file.value = AppEnv.logged_user.tenant_name
+        self.appbar_data_file.show()
 
 
     # def settings_click(self, args):
@@ -301,6 +307,12 @@ class HomePage(HomePageTemplate):
     def appbar_settings_menu_select(self, args):
         print('appbar_user_menu_select', args.item.id)
         self.appbar_menu.show_selected(args.item.id)
+
+
+    def appbar_data_file_select(self, args):
+        print('appbar_data_file_select', args)
+        print(self.appbar_data_file.value)
+        # self.appbar_menu.show_selected(args.item.id)
 
 
 def do_something():
