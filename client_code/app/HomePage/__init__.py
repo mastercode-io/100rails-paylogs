@@ -2,6 +2,7 @@ from ._anvil_designer import HomePageTemplate
 import anvil.js
 from anvil.js.window import ej, jQuery
 import anvil.users
+import anvil.tables
 from AnvilFusion.tools.utils import AppEnv, DotDict, init_user_session
 from AnvilFusion.components.FormInputs import DropdownInput
 from .. import models
@@ -191,8 +192,13 @@ class HomePage(HomePageTemplate):
 
         tenant = models.Tenant.get(AppEnv.logged_user.tenant_uid)
         self.account = models.Account.get(tenant['account_uid'])
+        if AppEnv.logged_user.app_mode == 'Super Admin Mode' or AppEnv.logged_user.app_mode == 'Developer Mode':
+            tenant_list = models.Tenant.search(tenant_uid=None, searhc_query=anvil.tables.order_by('account_uid'))
+            AppEnv.logged_user.data_files = [df.to_json_dict() for df in tenant_list]
         if self.account is not None:
             AppEnv.logged_user.data_files = [df.to_json_dict() for df in self.account['data_files']]
+        else:
+            tenant_list = models.Tenant.search()
         self.appbar_data_file.options = AppEnv.logged_user.data_files
         self.appbar_data_file.value = AppEnv.logged_user.tenant_uid
         self.appbar_data_file.show()
