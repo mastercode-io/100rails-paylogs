@@ -195,10 +195,10 @@ class HomePage(HomePageTemplate):
         if AppEnv.logged_user.app_mode == 'Super Admin Mode' or AppEnv.logged_user.app_mode == 'Developer Mode':
             tenant_list = models.Tenant.search(tenant_uid=None, search_query=anvil.tables.order_by('account_uid'))
             AppEnv.logged_user.data_files = [df.to_json_dict() for df in tenant_list]
+            print('DATA FILES', AppEnv.logged_user.data_files)
         elif self.account is not None:
+            print('WTF')
             AppEnv.logged_user.data_files = [df.to_json_dict() for df in self.account['data_files']]
-        else:
-            tenant_list = models.Tenant.search()
         self.appbar_data_file.options = AppEnv.logged_user.data_files
         self.appbar_data_file.value = AppEnv.logged_user.tenant_uid
         self.appbar_data_file.show()
