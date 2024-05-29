@@ -198,6 +198,8 @@ class HomePage(HomePageTemplate):
         self.appbar_data_file.show()
         if self.appbar_data_file.control:
             self.appbar_data_file.control.showClearButton = False
+        print('account', self.account)
+        print('data_files', AppEnv.logged_user.data_files)
 
         self.assistant.show()
         self.appbar_menu.show_selected('timesheet_dashboard')
