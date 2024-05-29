@@ -194,23 +194,14 @@ class HomePage(HomePageTemplate):
         self.account = models.Account.get(tenant['account_uid'])
         if AppEnv.logged_user.app_mode == 'Super Admin Mode' or AppEnv.logged_user.app_mode == 'Developer Mode':
             tenant_list = models.Tenant.search(tenant_uid=None, search_query=anvil.tables.order_by('account_uid'))
-            data_files = []
-            for df in tenant_list:
-                print(df)
-                data_files.append(df.to_json_dict())
-            AppEnv.logged_user.data_files = data_files
-            print('DATA FILES', AppEnv.logged_user.data_files)
+            AppEnv.logged_user.data_files = [df.to_json_dict() for df in tenant_list]
         elif self.account is not None:
-            print('WTF')
             AppEnv.logged_user.data_files = [df.to_json_dict() for df in self.account['data_files']]
         self.appbar_data_file.options = AppEnv.logged_user.data_files
         self.appbar_data_file.value = AppEnv.logged_user.tenant_uid
         self.appbar_data_file.show()
         if self.appbar_data_file.control:
             self.appbar_data_file.control.showClearButton = False
-        print('tenant', tenant)
-        print('account', self.account)
-        print('data_files', AppEnv.logged_user.data_files)
 
         self.assistant.show()
         self.appbar_menu.show_selected('timesheet_dashboard')
