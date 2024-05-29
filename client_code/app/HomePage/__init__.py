@@ -107,6 +107,7 @@ class HomePage(HomePageTemplate):
         self.appbar_data_file = DropdownInput(name='data_file',
                                               container_id='pl-appbar-data-file',
                                               container_class='pl-appbar-data-file',
+                                              inplace_mode='Inline',
                                               on_change=self.appbar_data_file_select)
         self.appbar_settings_menu_items = nav.PL_MENU_ITEMS['settings_menu']
         #     [
