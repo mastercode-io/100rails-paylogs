@@ -35,9 +35,7 @@ class SettingsPage(PageBase):
 
 
     def form_show(self, **args):
-        print('SettingsPage form_show')
         super().form_show(**args)
-        print('super show end')
         if self.account is None:
             self.error_message.show()
         else:
