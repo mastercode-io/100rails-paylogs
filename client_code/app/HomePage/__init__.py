@@ -190,6 +190,7 @@ class HomePage(HomePageTemplate):
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
 
         tenant_row = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
+        print('tenant_row', tenant_row)
         self.account = next(iter(models.Account.search(data_files=[tenant_row])), None)
         if self.account is not None:
             AppEnv.logged_user.data_files = [df.to_json_dict() for df in self.account['data_files']]
