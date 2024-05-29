@@ -44,3 +44,6 @@ class SettingsPage(PageBase):
         else:
             self.settings_tabs.form_show()
             self.settings_tabs.set_tab_content(tab_name='account', content='Account Info')
+            tab_item = self.settings_tabs.tabs.items[0]
+            for k in tab_item.keys():
+                print(k, tab_item[k])
