@@ -14,22 +14,16 @@ class SettingsPage(PageBase):
         title = ''
         self.account = account
         if self.account is None:
-            tenant = Tenant.get_row(AppEnv.logged_user.tenant_uid)
-            self.account = next(iter(Account.search(data_files=[tenant])), None)
+            self.tenant = Tenant.get(AppEnv.logged_user.tenant_uid)
+            self.account = Account.get(self.tenant['account_uid'])
 
         if self.account is None:
             self.error_message = InlineMessage(content='No account found', accent='warning', css_class='pl-message-bar')
             self.content = f'<div id="{self.error_message.container_id}"></div>'
 
-        elif len(self.account['data_files']) > 1:
+        else:
             options = [df.to_json_dict() for df in self.account['data_files']]
             options.append({'uid': 'all', 'name': 'All Data Files'})
-            self.current_data_file = None
-            for data_file in options:
-                if data_file['uid'] == AppEnv.logged_user.tenant_uid:
-                    self.current_data_file = {'uid': data_file['uid'], 'name': data_file['name']}
-                    # current_data_file = data_file
-                    break
             self.data_file = DropdownInput(name='data_file',
                                            label='Select Data File',
                                            options=options,
