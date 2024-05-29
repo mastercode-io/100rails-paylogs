@@ -222,8 +222,10 @@ class HomePage(HomePageTemplate):
         # )
         self.login_user()
         self.appbar_data_file.options = AppEnv.logged_user.data_files
-        self.appbar_data_file.value = AppEnv.logged_user.tenant_name
+        self.appbar_data_file.value = AppEnv.logged_user.data_files[0]
         self.appbar_data_file.show()
+        print(self.appbar_data_file.options)
+        print(self.appbar_data_file.control.dataSource)
 
 
     # def settings_click(self, args):
