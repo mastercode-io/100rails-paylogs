@@ -193,6 +193,7 @@ class HomePage(HomePageTemplate):
         print(AppEnv.logged_user)
         print(self.appbar_data_file.options)
         print(self.appbar_data_file.control.dataSource)
+        print(self.appbar_data_file.control.fields)
 
         self.assistant.show()
         self.appbar_menu.show_selected('timesheet_dashboard')
