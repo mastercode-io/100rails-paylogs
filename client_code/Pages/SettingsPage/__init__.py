@@ -12,7 +12,7 @@ import time
 class SettingsPage(PageBase):
     def __init__(self, account=None, **kwargs):
         print('SettingsPage')
-        title = ''
+        title = 'Settings'
         self.account = account
         if self.account is None:
             self.tenant = Tenant.get(AppEnv.logged_user.tenant_uid)
