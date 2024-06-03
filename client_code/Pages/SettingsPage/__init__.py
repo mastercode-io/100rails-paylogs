@@ -54,6 +54,8 @@ class SettingsPage(PageBase):
         else:
             self.settings_tabs.form_show()
             self.settings_tabs.set_tab_content(tab_name='account', content='Basic account info')
+            # self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
             self.users.form_show()
+            print('user grid', self.users.container_id)
             self.settings_tabs.set_tab_content(tab_name='subscription', content=self.subscription.html)
             self.subscription.show()
