@@ -24,11 +24,13 @@ class SettingsPage(PageBase):
             self.content = f'<div id="{self.error_message.container_id}"></div>'
 
         else:
+            self.users = SubformGrid(name='users',
+                                     model='User',)
             tabs_config = [
                 {'name': 'account', 'label': 'Account Info', 'content': ''},
                 {'name': 'subscription', 'label': 'Subscription', 'content': ''},
                 {'name': 'billing', 'label': 'Billing', 'content': ''},
-                {'name': 'users', 'label': 'Users', 'content': ''},
+                {'name': 'users', 'label': 'Users', 'content_id': f'#{self.users.container_id}'},
                 {'name': 'data_files', 'label': 'Data Files', 'content': ''},
                 {'name': 'payroll', 'label': 'Payroll', 'content': ''},
                 {'name': 'integrations', 'label': 'Integrations', 'content': ''},
@@ -40,9 +42,6 @@ class SettingsPage(PageBase):
             #     model='User',
             #     container_id=self.settings_tabs.items['users']['content_id'],
             # )
-            self.users = SubformGrid(name='users',
-                                     model='User',
-                                     container_id=self.settings_tabs.items['users']['content_id'],)
             self.subscription = TextInput(name='subscription',
                                           label='Subscription',
                                           container_id=self.settings_tabs.items['subscription']['content_id'],
@@ -63,7 +62,7 @@ class SettingsPage(PageBase):
             #     model='User',
             #     container_id=self.settings_tabs.items['users']['content_id'],
             # )
-            self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
+            # self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
             self.users.show()
             self.settings_tabs.set_tab_content(tab_name='subscription', content=self.subscription.html)
             self.subscription.show()
