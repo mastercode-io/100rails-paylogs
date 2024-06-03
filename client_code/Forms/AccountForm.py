@@ -131,16 +131,16 @@ class AccountForm(FormBase):
                     }
                 ],
             },
-            # {
-            #     'name': 'users', 'label': 'Users', 'sections':
-            #     [
-            #         {
-            #             'name': '_', 'rows': [
-            #                 [self.users]
-            #             ]
-            #         }
-            #     ],
-            # },
+            {
+                'name': 'users', 'label': 'Users', 'sections':
+                [
+                    {
+                        'name': '_', 'rows': [
+                            [self.users]
+                        ]
+                    }
+                ],
+            },
             # {
             #     'name': 'data_files', 'label': 'Data Files', 'sections':
             #     [
