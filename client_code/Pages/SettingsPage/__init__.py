@@ -57,12 +57,5 @@ class SettingsPage(PageBase):
         else:
             self.settings_tabs.form_show()
             self.settings_tabs.set_tab_content(tab_name='account', content='Basic account info')
-            # self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
-            # self.users = GridView(
-            #     model='User',
-            #     container_id=self.settings_tabs.items['users']['content_id'],
-            # )
-            # self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
             self.users.form_show()
-            # self.settings_tabs.set_tab_content(tab_name='subscription', content=self.subscription.html)
             self.subscription.show()
