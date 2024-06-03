@@ -1,5 +1,6 @@
 from AnvilFusion.components.PageBase import PageBase
 from AnvilFusion.components.GridView import GridView
+from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.Inputs import InplaceEditor
 from AnvilFusion.components.Layouts import Tabs
@@ -39,7 +40,9 @@ class SettingsPage(PageBase):
             #     model='User',
             #     container_id=self.settings_tabs.items['users']['content_id'],
             # )
-            self.users = None
+            self.users = SubformGrid(name='users',
+                                     model='User',
+                                     container_id=self.settings_tabs.items['users']['content_id'],)
             self.subscription = TextInput(name='subscription',
                                           label='Subscription',
                                           container_id=self.settings_tabs.items['subscription']['content_id'],
@@ -56,11 +59,11 @@ class SettingsPage(PageBase):
             self.settings_tabs.form_show()
             self.settings_tabs.set_tab_content(tab_name='account', content='Basic account info')
             # self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
-            self.users = GridView(
-                model='User',
-                container_id=self.settings_tabs.items['users']['content_id'],
-            )
-            self.users.form_show()
+            # self.users = GridView(
+            #     model='User',
+            #     container_id=self.settings_tabs.items['users']['content_id'],
+            # )
             self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
+            self.users.show()
             self.settings_tabs.set_tab_content(tab_name='subscription', content=self.subscription.html)
             self.subscription.show()
