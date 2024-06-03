@@ -35,10 +35,11 @@ class SettingsPage(PageBase):
             self.settings_tabs = Tabs(tabs_config=tabs_config)
             self.content = f'<div id="{self.settings_tabs.container_id}"></div>'
 
-            self.users = GridView(
-                model='User',
-                container_id=self.settings_tabs.items['users']['content_id'],
-            )
+            # self.users = GridView(
+            #     model='User',
+            #     container_id=self.settings_tabs.items['users']['content_id'],
+            # )
+            self.users = None
             self.subscription = TextInput(name='subscription',
                                           label='Subscription',
                                           container_id=self.settings_tabs.items['subscription']['content_id'],
@@ -55,7 +56,10 @@ class SettingsPage(PageBase):
             self.settings_tabs.form_show()
             self.settings_tabs.set_tab_content(tab_name='account', content='Basic account info')
             # self.settings_tabs.set_tab_content(tab_name='users', content=self.users.html)
+            self.users = GridView(
+                model='User',
+                container_id=self.settings_tabs.items['users']['content_id'],
+            )
             self.users.form_show()
-            print('user grid', self.users.container_id)
             self.settings_tabs.set_tab_content(tab_name='subscription', content=self.subscription.html)
             self.subscription.show()
