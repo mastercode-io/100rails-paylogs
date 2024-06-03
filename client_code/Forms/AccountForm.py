@@ -131,26 +131,26 @@ class AccountForm(FormBase):
                     }
                 ],
             },
-            {
-                'name': 'users', 'label': 'Users', 'sections':
-                [
-                    {
-                        'name': '_', 'rows': [
-                            # [self.users]
-                        ]
-                    }
-                ],
-            },
-            {
-                'name': 'data_files', 'label': 'Data Files', 'sections':
-                [
-                    {
-                        'name': '_', 'rows': [
-                            # [self.data_files]
-                        ]
-                    }
-                ],
-            },
+            # {
+            #     'name': 'users', 'label': 'Users', 'sections':
+            #     [
+            #         {
+            #             'name': '_', 'rows': [
+            #                 [self.users]
+            #             ]
+            #         }
+            #     ],
+            # },
+            # {
+            #     'name': 'data_files', 'label': 'Data Files', 'sections':
+            #     [
+            #         {
+            #             'name': '_', 'rows': [
+            #                 [self.data_files]
+            #             ]
+            #         }
+            #     ],
+            # },
             {
                 'name': 'payroll_settings', 'label': 'Payroll', 'sections':
                 [
@@ -161,17 +161,17 @@ class AccountForm(FormBase):
                     }
                 ],
             },
-            {
-                'name': 'integrations', 'label': 'Integrations', 'sections':
-                [
-                    {
-                        'name': '_', 'cols': [
-                            # [self.incoming_links],
-                            # [self.outgoing_links]
-                        ]
-                    }
-                ],
-            },
+            # {
+            #     'name': 'integrations', 'label': 'Integrations', 'sections':
+            #     [
+            #         {
+            #             'name': '_', 'cols': [
+            #                 [self.incoming_links],
+            #                 [self.outgoing_links]
+            #             ]
+            #         }
+            #     ],
+            # },
         ]
 
         super().__init__(tabs=tabs,
