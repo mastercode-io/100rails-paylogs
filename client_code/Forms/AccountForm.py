@@ -136,7 +136,7 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'rows': [
-                            [self.users]
+                            # [self.users]
                         ]
                     }
                 ],
@@ -146,7 +146,7 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'rows': [
-                            [self.data_files]
+                            # [self.data_files]
                         ]
                     }
                 ],
@@ -166,8 +166,8 @@ class AccountForm(FormBase):
                 [
                     {
                         'name': '_', 'cols': [
-                            [self.incoming_links],
-                            [self.outgoing_links]
+                            # [self.incoming_links],
+                            # [self.outgoing_links]
                         ]
                     }
                 ],
