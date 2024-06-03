@@ -39,7 +39,7 @@ class SettingsPage(PageBase):
             self.content = f'<div id="{self.settings_tabs.container_id}"></div>'
 
             self.users = GridView(
-                model='User',
+                model='Timesheet',
                 container_id=self.settings_tabs.items['users']['content_id'],
             )
             self.subscription = TextInput(name='subscription',
