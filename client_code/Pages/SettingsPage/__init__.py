@@ -55,4 +55,5 @@ class SettingsPage(PageBase):
             self.settings_tabs.form_show()
             self.settings_tabs.set_tab_content(tab_name='account', content='Basic account info')
             self.users.form_show()
+            self.settings_tabs.set_tab_content(tab_name='subscription', content=self.subscription.html)
             self.subscription.show()
