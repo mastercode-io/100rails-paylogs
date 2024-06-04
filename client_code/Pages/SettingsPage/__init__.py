@@ -41,7 +41,7 @@ class SettingsPage(PageBase):
             self.users = GridView(
                 model='Timesheet',
                 container_id=self.settings_tabs.items['users']['content_id'],
-                grid_height_offset=110,
+                grid_height_offset=150,
             )
             self.subscription = TextInput(name='subscription',
                                           label='Subscription',
