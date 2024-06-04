@@ -48,6 +48,7 @@ class SettingsPage(PageBase):
                                           value='Free')
 
         super().__init__(page_title=title, content=self.content, overflow='auto', **kwargs)
+        self.users.bounding_box_id = self.container_id
 
 
     def form_show(self, **args):
