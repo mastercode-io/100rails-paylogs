@@ -181,7 +181,7 @@ class AccountForm(FormBase):
                          buttons_mode='off',
                          **kwargs)
         self.fullscreen = True
-        self.data_files.bounding_box_id = self.form_id
+        self.data_files.bounding_box_id = self.container_uid
 
 
     def form_open(self, args, **kwargs):
