@@ -42,7 +42,7 @@ class AccountForm(FormBase):
                                  view_config=self.user_view_config,
                                  )
 
-        self.data_files = SubformGrid(name='data_files', label='Data Files', model='Tenant', is_dependent=False,
+        self.data_files = SubformGrid(name='data_files', label='Data Files', model='Timesheet', is_dependent=False,
                                       form_container_id=kwargs.get('target'))
 
         incoming_links_view = {
