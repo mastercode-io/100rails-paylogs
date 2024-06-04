@@ -44,7 +44,7 @@ class AccountForm(FormBase):
 
         self.data_files = SubformGrid(name='data_files', label='Data Files',
                                       model='Timesheet', is_dependent=False,
-
+                                      get_data=True,
                                       form_container_id=kwargs.get('target'))
 
         incoming_links_view = {
@@ -214,7 +214,6 @@ class AccountForm(FormBase):
             #     data_files.append(Tenant.get_row_view(tenant))
             # print('data_files', self.account['data_files'])
             # self.data_files.value = [tenant.to_json_dict() for tenant in self.account['data_files']]
-            self.data_files.show(get_data=True)
 
             self.payroll_settings_page.form_show()
 
