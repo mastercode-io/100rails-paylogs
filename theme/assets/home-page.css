@@ -425,5 +425,6 @@ label>span.e-label {
 .pl-settings-dialog {
     border: none!important;
     box-shadow: #ffffff 0 0 0 0!important;
-    background-color: inherit!important;
+    border-radius: 0!important;
+    background-color: #ffffff!important;
 }
