@@ -432,6 +432,6 @@ label>span.e-label {
 .pl-settings-dialog-tabs-header {
     border-radius: 0.5rem!important;
 }
-.e-tab .e-tab-header .e-toolbar-item.e-active {
+.e-tab .e-tab-header .e-toolbar-items .e-toolbar-item.e-active {
     border-radius: 0.5rem!important;
 }
