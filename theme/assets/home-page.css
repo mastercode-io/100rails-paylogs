@@ -427,4 +427,6 @@ label>span.e-label {
     box-shadow: #ffffff 0 0 0 0!important;
     border-radius: 0!important;
     background-color: #ffffff!important;
+    margin-top: -14px;!important;
+    padding-top: 15px!important;
 }
