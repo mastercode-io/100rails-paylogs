@@ -429,3 +429,6 @@ label>span.e-label {
     background-color: #ffffff!important;
     --tab-radius: 0!important;
 }
+.pl-settings-dialog-tabs-header {
+    border-radius: 0.5rem!important;
+}

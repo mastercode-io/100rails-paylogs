@@ -176,7 +176,7 @@ class AccountForm(FormBase):
             },
         ]
         tabs_config = {
-            'header_class': 'e-fill'
+            'header_class': 'e-fill pl-settings-dialog-tabs-header',
         }
 
         super().__init__(tabs=tabs,
