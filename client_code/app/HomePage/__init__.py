@@ -187,7 +187,7 @@ class HomePage(HomePageTemplate):
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         self.appbar_menu.show()
 
-        self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
+        self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '\n' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
 
         tenant = models.Tenant.get(AppEnv.logged_user.tenant_uid)
