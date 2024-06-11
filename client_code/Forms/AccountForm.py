@@ -179,6 +179,7 @@ class AccountForm(FormBase):
         super().__init__(tabs=tabs,
                          header='Account Settings',
                          buttons_mode='off',
+                         css_class='pl-settings-dialog',
                          **kwargs)
         self.fullscreen = True
         self.data_files.bounding_box_id = self.container_uid

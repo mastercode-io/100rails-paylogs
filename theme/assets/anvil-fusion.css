@@ -22,3 +22,7 @@ button.da-no-button {
 .da-dialog-section-header {
   margin-bottom: 5px;
 }
+
+.da-tabs-item {
+  padding: 15px 10px 5px;
+}

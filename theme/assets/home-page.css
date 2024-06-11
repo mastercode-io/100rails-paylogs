@@ -422,3 +422,8 @@ label>span.e-label {
 .pl-timesheet-toolbar-item-select-view {
     width: 150px!important;
 }
+.pl-settings-dialog {
+    border: none!important;
+    box-shadow: #ffffff 0 0 0 0!important;
+    background-color: inherit!important;
+}
