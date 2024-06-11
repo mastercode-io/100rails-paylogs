@@ -42,10 +42,10 @@ class AccountForm(FormBase):
                                  view_config=self.user_view_config,
                                  )
 
-        self.data_files = SubformGrid(name='data_files', label='Data Files',
-                                      model='Timesheet', is_dependent=False,
-                                      get_data=True,
-                                      form_container_id=kwargs.get('target'))
+        self.pay_entities = SubformGrid(name='pay_entities', label='Data Files',
+                                        model='Timesheet', is_dependent=False,
+                                        get_data=True,
+                                        form_container_id=kwargs.get('target'))
 
         incoming_links_view = {
             'model': 'AppInApiCredential',
@@ -144,11 +144,11 @@ class AccountForm(FormBase):
                 ],
             },
             {
-                'name': 'data_files', 'label': 'Data Files', 'sections':
+                'name': 'pay_entities', 'label': 'Pay Entities', 'sections':
                 [
                     {
                         'name': '_', 'rows': [
-                            [self.data_files]
+                            [self.pay_entities]
                         ]
                     }
                 ],
@@ -186,7 +186,7 @@ class AccountForm(FormBase):
                          tabs_config=tabs_config,
                          **kwargs)
         self.fullscreen = True
-        self.data_files.bounding_box_id = self.container_uid
+        self.pay_entities.bounding_box_id = self.container_uid
 
 
     def form_open(self, args, **kwargs):
@@ -207,7 +207,7 @@ class AccountForm(FormBase):
             super().form_open(args)
 
             user_list = []
-            for tenant in self.account['data_files']:
+            for tenant in self.account['pay_entities']:
                 print('tenant', tenant['uid'])
                 user_list += User.get_grid_view(
                     view_config=self.user_view_config,
@@ -215,11 +215,11 @@ class AccountForm(FormBase):
                 )
             print('user_list', user_list)
             self.users.value = user_list
-            # data_files = []
-            # for tenant in self.account['data_files']:
-            #     data_files.append(Tenant.get_row_view(tenant))
-            # print('data_files', self.account['data_files'])
-            # self.data_files.value = [tenant.to_json_dict() for tenant in self.account['data_files']]
+            # pay_entities = []
+            # for tenant in self.account['pay_entities']:
+            #     pay_entities.append(Tenant.get_row_view(tenant))
+            # print('pay_entities', self.account['pay_entities'])
+            # self.pay_entities.value = [tenant.to_json_dict() for tenant in self.account['pay_entities']]
 
             self.payroll_settings_page.form_show()
 

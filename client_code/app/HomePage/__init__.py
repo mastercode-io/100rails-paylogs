@@ -194,10 +194,10 @@ class HomePage(HomePageTemplate):
         self.account = models.Account.get(tenant['account_uid'])
         if AppEnv.logged_user.app_mode == 'Super Admin Mode' or AppEnv.logged_user.app_mode == 'Developer Mode':
             tenant_list = models.Tenant.search(tenant_uid=None, search_query=anvil.tables.order_by('account_uid'))
-            AppEnv.logged_user.data_files = [df.to_json_dict() for df in tenant_list]
+            AppEnv.logged_user.pay_entities = [df.to_json_dict() for df in tenant_list]
         elif self.account is not None:
-            AppEnv.logged_user.data_files = [df.to_json_dict() for df in self.account['data_files']]
-        self.appbar_data_file.options = AppEnv.logged_user.data_files
+            AppEnv.logged_user.pay_entities = [df.to_json_dict() for df in self.account['pay_entities']]
+        self.appbar_data_file.options = AppEnv.logged_user.pay_entities
         self.appbar_data_file.value = AppEnv.logged_user.tenant_uid
         self.appbar_data_file.show()
         if self.appbar_data_file.control:
@@ -261,9 +261,9 @@ class HomePage(HomePageTemplate):
     def appbar_settings_form_click(self, args):
         print('appbar_settings_button_click')
         tenant = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
-        recs = models.Account.search(data_files=[tenant])
+        recs = models.Account.search(pay_entities=[tenant])
         print('recs', len(recs))
-        account = next(iter(models.Account.search(data_files=[tenant])), None)
+        account = next(iter(models.Account.search(pay_entities=[tenant])), None)
         print('tenant', tenant)
         print('account', account)
         nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': account}

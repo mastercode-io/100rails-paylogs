@@ -31,7 +31,7 @@ class SettingsPage(PageBase):
                 {'name': 'subscription', 'label': 'Subscription', 'content': ''},
                 {'name': 'billing', 'label': 'Billing', 'content': ''},
                 {'name': 'users', 'label': 'Users', 'content': ''},
-                {'name': 'data_files', 'label': 'Data Files', 'content': ''},
+                {'name': 'pay_entities', 'label': 'Data Files', 'content': ''},
                 {'name': 'payroll', 'label': 'Payroll', 'content': ''},
                 {'name': 'integrations', 'label': 'Integrations', 'content': ''},
             ]

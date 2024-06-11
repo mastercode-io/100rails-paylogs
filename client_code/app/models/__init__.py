@@ -267,7 +267,7 @@ class Account:
     }
     subscription = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_schema)
     main_data_file = Relationship("Tenant")
-    data_files = Relationship("Tenant", with_many=True)
+    pay_entities = Relationship("Tenant", with_many=True)
 
 
 @model_type

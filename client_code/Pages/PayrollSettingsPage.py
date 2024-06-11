@@ -10,12 +10,12 @@ class PayrollSettingsPage(PageBase):
         title = ''
         if account is None:
             tenant = Tenant.get_row(AppEnv.logged_user.tenant_uid)
-            account = next(iter(Account.search(data_files=[tenant])), None)
-        print(account, account['data_files'])
-        for data_file in account['data_files']:
+            account = next(iter(Account.search(pay_entities=[tenant])), None)
+        print(account, account['pay_entities'])
+        for data_file in account['pay_entities']:
             print(data_file['uid'], data_file['name'])
         if account is not None:
-            options = account['data_files']
+            options = account['pay_entities']
         else:
             options = []
 
