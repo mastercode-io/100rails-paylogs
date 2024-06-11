@@ -104,6 +104,7 @@ class HomePage(HomePageTemplate):
                 "items": self.appbar_user_menu_items,
                 "open": self.appbar_menu_popup_open,
                 "select": self.appbar_user_menu_select,
+                "beforeItemRender": self.appbar_user_menu_item_render,
             }
         )
         self.appbar_data_file = DropdownInput(name='data_file',
@@ -142,6 +143,17 @@ class HomePage(HomePageTemplate):
 
         AppEnv.login_user = self.login_user
         AppEnv.after_login = self.after_login
+
+
+    def appbar_user_menu_item_render(self, args):
+        if args.item.id == 'pl-appbar-user-account-name':
+            args.element.innerHTML = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
+            args.element.classList.add('pl-appbar-user-account-name')
+        elif args.item.id == 'pl-appbar-sign-out':
+            args.element.classList.add('pl-appbar-sign-out')
+        else:
+            args.element.classList.add('pl-appbar-user-menu-item')
+        # print('appbar_user_menu_item_render', args.item.id)
 
 
     def login_user(self):
@@ -187,11 +199,7 @@ class HomePage(HomePageTemplate):
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         self.appbar_menu.show()
 
-        # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + ' ' + AppEnv.logged_user.email
-        # print('appbar_user_menu.item props')
-        # for k in self.appbar_user_menu.items[0].keys():
-        #     print(k, self.appbar_user_menu.items[0][k])
-
+        self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
 
         tenant = models.Tenant.get(AppEnv.logged_user.tenant_uid)
