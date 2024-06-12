@@ -190,7 +190,7 @@ class PayrollSettingsForm(FormBase):
             'header_class': 'e-fill',
         }
 
-        app_list = [app.to_json_dict for app in AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)]
+        app_list = [app.to_json_dict() for app in AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)]
         print('app_list', app_list)
         self.payroll_integration.data = app_list
         self.timesheet_integration.data = app_list
