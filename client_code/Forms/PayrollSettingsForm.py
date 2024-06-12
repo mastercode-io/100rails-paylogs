@@ -133,10 +133,10 @@ class PayrollSettingsForm(FormBase):
                 'name': 'integration', 'label': 'Payroll Integration',  'label_style': 'margin-bottom:10px',
                 'cols': [
                     [
-                        self.use_integration,
-                        self.integration,
-                        self.connection_message,
-                        self.connection_button,
+                        # self.use_integration,
+                        # self.integration,
+                        # self.connection_message,
+                        # self.connection_button,
                     ],
                     [],
                     []
