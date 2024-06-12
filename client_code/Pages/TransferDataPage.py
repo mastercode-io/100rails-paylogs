@@ -8,10 +8,10 @@ import uuid
 import json
 
 
-class ImportTimesheetsPage(PageBase):
+class TransferDataPage(PageBase):
     def __init__(self, **kwargs):
-        print('ImportTimesheetPage')
-        title = 'Import Timesheet'
+        print('TransferDataPage')
+        title = 'Transfer Data with Integration Service'
 
         self.connected_app = LookupInput(name='connected_app',
                                          label='Connected App',
