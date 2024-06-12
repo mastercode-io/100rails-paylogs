@@ -97,7 +97,7 @@ class SettingsForm(FormBase):
                 'name': 'account', 'label': 'Account Info', 'sections':
                 [
                     {
-                        'name': '_', 'label': '', 'cols': [
+                        'name': '_', 'cols': [
                             [
                                 self.subtitle,
                                 self.account_name,
