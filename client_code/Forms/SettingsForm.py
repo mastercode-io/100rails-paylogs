@@ -9,9 +9,9 @@ from ..Pages.PayrollSettingsPage import PayrollSettingsPage
 import anvil.tables.query as q
 
 
-class AccountForm(FormBase):
+class SettingsForm(FormBase):
     def __init__(self, **kwargs):
-        print('AccountForm')
+        print('SettingsForm')
         kwargs['model'] = 'Account'
 
         self.account = None

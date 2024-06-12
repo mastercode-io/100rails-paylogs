@@ -100,8 +100,8 @@ PL_NAV_ITEMS = {
     'directory_timesheet_types': {'model': 'TimesheetType', 'type': 'view', 'action': 'open', 'props': {}},
 
     'settings_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
-    'settings_account': {'name': 'SettingsPage', 'type': 'page', 'action': 'open', 'props': {}},
-    'settings_form': {'class': 'AccountForm', 'type': 'form', 'action': 'open', 'props': {}},
+    # 'settings_account': {'name': 'SettingsPage', 'type': 'page', 'action': 'open', 'props': {}},
+    'settings_form': {'class': 'SettingsForm', 'type': 'form', 'action': 'open', 'props': {}},
 
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
@@ -117,7 +117,7 @@ PL_NAV_ITEMS = {
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
     'developer_run_script': {'type': 'page', 'page': RunScriptPage, 'props': {}},
-    'developer_tenant_form': {'type': 'form', 'class': 'AccountForm', 'props': {}},
+    'developer_tenant_form': {'type': 'form', 'class': 'SettingsForm', 'props': {}},
     'developer_tree_grid': {'type': 'page', 'name': 'TreeGridPage', 'props': {}},
     # 'developer_grid_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
     # 'developer_page_preview': {'type': 'page', 'page': MigratePage, 'props': {}},
