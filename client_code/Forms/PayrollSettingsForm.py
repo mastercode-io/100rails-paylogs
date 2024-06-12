@@ -19,6 +19,8 @@ class PayrollSettingsForm(FormBase):
 
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
                                              string_format='d MMM yyy', required=True)
+
+        self.integration_subtitle = InlineMessage(content='Payroll System Integration',)
         self.use_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
                                              value=False,
                                              on_change=self.use_integration_changed)
@@ -147,7 +149,14 @@ class PayrollSettingsForm(FormBase):
                                 self.public_holidays,
                                 self.payroll_rdo,
                              ],
-                            [self.payrun_initial_date]
+                            [
+                                self.payrun_initial_date,
+                                self.integration_subtitle,
+                                self.use_integration,
+                                self.integration,
+                                self.connection_message,
+                                self.connection_button,
+                            ]
                         ]
                     },
                 ]
