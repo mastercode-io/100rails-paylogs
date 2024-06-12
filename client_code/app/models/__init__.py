@@ -156,6 +156,7 @@ class File:
 class Tenant:
     model_type = types.ModelTypes.SYSTEM
     account_uid = Attribute(field_type=types.FieldTypes.UID)
+    tenant_uid = Attribute(field_type=types.FieldTypes.UID)
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
