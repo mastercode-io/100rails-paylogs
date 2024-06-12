@@ -188,7 +188,7 @@ class PayrollSettingsForm(FormBase):
             'header_class': 'e-fill',
         }
 
-        app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
+        app_list = [*AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)]
         self.payroll_integration.data = app_list
         self.timesheet_integration.data = app_list
         payroll_config = next(iter(PayrollConfig.search()), None)
