@@ -28,7 +28,7 @@ class PayrollSettingsForm(FormBase):
                                                model='AppIntegration', get_data=False,
                                                on_change=self.payroll_integration_selected)
         self.payroll_connection_message = InlineMessage(css_class='pl-message-bar')
-        self.payroll_connection_button = Button(content='Create Connection',
+        self.payroll_connection_button = Button(content='Create Connection to Payroll',
                                                 action=self.create_payroll_connection)
 
         self.timesheet_integration_subtitle = InlineMessage(content='Time and Attendance Integration',)
@@ -39,7 +39,7 @@ class PayrollSettingsForm(FormBase):
                                                  model='AppIntegration', get_data=False,
                                                  on_change=self.timesheet_integration_selected)
         self.timesheet_connection_message = InlineMessage(css_class='pl-message-bar')
-        self.timesheet_connection_button = Button(content='Create Connection',
+        self.timesheet_connection_button = Button(content='Create Connection to Time and Attendance',
                                                   action=self.create_timesheet_connection)
 
         self.frequency = DropdownInput(name='frequency', label='Pay Cycle Frequency',
@@ -189,6 +189,7 @@ class PayrollSettingsForm(FormBase):
         }
 
         app_list = [*AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)]
+        print('app_list', app_list)
         self.payroll_integration.data = app_list
         self.timesheet_integration.data = app_list
         payroll_config = next(iter(PayrollConfig.search()), None)
