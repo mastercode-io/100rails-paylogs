@@ -141,7 +141,7 @@ class PayrollSettingsForm(FormBase):
                                 self.pay_period_start_day,
                                 self.pay_period_end_day,
                                 self.pay_day,
-                                self.payrun_initial_date,
+                                # self.payrun_initial_date,
                             ],
                             [
                                 self.public_holidays,
