@@ -17,6 +17,8 @@ class PayrollSettingsForm(FormBase):
         print('PayrollSettingsForm')
         kwargs['model'] = 'PayrollConfig'
 
+        self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
+                                             string_format='d MMM yyy', required=True)
         self.use_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
                                              value=False,
                                              on_change=self.use_integration_changed)
@@ -26,7 +28,7 @@ class PayrollSettingsForm(FormBase):
         self.connection_message = InlineMessage(css_class='pl-message-bar')
         self.connection_button = Button(content='Create Connection', action=self.create_connection)
 
-        self.frequency = DropdownInput(name='frequency', label='Frequency',
+        self.frequency = DropdownInput(name='frequency', label='Pay Cycle Frequency',
                                        options=PAYRUN_FREQUENCY, value='Weekly',
                                        required=True)
         self.pay_period_start_day = DropdownInput(name='pay_period_start_day', label='Pay Period Start Day',
@@ -37,13 +39,16 @@ class PayrollSettingsForm(FormBase):
                                                 required=True)
         self.pay_day = DropdownInput(name='pay_day', label='Pay Day', options=WEEK_DAYS, value='Friday',
                                      required=True)
-        self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
-                                             string_format='d MMM yyy', required=True)
 
         self.pay_category_type = DropdownInput(name='pay_category_type', label='Pay Category Type',
                                                options=list(PAY_CATEGORY_TYPES.keys()), value='Single',
                                                on_change=self.pay_category_type_selected,
                                                required=True)
+
+        self.public_holidays = InlineMessage(name='public_holidays', label='Public Holidays',
+                                             content='Public holidays will be displayed here')
+        self.payroll_rdo = InlineMessage(name='payroll_rdo', label='RDOs',
+                                         content='RDOs will be displayed here')
 
         self.payrun_flow_steps_schema = [
             CheckboxInput(name='created', label='Created', value=True, enabled=False,
@@ -125,6 +130,39 @@ class PayrollSettingsForm(FormBase):
             },
         ]
 
+        tabs = [
+            {
+                'name': 'payroll_calendar', 'label': 'Pay Calendar', 'sections': [
+                    {
+                        'name': 'pay_period', 'label': 'Pay Period', 'label_style': 'margin-bottom:10px',
+                        'cols': [
+                            [
+                                self.frequency,
+                                self.pay_period_start_day,
+                                self.pay_period_end_day,
+                                self.pay_day,
+                                self.payrun_initial_date,
+                            ],
+                            [
+                                self.public_holidays,
+                                self.payroll_rdo,
+                             ],
+                            [self.payrun_initial_date]
+                        ]
+                    },
+                ]
+            },
+            {
+                'name': 'pay_templates', 'label': 'Pay Templates', 'sections': []
+            },
+            {
+                'name': 'payroll_integrations', 'label': 'Payroll Integrations', 'sections': []
+            }
+        ]
+        tabs_config = {
+            'header_class': 'e-fill',
+        }
+
         app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
         self.integration.data = app_list
         payroll_config = next(iter(PayrollConfig.search()), None)
@@ -135,7 +173,9 @@ class PayrollSettingsForm(FormBase):
             action = 'edit'
 
         super().__init__(header=self.form_header,
-                         sections=sections,
+                         # sections=sections,
+                         tabs=tabs,
+                         tabs_config=tabs_config,
                          action=action,
                          buttons_mode='off',
                          data=payroll_config,
