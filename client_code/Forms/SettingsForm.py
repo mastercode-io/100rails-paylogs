@@ -221,7 +221,7 @@ class SettingsForm(FormBase):
             # print('pay_entities', self.account['pay_entities'])
             # self.pay_entities.value = [tenant.to_json_dict() for tenant in self.account['pay_entities']]
 
-            self.payroll_settings_page.form_show()
+            super().form_open(args)
 
         else:
             super().form_open(args)
