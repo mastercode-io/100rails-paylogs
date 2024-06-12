@@ -35,7 +35,6 @@ class SettingsForm(FormBase):
                 {'name': 'enabled', 'label': 'Enabled'},
                 {'name': 'permissions', 'label': 'Permissions'},
             ],
-            'modes': ['Edit'],
         }
         self.users = SubformGrid(name='users', label='User List', model='User', is_dependent=True,
                                  # link_model='Tenant', link_field='case_workflow',
@@ -47,10 +46,12 @@ class SettingsForm(FormBase):
             'model': 'Tenant',
             'columns': [
                 {'name': 'name', 'label': ''},
-            ]
+            ],
+            'modes': ['Edit'],
         }
         self.pay_entities = SubformGrid(name='pay_entities', label='Pay Entities', model='Tenant',
                                         is_dependent=False, get_data=True,
+                                        view_config=self.pay_entities_view_config,
                                         form_container_id=kwargs.get('target'))
 
         incoming_links_view = {
