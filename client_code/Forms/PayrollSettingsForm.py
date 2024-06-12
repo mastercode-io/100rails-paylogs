@@ -24,8 +24,9 @@ class PayrollSettingsForm(FormBase):
         self.use_payroll_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
                                                      value=False,
                                                      on_change=self.use_payroll_integration_changed)
-        self.payroll_integration = LookupInput(name='integration', label='Integration',
-                                               model='AppIntegration', get_data=False,
+        self.payroll_integration = LookupInput(name='payroll_integration', label='Payroll Integration',
+                                               model='AppIntegration', text_field='service_name',
+                                               get_data=False,
                                                on_change=self.payroll_integration_selected)
         self.payroll_connection_message = InlineMessage(css_class='pl-message-bar')
         self.payroll_connection_button = Button(content='Create Connection to Payroll',
@@ -35,8 +36,9 @@ class PayrollSettingsForm(FormBase):
         self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
                                                        value=False,
                                                        on_change=self.use_timesheet_integration_changed)
-        self.timesheet_integration = LookupInput(name='integration', label='Integration',
-                                                 model='AppIntegration', get_data=False,
+        self.timesheet_integration = LookupInput(name='timesheet_integration', label='Timesheet Integration',
+                                                 model='AppIntegration', text_field='service_name',
+                                                 get_data=False,
                                                  on_change=self.timesheet_integration_selected)
         self.timesheet_connection_message = InlineMessage(css_class='pl-message-bar')
         self.timesheet_connection_button = Button(content='Create Connection to Time and Attendance',
