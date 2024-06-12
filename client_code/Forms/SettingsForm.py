@@ -50,7 +50,7 @@ class SettingsForm(FormBase):
             'modes': ['Edit'],
         }
         self.pay_entities = SubformGrid(name='pay_entities', label='Pay Entities', model='Tenant',
-                                        is_dependent=False, get_data=True,
+                                        is_dependent=False, get_data=False,
                                         view_config=self.pay_entities_view_config,
                                         form_container_id=kwargs.get('target'))
 
@@ -214,14 +214,17 @@ class SettingsForm(FormBase):
             super().form_open(args)
 
             user_list = []
+            pay_entity_list = []
             for tenant in self.account['pay_entities']:
                 print('tenant', tenant['uid'])
                 user_list += User.get_grid_view(
                     view_config=self.user_view_config,
                     filters={'tenant_uid': tenant['uid']}
                 )
+                pay_entity_list.append(tenant.to_json_dict())
             print('user_list', user_list)
             self.users.value = user_list
+            self.pay_entities.value = pay_entity_list
             # pay_entities = []
             # for tenant in self.account['pay_entities']:
             #     pay_entities.append(Tenant.get_row_view(tenant))
