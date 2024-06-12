@@ -223,6 +223,7 @@ class SettingsForm(FormBase):
                 )
                 pay_entity_list.append(tenant.to_json_dict())
             print('user_list', user_list)
+            print('pay_entity_list', pay_entity_list)
             self.users.value = user_list
             self.pay_entities.value = pay_entity_list
             # pay_entities = []
