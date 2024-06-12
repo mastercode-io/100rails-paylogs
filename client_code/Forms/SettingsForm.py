@@ -45,7 +45,7 @@ class SettingsForm(FormBase):
         self.pay_entities_view_config = {
             'model': 'Tenant',
             'columns': [
-                {'name': 'tenant_uid', 'label': 'Entity Name'},
+                {'name': 'name', 'label': 'Entity Name'},
             ],
             'modes': ['Edit'],
         }
