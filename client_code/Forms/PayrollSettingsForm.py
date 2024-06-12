@@ -20,15 +20,27 @@ class PayrollSettingsForm(FormBase):
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
                                              string_format='d MMM yyy', required=True)
 
-        self.integration_subtitle = InlineMessage(content='Payroll System Integration',)
-        self.use_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
-                                             value=False,
-                                             on_change=self.use_integration_changed)
-        self.integration = LookupInput(name='integration', label='Integration',
-                                       model='AppIntegration', get_data=False,
-                                       on_change=self.integration_selected)
-        self.connection_message = InlineMessage(css_class='pl-message-bar')
-        self.connection_button = Button(content='Create Connection', action=self.create_connection)
+        self.payroll_integration_subtitle = InlineMessage(content='Payroll Integration',)
+        self.use_payroll_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
+                                                     value=False,
+                                                     on_change=self.use_payroll_integration_changed)
+        self.payroll_integration = LookupInput(name='integration', label='Integration',
+                                               model='AppIntegration', get_data=False,
+                                               on_change=self.payroll_integration_selected)
+        self.payroll_connection_message = InlineMessage(css_class='pl-message-bar')
+        self.payroll_connection_button = Button(content='Create Connection',
+                                                action=self.create_payroll_connection)
+
+        self.timesheet_integration_subtitle = InlineMessage(content='Time and Attendance Integration',)
+        self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
+                                                       value=False,
+                                                       on_change=self.use_timesheet_integration_changed)
+        self.timesheet_integration = LookupInput(name='integration', label='Integration',
+                                                 model='AppIntegration', get_data=False,
+                                                 on_change=self.timesheet_integration_selected)
+        self.timesheet_connection_message = InlineMessage(css_class='pl-message-bar')
+        self.timesheet_connection_button = Button(content='Create Connection',
+                                                  action=self.create_timesheet_connection)
 
         self.frequency = DropdownInput(name='frequency', label='Pay Cycle Frequency',
                                        options=PAYRUN_FREQUENCY, value='Weekly',
@@ -151,11 +163,15 @@ class PayrollSettingsForm(FormBase):
                              ],
                             [
                                 self.payrun_initial_date,
-                                self.integration_subtitle,
-                                self.use_integration,
-                                self.integration,
-                                self.connection_message,
-                                self.connection_button,
+                                self.payroll_integration_subtitle,
+                                self.use_payroll_integration,
+                                self.payroll_integration,
+                                self.payroll_connection_message,
+                                self.payroll_connection_button,
+                                self.use_timesheet_integration,
+                                self.timesheet_integration,
+                                self.timesheet_connection_message,
+                                self.timesheet_connection_button,
                             ]
                         ]
                     },
@@ -164,16 +180,17 @@ class PayrollSettingsForm(FormBase):
             {
                 'name': 'pay_templates', 'label': 'Pay Templates', 'sections': []
             },
-            {
-                'name': 'payroll_integrations', 'label': 'Payroll Integrations', 'sections': []
-            }
+            # {
+            #     'name': 'payroll_integrations', 'label': 'Payroll Integrations', 'sections': []
+            # }
         ]
         tabs_config = {
             'header_class': 'e-fill',
         }
 
         app_list = AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)
-        self.integration.data = app_list
+        self.payroll_integration.data = app_list
+        self.timesheet_integration.data = app_list
         payroll_config = next(iter(PayrollConfig.search()), None)
         if payroll_config:
             # self.data = payroll_config
@@ -196,7 +213,8 @@ class PayrollSettingsForm(FormBase):
         super().form_open(args)
         self.action_button.content = 'Edit' if self.action == 'view' else 'Save'
         self.action_button.show()
-        self.connection_button.hide()
+        self.payroll_connection_button.hide()
+        self.timesheet_connection_button.hide()
         # if not self.opened:
         #     self.payrun_flow_steps_view.show()
         #     self.payrun_flow_steps_widget.form_show(height=self.form.element.offsetHeight - 100)
@@ -206,15 +224,16 @@ class PayrollSettingsForm(FormBase):
     def action_handler(self, args):
         if self.action == 'view':
             self.action = 'edit'
-            self.integration.enabled = True
             self.frequency.enabled = True
             self.pay_period_start_day.enabled = True
             self.pay_period_end_day.enabled = True
             self.pay_day.enabled = True
             self.payrun_initial_date.enabled = True
             self.pay_category_type.enabled = True
-            self.use_integration.enabled = True
-            self.integration.enabled = True
+            self.use_payroll_integration.enabled = True
+            self.payroll_integration.enabled = True
+            self.use_timesheet_integration.enabled = True
+            self.timesheet_integration.enabled = True
             # self.payrun_flow_steps_field.enabled = True
             # self.payrun_flow_steps_field.fields[0].enabled = False
         else:
@@ -244,28 +263,51 @@ class PayrollSettingsForm(FormBase):
                 flow_steps.append({'label': field.label, 'iconCss': f'fa-solid fa-circle-{step_num}'})
         self.payrun_flow_steps_widget.steps = flow_steps
 
-    def integration_selected(self, args):
-        if not args.get('value') or not self.integration.value:
-            self.connection_message.accent = None
-            self.connection_message.content = ''
-            self.connection_button.hide()
+    def payroll_integration_selected(self, args):
+        if not args.get('value') or not self.payroll_integration.value:
+            self.payroll_connection_message.accent = None
+            self.payroll_connection_message.content = ''
+            self.payroll_connection_button.hide()
         else:
-            payroll_integration = AppIntegration.get(self.integration.value['uid'])
+            payroll_integration = AppIntegration.get(self.payroll_integration.value['uid'])
             payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
             if not payroll_connection:
-                self.connection_message.accent = 'warning'
-                self.connection_message.content = (f"No connection found for this integration: "
-                                                   f"<b>{self.integration.value['name']}</b>")
-                self.connection_button.show()
+                self.payroll_connection_message.accent = 'warning'
+                self.payroll_connection_message.content = (f"No connection found for this integration: "
+                                                           f"<b>{self.payroll_integration.value['name']}</b>")
+                self.payroll_connection_button.show()
                 if self.action == 'view':
-                    self.connection_button.enabled = False
+                    self.payroll_connection_button.enabled = False
 
-    def use_integration_changed(self, args):
+    def use_payroll_integration_changed(self, args):
         print('use_integration_changed', args)
-        if self.use_integration.value is True:
-            self.integration.show()
+        if self.use_payroll_integration.value is True:
+            self.payroll_integration.show()
         else:
-            self.integration.hide()
+            self.payroll_integration.hide()
+
+    def timesheet_integration_selected(self, args):
+        if not args.get('value') or not self.timesheet_integration.value:
+            self.timesheet_connection_message.accent = None
+            self.timesheet_connection_message.content = ''
+            self.timesheet_connection_button.hide()
+        else:
+            timesheet_integration = AppIntegration.get(self.payroll_integration.value['uid'])
+            timesheet_connection = AppOutApiCredential.get_by('integration', timesheet_integration)
+            if not timesheet_connection:
+                self.timesheet_connection_message.accent = 'warning'
+                self.timesheet_connection_message.content = (f"No connection found for this integration: "
+                                                             f"<b>{self.timesheet_integration.value['name']}</b>")
+                self.timesheet_connection_button.show()
+                if self.action == 'view':
+                    self.timesheet_connection_button.enabled = False
+
+    def use_timesheet_integration_changed(self, args):
+        print('use_integration_changed', args)
+        if self.use_timesheet_integration.value is True:
+            self.timesheet_integration.show()
+        else:
+            self.timesheet_integration.hide()
 
     def pay_category_type_selected(self, args):
         print('pay_category_type_selected', args)
@@ -276,7 +318,13 @@ class PayrollSettingsForm(FormBase):
         elif self.pay_category_type.value == 'role':
             self.pay_category_type.label = PAY_CATEGORY_TYPES['role']
 
-    def create_connection(self, args):
+    def create_payroll_connection(self, args):
         print('create_connection', args)
-        self.connection_message.accent = 'info'
-        self.connection_message.content = 'Creating connection...'
+        self.payroll_connection_message.accent = 'info'
+        self.payroll_connection_message.content = 'Creating connection...'
+
+
+    def create_timesheet_connection(self, args):
+        print('create_connection', args)
+        self.timesheet_connection_message.accent = 'info'
+        self.timesheet_connection_message.content = 'Creating connection...'
