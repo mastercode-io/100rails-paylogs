@@ -279,7 +279,7 @@ class HomePage(HomePageTemplate):
         account = next(iter(models.Account.search(pay_entities=[tenant])), None)
         print('tenant', tenant)
         print('account', account)
-        nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': account}
+        nav.PL_NAV_ITEMS['settings_form']['props'] = {'data': account}
         self.appbar_menu.show_selected('settings_form')
 
     # def appbar_assistant_button_click(self, args):
