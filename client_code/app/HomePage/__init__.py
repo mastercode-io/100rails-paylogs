@@ -216,7 +216,7 @@ class HomePage(HomePageTemplate):
             self.appbar_data_file.control.showClearButton = False
 
         self.assistant.show()
-        self.appbar_menu.show_selected('timesheet_dashboard')
+        self.appbar_menu.show_selected('payroll_dashboard')
         # self.sidebar.show(AppEnv.start_menu)
         # self.sidebar.refresh_content()
 
