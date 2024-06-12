@@ -225,7 +225,7 @@ class SettingsForm(FormBase):
             print('user_list', user_list)
             print('pay_entity_list', pay_entity_list)
             self.users.value = user_list
-            self.pay_entities.value = pay_entity_list
+            self.pay_entities.grid_data = pay_entity_list
             # pay_entities = []
             # for tenant in self.account['pay_entities']:
             #     pay_entities.append(Tenant.get_row_view(tenant))
