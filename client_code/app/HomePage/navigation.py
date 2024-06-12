@@ -26,12 +26,15 @@ PL_MENU_ITEMS = {
         {'id': 'timesheet_upload', 'text': 'Upload Data', 'items': []},
     ],
     'payroll_menu': [
-        {'id': 'payroll_payrun_list', 'text': 'Payruns', 'items': []},
-        {'id': 'payroll_pay_categories', 'text': 'Pay Categories', 'items': []},
-        {'id': 'payroll_pay_rate_rules', 'text': 'Pay Rate RULES', 'items': []},
-        {'id': 'payroll_pay_rate_scopes', 'text': 'Pay Rate SCOPES', 'items': []},
-        {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate TEMPLATES', 'items': []},
-        {'id': 'payroll_calendar', 'text': 'Payroll CALENDAR', 'items': []},
+        {'id': 'payroll_dashboard', 'text': 'Dashboard', 'items': []},
+        {'id': 'payroll_payruns', 'text': 'Payruns', 'items': []},
+        {'id': 'payroll_timesheets', 'text': 'Timesheets', 'items': []},
+        {'id': 'payroll_transfer_data', 'text': 'Transfer Data', 'items': []},
+        # {'id': 'payroll_pay_categories', 'text': 'Pay Categories', 'items': []},
+        # {'id': 'payroll_pay_rate_rules', 'text': 'Pay Rate RULES', 'items': []},
+        # {'id': 'payroll_pay_rate_scopes', 'text': 'Pay Rate SCOPES', 'items': []},
+        # {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate TEMPLATES', 'items': []},
+        # {'id': 'payroll_calendar', 'text': 'Payroll CALENDAR', 'items': []},
         {'id': 'payroll_settings', 'text': 'Payroll SETTINGS', 'items': []},
     ],
     'directory_menu': [
@@ -79,17 +82,18 @@ PL_MENU_ITEMS = {
 
 # Navigation items/actions
 PL_NAV_ITEMS = {
-    'timesheet_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
-    'timesheet_report': {'class': 'TimesheetView', 'type': 'custom', 'action': 'open', 'props': {}},
     'timesheet_sync': {'type': 'page', 'name': 'ImportTimesheetsPage', 'action': 'open', 'props': {}},
     'timesheet_upload': {'type': 'page', 'name': 'UploadDataPage', 'action': 'open', 'props': {}},
 
-    'payroll_payrun_list': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
-    'payroll_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
-    'payroll_pay_rate_rules': {'model': 'PayRateRule', 'type': 'view', 'action': 'open', 'props': {}},
-    'payroll_pay_rate_scopes': {'model': 'Scope', 'type': 'view', 'action': 'open', 'props': {}},
-    'payroll_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
-    'payroll_calendar': {'type': 'page', 'name': 'CalendarPage', 'action': 'open', 'props': {}},
+    'payroll_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
+    'payroll_payruns': {'model': 'Payrun', 'type': 'view', 'action': 'open', 'props': {}},
+    'payroll_timesheets': {'class': 'TimesheetView', 'type': 'custom', 'action': 'open', 'props': {}},
+    'payroll_transfer_data': {'type': 'page', 'name': 'TransferDataPage', 'action': 'open', 'props': {}},
+    # 'payroll_pay_categories': {'model': 'PayCategory', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'payroll_pay_rate_rules': {'model': 'PayRateRule', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'payroll_pay_rate_scopes': {'model': 'Scope', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'payroll_pay_rate_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
+    # 'payroll_calendar': {'type': 'page', 'name': 'CalendarPage', 'action': 'open', 'props': {}},
     'payroll_settings': {'class': 'PayrollSettingsForm', 'type': 'form', 'action': 'open', 'props': {}},
 
     'directory_employees': {'model': 'Employee', 'type': 'view', 'action': 'open', 'props': {}},
@@ -124,8 +128,8 @@ PL_NAV_ITEMS = {
 }
 
 PL_DEFAULT_NAV_ITEMS = {
-    'timesheet_menu': 'timesheet_dashboard',
-    'payroll_menu': 'payroll_payrun_report',
+    # 'timesheet_menu': 'timesheet_dashboard',
+    'payroll_menu': 'payroll_dashboard',
     'directory_menu': 'directory_employees',
     'settings_menu': 'settings_users',
     'admin_menu': 'admin_tenants',
@@ -134,7 +138,7 @@ PL_DEFAULT_NAV_ITEMS = {
 
 # Appbar main menu
 PL_APPBAR_MENU = [
-    {'id': 'timesheet_menu', 'text': 'TIMESHEET', 'items': PL_MENU_ITEMS['timesheet_menu']},
+    # {'id': 'timesheet_menu', 'text': 'TIMESHEET', 'items': PL_MENU_ITEMS['timesheet_menu']},
     {'id': 'payroll_menu', 'text': 'PAYROLL', 'items': PL_MENU_ITEMS['payroll_menu']},
     {'id': 'directory_menu', 'text': 'DIRECTORY', 'items': PL_MENU_ITEMS['directory_menu']},
     # {'id': 'settings_menu', 'text': 'SETTINGS', 'items': PL_MENU_ITEMS['settings_menu']},
