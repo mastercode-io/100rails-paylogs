@@ -2,6 +2,7 @@ from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 from AnvilFusion.components.SubformGrid import SubformGrid
+from AnvilFusion.components.ListBox import ListBox
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 from AnvilFusion.tools.utils import AppEnv
 from ..app.models import Tenant, Account, User
@@ -53,6 +54,9 @@ class SettingsForm(FormBase):
                                         is_dependent=False, get_data=False,
                                         view_config=self.pay_entities_view_config,
                                         form_container_id=kwargs.get('target'))
+        self.pay_entities_box = ListBox(name='pay_entities_box', label='Pay Entities',
+                                        options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
+                                        text_field='name', value_field='uid', save=False)
 
         incoming_links_view = {
             'model': 'AppInApiCredential',
@@ -114,7 +118,7 @@ class SettingsForm(FormBase):
                                 self.website
                             ],
                             [self.address],
-                            [self.pay_entities]
+                            [self.pay_entities_box]
                         ]
                     },
                 ],

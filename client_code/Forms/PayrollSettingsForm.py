@@ -33,7 +33,7 @@ class PayrollSettingsForm(FormBase):
                                                 action=self.create_payroll_connection)
 
         self.timesheet_integration_subtitle = InlineMessage(content='Time and Attendance Integration',)
-        self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
+        self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Use Integration to Time and Attendance',
                                                        value=False,
                                                        on_change=self.use_timesheet_integration_changed)
         self.timesheet_integration = LookupInput(name='timesheet_integration', label='Timesheet Integration',
@@ -294,7 +294,7 @@ class PayrollSettingsForm(FormBase):
             self.timesheet_connection_message.content = ''
             self.timesheet_connection_button.hide()
         else:
-            timesheet_integration = AppIntegration.get(self.payroll_integration.value['uid'])
+            timesheet_integration = AppIntegration.get(self.timesheet_integration.value['uid'])
             timesheet_connection = AppOutApiCredential.get_by('integration', timesheet_integration)
             if not timesheet_connection:
                 self.timesheet_connection_message.accent = 'warning'
