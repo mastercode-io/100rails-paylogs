@@ -55,8 +55,9 @@ class SettingsForm(FormBase):
                                         is_dependent=False, get_data=False,
                                         view_config=self.pay_entities_view_config,
                                         form_container_id=kwargs.get('target'))
+        pay_entities = Tenant.get_grid_view(view_config={'model': 'Tenant', 'columns': [{'name': 'name'}]})
         self.pay_entities_view = ListView(name='pay_entities_box', header='Pay Entities',
-                                          options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
+                                          options=pay_entities,
                                           text_field='name', value_field='uid',
                                           on_change=self.pay_entities_view_on_change,
                                           select='single',
