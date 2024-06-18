@@ -55,9 +55,8 @@ class SettingsForm(FormBase):
         #                                 is_dependent=False, get_data=False,
         #                                 view_config=self.pay_entities_view_config,
         #                                 form_container_id=kwargs.get('target'))
-        pay_entities = Tenant.get_grid_view(view_config={'model': 'Tenant', 'columns': [{'name': 'name'}]})
+        # pay_entities = Tenant.get_grid_view(view_config={'model': 'Tenant', 'columns': [{'name': 'name'}]})
         self.pay_entities_view = ListView(name='pay_entities_box', header='Pay Entities',
-                                          options=pay_entities,
                                           text_field='name', value_field='uid',
                                           on_change=self.pay_entities_view_on_change,
                                           select='single',
@@ -202,7 +201,7 @@ class SettingsForm(FormBase):
                          tabs_config=tabs_config,
                          **kwargs)
         self.fullscreen = True
-        self.pay_entities.bounding_box_id = self.container_uid
+        # self.pay_entities.bounding_box_id = self.container_uid
 
 
     def form_open(self, args, **kwargs):
@@ -234,7 +233,7 @@ class SettingsForm(FormBase):
             print('user_list', user_list)
             print('pay_entity_list', pay_entity_list)
             self.users.value = user_list
-            self.pay_entities.grid_data = pay_entity_list
+            self.pay_entities_view.options = pay_entity_list
             # pay_entities = []
             # for tenant in self.account['pay_entities']:
             #     pay_entities.append(Tenant.get_row_view(tenant))
