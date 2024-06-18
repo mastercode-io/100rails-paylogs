@@ -58,7 +58,7 @@ class SettingsForm(FormBase):
                                         options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
                                         text_field='name', value_field='uid',
                                         select='single',
-                                        on_change=self.pay_entities_box_on_change,
+                                        enabled=False,
                                         save=False)
 
         incoming_links_view = {
