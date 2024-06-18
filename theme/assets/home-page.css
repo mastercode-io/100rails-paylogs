@@ -293,27 +293,6 @@ label>span.e-label {
     color: grey;
     margin-top: -5px;
 }
-.da-form-input-label {
-    color: #374151;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 500;
-    font-style: normal;
-    box-sizing: border-box;
-    display: inline-block;
-    line-height: 1.4;
-    user-select: text;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: justify;
-    white-space: nowrap;
-    cursor: pointer;
-    pointer-events: none;
-    visibility: visible;
-    tab-size: 4;
-}
 
 /* Calendar View */
 .e-schedule .e-spinner-pane {
