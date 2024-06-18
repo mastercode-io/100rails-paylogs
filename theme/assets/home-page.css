@@ -144,11 +144,11 @@ select:-webkit-autofill:focus {
 }
 
 .e-sidebar {}
-
+/*
 .e-list-item {
     padding: 0 !important;
 }
-
+*/
 .pl-sidebar-content {
     margin-top: 10px;
     display: flex;

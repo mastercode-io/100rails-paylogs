@@ -56,7 +56,9 @@ class SettingsForm(FormBase):
                                         form_container_id=kwargs.get('target'))
         self.pay_entities_box = ListBox(name='pay_entities_box', label='Pay Entities',
                                         options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
-                                        text_field='name', value_field='uid', save=False)
+                                        text_field='name', value_field='uid',
+                                        select_all=True,
+                                        save=False)
 
         incoming_links_view = {
             'model': 'AppInApiCredential',
