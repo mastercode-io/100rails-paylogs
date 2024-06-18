@@ -122,7 +122,7 @@ class SettingsForm(FormBase):
                                 self.website
                             ],
                             [self.address],
-                            [self.pay_entities_box]
+                            [self.pay_entities_view]
                         ]
                     },
                 ],
