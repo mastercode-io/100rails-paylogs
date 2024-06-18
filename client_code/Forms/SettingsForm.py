@@ -58,7 +58,6 @@ class SettingsForm(FormBase):
                                         options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
                                         text_field='name', value_field='uid',
                                         select='single',
-                                        enabled=False,
                                         save=False)
 
         incoming_links_view = {
