@@ -44,17 +44,17 @@ class SettingsForm(FormBase):
                                  view_config=self.user_view_config,
                                  )
 
-        self.pay_entities_view_config = {
-            'model': 'Tenant',
-            'columns': [
-                {'name': 'name', 'label': 'Entity Name'},
-            ],
-            'modes': ['Edit'],
-        }
-        self.pay_entities = SubformGrid(name='pay_entities', label='Pay Entities', model='Tenant',
-                                        is_dependent=False, get_data=False,
-                                        view_config=self.pay_entities_view_config,
-                                        form_container_id=kwargs.get('target'))
+        # self.pay_entities_view_config = {
+        #     'model': 'Tenant',
+        #     'columns': [
+        #         {'name': 'name', 'label': 'Entity Name'},
+        #     ],
+        #     'modes': ['Edit'],
+        # }
+        # self.pay_entities = SubformGrid(name='pay_entities', label='Pay Entities', model='Tenant',
+        #                                 is_dependent=False, get_data=False,
+        #                                 view_config=self.pay_entities_view_config,
+        #                                 form_container_id=kwargs.get('target'))
         pay_entities = Tenant.get_grid_view(view_config={'model': 'Tenant', 'columns': [{'name': 'name'}]})
         self.pay_entities_view = ListView(name='pay_entities_box', header='Pay Entities',
                                           options=pay_entities,
