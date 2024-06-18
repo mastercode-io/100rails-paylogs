@@ -3,6 +3,7 @@ from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 from AnvilFusion.components.SubformGrid import SubformGrid
 from AnvilFusion.components.ListBox import ListBox
+from AnvilFusion.components.ListView import ListView
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 from AnvilFusion.tools.utils import AppEnv
 from ..app.models import Tenant, Account, User
@@ -54,11 +55,12 @@ class SettingsForm(FormBase):
                                         is_dependent=False, get_data=False,
                                         view_config=self.pay_entities_view_config,
                                         form_container_id=kwargs.get('target'))
-        self.pay_entities_box = ListBox(name='pay_entities_box', label='Pay Entities',
-                                        options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
-                                        text_field='name', value_field='uid',
-                                        select='single',
-                                        save=False)
+        self.pay_entities_view = ListView(name='pay_entities_box', header='Pay Entities',
+                                          options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
+                                          text_field='name', value_field='uid',
+                                          on_change=self.pay_entities_view_on_change,
+                                          select='single',
+                                          save=False)
 
         incoming_links_view = {
             'model': 'AppInApiCredential',
@@ -297,6 +299,6 @@ class SettingsForm(FormBase):
         self.update_source(self.data, add_new)
 
 
-    def pay_entities_box_on_change(self, args):
-        print('pay_entities_box_on_change', args)
-        print(self.pay_entities_box.value)
+    def pay_entities_view_on_change(self, args):
+        print('pay_entities_view_on_change', args)
+        print(self.pay_entities_view.value)
