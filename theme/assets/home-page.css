@@ -421,3 +421,10 @@ label>span.e-label {
     border-radius: 0.5rem;
     background-color: #ffffff;
 }
+
+/* ListView */
+.e-listview {
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+}
