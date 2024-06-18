@@ -58,6 +58,7 @@ class SettingsForm(FormBase):
                                         options=['Tenant 1', 'Tenant 2', 'Tenant 3'],
                                         text_field='name', value_field='uid',
                                         select='single',
+                                        on_change=self.pay_entities_box_on_change,
                                         save=False)
 
         incoming_links_view = {
@@ -295,3 +296,8 @@ class SettingsForm(FormBase):
             self.account.save()
 
         self.update_source(self.data, add_new)
+
+
+    def pay_entities_box_on_change(self, args):
+        print('pay_entities_box_on_change', args)
+        print(self.pay_entities_box.value)
