@@ -33,7 +33,6 @@ button.da-no-button {
     font-style: normal;
     box-sizing: border-box;
     display: inline-block;
-    line-height: 1.2;
     user-select: text;
     width: 100%;
     max-width: 100%;
@@ -45,4 +44,5 @@ button.da-no-button {
     pointer-events: none;
     visibility: visible;
     tab-size: 4;
+    margin-bottom: 0;
 }
