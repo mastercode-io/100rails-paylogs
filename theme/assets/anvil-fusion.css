@@ -1,4 +1,4 @@
-/* GridView styles */
+/* GridView */
 .da-grid-view-title {
   font-weight: 500;
   font-size: 16px;
@@ -18,7 +18,7 @@ button.da-no-button {
   display: none;
 }
 
-/* FormBase styles */
+/* FormBase */
 .da-dialog-section-header {
   margin-bottom: 5px;
 }
