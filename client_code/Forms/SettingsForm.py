@@ -158,26 +158,6 @@ class SettingsForm(FormBase):
                     }
                 ],
             },
-            # {
-            #     'name': 'pay_entities', 'label': 'Pay Entities', 'sections':
-            #     [
-            #         {
-            #             'name': '_', 'rows': [
-            #                 [self.pay_entities]
-            #             ]
-            #         }
-            #     ],
-            # },
-            # {
-            #     'name': 'payroll_settings', 'label': 'Payroll', 'sections':
-            #     [
-            #         {
-            #             'name': '_', 'rows': [
-            #                 [self.payroll_settings_frame]
-            #             ]
-            #         }
-            #     ],
-            # },
             {
                 'name': 'integrations', 'label': 'Integrations', 'sections':
                 [
