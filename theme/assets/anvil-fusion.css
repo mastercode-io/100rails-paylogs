@@ -46,3 +46,13 @@ button.da-no-button {
     tab-size: 4;
     margin-bottom: 0;
 }
+
+/* ListView */
+.da-listview-item-content::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.da-listview-item-button {
+    float: right;
+}
