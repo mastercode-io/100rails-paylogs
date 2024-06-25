@@ -23,6 +23,7 @@ class AccountsAdminView(GridView):
 
         super().__init__(
             model='Account',
-            # view_config=view_config,
+            view_config=view_config,
             # context_menu_items=context_menu_items,
+            add_edit_form='SettingsForm',
             **kwargs)
