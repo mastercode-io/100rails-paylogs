@@ -140,7 +140,6 @@ PL_DEFAULT_NAV_ITEMS = {
 
 # Appbar main menu
 PL_APPBAR_MENU = [
-    # {'id': 'timesheet_menu', 'text': 'TIMESHEET', 'items': PL_MENU_ITEMS['timesheet_menu']},
     {'id': 'payroll_menu', 'text': 'PAYROLL', 'items': PL_MENU_ITEMS['payroll_menu']},
     {'id': 'directory_menu', 'text': 'DIRECTORY', 'items': PL_MENU_ITEMS['directory_menu']},
     # {'id': 'settings_menu', 'text': 'SETTINGS', 'items': PL_MENU_ITEMS['settings_menu']},
