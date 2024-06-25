@@ -766,7 +766,7 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: phone, admin_ui: null, type: string}
     - {name: name, admin_ui: null, type: string}
-    - {name: main_data_file, admin_ui: null, type: link_single, target: tenants}
+    - {name: default_pay_entity, type: link_single, target: tenants}
     - {name: pay_entities, type: link_multiple, target: tenants}
     - {name: business_name, admin_ui: null, type: string}
   tenants:
