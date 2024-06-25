@@ -125,8 +125,9 @@ class AppUploadsCache:
 
 @model_type
 class AppCustomFieldsSchema:
-    _model_type = types.ModelTypes.SYSTEM
     _title = "name"
+
+    _model_type = types.ModelTypes.SYSTEM
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     schema = Attribute(field_type=types.FieldTypes.OBJECT)
@@ -135,6 +136,7 @@ class AppCustomFieldsSchema:
 @model_type
 class Upload:
     _title = "name"
+
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     mime_type = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     size = Attribute(field_type=types.FieldTypes.NUMBER)
@@ -154,6 +156,8 @@ class File:
 
 @model_type
 class Tenant:
+    _title = "name"
+
     model_type = types.ModelTypes.SYSTEM
     account_uid = Attribute(field_type=types.FieldTypes.UID)
     tenant_uid = Attribute(field_type=types.FieldTypes.UID)
@@ -165,6 +169,8 @@ class Tenant:
 
 @model_type
 class SubscriptionPlan:
+    _title = "name"
+
     model_type = types.ModelTypes.SYSTEM
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
