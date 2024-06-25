@@ -11,7 +11,7 @@ class AccountsAdminView(GridView):
                 {'name': 'name', 'label': 'Account Name'},
                 {'name': 'business_name', 'label': 'Business Name'},
                 {'name': 'default_pay_entity.name', 'label': 'Default Pay Entity'},
-                {'name': 'pay_entities', 'label': 'Pay Entities'},
+                {'name': 'pay_entities.name', 'label': 'Pay Entities'},
                 {'name': '_spacer', 'no_data': True},
             ],
         }
@@ -23,8 +23,8 @@ class AccountsAdminView(GridView):
 
         super().__init__(
             model='Account',
-            # view_config=view_config,
+            view_config=view_config,
             # context_menu_items=context_menu_items,
             add_edit_form='SettingsForm',
             **kwargs)
-        print('AccountsAdminView', self.view_config)
+        # print('AccountsAdminView', self.view_config)
