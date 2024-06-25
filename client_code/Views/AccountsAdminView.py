@@ -25,5 +25,5 @@ class AccountsAdminView(GridView):
             model='Account',
             view_config=view_config,
             # context_menu_items=context_menu_items,
-            add_edit_form='SettingsForm',
+            # add_edit_form='SettingsForm',
             **kwargs)
