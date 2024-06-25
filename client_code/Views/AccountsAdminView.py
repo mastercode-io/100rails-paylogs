@@ -10,7 +10,7 @@ class AccountsAdminView(GridView):
             'columns': [
                 {'name': 'name', 'label': 'Account Name'},
                 {'name': 'business_name', 'label': 'Business Name'},
-                {'name': 'default_pay_entity', 'label': 'Default Pay Entity'},
+                {'name': 'default_pay_entity.name', 'label': 'Default Pay Entity'},
                 {'name': 'pay_entities', 'label': 'Pay Entities'},
                 {'name': '_spacer', 'no_data': True},
             ],
