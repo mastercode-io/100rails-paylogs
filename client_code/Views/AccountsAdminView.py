@@ -27,3 +27,4 @@ class AccountsAdminView(GridView):
             # context_menu_items=context_menu_items,
             add_edit_form='SettingsForm',
             **kwargs)
+        print('AccountsAdminView', self.view_config)
