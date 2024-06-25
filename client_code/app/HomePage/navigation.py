@@ -213,11 +213,13 @@ class AppbarMenu:
 
         nav_container_id = self.content_id if self.nav_target_id is None else self.nav_target_id
         if component['type'] == 'custom':
-            try:
-                view_class = getattr(AppEnv.views, component['class'])
-                self.content_control = view_class(container_id=nav_container_id, **component.get('props', {}))
-            except Exception as e:
-                print('Load Form Exception', e.args)
+            view_class = getattr(AppEnv.views, component['class'])
+            self.content_control = view_class(container_id=nav_container_id, **component.get('props', {}))
+            # try:
+            #     view_class = getattr(AppEnv.views, component['class'])
+            #     self.content_control = view_class(container_id=nav_container_id, **component.get('props', {}))
+            # except Exception as e:
+            #     print('Load Form Exception', e.args)
 
         if component['type'] == 'view':
             if 'config' in component:
