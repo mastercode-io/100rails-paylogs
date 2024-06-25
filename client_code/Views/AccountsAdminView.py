@@ -10,7 +10,7 @@ class AccountsAdminView(GridView):
             'columns': [
                 {'name': 'name', 'label': 'Account Name'},
                 {'name': 'business_name', 'label': 'Business Name'},
-                # {'name': 'default_pay_entity', 'label': 'Default Pay Entity'},
+                {'name': 'default_pay_entity', 'label': 'Default Pay Entity'},
                 {'name': 'pay_entities', 'label': 'Pay Entities'},
                 {'name': '_spacer', 'no_data': True},
             ],
@@ -23,6 +23,6 @@ class AccountsAdminView(GridView):
 
         super().__init__(
             model='Account',
-            view_config=view_config,
+            # view_config=view_config,
             # context_menu_items=context_menu_items,
             **kwargs)
