@@ -49,6 +49,7 @@ PL_MENU_ITEMS = {
         {'id': 'settings_users', 'text': 'Users', 'items': []},
     ],
     'admin_menu': [
+        {'id': 'admin_accounts', 'text': 'Accounts', 'items': []},
         {'id': 'admin_tenants', 'text': 'Tenants', 'items': []},
         {'id': 'admin_user_roles', 'text': 'User Roles', 'items': []},
         {'id': 'admin_permissions', 'text': 'Permissions', 'items': []},
@@ -107,6 +108,7 @@ PL_NAV_ITEMS = {
     # 'settings_account': {'name': 'SettingsPage', 'type': 'page', 'action': 'open', 'props': {}},
     'settings_form': {'class': 'SettingsForm', 'type': 'form', 'action': 'open', 'props': {}},
 
+    'admin_accounts': {'class': 'AccountsAdminView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_tenants': {'class': 'TenantsView', 'type': 'custom', 'action': 'open', 'props': {}},
     'admin_users': {'model': 'User', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_settings_scope_types': {'model': 'ScopeType', 'type': 'view', 'action': 'open', 'props': {}},

@@ -109,7 +109,7 @@ def bar():
     #     ts.save()
     # tenant = Tenant.get_by('name', 'RB Scaffolding')
     # account = Account.get_by('tenant_uid', tenant['uid'])
-    # account['main_data_file'] = tenant
+    # account['default_pay_entity'] = tenant
     # rbt = Tenant(name='RBT').save()
     # account['data_files'] = [tenant, rbt]
     # account.save()
