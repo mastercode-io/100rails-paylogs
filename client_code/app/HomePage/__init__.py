@@ -1,3 +1,5 @@
+import time
+stime = time.time()
 from ._anvil_designer import HomePageTemplate
 import anvil.js
 from anvil.js.window import ej, jQuery
@@ -12,7 +14,7 @@ from ... import Pages
 import navigation as nav
 # from ..copilot import Copilot
 import json
-import time
+print('HomePage IMPORT', time.time() - stime)
 
 
 AppEnv.APP_ID = "PayLogs"
@@ -160,21 +162,25 @@ class HomePage(HomePageTemplate):
 
     def login_user(self):
         print('login_user')
+        stime = time.time()
         AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
         # AppEnv.logged_user = init_user_session(
         #     user_email='alex@100email.co',
         #     password='7CAwXs-D"H:a]84',
         #     after_login=self.after_login,
         # )
+        print('init_user_session: ', time.time() - stime)
         if AppEnv.logged_user:
             self.after_login()
 
 
     def after_login(self):
+        stime = time.time()
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         AppEnv.init_enum_constants()
         print('enum_constants', AppEnv.enum_constants)
         do_something()
+        print('LOAD CONST: ', time.time() - stime)
         # AppEnv.navigation = self.sidebar
         AppEnv.assistant = self.assistant
 
@@ -218,7 +224,9 @@ class HomePage(HomePageTemplate):
             self.appbar_data_file.control.showClearButton = False
 
         self.assistant.show()
+        stime = time.time()
         self.appbar_menu.show_selected('payroll_dashboard')
+        print('SHOW START PAGE: ', time.time() - stime)
         # self.sidebar.show(AppEnv.start_menu)
         # self.sidebar.refresh_content()
 
@@ -250,9 +258,7 @@ class HomePage(HomePageTemplate):
         # self.appbar_assistant_toggle.element.addEventListener(
         #     "click", self.assistant.toggle
         # )
-        stime = time.time()
         self.login_user()
-        print('LOGIN USER', time.time() - stime)
 
 
     # def settings_click(self, args):
