@@ -29,7 +29,7 @@ class AccountsAdminView(GridView):
             add_edit_form_props={
                 'buttons_mode': 'default',
                 'fullscreen': False,
-                'width': 'auto',
+                'width': '80%',
             },
             **kwargs)
         # print('AccountsAdminView', self.view_config)
