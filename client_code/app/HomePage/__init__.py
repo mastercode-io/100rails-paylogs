@@ -37,7 +37,6 @@ AppEnv.start_menu = "timesheet_menu"
 
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
-        stime = time.time()
 
         self.firs_load = True
         self.account = None
@@ -147,9 +146,6 @@ class HomePage(HomePageTemplate):
         AppEnv.login_user = self.login_user
         AppEnv.after_login = self.after_login
 
-        etime = time.time()
-        print(f'INIT TIME: {etime - stime}')
-
 
     def appbar_user_menu_item_render(self, args):
         if args.item.id == 'pl-appbar-user-account-name':
@@ -254,7 +250,9 @@ class HomePage(HomePageTemplate):
         # self.appbar_assistant_toggle.element.addEventListener(
         #     "click", self.assistant.toggle
         # )
+        stime = time.time()
         self.login_user()
+        print('LOGIN USER', time.time() - stime)
 
 
     # def settings_click(self, args):
