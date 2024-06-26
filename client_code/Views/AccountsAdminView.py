@@ -1,5 +1,8 @@
+import time
+stime = time.time()
 from AnvilFusion.components.GridView import GridView
 from AnvilFusion.tools.utils import AppEnv
+print('AccountsAdminView import modules:', time.time() - stime)
 
 
 class AccountsAdminView(GridView):
@@ -20,7 +23,7 @@ class AccountsAdminView(GridView):
         #     {'id': 'select_tenant', 'label': 'Lock Dataset', 'action': lock_dataset},
         #     {'id': 'reset_tenant', 'label': 'Reset Dataset', 'action': reset_dataset},
         # ]
-
+        stime = time.time()
         super().__init__(
             model='Account',
             view_config=view_config,
@@ -32,4 +35,4 @@ class AccountsAdminView(GridView):
                 'width': '80%',
             },
             **kwargs)
-        # print('AccountsAdminView', self.view_config)
+        print('AccountsAdminView __init__:', time.time() - stime)
