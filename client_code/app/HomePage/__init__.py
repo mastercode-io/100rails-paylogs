@@ -169,7 +169,7 @@ class HomePage(HomePageTemplate):
         #     password='7CAwXs-D"H:a]84',
         #     after_login=self.after_login,
         # )
-        print('init_user_session: ', time.time() - stime)
+        print('login_user: ', time.time() - stime)
         if AppEnv.logged_user:
             self.after_login()
 
@@ -182,6 +182,7 @@ class HomePage(HomePageTemplate):
         do_something()
         print('LOAD CONST: ', time.time() - stime)
         # AppEnv.navigation = self.sidebar
+        stime = time.time()
         AppEnv.assistant = self.assistant
 
         # if (AppEnv.logged_user.permissions.super_admin
@@ -222,6 +223,7 @@ class HomePage(HomePageTemplate):
         self.appbar_data_file.show()
         if self.appbar_data_file.control:
             self.appbar_data_file.control.showClearButton = False
+            print('LOAD UI: ', time.time() - stime)
 
         self.assistant.show()
         stime = time.time()
