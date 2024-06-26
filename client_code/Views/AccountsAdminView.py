@@ -26,6 +26,6 @@ class AccountsAdminView(GridView):
             view_config=view_config,
             # context_menu_items=context_menu_items,
             add_edit_form='SettingsForm',
-            add_edit_form_props={'buttons_mode': 'default'},
+            add_edit_form_props={'buttons_mode': 'default', 'fullscreen': False},
             **kwargs)
         # print('AccountsAdminView', self.view_config)

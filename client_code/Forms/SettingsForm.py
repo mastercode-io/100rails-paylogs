@@ -175,13 +175,15 @@ class SettingsForm(FormBase):
         }
 
         buttons_mode = kwargs.pop('buttons_mode', 'off')
+        fullscreen = kwargs.pop('fullscreen', True)
         super().__init__(tabs=tabs,
                          header='Account Settings',
                          buttons_mode=buttons_mode,
                          css_class='pl-settings-dialog',
                          tabs_config=tabs_config,
+                         fullscreen=fullscreen,
                          **kwargs)
-        self.fullscreen = True
+        # self.fullscreen = True
         # self.pay_entities.bounding_box_id = self.container_uid
 
 
