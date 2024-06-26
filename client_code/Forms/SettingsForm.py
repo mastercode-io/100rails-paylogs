@@ -174,9 +174,10 @@ class SettingsForm(FormBase):
             'header_class': 'e-fill pl-settings-dialog-tabs-header',
         }
 
+        buttons_mode = kwargs.pop('buttons_mode', 'off')
         super().__init__(tabs=tabs,
                          header='Account Settings',
-                         buttons_mode='off',
+                         buttons_mode=buttons_mode,
                          css_class='pl-settings-dialog',
                          tabs_config=tabs_config,
                          **kwargs)
