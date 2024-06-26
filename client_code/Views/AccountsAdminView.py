@@ -33,6 +33,7 @@ class AccountsAdminView(GridView):
                 'buttons_mode': 'default',
                 'fullscreen': False,
                 'width': '80%',
+                'height': '80%',
             },
             **kwargs)
         print('AccountsAdminView __init__:', time.time() - stime)
