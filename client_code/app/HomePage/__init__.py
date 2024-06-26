@@ -1,6 +1,3 @@
-import time
-stime = time.time()
-
 from ._anvil_designer import HomePageTemplate
 import anvil.js
 from anvil.js.window import ej, jQuery
@@ -16,8 +13,8 @@ import navigation as nav
 # from ..copilot import Copilot
 import json
 
-etime = time.time()
-print(f'import time: {etime - stime}')
+import time
+stime = time.time()
 
 
 AppEnv.APP_ID = "PayLogs"
@@ -38,6 +35,9 @@ AppEnv.theme = {
     }
 }
 AppEnv.start_menu = "timesheet_menu"
+
+etime = time.time()
+print(f'pre init time: {etime - stime}')
 
 
 class HomePage(HomePageTemplate):
