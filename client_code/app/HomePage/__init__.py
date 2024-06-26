@@ -12,9 +12,7 @@ from ... import Pages
 import navigation as nav
 # from ..copilot import Copilot
 import json
-
 import time
-stime = time.time()
 
 
 AppEnv.APP_ID = "PayLogs"
@@ -36,12 +34,10 @@ AppEnv.theme = {
 }
 AppEnv.start_menu = "timesheet_menu"
 
-etime = time.time()
-print(f'pre init time: {etime - stime}')
-
 
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
+        stime = time.time()
 
         self.firs_load = True
         self.account = None
@@ -150,6 +146,9 @@ class HomePage(HomePageTemplate):
 
         AppEnv.login_user = self.login_user
         AppEnv.after_login = self.after_login
+
+        etime = time.time()
+        print(f'INIT TIME: {etime - stime}')
 
 
     def appbar_user_menu_item_render(self, args):
