@@ -37,6 +37,7 @@ AppEnv.start_menu = "timesheet_menu"
 class HomePage(HomePageTemplate):
     def __init__(self, **properties):
 
+        self.firs_load = True
         self.account = None
         self.appbar_settings_menu_show = False
         self.content_id = "pl-content"
@@ -338,7 +339,10 @@ class HomePage(HomePageTemplate):
     def appbar_data_file_select(self, args):
         print('appbar_data_file_select', args)
         print(self.appbar_data_file.value)
-        AppEnv.set_current_tenant(tenant_uid=self.appbar_data_file.value, reload_func=self.after_login)
+        if self.firs_load:
+            self.firs_load = False
+        else:
+            AppEnv.set_current_tenant(tenant_uid=self.appbar_data_file.value, reload_func=self.after_login)
 
 
 def do_something():
