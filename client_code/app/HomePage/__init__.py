@@ -1,3 +1,6 @@
+import time
+stime = time.time()
+
 from ._anvil_designer import HomePageTemplate
 import anvil.js
 from anvil.js.window import ej, jQuery
@@ -12,6 +15,9 @@ from ... import Pages
 import navigation as nav
 # from ..copilot import Copilot
 import json
+
+etime = time.time()
+print(f'import time: {etime - stime}')
 
 
 AppEnv.APP_ID = "PayLogs"
