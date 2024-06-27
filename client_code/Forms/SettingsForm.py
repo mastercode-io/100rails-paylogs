@@ -226,7 +226,7 @@ class SettingsForm(FormBase):
         else:
             super().form_open(args)
             self.form.header = 'Create Account'
-            for tab in self.form.tabs.items()[1:]:
+            for tab in self.form_tabs.items()[1:]:
                 tab.enabled = False
             buttons = self.form.getButtons()
             for button in buttons:
