@@ -226,8 +226,8 @@ class SettingsForm(FormBase):
         else:
             super().form_open(args)
             self.form.header = 'Create Account'
-            # for tab in self.form_tabs.items()[1:]:
-            #     tab.enabled = False
+            for tab in self.tabs.items()[1:]:
+                tab.enabled = False
             buttons = self.form.getButtons()
             for button in buttons:
                 if button.cssClass == 'da-save-button':
