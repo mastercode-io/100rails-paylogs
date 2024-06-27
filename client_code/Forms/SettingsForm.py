@@ -230,10 +230,13 @@ class SettingsForm(FormBase):
             for tab in self.tabs.items[1:]:
                 tab.disabled = True
                 tab.visible = False
+            self.pay_entities_view.hide()
             buttons = self.form.getButtons()
             for button in buttons:
                 if button.cssClass == 'da-save-button':
                     button.content = 'Create Account'
+            self.form.height = 'auto'
+            self.form.width = 'auto'
         # super().form_open(args)
 
 
