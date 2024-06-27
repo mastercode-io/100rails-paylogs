@@ -109,6 +109,24 @@ class SettingsForm(FormBase):
 
         tabs = [
             {
+                'name': 'new_account', 'label': 'New Account Info', 'sections':
+                [
+                    {
+                        'name': '_', 'cols': [
+                            [
+                                self.subtitle,
+                                self.account_name,
+                                self.business_name,
+                                self.phone,
+                                self.email,
+                                self.website
+                            ],
+                            [self.address],
+                        ]
+                    },
+                ],
+            },
+            {
                 'name': 'account', 'label': 'Account Info', 'sections':
                 [
                     {
