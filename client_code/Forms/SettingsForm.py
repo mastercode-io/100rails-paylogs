@@ -24,8 +24,11 @@ class SettingsForm(FormBase):
 
         self.account = None
 
-        self.business_name_new = TextInput(name='business_name', label='Business Name', required=True)
+        self.business_name_new = TextInput(name='business_name', label='Business Name',
+                                           on_change=self.business_name_new_change, required=True)
         self.account_name_new = TextInput(name='name', label='Account Name', required=True)
+        self.pay_entity_name = TextInput(name='pay_entity_name', label='Entity Name', save=False,
+                                         required=True)
         self.account_type_new = DropdownInput(name='type', label='Account Type',
                                               options=ACCOUNT_TYPES, value=ACCOUNT_TYPE_STANDARD,
                                               required=True)
@@ -220,6 +223,9 @@ class SettingsForm(FormBase):
         # super().form_open(args)
         print(self.data)
         if self.data['uid']:
+            print('Update Account')
+            self.tabs.items[0].disabled = True
+            self.tabs.items[0].visible = False
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             print(self.data['uid'], self.data['tenant_uid'])
             self.account = Account.get(self.data['uid'])
@@ -279,7 +285,7 @@ class SettingsForm(FormBase):
 
         if not self.data['uid']:
             add_new = True
-            tenant = Tenant(name=self.account_name.value).save()
+            tenant = Tenant(name=self.pay_entity_name.value).save()
             print('a) tenant', tenant['uid'], tenant['tenant_uid'])
             tenant['tenant_uid'] = tenant['uid']
             tenant.save()
@@ -287,22 +293,23 @@ class SettingsForm(FormBase):
             # AppEnv.set_tenant(tenant_uid=tenant.uid)
             self.account = Account(
                 tenant_uid=tenant['uid'],
-                name=self.business_name.value,
-                phone=self.phone.value,
-                email=self.email.value,
-                website=self.website.value,
-                address=self.address.value,
+                name=self.account_name_new.value,
+                business_name=self.business_name_new.value,
+                type=self.account_type_new.value,
+                default_pay_entity=tenant,
+                pay_entities=[tenant],
             ).save()
             self.form.header = 'Update Business Account'
             buttons = self.form.getButtons()
             for button in buttons:
                 if button.cssClass == 'da-save-button':
                     button.content = 'Save'
-                for i in range(1, 4):
-                    self.tabs.enableTab(i, True)
+                # for i in range(1, 4):
+                #     self.tabs.enableTab(i, True)
             self.users.filters = {'tenant_uid': tenant['uid']}
             self.users.value = tenant
-            self.data = tenant
+            self.data = self.account
+            self.form_open()
 
         else:
             add_new = False
@@ -315,6 +322,14 @@ class SettingsForm(FormBase):
             self.account.save()
 
         self.update_source(self.data, add_new)
+
+
+    def business_name_new_change(self, args):
+        print('business_name_new_change', args)
+        if not self.account_name_new.value:
+            self.account_name_new.value = self.business_name_new.value
+        if not self.pay_entity_name.value:
+            self.pay_entity_name.value = self.business_name_new.value
 
 
     def pay_entities_view_on_change(self, args):
