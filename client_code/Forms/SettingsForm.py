@@ -7,8 +7,6 @@ from AnvilFusion.components.ListView import ListView
 from AnvilFusion.components.GridView import GRID_TOOLBAR_COMMAND_SEARCH, GRID_TOOLBAR_COMMAND_SEARCH_TOGGLE
 # from AnvilFusion.tools.utils import AppEnv
 from ..app.models import Tenant, Account, User
-# from ..Pages.PayrollSettingsPage import PayrollSettingsPage
-# import anvil.tables.query as q
 
 
 ACCOUNT_TYPE_STANDARD = 'Standard'
