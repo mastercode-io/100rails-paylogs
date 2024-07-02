@@ -225,6 +225,7 @@ class SettingsForm(FormBase):
         print(self.data)
         if self.data['uid']:
             print('Update Account')
+            super().form_open(args)
             self.tabs.items[0].disabled = True
             self.tabs.items[0].visible = False
             for tab in self.tabs.items[1:]:
@@ -237,6 +238,7 @@ class SettingsForm(FormBase):
             print(self.data['uid'], self.data['tenant_uid'])
             self.account = Account.get(self.data['uid'])
             print('business', self.account)
+            self.account_name.value = self.account['name']
             self.business_name.value = self.account['name']
             self.phone.value = self.account['phone']
             self.email.value = self.account['email']
