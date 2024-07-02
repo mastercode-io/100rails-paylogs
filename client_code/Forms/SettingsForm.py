@@ -227,6 +227,12 @@ class SettingsForm(FormBase):
             print('Update Account')
             self.tabs.items[0].disabled = True
             self.tabs.items[0].visible = False
+            for tab in self.tabs.items[1:]:
+                tab.disabled = False
+                tab.visible = True
+            self.form.height = '80%'
+            self.form.width = '80%'
+            self.pay_entities_view.show()
             # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             print(self.data['uid'], self.data['tenant_uid'])
             self.account = Account.get(self.data['uid'])
@@ -237,7 +243,6 @@ class SettingsForm(FormBase):
             self.website.value = self.account['website']
             self.address.value = self.account['address']
             self.subscription.value = self.account['subscription']
-            super().form_open(args)
 
             user_list = []
             pay_entity_list = []
@@ -300,6 +305,8 @@ class SettingsForm(FormBase):
                 default_pay_entity=tenant,
                 pay_entities=[tenant],
             ).save()
+            tenant['account_uid'] = self.account['uid']
+            tenant.save()
             self.form.header = 'Update Business Account'
             buttons = self.form.getButtons()
             for button in buttons:
