@@ -11,12 +11,26 @@ from ..app.models import Tenant, Account, User
 # import anvil.tables.query as q
 
 
+ACCOUNT_TYPE_STANDARD = 'Standard'
+ACCOUNT_TYPE_MULTI_ENTITY = 'Multiple Pay Entities'
+ACCOUNT_TYPE_TEMPLATES = 'Payroll Templates'
+ACCOUNT_TYPES = [ACCOUNT_TYPE_STANDARD, ACCOUNT_TYPE_MULTI_ENTITY, ACCOUNT_TYPE_TEMPLATES]
+
+
 class SettingsForm(FormBase):
     def __init__(self, **kwargs):
         print('SettingsForm')
         kwargs['model'] = 'Account'
 
         self.account = None
+
+        self.business_name_new = TextInput(name='business_name', label='Business Name', required=True)
+        self.account_name_new = TextInput(name='name', label='Account Name', required=True)
+        self.account_type_new = DropdownInput(name='type', label='Account Type',
+                                              options=ACCOUNT_TYPES, value=ACCOUNT_TYPE_STANDARD,
+                                              required=True)
+        self.payroll_template = DropdownInput(name='payroll_template', label='Payroll Template', save=False,
+                                              options=['Standard', 'Advanced'], value='Standard')
 
         self.subtitle = SectionSubtitle(name='company_info', value='Company Info')
         self.account_name = TextInput(name='name', label='Account Name', required=True)
@@ -115,13 +129,11 @@ class SettingsForm(FormBase):
                         'name': '_', 'cols': [
                             [
                                 self.subtitle,
-                                self.account_name,
-                                self.business_name,
-                                self.phone,
-                                self.email,
-                                self.website
+                                self.business_name_new,
+                                self.account_name_new,
+                                self.account_type_new,
+                                self.payroll_template,
                             ],
-                            [self.address],
                         ]
                     },
                 ],

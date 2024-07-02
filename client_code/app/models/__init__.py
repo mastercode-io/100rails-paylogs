@@ -248,6 +248,7 @@ class Account:
 
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     business_name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     address_schema = {
         "address_line_1": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
         "address_line_2": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
