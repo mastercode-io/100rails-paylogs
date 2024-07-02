@@ -234,7 +234,6 @@ class SettingsForm(FormBase):
             self.form.height = '80%'
             self.form.width = '80%'
             self.pay_entities_view.show()
-            # AppEnv.set_tenant(tenant_uid=self.data.tenant_uid)
             print(self.data['uid'], self.data['tenant_uid'])
             self.account = Account.get(self.data['uid'])
             print('business', self.account)
