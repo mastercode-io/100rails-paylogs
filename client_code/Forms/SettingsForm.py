@@ -258,12 +258,6 @@ class SettingsForm(FormBase):
             print('pay_entity_list', pay_entity_list)
             self.users.value = user_list
             self.pay_entities_view.options = pay_entity_list
-            # pay_entities = []
-            # for tenant in self.account['pay_entities']:
-            #     pay_entities.append(Tenant.get_row_view(tenant))
-            # print('pay_entities', self.account['pay_entities'])
-            # self.pay_entities.value = [tenant.to_json_dict() for tenant in self.account['pay_entities']]
-
             # super().form_open(args)
 
         else:
