@@ -310,7 +310,7 @@ class SettingsForm(FormBase):
             self.users.filters = {'tenant_uid': tenant['uid']}
             self.users.value = tenant
             self.data = self.account
-            self.form_open()
+            self.form_open(None, **kwargs)
 
         else:
             add_new = False
