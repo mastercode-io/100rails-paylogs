@@ -769,6 +769,7 @@ db_schema:
     - {name: default_pay_entity, type: link_single, target: tenants}
     - {name: pay_entities, type: link_multiple, target: tenants}
     - {name: business_name, admin_ui: null, type: string}
+    - {name: type, admin_ui: null, type: string}
   tenants:
     client: none
     server: full
@@ -798,12 +799,10 @@ db_schema:
     - name: type
       admin_ui: {order: 0.015625, width: 200}
       type: string
-    - name: desctiption
-      admin_ui: {width: 200, order: 0.0078125}
-      type: string
     - name: account_uid
       admin_ui: {width: 200, order: 0.00390625}
       type: string
+    - {name: description, admin_ui: null, type: unresolved}
     title: Tenants
   app_integrations:
     client: none
