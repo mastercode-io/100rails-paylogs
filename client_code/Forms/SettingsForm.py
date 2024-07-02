@@ -1,4 +1,4 @@
-from AnvilFusion.components.FormBase import FormBase
+from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL2
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 from AnvilFusion.components.SubformGrid import SubformGrid
@@ -134,6 +134,7 @@ class SettingsForm(FormBase):
                                 self.subtitle,
                                 self.business_name_new,
                                 self.account_name_new,
+                                self.pay_entity_name,
                                 self.account_type_new,
                                 self.payroll_template,
                             ],
@@ -272,7 +273,7 @@ class SettingsForm(FormBase):
                 if button.cssClass == 'da-save-button':
                     button.content = 'Create Account'
             self.form.height = 'auto'
-            self.form.width = 'auto'
+            self.form.width = POPUP_WIDTH_COL2
         # super().form_open(args)
 
 
