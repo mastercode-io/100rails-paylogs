@@ -224,12 +224,14 @@ class SettingsForm(FormBase):
         print(self.data)
         if self.data['uid']:
             print('Update Account')
+            print('active tab', self.active_tab)
             super().form_open(args)
             self.tabs.items[0].disabled = True
             self.tabs.items[0].visible = False
             for i, tab in enumerate(self.tabs.items[1:], start=1):
                 tab.disabled = False
                 tab.visible = True
+                print(i, tab.id)
                 if self.active_tab and tab.id == self.active_tab:
                     self.tabs.select(i)
             self.form.height = '80%'
