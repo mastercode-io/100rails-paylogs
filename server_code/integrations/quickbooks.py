@@ -29,7 +29,7 @@ def get_qb_auth_url(tenant_uid):
     return qb_auth_url
 
 
-@anvil.server.http_endpoint("integrations/qb/auth", methods=["GET", "POST"])
+@anvil.server.http_endpoint("/integrations/qb/auth", methods=["GET", "POST"])
 def qb_auth(**params):
     print(f"method: {anvil.server.request.method}\n"
           f"headers: {anvil.server.request.headers}\n"
