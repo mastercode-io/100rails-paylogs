@@ -13,7 +13,7 @@ import uuid
 QB_AUTH = json.loads(anvil.secrets.get_secret('qb_auth_sandbox'))
 QB_CLIENT_ID = QB_AUTH['client_id']
 QB_CLIENT_SECRET = QB_AUTH['client_secret']
-QB_OAUTH_REDIRECT_URL = 'https://bbezaphmpn72gfkm.anvil.app/XOLVUAFPYYUDPOS3TNHURVTN/_/api/integrations/qb/auth'
+QB_OAUTH_REDIRECT_URL = 'https://bbezaphmpn72gfkm.anvil.app/XOLVUAFPYYUDPOS3TNHURVTN/integrations/qb/auth'
 qb_auth_client = AuthClient(
     QB_CLIENT_ID,
     QB_CLIENT_SECRET,
@@ -29,7 +29,7 @@ def get_qb_auth_url(tenant_uid):
     return qb_auth_url
 
 
-@anvil.server.http_endpoint("/integrations/qb/auth", methods=["GET", "POST"])
+@anvil.server.route("/integrations/qb/auth", methods=["GET", "POST"])
 def qb_auth(**params):
     qb_auth_code = params.get("code", None)
     tenant_uid = params.get("state", None)
