@@ -51,4 +51,4 @@ def qb_auth(**params):
     ).save()
 
     # return anvil.server.HttpResponse(200, "OK")
-    return anvil.server.FormResponse('app.HomePage', start_page='settings_form', start_props={'tab': 'integrations'})
+    return anvil.server.FormResponse('app.HomePage', start_page='settings_form', start_props={})
