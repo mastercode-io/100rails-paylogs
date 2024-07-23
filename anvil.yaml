@@ -892,4 +892,7 @@ secrets:
   api_request_password:
     value: {BBEZAPHMPN72GFKM: oj6GkCtsH8Lj30rVKN/LQN+noBJbjQcSgVqbR3UoC+pGrP0j4tJesdQ+BKnleO22ST1CWsVuZfJiyM190+50jt3tC8xOoQzDQ6jJ4eSDRRSjivbD1eSxAN6ubHJDRe+9sZWX1q9U/N9KL888Lz9G}
     type: secret
+  qb_auth_sandbox:
+    value: {BBEZAPHMPN72GFKM: RcVxQibZGV7PdZ0RT0UVd9Swi2xq5AqRz+iY5UAuRUSAqVoWo7CF7g/D+vqUzGa523i5IHPTJ9V30yPrfmI+wE9wAjgQYD+VjjcypAorcpJgVtxtCW5X5VV0RjRTgpsi7t4xhnvLmv2+6FyzrQv0ZaU9y+cxadfIpg+ZnbC5lVLEMLdUy34cdZKChBsA7MNinEi5Ks96dd5OjSR0qahC55HUGCP/9PVWFFQKGPrP9Ig/MU45RRUANmgKppHqpxyc6zhxs6/HMM1jjSsJIULqiH2gWkodtNOYr/1/0C8WOv8ff7uVrxm2}
+    type: secret
 uplink_visible: true
