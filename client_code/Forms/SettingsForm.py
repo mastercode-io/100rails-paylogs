@@ -16,11 +16,12 @@ ACCOUNT_TYPES = [ACCOUNT_TYPE_STANDARD, ACCOUNT_TYPE_MULTI_ENTITY, ACCOUNT_TYPE_
 
 
 class SettingsForm(FormBase):
-    def __init__(self, **kwargs):
+    def __init__(self, active_tab=None, **kwargs):
         print('SettingsForm')
         kwargs['model'] = 'Account'
 
         self.account = None
+        self.active_tab = active_tab
 
         self.business_name_new = TextInput(name='business_name', label='Business Name',
                                            on_change=self.business_name_new_change, required=True)
@@ -226,9 +227,11 @@ class SettingsForm(FormBase):
             super().form_open(args)
             self.tabs.items[0].disabled = True
             self.tabs.items[0].visible = False
-            for tab in self.tabs.items[1:]:
+            for i, tab in enumerate(self.tabs.items[1:], start=1):
                 tab.disabled = False
                 tab.visible = True
+                if self.active_tab and tab.id == self.active_tab:
+                    self.tabs.select(i)
             self.form.height = '80%'
             self.form.width = '80%'
             self.pay_entities_view.show()
