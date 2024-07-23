@@ -16,7 +16,6 @@ QB_CLIENT_SECRET = QB_AUTH['client_secret']
 QB_OAUTH_REDIRECT_URL = 'https://bbezaphmpn72gfkm.anvil.app/XOLVUAFPYYUDPOS3TNHURVTN/_/api/qb/auth'
 
 
-
 @anvil.server.callable
 def get_qb_auth_url(tenant_uid):
     qb_auth_client = AuthClient(
