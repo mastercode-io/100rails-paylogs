@@ -38,13 +38,15 @@ AppEnv.start_menu = "timesheet_menu"
 
 
 class HomePage(HomePageTemplate):
-    def __init__(self, **properties):
+    def __init__(self, **kwargs):
 
         self.firs_load = True
         self.account = None
         self.appbar_settings_menu_show = False
         self.content_id = "pl-content"
         self.content_control = None
+        self.start_page = kwargs.get('start_page', 'payroll_dashboard')
+        self.start_props = kwargs.get('start_props', {})
 
         # Appbar configuration
         self.appbar = ej.navigations.AppBar({"colorMode": "Primary", "isSticky": True})
@@ -227,7 +229,7 @@ class HomePage(HomePageTemplate):
 
         self.assistant.show()
         stime = time.time()
-        self.appbar_menu.show_selected('payroll_dashboard')
+        self.appbar_menu.show_selected(self.start_page, props=self.start_props)
         print('SHOW START PAGE: ', time.time() - stime)
         # self.sidebar.show(AppEnv.start_menu)
         # self.sidebar.refresh_content()

@@ -2,12 +2,10 @@ from AnvilFusion.server import utils as fusion_server_utils
 import anvil.server
 import anvil.users
 import anvil.secrets
-from anvil import app
 from intuitlib.client import AuthClient
 from intuitlib.enums import Scopes
-import base64
+from ..app.models import Tenant, AppIntegration, AppOutApiCredential
 import json
-import uuid
 
 
 QB_AUTH = json.loads(anvil.secrets.get_secret('qb_auth_sandbox'))
@@ -40,5 +38,17 @@ def qb_auth(**params):
     print(f"qb_access_token: {qb_access_token}\nqb_refresh_token: {qb_refresh_token}")
     print(f"tenant_uid: {tenant_uid}\nrealm_id: {realm_id}")
 
+    qb_integration = AppIntegration.get_by('service_name', 'QuickBooks')
+    AppOutApiCredential(
+        tenant_uid=tenant_uid,
+        integration=qb_integration,
+        api_credentials={
+            'access_token': qb_access_token,
+            'refresh_token': qb_refresh_token,
+            'realm_id': realm_id,
+        },
+        status='Active',
+    ).save()
+
     # return anvil.server.HttpResponse(200, "OK")
-    return anvil.server.FormResponse('app.HomePage')
+    return anvil.server.FormResponse('app.HomePage', start_page='settings_form', start_props={'tab': 'integrations'})

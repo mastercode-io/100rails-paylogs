@@ -203,7 +203,7 @@ class AppbarMenu:
         self.show_selected(menu_id)
         # self.sidebar.show_menu(menu_id)
 
-    def show_selected(self, menu_id=None):
+    def show_selected(self, menu_id=None, props=None):
         component = self.nav_items.get(menu_id)
         if component is None:
             return
@@ -238,8 +238,9 @@ class AppbarMenu:
         elif component['type'] == 'form':
             print('form', component)
             # try:
+            form_pros = props or component.get('props', {})
             form_class = getattr(AppEnv.forms, component.get('class', f"{component.get('model')}Form"))
-            self.content_control = form_class(target=nav_container_id, **component.get('props', {}))
+            self.content_control = form_class(target=nav_container_id, **form_pros)
             # except Exception as e:
             #     print(e.args)
             #     self.content_control = FormBase(model=component.get('model'), target=nav_container_id)
