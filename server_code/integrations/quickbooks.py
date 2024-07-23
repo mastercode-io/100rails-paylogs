@@ -41,4 +41,4 @@ def qb_auth(**params):
     print(f"tenant_uid: {tenant_uid}\nrealm_id: {realm_id}")
 
     # return anvil.server.HttpResponse(200, "OK")
-    return anvil.server.FormResponse('HomePage')
+    return anvil.server.FormResponse('app.HomePage')
