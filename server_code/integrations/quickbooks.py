@@ -18,15 +18,16 @@ QB_OAUTH_REDIRECT_URL = 'https://bbezaphmpn72gfkm.anvil.app/XOLVUAFPYYUDPOS3TNHU
 
 
 @anvil.server.callable
-def qb_auth_url(tenant_uid):
+def get_qb_auth_url(tenant_uid):
     qb_auth_client = AuthClient(
         QB_CLIENT_ID,
         QB_CLIENT_SECRET,
         QB_OAUTH_REDIRECT_URL,
         'sandbox',
     )
-    auth_url = qb_auth_client.get_authorization_url([Scopes.ACCOUNTING], state_token=tenant_uid)
-    print('quickbooks auth url', auth_url)
+    qb_auth_url = qb_auth_client.get_authorization_url([Scopes.ACCOUNTING], state_token=tenant_uid)
+    print('quickbooks auth url', qb_auth_url)
+    return qb_auth_url
 
 
 @anvil.server.http_endpoint("/qb/auth", methods=["GET", "POST"])

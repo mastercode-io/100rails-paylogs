@@ -117,7 +117,7 @@ def bar():
 
 
 def connect_to_qb():
-    qb_auth_url = anvil.server.call('qb_auth_url', AppEnv.logged_user['tenant_uid'])
+    qb_auth_url = anvil.server.call('get_qb_auth_url', AppEnv.logged_user['tenant_uid'])
     print('qb_auth_url', qb_auth_url)
     anvil.js.window.location.href = qb_auth_url
 
