@@ -14,16 +14,16 @@ QB_AUTH = json.loads(anvil.secrets.get_secret('qb_auth_sandbox'))
 QB_CLIENT_ID = QB_AUTH['client_id']
 QB_CLIENT_SECRET = QB_AUTH['client_secret']
 QB_OAUTH_REDIRECT_URL = 'https://bbezaphmpn72gfkm.anvil.app/XOLVUAFPYYUDPOS3TNHURVTN/_/api/integrations/qb/auth'
+qb_auth_client = AuthClient(
+    QB_CLIENT_ID,
+    QB_CLIENT_SECRET,
+    QB_OAUTH_REDIRECT_URL,
+    'sandbox',
+)
 
 
 @anvil.server.callable
 def get_qb_auth_url(tenant_uid):
-    qb_auth_client = AuthClient(
-        QB_CLIENT_ID,
-        QB_CLIENT_SECRET,
-        QB_OAUTH_REDIRECT_URL,
-        'sandbox',
-    )
     qb_auth_url = qb_auth_client.get_authorization_url([Scopes.ACCOUNTING], state_token=tenant_uid)
     print('quickbooks auth url', qb_auth_url)
     return qb_auth_url
@@ -31,11 +31,14 @@ def get_qb_auth_url(tenant_uid):
 
 @anvil.server.http_endpoint("/integrations/qb/auth", methods=["GET", "POST"])
 def qb_auth(**params):
-    print(f"method: {anvil.server.request.method}\n"
-          f"headers: {anvil.server.request.headers}\n"
-          f"params: {params}\n")
-
+    qb_auth_code = params.get("code", None)
     tenant_uid = params.get("state", None)
-    print("tenant_uid", tenant_uid)
+    realm_id = params.get("realmId", None)
+    qb_auth_client.get_bearer_token(qb_auth_code, realm_id=realm_id)
+    qb_access_token = qb_auth_client.access_token
+    qb_refresh_token = qb_auth_client.refresh_token
+    print(f"qb_access_token: {qb_access_token}\nqb_refresh_token: {qb_refresh_token}")
+    print(f"tenant_uid: {tenant_uid}\nrealm_id: {realm_id}")
 
-    return anvil.server.HttpResponse(200, "OK")
+    # return anvil.server.HttpResponse(200, "OK")
+    return anvil.server.FormResponse('HomePage')
