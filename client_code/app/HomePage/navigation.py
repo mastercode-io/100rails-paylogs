@@ -35,7 +35,7 @@ PL_MENU_ITEMS = {
         # {'id': 'payroll_pay_rate_scopes', 'text': 'Pay Rate SCOPES', 'items': []},
         # {'id': 'payroll_pay_rate_templates', 'text': 'Pay Rate TEMPLATES', 'items': []},
         # {'id': 'payroll_calendar', 'text': 'Payroll CALENDAR', 'items': []},
-        {'id': 'payroll_settings', 'text': 'Payroll SETTINGS', 'items': []},
+        # {'id': 'payroll_settings', 'text': 'Payroll SETTINGS', 'items': []},
     ],
     'directory_menu': [
         {'id': 'directory_employees', 'text': 'Employees', 'items': []},

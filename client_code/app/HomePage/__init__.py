@@ -93,9 +93,14 @@ class HomePage(HomePageTemplate):
                 "id": "pl-appbar-user-account-name",
             },
             {
-                "text": "Account",
+                "text": "User Profile",
                 "iconCss": "fa-regular fa-user-gear",
-                "id": "pl-appbar-user-settings",
+                "id": "pl-appbar-user-profile",
+            },
+            {
+                "text": "Account Settings",
+                "iconCss": "fa-regular fa-cog",
+                "id": "pl-appbar-account-settings",
             },
             {
                 "text": "Sign Out",
@@ -287,14 +292,14 @@ class HomePage(HomePageTemplate):
 
     def appbar_settings_button_click(self, args):
         print('appbar_settings_button_click')
-        tenant = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
-        recs = models.Account.search(pay_entities=[tenant])
-        print('recs', len(recs))
-        account = next(iter(models.Account.search(pay_entities=[tenant])), None)
-        print('tenant', tenant)
-        print('account', account)
-        nav.PL_NAV_ITEMS['settings_form']['props'] = {'data': account}
-        self.appbar_menu.show_selected('settings_form')
+        # tenant = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
+        # recs = models.Account.search(pay_entities=[tenant])
+        # print('recs', len(recs))
+        # account = next(iter(models.Account.search(pay_entities=[tenant])), None)
+        # print('tenant', tenant)
+        # print('account', account)
+        # nav.PL_NAV_ITEMS['settings_form']['props'] = {'data': account}
+        self.appbar_menu.show_selected('payroll_settings')
 
     # def appbar_assistant_button_click(self, args):
     #     print('appbar_assistant_button_click')
