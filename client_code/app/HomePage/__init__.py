@@ -141,7 +141,7 @@ class HomePage(HomePageTemplate):
         # )
         self.appbar_settings_button = ej.buttons.Button({
             'cssClass': 'e-inherit e-caret-hide pl-menu-font',
-            'iconCss': 'fa-solid fa-cog pl-appbar-menu-icon',
+            'iconCss': 'fa-solid fa-list-check pl-appbar-menu-icon',
         })
         # self.appbar_settings_form = ej.buttons.Button({
         #     'cssClass': 'e-inherit e-caret-hide pl-menu-font',
