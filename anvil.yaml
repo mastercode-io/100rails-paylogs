@@ -257,21 +257,10 @@ db_schema:
       type: string
     title: App Grid Views
   subscription_plans:
-    title: Subscription Plans
     client: none
     server: full
-    columns:
-    - {name: created_by, admin_ui: null, type: string}
-    - {name: created_time, admin_ui: null, type: datetime}
-    - {name: description, admin_ui: null, type: string}
-    - {name: features, admin_ui: null, type: simpleObject}
-    - {name: name, admin_ui: null, type: string}
-    - {name: price, admin_ui: null, type: number}
-    - {name: status, admin_ui: null, type: string}
-    - {name: tenant_uid, admin_ui: null, type: string}
-    - {name: uid, admin_ui: null, type: string}
-    - {name: updated_by, admin_ui: null, type: string}
-    - {name: updated_time, admin_ui: null, type: datetime}
+    columns: []
+    title: Subscription Plans
   timesheets:
     client: none
     server: full
@@ -467,6 +456,11 @@ db_schema:
     - name: remote_links
       admin_ui: {width: 200, order: -0.3125}
       type: simpleObject
+  app_components:
+    client: none
+    server: full
+    columns: []
+    title: App Components
   app_audit_logs:
     client: none
     server: full
