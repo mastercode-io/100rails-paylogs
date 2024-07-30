@@ -87,6 +87,21 @@ class AppErrorLog:
 
 
 @model_type
+class AppComponent:
+    model_type = types.ModelTypes.SYSTEM
+    action = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    text = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    props = Attribute(field_type=types.FieldTypes.OBJECT)
+    items = Relationship("AppComponent", with_many=True)
+    permissions = Attribute(field_type=types.FieldTypes.OBJECT)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
 class AppGridView:
     _title = "name"
     model_type = types.ModelTypes.SYSTEM
@@ -176,6 +191,7 @@ class SubscriptionPlan:
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     price = Attribute(field_type=types.FieldTypes.CURRENCY)
     features = Attribute(field_type=types.FieldTypes.OBJECT)
+    components = Relationship("AppComponent", with_many=True)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
