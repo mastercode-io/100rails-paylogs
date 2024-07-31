@@ -874,7 +874,10 @@ db_schema:
     - name: last_name
       admin_ui: {width: 200, order: -2.5}
       type: string
-    - {name: user_roles, admin_ui: null, type: link_multiple, target: user_roles}
+    - name: user_role
+      admin_ui: {width: 200, order: 0}
+      type: link_single
+      target: user_roles
     title: Users
 secrets:
   openai_api_key:
