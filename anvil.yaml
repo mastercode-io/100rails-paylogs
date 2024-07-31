@@ -151,7 +151,6 @@ db_schema:
     columns:
     - {name: created_by, admin_ui: null, type: string}
     - {name: created_time, admin_ui: null, type: datetime}
-    - {name: name, admin_ui: null, type: string}
     - {name: pay_day, admin_ui: null, type: string}
     - {name: pay_period_end_day, admin_ui: null, type: string}
     - {name: pay_period_start_day, admin_ui: null, type: string}
@@ -488,6 +487,7 @@ db_schema:
     - {name: type, admin_ui: null, type: string}
     - {name: text, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: items, admin_ui: null, type: link_multiple, target: app_components}
     title: App Components
   app_audit_logs:
     client: none
@@ -793,6 +793,7 @@ db_schema:
     - {name: business_name, admin_ui: null, type: string}
     - {name: type, admin_ui: null, type: string}
     - {name: subscription_dates, admin_ui: null, type: simpleObject}
+    - {name: subscription_plan, admin_ui: null, type: link_single, target: subscription_plans}
   tenants:
     client: none
     server: full
