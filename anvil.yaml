@@ -259,7 +259,20 @@ db_schema:
   subscription_plans:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: app_config, admin_ui: null, type: simpleObject}
+    - {name: components, admin_ui: null, type: link_multiple, target: app_components}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: features, admin_ui: null, type: simpleObject}
+    - {name: name, admin_ui: null, type: string}
+    - {name: price, admin_ui: null, type: number}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: Subscription Plans
   timesheets:
     client: none
@@ -459,7 +472,22 @@ db_schema:
   app_components:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: action, admin_ui: null, type: string}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: description, admin_ui: null, type: string}
+    - {name: model, admin_ui: null, type: string}
+    - {name: name, admin_ui: null, type: string}
+    - {name: permissions, admin_ui: null, type: simpleObject}
+    - {name: props, admin_ui: null, type: simpleObject}
+    - {name: status, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: type, admin_ui: null, type: string}
+    - {name: text, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
     title: App Components
   app_audit_logs:
     client: none
@@ -587,6 +615,7 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
+    - {name: access_permissions, admin_ui: null, type: simpleObject}
     title: User Roles
   app_background_tasks:
     client: none
@@ -763,6 +792,7 @@ db_schema:
     - {name: pay_entities, type: link_multiple, target: tenants}
     - {name: business_name, admin_ui: null, type: string}
     - {name: type, admin_ui: null, type: string}
+    - {name: subscription_dates, admin_ui: null, type: simpleObject}
   tenants:
     client: none
     server: full
@@ -795,7 +825,7 @@ db_schema:
     - name: account_uid
       admin_ui: {width: 200, order: 0.00390625}
       type: string
-    - {name: description, admin_ui: null, type: unresolved}
+    - {name: description, admin_ui: null, type: string}
     title: Tenants
   app_integrations:
     client: none
