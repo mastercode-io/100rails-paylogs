@@ -303,6 +303,7 @@ class Account:
         "current_period_end": Attribute(field_type=types.FieldTypes.DATE),
     }
     subscription = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_schema)
+    subscription_plan = Relationship("SubscriptionPlan")
     default_pay_entity = Relationship("Tenant")
     pay_entities = Relationship("Tenant", with_many=True)
 
