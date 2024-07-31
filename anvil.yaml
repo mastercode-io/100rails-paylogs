@@ -750,7 +750,6 @@ db_schema:
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: website, admin_ui: null, type: string}
     - {name: created_by, admin_ui: null, type: string}
-    - {name: subscription, admin_ui: null, type: simpleObject}
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: address, admin_ui: null, type: simpleObject}
