@@ -292,8 +292,7 @@ class Account:
     email = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     website = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     logo = Attribute(field_type=types.FieldTypes.MEDIA)
-    subscription_schema = {
-        "plan": Attribute(field_type=types.FieldTypes.SINGLE_LINE),
+    subscription_dates_schema = {
         "status": Attribute(field_type=types.FieldTypes.ENUM_SINGLE),
         "start_date": Attribute(field_type=types.FieldTypes.DATE),
         "end_date": Attribute(field_type=types.FieldTypes.DATE),
@@ -302,7 +301,7 @@ class Account:
         "current_period_start": Attribute(field_type=types.FieldTypes.DATE),
         "current_period_end": Attribute(field_type=types.FieldTypes.DATE),
     }
-    subscription = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_schema)
+    subscription_dates = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_dates_schema)
     subscription_plan = Relationship("SubscriptionPlan")
     default_pay_entity = Relationship("Tenant")
     pay_entities = Relationship("Tenant", with_many=True)
