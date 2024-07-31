@@ -96,7 +96,7 @@ class AppComponent:
     model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     props = Attribute(field_type=types.FieldTypes.OBJECT)
-    items = Relationship("AppComponent", with_many=True)
+    # items = Relationship("AppComponent", with_many=True)
     permissions = Attribute(field_type=types.FieldTypes.OBJECT)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
