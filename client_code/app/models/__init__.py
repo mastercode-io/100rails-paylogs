@@ -96,7 +96,7 @@ class AppComponent:
     model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     props = Attribute(field_type=types.FieldTypes.OBJECT)
-    # items = Relationship("AppComponent", with_many=True)
+    items = Relationship("AppComponent", with_many=True)
     permissions = Attribute(field_type=types.FieldTypes.OBJECT)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
@@ -302,7 +302,7 @@ class Account:
         "current_period_end": Attribute(field_type=types.FieldTypes.DATE),
     }
     subscription_dates = Attribute(field_type=types.FieldTypes.OBJECT, schema=subscription_dates_schema)
-    # subscription_plan = Relationship("SubscriptionPlan")
+    subscription_plan = Relationship("SubscriptionPlan")
     default_pay_entity = Relationship("Tenant")
     pay_entities = Relationship("Tenant", with_many=True)
 
