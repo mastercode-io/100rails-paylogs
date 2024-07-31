@@ -193,6 +193,13 @@ class SubscriptionPlan:
     features = Attribute(field_type=types.FieldTypes.OBJECT)
     components = Relationship("AppComponent", with_many=True)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    app_config_schema = {
+        "app_menu": Attribute(field_type=types.FieldTypes.OBJECT),
+        "special_menus": Attribute(field_type=types.FieldTypes.OBJECT),
+        "components": Attribute(field_type=types.FieldTypes.OBJECT),
+        "limits": Attribute(field_type=types.FieldTypes.OBJECT),
+    }
+    app_config = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
@@ -209,7 +216,7 @@ class User:
     n_password_failures = Attribute(field_type=types.FieldTypes.NUMBER)
     confirmed_email = Attribute(field_type=types.FieldTypes.BOOLEAN)
     signed_up = Attribute(field_type=types.FieldTypes.DATETIME)
-    user_roles = Relationship("UserRole", with_many=True)
+    user_role = Relationship("UserRole", with_many=False)
 
     permissions_schema = {
         "administrator": Attribute(field_type=types.FieldTypes.BOOLEAN),
@@ -247,6 +254,12 @@ class UserRole:
         "administrator": Attribute(field_type=types.FieldTypes.BOOLEAN),
     }
     permissions = Attribute(field_type=types.FieldTypes.OBJECT, schema=permissions_schema)
+    access_permissions_schema = {
+        "app_menu": Attribute(field_type=types.FieldTypes.OBJECT),
+        "special_menus": Attribute(field_type=types.FieldTypes.OBJECT),
+        "components": Attribute(field_type=types.FieldTypes.OBJECT),
+    }
+    access_permissions = Attribute(field_type=types.FieldTypes.OBJECT)
 
 
 @model_type
