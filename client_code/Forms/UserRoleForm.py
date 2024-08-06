@@ -24,7 +24,7 @@ class UserRoleForm(FormBase):
         # }
         # access_permissions = Attribute(field_type=types.FieldTypes.OBJECT)
 
-        role_types = [{'name': k, 'value': v} for k, v in AppEnv.enum_constants['USER_ROLE_TYPES'].items()]
+        role_types = [{'value': k, 'name': v} for k, v in AppEnv.enum_constants['USER_ROLE_TYPES'].items()]
         print('role_types', role_types)
         self.name = TextInput(name='name', label='Name')
         self.type = DropdownInput(name='type', label='Type', options=role_types)
