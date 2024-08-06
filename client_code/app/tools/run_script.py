@@ -125,25 +125,42 @@ def connect_to_qb():
 def update_tenants():
     tenants = [*models.Tenant.search(tenant_uid=None)]
     print([x['name'] for x in tenants])
-    # models.UserRole(
-    #     name='Account Administrator',
-    #     permissions={
-    #         'admin': True,
-    #         'user': True,
-    #     }
-    # ).save()
-    # models.UserRole(
-    #     name='Payroll Administrator',
-    #     permissions={
-    #         'user': True,
-    #     }
-    # ).save()
-    # models.UserRole(
-    #     name='Payroll Manager',
-    #     permissions={
-    #         'user': True,
-    #     }
-    # ).save()
+
+    user_role_types = {
+        "account_admin": "Account Administrator",
+        "payroll_admin": "Payroll Administrator",
+        "payroll_manager": "Payroll Manager"
+    }
+    for tenant in tenants:
+        models.AppEnum(
+            tenant_uid=tenant['uid'],
+            name='USER_ROLE_TYPES',
+            options=user_role_types
+        ).save()
+        models.UserRole(
+            tenant_uid=tenant['uid'],
+            name='Account Administrator',
+            type='account_admin',
+            permissions={
+                'admin': True,
+            }
+        ).save()
+        models.UserRole(
+            tenant_uid=tenant['uid'],
+            name='Payroll Administrator',
+            type='payroll_admin',
+            permissions={
+                'user': True,
+            }
+        ).save()
+        models.UserRole(
+            tenant_uid=tenant['uid'],
+            name='Payroll Manager',
+            type='payroll_manager',
+            permissions={
+                'user': True,
+            }
+        ).save()
 
 
 def foo():
