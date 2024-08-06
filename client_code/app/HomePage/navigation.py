@@ -66,6 +66,7 @@ PL_MENU_ITEMS = {
             {'id': 'developer_forms', 'text': 'Forms', 'items': []},
         ]},
         {'id': 'developer_schema', 'text': 'App Schema', 'items': [
+            {'id': 'developer_enums', 'text': 'Enumerations', 'items': []},
             {'id': 'developer_models', 'text': 'Models', 'items': []},
             {'id': 'developer_migrate', 'text': 'Migrate DB', 'items': []},
         ]},
@@ -119,6 +120,7 @@ PL_NAV_ITEMS = {
 
     'developer_views': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_forms': {'model': 'Form', 'type': 'view', 'action': 'open', 'props': {}},
+    'developer_enums': {'model': 'AppEnum', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
