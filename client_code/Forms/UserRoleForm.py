@@ -15,7 +15,7 @@ class UserRoleForm(FormBase):
         self.name = TextInput(name='name', label='Name')
         self.type = DropdownInput(name='type', label='Type', options=role_types,
                                   text_field='text', value_field='id')
-        self.description = MultiLineInput(name='description', label='Description', rows=5)
+        self.description = MultiLineInput(name='description', label='Description', rows=4)
         self.permissions = MultiLineInput(name='permissions', label='Permissions',
                                           rows=3, is_object=True)
         self.access_permissions = MultiLineInput(name='access_permissions', label='Access Permissions',
