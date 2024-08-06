@@ -164,5 +164,5 @@ def update_tenants():
 
 
 def foo():
-    update_tenants()
+    # update_tenants()
     pass

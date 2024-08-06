@@ -1,5 +1,6 @@
 from AnvilFusion.components.FormBase import FormBase, POPUP_WIDTH_COL3
 from AnvilFusion.components.FormInputs import *
+from AnvilFusion.tools.utils import AppEnv
 # from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 
 
@@ -23,20 +24,25 @@ class UserRoleForm(FormBase):
         # }
         # access_permissions = Attribute(field_type=types.FieldTypes.OBJECT)
 
-        self.name = TextInput(name='name', label='Name (ID)')
+        self.name = TextInput(name='name', label='Name')
+        self.type = DropdownInput(name='type', label='Type',
+                                  options=AppEnv.enum_constants['USER_ROLE_TYPES'])
         self.description = MultiLineInput(name='description', label='Description')
-        self.options = MultiLineInput(name='options', label='Options', rows=5, is_object=True)
+        self.permissions = MultiLineInput(name='permissions', label='Permissions', rows=3, is_object=True)
+        self.access_permissions = MultiLineInput(name='access_permissions', label='Access Permissions',
+                                                 rows=5, is_object=True)
 
         sections = [
             {
                 'name': '_', 'cols': [
-                    [
-                         self.name,
-                         self.description,
-                    ],
-                    [
-                         self.options,
-                    ],
+                    [self.name, self.type],
+                    [self.description],
+                ]
+            },
+            {
+                'name': '_', 'rows': [
+                    [self.permissions],
+                    [self.access_permissions],
                 ]
             }
         ]
