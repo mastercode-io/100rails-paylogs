@@ -147,5 +147,5 @@ def update_tenants():
 
 
 def foo():
-    connect_to_qb()
+    update_tenants()
     pass
