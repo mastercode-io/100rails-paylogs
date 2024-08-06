@@ -347,6 +347,10 @@ class HomePage(HomePageTemplate):
             AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm)
             self.appbar_user_menu.items[0].text = AppEnv.logged_user['email']
             self.appbar_user_menu.items[0].disabled = True
+        elif args.item.id == 'pl-appbar-account-settings':
+            nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': self.account}
+            self.appbar_menu.show_selected('settings_form')
+
 
 
     def appbar_settings_menu_select(self, args):

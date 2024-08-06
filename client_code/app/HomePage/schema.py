@@ -139,3 +139,214 @@ PL_APPBAR_MENU_ADMIN = [
 PL_APPBAR_MENU_DEVELOPER = [
     {'id': 'developer_menu', 'text': 'DEVELOPER', 'items': PL_MENU_ITEMS['developer_menu']},
 ]
+
+access_permissions_schema = {
+    'payroll_menu': {
+        'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+        'items': [
+            {
+                'payroll_dashboard': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'payroll_payruns': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+                    'items': []
+                }
+            },
+            {
+                'payroll_timesheets': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+                    'items': []
+                }
+            },
+            {
+                'payroll_transfer_data': {
+                    'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+                'items': []
+            },
+        ]
+    },
+    'directory_menu': {
+        'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+        'items': [
+            {
+                'directory_employees': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+                    'items': []
+                }
+            },
+            {
+                'directory_locations': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'directory_jobs': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+                    'items': []
+                }
+            },
+            {
+                'directory_job_types': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'directory_employee_roles': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'directory_timesheet_types': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+        ]
+    },
+    'settings_menu': {
+        'access': {'account_admin': False, 'payroll_admin': False, 'payroll_manager': False},
+        'items': [
+            {
+                'settings_users': {
+                    'access': {'account_admin': False, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+        ]
+    },
+    'admin_menu': {
+        'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+        'items': [
+            {
+                'admin_accounts': {
+                    'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'admin_tenants': {
+                    'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'admin_user_roles': {
+                    'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'admin_permissions': {
+                    'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': []
+                }
+            },
+            {
+                'admin_settings': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': False},
+                    'items': [
+                        {
+                            'admin_settings_scope_types': {
+                                'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': False},
+                                'items': []
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                'admin_integrations': {
+                    'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
+                    'items': []
+                }
+            },
+        ]
+    },
+    'developer_menu': {
+        'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+        'items': [
+            {
+                'developer_components': {
+                    'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': [
+                        {
+                            'developer_views': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                        {
+                            'developer_pages': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                        {
+                            'developer_forms': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                    ]
+                }
+            },
+            {
+                'developer_schema': {
+                    'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': [
+                        {
+                            'developer_enums': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                        {
+                            'developer_models': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                        {
+                            'developer_migrate': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                    ]
+                }
+            },
+            {
+                'developer_tools': {
+                    'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                    'items': [
+                        {
+                            'developer_import': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                        {
+                            'developer_export': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                        {
+                            'developer_run_script': {
+                                'access': {'account_admin': True, 'payroll_admin': False, 'payroll_manager': False},
+                                'items': []
+                            }
+                        },
+                    ]
+                }
+            },
+        ],
+    },
+}
