@@ -17,3 +17,4 @@ from .TimesheetTypeForm import TimesheetTypeForm
 from .TimesheetForm import TimesheetForm
 from .ScopeForm import ScopeForm
 from .ScopeTypeForm import ScopeTypeForm
+from .UserRoleForm import UserRoleForm
