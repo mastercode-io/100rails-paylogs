@@ -42,7 +42,7 @@ class SettingsForm(FormBase):
         self.email = TextInput(name='email', label='Email')
         self.website = TextInput(name='website', label='Website')
         self.logo = InlineMessage(name='logo', label='Logo')
-        self.subscription = MultiFieldInput(name='subscription', model='Account', label='_', cols=2)
+        self.subscription_dates = MultiFieldInput(name='subscription_dates', model='Account', label='_', cols=2)
 
         self.user_view_config = {
             'model': 'User',
@@ -165,7 +165,7 @@ class SettingsForm(FormBase):
                 [
                     {
                         'name': '_', 'cols': [
-                            [self.subscription],
+                            [self.subscription_dates],
                             [],
                         ]
                     }
