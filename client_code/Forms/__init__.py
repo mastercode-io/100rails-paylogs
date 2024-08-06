@@ -1,3 +1,4 @@
+from .AppEnumForm import AppEnumForm
 from .AppIntegrationForm import AppIntegrationForm
 from .AssistantForm import AssistantForm
 from .SettingsForm import SettingsForm
