@@ -9,26 +9,12 @@ class UserRoleForm(FormBase):
         print('UserRoleForm')
         kwargs['model'] = 'UserRole'
 
-        # name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-        # type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-        # description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-        # status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-        # permissions_schema = {
-        #     "administrator": Attribute(field_type=types.FieldTypes.BOOLEAN),
-        # }
-        # permissions = Attribute(field_type=types.FieldTypes.OBJECT, schema=permissions_schema)
-        # access_permissions_schema = {
-        #     "app_menu": Attribute(field_type=types.FieldTypes.OBJECT),
-        #     "special_menus": Attribute(field_type=types.FieldTypes.OBJECT),
-        #     "components": Attribute(field_type=types.FieldTypes.OBJECT),
-        # }
-        # access_permissions = Attribute(field_type=types.FieldTypes.OBJECT)
-
-        role_types = [{'value': k, 'name': v} for k, v in AppEnv.enum_constants['USER_ROLE_TYPES'].items()]
-        role_types = []
+        role_types = [{'id': k, 'text': v} for k, v in AppEnv.enum_constants['USER_ROLE_TYPES'].items()]
+        # role_types = []
         print('role_types', role_types)
         self.name = TextInput(name='name', label='Name')
-        self.type = DropdownInput(name='type', label='Type', options=role_types)
+        self.type = DropdownInput(name='type', label='Type', options=role_types,
+                                  text_field='text', value_field='id')
         self.description = MultiLineInput(name='description', label='Description', rows=5)
         self.permissions = MultiLineInput(name='permissions', label='Permissions',
                                           rows=3, is_object=True)
