@@ -25,10 +25,11 @@ class UserRoleForm(FormBase):
         # access_permissions = Attribute(field_type=types.FieldTypes.OBJECT)
 
         role_types = [{'value': k, 'name': v} for k, v in AppEnv.enum_constants['USER_ROLE_TYPES'].items()]
+        role_types = []
         print('role_types', role_types)
         self.name = TextInput(name='name', label='Name')
         self.type = DropdownInput(name='type', label='Type', options=role_types)
-        self.description = MultiLineInput(name='description', label='Description')
+        self.description = MultiLineInput(name='description', label='Description', rows=5)
         self.permissions = MultiLineInput(name='permissions', label='Permissions',
                                           rows=3, is_object=True)
         self.access_permissions = MultiLineInput(name='access_permissions', label='Access Permissions',
