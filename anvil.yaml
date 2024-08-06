@@ -616,6 +616,9 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     - {name: access_permissions, admin_ui: null, type: simpleObject}
+    - name: type
+      admin_ui: {width: 200}
+      type: string
     title: User Roles
   app_background_tasks:
     client: none
