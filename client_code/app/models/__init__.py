@@ -248,6 +248,7 @@ class UserRole:
 
     model_type = types.ModelTypes.SYSTEM
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     permissions_schema = {

@@ -122,6 +122,28 @@ def connect_to_qb():
     anvil.js.window.location.href = qb_auth_url
 
 
+def create_user_roles():
+    models.UserRole(
+        name='Account Administrator',
+        permissions={
+            'admin': True,
+            'user': True,
+        }
+    ).save()
+    models.UserRole(
+        name='Payroll Administrator',
+        permissions={
+            'user': True,
+        }
+    ).save()
+    models.UserRole(
+        name='Payroll Manager',
+        permissions={
+            'user': True,
+        }
+    ).save()
+
+
 def foo():
     connect_to_qb()
     pass
