@@ -27,8 +27,3 @@ class AppEnumForm(FormBase):
         ]
 
         super().__init__(sections=sections, width=POPUP_WIDTH_COL3, **kwargs)
-
-
-    def form_open(self, args, **kwargs):
-        print('AppEnumForm form_open')
-        super().form_open(args, **kwargs)
