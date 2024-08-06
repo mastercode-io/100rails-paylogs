@@ -122,7 +122,6 @@ PL_NAV_ITEMS = {
     # 'developer_forms': {'model': 'Form', 'type': 'view', 'action': 'open', 'props': {}},
     'developer_enums': {'model': 'AppEnum', 'type': 'view', 'action': 'open', 'props': {}},
     # 'developer_models': {'model': 'Model', 'type': 'view', 'action': 'open', 'props': {}},
-    # 'developer_migrate': {'type': 'function', 'function': migrate.migrate_db_schema, 'props': {}},
     'developer_migrate': {'type': 'page', 'page': MigratePage, 'props': {}},
     'developer_run_script': {'type': 'page', 'page': RunScriptPage, 'props': {}},
     'developer_tenant_form': {'type': 'form', 'class': 'SettingsForm', 'props': {}},
