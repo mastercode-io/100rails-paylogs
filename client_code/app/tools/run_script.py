@@ -123,7 +123,7 @@ def connect_to_qb():
 
 
 def update_tenants():
-    tenants = [*models.Tenant.search()]
+    tenants = [*models.Tenant.search(tenant_uid=None)]
     print([x['name'] for x in tenants])
     # models.UserRole(
     #     name='Account Administrator',
