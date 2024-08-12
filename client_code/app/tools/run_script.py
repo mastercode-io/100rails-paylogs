@@ -2,6 +2,7 @@ import anvil.server
 import anvil.tables.query as q
 import anvil.js
 from AnvilFusion.tools.utils import AppEnv
+from AnvilFusion.datamodel.particles import SYSTEM_TENANT_UID
 from ...app import models
 from ..models import AppIntegration, Tenant, Account
 
@@ -126,6 +127,7 @@ def update_users():
     tenants = [*models.Tenant.search(tenant_uid=None)]
     for tenant in tenants:
         print('tenant', tenant['uid'])
+        AppEnv.set_current_tenant(tenant['uid'])
         user_role = [*models.UserRole.search(tenant_uid=tenant['uid'], type='account_admin')][0]
         print('user_role', user_role['uid'])
         users = models.User.search(tenant_uid=tenant['uid'])
@@ -133,6 +135,7 @@ def update_users():
             print('user', user['uid'])
             user['user_role'] = user_role
             user.save()
+    AppEnv.set_current_tenant(SYSTEM_TENANT_UID)
 
 
 def foo():
