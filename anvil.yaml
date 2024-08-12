@@ -472,11 +472,10 @@ db_schema:
     client: none
     server: full
     columns:
-    - {name: action, admin_ui: null, type: string}
     - {name: created_by, admin_ui: null, type: string}
     - {name: created_time, admin_ui: null, type: datetime}
     - {name: description, admin_ui: null, type: string}
-    - {name: model, admin_ui: null, type: string}
+    - {name: version, type: string}
     - {name: name, admin_ui: null, type: string}
     - {name: permissions, admin_ui: null, type: simpleObject}
     - {name: props, admin_ui: null, type: simpleObject}
@@ -485,7 +484,6 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: uid, admin_ui: null, type: string}
     - {name: type, admin_ui: null, type: string}
-    - {name: text, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: items, admin_ui: null, type: link_multiple, target: app_components}
     title: App Components
