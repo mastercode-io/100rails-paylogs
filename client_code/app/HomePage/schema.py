@@ -5,13 +5,13 @@ from ..tools.RunScriptPage import RunScriptPage
 # App menu item list
 PL_MENU_ITEMS = {
     'timesheet_menu': [
-        {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'whatever': 'hah?', 'items': []},
+        {'id': 'timesheet_dashboard', 'text': 'Dashboard','items': []},
         {'id': 'timesheet_report', 'text': 'Timesheets', 'items': []},
         {'id': 'timesheet_sync', 'text': 'Transfer Data', 'items': []},
         {'id': 'timesheet_upload', 'text': 'Upload Data', 'items': []},
     ],
     'payroll_menu': [
-        {'id': 'payroll_dashboard', 'text': 'Dashboard', 'items': []},
+        {'id': 'payroll_dashboard', 'text': 'Dashboard',  'whatever': 'hah?', 'items': []},
         {'id': 'payroll_payruns', 'text': 'Payruns', 'items': []},
         {'id': 'payroll_timesheets', 'text': 'Timesheets', 'items': []},
         {'id': 'payroll_transfer_data', 'text': 'Transfer Data', 'items': []},
