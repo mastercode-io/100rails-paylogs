@@ -122,47 +122,17 @@ def connect_to_qb():
     anvil.js.window.location.href = qb_auth_url
 
 
-def update_tenants():
+def update_users():
     tenants = [*models.Tenant.search(tenant_uid=None)]
-    print([x['name'] for x in tenants])
-
-    user_role_types = {
-        "account_admin": "Account Administrator",
-        "payroll_admin": "Payroll Administrator",
-        "payroll_manager": "Payroll Manager"
-    }
     for tenant in tenants:
-        models.AppEnum(
-            tenant_uid=tenant['uid'],
-            name='USER_ROLE_TYPES',
-            options=user_role_types
-        ).save()
-        models.UserRole(
-            tenant_uid=tenant['uid'],
-            name='Account Administrator',
-            type='account_admin',
-            permissions={
-                'admin': True,
-            }
-        ).save()
-        models.UserRole(
-            tenant_uid=tenant['uid'],
-            name='Payroll Administrator',
-            type='payroll_admin',
-            permissions={
-                'user': True,
-            }
-        ).save()
-        models.UserRole(
-            tenant_uid=tenant['uid'],
-            name='Payroll Manager',
-            type='payroll_manager',
-            permissions={
-                'user': True,
-            }
-        ).save()
+        print(tenant)
+        user_role = models.UserRole.serach(tenant_uid=tenant['uid'], type='account_admin')
+        users = models.User.search(tenant_uid=tenant['uid'])
+        for user in users:
+            user['user_role'] = user_role
+            user.save()
 
 
 def foo():
-    # update_tenants()
+    update_users()
     pass
