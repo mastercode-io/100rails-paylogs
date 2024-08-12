@@ -89,12 +89,10 @@ class AppErrorLog:
 @model_type
 class AppComponent:
     model_type = types.ModelTypes.SYSTEM
-    action = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    version = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    text = Attribute(field_type=types.FieldTypes.MULTI_LINE)
-    model = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
-    type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     props = Attribute(field_type=types.FieldTypes.OBJECT)
     items = Relationship("AppComponent", with_many=True)
     permissions = Attribute(field_type=types.FieldTypes.OBJECT)
