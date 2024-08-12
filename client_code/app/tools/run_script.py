@@ -125,12 +125,12 @@ def connect_to_qb():
 def update_users():
     tenants = [*models.Tenant.search(tenant_uid=None)]
     for tenant in tenants:
-        print(tenant['uid'])
+        print('tenant', tenant['uid'])
         user_role = [*models.UserRole.search(tenant_uid=tenant['uid'], type='account_admin')][0]
-        print(user_role['uid'])
+        print('user_role', user_role['uid'])
         users = models.User.search(tenant_uid=tenant['uid'])
         for user in users:
-            print(user['uid'])
+            print('user', user['uid'])
             user['user_role'] = user_role
             user.save()
 
