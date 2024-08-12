@@ -126,7 +126,7 @@ def update_users():
     tenants = [*models.Tenant.search(tenant_uid=None)]
     for tenant in tenants:
         print(tenant)
-        user_role = models.UserRole.search(tenant_uid=tenant['uid'], type='account_admin')
+        user_role = [*models.UserRole.search(tenant_uid=tenant['uid'], type='account_admin')][0]
         users = models.User.search(tenant_uid=tenant['uid'])
         for user in users:
             user['user_role'] = user_role
