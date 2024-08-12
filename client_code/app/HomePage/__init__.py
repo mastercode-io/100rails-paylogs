@@ -122,7 +122,7 @@ class HomePage(HomePageTemplate):
                                               container_id='pl-appbar-data-file',
                                               container_class='pl-appbar-data-file',
                                               on_change=self.appbar_data_file_select)
-        self.appbar_settings_menu_items = nav.PL_MENU_ITEMS['settings_menu']
+        # self.appbar_settings_menu_items = nav.PL_MENU_ITEMS['settings_menu']
         #     [
         #     {'id': 'settings_users', 'text': 'Users', 'items': []},
         #     {'id': 'settings_locations', 'text': 'Locations', 'items': []},
