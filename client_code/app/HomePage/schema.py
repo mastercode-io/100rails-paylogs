@@ -27,7 +27,6 @@ PL_MENU_ITEMS = {
             {'id': 'admin_settings_scope_types', 'text': 'Scope Types', 'items': []},
         ]},
         {'id': 'admin_integrations', 'text': 'Integrations', 'items': []},
-
     ],
     'developer_menu': [
         {'id': 'developer_components', 'text': 'Components', 'items': [
