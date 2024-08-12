@@ -62,6 +62,8 @@ class AppbarMenu:
         self.selected_el.classList.add('pl-appbar-menu-selected')
         menu_id = args.item.properties.id
         print(menu_id)
+        for k in args.item.properties.key():
+            print(k, args.item.properties[k])
         self.show_selected(menu_id)
         # self.sidebar.show_menu(menu_id)
 

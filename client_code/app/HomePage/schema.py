@@ -5,7 +5,7 @@ from ..tools.RunScriptPage import RunScriptPage
 # App menu item list
 PL_MENU_ITEMS = {
     'timesheet_menu': [
-        {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'items': []},
+        {'id': 'timesheet_dashboard', 'text': 'Dashboard', 'whatever': 'hah?', 'items': []},
         {'id': 'timesheet_report', 'text': 'Timesheets', 'items': []},
         {'id': 'timesheet_sync', 'text': 'Transfer Data', 'items': []},
         {'id': 'timesheet_upload', 'text': 'Upload Data', 'items': []},
@@ -140,7 +140,7 @@ PL_APPBAR_MENU_DEVELOPER = [
     {'id': 'developer_menu', 'text': 'DEVELOPER', 'items': PL_MENU_ITEMS['developer_menu']},
 ]
 
-access_permissions_schema = {
+DEFAULT_PERMISSIONS_SCHEMA = {
     'payroll_menu': {
         'access': {'account_admin': True, 'payroll_admin': True, 'payroll_manager': True},
         'items': [
