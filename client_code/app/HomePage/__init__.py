@@ -213,6 +213,11 @@ class HomePage(HomePageTemplate):
             self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         # if AppEnv.logged_user.permissions.developer:
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
+        print('user role type', AppEnv.logged_user.user_role_type)
+        user_app_menu = nav.get_user_menu_items(
+            nav.PL_MENU_ITEMS,
+            nav.DEFAULT_USER_PERMISSIONS[AppEnv.logged_user.user_role_type]['permissions']['app_menu'])
+        print('user_app_menu', user_app_menu)
         self.appbar_menu.show()
 
         # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
@@ -236,7 +241,6 @@ class HomePage(HomePageTemplate):
         stime = time.time()
         self.appbar_menu.show_selected(self.start_page, props=self.start_props)
         print('SHOW START PAGE: ', time.time() - stime)
-        print('user role type', AppEnv.logged_user.user_role_type)
         # self.sidebar.show(AppEnv.start_menu)
         # self.sidebar.refresh_content()
 

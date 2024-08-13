@@ -17,6 +17,27 @@ PL_SIDEBAR_POPUP_OFFSET = 1
 PL_ASSISTANT_WIDTH = 300
 
 
+def get_user_menu_items(menu_items: dict, user_permissions: dict):
+    user_menu_items = {}
+    for menu_id, subitems in menu_items.items():
+        if user_permissions['menu_id']['has_access']:
+            user_menu_subitems = get_user_menu_subitems(subitems, user_permissions['menu_id']['items'])
+            user_menu_items[menu_id] = user_menu_subitems
+    return user_menu_items
+
+
+def get_user_menu_subitems(menu_subitems: list, user_permissions: dict):
+    user_menu_subitems = []
+    for subitem in menu_subitems:
+        if subitem['id'] in user_permissions and user_permissions[subitem['id']]['has_access']:
+            if 'items' in subitem:
+                subitem['items'] = get_user_menu_subitems(subitem['items'], user_permissions[subitem['id']]['items'])
+            else:
+                subitem['items'] = []
+            user_menu_subitems.append(subitem)
+    return user_menu_subitems
+
+
 # Appbar navigation class
 class AppbarMenu:
     def __init__(self,
@@ -42,6 +63,7 @@ class AppbarMenu:
         # self.menu = None
         # self.open = True
 
+
     def show(self):
         print('AppBar Show')
         if self.menu:
@@ -55,6 +77,7 @@ class AppbarMenu:
             })
             self.menu.appendTo(jQuery(f"#{self.container_el}")[0])
 
+
     def menu_select(self, args):
         if self.selected_el is not None:
             self.selected_el.classList.remove('pl-appbar-menu-selected')
@@ -66,6 +89,7 @@ class AppbarMenu:
             print(k, args.item.properties[k])
         self.show_selected(menu_id)
         # self.sidebar.show_menu(menu_id)
+
 
     def show_selected(self, menu_id=None, props=None):
         component = self.nav_items.get(menu_id)
@@ -140,6 +164,7 @@ class AppbarMenu:
         #     self.control.toggle()
         #     self.control.toggle()
 
+
     def refresh_content(self):
         if self.content_control:
             try:
@@ -166,6 +191,7 @@ class Assistant:
         self.chat = None
         self.open = False
         self.toggled = False
+
 
     # Show sidebar menu
     def show(self):
@@ -199,6 +225,7 @@ class Assistant:
             # self.chat.form_show()
             self.control.hide()
 
+
     # Sidebar toggle
     def toggle(self, args):
         # print('toggle assistant')
@@ -215,6 +242,7 @@ class Assistant:
         # anvil.js.window.dispatchEvent(resize_event)
         # if not self.open:
         #     self.control.hide()
+
 
     def sidebar_event(self, args):
         if self.toggled:
@@ -255,6 +283,7 @@ class Sidebar:
         self.menu = None
         self.open = True
 
+
     # Show sidebar menu
     def show(self, menu_id):
         print('show', menu_id)
@@ -287,6 +316,7 @@ class Sidebar:
 
         self.show_menu(menu_id)
 
+
     # Sidebar toggle
     def toggle(self, args):
         if self.open:
@@ -302,12 +332,14 @@ class Sidebar:
         # if not self.open:
         #     self.control.hide()
 
+
     def sidebar_event(self, args):
         print('sidebar event', args)
         if args.name == 'open' and self.open:
             args.cancel = True
         elif args.name == 'close' and not self.open:
             args.cancel = True
+
 
     def show_menu(self, menu_id):
         # self.menu.fields.dataSource = PL_MENU_ITEMS.get(menu_id, list(PL_MENU_ITEMS.keys())[0])
@@ -322,6 +354,7 @@ class Sidebar:
                     item['expanded'] = True
             self.menu.fields.dataSource = menu_items
             self.menu_select(None, subcomponent=subcomponent)
+
 
     def menu_select(self, args, subcomponent=None, menu_item_id=None):
         if subcomponent is None:
@@ -406,6 +439,7 @@ class Sidebar:
         if 'subcomponent' in component:
             time.sleep(0.5)
             self.menu_select(None, subcomponent=component['subcomponent'])
+
 
     def refresh_content(self):
         if self.content_control:
