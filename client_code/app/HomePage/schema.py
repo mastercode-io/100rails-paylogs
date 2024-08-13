@@ -145,20 +145,13 @@ PL_DEFAULT_NAV_ITEMS = {
 }
 
 # Appbar main menu
-PL_APPBAR_MENU = [
-    {'id': 'payroll_menu', 'text': 'PAYROLL', 'items': PL_MENU_ITEMS['payroll_menu']},
-    {'id': 'directory_menu', 'text': 'DIRECTORY', 'items': PL_MENU_ITEMS['directory_menu']},
-    # {'id': 'settings_menu', 'text': 'SETTINGS', 'items': PL_MENU_ITEMS['settings_menu']},
-    # {'id': 'admin_menu', 'text': 'ADMIN', 'items': PL_MENU_ITEMS['admin_menu']},
-    # {'id': 'developer_menu', 'text': 'DEVELOPER', 'items': PL_MENU_ITEMS['developer_menu']},
-]
-PL_APPBAR_MENU_ADMIN = [
-    {'separator': True},
-    {'id': 'admin_menu', 'text': 'ADMIN', 'items': PL_MENU_ITEMS['admin_menu']},
-]
-PL_APPBAR_MENU_DEVELOPER = [
-    {'id': 'developer_menu', 'text': 'DEVELOPER', 'items': PL_MENU_ITEMS['developer_menu']},
-]
+# PL_APPBAR_MENU_ADMIN = [
+#     {'separator': True},
+#     {'id': 'admin_menu', 'text': 'ADMIN', 'items': PL_MENU_ITEMS['admin_menu']},
+# ]
+# PL_APPBAR_MENU_DEVELOPER = [
+#     {'id': 'developer_menu', 'text': 'DEVELOPER', 'items': PL_MENU_ITEMS['developer_menu']},
+# ]
 
 DEFAULT_USER_PERMISSIONS = {
     'user_roles': {

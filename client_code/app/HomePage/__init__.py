@@ -14,8 +14,9 @@ from ... import Pages
 import navigation as nav
 # from ..copilot import Copilot
 import json
-print('HomePage IMPORT', time.time() - stime)
 
+
+print('HomePage IMPORT', time.time() - stime)
 
 AppEnv.APP_ID = "PayLogs"
 AppEnv.ANVIL_FUSION_VERSION = "0.0.2"
@@ -275,7 +276,6 @@ class HomePage(HomePageTemplate):
 
     # Sidebar toggle event handler
 
-
     def sidebar_toggle(self, args):
         pass
         # self.sidebar.toggle(args)
@@ -288,7 +288,6 @@ class HomePage(HomePageTemplate):
     #     nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': tenant}
     #     self.appbar_menu.show_selected('settings_account')
 
-
     def appbar_settings_button_click(self, args):
         print('appbar_settings_button_click')
         # tenant = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
@@ -299,6 +298,7 @@ class HomePage(HomePageTemplate):
         # print('account', account)
         # nav.PL_NAV_ITEMS['settings_form']['props'] = {'data': account}
         self.appbar_menu.show_selected('payroll_settings')
+
 
     # def appbar_assistant_button_click(self, args):
     #     print('appbar_assistant_button_click')
@@ -349,7 +349,6 @@ class HomePage(HomePageTemplate):
         elif args.item.id == 'pl-appbar-account-settings':
             nav.PL_NAV_ITEMS['settings_form']['props'] = {'data': self.account}
             self.appbar_menu.show_selected('settings_form')
-
 
 
     def appbar_settings_menu_select(self, args):
