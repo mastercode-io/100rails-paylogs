@@ -221,8 +221,6 @@ class HomePage(HomePageTemplate):
             app_permissions = next(iter(app_comps), None)
         else:
             app_permissions = models.AppComponent.get_by('id', 'user_role_permissions')
-        print('permissions_schema', app_permissions)
-        print('user_roles', app_permissions['user_roles'])
         self.user_app_permissions = app_permissions['permissions']['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
         user_app_menu = nav.get_user_menu_items(
             nav.PL_MENU_ITEMS,
