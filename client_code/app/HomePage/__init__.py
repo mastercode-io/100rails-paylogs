@@ -218,6 +218,7 @@ class HomePage(HomePageTemplate):
             nav.PL_MENU_ITEMS,
             nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']['app_menu'])
         print('user_app_menu', user_app_menu)
+        self.appbar_menu.menu_items = user_app_menu
         self.appbar_menu.show()
 
         # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
