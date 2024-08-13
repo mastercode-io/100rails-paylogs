@@ -7,6 +7,7 @@ import anvil.users
 import anvil.tables
 from AnvilFusion.tools.utils import AppEnv, DotDict, init_user_session
 from AnvilFusion.components.FormInputs import DropdownInput
+from AnvilFusion.datamodel.particles import SYSTEM_TENANT_UID
 from .. import models
 from ... import Forms
 from ... import Views
@@ -215,7 +216,11 @@ class HomePage(HomePageTemplate):
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         print('user role type', AppEnv.logged_user.user_role_type)
         # self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
-        permissions_schema = models.AppComponent.get_by('id', 'user_role_permissions')
+        if AppEnv.logged_user.tenant_uid == SYSTEM_TENANT_UID:
+            permissions_schema = [*models.AppComponent.search(tenant_uid=SYSTEM_TENANT_UID,
+                                                              id='user_role_permissions')][0]
+        else:
+            permissions_schema = models.AppComponent.get_by('id', 'user_role_permissions')
         self.user_app_permissions = permissions_schema['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
         user_app_menu = nav.get_user_menu_items(
             nav.PL_MENU_ITEMS,
