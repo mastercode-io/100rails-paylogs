@@ -214,7 +214,8 @@ DEFAULT_USER_PERMISSIONS = {
                     }},
                     'settings_button': {'has_access': True},
                     'assistant_button': {'has_access': True},
-                }
+                },
+                'start_page': None,
             }
         },
         'account_admin': {
@@ -247,7 +248,8 @@ DEFAULT_USER_PERMISSIONS = {
                     }},
                     'settings_button': {'has_access': True},
                     'assistant_button': {'has_access': True},
-                }
+                },
+                'start_page': None,
             }
         },
         'payroll_admin': {
@@ -280,7 +282,8 @@ DEFAULT_USER_PERMISSIONS = {
                     }},
                     'settings_button': {'has_access': True},
                     'assistant_button': {'has_access': True},
-                }
+                },
+                'start_page': 'payroll_dashboard',
             }
         },
         'payroll_manager': {
@@ -313,7 +316,8 @@ DEFAULT_USER_PERMISSIONS = {
                     }},
                     'settings_button': {'has_access': False},
                     'assistant_button': {'has_access': False},
-                }
+                },
+                'start_page': 'payroll_payruns',
             },
         }
     }
