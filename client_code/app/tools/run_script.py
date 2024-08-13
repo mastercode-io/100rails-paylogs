@@ -5,6 +5,7 @@ from AnvilFusion.tools.utils import AppEnv
 from AnvilFusion.datamodel.particles import SYSTEM_TENANT_UID
 from ...app import models
 from ..models import AppIntegration, Tenant, Account
+from ..HomePage.schema import DEFAULT_USER_PERMISSIONS
 
 
 def add_enum_list():
@@ -83,7 +84,19 @@ def create_user():
 
 
 def bar():
-    portal_admin = models.UserRole(name='portal_admin', tenant_uid=SYSTEM_TENANT_UID).save()
+    tenants = [*models.Tenant.search(tenant_uid=None)]
+    for tenant in tenants:
+        user_role_permissions = DEFAULT_USER_PERMISSIONS.copy()
+        if tenant['uid'] != SYSTEM_TENANT_UID:
+            user_role_permissions['user_roles'].pop('portal_admin')
+        app_component = models.AppComponent(
+            name='User Role Permissions',
+            id='user_role_permissions',
+            type='object',
+            version='1.0',
+            tenant_uid=tenant['uid'],
+            permissions=user_role_permissions
+        ).save()
     pass
     # search_query = [q.none_of(payrun=None)]
     # ts_list = models.Timesheet.search(search_query=search_query)

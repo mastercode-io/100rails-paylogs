@@ -91,6 +91,7 @@ class AppComponent:
     model_type = types.ModelTypes.SYSTEM
     type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     version = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    id = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     name = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     props = Attribute(field_type=types.FieldTypes.OBJECT)
