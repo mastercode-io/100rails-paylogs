@@ -486,6 +486,9 @@ db_schema:
     - {name: type, admin_ui: null, type: string}
     - {name: tenant_uid, admin_ui: null, type: string}
     - {name: items, admin_ui: null, type: link_multiple, target: app_components}
+    - name: id
+      admin_ui: {width: 200, order: 0}
+      type: string
     title: App Components
   app_audit_logs:
     client: none
