@@ -93,7 +93,7 @@ def bar():
         type='object',
         version='1.0',
         tenant_uid=SYSTEM_TENANT_UID,
-        permissions=nav.DEFAULT_USER_PERMISSIONS
+        props=nav.DEFAULT_USER_PERMISSIONS
     ).save()
     for tenant in tenants:
         user_role_permissions = nav.DEFAULT_USER_PERMISSIONS.copy()
@@ -105,7 +105,7 @@ def bar():
                 type='object',
                 version='1.0',
                 tenant_uid=tenant['uid'],
-                permissions=user_role_permissions
+                props=user_role_permissions
             ).save()
     pass
     # search_query = [q.none_of(payrun=None)]
