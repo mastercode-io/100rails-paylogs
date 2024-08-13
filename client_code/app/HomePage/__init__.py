@@ -216,7 +216,6 @@ class HomePage(HomePageTemplate):
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         print('user role type', AppEnv.logged_user.user_role_type)
         self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
-        # self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles']['portal_admin']['permissions']
         user_app_menu = nav.get_user_menu_items(
             nav.PL_MENU_ITEMS_2,
             self.user_app_permissions['app_menu'])
