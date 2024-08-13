@@ -236,6 +236,7 @@ class HomePage(HomePageTemplate):
         stime = time.time()
         self.appbar_menu.show_selected(self.start_page, props=self.start_props)
         print('SHOW START PAGE: ', time.time() - stime)
+        print('user role type', AppEnv.logged_user.user_role_type)
         # self.sidebar.show(AppEnv.start_menu)
         # self.sidebar.refresh_content()
 
