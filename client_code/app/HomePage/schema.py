@@ -3,7 +3,7 @@ from ..tools.RunScriptPage import RunScriptPage
 
 
 # App menu item list
-PL_MENU_ITEMS = {
+PL_MENU_ITEMS_OLD = {
     'payroll_menu': [
         {'id': 'payroll_dashboard', 'text': 'Dashboard', 'items': []},
         {'id': 'payroll_payruns', 'text': 'Payruns', 'items': []},
@@ -51,7 +51,7 @@ PL_MENU_ITEMS = {
     ]
 }
 
-PL_MENU_ITEMS_2 = [
+PL_MENU_ITEMS = [
     {'id': 'payroll_menu', 'text': 'PAYROLL', 'items': [
         {'id': 'payroll_dashboard', 'text': 'Dashboard', 'items': []},
         {'id': 'payroll_payruns', 'text': 'Payruns', 'items': []},
