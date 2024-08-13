@@ -83,6 +83,7 @@ def create_user():
 
 
 def bar():
+    portal_admin = models.UserRole(name='portal_admin', tenant_uid=SYSTEM_TENANT_UID).save()
     pass
     # search_query = [q.none_of(payrun=None)]
     # ts_list = models.Timesheet.search(search_query=search_query)
@@ -139,5 +140,5 @@ def update_users():
 
 
 def foo():
-    update_users()
+    bar()
     pass
