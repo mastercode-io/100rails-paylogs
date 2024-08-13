@@ -137,7 +137,7 @@ DEFAULT_USER_PERMISSIONS = {
                         'admin_user_roles': {'has_access': True, 'items': {}},
                         'admin_permissions': {'has_access': True, 'items': {}},
                         'admin_settings': {'has_access': True, 'items': {
-                            'admin_settings_scope_types', {'has_access': True, 'items': {}},
+                            'admin_settings_scope_types': {'has_access': True, 'items': {}},
                         }},
                         'admin_integrations': {'has_access': True, 'items': {}},
                     }},
