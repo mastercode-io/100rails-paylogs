@@ -58,7 +58,7 @@ PL_MENU_ITEMS_2 = [
         {'id': 'payroll_timesheets', 'text': 'Timesheets', 'items': []},
         {'id': 'payroll_transfer_data', 'text': 'Transfer Data', 'items': []},
     ]},
-    {'id': 'directory_menu', 'text': 'PAYROLL', 'items': [
+    {'id': 'directory_menu', 'text': 'DIRECTORY', 'items': [
         {'id': 'directory_employees', 'text': 'Employees', 'items': []},
         {'id': 'directory_locations', 'text': 'Locations', 'items': []},
         {'id': 'directory_jobs', 'text': 'Jobs', 'items': []},
