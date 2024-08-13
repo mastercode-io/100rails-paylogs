@@ -75,7 +75,7 @@ class HomePage(HomePageTemplate):
             target_el=".pl-page-container",
             container_id="pl-sidebar",
             content_id=self.content_id,
-            # menu_items=nav.PL_APPBAR_MENU,
+            menu_items={},
             nav_items=nav.PL_NAV_ITEMS,
             # sidebar=self.sidebar,
         )
