@@ -162,7 +162,7 @@ PL_APPBAR_MENU_DEVELOPER = [
 
 DEFAULT_USER_PERMISSIONS = {
     'user_roles': {
-        'account_admin': {
+        'portal_admin': {
             'permissions': {
                 'app_menu': {
                     'payroll_menu': {'has_access': True, 'items': {
@@ -210,6 +210,50 @@ DEFAULT_USER_PERMISSIONS = {
                             'developer_tree_grid': {'has_access': True, 'items': {}},
                         }},
                     }},
+                },
+                'special_menu': {
+                    'user_menu': {'has_access': True, 'items': {
+                        'pl-appbar-user-account-name': {'has_access': True},
+                        'pl-appbar-user-profile': {'has_access': True},
+                        'pl-appbar-account-settings': {'has_access': True},
+                        'pl-appbar-sign-out': {'has_access': True},
+
+                    }},
+                    'settings_button': {'has_access': True},
+                    'assistant_button': {'has_access': True},
+                }
+            }
+        },
+        'account_admin': {
+            'permissions': {
+                'app_menu': {
+                    'payroll_menu': {'has_access': True, 'items': {
+                        'payroll_dashboard': {'has_access': True, 'items': {}},
+                        'payroll_payruns': {'has_access': True, 'items': {}},
+                        'payroll_timesheets': {'has_access': True, 'items': {}},
+                        'payroll_transfer_data': {'has_access': True, 'items': {}},
+                    }},
+                    'directory_menu': {'has_access': True, 'items': {
+                        'directory_employees': {'has_access': True, 'items': {}},
+                        'directory_locations': {'has_access': True, 'items': {}},
+                        'directory_jobs': {'has_access': True, 'items': {}},
+                        'directory_job_types': {'has_access': True, 'items': {}},
+                        'directory_employee_roles': {'has_access': True, 'items': {}},
+                        'directory_timesheet_types': {'has_access': True, 'items': {}},
+                    }},
+                    'admin_menu': {'has_access': False, 'items': {}},
+                    'developer_menu': {'has_access': False, 'items': {}},
+                },
+                'special_menu': {
+                    'user_menu': {'has_access': True, 'items': {
+                        'pl-appbar-user-account-name': {'has_access': True},
+                        'pl-appbar-user-profile': {'has_access': True},
+                        'pl-appbar-account-settings': {'has_access': True},
+                        'pl-appbar-sign-out': {'has_access': True},
+
+                    }},
+                    'settings_button': {'has_access': True},
+                    'assistant_button': {'has_access': True},
                 }
             }
         },
@@ -232,6 +276,17 @@ DEFAULT_USER_PERMISSIONS = {
                     }},
                     'admin_menu': {'has_access': False, 'items': {}},
                     'developer_menu': {'has_access': False, 'items': {}},
+                },
+                'special_menu': {
+                    'user_menu': {'has_access': True, 'items': {
+                        'pl-appbar-user-account-name': {'has_access': True},
+                        'pl-appbar-user-profile': {'has_access': True},
+                        'pl-appbar-account-settings': {'has_access': False},
+                        'pl-appbar-sign-out': {'has_access': True},
+
+                    }},
+                    'settings_button': {'has_access': True},
+                    'assistant_button': {'has_access': True},
                 }
             }
         },
@@ -255,6 +310,17 @@ DEFAULT_USER_PERMISSIONS = {
                     'admin_menu': {'has_access': False, 'items': {}},
                     'developer_menu': {'has_access': False, 'items': {}},
                 }
+            },
+            'special_menu': {
+                'user_menu': {'has_access': True, 'items': {
+                    'pl-appbar-user-account-name': {'has_access': True},
+                    'pl-appbar-user-profile': {'has_access': True},
+                    'pl-appbar-account-settings': {'has_access': False},
+                    'pl-appbar-sign-out': {'has_access': True},
+
+                }},
+                'settings_button': {'has_access': False},
+                'assistant_button': {'has_access': False},
             }
         },
     }

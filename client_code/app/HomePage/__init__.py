@@ -42,6 +42,7 @@ class HomePage(HomePageTemplate):
 
         self.firs_load = True
         self.account = None
+        self.user_app_permissions = None
         self.appbar_settings_menu_show = False
         self.content_id = "pl-content"
         self.content_control = None
@@ -88,7 +89,7 @@ class HomePage(HomePageTemplate):
         )
         self.appbar_user_menu_items = [
             {
-                "text": "Admin<br>admin@100rails.com",
+                "text": "User<br>user@100rails.com",
                 "disabled": True,
                 "id": "pl-appbar-user-account-name",
             },
@@ -214,13 +215,20 @@ class HomePage(HomePageTemplate):
         # if AppEnv.logged_user.permissions.developer:
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         print('user role type', AppEnv.logged_user.user_role_type)
+        self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
         user_app_menu = nav.get_user_menu_items(
             nav.PL_MENU_ITEMS_2,
-            # nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']['app_menu'])
-            nav.DEFAULT_USER_PERMISSIONS['user_roles']['payroll_admin']['permissions']['app_menu'])
-        print('user_app_menu', user_app_menu)
+            self.user_app_permissions['app_menu'])
         self.appbar_menu.menu_items = user_app_menu
         self.appbar_menu.show()
+        if ('settings_button' in self.user_app_permissions['special_menu']
+                and self.user_app_permissions['special_menu']['settings_button']['has_access']):
+            self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
+            self.appbar_settings_button.element.onclick = self.appbar_settings_button_click
+        if ('assistant_button' in self.user_app_permissions['special_menu']
+                and self.user_app_permissions['special_menu']['assistant_button']['has_access']):
+            self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
+            self.appbar_assistant_toggle.element.onclick = self.assistant.toggle
 
         # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
@@ -258,22 +266,6 @@ class HomePage(HomePageTemplate):
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
         self.appbar_notification_list.appendTo(jQuery("#pl-appbar-notification-list")[0])
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
-        # self.appbar_assistant_button.appendTo(jQuery('#pl-appbar-help-menu')[0])
-        # self.appbar_assistant_button.element.addEventListener('click', self.appbar_assistant_button_click)
-        # self.appbar_sidebar_toggle.appendTo(jQuery("#pl-appbar-sidebar-toggle")[0])
-        # self.appbar_sidebar_toggle.element.addEventListener(
-        #     "click", self.sidebar.toggle
-        # )
-        self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
-        # self.appbar_settings_form.appendTo(jQuery("#pl-appbar-settings-form")[0])
-        # self.appbar_settings_button.element.onclick = self.appbar_menu.show_selected('settings_account')
-        self.appbar_settings_button.element.onclick = self.appbar_settings_button_click
-        # self.appbar_settings_form.element.onclick = self.appbar_settings_form_click
-        self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
-        self.appbar_assistant_toggle.element.onclick = self.assistant.toggle
-        # self.appbar_assistant_toggle.element.addEventListener(
-        #     "click", self.assistant.toggle
-        # )
         self.login_user()
 
 
