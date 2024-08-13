@@ -252,6 +252,7 @@ class HomePage(HomePageTemplate):
             }
         )
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
+        self.start_page = self.user_app_permissions['start_page']
 
         # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
@@ -272,7 +273,8 @@ class HomePage(HomePageTemplate):
 
         self.assistant.show()
         stime = time.time()
-        self.appbar_menu.show_selected(self.start_page, props=self.start_props)
+        if self.start_page:
+            self.appbar_menu.show_selected(self.start_page, props=self.start_props)
         print('SHOW START PAGE: ', time.time() - stime)
         # self.sidebar.show(AppEnv.start_menu)
         # self.sidebar.refresh_content()
