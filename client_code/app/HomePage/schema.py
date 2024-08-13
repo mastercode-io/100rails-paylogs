@@ -117,94 +117,97 @@ DEFAULT_USER_PERMISSIONS = {
         'account_admin': {
             'permissions': {
                 'app_menu': {
-                    'payroll_menu', {'has_access': True, 'items': {
-                        'payroll_dashboard', {'has_access': True, 'items': {}},
-                        'payroll_payruns', {'has_access': True, 'items': {}},
-                        'payroll_timesheets', {'has_access': True, 'items': {}},
-                        'payroll_transfer_data', {'has_access': True, 'items': {}},
+                    'payroll_menu': {'has_access': True, 'items': {
+                        'payroll_dashboard': {'has_access': True, 'items': {}},
+                        'payroll_payruns': {'has_access': True, 'items': {}},
+                        'payroll_timesheets': {'has_access': True, 'items': {}},
+                        'payroll_transfer_data': {'has_access': True, 'items': {}},
                     }},
-                    'directory_menu', {'has_access': True, 'items': {
-                        'directory_employees', {'has_access': True, 'items': {}},
-                        'directory_locations', {'has_access': True, 'items': {}},
-                        'directory_jobs', {'has_access': True, 'items': {}},
-                        'directory_job_types', {'has_access': True, 'items': {}},
-                        'directory_employee_roles', {'has_access': True, 'items': {}},
-                        'directory_timesheet_types', {'has_access': True, 'items': {}},
+                    'directory_menu': {'has_access': True, 'items': {
+                        'directory_employees': {'has_access': True, 'items': {}},
+                        'directory_locations': {'has_access': True, 'items': {}},
+                        'directory_jobs': {'has_access': True, 'items': {}},
+                        'directory_job_types': {'has_access': True, 'items': {}},
+                        'directory_employee_roles': {'has_access': True, 'items': {}},
+                        'directory_timesheet_types': {'has_access': True, 'items': {}},
                     }},
-                    'admin_menu', {'has_access': True, 'items': {
-                        'admin_accounts', {'has_access': True, 'items': {}},
-                        'admin_tenants', {'has_access': True, 'items': {}},
-                        'admin_user_roles', {'has_access': True, 'items': {}},
-                        'admin_permissions', {'has_access': True, 'items': {}},
-                        'admin_settings', {'has_access': True, 'items': {
+                    'admin_menu': {'has_access': True, 'items': {
+                        'admin_accounts': {'has_access': True, 'items': {}},
+                        'admin_tenants': {'has_access': True, 'items': {}},
+                        'admin_user_roles': {'has_access': True, 'items': {}},
+                        'admin_permissions': {'has_access': True, 'items': {}},
+                        'admin_settings': {'has_access': True, 'items': {
                             'admin_settings_scope_types', {'has_access': True, 'items': {}},
                         }},
-                        'admin_integrations', {'has_access': True, 'items': {}},
+                        'admin_integrations': {'has_access': True, 'items': {}},
                     }},
-                    'developer_menu', {'has_access': True, 'items': {
-                        'developer_components', {'has_access': True, 'items': {
-                            'developer_views', {'has_access': True, 'items': {}},
-                            'developer_pages', {'has_access': True, 'items': {}},
-                            'developer_forms', {'has_access': True, 'items': {}},
+                    'developer_menu': {'has_access': True, 'items': {
+                        'developer_components': {'has_access': True, 'items': {
+                            'developer_views': {'has_access': True, 'items': {}},
+                            'developer_pages': {'has_access': True, 'items': {}},
+                            'developer_forms': {'has_access': True, 'items': {}},
                         }},
-                        'developer_schema', {'has_access': True, 'items': {
-                            'developer_enums', {'has_access': True, 'items': {}},
-                            'developer_models', {'has_access': True, 'items': {}},
-                            'developer_migrate', {'has_access': True, 'items': {}},
+                        'developer_schema': {'has_access': True, 'items': {
+                            'developer_enums': {'has_access': True, 'items': {}},
+                            'developer_models': {'has_access': True, 'items': {}},
+                            'developer_migrate': {'has_access': True, 'items': {}},
                         }},
-                        'developer_tools', {'has_access': True, 'items': {
-                            'developer_import', {'has_access': True, 'items': {}},
-                            'developer_export', {'has_access': True, 'items': {}},
-                            'developer_run_script', {'has_access': True, 'items': {}},
+                        'developer_tools': {'has_access': True, 'items': {
+                            'developer_import': {'has_access': True, 'items': {}},
+                            'developer_export': {'has_access': True, 'items': {}},
+                            'developer_run_script': {'has_access': True, 'items': {}},
                         }},
-                        'developer_prototype', {'has_access': True, 'items': {
-                            'developer_tenant_form', {'has_access': True, 'items': {}},
-                            'developer_tree_grid', {'has_access': True, 'items': {}},
+                        'developer_prototype': {'has_access': True, 'items': {
+                            'developer_tenant_form': {'has_access': True, 'items': {}},
+                            'developer_tree_grid': {'has_access': True, 'items': {}},
                         }},
                     }},
                 }
-            }},
+            }
+        },
         'payroll_admin': {
             'permissions': {
                 'app_menu': {
-                    'payroll_menu', {'has_access': True, 'items': {
-                        'payroll_dashboard', {'has_access': True, 'items': {}},
-                        'payroll_payruns', {'has_access': True, 'items': {}},
-                        'payroll_timesheets', {'has_access': True, 'items': {}},
-                        'payroll_transfer_data', {'has_access': True, 'items': {}},
+                    'payroll_menu': {'has_access': True, 'items': {
+                        'payroll_dashboard': {'has_access': True, 'items': {}},
+                        'payroll_payruns': {'has_access': True, 'items': {}},
+                        'payroll_timesheets': {'has_access': True, 'items': {}},
+                        'payroll_transfer_data': {'has_access': True, 'items': {}},
                     }},
-                    'directory_menu', {'has_access': True, 'items': {
-                        'directory_employees', {'has_access': True, 'items': {}},
-                        'directory_locations', {'has_access': True, 'items': {}},
-                        'directory_jobs', {'has_access': True, 'items': {}},
-                        'directory_job_types', {'has_access': True, 'items': {}},
-                        'directory_employee_roles', {'has_access': True, 'items': {}},
-                        'directory_timesheet_types', {'has_access': True, 'items': {}},
+                    'directory_menu': {'has_access': True, 'items': {
+                        'directory_employees': {'has_access': True, 'items': {}},
+                        'directory_locations': {'has_access': True, 'items': {}},
+                        'directory_jobs': {'has_access': True, 'items': {}},
+                        'directory_job_types': {'has_access': True, 'items': {}},
+                        'directory_employee_roles': {'has_access': True, 'items': {}},
+                        'directory_timesheet_types': {'has_access': True, 'items': {}},
                     }},
-                    'admin_menu', {'has_access': False, 'items': {}},
-                    'developer_menu', {'has_access': False, 'items': {}},
+                    'admin_menu': {'has_access': False, 'items': {}},
+                    'developer_menu': {'has_access': False, 'items': {}},
                 }
-            }},
+            }
+        },
         'payroll_manager': {
             'permissions': {
                 'app_menu': {
-                    'payroll_menu', {'has_access': True, 'items': {
-                        'payroll_dashboard', {'has_access': False, 'items': {}},
-                        'payroll_payruns', {'has_access': True, 'items': {}},
-                        'payroll_timesheets', {'has_access': True, 'items': {}},
-                        'payroll_transfer_data', {'has_access': True, 'items': {}},
+                    'payroll_menu': {'has_access': True, 'items': {
+                        'payroll_dashboard': {'has_access': False, 'items': {}},
+                        'payroll_payruns': {'has_access': True, 'items': {}},
+                        'payroll_timesheets': {'has_access': True, 'items': {}},
+                        'payroll_transfer_data': {'has_access': True, 'items': {}},
                     }},
-                    'directory_menu', {'has_access': True, 'items': {
-                        'directory_employees', {'has_access': True, 'items': {}},
-                        'directory_locations', {'has_access': False, 'items': {}},
-                        'directory_jobs', {'has_access': True, 'items': {}},
-                        'directory_job_types', {'has_access': False, 'items': {}},
-                        'directory_employee_roles', {'has_access': False, 'items': {}},
-                        'directory_timesheet_types', {'has_access': False, 'items': {}},
+                    'directory_menu': {'has_access': True, 'items': {
+                        'directory_employees': {'has_access': True, 'items': {}},
+                        'directory_locations': {'has_access': False, 'items': {}},
+                        'directory_jobs': {'has_access': True, 'items': {}},
+                        'directory_job_types': {'has_access': False, 'items': {}},
+                        'directory_employee_roles': {'has_access': False, 'items': {}},
+                        'directory_timesheet_types': {'has_access': False, 'items': {}},
                     }},
-                    'admin_menu', {'has_access': False, 'items': {}},
-                    'developer_menu', {'has_access': False, 'items': {}},
+                    'admin_menu': {'has_access': False, 'items': {}},
+                    'developer_menu': {'has_access': False, 'items': {}},
                 }
-            }},
+            }
+        },
     }
 }
