@@ -171,7 +171,7 @@ class HomePage(HomePageTemplate):
 
 
     def login_user(self):
-        print('login_user')
+        # print('login_user')
         stime = time.time()
         AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
         # AppEnv.logged_user = init_user_session(
@@ -188,7 +188,7 @@ class HomePage(HomePageTemplate):
         stime = time.time()
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         AppEnv.init_enum_constants()
-        print('enum_constants', AppEnv.enum_constants)
+        # print('enum_constants', AppEnv.enum_constants)
         do_something()
         print('LOAD CONST: ', time.time() - stime)
         # AppEnv.navigation = self.sidebar
@@ -214,7 +214,7 @@ class HomePage(HomePageTemplate):
         #         or AppEnv.logged_user.permissions.developer):
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_ADMIN)
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
-        print('user role type', AppEnv.logged_user.user_role_type)
+        # print('user role type', AppEnv.logged_user.user_role_type)
         # self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
         if AppEnv.logged_user.tenant_uid == SYSTEM_TENANT_UID:
             app_comps = models.AppComponent.search(tenant_uid=SYSTEM_TENANT_UID, id='user_role_permissions')
@@ -312,7 +312,7 @@ class HomePage(HomePageTemplate):
     #     self.appbar_menu.show_selected('settings_account')
 
     def appbar_settings_button_click(self, args):
-        print('appbar_settings_button_click')
+        # print('appbar_settings_button_click')
         # tenant = models.Tenant.get_row(AppEnv.logged_user.tenant_uid)
         # recs = models.Account.search(pay_entities=[tenant])
         # print('recs', len(recs))
@@ -354,7 +354,7 @@ class HomePage(HomePageTemplate):
 
 
     def appbar_user_menu_select(self, args):
-        print('appbar_user_menu_select', args.item.id)
+        # print('appbar_user_menu_select', args.item.id)
         if args.item.id == 'pl-appbar-sign-out':
             anvil.users.logout()
             if self.content_control:
@@ -375,13 +375,13 @@ class HomePage(HomePageTemplate):
 
 
     def appbar_settings_menu_select(self, args):
-        print('appbar_user_menu_select', args.item.id)
+        # print('appbar_user_menu_select', args.item.id)
         self.appbar_menu.show_selected(args.item.id)
 
 
     def appbar_data_file_select(self, args):
-        print('appbar_data_file_select', args)
-        print(self.appbar_data_file.value)
+        # print('appbar_data_file_select', args)
+        # print(self.appbar_data_file.value)
         if self.firs_load:
             self.firs_load = False
         else:
