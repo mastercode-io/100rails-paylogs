@@ -207,12 +207,10 @@ class HomePage(HomePageTemplate):
         #         #     "click", self.settings_click
         #         # )
 
-        self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
-        if (AppEnv.logged_user.permissions.super_admin
-                or AppEnv.logged_user.permissions.developer):
-            self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_ADMIN)
-            self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
-        # if AppEnv.logged_user.permissions.developer:
+        # self.appbar_menu.menu_items = nav.PL_APPBAR_MENU.copy()
+        # if (AppEnv.logged_user.permissions.super_admin
+        #         or AppEnv.logged_user.permissions.developer):
+        #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_ADMIN)
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         print('user role type', AppEnv.logged_user.user_role_type)
         self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
