@@ -218,13 +218,12 @@ class HomePage(HomePageTemplate):
         # self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
         if AppEnv.logged_user.tenant_uid == SYSTEM_TENANT_UID:
             app_comps = models.AppComponent.search(tenant_uid=SYSTEM_TENANT_UID, id='user_role_permissions')
-            for app_comp in app_comps:
-                print('app_comp', app_comp, app_comp['id'])
-            permissions_schema = [*models.AppComponent.search(tenant_uid=SYSTEM_TENANT_UID,
-                                                              id='user_role_permissions')][0]
+            app_permissions = next(iter(app_comps), None)
         else:
-            permissions_schema = models.AppComponent.get_by('id', 'user_role_permissions')
-        self.user_app_permissions = permissions_schema['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
+            app_permissions = models.AppComponent.get_by('id', 'user_role_permissions')
+        print('permissions_schema', app_permissions)
+        print('user_roles', app_permissions['user_roles'])
+        self.user_app_permissions = app_permissions['permissions']['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
         user_app_menu = nav.get_user_menu_items(
             nav.PL_MENU_ITEMS,
             self.user_app_permissions['app_menu'])
