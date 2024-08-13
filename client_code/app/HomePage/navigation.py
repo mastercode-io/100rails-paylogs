@@ -20,7 +20,7 @@ PL_ASSISTANT_WIDTH = 300
 def get_user_menu_items(menu_items: dict, user_permissions: dict):
     user_menu_items = {}
     for menu_id, subitems in menu_items.items():
-        if user_permissions['menu_id']['has_access']:
+        if user_permissions[menu_id]['has_access']:
             user_menu_subitems = get_user_menu_subitems(subitems, user_permissions['menu_id']['items'])
             user_menu_items[menu_id] = user_menu_subitems
     return user_menu_items
