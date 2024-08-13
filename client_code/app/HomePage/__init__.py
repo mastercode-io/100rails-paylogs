@@ -217,6 +217,9 @@ class HomePage(HomePageTemplate):
         print('user role type', AppEnv.logged_user.user_role_type)
         # self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
         if AppEnv.logged_user.tenant_uid == SYSTEM_TENANT_UID:
+            app_comps = models.AppComponent.search(tenant_uid=SYSTEM_TENANT_UID, id='user_role_permissions')
+            for app_comp in app_comps:
+                print('app_comp', app_comp, app_comp['id'])
             permissions_schema = [*models.AppComponent.search(tenant_uid=SYSTEM_TENANT_UID,
                                                               id='user_role_permissions')][0]
         else:
