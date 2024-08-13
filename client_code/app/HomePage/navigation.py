@@ -17,25 +17,26 @@ PL_SIDEBAR_POPUP_OFFSET = 1
 PL_ASSISTANT_WIDTH = 300
 
 
-def get_user_menu_items(menu_items: dict, user_permissions: dict):
-    user_menu_items = {}
-    for menu_id, subitems in menu_items.items():
-        if user_permissions[menu_id]['has_access']:
-            user_menu_subitems = get_user_menu_subitems(subitems, user_permissions[menu_id]['items'])
-            user_menu_items[menu_id] = user_menu_subitems
-    return user_menu_items
+# def get_user_menu_items(menu_items: dict, user_permissions: dict):
+#     user_menu_items = {}
+#     for menu_id, subitems in menu_items.items():
+#         if user_permissions[menu_id]['has_access']:
+#             user_menu_subitems = get_user_menu_subitems(subitems, user_permissions[menu_id]['items'])
+#             user_menu_items[menu_id] = user_menu_subitems
+#     return user_menu_items
 
 
-def get_user_menu_subitems(menu_subitems: list, user_permissions: dict):
-    user_menu_subitems = []
-    for subitem in menu_subitems:
-        if subitem['id'] in user_permissions and user_permissions[subitem['id']]['has_access']:
-            if 'items' in subitem:
-                subitem['items'] = get_user_menu_subitems(subitem['items'], user_permissions[subitem['id']]['items'])
+def get_user_menu_items(menu_items: list, user_permissions: dict):
+    user_menu_items = []
+    for item in menu_items:
+        if item['id'] in user_permissions and user_permissions[item['id']]['has_access']:
+            user_menu_item = {'id': item['id'], 'text': item['text']}
+            if 'items' in item:
+                user_menu_item['items'] = get_user_menu_items(item['items'], user_permissions[item['id']]['items'])
             else:
-                subitem['items'] = []
-            user_menu_subitems.append(subitem)
-    return user_menu_subitems
+                user_menu_item['items'] = []
+            user_menu_items.append(user_menu_item)
+    return user_menu_items
 
 
 # Appbar navigation class

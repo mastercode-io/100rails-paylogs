@@ -51,6 +51,54 @@ PL_MENU_ITEMS = {
     ]
 }
 
+PL_MENU_ITEMS_2 = [
+    {'id': 'payroll_menu', 'text': 'PAYROLL', 'items': [
+        {'id': 'payroll_dashboard', 'text': 'Dashboard', 'items': []},
+        {'id': 'payroll_payruns', 'text': 'Payruns', 'items': []},
+        {'id': 'payroll_timesheets', 'text': 'Timesheets', 'items': []},
+        {'id': 'payroll_transfer_data', 'text': 'Transfer Data', 'items': []},
+    ]},
+    {'id': 'directory_menu', 'text': 'PAYROLL', 'items': [
+        {'id': 'directory_employees', 'text': 'Employees', 'items': []},
+        {'id': 'directory_locations', 'text': 'Locations', 'items': []},
+        {'id': 'directory_jobs', 'text': 'Jobs', 'items': []},
+        {'id': 'directory_job_types', 'text': 'Job Types', 'items': []},
+        {'id': 'directory_employee_roles', 'text': 'Employee Roles', 'items': []},
+        {'id': 'directory_timesheet_types', 'text': 'Timesheet Types', 'items': []},
+    ]},
+    {'id': 'admin_menu', 'text': 'ADMIN', 'items': [
+        {'id': 'admin_accounts', 'text': 'Accounts', 'items': []},
+        {'id': 'admin_tenants', 'text': 'Tenants', 'items': []},
+        {'id': 'admin_user_roles', 'text': 'User Roles', 'items': []},
+        {'id': 'admin_permissions', 'text': 'Permissions', 'items': []},
+        {'id': 'admin_settings', 'text': 'Settings', 'items': [
+            {'id': 'admin_settings_scope_types', 'text': 'Scope Types', 'items': []},
+        ]},
+        {'id': 'admin_integrations', 'text': 'Integrations', 'items': []},
+    ]},
+    {'id': 'developer_menu', 'text': 'DEVELOPER', 'items': [
+        {'id': 'developer_components', 'text': 'Components', 'items': [
+            {'id': 'developer_views', 'text': 'Views', 'items': []},
+            {'id': 'developer_pages', 'text': 'Pages', 'items': []},
+            {'id': 'developer_forms', 'text': 'Forms', 'items': []},
+        ]},
+        {'id': 'developer_schema', 'text': 'App Schema', 'items': [
+            {'id': 'developer_enums', 'text': 'Enumerations', 'items': []},
+            {'id': 'developer_models', 'text': 'Models', 'items': []},
+            {'id': 'developer_migrate', 'text': 'Migrate DB', 'items': []},
+        ]},
+        {'id': 'developer_tools', 'text': 'Tools', 'items': [
+            {'id': 'developer_import', 'text': 'Import Data', 'items': []},
+            {'id': 'developer_export', 'text': 'Export Data', 'items': []},
+            {'id': 'developer_run_script', 'text': 'Run Script', 'items': []},
+        ]},
+        {'id': 'developer_prototype', 'text': 'Prototype', 'items': [
+            {'id': 'developer_tenant_form', 'text': 'Tenant Form', 'items': []},
+            {'id': 'developer_tree_grid', 'text': 'Tree Grid View', 'items': []},
+        ]},
+    ]}
+]
+
 # Navigation items/actions
 PL_NAV_ITEMS = {
     'payroll_dashboard': {'name': 'CompanyDashboardPage', 'type': 'page', 'action': 'open', 'props': {}},
