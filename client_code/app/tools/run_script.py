@@ -163,5 +163,5 @@ def update_users():
 
 
 def foo():
-    create_user()
+    bar()
     pass

@@ -236,6 +236,23 @@ class HomePage(HomePageTemplate):
             self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
             self.appbar_assistant_toggle.element.onclick = self.assistant.toggle
 
+        user_menu_items = []
+        user_menu_permissions = self.user_app_permissions['special_menu']['user_menu']['items']
+        for item in self.appbar_user_menu_items:
+            if item['id'] in user_menu_permissions and user_menu_permissions[item['id']]['has_access']:
+                user_menu_items.append(item)
+        self.appbar_user_menu = ej.splitbuttons.DropDownButton(
+            {
+                "cssClass": "e-inherit e-caret-hide pl-menu-font",
+                "iconCss": "fa-solid fa-user pl-appbar-menu-icon",
+                "items": user_menu_items,
+                "open": self.appbar_menu_popup_open,
+                "select": self.appbar_user_menu_select,
+                "beforeItemRender": self.appbar_user_menu_item_render,
+            }
+        )
+        self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
+
         # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
 
@@ -271,7 +288,6 @@ class HomePage(HomePageTemplate):
         # Append appbar controls to elements
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
         self.appbar_notification_list.appendTo(jQuery("#pl-appbar-notification-list")[0])
-        self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
         self.login_user()
 
 

@@ -302,19 +302,19 @@ DEFAULT_USER_PERMISSIONS = {
                     }},
                     'admin_menu': {'has_access': False, 'items': {}},
                     'developer_menu': {'has_access': False, 'items': {}},
+                },
+                'special_menu': {
+                    'user_menu': {'has_access': True, 'items': {
+                        'pl-appbar-user-account-name': {'has_access': True},
+                        'pl-appbar-user-profile': {'has_access': True},
+                        'pl-appbar-account-settings': {'has_access': False},
+                        'pl-appbar-sign-out': {'has_access': True},
+
+                    }},
+                    'settings_button': {'has_access': False},
+                    'assistant_button': {'has_access': False},
                 }
             },
-            'special_menu': {
-                'user_menu': {'has_access': True, 'items': {
-                    'pl-appbar-user-account-name': {'has_access': True},
-                    'pl-appbar-user-profile': {'has_access': True},
-                    'pl-appbar-account-settings': {'has_access': False},
-                    'pl-appbar-sign-out': {'has_access': True},
-
-                }},
-                'settings_button': {'has_access': False},
-                'assistant_button': {'has_access': False},
-            }
-        },
+        }
     }
 }
