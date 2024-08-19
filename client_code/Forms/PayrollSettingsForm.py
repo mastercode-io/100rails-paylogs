@@ -167,8 +167,6 @@ class PayrollSettingsForm(FormBase):
             self.payroll_integration.enabled = True
             self.use_timesheet_integration.enabled = True
             self.timesheet_integration.enabled = True
-            # self.payrun_flow_steps_field.enabled = True
-            # self.payrun_flow_steps_field.fields[0].enabled = False
         else:
             super().form_save(args, hide=False)
             self.action = 'view'
