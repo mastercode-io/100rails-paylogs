@@ -59,40 +59,12 @@ class PayrollSettingsForm(FormBase):
         self.pay_category_type = DropdownInput(name='pay_category_type', label='Pay Category Type',
                                                options=list(PAY_CATEGORY_TYPES.keys()), value='Single',
                                                on_change=self.pay_category_type_selected,
-                                               required=True)
+                                               required=True, save=False)
 
         self.public_holidays = InlineMessage(name='public_holidays', label='Public Holidays',
                                              content='Public holidays will be displayed here')
         self.payroll_rdo = InlineMessage(name='payroll_rdo', label='RDOs',
                                          content='RDOs will be displayed here')
-
-        self.payrun_flow_steps_schema = [
-            CheckboxInput(name='created', label='Created', value=True, enabled=False,
-                          on_change=self.payrun_flow_changed),
-            CheckboxInput(name='ts_entered', label='Timesheets Entered', value=False, enabled=True,
-                          on_change=self.payrun_flow_changed),
-            CheckboxInput(name='ts_approve3d', label='Timesheets Approved', value=False, enabled=True,
-                          on_change=self.payrun_flow_changed),
-            CheckboxInput(name='review', label='Review', value=False, enabled=True,
-                          on_change=self.payrun_flow_changed),
-            CheckboxInput(name='pay_calculated', label='Pay Calculated', value=False, enabled=True,
-                          on_change=self.payrun_flow_changed),
-            CheckboxInput(name='pay_approved', label='Pay Approved', value=False, enabled=True,
-                          on_change=self.payrun_flow_changed),
-            CheckboxInput(name='sent', label='Sent to Payroll', value=False, enabled=True,
-                          on_change=self.payrun_flow_changed),
-            CheckboxInput(name='paid', label='Paid', value=False, enabled=True,
-                          on_change=self.payrun_flow_changed),
-        ]
-        self.payrun_flow_steps_field = MultiFieldInput(name='payrun_steps', label='Payrun Flow Steps<br><br>',
-                                                       fields=self.payrun_flow_steps_schema)
-
-        self.payrun_flow_steps_widget = StepperWidget(title='Payrun Flow',
-                                                      steps=[{'label': 'Created', 'iconCss': 'fa-solid fa-circle-1'}],
-                                                      direction='vertical',
-                                                      label_position='right', )
-        self.payrun_flow_steps_view = InlineMessage(content=self.payrun_flow_steps_widget.html)
-
 
         # Buttons
         self.action_button = Button(content='Edit',
@@ -106,46 +78,6 @@ class PayrollSettingsForm(FormBase):
                 <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
             </div>'
 
-        sections = [
-            {
-                'name': 'pay_period', 'label': 'Pay Period', 'label_style': 'margin-bottom:10px',
-                'cols': [
-                    [
-                        self.frequency,
-                        self.pay_period_start_day,
-                        self.pay_period_end_day,
-                        self.pay_day,
-                        self.payrun_initial_date,
-                    ],
-                    [],
-                    []
-                ]
-            },
-            {
-                'name': 'pay_calculation', 'label': 'Pay Calculation',  'label_style': 'margin-bottom:10px',
-                'cols': [
-                    [
-                        self.pay_category_type,
-                    ],
-                    [],
-                    []
-                ]
-            },
-            {
-                'name': 'integration', 'label': 'Payroll Integration',  'label_style': 'margin-bottom:10px',
-                'cols': [
-                    [
-                        # self.use_integration,
-                        # self.integration,
-                        # self.connection_message,
-                        # self.connection_button,
-                    ],
-                    [],
-                    []
-                ]
-            },
-        ]
-
         tabs = [
             {
                 'name': 'payroll_calendar', 'label': 'Pay Calendar', 'sections': [
@@ -157,7 +89,6 @@ class PayrollSettingsForm(FormBase):
                                 self.pay_period_start_day,
                                 self.pay_period_end_day,
                                 self.pay_day,
-                                # self.payrun_initial_date,
                             ],
                             [
                                 self.public_holidays,
