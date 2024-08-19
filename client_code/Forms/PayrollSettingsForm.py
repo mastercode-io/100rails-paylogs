@@ -32,16 +32,16 @@ class PayrollSettingsForm(FormBase):
         self.payroll_connection_button = Button(content='Create Connection to Payroll',
                                                 action=self.create_payroll_connection)
 
-        self.timesheet_integration_subtitle = InlineMessage(content='Time and Attendance Integration',)
-        self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Use Integration to Time and Attendance',
+        self.timesheet_integration_subtitle = InlineMessage(content='Time Tracking',)
+        self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Use Integration to Time Tracking',
                                                        value=False,
                                                        on_change=self.use_timesheet_integration_changed)
-        self.timesheet_integration = LookupInput(name='timesheet_integration', label='Timesheet Integration',
+        self.timesheet_integration = LookupInput(name='timesheet_integration', label='Time Tracking Integration',
                                                  model='AppIntegration', text_field='service_name',
                                                  get_data=False,
                                                  on_change=self.timesheet_integration_selected)
         self.timesheet_connection_message = InlineMessage(css_class='pl-message-bar')
-        self.timesheet_connection_button = Button(content='Create Connection to Time and Attendance',
+        self.timesheet_connection_button = Button(content='Create Connection to Time Tracking',
                                                   action=self.create_timesheet_connection)
 
         self.frequency = DropdownInput(name='frequency', label='Pay Cycle Frequency',
@@ -122,8 +122,8 @@ class PayrollSettingsForm(FormBase):
         }
 
         app_list = [app.to_json_dict() for app in AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)]
-        self.payroll_integration.data = app_list
-        self.timesheet_integration.data = app_list
+        self.payroll_integration.data = [app for app in app_list if app['service_type'] == 'Payroll']
+        self.timesheet_integration.data = [app for app in app_list if app['service_type'] == 'Time Tracking']
         payroll_config = next(iter(PayrollConfig.search()), None)
         if payroll_config:
             # self.data = payroll_config

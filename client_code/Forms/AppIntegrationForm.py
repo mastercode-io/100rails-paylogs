@@ -6,14 +6,8 @@ from AnvilFusion.components.MultiFieldInput import MultiFieldInput
 
 
 SERVICE_TYPES = [
-    'BPA',
-    'Accounting',
     'Time Tracking',
-    'CRM',
-    'HR',
     'Payroll',
-    'Project Management',
-    'Other',
 ]
 CONNECTION_TYPES = [
     'OAuth',
