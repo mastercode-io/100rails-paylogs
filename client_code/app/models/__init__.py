@@ -532,8 +532,8 @@ class Payrun:
 class PayrollConfig:
     _title = "integration.name"
 
-    integration = Relationship("AppIntegration")
-    use_integration = Attribute(field_type=types.FieldTypes.BOOLEAN)
+    payroll_integration = Relationship("AppIntegration")
+    timesheet_integration = Relationship("AppIntegration")
     frequency = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_period_start_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     pay_period_end_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
