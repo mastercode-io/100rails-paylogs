@@ -216,7 +216,7 @@ class HomePage(HomePageTemplate):
         #     self.appbar_menu.menu_items.extend(nav.PL_APPBAR_MENU_DEVELOPER)
         # print('user role type', AppEnv.logged_user.user_role_type)
         # self.user_app_permissions = nav.DEFAULT_USER_PERMISSIONS['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
-        if AppEnv.logged_user.tenant_uid == SYSTEM_TENANT_UID:
+        if AppEnv.logged_user.tenant_uid == SYSTEM_TENANT_UID or AppEnv.logged_user.user_role_type == 'portal_admin':
             app_comps = models.AppComponent.search(tenant_uid=SYSTEM_TENANT_UID, id='user_role_permissions')
             app_permissions = next(iter(app_comps), None)
         else:
