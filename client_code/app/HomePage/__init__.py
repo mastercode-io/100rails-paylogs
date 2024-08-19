@@ -231,10 +231,21 @@ class HomePage(HomePageTemplate):
                 and self.user_app_permissions['special_menu']['settings_button']['has_access']):
             self.appbar_settings_button.appendTo(jQuery("#pl-appbar-settings-menu")[0])
             self.appbar_settings_button.element.onclick = self.appbar_settings_button_click
+            settings_button_tooltip = ej.popups.Tooltip({
+                "content": "Payroll Settings",
+                "position": "BottomCenter",
+            })
+            settings_button_tooltip.appendTo(self.appbar_settings_button.element)
+
         if ('assistant_button' in self.user_app_permissions['special_menu']
                 and self.user_app_permissions['special_menu']['assistant_button']['has_access']):
             self.appbar_assistant_toggle.appendTo(jQuery("#pl-appbar-assistant-toggle")[0])
             self.appbar_assistant_toggle.element.onclick = self.assistant.toggle
+            assistant_button_tooltip = ej.popups.Tooltip({
+                "content": "Ask Assistant",
+                "position": "BottomCenter",
+            })
+            assistant_button_tooltip.appendTo(self.appbar_assistant_toggle.element)
 
         user_menu_items = []
         user_menu_permissions = self.user_app_permissions['special_menu']['user_menu']['items']
@@ -252,6 +263,12 @@ class HomePage(HomePageTemplate):
             }
         )
         self.appbar_user_menu.appendTo(jQuery("#pl-appbar-user-menu")[0])
+        user_menu_tooltip = ej.popups.Tooltip({
+            "content": "User Menu",
+            "position": "BottomCenter",
+        })
+        user_menu_tooltip.appendTo(self.appbar_user_menu.element)
+
         self.start_page = self.user_app_permissions['start_page']
 
         # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
@@ -290,6 +307,11 @@ class HomePage(HomePageTemplate):
         # Append appbar controls to elements
         self.appbar.appendTo(jQuery("#pl-appbar")[0])
         self.appbar_notification_list.appendTo(jQuery("#pl-appbar-notification-list")[0])
+        appbar_notifications_tooltip = ej.popups.Tooltip({
+            "content": "Notifications",
+            "position": "BottomCenter",
+        })
+        appbar_notifications_tooltip.appendTo(self.appbar_notification_list.element)
         self.login_user()
 
 
