@@ -20,11 +20,11 @@ class PayrollSettingsForm(FormBase):
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
                                              string_format='d MMM yyy', required=True)
 
-        self.payroll_integration_subtitle = InlineMessage(content='Payroll Integration',)
-        self.use_payroll_integration = CheckboxInput(name='use_integration', label='Use Integration to Payroll',
+        self.integrations_subtitle = InlineMessage(content='Integrations',)
+        self.use_payroll_integration = CheckboxInput(name='use_integration', label='Payroll Integration',
                                                      value=False,
                                                      on_change=self.use_payroll_integration_changed)
-        self.payroll_integration = LookupInput(name='payroll_integration', label='Payroll Integration',
+        self.payroll_integration = LookupInput(name='payroll_integration', label='Select Payroll App',
                                                model='AppIntegration', text_field='service_name',
                                                get_data=False,
                                                on_change=self.payroll_integration_selected)
@@ -33,10 +33,10 @@ class PayrollSettingsForm(FormBase):
                                                 action=self.create_payroll_connection)
 
         self.timesheet_integration_subtitle = InlineMessage(content='Time Tracking',)
-        self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Use Integration to Time Tracking',
+        self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Time Tracking Integration',
                                                        value=False,
                                                        on_change=self.use_timesheet_integration_changed)
-        self.timesheet_integration = LookupInput(name='timesheet_integration', label='Time Tracking Integration',
+        self.timesheet_integration = LookupInput(name='timesheet_integration', label='Select Time Tracking App',
                                                  model='AppIntegration', text_field='service_name',
                                                  get_data=False,
                                                  on_change=self.timesheet_integration_selected)
@@ -96,7 +96,7 @@ class PayrollSettingsForm(FormBase):
                              ],
                             [
                                 self.payrun_initial_date,
-                                self.payroll_integration_subtitle,
+                                self.integrations_subtitle,
                                 self.use_payroll_integration,
                                 self.payroll_integration,
                                 self.payroll_connection_message,
