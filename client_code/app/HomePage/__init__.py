@@ -288,6 +288,7 @@ class HomePage(HomePageTemplate):
             "content": "Select Data File",
             "position": "BottomCenter",
         })
+        print('data file el', self.appbar_data_file.control.element)
         data_file_tooltip.appendTo(self.appbar_data_file.control.element)
         if self.appbar_data_file.control:
             self.appbar_data_file.control.showClearButton = False
