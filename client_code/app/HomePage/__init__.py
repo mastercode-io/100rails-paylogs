@@ -284,9 +284,14 @@ class HomePage(HomePageTemplate):
         self.appbar_data_file.options = AppEnv.logged_user.pay_entities
         self.appbar_data_file.value = AppEnv.logged_user.tenant_uid
         self.appbar_data_file.show()
+        data_file_tooltip = ej.popups.Tooltip({
+            "content": "Select Data File",
+            "position": "BottomCenter",
+        })
+        data_file_tooltip.appendTo(self.appbar_data_file.control.element)
         if self.appbar_data_file.control:
             self.appbar_data_file.control.showClearButton = False
-            print('LOAD UI: ', time.time() - stime)
+        print('LOAD UI: ', time.time() - stime)
 
         self.assistant.show()
         stime = time.time()
