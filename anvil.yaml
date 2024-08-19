@@ -159,7 +159,7 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
+    - {name: payrol_integration, type: link_single, target: app_integrations}
     - {name: frequency, admin_ui: null, type: string}
     - name: use_integration
       admin_ui: {width: 200}
@@ -170,6 +170,10 @@ db_schema:
     - name: payrun_initial_date
       admin_ui: {width: 200, order: -1}
       type: date
+    - name: timesheet_integration
+      admin_ui: {width: 200, order: 0}
+      type: link_single
+      target: app_integrations
     title: Payroll Configs
   app_enums:
     client: none
