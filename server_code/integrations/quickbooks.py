@@ -22,7 +22,7 @@ qb_auth_client = AuthClient(
 
 @anvil.server.callable
 def get_qb_auth_url(tenant_uid, service_uid):
-    state_token = {'tenant_uid': tenant_uid, 'service_uid': service_uid}
+    state_token = json.dumps({'tenant_uid': tenant_uid, 'service_uid': service_uid})
     qb_auth_url = qb_auth_client.get_authorization_url([Scopes.ACCOUNTING], state_token=state_token)
     print('quickbooks auth url', qb_auth_url)
     return qb_auth_url
