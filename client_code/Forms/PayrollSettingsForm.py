@@ -259,7 +259,9 @@ class PayrollSettingsForm(FormBase):
         print('create_connection', args)
         self.payroll_connection_message.accent = 'info'
         self.payroll_connection_message.content = 'Creating connection...'
-        qb_auth_url = anvil.server.call('get_qb_auth_url', AppEnv.logged_user['tenant_uid'])
+        qb_auth_url = anvil.server.call('get_qb_auth_url',
+                                        AppEnv.logged_user['tenant_uid'],
+                                        self.payroll_integration.value['uid'])
         print('qb_auth_url', qb_auth_url)
         anvil.js.window.location.href = qb_auth_url
 
