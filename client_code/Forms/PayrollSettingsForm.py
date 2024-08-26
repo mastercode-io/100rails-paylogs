@@ -253,7 +253,7 @@ class PayrollSettingsForm(FormBase):
 
     def payroll_integration_selected(self, args):
         print('integration_selected', args)
-        if not args.get('value') or not self.payroll_integration.value:
+        if not args.get('value') and not self.payroll_integration.value:
             self.payroll_connection_message.accent = None
             self.payroll_connection_message.content = ''
             self.payroll_connection_button.hide()
