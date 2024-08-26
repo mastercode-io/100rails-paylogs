@@ -21,8 +21,9 @@ qb_auth_client = AuthClient(
 
 
 @anvil.server.callable
-def get_qb_auth_url(tenant_uid):
-    qb_auth_url = qb_auth_client.get_authorization_url([Scopes.ACCOUNTING], state_token=tenant_uid)
+def get_qb_auth_url(tenant_uid, service_uid):
+    state_token = {'tenant_uid': tenant_uid, 'service_uid': service_uid}
+    qb_auth_url = qb_auth_client.get_authorization_url([Scopes.ACCOUNTING], state_token=state_token)
     print('quickbooks auth url', qb_auth_url)
     return qb_auth_url
 
@@ -31,14 +32,14 @@ def get_qb_auth_url(tenant_uid):
 def qb_auth(**params):
     qb_auth_code = params.get("code", None)
     realm_id = params.get("realmId", None)
-    state = params.get("state", {})
-    tenant_uid = state.get('tenant_uid', None)
-    service_uid = state.get('service_uid', None)
+    state_token = json.loads(params.get("state", "{}"))
+    tenant_uid = state_token.get('tenant_uid', None)
+    service_uid = state_token.get('service_uid', None)
     qb_auth_client.get_bearer_token(qb_auth_code, realm_id=realm_id)
     qb_access_token = qb_auth_client.access_token
     qb_refresh_token = qb_auth_client.refresh_token
-    print(f"qb_access_token: {qb_access_token}\nqb_refresh_token: {qb_refresh_token}")
-    print(f"tenant_uid: {tenant_uid}\nrealm_id: {realm_id}")
+    print(f"qb_access_token: {qb_access_token}\nqb_refresh_token: {qb_refresh_token}\nrealm_id: {realm_id}")
+    print(f"state: {json.dumps(state_token)}")
 
     tenant = Tenant.get_row(tenant_uid)
     account = next(iter(Account.search(pay_entities=[tenant])), None)
