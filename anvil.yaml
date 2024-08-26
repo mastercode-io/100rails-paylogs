@@ -159,7 +159,6 @@ db_schema:
     - {name: uid, admin_ui: null, type: string}
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
-    - {name: payrol_integration, type: link_single, target: app_integrations}
     - {name: frequency, admin_ui: null, type: string}
     - name: pay_category_type
       admin_ui: {width: 200}
@@ -172,6 +171,8 @@ db_schema:
       type: link_single
       target: app_integrations
     - {name: payroll_integration, admin_ui: null, type: link_single, target: app_integrations}
+    - {name: timesheet_connection, admin_ui: null, type: link_single, target: app_integration_connections}
+    - {name: payroll_connection, admin_ui: null, type: link_single, target: app_integration_connections}
     title: Payroll Configs
   app_enums:
     client: none
@@ -513,7 +514,19 @@ db_schema:
   app_integration_connections:
     client: none
     server: full
-    columns: []
+    columns:
+    - {name: api_key, admin_ui: null, type: string}
+    - {name: api_user, admin_ui: null, type: link_single, target: users}
+    - {name: created_by, admin_ui: null, type: string}
+    - {name: created_time, admin_ui: null, type: datetime}
+    - {name: credentials, admin_ui: null, type: simpleObject}
+    - {name: description, admin_ui: null, type: string}
+    - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
+    - {name: status, admin_ui: null, type: string}
+    - {name: tenant_uid, admin_ui: null, type: string}
+    - {name: uid, admin_ui: null, type: string}
+    - {name: updated_by, admin_ui: null, type: string}
+    - {name: updated_time, admin_ui: null, type: datetime}
     title: App Integration Connections
   pay_rate_template_items:
     title: Pay Rate Template Items
@@ -863,6 +876,7 @@ db_schema:
     - name: direction
       admin_ui: {width: 200, order: 1}
       type: string
+    - {name: auth_data, admin_ui: null, type: simpleObject}
     title: App Integrations
   users:
     client: none
