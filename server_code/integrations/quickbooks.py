@@ -59,9 +59,11 @@ def qb_auth(**params):
     # return anvil.server.HttpResponse(200, "OK")
     payroll_integration_data = {
         'service_uid': service_uid,
-        'qb_access_token': qb_access_token,
-        'qb_refresh_token': qb_refresh_token,
-        'realm_id': realm_id,
+        'connection_data': {
+            'access_token': qb_access_token,
+            'refresh_token': qb_refresh_token,
+            'realm_id': realm_id,
+        }
     }
     return anvil.server.FormResponse(
         'app.HomePage',

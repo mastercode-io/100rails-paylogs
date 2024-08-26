@@ -59,7 +59,19 @@ class AppIntegration:
     service_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
     url = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     auth_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    auth_data = Attribute(field_type=types.FieldTypes.OBJECT)
     direction = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
+class AppIntegrationConnection:
+    _title = "integration.service_name"
+    integration = Relationship("AppIntegration")
+    credentials = Attribute(field_type=types.FieldTypes.OBJECT)
+    api_key = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
+    api_user = Relationship("User")
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
     status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
@@ -503,6 +515,23 @@ class PayRateTemplateSpecificRole:
 
 
 @model_type
+class PayrollConfig:
+    _title = "integration.name"
+
+    payroll_integration = Relationship("AppIntegration")
+    payroll_connection = Relationship("AppIntegrationConnection")
+    timesheet_integration = Relationship("AppIntegration")
+    timesheet_connection = Relationship("AppIntegrationConnection")
+    frequency = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    pay_period_start_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    pay_period_end_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    pay_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    payrun_initial_date = Attribute(field_type=types.FieldTypes.DATE)
+    pay_category_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
+
+
+@model_type
 class Payrun:
     _title = "pay_period_start"
 
@@ -526,21 +555,6 @@ class Payrun:
         else:
             return ''
     payrun_week = Computed(["pay_period_end"], "get_payrun_week")
-
-
-@model_type
-class PayrollConfig:
-    _title = "integration.name"
-
-    payroll_integration = Relationship("AppIntegration")
-    timesheet_integration = Relationship("AppIntegration")
-    frequency = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    pay_period_start_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    pay_period_end_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    pay_day = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    payrun_initial_date = Attribute(field_type=types.FieldTypes.DATE)
-    pay_category_type = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
-    status = Attribute(field_type=types.FieldTypes.ENUM_SINGLE)
 
 
 @model_type

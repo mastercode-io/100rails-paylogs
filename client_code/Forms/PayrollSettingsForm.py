@@ -18,8 +18,14 @@ class PayrollSettingsForm(FormBase):
                  **kwargs):
         print('PayrollSettingsForm')
         kwargs['model'] = 'PayrollConfig'
+        payroll_config = kwargs.get('data', {})
         payroll_integration_data = payroll_integration_data
         print('payroll_integration_data', payroll_integration_data)
+        if payroll_config and payroll_integration_data:
+            service_uid = payroll_integration_data.get('service_uid', None)
+            connection_data = payroll_integration_data.get('connection_data', None)
+            payroll_config['payroll_integration'] = AppIntegration.get(service_uid)
+            payroll_config['payroll_connection'] = connection_data
 
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
                                              string_format='d MMM yyy', required=True)
