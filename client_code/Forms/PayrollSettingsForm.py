@@ -34,7 +34,7 @@ class PayrollSettingsForm(FormBase):
 
         self.timesheet_integration_subtitle = InlineMessage(content='Time Tracking',)
         self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Time Tracking Integration',
-                                                       value=False,
+                                                       value=False, enabled=False,
                                                        on_change=self.use_timesheet_integration_changed)
         self.timesheet_integration = LookupInput(name='timesheet_integration', label='Select Time Tracking App',
                                                  model='AppIntegration', text_field='service_name',
@@ -207,6 +207,7 @@ class PayrollSettingsForm(FormBase):
                 self.payroll_connection_message.accent = 'warning'
                 self.payroll_connection_message.content = (f"No connection found for this integration: "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
+                self.payroll_connection_button.content = f'Create Connection to {payroll_integration.service_name}'
                 self.payroll_connection_button.show()
                 if self.action == 'view':
                     self.payroll_connection_button.enabled = False
@@ -254,6 +255,9 @@ class PayrollSettingsForm(FormBase):
         print('create_connection', args)
         self.payroll_connection_message.accent = 'info'
         self.payroll_connection_message.content = 'Creating connection...'
+        qb_auth_url = anvil.server.call('get_qb_auth_url', AppEnv.logged_user['tenant_uid'])
+        print('qb_auth_url', qb_auth_url)
+        anvil.js.window.location.href = qb_auth_url
 
 
     def create_timesheet_connection(self, args):
