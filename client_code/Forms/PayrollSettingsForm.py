@@ -182,6 +182,7 @@ class PayrollSettingsForm(FormBase):
         # self.payrun_flow_changed(args)
 
     def action_handler(self, args):
+        print('action_handler', args, self.action)
         if self.action == 'view':
             self.action = 'edit'
             self.frequency.enabled = True
