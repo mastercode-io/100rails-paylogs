@@ -190,10 +190,10 @@ class PayrollSettingsForm(FormBase):
             self.pay_day.enabled = True
             self.payrun_initial_date.enabled = True
             self.pay_category_type.enabled = True
-            self.use_payroll_integration.enabled = True
-            self.payroll_integration.enabled = True
-            self.use_timesheet_integration.enabled = True
-            self.timesheet_integration.enabled = True
+            # self.use_payroll_integration.enabled = True
+            # self.payroll_integration.enabled = True
+            # self.use_timesheet_integration.enabled = True
+            # self.timesheet_integration.enabled = True
         else:
             super().form_save(args, hide=False)
             self.action = 'view'
@@ -225,7 +225,7 @@ class PayrollSettingsForm(FormBase):
             if self.action == 'edit':
                 if self.data['payroll_connection'] is None:
                     self.payroll_connection_button.show()
-                if self.data['timesheet_integration'] and not self.data['timesheet_connection']:
+                if self.data['timesheet_connection'] is None:
                     self.timesheet_connection_button.show()
             else:
                 self.payroll_integration.enabled = False
