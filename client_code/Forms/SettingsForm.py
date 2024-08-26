@@ -246,7 +246,7 @@ class SettingsForm(FormBase):
             self.email.value = self.account['email']
             self.website.value = self.account['website']
             self.address.value = self.account['address']
-            self.subscription.value = self.account['subscription']
+            self.subscription_dates.value = self.account['subscription_dates']
 
             user_list = []
             pay_entity_list = []
@@ -324,7 +324,7 @@ class SettingsForm(FormBase):
             self.account['email'] = self.email.value
             self.account['website'] = self.website.value
             self.account['address'] = self.address.value
-            self.account['subscription'] = self.subscription.value
+            self.account['subscription_dates'] = self.subscription_dates.value
             self.account.save()
 
         self.update_source(self.data, add_new)
