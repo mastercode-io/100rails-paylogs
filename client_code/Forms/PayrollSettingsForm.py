@@ -213,15 +213,23 @@ class PayrollSettingsForm(FormBase):
 
 
     def integration_actions(self):
-        if self.action == 'edit':
-            if self.data['payroll_integration'] is not None:
-                self.use_payroll_integration.value = True
-                self.payroll_integration.value = self.data['payroll_integration']
-                self.payroll_integration.show()
+        print('integration_actions')
+        if self.data['payroll_integration'] is not None:
+            self.use_payroll_integration.value = True
+            self.payroll_integration.value = self.data['payroll_integration']
+            self.payroll_integration.show()
+        if self.data['timesheet_integration'] is not None:
+            self.use_timesheet_integration.value = True
+            self.timesheet_integration.value = self.data['timesheet_integration']
+            self.timesheet_integration.show()
+            if self.action == 'edit':
                 if self.data['payroll_connection'] is None:
                     self.payroll_connection_button.show()
-            if self.data['timesheet_integration'] and not self.data['timesheet_connection']:
-                self.timesheet_connection_button.show()
+                if self.data['timesheet_integration'] and not self.data['timesheet_connection']:
+                    self.timesheet_connection_button.show()
+            else:
+                self.payroll_integration.enabled = False
+                self.timesheet_integration.enabled = False
         else:
             self.payroll_connection_button.hide()
             self.timesheet_connection_button.hide()
