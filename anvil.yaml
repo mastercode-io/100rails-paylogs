@@ -512,6 +512,11 @@ db_schema:
     - {name: updated_by, admin_ui: null, type: string}
     - {name: updated_time, admin_ui: null, type: datetime}
     title: App Audit Logs
+  app_integration_connections:
+    client: none
+    server: full
+    columns: []
+    title: App Integration Connections
   pay_rate_template_items:
     title: Pay Rate Template Items
     client: none
