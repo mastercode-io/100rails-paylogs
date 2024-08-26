@@ -519,7 +519,7 @@ db_schema:
     - {name: api_user, admin_ui: null, type: link_single, target: users}
     - {name: created_by, admin_ui: null, type: string}
     - {name: created_time, admin_ui: null, type: datetime}
-    - {name: credentials, admin_ui: null, type: simpleObject}
+    - {name: auth_credentials, type: simpleObject}
     - {name: description, admin_ui: null, type: string}
     - {name: integration, admin_ui: null, type: link_single, target: app_integrations}
     - {name: status, admin_ui: null, type: string}
