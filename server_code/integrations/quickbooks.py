@@ -66,5 +66,5 @@ def qb_auth(**params):
     return anvil.server.FormResponse(
         'app.HomePage',
         start_page='payroll_settings',
-        start_props={'data': account, 'payroll_integration_data': payroll_integration_data}
+        start_props={'payroll_integration_data': payroll_integration_data}
     )
