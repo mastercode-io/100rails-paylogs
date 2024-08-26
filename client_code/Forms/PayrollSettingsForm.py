@@ -1,7 +1,7 @@
 from AnvilFusion.components.FormBase import FormBase
 from AnvilFusion.components.FormInputs import *
 from AnvilFusion.components.MultiFieldInput import MultiFieldInput
-from ..app.models import PayrollConfig, AppIntegration, AppOutApiCredential, SYSTEM_TENANT_UID
+from ..app.models import PayrollConfig, AppIntegration, AppIntegrationConnection, SYSTEM_TENANT_UID
 from ..Pages.widgets import StepperWidget
 
 PAYRUN_FREQUENCY = ['Weekly', 'Fortnightly', 'Monthly']
@@ -18,15 +18,31 @@ class PayrollSettingsForm(FormBase):
                  **kwargs):
         print('PayrollSettingsForm')
         kwargs['model'] = 'PayrollConfig'
+
+        # save the payroll integration data if it was passed
         payroll_config = kwargs.get('data', {})
         payroll_integration_data = payroll_integration_data
         print('payroll_integration_data', payroll_integration_data)
         if payroll_config and payroll_integration_data:
             service_uid = payroll_integration_data.get('service_uid', None)
-            connection_data = payroll_integration_data.get('connection_data', None)
-            payroll_config['payroll_integration'] = AppIntegration.get(service_uid)
-            payroll_config['payroll_connection'] = connection_data
+            connection_data = payroll_integration_data.get('connection_data', {})
+            payroll_integration = AppIntegration.get(service_uid)
+            if payroll_integration['auth_type'] == 'API Key':
+                payroll_connection = AppIntegrationConnection(
+                    integration=payroll_integration,
+                    api_key=connection_data.get('api_key', None),
+                    api_user=connection_data.get('api_user', None),
+                )
+            else:
+                payroll_connection = AppIntegrationConnection(
+                    integration=payroll_integration,
+                    auth_credentials=connection_data,
+                )
+            payroll_connection.save()
+            payroll_config['payroll_integration'] = payroll_integration
+            payroll_config['payroll_connection'] = payroll_connection
 
+        # Fields
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
                                              string_format='d MMM yyy', required=True)
 
@@ -212,7 +228,7 @@ class PayrollSettingsForm(FormBase):
             self.payroll_connection_button.hide()
         else:
             payroll_integration = AppIntegration.get(self.payroll_integration.value['uid'])
-            payroll_connection = AppOutApiCredential.get_by('integration', payroll_integration)
+            payroll_connection = AppIntegrationConnection.get_by('integration', payroll_integration)
             if not payroll_connection:
                 self.payroll_connection_message.accent = 'warning'
                 self.payroll_connection_message.content = (f"No connection found for this integration: "
@@ -236,7 +252,7 @@ class PayrollSettingsForm(FormBase):
             self.timesheet_connection_button.hide()
         else:
             timesheet_integration = AppIntegration.get(self.timesheet_integration.value['uid'])
-            timesheet_connection = AppOutApiCredential.get_by('integration', timesheet_integration)
+            timesheet_connection = AppIntegrationConnection.get_by('integration', timesheet_integration)
             if not timesheet_connection:
                 self.timesheet_connection_message.accent = 'warning'
                 self.timesheet_connection_message.content = (f"No connection found for this integration: "

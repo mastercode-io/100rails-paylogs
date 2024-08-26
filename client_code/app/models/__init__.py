@@ -69,7 +69,7 @@ class AppIntegration:
 class AppIntegrationConnection:
     _title = "integration.service_name"
     integration = Relationship("AppIntegration")
-    credentials = Attribute(field_type=types.FieldTypes.OBJECT)
+    auth_credentials = Attribute(field_type=types.FieldTypes.OBJECT)
     api_key = Attribute(field_type=types.FieldTypes.SINGLE_LINE)
     api_user = Relationship("User")
     description = Attribute(field_type=types.FieldTypes.MULTI_LINE)
