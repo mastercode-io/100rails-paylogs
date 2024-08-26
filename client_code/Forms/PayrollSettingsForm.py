@@ -174,14 +174,7 @@ class PayrollSettingsForm(FormBase):
         super().form_open(args)
         self.action_button.content = 'Edit' if self.action == 'view' else 'Save'
         self.action_button.show()
-        if self.action == 'edit':
-            if self.data['payroll_integration'] and not self.data['payroll_connection']:
-                self.payroll_connection_button.show()
-            if self.data['timesheet_integration'] and not self.data['timesheet_connection']:
-                self.timesheet_connection_button.show()
-        else:
-            self.payroll_connection_button.hide()
-            self.timesheet_connection_button.hide()
+        self.integration_actions()
         # if not self.opened:
         #     self.payrun_flow_steps_view.show()
         #     self.payrun_flow_steps_widget.form_show(height=self.form.element.offsetHeight - 100)
@@ -217,6 +210,22 @@ class PayrollSettingsForm(FormBase):
             # self.use_integration.enabled = False
             # self.integration.enabled = False
         self.form_open(args)
+
+
+    def integration_actions(self):
+        if self.action == 'edit':
+            if self.data['payroll_integration'] is not None:
+                self.use_payroll_integration.value = True
+                self.payroll_integration.value = self.data['payroll_integration']
+                self.payroll_integration.show()
+                if self.data['payroll_connection'] is None:
+                    self.payroll_connection_button.show()
+            if self.data['timesheet_integration'] and not self.data['timesheet_connection']:
+                self.timesheet_connection_button.show()
+        else:
+            self.payroll_connection_button.hide()
+            self.timesheet_connection_button.hide()
+
 
     def payrun_flow_changed(self, args):
         print('payrun_flow_changed', args)
