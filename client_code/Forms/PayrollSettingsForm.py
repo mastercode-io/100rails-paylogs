@@ -22,6 +22,7 @@ class PayrollSettingsForm(FormBase):
         # save the payroll integration data if it was passed
         payroll_config = kwargs.get('data', {})
         payroll_integration_data = payroll_integration_data
+        print('payroll_config', payroll_config)
         print('payroll_integration_data', payroll_integration_data)
         if payroll_config and payroll_integration_data:
             service_uid = payroll_integration_data.get('service_uid', None)
@@ -39,6 +40,7 @@ class PayrollSettingsForm(FormBase):
                     auth_credentials=connection_data,
                 )
             payroll_connection.save()
+            print('payroll_connection', payroll_connection)
             payroll_config['payroll_integration'] = payroll_integration
             payroll_config['payroll_connection'] = payroll_connection
 
