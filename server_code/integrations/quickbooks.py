@@ -30,8 +30,10 @@ def get_qb_auth_url(tenant_uid):
 @anvil.server.route("/integrations/qb/auth", methods=["GET", "POST"])
 def qb_auth(**params):
     qb_auth_code = params.get("code", None)
-    tenant_uid = params.get("state", None)
     realm_id = params.get("realmId", None)
+    state = params.get("state", {})
+    tenant_uid = state.get('tenant_uid', None)
+    service_uid = state.get('service_uid', None)
     qb_auth_client.get_bearer_token(qb_auth_code, realm_id=realm_id)
     qb_access_token = qb_auth_client.access_token
     qb_refresh_token = qb_auth_client.refresh_token
@@ -54,5 +56,14 @@ def qb_auth(**params):
 
 
     # return anvil.server.HttpResponse(200, "OK")
-    return anvil.server.FormResponse('app.HomePage', start_page='payroll_settings',
-                                     start_props={'data': account, 'active_tab': None})
+    payroll_integration_data = {
+        'service_uid': service_uid,
+        'qb_access_token': qb_access_token,
+        'qb_refresh_token': qb_refresh_token,
+        'realm_id': realm_id,
+    }
+    return anvil.server.FormResponse(
+        'app.HomePage',
+        start_page='payroll_settings',
+        start_props={'data': account, 'payroll_integration_data': payroll_integration_data}
+    )

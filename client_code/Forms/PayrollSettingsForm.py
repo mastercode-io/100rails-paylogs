@@ -13,9 +13,13 @@ PAY_CATEGORY_TYPES = {
 
 
 class PayrollSettingsForm(FormBase):
-    def __init__(self, **kwargs):
+    def __init__(self,
+                 payroll_integration_data=None,
+                 **kwargs):
         print('PayrollSettingsForm')
         kwargs['model'] = 'PayrollConfig'
+        payroll_integration_data = payroll_integration_data
+        print('payroll_integration_data', payroll_integration_data)
 
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
                                              string_format='d MMM yyy', required=True)

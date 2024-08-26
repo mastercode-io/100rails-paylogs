@@ -48,7 +48,7 @@ class HomePage(HomePageTemplate):
         self.appbar_settings_menu_show = False
         self.content_id = "pl-content"
         self.content_control = None
-        self.start_page = kwargs.get('start_page', 'payroll_dashboard')
+        self.start_page = kwargs.get('start_page', None)
         self.start_props = kwargs.get('start_props', {})
 
         # Appbar configuration
@@ -269,7 +269,8 @@ class HomePage(HomePageTemplate):
         })
         user_menu_tooltip.appendTo(self.appbar_user_menu.element)
 
-        self.start_page = self.user_app_permissions['start_page']
+        if not self.start_page:
+            self.start_page = self.user_app_permissions['start_page']
 
         # self.appbar_user_menu.items[0].text = AppEnv.logged_user.user_name + '<br>' + AppEnv.logged_user.email
         anvil.js.window.document.getElementById('pl-appbar-spacer').innerHTML = AppEnv.logged_user.app_mode
