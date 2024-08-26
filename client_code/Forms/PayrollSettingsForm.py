@@ -174,8 +174,14 @@ class PayrollSettingsForm(FormBase):
         super().form_open(args)
         self.action_button.content = 'Edit' if self.action == 'view' else 'Save'
         self.action_button.show()
-        self.payroll_connection_button.hide()
-        self.timesheet_connection_button.hide()
+        if self.action == 'edit':
+            if self.data['payroll_integration'] and not self.data['payroll_connection']:
+                self.payroll_connection_button.show()
+            if self.data['timesheet_integration'] and not self.data['timesheet_connection']:
+                self.timesheet_connection_button.show()
+        else:
+            self.payroll_connection_button.hide()
+            self.timesheet_connection_button.hide()
         # if not self.opened:
         #     self.payrun_flow_steps_view.show()
         #     self.payrun_flow_steps_widget.form_show(height=self.form.element.offsetHeight - 100)
