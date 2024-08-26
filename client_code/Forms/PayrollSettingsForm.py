@@ -251,9 +251,8 @@ class PayrollSettingsForm(FormBase):
                 self.payroll_connection_message.content = (f"No connection found for this integration: "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
                 self.payroll_connection_button.content = f'Create Connection to {payroll_integration.service_name}'
-                self.payroll_connection_button.show()
-                if self.action == 'view':
-                    self.payroll_connection_button.enabled = False
+                if self.action == 'edit':
+                    self.payroll_connection_button.show()
 
     def use_payroll_integration_changed(self, args):
         print('use_integration_changed', args)
@@ -274,7 +273,8 @@ class PayrollSettingsForm(FormBase):
                 self.timesheet_connection_message.accent = 'warning'
                 self.timesheet_connection_message.content = (f"No connection found for this integration: "
                                                              f"<b>{self.timesheet_integration.value['name']}</b>")
-                self.timesheet_connection_button.show()
+                if self.action == 'edit':
+                    self.timesheet_connection_button.show()
                 if self.action == 'view':
                     self.timesheet_connection_button.enabled = False
 
