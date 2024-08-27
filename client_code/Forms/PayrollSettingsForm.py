@@ -245,9 +245,11 @@ class PayrollSettingsForm(FormBase):
                 self.timesheet_integration.enabled = False
 
         if self.action == 'edit':
+            self.payroll_connection_message.show()
             self.payroll_connection_button.show()
             # self.timesheet_connection_button.hide()
         else:
+            self.payroll_connection_message.hide()
             self.payroll_connection_button.hide()
             # self.timesheet_connection_button.hide()
 
