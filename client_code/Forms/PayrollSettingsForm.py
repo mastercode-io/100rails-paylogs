@@ -191,10 +191,10 @@ class PayrollSettingsForm(FormBase):
             self.pay_day.enabled = True
             self.payrun_initial_date.enabled = True
             self.pay_category_type.enabled = True
-            # self.use_payroll_integration.enabled = True
-            # self.payroll_integration.enabled = True
-            # self.use_timesheet_integration.enabled = True
-            # self.timesheet_integration.enabled = True
+            self.use_payroll_integration.enabled = True
+            self.payroll_integration.enabled = True
+            self.use_timesheet_integration.enabled = True
+            self.timesheet_integration.enabled = True
         else:
             super().form_save(args, hide=False)
             self.action = 'view'
