@@ -100,11 +100,15 @@ class PayrollSettingsForm(FormBase):
         self.action_button = Button(content='Edit',
                                     container_id='payrun-settings-action-button',
                                     action=self.action_handler)
+        self.cancel_button = Button(content='Cancel',
+                                    container_id='payrun-settings-action-button',
+                                    action=self.action_handler)
 
         # Header
         self.form_header = f'\
             <div class="pl-form-header">\
                 <div class="pl-form-header-title" style="float: left">Payroll Settings</div>\
+                <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
                 <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
             </div>'
 
@@ -182,6 +186,8 @@ class PayrollSettingsForm(FormBase):
         self.timesheet_connection_button.hide()
         self.action_button.content = 'Edit' if self.action == 'view' else 'Save'
         self.action_button.show()
+        if self.action == 'edit':
+            self.cancel_button.show()
         self.integration_actions()
         # if not self.opened:
         #     self.payrun_flow_steps_view.show()
