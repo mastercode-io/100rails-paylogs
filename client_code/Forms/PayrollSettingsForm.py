@@ -276,6 +276,7 @@ class PayrollSettingsForm(FormBase):
                 self.payroll_connection_button.content = (f"Update Connection to "
                                                           f"{self.data['payroll_integration']['service_name']}")
             else:
+                print('ACCENT')
                 self.payroll_connection_message.accent = 'warning'
                 self.payroll_connection_message.content = (f"No connection found for this integration: "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
