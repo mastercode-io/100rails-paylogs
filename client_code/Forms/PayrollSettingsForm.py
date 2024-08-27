@@ -354,11 +354,18 @@ class PayrollSettingsForm(FormBase):
         self.form_save(None, hide=False)
         self.payroll_connection_message.accent = 'info'
         self.payroll_connection_message.content = 'Creating connection...'
-        qb_auth_url = anvil.server.call('get_qb_auth_url',
-                                        AppEnv.logged_user['tenant_uid'],
-                                        self.payroll_integration.value['uid'])
-        print('qb_auth_url', qb_auth_url)
-        anvil.js.window.location.href = qb_auth_url
+        auth_url = None
+        if self.payroll_integration.value['name'] == 'QuickBooks':
+            auth_url = anvil.server.call('get_qb_auth_url',
+                                         AppEnv.logged_user['tenant_uid'],
+                                         self.payroll_integration.value['uid'])
+        if self.payroll_integration.value['name'] == 'Xero':
+            auth_url = anvil.server.call('get_xero_auth_url',
+                                         AppEnv.logged_user['tenant_uid'],
+                                         self.payroll_integration.value['uid'])
+        print('auth_url', auth_url)
+        if auth_url is not None:
+            anvil.js.window.location.href = auth_url
 
 
     def create_timesheet_connection(self, args):
