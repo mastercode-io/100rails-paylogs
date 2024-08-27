@@ -278,7 +278,7 @@ class PayrollSettingsForm(FormBase):
             print('payroll_connection', self.payroll_connection.value)
             self.payroll_connection_message.show()
             if (self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']
-                    and self.payroll_connection is not None):
+                    and self.payroll_connection.value is not None):
                 self.payroll_connection_message.accent = None
                 self.payroll_connection_message.content = (f"Connected to "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
