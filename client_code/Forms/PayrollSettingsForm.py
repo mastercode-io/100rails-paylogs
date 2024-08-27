@@ -226,6 +226,7 @@ class PayrollSettingsForm(FormBase):
             self.use_payroll_integration.value = True
             self.payroll_integration.show()
             self.payroll_integration.value = self.data['payroll_integration']
+            print(self.action, self.data['payroll_connection'])
             if self.action == 'edit':
                 if self.data['payroll_connection'] is None:
                     self.payroll_connection_button.show()
@@ -276,7 +277,6 @@ class PayrollSettingsForm(FormBase):
                 self.payroll_connection_button.content = (f"Update Connection to "
                                                           f"{self.data['payroll_integration']['service_name']}")
             else:
-                print('ACCENT')
                 self.payroll_connection_message.accent = 'warning'
                 self.payroll_connection_message.content = (f"No connection found for this integration: "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
