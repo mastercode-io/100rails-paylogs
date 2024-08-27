@@ -288,6 +288,7 @@ class PayrollSettingsForm(FormBase):
             connection = AppIntegrationConnection.get_by('integration', integration)
             print('integration', integration)
             print('payroll_connection', connection)
+            print(self.data['payroll_integration']['uid'], self.payroll_integration.value['uid'])
             self.payroll_connection.value = connection
             self.payroll_connection_message.show()
             if (self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']
