@@ -259,7 +259,9 @@ class PayrollSettingsForm(FormBase):
             self.payroll_connection_message.content = ''
             self.payroll_connection_button.hide()
         else:
-            if self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']:
+            payroll_connection = AppIntegrationConnection.get_by('integration', self.payroll_integration.value)
+            if (self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']
+                    and payroll_connection is not None):
                 self.payroll_connection_message.content = (f"Connected to "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
                 self.payroll_connection_button.content = (f"Update Connection to "
