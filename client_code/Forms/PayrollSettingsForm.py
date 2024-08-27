@@ -56,7 +56,7 @@ class PayrollSettingsForm(FormBase):
                                                model='AppIntegration', text_field='service_name',
                                                get_data=False, hidden=True,
                                                on_change=self.payroll_integration_selected)
-        self.payroll_connection_message = InlineMessage(css_class='pl-message-bar', hidden=True)
+        self.payroll_connection_message = InlineMessage(css_class='pl-message-bar')
         self.payroll_connection_button = Button(content='Create Connection to Payroll',
                                                 action=self.create_payroll_connection, hidden=True)
 
@@ -173,7 +173,7 @@ class PayrollSettingsForm(FormBase):
     def form_open(self, args, **kwargs):
         super().form_open(args)
         self.payroll_integration.hide()
-        self.payroll_connection_message.hide()
+        # self.payroll_connection_message.hide()
         self.payroll_connection_button.hide()
         self.timesheet_integration.hide()
         self.timesheet_connection_message.hide()
@@ -249,7 +249,7 @@ class PayrollSettingsForm(FormBase):
             self.payroll_connection_button.show()
             # self.timesheet_connection_button.hide()
         else:
-            self.payroll_connection_message.hide()
+            # self.payroll_connection_message.hide()
             self.payroll_connection_button.hide()
             # self.timesheet_connection_button.hide()
 
@@ -269,7 +269,7 @@ class PayrollSettingsForm(FormBase):
         if not args.get('value') and not self.payroll_integration.value:
             self.payroll_connection_message.accent = None
             self.payroll_connection_message.content = ''
-            self.payroll_connection_button.hide()
+            # self.payroll_connection_button.hide()
         else:
             integration = AppIntegration.get(self.payroll_integration.value['uid'])
             payroll_connection = AppIntegrationConnection.get_by('integration', integration)
