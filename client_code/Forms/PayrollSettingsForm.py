@@ -273,6 +273,7 @@ class PayrollSettingsForm(FormBase):
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
                 self.payroll_connection_button.content = (f"Create Connection to "
                                                           f"{self.data['payroll_integration']['service_name']}")
+            self.payroll_connection_message.show()
             if self.action == 'edit':
                 self.payroll_connection_button.show()
 
