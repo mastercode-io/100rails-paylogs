@@ -28,7 +28,7 @@ def add_enum_list():
 def add_integration():
     print('func')
     integration = AppIntegration.get_by('service_name', 'scaflog')
-    tenant = Tenant.get_by('name', 'Simos')
+    tenant = Tenant.get_by('name', 'Scaffit')
     print(integration, tenant)
     print(integration['uid'], integration['service_name'])
     api_credentials = anvil.server.call('generate_api_key', tenant['uid'], integration)
@@ -163,5 +163,5 @@ def update_users():
 
 
 def foo():
-    bar()
+    add_integration()
     pass
