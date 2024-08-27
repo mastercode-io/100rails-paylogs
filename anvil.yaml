@@ -936,7 +936,7 @@ db_schema:
     title: Users
 secrets:
   openai_api_key:
-    value: {BBEZAPHMPN72GFKM: ugSptjoLoZhPIt18UiQCdoX+ufwuNIYFh/fM/4l/o/5OCCqWGChJPAHPrlz3pw5R/zoFz9ucoN2IryHoByJTCNgza21saaV6I6SYfwV9RDaArnAf5eY1B8wDIOXPWyA/KMi/el4NuCZ3g5VDLYnneSljllCBWDJ1aKq8goMW7e7M5NuvdAN3PWIaMbunbCVr15w=}
+    value: {BBEZAPHMPN72GFKM: 9qKWkg3cxfmqiFHlRWtV345H3Rc0I5M8zzTXIiUyGC2xUK614/RBg4FXfUKdjvAJxJifyidXhoBm3jEmi+B1YkqLnQrWKbWcts1X74iqo2o2OUG6JGbmJVEuhQaho3mC6hNbRUHK3ZIcJGAF+Yr/jBRV38sX4AkwGeaJIkABsEdxju/tHThhZq+oMsgNDuzLeWw=}
     type: secret
   copilot_assistant_id:
     value: {BBEZAPHMPN72GFKM: WW5JvILPAC6bLGRb1g0/2PVol2h65411z5i52IewI1iVBCXesRMT4XpqjjBppqwqExcoTRT1PBtVG3o/bS3jv+1hsDm9F0FTclBbEp0tAw3h+LpJO59MbdMIkmsD1tKNs9Fcv8K/NQAIwv8lTZaQk5tBR18SypB5yxRCrQ==}
@@ -946,5 +946,8 @@ secrets:
     type: secret
   qb_auth_sandbox:
     value: {BBEZAPHMPN72GFKM: RcVxQibZGV7PdZ0RT0UVd9Swi2xq5AqRz+iY5UAuRUSAqVoWo7CF7g/D+vqUzGa523i5IHPTJ9V30yPrfmI+wE9wAjgQYD+VjjcypAorcpJgVtxtCW5X5VV0RjRTgpsi7t4xhnvLmv2+6FyzrQv0ZaU9y+cxadfIpg+ZnbC5lVLEMLdUy34cdZKChBsA7MNinEi5Ks96dd5OjSR0qahC55HUGCP/9PVWFFQKGPrP9Ig/MU45RRUANmgKppHqpxyc6zhxs6/HMM1jjSsJIULqiH2gWkodtNOYr/1/0C8WOv8ff7uVrxm2}
+    type: secret
+  xero_auth:
+    value: {BBEZAPHMPN72GFKM: ysV0Iq5n6YNWU5g63LsPnOFDGa3UWJ0qDiLyTGAgeMt3zV4coLGljdKzD5z2KXqXQxK1g1PN6dfTR/2awAOotXk9B1yiXMtYbVQxyr47JQvy5jOWwqENcVXjvjrRe5iuT80p4WBAsL1ID/LxzO7YlUwQGvtdDAwnCex+zQbRUgWT2eZeQW5WeTgoyLD8rFFVL/R6ZIsMIe0niy98EuRQm+nWaHdxS6wK+LOmstI63M8LbD2BLQp0YI69PBLP2IYEKs+doWPDlCfmns7lrB7UAk/ih1ykxTKsZVtt064=}
     type: secret
 uplink_visible: true
