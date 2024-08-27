@@ -226,12 +226,12 @@ class PayrollSettingsForm(FormBase):
             self.use_payroll_integration.value = True
             self.payroll_integration.show()
             self.payroll_integration.value = self.data['payroll_integration']
-            print(self.action, self.data['payroll_connection'])
-            if self.action == 'edit':
-                if self.data['payroll_connection'] is None:
-                    self.payroll_connection_button.show()
-            else:
-                self.payroll_integration.enabled = False
+            # print(self.action, self.data['payroll_connection'])
+            # if self.action == 'edit':
+            #     if self.data['payroll_connection'] is None:
+            #         self.payroll_connection_button.show()
+            # else:
+            #     self.payroll_integration.enabled = False
 
         if self.data['timesheet_integration'] is not None:
             print('timesheet_integration', self.data['timesheet_integration'])
@@ -244,9 +244,12 @@ class PayrollSettingsForm(FormBase):
             else:
                 self.timesheet_integration.enabled = False
 
+        if self.action == 'edit':
+            self.payroll_connection_button.show()
+            # self.timesheet_connection_button.hide()
         else:
             self.payroll_connection_button.hide()
-            self.timesheet_connection_button.hide()
+            # self.timesheet_connection_button.hide()
 
 
     def payrun_flow_changed(self, args):
