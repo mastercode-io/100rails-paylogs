@@ -267,8 +267,10 @@ class PayrollSettingsForm(FormBase):
         else:
             integration = AppIntegration.get(self.payroll_integration.value['uid'])
             payroll_connection = AppIntegrationConnection.get_by('integration', integration)
+            self.payroll_connection_message.show()
             if (self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']
                     and payroll_connection is not None):
+                self.payroll_connection_message.accent = None
                 self.payroll_connection_message.content = (f"Connected to "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
                 self.payroll_connection_button.content = (f"Update Connection to "
@@ -279,7 +281,6 @@ class PayrollSettingsForm(FormBase):
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
                 self.payroll_connection_button.content = (f"Create Connection to "
                                                           f"{self.data['payroll_integration']['service_name']}")
-            self.payroll_connection_message.show()
             if self.action == 'edit':
                 self.payroll_connection_button.show()
 
