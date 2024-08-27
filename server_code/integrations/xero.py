@@ -35,6 +35,8 @@ def xero_auth(**params):
     service_uid = state_token.get('service_uid', None)
 
     xero_auth_code = params.get("code", None)
+    if not xero_auth_code:
+        return anvil.server.HttpResponse(status=400, body="Invalid authorization code")
     headers = {
         'Authorization': f"Basic {str(base64.b64encode(bytes(f'{XERO_CLIENT_ID}:{XERO_CLIENT_SECRET}', 'utf-8')), 'ascii')}",
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -59,7 +61,6 @@ def xero_auth(**params):
     print(f"xero_access_token: {xero_access_token}\nxero_refresh_token: {xero_refresh_token}\nxero_tenant_id: {xero_tenant_id}")
     print(f"state: {json.dumps(state_token)}")
 
-    # account = next(iter(Account.search(pay_entities=[tenant])), None)
     payroll_integration_data = {
         'tenant_uid': tenant_uid,
         'service_uid': service_uid,
