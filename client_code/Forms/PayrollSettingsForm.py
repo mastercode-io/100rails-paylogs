@@ -19,12 +19,15 @@ class PayrollSettingsForm(FormBase):
         print('PayrollSettingsForm')
         kwargs['model'] = 'PayrollConfig'
 
+        payroll_config = next(iter(PayrollConfig.search()), None)
+        action = 'view' if payroll_config else 'edit'
+
         # save the payroll integration data if it was passed
-        payroll_config = kwargs.get('data', {})
         payroll_integration_data = payroll_integration_data
         print('payroll_config', payroll_config)
         print('payroll_integration_data', payroll_integration_data)
-        if payroll_config and payroll_integration_data:
+        if (payroll_config and payroll_integration_data
+                and payroll_integration_data.get('tenant_uid', None) == AppEnv.logged_user.tenant_uid):
             service_uid = payroll_integration_data.get('service_uid', None)
             connection_data = payroll_integration_data.get('connection_data', {})
             payroll_integration = AppIntegration.get(service_uid)
@@ -43,6 +46,7 @@ class PayrollSettingsForm(FormBase):
             print('payroll_connection', payroll_connection)
             payroll_config['payroll_integration'] = payroll_integration
             payroll_config['payroll_connection'] = payroll_connection
+            payroll_config.save()
 
         # Fields
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
@@ -158,12 +162,6 @@ class PayrollSettingsForm(FormBase):
         app_list = [app.to_json_dict() for app in AppIntegration.search(tenant_uid=SYSTEM_TENANT_UID)]
         self.payroll_integration.data = [app for app in app_list if app['service_type'] == 'Payroll']
         self.timesheet_integration.data = [app for app in app_list if app['service_type'] == 'Time Tracking']
-        payroll_config = next(iter(PayrollConfig.search()), None)
-        if payroll_config:
-            # self.data = payroll_config
-            action = 'view'
-        else:
-            action = 'edit'
 
         super().__init__(header=self.form_header,
                          # sections=sections,

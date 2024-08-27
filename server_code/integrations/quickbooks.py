@@ -58,6 +58,7 @@ def qb_auth(**params):
 
     # return anvil.server.HttpResponse(200, "OK")
     payroll_integration_data = {
+        'tenant_uid': tenant_uid,
         'service_uid': service_uid,
         'connection_data': {
             'access_token': qb_access_token,
