@@ -290,6 +290,7 @@ class PayrollSettingsForm(FormBase):
             print('payroll_connection', connection)
             print(self.data['payroll_integration']['uid'], self.payroll_integration.value['uid'])
             self.payroll_connection.value = connection
+            print('payroll_connection.value', self.payroll_connection.value)
             self.payroll_connection_message.show()
             if (self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']
                     and self.payroll_connection.value is not None):
