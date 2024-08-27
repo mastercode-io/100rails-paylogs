@@ -54,11 +54,11 @@ class PayrollSettingsForm(FormBase):
                                                      on_change=self.use_payroll_integration_changed)
         self.payroll_integration = LookupInput(name='payroll_integration', label='Select Payroll App',
                                                model='AppIntegration', text_field='service_name',
-                                               get_data=False,
+                                               get_data=False, hidden=True,
                                                on_change=self.payroll_integration_selected)
-        self.payroll_connection_message = InlineMessage(css_class='pl-message-bar')
+        self.payroll_connection_message = InlineMessage(css_class='pl-message-bar', hidden=True)
         self.payroll_connection_button = Button(content='Create Connection to Payroll',
-                                                action=self.create_payroll_connection)
+                                                action=self.create_payroll_connection, hidden=True)
 
         self.timesheet_integration_subtitle = InlineMessage(content='Time Tracking',)
         self.use_timesheet_integration = CheckboxInput(name='use_integration', label='Time Tracking Integration',
@@ -66,11 +66,11 @@ class PayrollSettingsForm(FormBase):
                                                        on_change=self.use_timesheet_integration_changed)
         self.timesheet_integration = LookupInput(name='timesheet_integration', label='Select Time Tracking App',
                                                  model='AppIntegration', text_field='service_name',
-                                                 get_data=False,
+                                                 get_data=False, hidden=True,
                                                  on_change=self.timesheet_integration_selected)
-        self.timesheet_connection_message = InlineMessage(css_class='pl-message-bar')
+        self.timesheet_connection_message = InlineMessage(css_class='pl-message-bar', hidden=True)
         self.timesheet_connection_button = Button(content='Create Connection to Time Tracking',
-                                                  action=self.create_timesheet_connection)
+                                                  action=self.create_timesheet_connection, hidden=True)
 
         self.frequency = DropdownInput(name='frequency', label='Pay Cycle Frequency',
                                        options=PAYRUN_FREQUENCY, value='Weekly',
