@@ -56,6 +56,7 @@ class PayrollSettingsForm(FormBase):
                                                model='AppIntegration', text_field='service_name',
                                                get_data=False, hidden=True,
                                                on_change=self.payroll_integration_selected)
+        self.payroll_connection = LookupInput(name='payroll_connection', hidden=True)
         self.payroll_connection_message = InlineMessage(css_class='pl-message-bar')
         self.payroll_connection_button = Button(content='Create Connection to Payroll',
                                                 action=self.create_payroll_connection, hidden=True)
@@ -68,6 +69,7 @@ class PayrollSettingsForm(FormBase):
                                                  model='AppIntegration', text_field='service_name',
                                                  get_data=False, hidden=True,
                                                  on_change=self.timesheet_integration_selected)
+        self.timesheet_connection = LookupInput(name='timesheet_connection', hidden=True)
         self.timesheet_connection_message = InlineMessage(css_class='pl-message-bar', hidden=True)
         self.timesheet_connection_button = Button(content='Create Connection to Time Tracking',
                                                   action=self.create_timesheet_connection, hidden=True)
@@ -272,10 +274,10 @@ class PayrollSettingsForm(FormBase):
             # self.payroll_connection_button.hide()
         else:
             integration = AppIntegration.get(self.payroll_integration.value['uid'])
-            payroll_connection = AppIntegrationConnection.get_by('integration', integration)
+            self.payroll_connection.value = AppIntegrationConnection.get_by('integration', integration)
             self.payroll_connection_message.show()
             if (self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']
-                    and payroll_connection is not None):
+                    and self.payroll_connection is not None):
                 self.payroll_connection_message.accent = None
                 self.payroll_connection_message.content = (f"Connected to "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
