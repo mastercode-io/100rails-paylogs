@@ -254,20 +254,20 @@ class PayrollSettingsForm(FormBase):
 
     def payroll_integration_selected(self, args):
         print('integration_selected', args)
-        if not args.get('value') and not self.payroll_integration.value:
-            self.payroll_connection_message.accent = None
-            self.payroll_connection_message.content = ''
-            self.payroll_connection_button.hide()
-        else:
-            payroll_integration = AppIntegration.get(self.payroll_integration.value['uid'])
-            payroll_connection = AppIntegrationConnection.get_by('integration', payroll_integration)
-            if not payroll_connection:
-                self.payroll_connection_message.accent = 'warning'
-                self.payroll_connection_message.content = (f"No connection found for this integration: "
-                                                           f"<b>{self.payroll_integration.value['name']}</b>")
-                self.payroll_connection_button.content = f'Create Connection to {payroll_integration.service_name}'
-                if self.action == 'edit':
-                    self.payroll_connection_button.show()
+        # if not args.get('value') and not self.payroll_integration.value:
+        #     self.payroll_connection_message.accent = None
+        #     self.payroll_connection_message.content = ''
+        #     self.payroll_connection_button.hide()
+        # else:
+        #     payroll_integration = AppIntegration.get(self.payroll_integration.value['uid'])
+        #     payroll_connection = AppIntegrationConnection.get_by('integration', payroll_integration)
+        #     if not payroll_connection:
+        #         self.payroll_connection_message.accent = 'warning'
+        #         self.payroll_connection_message.content = (f"No connection found for this integration: "
+        #                                                    f"<b>{self.payroll_integration.value['name']}</b>")
+        #         self.payroll_connection_button.content = f'Create Connection to {payroll_integration.service_name}'
+        #         if self.action == 'edit':
+        #             self.payroll_connection_button.show()
 
     def use_payroll_integration_changed(self, args):
         print('use_integration_changed', args)
@@ -277,21 +277,22 @@ class PayrollSettingsForm(FormBase):
             self.payroll_integration.hide()
 
     def timesheet_integration_selected(self, args):
-        if not args.get('value') or not self.timesheet_integration.value:
-            self.timesheet_connection_message.accent = None
-            self.timesheet_connection_message.content = ''
-            self.timesheet_connection_button.hide()
-        else:
-            timesheet_integration = AppIntegration.get(self.timesheet_integration.value['uid'])
-            timesheet_connection = AppIntegrationConnection.get_by('integration', timesheet_integration)
-            if not timesheet_connection:
-                self.timesheet_connection_message.accent = 'warning'
-                self.timesheet_connection_message.content = (f"No connection found for this integration: "
-                                                             f"<b>{self.timesheet_integration.value['name']}</b>")
-                if self.action == 'edit':
-                    self.timesheet_connection_button.show()
-                if self.action == 'view':
-                    self.timesheet_connection_button.enabled = False
+        print('timesheet_integration_selected', args)
+        # if not args.get('value') or not self.timesheet_integration.value:
+        #     self.timesheet_connection_message.accent = None
+        #     self.timesheet_connection_message.content = ''
+        #     self.timesheet_connection_button.hide()
+        # else:
+        #     timesheet_integration = AppIntegration.get(self.timesheet_integration.value['uid'])
+        #     timesheet_connection = AppIntegrationConnection.get_by('integration', timesheet_integration)
+        #     if not timesheet_connection:
+        #         self.timesheet_connection_message.accent = 'warning'
+        #         self.timesheet_connection_message.content = (f"No connection found for this integration: "
+        #                                                      f"<b>{self.timesheet_integration.value['name']}</b>")
+        #         if self.action == 'edit':
+        #             self.timesheet_connection_button.show()
+        #         if self.action == 'view':
+        #             self.timesheet_connection_button.enabled = False
 
     def use_timesheet_integration_changed(self, args):
         print('use_integration_changed', args)
