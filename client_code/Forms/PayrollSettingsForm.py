@@ -102,14 +102,14 @@ class PayrollSettingsForm(FormBase):
                                     action=self.action_handler)
         self.cancel_button = Button(content='Cancel',
                                     container_id='payrun-settings-action-button',
-                                    action=self.action_handler)
+                                    action=None)
 
         # Header
         self.form_header = f'\
             <div class="pl-form-header">\
                 <div class="pl-form-header-title" style="float: left">Payroll Settings</div>\
                 <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
-                <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
+                <div id="payrun-settings-action-button" style="float: right">{self.cancel_button}</div>\
             </div>'
 
         tabs = [
