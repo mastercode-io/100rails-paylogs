@@ -56,7 +56,7 @@ def xero_auth(**params):
     print(f'Xero connections: {xero_connections}')
     print(f'Xero tenant id: {xero_tenant_id}')
 
-    print(f"xero_access_token: {xero_access_token}\nxero_refresh_token: {xero_refresh_token}\nrealm_id: {realm_id}")
+    print(f"xero_access_token: {xero_access_token}\nxero_refresh_token: {xero_refresh_token}\nxero_tenant_id: {xero_tenant_id}")
     print(f"state: {json.dumps(state_token)}")
 
     # account = next(iter(Account.search(pay_entities=[tenant])), None)
