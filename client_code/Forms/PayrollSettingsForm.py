@@ -280,7 +280,7 @@ class PayrollSettingsForm(FormBase):
     def payroll_integration_selected(self, args):
         print('integration_selected', args)
         if not args.get('value') and not self.payroll_integration.value:
-            self.payroll_connection_message.accent = None
+            self.payroll_connection_message.accent = 'info'
             self.payroll_connection_message.content = ''
             # self.payroll_connection_button.hide()
         else:
@@ -304,7 +304,7 @@ class PayrollSettingsForm(FormBase):
                 self.payroll_connection_message.content = (f"No connection found for this integration: "
                                                            f"<b>{self.payroll_integration.value['name']}</b>")
                 self.payroll_connection_button.content = (f"Create Connection to "
-                                                          f"{self.data['payroll_integration']['service_name']}")
+                                                          f"{self.payroll_integration.value['name']}")
             if self.action == 'edit':
                 self.payroll_connection_button.show()
 
