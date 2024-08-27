@@ -101,15 +101,15 @@ class PayrollSettingsForm(FormBase):
                                     container_id='payrun-settings-action-button',
                                     action=self.action_handler)
         self.cancel_button = Button(content='Cancel',
-                                    container_id='payrun-settings-action-button',
-                                    action=None)
+                                    container_id='payrun-settings-cancel-button',
+                                    action=self.cancel_handler)
 
         # Header
         self.form_header = f'\
             <div class="pl-form-header">\
                 <div class="pl-form-header-title" style="float: left">Payroll Settings</div>\
                 <div id="payrun-settings-action-button" style="float: right">{self.action_button}</div>\
-                <div id="payrun-settings-action-button" style="float: right">{self.cancel_button}</div>\
+                <div id="payrun-settings-cancel-button" style="float: right">{self.cancel_button}</div>\
             </div>'
 
         tabs = [
@@ -224,6 +224,12 @@ class PayrollSettingsForm(FormBase):
             # self.pay_category_type.enabled = False
             # self.use_integration.enabled = False
             # self.integration.enabled = False
+        self.form_open(args)
+
+
+    def cancel_handler(self, args):
+        print('cancel_handler', args)
+        self.action = 'view'
         self.form_open(args)
 
 
