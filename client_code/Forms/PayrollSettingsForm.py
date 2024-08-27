@@ -275,6 +275,7 @@ class PayrollSettingsForm(FormBase):
         else:
             integration = AppIntegration.get(self.payroll_integration.value['uid'])
             self.payroll_connection.value = AppIntegrationConnection.get_by('integration', integration)
+            print('payroll_connection', self.payroll_connection.value)
             self.payroll_connection_message.show()
             if (self.data['payroll_integration']['uid'] == self.payroll_integration.value['uid']
                     and self.payroll_connection is not None):
