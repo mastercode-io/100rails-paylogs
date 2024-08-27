@@ -218,8 +218,8 @@ class PayrollSettingsForm(FormBase):
         if self.data['payroll_integration'] is not None:
             print('payroll_integration', self.data['payroll_integration'])
             self.use_payroll_integration.value = True
-            self.payroll_integration.value = self.data['payroll_integration']
             self.payroll_integration.show()
+            self.payroll_integration.value = self.data['payroll_integration']
             if self.action == 'edit':
                 if self.data['payroll_connection'] is None:
                     self.payroll_connection_button.show()
@@ -229,8 +229,8 @@ class PayrollSettingsForm(FormBase):
         if self.data['timesheet_integration'] is not None:
             print('timesheet_integration', self.data['timesheet_integration'])
             self.use_timesheet_integration.value = True
-            self.timesheet_integration.value = self.data['timesheet_integration']
             self.timesheet_integration.show()
+            self.timesheet_integration.value = self.data['timesheet_integration']
             if self.action == 'edit':
                 if self.data['timesheet_connection'] is None:
                     self.timesheet_connection_button.show()
