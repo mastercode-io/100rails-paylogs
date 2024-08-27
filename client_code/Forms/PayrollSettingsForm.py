@@ -172,6 +172,12 @@ class PayrollSettingsForm(FormBase):
 
     def form_open(self, args, **kwargs):
         super().form_open(args)
+        self.payroll_integration.hide()
+        self.payroll_connection_message.hide()
+        self.payroll_connection_button.hide()
+        self.timesheet_integration.hide()
+        self.timesheet_connection_message.hide()
+        self.timesheet_connection_button.hide()
         self.action_button.content = 'Edit' if self.action == 'view' else 'Save'
         self.action_button.show()
         self.integration_actions()
