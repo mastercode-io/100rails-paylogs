@@ -43,10 +43,10 @@ class PayrollSettingsForm(FormBase):
                     auth_credentials=connection_data,
                 )
             payroll_connection.save()
-            print('payroll_connection', payroll_connection)
             payroll_config['payroll_integration'] = payroll_integration
             payroll_config['payroll_connection'] = payroll_connection
             payroll_config.save()
+        print('payroll_connection', payroll_config['payroll_connection'])
 
         # Fields
         self.payrun_initial_date = DateInput(name='payrun_initial_date', label='Initial Payrun Date',
@@ -347,7 +347,7 @@ class PayrollSettingsForm(FormBase):
 
     def create_payroll_connection(self, args):
         print('create_connection', args)
-        self.form_save(None)
+        self.form_save(None, hide=False)
         self.payroll_connection_message.accent = 'info'
         self.payroll_connection_message.content = 'Creating connection...'
         qb_auth_url = anvil.server.call('get_qb_auth_url',
