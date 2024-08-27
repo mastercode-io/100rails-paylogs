@@ -23,7 +23,7 @@ def get_xero_auth_url(tenant_uid, service_uid):
     state_token = json.dumps({'tenant_uid': tenant_uid, 'service_uid': service_uid})
     xero_api_scope = 'offline_access openid email profile payroll.settings.read payroll.employees payroll.timesheets'
     xero_auth_url = (f"{XERO_OAUTH_LOGIN_URL}?response_type=code&client_id={XERO_CLIENT_ID}"
-                     f"&redirect_uri{XERO_OAUTH_REDIRECT_URL}&scope={xero_api_scope}&state={state_token}")
+                     f"&redirect_uri={XERO_OAUTH_REDIRECT_URL}&scope={xero_api_scope}&state={state_token}")
     print('xero auth url', xero_auth_url)
     return xero_auth_url
 
