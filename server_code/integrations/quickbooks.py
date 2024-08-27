@@ -1,10 +1,9 @@
-from AnvilFusion.server import utils as fusion_server_utils
+# from AnvilFusion.server import utils as fusion_server_utils
 import anvil.server
 import anvil.users
 import anvil.secrets
 from intuitlib.client import AuthClient
 from intuitlib.enums import Scopes
-from ..app.models import Account, Tenant, AppIntegration, AppOutApiCredential
 import json
 
 
@@ -41,22 +40,6 @@ def qb_auth(**params):
     print(f"qb_access_token: {qb_access_token}\nqb_refresh_token: {qb_refresh_token}\nrealm_id: {realm_id}")
     print(f"state: {json.dumps(state_token)}")
 
-    tenant = Tenant.get_row(tenant_uid)
-    account = next(iter(Account.search(pay_entities=[tenant])), None)
-    # qb_integration = AppIntegration.get_by('service_name', 'QuickBooks')
-    # AppOutApiCredential(
-    #     tenant_uid=tenant_uid,
-    #     integration=qb_integration,
-    #     api_credentials={
-    #         'access_token': qb_access_token,
-    #         'refresh_token': qb_refresh_token,
-    #         'realm_id': realm_id,
-    #     },
-    #     status='Active',
-    # ).save()
-
-
-    # return anvil.server.HttpResponse(200, "OK")
     payroll_integration_data = {
         'tenant_uid': tenant_uid,
         'service_uid': service_uid,
