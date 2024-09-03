@@ -85,6 +85,15 @@ def create_user():
     anvil.server.call('signup_user', email, password, tenant['uid'])
 
 
+def update_permissions_schema():
+    permissions_comps = [*models.AppComponent.search(tenant_uid=None)]
+    for comp in permissions_comps:
+        if comp['id'] == 'user_role_permissions':
+            comp['props'] = nav.DEFAULT_USER_PERMISSIONS
+            comp.save()
+    pass
+
+
 def bar():
     tenants = [*models.Tenant.search(tenant_uid=None)]
     app_component = models.AppComponent(
@@ -163,5 +172,5 @@ def update_users():
 
 
 def foo():
-    add_integration()
+    update_permissions_schema()
     pass
