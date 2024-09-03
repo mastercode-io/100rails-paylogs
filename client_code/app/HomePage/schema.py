@@ -23,6 +23,8 @@ PL_MENU_ITEMS_OLD = {
         {'id': 'admin_tenants', 'text': 'Tenants', 'items': []},
         {'id': 'admin_user_roles', 'text': 'User Roles', 'items': []},
         {'id': 'admin_permissions', 'text': 'Permissions', 'items': []},
+        {'id': 'admin_pay_rules', 'text': 'Pay Rules', 'items': []},
+        {'id': 'admin_pay_templates', 'text': 'Pay Templates', 'items': []},
         {'id': 'admin_settings', 'text': 'Settings', 'items': [
             {'id': 'admin_settings_scope_types', 'text': 'Scope Types', 'items': []},
         ]},
@@ -71,6 +73,8 @@ PL_MENU_ITEMS = [
         {'id': 'admin_tenants', 'text': 'Tenants', 'items': []},
         {'id': 'admin_user_roles', 'text': 'User Roles', 'items': []},
         {'id': 'admin_permissions', 'text': 'Permissions', 'items': []},
+        {'id': 'admin_pay_rules', 'text': 'Pay Rules', 'items': []},
+        {'id': 'admin_pay_templates', 'text': 'Pay Templates', 'items': []},
         {'id': 'admin_settings', 'text': 'Settings', 'items': [
             {'id': 'admin_settings_scope_types', 'text': 'Scope Types', 'items': []},
         ]},
@@ -127,6 +131,8 @@ PL_NAV_ITEMS = {
     'admin_settings_scope_types': {'model': 'ScopeType', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_integrations': {'model': 'AppIntegration', 'type': 'view', 'action': 'open', 'props': {}},
     'admin_user_roles': {'model': 'UserRole', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_pay_rules': {'model': 'PayRateRule', 'type': 'view', 'action': 'open', 'props': {}},
+    'admin_pay_templates': {'model': 'PayRateTemplate', 'type': 'view', 'action': 'open', 'props': {}},
 
     'developer_views': {'model': 'AppGridView', 'type': 'view', 'action': 'open', 'props': {}},
     'developer_enums': {'model': 'AppEnum', 'type': 'view', 'action': 'open', 'props': {}},
@@ -177,6 +183,8 @@ DEFAULT_USER_PERMISSIONS = {
                         'admin_tenants': {'has_access': True, 'items': {}},
                         'admin_user_roles': {'has_access': True, 'items': {}},
                         'admin_permissions': {'has_access': True, 'items': {}},
+                        'admin_pay_rules': {'has_access': True, 'items': {}},
+                        'admin_pay_templates': {'has_access': True, 'items': {}},
                         'admin_settings': {'has_access': True, 'items': {
                             'admin_settings_scope_types': {'has_access': True, 'items': {}},
                         }},
