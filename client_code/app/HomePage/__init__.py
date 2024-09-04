@@ -1,4 +1,6 @@
 import time
+
+
 stime = time.time()
 from ._anvil_designer import HomePageTemplate
 import anvil.js
@@ -221,7 +223,8 @@ class HomePage(HomePageTemplate):
             app_permissions = next(iter(app_comps), None)
         else:
             app_permissions = models.AppComponent.get_by('id', 'user_role_permissions')
-        self.user_app_permissions = app_permissions['props']['user_roles'][AppEnv.logged_user.user_role_type]['permissions']
+        self.user_app_permissions = app_permissions['props']['user_roles'][AppEnv.logged_user.user_role_type][
+            'permissions']
         user_app_menu = nav.get_user_menu_items(
             nav.PL_MENU_ITEMS,
             self.user_app_permissions['app_menu'])
@@ -327,6 +330,7 @@ class HomePage(HomePageTemplate):
 
     # Sidebar toggle event handler
 
+
     def sidebar_toggle(self, args):
         pass
         # self.sidebar.toggle(args)
@@ -338,6 +342,7 @@ class HomePage(HomePageTemplate):
     #     print('tenant', tenant)
     #     nav.PL_NAV_ITEMS['settings_account']['props'] = {'data': tenant}
     #     self.appbar_menu.show_selected('settings_account')
+
 
     def appbar_settings_button_click(self, args):
         # print('appbar_settings_button_click')
@@ -367,6 +372,7 @@ class HomePage(HomePageTemplate):
 
 
     # Sidebar menu popup window position adjustment
+
 
     @staticmethod
     def sidebar_menu_popup_open(args):

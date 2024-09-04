@@ -39,6 +39,7 @@ select:-webkit-autofill:focus {
 
 #pl-appbar {
     grid-area: appbar;
+    background-color: #f9f6f5;
 }
 
 /* #pl-appbar-menu {
