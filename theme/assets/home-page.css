@@ -20,6 +20,10 @@ select:-webkit-autofill:focus {
     opacity: 1 !important;
 }
 
+.body {
+    background-color: #f9f6f5;
+}
+
 #pl-app-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -70,6 +74,7 @@ select:-webkit-autofill:focus {
 .pl-appbar-menu {
     font-family: "Roboto", sans-serif!important;
     font-size: 8px !important;
+    background-color: #005ca5;
 }
 .pl-appbar-menu-icon {
     font-size: 18px !important;
