@@ -182,5 +182,5 @@ def update_users():
 
 
 def foo():
-    update_permissions_schema()
+    bar()
     pass
