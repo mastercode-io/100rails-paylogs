@@ -341,3 +341,23 @@ class SettingsForm(FormBase):
     def pay_entities_view_on_change(self, args):
         print('pay_entities_view_on_change', args)
         print(self.pay_entities_view.value)
+
+
+    def create_enums(self):
+        pass
+
+
+    def create_components(self):
+        pass
+
+
+    def create_user_roles(self):
+        pass
+
+
+    def create_pay_rules(self):
+        pass
+
+
+    def create_pay_templates(self):
+        pass
