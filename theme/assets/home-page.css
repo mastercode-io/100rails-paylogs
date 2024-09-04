@@ -71,7 +71,7 @@ select:-webkit-autofill:focus {
     margin: 0 3px;
 }
 
-.pl-appbar-menu.e-menu-wrapper {
+#pl-appbar-menu.e-menu-parent {
     /*font-family: "Roboto", sans-serif!important;*/
     /*font-size: 8px !important;*/
     background-color: #005ca5;
