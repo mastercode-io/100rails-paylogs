@@ -176,11 +176,6 @@ class HomePage(HomePageTemplate):
         # print('login_user')
         stime = time.time()
         AppEnv.logged_user = init_user_session(login_form=Forms.UserLoginForm, after_login=self.after_login)
-        # AppEnv.logged_user = init_user_session(
-        #     user_email='alex@100email.co',
-        #     password='7CAwXs-D"H:a]84',
-        #     after_login=self.after_login,
-        # )
         print('login_user: ', time.time() - stime)
         if AppEnv.logged_user:
             self.after_login()
