@@ -190,7 +190,6 @@ class HomePage(HomePageTemplate):
         stime = time.time()
         AppEnv.init_enumerations(model_list=models.ENUM_MODEL_LIST)
         AppEnv.init_enum_constants()
-        # print('enum_constants', AppEnv.enum_constants)
         do_something()
         print('LOAD CONST: ', time.time() - stime)
         # AppEnv.navigation = self.sidebar
